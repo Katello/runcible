@@ -2,117 +2,216 @@
 http_interactions: 
 - request: 
     method: get
-    uri: https://localhost/pulp/api/users/admin/
+    uri: http://admin:admin@localhost/pulp/api/v2/users/admin/
     body: 
       string: ""
     headers: 
-      Authorization: 
-      - OAuth oauth_consumer_key="katello", oauth_nonce="2yoZlxKuMVD9tw43LFR03PhocY3VeW2J9XD4sJBHVg", oauth_signature="4loJjeO4yuifN8W6oXu1RAzwESY%3D", oauth_signature_method="HMAC-SHA1", oauth_timestamp="1346290795", oauth_version="1.0"
-      Accept-Encoding: 
-      - gzip, deflate
-      Pulp-User: 
-      - admin
-      Accept-Language: 
-      - en
-      Accept: 
-      - application/json
       Content-Type: 
       - application/json
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+  response: 
+    status: 
+      code: 403
+      message: Forbidden
+    headers: 
+      Content-Type: 
+      - text/html; charset=iso-8859-1
+      Content-Length: 
+      - "301"
+      Server: 
+      - Apache/2.2.22 (Fedora)
+      Date: 
+      - Thu, 06 Sep 2012 19:25:18 GMT
+      Connection: 
+      - close
+    body: 
+      string: |
+        <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+        <html><head>
+        <title>403 Forbidden</title>
+        </head><body>
+        <h1>Forbidden</h1>
+        <p>You don't have permission to access /pulp/api/v2/users/admin/
+        on this server.</p>
+        <hr>
+        <address>Apache/2.2.22 (Fedora) Server at localhost Port 80</address>
+        </body></html>
+
+    http_version: 
+  recorded_at: Thu, 06 Sep 2012 19:25:18 GMT
+- request: 
+    method: get
+    uri: http://katello.localdomain/pulp/api/v2/users/admin/
+    body: 
+      string: ""
+    headers: 
+      Content-Type: 
+      - application/json
+      Authorization: 
+      - OAuth oauth_consumer_key="runcible", oauth_nonce="N8zpbZm2oNUVeacKlBSnJjfSUS2qjKoIxvkDB8Vrss", oauth_signature="WFNmq%2F%2FsgAEqJ13QspbjmD%2FhNX4%3D", oauth_signature_method="HMAC-SHA1", oauth_timestamp="1346959742", oauth_version="1.0"
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+  response: 
+    status: 
+      code: 403
+      message: Forbidden
+    headers: 
+      Content-Type: 
+      - text/html; charset=iso-8859-1
+      Content-Length: 
+      - "311"
+      Server: 
+      - Apache/2.2.22 (Fedora)
+      Date: 
+      - Thu, 06 Sep 2012 19:29:02 GMT
+      Connection: 
+      - close
+    body: 
+      string: |
+        <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+        <html><head>
+        <title>403 Forbidden</title>
+        </head><body>
+        <h1>Forbidden</h1>
+        <p>You don't have permission to access /pulp/api/v2/users/admin/
+        on this server.</p>
+        <hr>
+        <address>Apache/2.2.22 (Fedora) Server at katello.localdomain Port 80</address>
+        </body></html>
+
+    http_version: 
+  recorded_at: Thu, 06 Sep 2012 19:29:02 GMT
+- request: 
+    method: get
+    uri: https://katello.localdomain/pulp/api/v2/users/admin/
+    body: 
+      string: ""
+    headers: 
+      Content-Type: 
+      - application/json
+      Authorization: 
+      - OAuth oauth_consumer_key="runcible", oauth_nonce="tX3eC275NgAeGO4OCNhwUTIkeAPDs0ynYqnmFVDfyU", oauth_signature="1AaPM6oJJ%2BCQ5e9SeCeUFQtgO9g%3D", oauth_signature_method="HMAC-SHA1", oauth_timestamp="1346959847", oauth_version="1.0"
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+  response: 
+    status: 
+      code: 401
+      message: Unauthorized
+    headers: 
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "25"
+      Server: 
+      - Apache/2.2.22 (Fedora)
+      Date: 
+      - Thu, 06 Sep 2012 19:30:47 GMT
+      Connection: 
+      - close
+    body: 
+      string: "\"Invalid SSL Certificate\""
+    http_version: 
+  recorded_at: Thu, 06 Sep 2012 19:30:47 GMT
+- request: 
+    method: get
+    uri: https://admin:admin@katello.localdomain/pulp/api/v2/users/admin/
+    body: 
+      string: ""
+    headers: 
+      Content-Type: 
+      - application/json
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
   response: 
     status: 
       code: 200
       message: OK
     headers: 
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "267"
       Server: 
       - Apache/2.2.22 (Fedora)
+      Date: 
+      - Thu, 06 Sep 2012 19:30:51 GMT
       Connection: 
       - close
-      Content-Length: 
-      - "167"
-      Content-Type: 
-      - application/json
-      Date: 
-      - Thu, 30 Aug 2012 01:39:55 GMT
     body: 
-      string: "{\"_id\": \"12a0fbdc-900e-4f79-83ac-159cf430696a\", \"name\": null, \"roles\": [\"super-users\"], \"_ns\": \"users\", \"login\": \"admin\", \"id\": \"12a0fbdc-900e-4f79-83ac-159cf430696a\"}"
+      string: "{\"_id\": {\"$oid\": \"5048f6c5ec6a6d6734000008\"}, \"name\": \"admin\", \"roles\": [\"super-users\"], \"_ns\": \"users\", \"login\": \"admin\", \"password\": \"VVz8lz2wFGM=,TKtfpt6HEXaxzEGRaDeJm5Zo7UsCdf9d26QVyiKKnb4=\", \"id\": \"5048f6c5ec6a6d6734000008\", \"_href\": \"/pulp/api/v2/users/admin/\"}"
     http_version: 
-  recorded_at: Thu, 30 Aug 2012 01:39:55 GMT
+  recorded_at: Thu, 06 Sep 2012 19:30:51 GMT
 - request: 
-    method: post
-    uri: https://localhost/pulp/api/users/
-    body: 
-      string: "{\"password\":\"integration_test_password\",\"name\":\"integration_test_user\",\"login\":\"integration_test_user\"}"
-    headers: 
-      Authorization: 
-      - OAuth oauth_body_hash="2jmj7l5rSw0yVb%2FvlWAYkK%2FYBwk%3D", oauth_consumer_key="katello", oauth_nonce="ohM9AUw61k0yLxYz9vBcONks0uBtteNkSTHsOBAeT4", oauth_signature="2ljhdnI9NPCYtKu6KseX%2BFYiN2c%3D", oauth_signature_method="HMAC-SHA1", oauth_timestamp="1346291179", oauth_version="1.0"
-      Accept-Encoding: 
-      - gzip, deflate
-      Pulp-User: 
-      - admin
-      Content-Length: 
-      - "103"
-      Accept-Language: 
-      - en
-      Accept: 
-      - "*/*; q=0.5, application/xml"
-      Content-Type: 
-      - application/json
-  response: 
-    status: 
-      code: 201
-      message: Created
-    headers: 
-      Server: 
-      - Apache/2.2.22 (Fedora)
-      Connection: 
-      - close
-      Location: 
-      - 07139a25-1dc5-466a-adbb-2089a1276684
-      Content-Length: 
-      - "262"
-      Content-Type: 
-      - application/json
-      Date: 
-      - Thu, 30 Aug 2012 01:46:19 GMT
-    body: 
-      string: "{\"_id\": \"07139a25-1dc5-466a-adbb-2089a1276684\", \"name\": \"integration_test_user\", \"roles\": [], \"_ns\": \"users\", \"login\": \"integration_test_user\", \"password\": \"oh1Q7ocUpJM=,vyzV5TFNTw8gQql0RKJRhidDvIfo+Zou4IEmHRhpw3k=\", \"id\": \"07139a25-1dc5-466a-adbb-2089a1276684\"}"
-    http_version: 
-  recorded_at: Thu, 30 Aug 2012 01:46:19 GMT
-- request: 
-    method: delete
-    uri: https://localhost/pulp/api/users/integration_test_user/
+    method: get
+    uri: https://localhost/pulp/api/v2/users/admin/
     body: 
       string: ""
     headers: 
-      Authorization: 
-      - OAuth oauth_consumer_key="katello", oauth_nonce="PAQOsZ80vSGV6wdl1ADxAcRbh54yDCNnRQV5Lh7vw", oauth_signature="scUViplgXOdVZRYeG679lrUY0QY%3D", oauth_signature_method="HMAC-SHA1", oauth_timestamp="1346291179", oauth_version="1.0"
-      Accept-Encoding: 
-      - gzip, deflate
-      Pulp-User: 
-      - admin
-      Accept-Language: 
-      - en
-      Accept: 
-      - "*/*; q=0.5, application/xml"
       Content-Type: 
       - application/json
+      Authorization: 
+      - OAuth oauth_consumer_key="runcible", oauth_nonce="9I6QLOoC2kCpbA1uxgR4F3rc1KpP7SfY1hb6sftmQ", oauth_signature="PXwviXl%2F1%2FhMw6aGN0UVycoJfuE%3D", oauth_signature_method="HMAC-SHA1", oauth_timestamp="1346959948", oauth_version="1.0"
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+  response: 
+    status: 
+      code: 401
+      message: Unauthorized
+    headers: 
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "25"
+      Server: 
+      - Apache/2.2.22 (Fedora)
+      Date: 
+      - Thu, 06 Sep 2012 19:32:28 GMT
+      Connection: 
+      - close
+    body: 
+      string: "\"Invalid SSL Certificate\""
+    http_version: 
+  recorded_at: Thu, 06 Sep 2012 19:32:28 GMT
+- request: 
+    method: get
+    uri: https://admin:admin@localhost/pulp/api/v2/users/admin/
+    body: 
+      string: ""
+    headers: 
+      Content-Type: 
+      - application/json
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
   response: 
     status: 
       code: 200
       message: OK
     headers: 
-      Server: 
-      - Apache/2.2.22 (Fedora)
-      Connection: 
-      - close
-      Content-Length: 
-      - "4"
       Content-Type: 
       - application/json
+      Content-Length: 
+      - "267"
+      Server: 
+      - Apache/2.2.22 (Fedora)
       Date: 
-      - Thu, 30 Aug 2012 01:46:19 GMT
+      - Thu, 06 Sep 2012 19:39:23 GMT
+      Connection: 
+      - close
     body: 
-      string: "true"
+      string: "{\"_id\": {\"$oid\": \"5048f6c5ec6a6d6734000008\"}, \"name\": \"admin\", \"roles\": [\"super-users\"], \"_ns\": \"users\", \"login\": \"admin\", \"password\": \"VVz8lz2wFGM=,TKtfpt6HEXaxzEGRaDeJm5Zo7UsCdf9d26QVyiKKnb4=\", \"id\": \"5048f6c5ec6a6d6734000008\", \"_href\": \"/pulp/api/v2/users/admin/\"}"
     http_version: 
-  recorded_at: Thu, 30 Aug 2012 01:46:19 GMT
+  recorded_at: Thu, 06 Sep 2012 19:39:23 GMT
 recorded_with: VCR 2.2.4

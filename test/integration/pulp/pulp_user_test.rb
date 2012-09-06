@@ -12,13 +12,14 @@
 require 'rubygems'
 require 'minitest/autorun'
 require 'test/integration/pulp/vcr_pulp_setup'
+require 'lib/runcible/resources/user'
 
 
 class TestPulpUser < MiniTest::Unit::TestCase
   def setup
     VCR.insert_cassette('pulp_user')
     @username = "admin"
-    @resource = Resources::Pulp::User
+    @resource = Runcible::Pulp::User
   end
 
   def teardown
@@ -27,12 +28,12 @@ class TestPulpUser < MiniTest::Unit::TestCase
 
   def test_path_without_username
     path = @resource.path
-    assert_match("/api/users/", path)
+    assert_match("users/", path)
   end
 
   def test_path_with_username
     path = @resource.path(@username)
-    assert_match("/api/users/" + @username, path)
+    assert_match("users/" + @username, path)
   end
 
   def test_find

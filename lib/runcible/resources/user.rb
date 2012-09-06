@@ -21,5 +21,28 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-require "runcible/version"
-require File.join(File.dirname(__FILE__), 'runcible/resources/*.rb')
+require 'lib/runcible/base'
+
+
+module Runcible
+  module Pulp
+    class User < Runcible::Base
+
+      def self.path(username="")
+        "users/#{username}/"
+      end
+
+      def self.find(id)
+        call(:get, path(id))
+      end
+
+      def self.create
+      end
+
+      def self.destroy
+      end
+
+    end
+
+  end
+end

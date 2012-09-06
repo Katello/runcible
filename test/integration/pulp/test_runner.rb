@@ -12,25 +12,13 @@
 require 'rubygems'
 require 'minitest/unit'
 require 'minitest/autorun'
+require 'inifile'
+
 require 'test/integration/pulp/vcr_pulp_setup'
+require 'lib/runcible/base'
 
 
-class PulpMiniTestRunner
-
-  def run_tests(mode=:recorded, test_name=nil)
-    if mode == :recorded
-      configure_vcr(:all)
-    else
-      configure_vcr(:new_episodes)
-    end
-
-    if test_name
-      require "test/integration/pulp/pulp_#{test_suite_name}_test.rb"
-    else
-      Dir["test/integration/pulp/*_test.rb"].each {|file| require file }
-    end
-  end
-
+class CustomMiniTestRunner
   class Unit < MiniTest::Unit
 
     def before_suites
@@ -62,4 +50,63 @@ class PulpMiniTestRunner
   end
 end
 
-MiniTest::Unit.runner = PulpMiniTestRunner::Unit.new
+
+class PulpMiniTestRunner
+
+  def run_tests(options={})
+    mode      = options[:mode] || "recorded" 
+    test_name = options[:test_name] || nil
+    auth_type = options[:auth_type] || "basic"
+
+    MiniTest::Unit.runner = CustomMiniTestRunner::Unit.new
+
+    set_runcible_config(auth_type)
+    set_vcr_config(mode)
+
+    if test_name
+      require "test/integration/pulp/pulp_#{test_name}_test.rb"
+    else
+      Dir["test/integration/pulp/*_test.rb"].each {|file| require file }
+    end
+  end
+
+  def set_runcible_config(auth_type)
+    if auth_type == "basic"
+      Runcible::Base.config = {}
+
+      File.open('/etc/pulp/server.conf') do |f|
+        f.each_line do |line|
+          if line.start_with?('default_password')
+            Runcible::Base.config[:password] = line.split(':')[1].strip
+          elsif line.start_with?('default_login')
+            Runcible::Base.config[:user] = line.split(':')[1].strip
+          elsif line.start_with?('server_name')
+            Runcible::Base.config[:url] = 'https://' + line.split(':')[1].chomp.strip
+          end
+        end
+      end
+    elsif auth_type == "oauth"
+      Runcible::Base.config = { :oauth => {} }
+
+      File.open('/etc/pulp/server.conf') do |f|
+        f.each_line do |line|
+          if line.start_with?('oauth_secret')
+            Runcible::Base.config[:oauth][:oauth_secret] = line.split(':')[1].strip
+          elsif line.start_with?('oauth_key')
+            Runcible::Base.config[:oauth][:oauth_key] = line.split(':')[1].strip
+          elsif line.start_with?('server_name')
+            Runcible::Base.config[:url] = 'https://' + line.split(':')[1].chomp.strip
+          end
+        end
+      end
+    end
+  end
+
+  def set_vcr_config(mode)
+    if mode == "live"
+      configure_vcr(:all)
+    else
+      configure_vcr(:new_episodes)
+    end
+  end
+end

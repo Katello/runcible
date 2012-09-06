@@ -21,5 +21,42 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-require "runcible/version"
-require File.join(File.dirname(__FILE__), 'runcible/resources/*.rb')
+require 'rubygems'
+require 'minitest/autorun'
+require 'minitest/mock'
+require 'ruby-debug'
+require './lib/runcible/base'
+
+
+class TestBase < MiniTest::Unit::TestCase
+  def setup
+    Runcible::Base.config = {
+      :base_url => "http://localhost/",
+      :user     => "test_user",
+      :password => "test_password",
+      :oauth    => "test_oauth",
+      :headers  => { :content_type => 'application/json',
+                     :accept       => 'application/json' }
+    }
+
+    @base = Runcible::Base.new
+  end
+
+  def test_config
+    assert !Runcible::Base.config.nil?
+  end
+
+  def test_process_response_returns_hash
+    json = { :a => "test", :b => "data" }.to_json
+    data = @base.process_response(json)
+
+    assert data["a"] = "test"
+  end
+
+  def test_process_response_returns_string
+    string = "true"
+    data = @base.process_response(string)
+
+    assert data = "true"
+  end
+end
