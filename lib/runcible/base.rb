@@ -74,12 +74,17 @@ module Runcible
       return data
     end
 
-    def self.generate_payload(local_names, binding)
+    def self.generate_payload(local_names, binding, keys_to_remove=[])
       local_names = local_names.reduce({}) do |acc, v|
         acc[v] = binding.eval(v.to_s) unless v == :_
         acc
       end
+
       local_names.delete("payload")
+      keys_to_remove.each do |key|
+        local_names.delete(key)
+      end
+
       return local_names
     end
 

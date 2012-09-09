@@ -11,41 +11,47 @@
 
 require 'rubygems'
 require 'minitest/autorun'
-require 'test/integration/pulp/vcr_pulp_setup'
+
+require './test/integration/pulp/vcr_pulp_setup'
+require './lib/runcible/resources/user'
+require './lib/runcible/resources/role'
 
 
 class TestPulpRoles < MiniTest::Unit::TestCase
   def setup
     @username = "integration_test_user"
     @role_name = "super-users"
-    @resource = Resources::Pulp::Roles
+    @resource = Runcible::Pulp::Role
+
     VCR.use_cassette('pulp_user') do
-      Resources::Pulp::User.create(:login => @username, :name => @username, :password => "integration_test_password")
+      Runcible::Pulp::User.create(@username, @username, "integration_test_password")
     end
-    VCR.insert_cassette('pulp_roles')
+
+    VCR.insert_cassette('pulp_role')
   end
 
   def teardown
-    @resource.remove(@role_name, @username)
     VCR.use_cassette('pulp_user') do
-      Resources::Pulp::User.destroy("integration_test_user")
+      Runcible::Pulp::User.destroy(@username)
     end
+
     VCR.eject_cassette
   end
 
   def test_path_without_role_name
     path = @resource.path
-    assert_match("/api/roles/", path)
+    assert_match("roles/", path)
   end
 
   def test_path_with_role_name
     path = @resource.path(@role_name)
-    assert_match("/api/roles/" + @role_name, path)
+    assert_match("roles/#{@role_name}", path)
   end
 
   def test_add
     response = @resource.add(@role_name, @username)
     assert response
+    @resource.remove(@role_name, @username)
   end
 
   def test_remove

@@ -11,8 +11,9 @@
 
 require 'rubygems'
 require 'minitest/autorun'
-require 'test/integration/pulp/vcr_pulp_setup'
-require 'lib/runcible/resources/user'
+
+require './test/integration/pulp/vcr_pulp_setup'
+require './lib/runcible/resources/user'
 
 
 module TestPulpUserBase
