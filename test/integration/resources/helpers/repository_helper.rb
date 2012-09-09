@@ -11,7 +11,6 @@
 
 require 'rubygems'
 
-require './test/integration/pulp/vcr_pulp_setup'
 require './lib/runcible/resources/repository'
 
 module RepositoryHelper

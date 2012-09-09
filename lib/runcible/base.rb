@@ -50,8 +50,8 @@ module Runcible
     def self.call(method, path, options={})
       client = RestClient::Resource.new(config[:url], config)
 
-      payload = generate_payload(options)
-      headers = options[:headers]
+      payload = [:post, :put].include?(method) ? generate_payload(options) : {}
+      headers = options[:headers] ? options[:headers] : {}
       params = options[:params]
       headers[:params] = params if params
 
@@ -67,14 +67,18 @@ module Runcible
     def self.generate_payload(options)
       if options[:payload]
         if options[:payload][:optional]
-          payload = options[:payload][:required].merge(options[:payload][:optional])
+          if options[:payload][:required]
+            payload = options[:payload][:required].merge(options[:payload][:optional])
+          else
+            payload = options[:payload][:optional]
+          end
         elsif options[:payload][:delta]
           payload = options[:payload]
         else
           payload = options[:payload][:required]
         end
       else
-        payload = ""
+        payload = {}
       end
 
       return payload
@@ -98,6 +102,7 @@ module Runcible
       end
 
       local_names.delete("payload")
+      local_names.delete("optional")
       keys_to_remove.each do |key|
         local_names.delete(key)
       end

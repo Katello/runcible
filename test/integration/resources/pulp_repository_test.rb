@@ -11,10 +11,8 @@
 
 require 'rubygems'
 require 'minitest/autorun'
-#require 'active_support/core_ext/time/calculations'
 
-require './test/integration/pulp/vcr_pulp_setup'
-require './test/integration/pulp/helpers/repository_helper'
+require './test/integration/resources/helpers/repository_helper'
 require './lib/runcible/resources/repository'
 
 
@@ -49,17 +47,30 @@ class TestPulpRepositoryCreate < MiniTest::Unit::TestCase
 end
 
 
-class TestPulpRepository < MiniTest::Unit::TestCase
+class TestPulpRepositoryDelete < MiniTest::Unit::TestCase
   include TestPulpRepositoryBase
-  
+
   def setup
     super
     RepositoryHelper.create_repo
   end
 
-  def teardown
+  def test_delete
+    response = @resource.delete(RepositoryHelper.repo_id)
+    assert response[:response_code] == 200
+  end
+
+end
+
+class TestPulpRepository < MiniTest::Unit::TestCase
+  include TestPulpRepositoryBase
+  
+  def self.before_suite
+    RepositoryHelper.create_repo
+  end
+
+  def self.after_suite
     RepositoryHelper.destroy_repo
-    super
   end
 
   def test_repository_path
@@ -73,9 +84,9 @@ class TestPulpRepository < MiniTest::Unit::TestCase
   end
 
   def test_update
-    response = @resource.update(RepositoryHelper.repo_id, { :display_name => "updated_" + RepositoryHelper.repo_id })
+    response = @resource.update(RepositoryHelper.repo_id, { :description => "updated_description_" + RepositoryHelper.repo_id })
     assert response[:response_code] == 200
-    assert response[:data]["display_name"] == "updated_" + RepositoryHelper.repo_id
+    assert response[:data]["description"] == "updated_description_" + RepositoryHelper.repo_id
   end
 
   def test_retrieve
@@ -84,35 +95,31 @@ class TestPulpRepository < MiniTest::Unit::TestCase
     assert response[:data]["display_name"] == RepositoryHelper.repo_id
   end
 
-  def test_delete
-    response = @resource.retrieve(RepositoryHelper.repo_id)
+  def test_retrieve_with_details
+    response = @resource.retrieve(RepositoryHelper.repo_id, {:details => true})
     assert response[:response_code] == 200
+    assert response[:data].has_key?(["distributors"])
+    assert response[:data].has_key?(["importers"])
+  end
+
+  def test_retrieve_all
+    response = @resource.retrieve_all()
+    assert response[:response_code] == 200
+    assert response[:data].collect{ |repo| repo["display_name"] == RepositoryHelper.repo_id }.length > 0
+  end
+
+  def test_search
+    response = @resource.search({})
+    assert response[:response_code] == 200
+    assert response[:data].collect{ |repo| repo["display_name"] == RepositoryHelper.repo_id }.length > 0
   end
 
 end
 =begin
-  def self.before_suite
-    #FilterHelper.create_filter
-  end
-
-  def self.after_suite
-    #FilterHelper.destroy_filter
-  end
-
 
   def test_discovery
     response = @resource.start_discovery(RepositoryHelper.repo_url, 'yum')
     assert response.length > 0
-  end
-
-  def test_find
-    response = @resource.find(RepositoryHelper.repo_id)
-    assert response["name"] == RepositoryHelper.repo_id
-  end
-
-  def test_find_all
-    response = @resource.find_all([RepositoryHelper.repo_id])
-    assert response.select { |repo| repo["id"] == RepositoryHelper.repo_id }.length > 0
   end
 
   def test_all
