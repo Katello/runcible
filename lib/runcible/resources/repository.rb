@@ -34,7 +34,7 @@ module Runcible
 
       def self.create(id, optional={})
         required = required_params(binding.send(:local_variables), binding)
-        call(:post, path, :payload => { :required => required })
+        call(:post, path, :payload => { :required => required, :optional => optional })
       end
 
       def self.retrieve(id, query={})
@@ -53,9 +53,19 @@ module Runcible
         call(:get, path, :payload => { :optional => optional })
       end
 
-      def self.search(criteria)
+      def self.search(criteria, optional={})
         required = required_params(binding.send(:local_variables), binding)
-        call(:post, path("search"), :payload => { :required => required })
+        call(:post, path("search"), :payload => { :required => required, :optional => optional })
+      end
+
+      def self.associate_importer(id, importer_type_id, importer_config)
+        required = required_params(binding.send(:local_variables), binding)
+        call(:post, path("#{id}/importers"), :payload => { :required => required })
+      end
+
+      def self.associate_distributor(id, distributor_type_id, distributor_config, optional={})
+        required = required_params(binding.send(:local_variables), binding, ["id"])
+        call(:post, path("#{id}/distributors"), :payload => { :required => required, :optional => optional })
       end
 
     end

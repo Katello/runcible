@@ -28,6 +28,21 @@ module Runcible
   module Pulp
     class RepositoryExtensions < Runcible::Pulp::Repository
 
+      def self.create_with_importer(id, importer_type_id, importer_config)
+        required = required_params(binding.send(:local_variables), binding, ["id"])
+        create(id, required)
+      end
+
+      def self.create_with_distributors(id, distributors)
+        required = required_params(binding.send(:local_variables), binding, ["id"])
+        create(id, required)
+      end
+
+      def self.create_with_importer_and_distributors(id, importer_type_id, importer_config, distributors)
+        required = required_params(binding.send(:local_variables), binding, ["id"])
+        create(id, required)
+      end
+
       def self.search_by_repository_ids(repository_ids)
         criteria = {:filters => 
                       { "id" => {"$in" => repository_ids}}

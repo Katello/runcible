@@ -114,6 +114,20 @@ class TestPulpRepository < MiniTest::Unit::TestCase
     assert response.collect{ |repo| repo["display_name"] == RepositoryHelper.repo_id }.length > 0
   end
 
+  def test_associate_importer
+    response, code = @resource.associate_importer(RepositoryHelper.repo_id, "yum_importer", {})
+    assert code == 201
+    assert response['importer_type_id'] == "yum_importer"
+  end
+
+  def test_associate_distributor
+    distributor_config = {"relative_url" => "/", "http" => true, "https" => true}
+
+    response, code = @resource.associate_distributor(RepositoryHelper.repo_id, "yum_distributor", distributor_config)
+    assert code == 201
+    assert response['distributor_type_id'] == "yum_distributor"
+  end
+
 end
 =begin
 
