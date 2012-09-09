@@ -42,15 +42,15 @@ class TestPulpUserCreate < MiniTest::Unit::TestCase
   end
 
   def test_create
-    response = @resource.create(@username)
-    assert response[:response_code] == 201
-    assert response[:data]['login'] == @username
+    response, code = @resource.create(@username)
+    assert code == 201
+    assert response['login'] == @username
   end
 
   def test_create_with_name_and_password
-    response = @resource.create(@username, {:name => @username, :password => "integration_test_password"})
-    assert response[:response_code] == 201
-    assert response[:data]['name'] == @username
+    response, code = @resource.create(@username, {:name => @username, :password => "integration_test_password"})
+    assert code == 201
+    assert response['name'] == @username
   end
 
 end
@@ -92,14 +92,14 @@ class TestPulpUser < MiniTest::Unit::TestCase
   end
 
   def test_retrieve
-    response = @resource.retrieve(@username)
-    assert response[:response_code] == 200
-    assert response[:data]["login"] == @username
+    response, code = @resource.retrieve(@username)
+    assert code == 200
+    assert response["login"] == @username
   end
 
   def test_delete
-    response = @resource.delete(@username)
-    assert response[:response_code] == 200
+    response, code = @resource.delete(@username)
+    assert code == 200
   end
 
 end

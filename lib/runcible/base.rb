@@ -91,7 +91,7 @@ module Runcible
         data = response
       end
 
-      return {:data => data, :response_code => response.code}
+      return data, response.code
     end
 
     def self.required_params(local_names, binding, keys_to_remove=[])

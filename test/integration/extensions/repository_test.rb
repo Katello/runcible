@@ -42,9 +42,9 @@ class TestPulpRepository < MiniTest::Unit::TestCase
   end
 
   def test_search_by_repository_ids
-    response = @extension.search_by_repository_ids([RepositoryHelper.repo_id])
-    assert response[:response_code] == 200
-    assert response[:data].collect{ |repo| repo["display_name"] == RepositoryHelper.repo_id }.length > 0
+    response, code = @extension.search_by_repository_ids([RepositoryHelper.repo_id])
+    assert code == 200
+    assert response.collect{ |repo| repo["display_name"] == RepositoryHelper.repo_id }.length > 0
   end
 
 end
