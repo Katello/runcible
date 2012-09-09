@@ -15,15 +15,30 @@ require 'test/integration/pulp/vcr_pulp_setup'
 require 'lib/runcible/resources/user'
 
 
-class TestPulpUser < MiniTest::Unit::TestCase
+module TestPulpUserBase
   def setup
     VCR.insert_cassette('pulp_user')
-    @username = "admin"
+    @username = "integration_test_user"
     @resource = Runcible::Pulp::User
   end
 
   def teardown
     VCR.eject_cassette
+  end
+end
+
+class TestPulpUser < MiniTest::Unit::TestCase
+  include TestPulpUserBase
+
+  def teardown
+    super
+    VCR.use_cassette('pulp_user_helper') do
+      begin
+        @resource.find(@username)
+        @resource.destroy(@username)
+      rescue RestClient::ResourceNotFound => e
+      end
+    end
   end
 
   def test_path_without_username
@@ -37,20 +52,34 @@ class TestPulpUser < MiniTest::Unit::TestCase
   end
 
   def test_find
-    response = @resource.find(@username)
+    response = @resource.find("admin")
     assert response.length > 0
-    assert(@username, response["login"])
+    assert "admin" == response["login"]
   end
 
   def test_create
-    response = @resource.create(:login => "integration_test_user", :name => "integration_test_user", :password => "integration_test_password")
+    response = @resource.create(@username, @username, "integration_test_password")
     assert response.length > 0
-    @resource.destroy("integration_test_user")
+  end
+end
+
+
+class TestPulpUserDestroy < MiniTest::Unit::TestCase
+  include TestPulpUserBase
+
+  def setup
+    super
+    VCR.use_cassette('pulp_user_helper') do
+      begin
+        @resource.find(@username)
+      rescue RestClient::ResourceNotFound => e
+        @resource.create(@username, @username, "integration_test_password")
+      end
+    end
   end
 
   def test_destroy
-    @resource.create(:login => "integration_test_user", :name => "integration_test_user", :password => "integration_test_password")
-    response = @resource.destroy("integration_test_user")
+    response = @resource.destroy(@username)
     assert response == 200
   end
 

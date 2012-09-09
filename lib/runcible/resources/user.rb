@@ -28,21 +28,23 @@ module Runcible
   module Pulp
     class User < Runcible::Base
 
-      def self.path(username="")
-        "users/#{username}/"
+      def self.path(username=nil)
+        (username == nil) ? "users/" : "users/#{username}/" 
       end
 
       def self.find(id)
         call(:get, path(id))
       end
 
-      def self.create
+      def self.create(login, password, name)
+        payload = generate_payload(binding.send(:local_variables), binding)
+        call(:post, path, { :payload => payload })
       end
 
-      def self.destroy
+      def self.destroy(id)
+        call(:delete, path(id))
       end
 
     end
-
   end
 end
