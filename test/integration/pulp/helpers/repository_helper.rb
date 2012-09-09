@@ -10,16 +10,17 @@
 # http://www.gnu.org/licenses/old-licenses/gpl-2.0.txt.
 
 require 'rubygems'
-require 'test/integration/pulp/vcr_pulp_setup'
 
+require './test/integration/pulp/vcr_pulp_setup'
+require './lib/runcible/resources/repository'
 
 module RepositoryHelper
 
   @repo_url = "file://#{File.expand_path(File.dirname(__FILE__))}".gsub("pulp/helpers", "fixtures/repositories/zoo5")
   @repo_id = "integration_test_id"
   @repo_name = @repo_id
-  @repo_resource = Resources::Pulp::Repository
-  @task_resource = Resources::Pulp::Task
+  @repo_resource = Runcible::Pulp::Repository
+  @task_resource = Runcible::Pulp::Task
 
   def self.repo_name
     @repo_name
@@ -50,7 +51,7 @@ module RepositoryHelper
   end
 
   def self.create_and_sync_repo
-    p "Creating and Sync'ing repository."
+    puts "Creating and Sync'ing repository."
     create_repo
     sync_repo
   end
@@ -59,20 +60,19 @@ module RepositoryHelper
     repo = nil
     
     VCR.use_cassette('pulp_repository_helper') do
-      repo = @repo_resource.find(@repo_id)
+      repo = @repo_resource.retrieve(@repo_id)
     end
 
     if !repo.nil?
       destroy_repo
     end
+  rescue RestClient::ResourceNotFound
 
     VCR.use_cassette('pulp_repository_helper') do
-      repo = @repo_resource.create(:id => @repo_id, :name=> @repo_name, :arch => 'noarch', :feed => @repo_url)
+      repo = @repo_resource.create(@repo_id)
     end
 
     return repo
-  rescue Exception => e
-    p e
   end
 
   def self.sync_repo
@@ -81,7 +81,7 @@ module RepositoryHelper
 
       @task = @task_resource.cancel(@task["id"])
       while !(['finished', 'error', 'timed_out', 'canceled', 'reset'].include?(@task['state'])) do
-        @task = @task_resource.find([@task["id"]]).first
+        @task = @task_resource.retrieve([@task["id"]]).first
         sleep 1 # do not overload backend engines
       end
     end
@@ -95,7 +95,7 @@ module RepositoryHelper
     VCR.use_cassette('pulp_repository_helper') do
       if @task
         while !(['finished', 'error', 'timed_out', 'canceled', 'reset'].include?(@task['state'])) do
-          @task = @task_resource.find([@task["id"]]).first
+          @task = @task_resource.retrieve([@task["id"]]).first
           sleep 1 # do not overload backend engines
         end
 
@@ -103,10 +103,10 @@ module RepositoryHelper
         @task = nil
       end
 
-      @repo_resource.destroy(id)
+      @repo_resource.delete(id)
     end
   rescue Exception => e
-    p "RepositoryHelper: Repository #{id} could not be destroyed."
+    puts "RepositoryHelper: Repository #{id} could not be destroyed."
   end
 
 end

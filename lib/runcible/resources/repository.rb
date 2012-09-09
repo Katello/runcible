@@ -26,19 +26,24 @@ require 'lib/runcible/base'
 
 module Runcible
   module Pulp
-    class User < Runcible::Base
+    class Repository < Runcible::Base
 
-      def self.path(login=nil)
-        (login == nil) ? "users/" : "users/#{login}/" 
+      def self.path(id=nil)
+        (id == nil) ? "repositories/" : "repositories/#{id}/" 
       end
 
-      def self.create(login, password, name)
+      def self.create(id, optional={})
         payload = generate_payload(binding.send(:local_variables), binding)
+        payload = optional.merge(payload)
         call(:post, path, { :payload => payload })
       end
 
-      def self.find(id)
+      def self.retrieve(id)
         call(:get, path(id))
+      end
+
+      def self.update(id, optional={})
+        call(:put, path(id), { :payload => { :delta => optional }})
       end
 
       def self.delete(id)

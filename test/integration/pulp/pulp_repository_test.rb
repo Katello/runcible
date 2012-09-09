@@ -11,17 +11,18 @@
 
 require 'rubygems'
 require 'minitest/autorun'
-require 'test/integration/pulp/vcr_pulp_setup'
-require 'test/integration/pulp/helpers/repository_helper'
-require 'test/integration/pulp/helpers/filter_helper'
-require 'active_support/core_ext/time/calculations'
+#require 'active_support/core_ext/time/calculations'
+
+require './test/integration/pulp/vcr_pulp_setup'
+require './test/integration/pulp/helpers/repository_helper'
+require './lib/runcible/resources/repository'
 
 
 module TestPulpRepositoryBase
   include RepositoryHelper
 
   def setup
-    @resource = Resources::Pulp::Repository
+    @resource = Runcible::Pulp::Repository
     VCR.insert_cassette('pulp_repository')
   end
 
@@ -49,15 +50,7 @@ end
 
 class TestPulpRepository < MiniTest::Unit::TestCase
   include TestPulpRepositoryBase
-
-  def self.before_suite
-    FilterHelper.create_filter
-  end
-
-  def self.after_suite
-    FilterHelper.destroy_filter
-  end
-
+  
   def setup
     super
     RepositoryHelper.create_repo
@@ -69,9 +62,36 @@ class TestPulpRepository < MiniTest::Unit::TestCase
   end
 
   def test_repository_path
-    path = @resource.repository_path
-    assert_match("/api/repositories/", path)
+    path = @resource.path
+    assert_match("repositories/", path)
   end
+
+  def test_repository_path_with_id
+    path = @resource.path(RepositoryHelper.repo_id)
+    assert_match("repositories/#{RepositoryHelper.repo_id}", path)
+  end
+
+  def test_update
+    response = @resource.update(RepositoryHelper.repo_id, { :display_name => "updated_" + RepositoryHelper.repo_id })
+    assert response.length > 0
+    assert response["display_name"] == "updated_" + RepositoryHelper.repo_id
+  end
+
+  def test_retrieve
+    response = @resource.retrieve(RepositoryHelper.repo_id)
+    assert response["display_name"] == RepositoryHelper.repo_id
+  end
+
+end
+=begin
+  def self.before_suite
+    #FilterHelper.create_filter
+  end
+
+  def self.after_suite
+    #FilterHelper.destroy_filter
+  end
+
 
   def test_discovery
     response = @resource.start_discovery(RepositoryHelper.repo_url, 'yum')
@@ -92,12 +112,6 @@ class TestPulpRepository < MiniTest::Unit::TestCase
     response = @resource.all()
     assert response.length > 0
     assert response.select { |r| r["name"] == RepositoryHelper.repo_id }.length > 0
-  end
-
-  def test_update
-    response = @resource.update(RepositoryHelper.repo_id, { :name => "updated_" + RepositoryHelper.repo_id })
-    assert response.length > 0
-    assert response["name"] == "updated_" + RepositoryHelper.repo_id
   end
 
   def test_update_schedule
@@ -260,3 +274,4 @@ class TestPulpRepositoryClone < MiniTest::Unit::TestCase
     assert response["args"].include?(@clone_name)
   end
 end
+=end
