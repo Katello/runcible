@@ -33,8 +33,8 @@ module Runcible
       end
 
       def self.add(id, login)
-        payload = generate_payload(binding.send(:local_variables), binding, ["id"])
-        call(:post, "#{path(id)}/users/", { :payload => payload })
+        required = required_params(binding.send(:local_variables), binding, ["id"])
+        call(:post, "#{path(id)}/users/", :payload => { :required => required })
       end
 
       def self.remove(id, login)

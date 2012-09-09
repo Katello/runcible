@@ -43,7 +43,8 @@ class TestPulpRepositoryCreate < MiniTest::Unit::TestCase
 
   def test_create
     response = RepositoryHelper.create_repo
-    assert response['id'] == RepositoryHelper.repo_id
+    assert response[:response_code] == 201
+    assert response[:data]['id'] == RepositoryHelper.repo_id
   end
 end
 
@@ -73,13 +74,19 @@ class TestPulpRepository < MiniTest::Unit::TestCase
 
   def test_update
     response = @resource.update(RepositoryHelper.repo_id, { :display_name => "updated_" + RepositoryHelper.repo_id })
-    assert response.length > 0
-    assert response["display_name"] == "updated_" + RepositoryHelper.repo_id
+    assert response[:response_code] == 200
+    assert response[:data]["display_name"] == "updated_" + RepositoryHelper.repo_id
   end
 
   def test_retrieve
     response = @resource.retrieve(RepositoryHelper.repo_id)
-    assert response["display_name"] == RepositoryHelper.repo_id
+    assert response[:response_code] == 200
+    assert response[:data]["display_name"] == RepositoryHelper.repo_id
+  end
+
+  def test_delete
+    response = @resource.retrieve(RepositoryHelper.repo_id)
+    assert response[:response_code] == 200
   end
 
 end

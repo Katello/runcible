@@ -32,12 +32,12 @@ module Runcible
         (login == nil) ? "users/" : "users/#{login}/" 
       end
 
-      def self.create(login, password, name)
-        payload = generate_payload(binding.send(:local_variables), binding)
-        call(:post, path, { :payload => payload })
+      def self.create(login, optional={})
+        required = required_params(binding.send(:local_variables), binding)
+        call(:post, path, :payload => { :required => required, :optional => optional })
       end
 
-      def self.find(id)
+      def self.retrieve(id)
         call(:get, path(id))
       end
 

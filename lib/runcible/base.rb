@@ -50,7 +50,7 @@ module Runcible
     def self.call(method, path, options={})
       client = RestClient::Resource.new(config[:url], config)
 
-      payload = options[:payload]
+      payload = generate_payload(options)
       headers = options[:headers]
       params = options[:params]
       headers[:params] = params if params
@@ -64,6 +64,22 @@ module Runcible
       process_response(client[path].send(*args))
     end
 
+    def self.generate_payload(options)
+      if options[:payload]
+        if options[:payload][:optional]
+          payload = options[:payload][:required].merge(options[:payload][:optional])
+        elsif options[:payload][:delta]
+          payload = options[:payload]
+        else
+          payload = options[:payload][:required]
+        end
+      else
+        payload = ""
+      end
+
+      return payload
+    end
+
     def self.process_response(response)
       begin
         data = JSON.parse(response)
@@ -71,10 +87,10 @@ module Runcible
         data = response
       end
 
-      return data
+      return {:data => data, :response_code => response.code}
     end
 
-    def self.generate_payload(local_names, binding, keys_to_remove=[])
+    def self.required_params(local_names, binding, keys_to_remove=[])
       local_names = local_names.reduce({}) do |acc, v|
         value = binding.eval(v.to_s) unless v == :_
         acc[v] = value unless value.nil?

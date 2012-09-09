@@ -28,15 +28,55 @@ module TestPulpUserBase
   end
 end
 
-class TestPulpUser < MiniTest::Unit::TestCase
+class TestPulpUserCreate < MiniTest::Unit::TestCase
   include TestPulpUserBase
 
   def teardown
     super
     VCR.use_cassette('pulp_user_helper') do
       begin
-        @resource.find(@username)
-        @resource.destroy(@username)
+        @resource.retrieve(@username)
+        @resource.delete(@username)
+      rescue RestClient::ResourceNotFound => e
+      end
+    end
+  end
+
+  def test_create
+    response = @resource.create(@username)
+    assert response[:response_code] == 201
+    assert response[:data]['login'] == @username
+  end
+
+  def test_create_with_name_and_password
+    response = @resource.create(@username, {:name => @username, :password => "integration_test_password"})
+    assert response[:response_code] == 201
+    assert response[:data]['name'] == @username
+  end
+
+end
+
+
+class TestPulpUser < MiniTest::Unit::TestCase
+  include TestPulpUserBase
+
+  def setup
+    super
+    VCR.use_cassette('pulp_user_helper') do
+      begin
+        @resource.retrieve(@username)
+      rescue RestClient::ResourceNotFound => e
+        @resource.create(@username)
+      end
+    end
+  end
+
+  def teardown
+    super
+    VCR.use_cassette('pulp_user_helper') do
+      begin
+        @resource.retrieve(@username)
+        @resource.delete(@username)
       rescue RestClient::ResourceNotFound => e
       end
     end
@@ -49,39 +89,18 @@ class TestPulpUser < MiniTest::Unit::TestCase
 
   def test_path_with_username
     path = @resource.path(@username)
-    assert_match("users/" + @username, path)
+    assert_match("users/#{@username}", path)
   end
 
-  def test_find
-    response = @resource.find("admin")
-    assert response.length > 0
-    assert "admin" == response["login"]
+  def test_retrieve
+    response = @resource.retrieve(@username)
+    assert response[:response_code] == 200
+    assert response[:data]["login"] == @username
   end
 
-  def test_create
-    response = @resource.create(@username, @username, "integration_test_password")
-    assert response.length > 0
-  end
-end
-
-
-class TestPulpUserDestroy < MiniTest::Unit::TestCase
-  include TestPulpUserBase
-
-  def setup
-    super
-    VCR.use_cassette('pulp_user_helper') do
-      begin
-        @resource.find(@username)
-      rescue RestClient::ResourceNotFound => e
-        @resource.create(@username, @username, "integration_test_password")
-      end
-    end
-  end
-
-  def test_destroy
-    response = @resource.destroy(@username)
-    assert response == 200
+  def test_delete
+    response = @resource.delete(@username)
+    assert response[:response_code] == 200
   end
 
 end

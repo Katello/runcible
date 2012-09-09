@@ -24,7 +24,7 @@ class TestPulpRoles < MiniTest::Unit::TestCase
     @resource = Runcible::Pulp::Role
 
     VCR.use_cassette('pulp_user') do
-      Runcible::Pulp::User.create(@username, @username, "integration_test_password")
+      Runcible::Pulp::User.create(@username)
     end
 
     VCR.insert_cassette('pulp_role')
@@ -32,7 +32,7 @@ class TestPulpRoles < MiniTest::Unit::TestCase
 
   def teardown
     VCR.use_cassette('pulp_user') do
-      Runcible::Pulp::User.destroy(@username)
+      Runcible::Pulp::User.delete(@username)
     end
 
     VCR.eject_cassette
@@ -50,14 +50,14 @@ class TestPulpRoles < MiniTest::Unit::TestCase
 
   def test_add
     response = @resource.add(@role_name, @username)
-    assert response
+    assert response[:response_code] == 200
     @resource.remove(@role_name, @username)
   end
 
   def test_remove
     @resource.add(@role_name, @username)
     response = @resource.remove(@role_name, @username)
-    assert response
+    assert response[:response_code] == 200
   end
 
 end

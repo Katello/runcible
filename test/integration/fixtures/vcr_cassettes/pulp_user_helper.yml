@@ -1,4 +1,5 @@
 --- 
+recorded_with: VCR 2.2.4
 http_interactions: 
 - request: 
     method: get
@@ -6,9 +7,9 @@ http_interactions:
     body: 
       string: ""
     headers: 
-      Accept: 
-      - application/json
       Content-Type: 
+      - application/json
+      Accept: 
       - application/json
       Accept-Encoding: 
       - gzip, deflate
@@ -17,12 +18,12 @@ http_interactions:
       code: 404
       message: Not Found
     headers: 
-      Date: 
-      - Sun, 09 Sep 2012 04:32:39 GMT
       Connection: 
       - close
       Content-Type: 
       - text/html; charset=UTF-8
+      Date: 
+      - Sun, 09 Sep 2012 04:32:39 GMT
       Content-Length: 
       - "9"
       Server: 
@@ -37,9 +38,9 @@ http_interactions:
     body: 
       string: ""
     headers: 
-      Accept: 
-      - application/json
       Content-Type: 
+      - application/json
+      Accept: 
       - application/json
       Accept-Encoding: 
       - gzip, deflate
@@ -48,12 +49,12 @@ http_interactions:
       code: 404
       message: Not Found
     headers: 
-      Date: 
-      - Sun, 09 Sep 2012 04:33:47 GMT
       Connection: 
       - close
       Content-Type: 
       - text/html; charset=UTF-8
+      Date: 
+      - Sun, 09 Sep 2012 04:33:47 GMT
       Content-Length: 
       - "9"
       Server: 
@@ -68,9 +69,9 @@ http_interactions:
     body: 
       string: "{\"password\":\"integration_test_user\",\"login\":\"integration_test_user\",\"name\":\"integration_test_password\"}"
     headers: 
-      Accept: 
-      - application/json
       Content-Type: 
+      - application/json
+      Accept: 
       - application/json
       Content-Length: 
       - "103"
@@ -81,12 +82,12 @@ http_interactions:
       code: 404
       message: Not Found
     headers: 
-      Date: 
-      - Sun, 09 Sep 2012 04:33:47 GMT
       Connection: 
       - close
       Content-Type: 
       - text/html; charset=UTF-8
+      Date: 
+      - Sun, 09 Sep 2012 04:33:47 GMT
       Content-Length: 
       - "9"
       Server: 
@@ -96,14 +97,49 @@ http_interactions:
     http_version: 
   recorded_at: Sun, 09 Sep 2012 04:33:47 GMT
 - request: 
-    method: delete
+    method: post
+    uri: https://admin:admin@localhost/pulp/api/v2/users/
+    body: 
+      string: "{\"login\":\"integration_test_user\",\"optional\":{}}"
+    headers: 
+      Content-Type: 
+      - application/json
+      Accept: 
+      - application/json
+      Content-Length: 
+      - "47"
+      Accept-Encoding: 
+      - gzip, deflate
+  response: 
+    status: 
+      code: 201
+      message: Created
+    headers: 
+      Connection: 
+      - close
+      Content-Type: 
+      - application/json
+      Date: 
+      - Sun, 09 Sep 2012 11:36:52 GMT
+      Location: 
+      - integration_test_user
+      Content-Length: 
+      - "229"
+      Server: 
+      - Apache/2.2.22 (Fedora)
+    body: 
+      string: "{\"_id\": {\"$oid\": \"504c7f54ec6a6d6976000b25\"}, \"name\": \"integration_test_user\", \"roles\": [], \"_ns\": \"users\", \"login\": \"integration_test_user\", \"id\": \"504c7f54ec6a6d6976000b25\", \"_href\": \"/pulp/api/v2/users/integration_test_user/\"}"
+    http_version: 
+  recorded_at: Sun, 09 Sep 2012 11:36:52 GMT
+- request: 
+    method: get
     uri: https://admin:admin@localhost/pulp/api/v2/users/integration_test_user/
     body: 
       string: ""
     headers: 
-      Accept: 
-      - application/json
       Content-Type: 
+      - application/json
+      Accept: 
       - application/json
       Accept-Encoding: 
       - gzip, deflate
@@ -112,12 +148,43 @@ http_interactions:
       code: 200
       message: OK
     headers: 
-      Date: 
-      - Sun, 09 Sep 2012 04:38:11 GMT
       Connection: 
       - close
       Content-Type: 
       - application/json
+      Date: 
+      - Sun, 09 Sep 2012 11:36:54 GMT
+      Content-Length: 
+      - "247"
+      Server: 
+      - Apache/2.2.22 (Fedora)
+    body: 
+      string: "{\"_id\": {\"$oid\": \"504c7f56ec6a6d6976000b3a\"}, \"name\": \"integration_test_user\", \"roles\": [], \"_ns\": \"users\", \"login\": \"integration_test_user\", \"password\": null, \"id\": \"504c7f56ec6a6d6976000b3a\", \"_href\": \"/pulp/api/v2/users/integration_test_user/\"}"
+    http_version: 
+  recorded_at: Sun, 09 Sep 2012 11:36:54 GMT
+- request: 
+    method: delete
+    uri: https://admin:admin@localhost/pulp/api/v2/users/integration_test_user/
+    body: 
+      string: ""
+    headers: 
+      Content-Type: 
+      - application/json
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Connection: 
+      - close
+      Content-Type: 
+      - application/json
+      Date: 
+      - Sun, 09 Sep 2012 11:36:54 GMT
       Content-Length: 
       - "4"
       Server: 
@@ -125,73 +192,4 @@ http_interactions:
     body: 
       string: "null"
     http_version: 
-  recorded_at: Sun, 09 Sep 2012 04:38:11 GMT
-- request: 
-    method: get
-    uri: https://admin:admin@localhost/pulp/api/v2/users/integration_test_user/
-    body: 
-      string: ""
-    headers: 
-      Accept: 
-      - application/json
-      Content-Type: 
-      - application/json
-      Accept-Encoding: 
-      - gzip, deflate
-  response: 
-    status: 
-      code: 404
-      message: Not Found
-    headers: 
-      Date: 
-      - Sun, 09 Sep 2012 04:38:11 GMT
-      Content-Encoding: 
-      - utf-8
-      Connection: 
-      - close
-      Content-Type: 
-      - application/json
-      Content-Length: 
-      - "272"
-      Server: 
-      - Apache/2.2.22 (Fedora)
-    body: 
-      string: "{\"http_request_method\": \"GET\", \"exception\": null, \"error_message\": \"Missing resource(s): resource_id=integration_test_user\", \"_href\": \"/pulp/api/v2/users/integration_test_user/\", \"http_status\": 404, \"traceback\": null, \"resources\": {\"resource_id\": \"integration_test_user\"}}"
-    http_version: 
-  recorded_at: Sun, 09 Sep 2012 04:38:11 GMT
-- request: 
-    method: post
-    uri: https://admin:admin@localhost/pulp/api/v2/users/
-    body: 
-      string: "{\"name\":\"integration_test_password\",\"login\":\"integration_test_user\",\"password\":\"integration_test_user\"}"
-    headers: 
-      Accept: 
-      - application/json
-      Content-Type: 
-      - application/json
-      Content-Length: 
-      - "103"
-      Accept-Encoding: 
-      - gzip, deflate
-  response: 
-    status: 
-      code: 201
-      message: Created
-    headers: 
-      Date: 
-      - Sun, 09 Sep 2012 04:38:11 GMT
-      Location: 
-      - integration_test_user
-      Connection: 
-      - close
-      Content-Type: 
-      - application/json
-      Content-Length: 
-      - "233"
-      Server: 
-      - Apache/2.2.22 (Fedora)
-    body: 
-      string: "{\"_id\": {\"$oid\": \"504c1d33ec6a6d69760004cb\"}, \"name\": \"integration_test_password\", \"roles\": [], \"_ns\": \"users\", \"login\": \"integration_test_user\", \"id\": \"504c1d33ec6a6d69760004cb\", \"_href\": \"/pulp/api/v2/users/integration_test_user/\"}"
-    http_version: 
-  recorded_at: Sun, 09 Sep 2012 04:38:11 GMT
-recorded_with: VCR 2.2.4
+  recorded_at: Sun, 09 Sep 2012 11:36:54 GMT

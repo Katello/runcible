@@ -33,9 +33,8 @@ module Runcible
       end
 
       def self.create(id, optional={})
-        payload = generate_payload(binding.send(:local_variables), binding)
-        payload = optional.merge(payload)
-        call(:post, path, { :payload => payload })
+        required = required_params(binding.send(:local_variables), binding)
+        call(:post, path, :payload => { :required => required })
       end
 
       def self.retrieve(id)
@@ -43,7 +42,7 @@ module Runcible
       end
 
       def self.update(id, optional={})
-        call(:put, path(id), { :payload => { :delta => optional }})
+        call(:put, path(id), :payload => { :delta => optional })
       end
 
       def self.delete(id)
