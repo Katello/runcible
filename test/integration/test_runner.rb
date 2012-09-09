@@ -64,9 +64,10 @@ class PulpMiniTestRunner
     set_vcr_config(mode)
 
     if test_name
-      require "test/integration/resources/pulp_#{test_name}_test.rb"
+      require test_name
     else
       Dir["test/integration/resources/*_test.rb"].each {|file| require file }
+      Dir["test/integration/extensions/*_test.rb"].each {|file| require file }
     end
   end
 

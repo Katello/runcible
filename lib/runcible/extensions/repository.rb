@@ -35,5 +35,6 @@ module Runcible
         search(criteria)
       end
 
-   end
+    end
+  end
 end

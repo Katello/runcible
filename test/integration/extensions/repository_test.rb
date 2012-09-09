@@ -20,12 +20,31 @@ module TestPulpRepositoryBase
   include RepositoryHelper
 
   def setup
-    @resource = Runcible::Pulp::RepositoryExtensions
-    VCR.insert_cassette('pulp_repository_extensions')
+    @extension = Runcible::Pulp::RepositoryExtensions
+    VCR.insert_cassette('extensions/pulp_repository_extensions')
   end
 
   def teardown
     VCR.eject_cassette
+  end
+
+end
+
+class TestPulpRepository < MiniTest::Unit::TestCase
+  include TestPulpRepositoryBase
+  
+  def self.before_suite
+    RepositoryHelper.create_repo
+  end
+
+  def self.after_suite
+    RepositoryHelper.destroy_repo
+  end
+
+  def test_search_by_repository_ids
+    response = @extension.search_by_repository_ids([RepositoryHelper.repo_id])
+    assert response[:response_code] == 200
+    assert response[:data].collect{ |repo| repo["display_name"] == RepositoryHelper.repo_id }.length > 0
   end
 
 end
