@@ -39,10 +39,10 @@ class TestPulpRepositoryExtensionsCreate < MiniTest::Unit::TestCase
   end
 
   def test_create_with_importer
-    response, code = @extension.create_with_importer(RepositoryHelper.repo_id, "yum_importer", {})
-    assert code == 201
+    response = @extension.create_with_importer(RepositoryHelper.repo_id, "yum_importer", {})
+    assert response.code == 201
 
-    response, code = @extension.retrieve(RepositoryHelper.repo_id, {:details => true})
+    response = @extension.retrieve(RepositoryHelper.repo_id, {:details => true})
     assert response['id'] == RepositoryHelper.repo_id
     assert response['importers'].first['importer_type_id'] == 'yum_importer'
   end
@@ -50,18 +50,18 @@ class TestPulpRepositoryExtensionsCreate < MiniTest::Unit::TestCase
   def test_create_with_distributors
     distributors = [{:distributor_type_id => 'yum_distributor', :distributor_config => {"relative_url" => "/", "http" => true, "https" => true}}]
 
-    response, code = @extension.create_with_distributors(RepositoryHelper.repo_id, distributors)
-    assert code == 201
+    response = @extension.create_with_distributors(RepositoryHelper.repo_id, distributors)
+    assert response.code == 201
     assert response['id'] == RepositoryHelper.repo_id
   end
 
   def test_create_with_importer_and_distributors
     distributors = [{:distributor_type_id => 'yum_distributor', :distributor_config => {"relative_url" => "/", "http" => true, "https" => true}}]
 
-    response, code = @extension.create_with_importer_and_distributors(RepositoryHelper.repo_id, "yum_importer", {}, distributors)
-    assert code == 201
+    response = @extension.create_with_importer_and_distributors(RepositoryHelper.repo_id, "yum_importer", {}, distributors)
+    assert response.code == 201
 
-    response, code = @extension.retrieve(RepositoryHelper.repo_id, {:details => true})
+    response = @extension.retrieve(RepositoryHelper.repo_id, {:details => true})
     assert response['id'] == RepositoryHelper.repo_id
     assert response['importers']['importer_type_id'] == 'yum_importer'
   end
@@ -80,8 +80,8 @@ class TestPulpRepositoryExtensionsSearch < MiniTest::Unit::TestCase
   end
 
   def test_search_by_repository_ids
-    response, code = @extension.search_by_repository_ids([RepositoryHelper.repo_id])
-    assert code == 200
+    response = @extension.search_by_repository_ids([RepositoryHelper.repo_id])
+    assert response.code == 200
     assert response.collect{ |repo| repo["display_name"] == RepositoryHelper.repo_id }.length > 0
   end
 

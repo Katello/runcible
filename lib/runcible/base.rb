@@ -86,12 +86,11 @@ module Runcible
 
     def self.process_response(response)
       begin
-        data = JSON.parse(response)
+        response = RestClient::Response.create(JSON.parse(response.body), response.net_http_res, response.args)
       rescue JSON::ParserError
-        data = response
       end
 
-      return data, response.code
+      return response
     end
 
     def self.required_params(local_names, binding, keys_to_remove=[])

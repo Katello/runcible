@@ -48,15 +48,15 @@ class TestPulpRoles < MiniTest::Unit::TestCase
   end
 
   def test_add
-    response, code = @resource.add(@role_name, @username)
-    assert code == 200
+    response = @resource.add(@role_name, @username)
+    assert response.code == 200
     @resource.remove(@role_name, @username)
   end
 
   def test_remove
     @resource.add(@role_name, @username)
-    response, code = @resource.remove(@role_name, @username)
-    assert code == 200
+    response = @resource.remove(@role_name, @username)
+    assert response.code == 200
   end
 
 end
