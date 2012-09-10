@@ -14,6 +14,7 @@ require 'minitest/autorun'
 
 require './test/integration/resources/helpers/repository_helper'
 require './lib/runcible/resources/repository'
+require './lib/runcible/extensions/repository'
 
 
 module TestPulpRepositoryBase
@@ -21,6 +22,7 @@ module TestPulpRepositoryBase
 
   def setup
     @resource = Runcible::Pulp::Repository
+    @extension = Runcible::Pulp::RepositoryExtension
     VCR.insert_cassette('pulp_repository')
   end
 
@@ -30,7 +32,7 @@ module TestPulpRepositoryBase
 
 end
 
-
+=begin
 class TestPulpRepositoryCreate < MiniTest::Unit::TestCase
   include TestPulpRepositoryBase
 
@@ -166,6 +168,35 @@ class TestPulpRepositorySync < MiniTest::Unit::TestCase
     assert response.first["tags"].include?('pulp:action:sync')
   end
 end
+=end
+
+class TestPulpRepositoryClone < MiniTest::Unit::TestCase
+  include TestPulpRepositoryBase
+
+  def setup
+    super
+    @clone_name = RepositoryHelper.repo_id + "_clone"
+    RepositoryHelper.destroy_repo(@clone_name)
+    RepositoryHelper.destroy_repo
+    RepositoryHelper.create_and_sync_repo(:importer => true)
+    @extension.create_with_importer(@clone_name, "yum_importer", {})
+  end
+
+  def teardown
+    RepositoryHelper.destroy_repo(@clone_name)
+    RepositoryHelper.destroy_repo
+    super
+  end
+
+  def test_unit_copy
+    response = @resource.unit_copy(@clone_name, RepositoryHelper.repo_id)
+    RepositoryHelper.task = response
+    assert response.code == 202
+    assert response['tags'].include?('pulp:action:associate')
+  end
+
+end
+
 
 =begin
 
@@ -271,73 +302,6 @@ class TestPulpRepositoryRequiresSync < MiniTest::Unit::TestCase
   def test_add_distribution
     response = @resource.add_distribution(RepositoryHelper.repo_id, "ks-Test Family-TestVariant-16-x86_64")
     assert response == "true"
-  end
-end
-
-
-class TestPulpRepositorySync < MiniTest::Unit::TestCase
-  include TestPulpRepositoryBase
-  
-  def setup
-    super
-    VCR.eject_cassette
-    VCR.insert_cassette('pulp_repository_sync')
-    RepositoryHelper.create_repo
-  end
-
-  def teardown
-    RepositoryHelper.destroy_repo
-    super
-  end
-
-  def test_sync_repo
-    response = @resource.sync(RepositoryHelper.repo_id)
-    RepositoryHelper.set_task(response)
-    assert response.length > 0
-    assert response["method_name"] == "_sync"
-  end
-
-  def test_sync_status
-    RepositoryHelper.sync_repo
-    response = @resource.sync_status(RepositoryHelper.repo_id)
-    assert response.length > 0
-    assert response.first['id'] == RepositoryHelper.task['id']
-    RepositoryHelper.set_task(response)
-  end
-
-  def test_generate_metadata
-    response = @resource.generate_metadata(RepositoryHelper.repo_id)
-    RepositoryHelper.set_task(response)
-    assert response.length > 0
-    assert response["method_name"] == "_generate_metadata"
-  end
-
-end
-
-
-class TestPulpRepositoryClone < MiniTest::Unit::TestCase
-  include TestPulpRepositoryBase
-
-  def setup
-    super
-    RepositoryHelper.create_and_sync_repo
-    @clone_name = RepositoryHelper.repo_id + "_clone"
-  end
-
-  def teardown
-    RepositoryHelper.destroy_repo(@clone_name)
-    RepositoryHelper.destroy_repo
-    super
-  end
-
-  def test_clone_repo
-    RepositoryHelper.destroy_repo(@clone_name)
-    from_repo = OpenStruct.new({ :pulp_id => RepositoryHelper.repo_id })
-    to_repo = OpenStruct.new({ :pulp_id => @clone_name, :name => @clone_name })
-    response = @resource.clone_repo(from_repo, to_repo)
-    RepositoryHelper.set_task(response)
-    assert response.length > 0
-    assert response["args"].include?(@clone_name)
   end
 end
 =end

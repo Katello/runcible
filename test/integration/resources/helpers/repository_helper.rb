@@ -52,10 +52,10 @@ module RepositoryHelper
     @task
   end
 
-  def self.create_and_sync_repo
+  def self.create_and_sync_repo(options={})
     puts "Creating and Sync'ing repository."
-    create_repo
-    sync_repo
+    create_repo(options)
+    sync_repo(options)
   end
 
   def self.create_repo(options={})
@@ -90,11 +90,11 @@ module RepositoryHelper
     return repo
   end
 
-  def self.sync_repo(wait=true)
+  def self.sync_repo(options={})
     VCR.use_cassette('pulp_repository_helper') do
       @task = @repo_resource.sync(@repo_name).first
 
-      if wait
+      if !options[:wait]
         while !(['finished', 'error', 'timed_out', 'canceled', 'reset'].include?(@task['state'])) do
           @task = @task_resource.poll(@task["task_id"]).first
           sleep 0.5 # do not overload backend engines
@@ -102,11 +102,11 @@ module RepositoryHelper
       end
     end
   rescue Exception => e
-    p e
+    puts e
   end
 
   def self.destroy_repo(id=@repo_id)
-    p "Destroying Repository."
+    puts "Destroying Repository."
 
     VCR.use_cassette('pulp_repository_helper') do
       if @task

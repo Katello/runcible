@@ -50,6 +50,18 @@ module Runcible
         search(criteria)
       end
 
+      def self.rpm_copy(destination_repo_id, source_repo_id, optional={})
+        criteria = {:type_ids => ['rpm'], :filters => {}}
+        criteria[:filters]['association'] = {'unit_id' => {'$in' => package_ids}} if optional[:package_ids]
+        criteria[:filters]['unit'] = { 'name' => {'$not' => {'$in' => name_blacklist}}} if optional[:name_blacklist]
+
+        payload = {}
+        payload[:criteria] = criteria
+        payload[:override_config] = optional[:override_config] if optional[:override_config]
+
+        unit_copy(destination_repo_id, source_repo_id, payload)
+      end
+
     end
   end
 end

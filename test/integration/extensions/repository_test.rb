@@ -16,7 +16,7 @@ require './test/integration/resources/helpers/repository_helper'
 require './lib/runcible/extensions/repository'
 
 
-module TestPulpRepositoryBase
+module TestPulpRepositoryExtensionBase
   include RepositoryHelper
 
   def setup
@@ -30,8 +30,8 @@ module TestPulpRepositoryBase
 
 end
 
-class TestPulpRepositoryExtensionsCreate < MiniTest::Unit::TestCase
-  include TestPulpRepositoryBase
+class TestPulpRepositoryExtensionCreate < MiniTest::Unit::TestCase
+  include TestPulpRepositoryExtensionBase
   
   def teardown
     super
@@ -68,8 +68,8 @@ class TestPulpRepositoryExtensionsCreate < MiniTest::Unit::TestCase
 
 end
 
-class TestPulpRepositoryExtensionsSearch < MiniTest::Unit::TestCase
-  include TestPulpRepositoryBase
+class TestPulpRepositoryExtensionSearch < MiniTest::Unit::TestCase
+  include TestPulpRepositoryExtensionBase
   
   def self.before_suite
     RepositoryHelper.create_repo
@@ -86,3 +86,32 @@ class TestPulpRepositoryExtensionsSearch < MiniTest::Unit::TestCase
   end
 
 end
+
+
+class TestPulpRepositoryExtensionUnitCopy < MiniTest::Unit::TestCase
+  include TestPulpRepositoryExtensionBase
+
+  def setup
+    super
+    @clone_name = RepositoryHelper.repo_id + "_clone"
+    RepositoryHelper.destroy_repo(@clone_name)
+    RepositoryHelper.destroy_repo
+    RepositoryHelper.create_and_sync_repo(:importer => true)
+    @extension.create_with_importer(@clone_name, "yum_importer", {})
+  end
+
+  def teardown
+    RepositoryHelper.destroy_repo(@clone_name)
+    RepositoryHelper.destroy_repo
+    super
+  end
+
+  def test_package_copy
+    response = @extension.rpm_copy(@clone_name, RepositoryHelper.repo_id)
+    RepositoryHelper.task = response
+    assert response.code == 202
+    assert response['tags'].include?('pulp:action:associate')
+  end
+
+end
+
