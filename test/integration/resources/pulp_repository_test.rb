@@ -40,8 +40,8 @@ class TestPulpRepositoryCreate < MiniTest::Unit::TestCase
   end
 
   def test_create
-    response, code = RepositoryHelper.create_repo
-    assert code == 201
+    response = RepositoryHelper.create_repo
+    assert response.code == 201
     assert response['id'] == RepositoryHelper.repo_id
   end
 end
@@ -56,17 +56,18 @@ class TestPulpRepositoryDelete < MiniTest::Unit::TestCase
   end
 
   def test_delete
-    response, code = @resource.delete(RepositoryHelper.repo_id)
-    assert code == 200
+    response = @resource.delete(RepositoryHelper.repo_id)
+    assert response.code == 200
   end
 
 end
+
 
 class TestPulpRepository < MiniTest::Unit::TestCase
   include TestPulpRepositoryBase
   
   def self.before_suite
-    RepositoryHelper.create_repo
+    RepositoryHelper.create_repo(:importer => true)
   end
 
   def self.after_suite
@@ -84,89 +85,126 @@ class TestPulpRepository < MiniTest::Unit::TestCase
   end
 
   def test_update
-    response, code = @resource.update(RepositoryHelper.repo_id, { :description => "updated_description_" + RepositoryHelper.repo_id })
-    assert code == 200
+    response = @resource.update(RepositoryHelper.repo_id, { :description => "updated_description_" + RepositoryHelper.repo_id })
+    assert response.code == 200
     assert response["description"] == "updated_description_" + RepositoryHelper.repo_id
   end
 
   def test_retrieve
-    response, code = @resource.retrieve(RepositoryHelper.repo_id)
-    assert code == 200
+    response = @resource.retrieve(RepositoryHelper.repo_id)
+    assert response.code == 200
     assert response["display_name"] == RepositoryHelper.repo_id
   end
 
   def test_retrieve_with_details
-    response, code = @resource.retrieve(RepositoryHelper.repo_id, {:details => true})
-    assert code == 200
-    assert response.has_key?(["distributors"])
-    assert response.has_key?(["importers"])
+    response = @resource.retrieve(RepositoryHelper.repo_id, {:details => true})
+    assert response.code == 200
+    assert response.has_key?("distributors")
+    assert response.has_key?("importers")
   end
 
   def test_retrieve_all
-    response, code = @resource.retrieve_all()
-    assert code == 200
+    response = @resource.retrieve_all()
+    assert response.code == 200
     assert response.collect{ |repo| repo["display_name"] == RepositoryHelper.repo_id }.length > 0
   end
 
   def test_search
-    response, code = @resource.search({})
-    assert code == 200
+    response = @resource.search({})
+    assert response.code == 200
     assert response.collect{ |repo| repo["display_name"] == RepositoryHelper.repo_id }.length > 0
   end
 
   def test_associate_importer
-    response, code = @resource.associate_importer(RepositoryHelper.repo_id, "yum_importer", {})
-    assert code == 201
+    response = @resource.associate_importer(RepositoryHelper.repo_id, "yum_importer", {})
+    assert response.code == 201
     assert response['importer_type_id'] == "yum_importer"
   end
 
   def test_associate_distributor
     distributor_config = {"relative_url" => "/", "http" => true, "https" => true}
 
-    response, code = @resource.associate_distributor(RepositoryHelper.repo_id, "yum_distributor", distributor_config)
-    assert code == 201
+    response = @resource.associate_distributor(RepositoryHelper.repo_id, "yum_distributor", distributor_config)
+    assert response.code == 201
     assert response['distributor_type_id'] == "yum_distributor"
   end
 
 end
+
+
+class TestPulpRepositorySync < MiniTest::Unit::TestCase
+  include TestPulpRepositoryBase
+  
+  def setup
+    super
+    VCR.eject_cassette
+    VCR.insert_cassette('pulp_repository_sync')
+  end
+
+  def teardown
+    RepositoryHelper.destroy_repo
+    super
+  end
+
+  def test_sync_repo
+    RepositoryHelper.create_repo
+    response = @resource.sync(RepositoryHelper.repo_id)
+    RepositoryHelper.task = response[0]
+
+    assert response.code == 202
+    assert response.length == 1
+    assert response[0]["tags"].include?('pulp:action:sync')
+  end
+
+  def test_sync_repo_with_yum_importer
+    RepositoryHelper.create_repo(:importer => true)
+    response = @resource.sync(RepositoryHelper.repo_id)
+    RepositoryHelper.task = response.first
+
+    assert response.code == 202
+    assert response.length == 1
+    assert response.first["tags"].include?('pulp:action:sync')
+  end
+end
+
 =begin
 
   def test_discovery
-    response, code = @resource.start_discovery(RepositoryHelper.repo_url, 'yum')
+    response = @resource.start_discovery(RepositoryHelper.repo_url, 'yum')
     assert response.length > 0
   end
 
   def test_all
-    response, code = @resource.all()
+    response = @resource.all()
     assert response.length > 0
     assert response.select { |r| r["name"] == RepositoryHelper.repo_id }.length > 0
   end
 
   def test_update_schedule
-    response, code = @resource.update_schedule(RepositoryHelper.repo_id, "R1/" << Time.now.advance(:years => 1).iso8601 << "/P1D")
+    response = @resource.update_schedule(RepositoryHelper.repo_id, "R1/" << Time.now.advance(:years => 1).iso8601 << "/P1D")
     assert JSON.parse(response)["id"] == RepositoryHelper.repo_id
     @resource.delete_schedule(RepositoryHelper.repo_id)
   end
 
   def test_delete_schedule
     @resource.update_schedule(RepositoryHelper.repo_id, "R1/" << Time.now.advance(:years => 1).iso8601 << "/P1D")
-    response, code = @resource.delete_schedule(RepositoryHelper.repo_id)
+    response = @resource.delete_schedule(RepositoryHelper.repo_id)
     assert JSON.parse(response)["id"] == RepositoryHelper.repo_id
   end
 
   def test_add_filters
-    response, code = @resource.add_filters(RepositoryHelper.repo_id, [FilterHelper.filter_id])
-    assert response, code == "true"
+    response = @resource.add_filters(RepositoryHelper.repo_id, [FilterHelper.filter_id])
+    assert response == "true"
   end
 
   def test_remove_filters
-    response, code = @resource.remove_filters(RepositoryHelper.repo_id, [FilterHelper.filter_id])
-    assert response, code == "true"
+    response = @resource.remove_filters(RepositoryHelper.repo_id, [FilterHelper.filter_id])
+    assert response == "true"
   end
 
   def test_destroy
-    response, code = @resource.destroy(RepositoryHelper.repo_id)
-    assert response, code == 202
+    response = @resource.destroy(RepositoryHelper.repo_id)
+    assert response == 202
   end
 end
 
@@ -183,56 +221,56 @@ class TestPulpRepositoryRequiresSync < MiniTest::Unit::TestCase
   end
 
   def test_packages
-    response, code = @resource.packages(RepositoryHelper.repo_id)
+    response = @resource.packages(RepositoryHelper.repo_id)
     assert response.length > 0
   end
 
   def test_packages_by_name
-    response, code = @resource.packages_by_name(RepositoryHelper.repo_id, "cheetah")
+    response = @resource.packages_by_name(RepositoryHelper.repo_id, "cheetah")
     assert response.length > 0
     assert response.select { |r| r["name"] == "cheetah" }.length > 0
   end
 
   def test_packages_by_nvre
-    response, code = @resource.packages_by_nvre(RepositoryHelper.repo_id, "cheetah", "0.3", "0.8", "")
+    response = @resource.packages_by_nvre(RepositoryHelper.repo_id, "cheetah", "0.3", "0.8", "")
     assert response.length > 0
     assert response.select { |r| r["name"] == "cheetah" }.length > 0
   end
 
   def test_errata
-    response, code = @resource.errata(RepositoryHelper.repo_id)
+    response = @resource.errata(RepositoryHelper.repo_id)
     assert response.length > 0
   end
 
   def test_errata_with_filter
-    response, code = @resource.errata(RepositoryHelper.repo_id, { :type => 'security' })
+    response = @resource.errata(RepositoryHelper.repo_id, { :type => 'security' })
     assert response.length > 0
     assert response.select { |errata| errata['id'] == "RHEA-2010:0002" }.length > 0
   end
 
   def test_distributions
-    response, code = @resource.distributions(RepositoryHelper.repo_id)
+    response = @resource.distributions(RepositoryHelper.repo_id)
     assert response.kind_of?(Array)
   end
 
   def test_sync_history
-    response, code = @resource.sync_history(RepositoryHelper.repo_id)
+    response = @resource.sync_history(RepositoryHelper.repo_id)
     assert response.length > 0
   end
 
   def test_add_packages
-    response, code = @resource.add_packages(RepositoryHelper.repo_id, [])
-    assert response, code == "[[], 0]"
+    response = @resource.add_packages(RepositoryHelper.repo_id, [])
+    assert response == "[[], 0]"
   end
 
   def test_add_errata 
-    response, code = @resource.add_errata(RepositoryHelper.repo_id, ["RHEA-2010:0002"])
-    assert response, code == "[]"
+    response = @resource.add_errata(RepositoryHelper.repo_id, ["RHEA-2010:0002"])
+    assert response == "[]"
   end
 
   def test_add_distribution
-    response, code = @resource.add_distribution(RepositoryHelper.repo_id, "ks-Test Family-TestVariant-16-x86_64")
-    assert response, code == "true"
+    response = @resource.add_distribution(RepositoryHelper.repo_id, "ks-Test Family-TestVariant-16-x86_64")
+    assert response == "true"
   end
 end
 
@@ -253,7 +291,7 @@ class TestPulpRepositorySync < MiniTest::Unit::TestCase
   end
 
   def test_sync_repo
-    response, code = @resource.sync(RepositoryHelper.repo_id)
+    response = @resource.sync(RepositoryHelper.repo_id)
     RepositoryHelper.set_task(response)
     assert response.length > 0
     assert response["method_name"] == "_sync"
@@ -261,14 +299,14 @@ class TestPulpRepositorySync < MiniTest::Unit::TestCase
 
   def test_sync_status
     RepositoryHelper.sync_repo
-    response, code = @resource.sync_status(RepositoryHelper.repo_id)
+    response = @resource.sync_status(RepositoryHelper.repo_id)
     assert response.length > 0
     assert response.first['id'] == RepositoryHelper.task['id']
     RepositoryHelper.set_task(response)
   end
 
   def test_generate_metadata
-    response, code = @resource.generate_metadata(RepositoryHelper.repo_id)
+    response = @resource.generate_metadata(RepositoryHelper.repo_id)
     RepositoryHelper.set_task(response)
     assert response.length > 0
     assert response["method_name"] == "_generate_metadata"
@@ -296,7 +334,7 @@ class TestPulpRepositoryClone < MiniTest::Unit::TestCase
     RepositoryHelper.destroy_repo(@clone_name)
     from_repo = OpenStruct.new({ :pulp_id => RepositoryHelper.repo_id })
     to_repo = OpenStruct.new({ :pulp_id => @clone_name, :name => @clone_name })
-    response, code = @resource.clone_repo(from_repo, to_repo)
+    response = @resource.clone_repo(from_repo, to_repo)
     RepositoryHelper.set_task(response)
     assert response.length > 0
     assert response["args"].include?(@clone_name)

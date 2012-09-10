@@ -21,33 +21,27 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-require './lib/runcible/resources/repository'
+require './lib/runcible/base'
 
 
 module Runcible
   module Pulp
-    class RepositoryExtension < Runcible::Pulp::Repository
+    class Task < Runcible::Base
 
-      def self.create_with_importer(id, importer_type_id, importer_config)
-        required = required_params(binding.send(:local_variables), binding, ["id"])
-        create(id, required)
+      def self.path(id=nil)
+        (id == nil) ? "tasks/" : "tasks/#{id}/" 
       end
 
-      def self.create_with_distributors(id, distributors)
-        required = required_params(binding.send(:local_variables), binding, ["id"])
-        create(id, required)
+      def self.poll(id)
+        call(:get, path(id))
       end
 
-      def self.create_with_importer_and_distributors(id, importer_type_id, importer_config, distributors)
-        required = required_params(binding.send(:local_variables), binding, ["id"])
-        create(id, required)
+      def self.cancel(id)
+        call(:delete, path(id))
       end
 
-      def self.search_by_repository_ids(repository_ids)
-        criteria = {:filters => 
-                      { "id" => {"$in" => repository_ids}}
-                   }
-        search(criteria)
+      def self.list(params={})
+        call(:get, path, :params => params)
       end
 
     end

@@ -20,7 +20,7 @@ module TestPulpRepositoryBase
   include RepositoryHelper
 
   def setup
-    @extension = Runcible::Pulp::RepositoryExtensions
+    @extension = Runcible::Pulp::RepositoryExtension
     VCR.insert_cassette('extensions/pulp_repository_extensions')
   end
 

@@ -6,97 +6,97 @@ http_interactions:
     body: 
       string: ""
     headers: 
+      Accept-Encoding: 
+      - gzip, deflate
       Accept: 
       - application/json
       Content-Type: 
       - application/json
-      Accept-Encoding: 
-      - gzip, deflate
   response: 
     status: 
       code: 200
       message: OK
     headers: 
-      Content-Type: 
-      - application/json
       Date: 
-      - Sun, 09 Sep 2012 19:18:40 GMT
-      Connection: 
-      - close
+      - Mon, 10 Sep 2012 01:19:38 GMT
       Content-Length: 
       - "540"
+      Content-Type: 
+      - application/json
       Server: 
       - Apache/2.2.22 (Fedora)
+      Connection: 
+      - close
     body: 
-      string: "{\"scratchpad\": {}, \"display_name\": \"integration_test_id\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_count\": 0, \"_id\": {\"$oid\": \"504ceb90ec6a6d697600168b\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\", \"importers\": [{\"repo_id\": \"integration_test_id\", \"_ns\": \"repo_importers\", \"importer_type_id\": \"yum_importer\", \"last_sync\": null, \"scratchpad\": null, \"scheduled_syncs\": [], \"_id\": {\"$oid\": \"504ceb90ec6a6d697600168c\"}, \"config\": {}, \"id\": \"yum_importer\"}], \"distributors\": []}"
+      string: "{\"scratchpad\": {}, \"display_name\": \"integration_test_id\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_count\": 0, \"_id\": {\"$oid\": \"504d402aec6a6d6976001912\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\", \"importers\": [{\"repo_id\": \"integration_test_id\", \"_ns\": \"repo_importers\", \"importer_type_id\": \"yum_importer\", \"last_sync\": null, \"scratchpad\": null, \"scheduled_syncs\": [], \"_id\": {\"$oid\": \"504d402aec6a6d6976001913\"}, \"config\": {}, \"id\": \"yum_importer\"}], \"distributors\": []}"
     http_version: 
-  recorded_at: Sun, 09 Sep 2012 19:18:40 GMT
+  recorded_at: Mon, 10 Sep 2012 01:19:38 GMT
 - request: 
     method: post
     uri: https://admin:admin@localhost/pulp/api/v2/repositories/
     body: 
-      string: "{\"distributors\":[{\"distributor_type_id\":\"yum_distributor\",\"distributor_config\":{\"relative_url\":\"/\",\"https\":true,\"http\":true}}],\"id\":\"integration_test_id\"}"
+      string: "{\"distributors\":[{\"distributor_type_id\":\"yum_distributor\",\"distributor_config\":{\"http\":true,\"https\":true,\"relative_url\":\"/\"}}],\"id\":\"integration_test_id\",\"importer_type_id\":\"yum_importer\",\"importer_config\":{}}"
     headers: 
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Length: 
+      - "209"
       Accept: 
       - application/json
       Content-Type: 
       - application/json
-      Content-Length: 
-      - "154"
-      Accept-Encoding: 
-      - gzip, deflate
   response: 
     status: 
       code: 500
       message: Internal Server Error
     headers: 
-      Content-Type: 
-      - application/json
-      Date: 
-      - Sun, 09 Sep 2012 19:18:44 GMT
-      Connection: 
-      - close
-      Content-Length: 
-      - "4472"
       Content-Encoding: 
       - utf-8
+      Date: 
+      - Mon, 10 Sep 2012 01:19:39 GMT
+      Content-Length: 
+      - "4472"
+      Content-Type: 
+      - application/json
       Server: 
       - Apache/2.2.22 (Fedora)
+      Connection: 
+      - close
     body: 
       string: "{\"http_request_method\": \"POST\", \"exception\": [\"KeyError: 0\\n\"], \"error_message\": \"Unhandled Exception\", \"_href\": \"/pulp/api/v2/repositories/\", \"http_status\": 500, \"traceback\": [\"  File \\\"/usr/lib/python2.7/site-packages/pulp/server/webservices/middleware/exception.py\\\", line 44, in __call__\\n    return self.app(environ, start_response)\\n\", \"  File \\\"/usr/lib/python2.7/site-packages/pulp/server/webservices/middleware/postponed.py\\\", line 39, in __call__\\n    return self.app(environ, start_response)\\n\", \"  File \\\"/usr/lib/python2.7/site-packages/web/application.py\\\", line 278, in wsgi\\n    result = self.handle_with_processors()\\n\", \"  File \\\"/usr/lib/python2.7/site-packages/pulp/server/webservices/application.py\\\", line 28, in _handle_with_processors\\n    return process(self.processors)\\n\", \"  File \\\"/usr/lib/python2.7/site-packages/pulp/server/webservices/application.py\\\", line 25, in process\\n    return p(lambda : process(processors))\\n\", \"  File \\\"/usr/lib/python2.7/site-packages/web/application.py\\\", line 557, in processor\\n    return handler()\\n\", \"  File \\\"/usr/lib/python2.7/site-packages/pulp/server/webservices/application.py\\\", line 25, in <lambda>\\n    return p(lambda : process(processors))\\n\", \"  File \\\"/usr/lib/python2.7/site-packages/pulp/server/webservices/application.py\\\", line 25, in process\\n    return p(lambda : process(processors))\\n\", \"  File \\\"/usr/lib/python2.7/site-packages/web/application.py\\\", line 572, in processor\\n    result = handler()\\n\", \"  File \\\"/usr/lib/python2.7/site-packages/pulp/server/webservices/application.py\\\", line 25, in <lambda>\\n    return p(lambda : process(processors))\\n\", \"  File \\\"/usr/lib/python2.7/site-packages/pulp/server/webservices/application.py\\\", line 27, in process\\n    return self.handle()\\n\", \"  File \\\"/usr/lib/python2.7/site-packages/web/application.py\\\", line 232, in handle\\n    return self._delegate(fn, self.fvars, args)\\n\", \"  File \\\"/usr/lib/python2.7/site-packages/web/application.py\\\", line 413, in _delegate\\n    return f()\\n\", \"  File \\\"/usr/lib/python2.7/site-packages/web/application.py\\\", line 421, in <lambda>\\n    f = lambda: self._delegate_sub_application(pat, what)\\n\", \"  File \\\"/usr/lib/python2.7/site-packages/web/application.py\\\", line 446, in _delegate_sub_application\\n    return app.handle_with_processors()\\n\", \"  File \\\"/usr/lib/python2.7/site-packages/pulp/server/webservices/application.py\\\", line 28, in _handle_with_processors\\n    return process(self.processors)\\n\", \"  File \\\"/usr/lib/python2.7/site-packages/pulp/server/webservices/application.py\\\", line 25, in process\\n    return p(lambda : process(processors))\\n\", \"  File \\\"/usr/lib/python2.7/site-packages/web/application.py\\\", line 557, in processor\\n    return handler()\\n\", \"  File \\\"/usr/lib/python2.7/site-packages/pulp/server/webservices/application.py\\\", line 25, in <lambda>\\n    return p(lambda : process(processors))\\n\", \"  File \\\"/usr/lib/python2.7/site-packages/pulp/server/webservices/application.py\\\", line 25, in process\\n    return p(lambda : process(processors))\\n\", \"  File \\\"/usr/lib/python2.7/site-packages/web/application.py\\\", line 572, in processor\\n    result = handler()\\n\", \"  File \\\"/usr/lib/python2.7/site-packages/pulp/server/webservices/application.py\\\", line 25, in <lambda>\\n    return p(lambda : process(processors))\\n\", \"  File \\\"/usr/lib/python2.7/site-packages/pulp/server/webservices/application.py\\\", line 27, in process\\n    return self.handle()\\n\", \"  File \\\"/usr/lib/python2.7/site-packages/web/application.py\\\", line 232, in handle\\n    return self._delegate(fn, self.fvars, args)\\n\", \"  File \\\"/usr/lib/python2.7/site-packages/web/application.py\\\", line 411, in _delegate\\n    return handle_class(cls)\\n\", \"  File \\\"/usr/lib/python2.7/site-packages/web/application.py\\\", line 386, in handle_class\\n    return tocall(*args)\\n\", \"  File \\\"/usr/lib/python2.7/site-packages/pulp/server/webservices/controllers/decorators.py\\\", line 138, in _auth_decorator\\n    value = method(self, *args, **kwargs)\\n\", \"  File \\\"/usr/lib/python2.7/site-packages/pulp/server/webservices/controllers/repositories.py\\\", line 180, in POST\\n    repo = execution.execute_sync(call_request)\\n\", \"  File \\\"/usr/lib/python2.7/site-packages/pulp/server/dispatch/task.py\\\", line 130, in _run\\n    result = call(*args, **kwargs)\\n\", \"  File \\\"/usr/lib/python2.7/site-packages/pulp/server/managers/repo/cud.py\\\", line 152, in create_and_configure_repo\\n    type_id = distributor[0]\\n\"]}"
     http_version: 
-  recorded_at: Sun, 09 Sep 2012 19:18:44 GMT
+  recorded_at: Mon, 10 Sep 2012 01:19:40 GMT
 - request: 
     method: post
     uri: https://admin:admin@localhost/pulp/api/v2/repositories/search/
     body: 
       string: "{\"criteria\":{\"filters\":{\"id\":{\"$in\":[\"integration_test_id\"]}}}}"
     headers: 
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Length: 
+      - "63"
       Accept: 
       - application/json
       Content-Type: 
       - application/json
-      Content-Length: 
-      - "63"
-      Accept-Encoding: 
-      - gzip, deflate
   response: 
     status: 
       code: 200
       message: OK
     headers: 
-      Content-Type: 
-      - application/json
       Date: 
-      - Sun, 09 Sep 2012 19:18:48 GMT
-      Connection: 
-      - close
+      - Mon, 10 Sep 2012 01:19:43 GMT
       Content-Length: 
       - "267"
+      Content-Type: 
+      - application/json
       Server: 
       - Apache/2.2.22 (Fedora)
+      Connection: 
+      - close
     body: 
-      string: "[{\"scratchpad\": {}, \"display_name\": \"integration_test_id\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_count\": 0, \"_id\": {\"$oid\": \"504ceb97ec6a6d69760016a0\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\"}]"
+      string: "[{\"scratchpad\": {}, \"display_name\": \"integration_test_id\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_count\": 0, \"_id\": {\"$oid\": \"504d402eec6a6d6976001928\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\"}]"
     http_version: 
-  recorded_at: Sun, 09 Sep 2012 19:18:48 GMT
+  recorded_at: Mon, 10 Sep 2012 01:19:43 GMT
 recorded_with: VCR 2.2.4

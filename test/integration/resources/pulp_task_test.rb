@@ -11,15 +11,16 @@
 
 require 'rubygems'
 require 'minitest/autorun'
-require 'test/integration/pulp/vcr_pulp_setup'
-require 'test/integration/pulp/helpers/repository_helper'
+
+require './test/integration/resources/helpers/repository_helper'
+require './lib/runcible/resources/task'
 
 
 module TestPulpTaskBase
   include RepositoryHelper
 
   def setup
-    @resource = Resources::Pulp::Task
+    @resource = Runcible::Pulp::Task
     VCR.insert_cassette('pulp_task')
   end
 
@@ -33,38 +34,46 @@ end
 class TestPulpTask < MiniTest::Unit::TestCase
   include TestPulpTaskBase
 
-  def self.before_suite
-    RepositoryHelper.create_and_sync_repo
+  def setup
+    super
+    RepositoryHelper.create_repo(:importer => true)
+    RepositoryHelper.sync_repo(false)
   end
 
-  def self.after_suite
+  def teardown
+    super
     RepositoryHelper.destroy_repo
   end
 
   def test_path
     path = @resource.path
-    assert_match("/api/tasks/", path)
+    assert_match("tasks/", path)
   end
 
   def test_path_with_task_id
-    path = @resource.path(RepositoryHelper.task['id'])
-    assert_match("/api/tasks/" + RepositoryHelper.task['id'], path)
+    path = @resource.path(RepositoryHelper.task['task_id'])
+    assert_match("tasks/#{RepositoryHelper.task['task_id']}/", path)
   end
 
-  def test_find
-    response = @resource.find([RepositoryHelper.task['id']])
+  def test_poll
+    response = @resource.poll(RepositoryHelper.task['task_id'])
+    assert response.code == 200
+    assert response['task_id'] == RepositoryHelper.task['task_id']
+  end
+
+  def test_list
+    response = @resource.list
+    assert response.code == 200
     assert response.length > 0
-    assert response.first['id'] == RepositoryHelper.task['id']
+    #assert response.first['task_id'] == RepositoryHelper.task['task_id']
   end
 
+=begin
+  #TODO: Needs more reliable testable scenario - scheduled sync in the future?
   def test_cancel
-    response = @resource.cancel(RepositoryHelper.task['id'])
-    assert response.length > 0
+    response = @resource.cancel(RepositoryHelper.task['task_id'])
+    assert response.code == 200
   end
-
-  def test_destroy
-    response = @resource.destroy(RepositoryHelper.task['id'])
-    assert response['id'] == RepositoryHelper.task['id']
-  end
+=end
 
 end

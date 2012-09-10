@@ -12,14 +12,17 @@
 require 'rubygems'
 
 require './lib/runcible/resources/repository'
+require './lib/runcible/resources/task'
+require './lib/runcible/extensions/repository'
 
 module RepositoryHelper
 
-  @repo_url = "file://#{File.expand_path(File.dirname(__FILE__))}".gsub("pulp/helpers", "fixtures/repositories/zoo5")
-  @repo_id = "integration_test_id"
-  @repo_name = @repo_id
-  @repo_resource = Runcible::Pulp::Repository
-  @task_resource = Runcible::Pulp::Task
+  @repo_url       = "file://#{File.expand_path(File.dirname(__FILE__))}".gsub("resources/helpers", "fixtures/repositories/zoo5")
+  @repo_id        = "integration_test_id"
+  @repo_name      = @repo_id
+  @repo_resource  = Runcible::Pulp::Repository
+  @repo_extension = Runcible::Pulp::RepositoryExtension
+  @task_resource  = Runcible::Pulp::Task
 
   def self.repo_name
     @repo_name
@@ -41,7 +44,7 @@ module RepositoryHelper
     @repo_resource
   end
 
-  def self.set_task(task)
+  def self.task=(task)
     @task = task
   end
 
@@ -55,7 +58,7 @@ module RepositoryHelper
     sync_repo
   end
 
-  def self.create_repo
+  def self.create_repo(options={})
     repo = nil
     
     VCR.use_cassette('pulp_repository_helper') do
@@ -65,23 +68,37 @@ module RepositoryHelper
     if !repo.nil?
       destroy_repo
     end
+
+    VCR.use_cassette('pulp_repository_helper') do
+      if options[:importer]
+        repo = @repo_extension.create_with_importer(@repo_id, "yum_importer", {:feed_url => @repo_url})
+      else
+        repo = @repo_resource.create(@repo_id)
+      end
+    end
+
   rescue RestClient::ResourceNotFound
 
     VCR.use_cassette('pulp_repository_helper') do
-      repo = @repo_resource.create(@repo_id)
+      if options[:importer]
+        repo = @repo_extension.create_with_importer(@repo_id, "yum_importer", {:feed_url => @repo_url})
+      else
+        repo = @repo_resource.create(@repo_id)
+      end
     end
 
     return repo
   end
 
-  def self.sync_repo
+  def self.sync_repo(wait=true)
     VCR.use_cassette('pulp_repository_helper') do
-      @task = @repo_resource.sync(@repo_name)
+      @task = @repo_resource.sync(@repo_name).first
 
-      @task = @task_resource.cancel(@task["id"])
-      while !(['finished', 'error', 'timed_out', 'canceled', 'reset'].include?(@task['state'])) do
-        @task = @task_resource.retrieve([@task["id"]]).first
-        sleep 1 # do not overload backend engines
+      if wait
+        while !(['finished', 'error', 'timed_out', 'canceled', 'reset'].include?(@task['state'])) do
+          @task = @task_resource.poll(@task["task_id"]).first
+          sleep 0.5 # do not overload backend engines
+        end
       end
     end
   rescue Exception => e
@@ -94,11 +111,10 @@ module RepositoryHelper
     VCR.use_cassette('pulp_repository_helper') do
       if @task
         while !(['finished', 'error', 'timed_out', 'canceled', 'reset'].include?(@task['state'])) do
-          @task = @task_resource.retrieve([@task["id"]]).first
-          sleep 1 # do not overload backend engines
+          @task = @task_resource.poll(@task["task_id"])
+          sleep 0.5 # do not overload backend engines
         end
 
-        @task_resource.destroy(@task["id"])
         @task = nil
       end
 

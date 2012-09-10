@@ -37,8 +37,8 @@ module Runcible
         call(:post, path, :payload => { :required => required, :optional => optional })
       end
 
-      def self.retrieve(id, query={})
-        call(:get, path(id), :params => query)
+      def self.retrieve(id, params={})
+        call(:get, path(id), :params => params)
       end
 
       def self.update(id, optional={})
@@ -66,6 +66,10 @@ module Runcible
       def self.associate_distributor(id, distributor_type_id, distributor_config, optional={})
         required = required_params(binding.send(:local_variables), binding, ["id"])
         call(:post, path("#{id}/distributors"), :payload => { :required => required, :optional => optional })
+      end
+
+      def self.sync(id, optional={})
+        call(:post, "#{path(id)}actions/sync/", :payload => { :optional => optional })
       end
 
     end
