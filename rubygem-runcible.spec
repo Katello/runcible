@@ -11,26 +11,42 @@
 # have received a copy of GPLv2 along with this software; if not, see
 # http://www.gnu.org/licenses/old-licenses/gpl-2.0.txt.
 
-%global gemname runcible
+%global gem_name runcible
 
-%global gemdir %(ruby -rubygems -e 'puts Gem::dir' 2>/dev/null)
-%global geminstdir %{gemdir}/gems/%{gemname}-%{version}
-%global rubyabi 1.8
+%global gem_dir %(ruby -rubygems -e 'puts Gem::dir' 2>/dev/null)
+%global gem_instdir %{gem_dir}/gems/%{gem_name}-%{version}
+
+%if 0%{?rhel} == 6 || 0%{?fedora} < 17
+%define rubyabi 1.8
+%else
+%define rubyabi 1.9.1
+%endif
+
+%if 0%{?rhel} == 6
+%global gem_dir %(ruby -rubygems -e 'puts Gem::dir' 2>/dev/null)
+%global gem_docdir %{gem_dir}/doc/%{gem_name}-%{version}
+%global gem_cache %{gem_dir}/cache/%{gem_name}-%{version}.gem
+%global gem_spec %{gem_dir}/specifications/%{gem_name}-%{version}.gemspec
+%global gem_instdir %{gem_dir}/gems/%{gem_name}-%{version}
+%endif
+
+%if 0%{?fedora}
+BuildRequires: rubygems-devel
+%endif
 
 Name:           rubygem-%{gemname}
-Summary:        A gem to expose Pulp's juiciest parts.
+Summary:        A gem exposing Pulp's juiciest parts
 Group:          Applications/System
 License:        MIT
-Version:        0.0.3
+Version:        0.0.5
 Release:        1%{?dist}
-Source0:        http://rubygems.org/gems/%{gemname}-%{version}.gem
+Source0:        http://rubygems.org/gems/%{gem_name}-%{version}.gem
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Requires:       ruby(abi) = %{rubyabi}
 Requires:       ruby(rubygems) 
 Requires:       rubygem(json) 
 Requires:       rubygem(rest-client) >= 1.6.1
 Requires:       rubygem(oauth) 
-Requires:       ruby 
 BuildRequires:  ruby(abi) = %{rubyabi}
 BuildRequires:  ruby(rubygems) 
 BuildRequires:  ruby 
@@ -41,24 +57,32 @@ Provides:       rubygem(%{gemname}) = %{version}
 A gem to expose Pulp's juiciest parts.
 
 %prep
-%setup -q -c -T
-mkdir -p .%{gemdir}
-gem install --local --install-dir .%{gemdir} \
-            --force %{SOURCE0}
+gem unpack %{SOURCE0}
+%setup -q -D -T -n %{gem_name}-%{version}
+
+gem spec %{SOURCE0} -l --ruby > %{gem_name}.gemspec
 
 %build
+mkdir -p ./%{gemdir}
+gem build %{gem_name}.gemspec
+
+gem install -V \
+    --local \
+    --install-dir ./%{gem_dir} \
+    --bindir ./%{_bindir}
+    --force \
+    --rdoc \
+    %{gem_name}-%{version}.gem
 
 %install
 mkdir -p %{buildroot}%{gemdir}
-cp -a .%{gemdir}/* \
-        %{buildroot}%{gemdir}/
-
+cp -a ./%{gem_dir}/* %{buildroot}%{gem_dir}/
 
 %files
 %dir %{geminstdir}
 %{geminstdir}/lib
-%exclude %{gemdir}/cache/%{gemname}-%{version}.gem
-%{gemdir}/specifications/%{gemname}-%{version}.gemspec
+%exclude %{gem_cache}
+%{gem_spec}
 
 %changelog
 * Fri Sep 14 2012 Eric D. Helms <ehelms@redhat.com> 0.0.3-1
