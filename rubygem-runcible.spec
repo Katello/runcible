@@ -40,7 +40,7 @@ Group:          Applications/System
 License:        MIT
 Version:        0.0.6
 Release:        1%{?dist}
-Source0:        %{gem_name}-%{version}.tar.gz
+Source0:        %{name}-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{gem_name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Requires:       ruby(abi) = %{rubyabi}
 Requires:       ruby(rubygems) 
