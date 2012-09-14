@@ -59,15 +59,16 @@ A gem to expose Pulp's juiciest parts.
 %setup -q -D -T -n %{gem_name}-%{version}
 gem build %{gem_name}.gemspec
 
-%build
-mkdir -p ./%{gem_dir}
-
 gem install -V \
     --local \
     --install-dir ./%{gem_dir} \
     --bindir ./%{_bindir}
     --force \
     %{gem_name}-%{version}.gem
+
+%build
+mkdir -p ./%{gem_dir}
+
 
 %install
 mkdir -p %{buildroot}%{gemdir}
