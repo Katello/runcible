@@ -87,6 +87,9 @@ cp -a ./%{gem_dir}/* %{buildroot}%{gem_dir}/
 * Fri Sep 14 2012 Eric D. Helms <ehelms@redhat.com> 0.0.6-1
 - new package built with tito
 
+* Fri Sep 14 2012 Eric D. Helms <ehelms@redhat.com> 0.0.6-1
+- new package built with tito
+
 * Fri Sep 14 2012 Eric D. Helms <ehelms@redhat.com> 0.0.3-1
 - new package built with tito
 
