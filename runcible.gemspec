@@ -4,7 +4,7 @@ require File.expand_path('../lib/runcible/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.authors       = ["Eric D Helms"]
   gem.email         = ["ehelms@redhat.com"]
-  gem.description   = "Exposing pulp's juiciest components to the Ruby world."
+  gem.description   = "ExposingPpulp's juiciest components to the Ruby world."
   gem.summary       = ""
   gem.homepage      = "https://github.com/Katello/runcible"
 

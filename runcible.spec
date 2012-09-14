@@ -11,38 +11,53 @@
 # have received a copy of GPLv2 along with this software; if not, see
 # http://www.gnu.org/licenses/old-licenses/gpl-2.0.txt.
 
+%global gemname runcible
 
-%global homedir %{_datarootdir}/%{name}
+%global gemdir %(ruby -rubygems -e 'puts Gem::dir' 2>/dev/null)
+%global geminstdir %{gemdir}/gems/%{gemname}-%{version}
+%global rubyabi 1.8
 
-Name:          runcible
-Summary:       A gem to expose Pulp's juiciest parts.
-Group:         Applications/System
-License:       MIT
-Version:       0.1.0
-Release:       1%{?dist}
-Source0:       %{name}-%{version}.tar.gz
-BuildRoot:     %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-
-BuildArch:     noarch
+Name:           rubygem-%{gemname}
+Summary:        A gem to expose Pulp's juiciest parts.
+Group:          Applications/System
+License:        MIT
+Version:        0.0.2
+Release:        1%{?dist}
+Source0:        http://rubygems.org/gems/%{gemname}-%{version}.gem
+BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Requires:       ruby(abi) = %{rubyabi}
+Requires:       ruby(rubygems) 
+Requires:       rubygem(json) 
+Requires:       rubygem(rest-client) >= 1.6.1
+Requires:       rubygem(oauth) 
+Requires:       ruby 
+BuildRequires:  ruby(abi) = %{rubyabi}
+BuildRequires:  ruby(rubygems) 
+BuildRequires:  ruby 
+BuildArch:      noarch
+Provides:       rubygem(%{gemname}) = %{version}
 
 %description
 A gem to expose Pulp's juiciest parts.
 
 %prep
-%setup -q 
+%setup -q -c -T
+mkdir -p .%{gemdir}
+gem install --local --install-dir .%{gemdir} \
+            --force %{SOURCE0}
 
 %build
 
 %install
-rm -rf $RPM_BUILD_ROOT
-install -m0755 -d %{buildroot}%{homedir}
+mkdir -p %{buildroot}%{gemdir}
+cp -a .%{gemdir}/* \
+        %{buildroot}%{gemdir}/
 
-%clean
-rm -rf $RPM_BUILD_ROOT
 
-%files 
-%defattr(755, root, root)
-%{homedir}
-%doc README.md LICENSE
+%files
+%dir %{geminstdir}
+%{geminstdir}/lib
+%exclude %{gemdir}/cache/%{gemname}-%{version}.gem
+%{gemdir}/specifications/%{gemname}-%{version}.gemspec
 
 %changelog
