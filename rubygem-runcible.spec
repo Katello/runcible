@@ -38,7 +38,7 @@ Name:           rubygem-%{gem_name}
 Summary:        A gem exposing Pulp's juiciest parts
 Group:          Applications/System
 License:        MIT
-Version:        0.0.6
+Version:        0.0.7
 Release:        1%{?dist}
 Source0:        %{name}-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{gem_name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -94,5 +94,14 @@ This package contains documentation for rubygem-%{gem_name}
 %doc %{gem_docdir}
 
 %changelog
+* Fri Sep 14 2012 Eric D. Helms <ehelms@redhat.com> 0.0.7-1
+- Updates to spec file. (ehelms@redhat.com)
+- Moves install directive into prep section. (ehelms@redhat.com)
+- Flipping order of prep steps. (ehelms@redhat.com)
+- Fixing typo in source declaration in spec file. (ehelms@redhat.com)
+- Updates to spec file variables. (ehelms@redhat.com)
+- Adds documentation subpackage and cleans up spec file to handle tar.gz
+  source. (ehelms@redhat.com)
+
 * Fri Sep 14 2012 Eric D. Helms <ehelms@redhat.com> 0.0.6-1
 - new package built with tito
