@@ -49,7 +49,6 @@ Requires:       rubygem(rest-client) >= 1.6.1
 Requires:       rubygem(oauth) 
 BuildRequires:  ruby(abi) = %{rubyabi}
 BuildRequires:  ruby(rubygems) 
-BuildRequires:  ruby 
 BuildArch:      noarch
 Provides:       rubygem(%{gem_name}) = %{version}
 
@@ -57,14 +56,11 @@ Provides:       rubygem(%{gem_name}) = %{version}
 A gem to expose Pulp's juiciest parts.
 
 %prep
-gem unpack %{SOURCE0}
+gem build %{gem_name}.gemspec
 %setup -q -D -T -n %{gem_name}-%{version}
-
-gem spec %{SOURCE0} -l --ruby > %{gem_name}.gemspec
 
 %build
 mkdir -p ./%{gemdir}
-gem build %{gem_name}.gemspec
 
 gem install -V \
     --local \
@@ -78,18 +74,25 @@ mkdir -p %{buildroot}%{gemdir}
 cp -a ./%{gem_dir}/* %{buildroot}%{gem_dir}/
 
 %files
-%dir %{geminstdir}
-%{geminstdir}/lib
+%doc LICENSE
+%dir %{gem_instdir}
+%{gem_instdir}/lib
 %exclude %{gem_cache}
 %{gem_spec}
+rm -rf %{buildroot}%{gem_instdir}/.yardoc
+
+
+%package doc
+BuildArch:  noarch
+Requires:   %{name} = %{version}-%{release}
+Summary:    Documentation for rubygem-%{gem_name}
+
+%description doc
+This package contains documentation for rubygem-%{gem_name}
+
+%files doc
+%doc %{gem_docdir}
 
 %changelog
 * Fri Sep 14 2012 Eric D. Helms <ehelms@redhat.com> 0.0.6-1
 - new package built with tito
-
-* Fri Sep 14 2012 Eric D. Helms <ehelms@redhat.com> 0.0.6-1
-- new package built with tito
-
-* Fri Sep 14 2012 Eric D. Helms <ehelms@redhat.com> 0.0.3-1
-- new package built with tito
-
