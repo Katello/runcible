@@ -34,14 +34,14 @@
 BuildRequires: rubygems-devel
 %endif
 
-Name:           rubygem-%{gemname}
+Name:           rubygem-%{gem_name}
 Summary:        A gem exposing Pulp's juiciest parts
 Group:          Applications/System
 License:        MIT
 Version:        0.0.6
 Release:        1%{?dist}
 Source0:        %{gem_name}-%{version}.tar.gz
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+BuildRoot:      %{_tmppath}/%{gem_name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Requires:       ruby(abi) = %{rubyabi}
 Requires:       ruby(rubygems) 
 Requires:       rubygem(json) 
@@ -51,7 +51,7 @@ BuildRequires:  ruby(abi) = %{rubyabi}
 BuildRequires:  ruby(rubygems) 
 BuildRequires:  ruby 
 BuildArch:      noarch
-Provides:       rubygem(%{gemname}) = %{version}
+Provides:       rubygem(%{gem_name}) = %{version}
 
 %description
 A gem to expose Pulp's juiciest parts.
