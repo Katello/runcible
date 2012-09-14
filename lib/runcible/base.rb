@@ -35,10 +35,16 @@ module Runcible
     # :password Password for this user
     # :oauth    Oauth credentials
     # :headers  Additional headers e.g. content-type => "application/json"
+    # :url      Scheme and hostname for the pulp server e.g. https://localhost/
+    # :api_path URL path for the api e.g. pulp/api/v2/
     def self.config=(conf={})
       @@config = {
-        :headers => { :content_type => 'application/json',
-                      :accept       => 'application/json'}
+        :api_path   => '/pulp/api/v2/',
+        :url        => 'https://localhost',
+        :user       => '',
+        :http_auth  => {:password => {} },
+        :headers    => {:content_type => 'application/json',
+                        :accept       => 'application/json'}
       }.merge(conf)
     end
     
@@ -47,20 +53,23 @@ module Runcible
     end
 
     def self.call(method, path, options={})
-      path = '/pulp/api/v2/' + path
+      path = config[:api_path] + path
 
-      headers = options[:headers] ? options[:headers] : {}
+      headers = config[:headers]
       headers[:params] = options[:params] if options[:params]
-      headers = add_oauth_header(method, path, headers) if config[:oauth]
-      headers["pulp-user"] = "admin"#config[:user]
 
-      payload = [:post, :put].include?(method) ? generate_payload(options) : {}
+      if config[:oauth]
+        headers = add_oauth_header(method, path, headers) if config[:oauth]
+        headers["pulp-user"] = config[:user]
+        client = RestClient::Resource.new(config[:url])
+      else
+        client = RestClient::Resource.new(config[:url], :user => config[:user], :password => config[:http_auth][:password])
+      end
 
       args = [method]
-      args << payload.to_json if [:post, :put].include?(method)
-      args << headers if headers
+      args << generate_payload(options) if [:post, :put].include?(method)
+      args << headers 
 
-      client = RestClient::Resource.new(config[:url], config)
       process_response(client[path].send(*args))
     end
 
@@ -81,7 +90,7 @@ module Runcible
         payload = {}
       end
 
-      return payload
+      return payload.to_json
     end
 
     def self.process_response(response)
@@ -107,6 +116,10 @@ module Runcible
       end
 
       return local_names
+    end
+
+    def self.add_http_auth_header
+      return {:user => config[:user], :password => config[:http_auth][:password]}
     end
 
     def self.add_oauth_header(method, path, headers)

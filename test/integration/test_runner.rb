@@ -14,7 +14,7 @@ require 'minitest/unit'
 require 'minitest/autorun'
 
 require 'test/integration/vcr_setup'
-require 'lib/runcible/base'
+require './lib/runcible/base'
 
 
 class CustomMiniTestRunner
@@ -55,7 +55,7 @@ class PulpMiniTestRunner
   def run_tests(options={})
     mode      = options[:mode] || "recorded" 
     test_name = options[:test_name] || nil
-    auth_type = options[:auth_type] || "basic"
+    auth_type = options[:auth_type] || "http"
 
     MiniTest::Unit.runner = CustomMiniTestRunner::Unit.new
 
@@ -71,22 +71,28 @@ class PulpMiniTestRunner
   end
 
   def set_runcible_config(auth_type)
-    if auth_type == "basic"
-      Runcible::Base.config = {}
+    if auth_type == "http"
+      Runcible::Base.config = {
+        :api_path   => "/pulp/api/v2/",
+        :http_auth => {}
+      }
 
       File.open('/etc/pulp/server.conf') do |f|
         f.each_line do |line|
           if line.start_with?('default_password')
-            Runcible::Base.config[:password] = line.split(':')[1].strip
+            Runcible::Base.config[:http_auth][:password] = line.split(':')[1].strip
           elsif line.start_with?('default_login')
             Runcible::Base.config[:user] = line.split(':')[1].strip
           elsif line.start_with?('server_name')
-            Runcible::Base.config[:url] = 'https://' + line.split(':')[1].chomp.strip
+            Runcible::Base.config[:url] = "https://#{line.split(':')[1].chomp.strip}"
           end
         end
       end
     elsif auth_type == "oauth"
-      Runcible::Base.config = { :oauth => {} }
+      Runcible::Base.config = {
+        :api_path => "/pulp/api/v2/",
+        :oauth => {}
+      }
 
       File.open('/etc/pulp/server.conf') do |f|
         f.each_line do |line|
@@ -94,8 +100,10 @@ class PulpMiniTestRunner
             Runcible::Base.config[:oauth][:oauth_secret] = line.split(':')[1].strip
           elsif line.start_with?('oauth_key')
             Runcible::Base.config[:oauth][:oauth_key] = line.split(':')[1].strip
+          elsif line.start_with?('default_login')
+            Runcible::Base.config[:user] = line.split(':')[1].strip
           elsif line.start_with?('server_name')
-            Runcible::Base.config[:url] = 'https://' + line.split(':')[1].chomp.strip
+            Runcible::Base.config[:url] = "https://#{line.split(':')[1].chomp.strip}"
           end
         end
       end
