@@ -21,7 +21,7 @@ Name:           rubygem-%{gemname}
 Summary:        A gem to expose Pulp's juiciest parts.
 Group:          Applications/System
 License:        MIT
-Version:        0.0.2
+Version:        0.0.3
 Release:        1%{?dist}
 Source0:        http://rubygems.org/gems/%{gemname}-%{version}.gem
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -61,3 +61,6 @@ cp -a .%{gemdir}/* \
 %{gemdir}/specifications/%{gemname}-%{version}.gemspec
 
 %changelog
+* Fri Sep 14 2012 Eric D. Helms <ehelms@redhat.com> 0.0.3-1
+- new package built with tito
+
