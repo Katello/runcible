@@ -56,8 +56,8 @@ Provides:       rubygem(%{gem_name}) = %{version}
 A gem to expose Pulp's juiciest parts.
 
 %prep
-gem build %{gem_name}.gemspec
 %setup -q -D -T -n %{gem_name}-%{version}
+gem build %{gem_name}.gemspec
 
 %build
 mkdir -p ./%{gem_dir}
