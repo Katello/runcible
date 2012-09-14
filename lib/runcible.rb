@@ -22,4 +22,8 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 require "runcible/version"
-require File.join(File.dirname(__FILE__), 'runcible/resources/*.rb')
+require "runcible/base"
+
+resources = Dir[File.dirname(__FILE__) + '/runcible/resources/*.rb']
+resources += Dir[File.dirname(__FILE__) + '/runcible/extensions/*.rb']
+resources.each{ |f| require f }
