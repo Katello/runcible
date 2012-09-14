@@ -55,32 +55,31 @@ Provides:       rubygem(%{gem_name}) = %{version}
 %description
 A gem to expose Pulp's juiciest parts.
 
+
 %prep
-%setup -q -D -T -n %{gem_name}-%{version}
+%setup -q
+
+%build
 gem build %{gem_name}.gemspec
 
-gem install -V \
+%install
+mkdir -p %{buildroot}%{gem_dir}
+
+gem install \
     --local \
-    --install-dir ./%{gem_dir} \
-    --bindir ./%{_bindir}
+    --install-dir %{buildroot}%{gem_dir} \
     --force \
     %{gem_name}-%{version}.gem
 
-%build
-mkdir -p ./%{gem_dir}
-
-
-%install
-mkdir -p %{buildroot}%{gemdir}
-cp -a ./%{gem_dir}/* %{buildroot}%{gem_dir}/
+%clean
+rm -rf %{buildroot}
 
 %files
-%doc LICENSE
-%dir %{gem_instdir}
+%{gem_instdir}/
 %{gem_instdir}/lib
 %exclude %{gem_cache}
 %{gem_spec}
-rm -rf %{buildroot}%{gem_instdir}/.yardoc
+%doc LICENSE
 
 
 %package doc
