@@ -60,7 +60,7 @@ gem build %{gem_name}.gemspec
 %setup -q -D -T -n %{gem_name}-%{version}
 
 %build
-mkdir -p ./%{gemdir}
+mkdir -p ./%{gem_dir}
 
 gem install -V \
     --local \
