@@ -35,7 +35,7 @@ Name:           rubygem-%{gem_name}
 Summary:        A gem exposing Pulp's juiciest parts
 Group:          Applications/System
 License:        MIT
-Version:        0.0.7
+Version:        0.0.9
 Release:        1%{?dist}
 URL:            https://github.com/Katello/runcible
 Source0:        %{name}-%{version}.tar.gz
@@ -91,6 +91,31 @@ This package contains documentation for rubygem-%{gem_name}
 %doc %{gem_docdir}
 
 %changelog
+* Fri Sep 14 2012 Eric D. Helms <ehelms@redhat.com> 0.0.9-1
+- Updates verison. (ehelms@redhat.com)
+- Minor updates to spec file. (ehelms@redhat.com)
+- Automatic commit of package [rubygem-runcible] release [0.0.7-1].
+  (ehelms@redhat.com)
+
+* Fri Sep 14 2012 Eric D. Helms <ehelms@redhat.com>
+- Automatic commit of package [rubygem-runcible] release [0.0.8-1].
+  (ehelms@redhat.com)
+
+* Fri Sep 14 2012 Eric D. Helms <ehelms@redhat.com> 0.0.8-1
+- Minor updates to spec file. (ehelms@redhat.com)
+- Automatic commit of package [rubygem-runcible] release [0.0.7-1].
+  (ehelms@redhat.com)
+
+* Fri Sep 14 2012 Eric D. Helms <ehelms@redhat.com>
+- Minor updates to spec file. (ehelms@redhat.com)
+- Automatic commit of package [rubygem-runcible] release [0.0.7-1].
+  (ehelms@redhat.com)
+
+* Fri Sep 14 2012 Eric D. Helms <ehelms@redhat.com>
+- Minor updates to spec file. (ehelms@redhat.com)
+- Automatic commit of package [rubygem-runcible] release [0.0.7-1].
+  (ehelms@redhat.com)
+
 * Fri Sep 14 2012 Eric D. Helms <ehelms@redhat.com> 0.0.7-1
 - Updates to spec file. (ehelms@redhat.com)
 - Moves install directive into prep section. (ehelms@redhat.com)
