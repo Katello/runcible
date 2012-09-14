@@ -74,7 +74,8 @@ class PulpMiniTestRunner
     if auth_type == "http"
       Runcible::Base.config = {
         :api_path   => "/pulp/api/v2/",
-        :http_auth => {}
+        :http_auth  => {},
+        :logger     => 'stdout'
       }
 
       File.open('/etc/pulp/server.conf') do |f|

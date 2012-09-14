@@ -55,6 +55,8 @@ module Runcible
     def self.call(method, path, options={})
       path = config[:api_path] + path
 
+      RestClient.log = config[:logger] if config[:logger]
+
       headers = config[:headers]
       headers[:params] = options[:params] if options[:params]
 
