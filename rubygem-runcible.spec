@@ -40,7 +40,7 @@ Group:          Applications/System
 License:        MIT
 Version:        0.0.6
 Release:        1%{?dist}
-Source0:        http://rubygems.org/gems/%{gem_name}-%{version}.gem
+Source0:        %{gem_name}-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Requires:       ruby(abi) = %{rubyabi}
 Requires:       ruby(rubygems) 
@@ -71,7 +71,6 @@ gem install -V \
     --install-dir ./%{gem_dir} \
     --bindir ./%{_bindir}
     --force \
-    --rdoc \
     %{gem_name}-%{version}.gem
 
 %install
