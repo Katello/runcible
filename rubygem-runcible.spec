@@ -13,9 +13,6 @@
 
 %global gem_name runcible
 
-%global gem_dir %(ruby -rubygems -e 'puts Gem::dir' 2>/dev/null)
-%global gem_instdir %{gem_dir}/gems/%{gem_name}-%{version}
-
 %if 0%{?rhel} == 6 || 0%{?fedora} < 17
 %define rubyabi 1.8
 %else
@@ -40,6 +37,7 @@ Group:          Applications/System
 License:        MIT
 Version:        0.0.7
 Release:        1%{?dist}
+URL:            https://github.com/Katello/runcible
 Source0:        %{name}-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{gem_name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Requires:       ruby(abi) = %{rubyabi}
@@ -71,8 +69,7 @@ gem install \
     --force \
     %{gem_name}-%{version}.gem
 
-%clean
-rm -rf %{buildroot}
+rm -rf %{buildroot}%{gem_instdir}/.yardoc
 
 %files
 %{gem_instdir}/
