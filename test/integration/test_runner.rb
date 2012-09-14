@@ -12,7 +12,6 @@
 require 'rubygems'
 require 'minitest/unit'
 require 'minitest/autorun'
-require 'inifile'
 
 require 'test/integration/vcr_setup'
 require 'lib/runcible/base'

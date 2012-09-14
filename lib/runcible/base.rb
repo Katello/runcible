@@ -24,7 +24,6 @@
 require 'rest_client'
 require 'oauth'
 require 'json'
-require './lib/runcible/oauth_setup'
 
 
 module Runcible
@@ -48,19 +47,20 @@ module Runcible
     end
 
     def self.call(method, path, options={})
-      client = RestClient::Resource.new(config[:url], config)
+      path = '/pulp/api/v2/' + path
+
+      headers = options[:headers] ? options[:headers] : {}
+      headers[:params] = options[:params] if options[:params]
+      headers = add_oauth_header(method, path, headers) if config[:oauth]
+      headers["pulp-user"] = "admin"#config[:user]
 
       payload = [:post, :put].include?(method) ? generate_payload(options) : {}
-      headers = options[:headers] ? options[:headers] : {}
-      params = options[:params]
-      headers[:params] = params if params
 
       args = [method]
       args << payload.to_json if [:post, :put].include?(method)
       args << headers if headers
 
-      path = '/pulp/api/v2/' + path
-
+      client = RestClient::Resource.new(config[:url], config)
       process_response(client[path].send(*args))
     end
 
@@ -107,6 +107,28 @@ module Runcible
       end
 
       return local_names
+    end
+
+    def self.add_oauth_header(method, path, headers)
+      default_options = { :site               => config[:url],
+                          :http_method        => method,
+                          :request_token_path => "",
+                          :authorize_path     => "",
+                          :access_token_path  => "" }
+
+      default_options[:ca_file] = config[:ca_cert_file] unless config[:ca_cert_file].nil?
+      consumer = OAuth::Consumer.new(config[:oauth][:oauth_key], config[:oauth][:oauth_secret], default_options)
+
+      method_to_http_request = { :get    => Net::HTTP::Get,
+                                 :post   => Net::HTTP::Post,
+                                 :put    => Net::HTTP::Put,
+                                 :delete => Net::HTTP::Delete }
+
+      http_request = method_to_http_request[method].new(path)
+      consumer.sign!(http_request)
+
+      headers['Authorization'] = http_request['Authorization']
+      return headers
     end
 
   end 
