@@ -23,7 +23,7 @@
 
 
 module Runcible
-  module Pulp
+  module Resources
     class User < Runcible::Base
 
       def self.path(login=nil)

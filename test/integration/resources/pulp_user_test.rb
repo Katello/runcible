@@ -15,11 +15,11 @@ require 'minitest/autorun'
 require './lib/runcible/resources/user'
 
 
-module TestPulpUserBase
+module TestResourcesUserBase
   def setup
     VCR.insert_cassette('pulp_user')
     @username = "integration_test_user"
-    @resource = Runcible::Pulp::User
+    @resource = Runcible::Resources::User
   end
 
   def teardown
@@ -27,8 +27,8 @@ module TestPulpUserBase
   end
 end
 
-class TestPulpUserCreate < MiniTest::Unit::TestCase
-  include TestPulpUserBase
+class TestResourcesUserCreate < MiniTest::Unit::TestCase
+  include TestResourcesUserBase
 
   def teardown
     super
@@ -56,8 +56,8 @@ class TestPulpUserCreate < MiniTest::Unit::TestCase
 end
 
 
-class TestPulpUser < MiniTest::Unit::TestCase
-  include TestPulpUserBase
+class TestResourcesUser < MiniTest::Unit::TestCase
+  include TestResourcesUserBase
 
   def setup
     super

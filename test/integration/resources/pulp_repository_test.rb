@@ -17,12 +17,12 @@ require './lib/runcible/resources/repository'
 require './lib/runcible/extensions/repository'
 
 
-module TestPulpRepositoryBase
+module TestResourcesRepositoryBase
   include RepositoryHelper
 
   def setup
-    @resource = Runcible::Pulp::Repository
-    @extension = Runcible::Pulp::RepositoryExtension
+    @resource = Runcible::Resources::Repository
+    @extension = Runcible::Extensions::Repository
     VCR.insert_cassette('pulp_repository')
   end
 
@@ -33,8 +33,8 @@ module TestPulpRepositoryBase
 end
 
 =begin
-class TestPulpRepositoryCreate < MiniTest::Unit::TestCase
-  include TestPulpRepositoryBase
+class TestResourcesRepositoryCreate < MiniTest::Unit::TestCase
+  include TestResourcesRepositoryBase
 
   def teardown
     RepositoryHelper.destroy_repo
@@ -49,8 +49,8 @@ class TestPulpRepositoryCreate < MiniTest::Unit::TestCase
 end
 
 
-class TestPulpRepositoryDelete < MiniTest::Unit::TestCase
-  include TestPulpRepositoryBase
+class TestResourcesRepositoryDelete < MiniTest::Unit::TestCase
+  include TestResourcesRepositoryBase
 
   def setup
     super
@@ -65,8 +65,8 @@ class TestPulpRepositoryDelete < MiniTest::Unit::TestCase
 end
 
 
-class TestPulpRepository < MiniTest::Unit::TestCase
-  include TestPulpRepositoryBase
+class TestResourcesRepository < MiniTest::Unit::TestCase
+  include TestResourcesRepositoryBase
   
   def self.before_suite
     RepositoryHelper.create_repo(:importer => true)
@@ -134,8 +134,8 @@ class TestPulpRepository < MiniTest::Unit::TestCase
 end
 
 
-class TestPulpRepositorySync < MiniTest::Unit::TestCase
-  include TestPulpRepositoryBase
+class TestResourcesRepositorySync < MiniTest::Unit::TestCase
+  include TestResourcesRepositoryBase
   
   def setup
     super
@@ -170,8 +170,8 @@ class TestPulpRepositorySync < MiniTest::Unit::TestCase
 end
 =end
 
-class TestPulpRepositoryClone < MiniTest::Unit::TestCase
-  include TestPulpRepositoryBase
+class TestResourcesRepositoryClone < MiniTest::Unit::TestCase
+  include TestResourcesRepositoryBase
 
   def setup
     super
@@ -240,8 +240,8 @@ end
 end
 
 
-class TestPulpRepositoryRequiresSync < MiniTest::Unit::TestCase
-  include TestPulpRepositoryBase
+class TestResourcesRepositoryRequiresSync < MiniTest::Unit::TestCase
+  include TestResourcesRepositoryBase
 
   def self.before_suite
     RepositoryHelper.create_and_sync_repo

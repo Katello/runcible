@@ -21,12 +21,10 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-require 'runcible/resources/repository'
-
 
 module Runcible
-  module Pulp
-    class RepositoryExtension < Runcible::Pulp::Repository
+  module Extensions
+    class Repository < Runcible::Resources::Repository
 
       def self.create_with_importer(id, importer_type_id, importer_config)
         required = required_params(binding.send(:local_variables), binding, ["id"])

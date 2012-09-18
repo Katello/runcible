@@ -16,14 +16,14 @@ require './lib/runcible/resources/user'
 require './lib/runcible/resources/role'
 
 
-class TestPulpRoles < MiniTest::Unit::TestCase
+class TestResourcesRoles < MiniTest::Unit::TestCase
   def setup
     @username = "integration_test_user"
     @role_name = "super-users"
-    @resource = Runcible::Pulp::Role
+    @resource = Runcible::Resources::Role
 
     VCR.use_cassette('pulp_user') do
-      Runcible::Pulp::User.create(@username)
+      Runcible::Resources::User.create(@username)
     end
 
     VCR.insert_cassette('pulp_role')
@@ -31,7 +31,7 @@ class TestPulpRoles < MiniTest::Unit::TestCase
 
   def teardown
     VCR.use_cassette('pulp_user') do
-      Runcible::Pulp::User.delete(@username)
+      Runcible::Resources::User.delete(@username)
     end
 
     VCR.eject_cassette

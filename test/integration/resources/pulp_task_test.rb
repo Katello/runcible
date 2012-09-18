@@ -16,11 +16,11 @@ require './test/integration/resources/helpers/repository_helper'
 require './lib/runcible/resources/task'
 
 
-module TestPulpTaskBase
+module TestResourcesTaskBase
   include RepositoryHelper
 
   def setup
-    @resource = Runcible::Pulp::Task
+    @resource = Runcible::Resources::Task
     VCR.insert_cassette('pulp_task')
   end
 
@@ -31,8 +31,8 @@ module TestPulpTaskBase
 end
 
 
-class TestPulpTask < MiniTest::Unit::TestCase
-  include TestPulpTaskBase
+class TestResourcesTask < MiniTest::Unit::TestCase
+  include TestResourcesTaskBase
 
   def setup
     super

@@ -16,11 +16,11 @@ require './test/integration/resources/helpers/repository_helper'
 require './lib/runcible/extensions/repository'
 
 
-module TestPulpRepositoryExtensionBase
+module TestExtensionsRepositoryBase
   include RepositoryHelper
 
   def setup
-    @extension = Runcible::Pulp::RepositoryExtension
+    @extension = Runcible::Extensions::Repository
     VCR.insert_cassette('extensions/pulp_repository_extensions')
   end
 
@@ -30,8 +30,8 @@ module TestPulpRepositoryExtensionBase
 
 end
 
-class TestPulpRepositoryExtensionCreate < MiniTest::Unit::TestCase
-  include TestPulpRepositoryExtensionBase
+class TestExtensionsRepositoryCreate < MiniTest::Unit::TestCase
+  include TestExtensionsRepositoryBase
   
   def teardown
     super
@@ -68,8 +68,8 @@ class TestPulpRepositoryExtensionCreate < MiniTest::Unit::TestCase
 
 end
 
-class TestPulpRepositoryExtensionSearch < MiniTest::Unit::TestCase
-  include TestPulpRepositoryExtensionBase
+class TestExtensionsRepositoryCreate < MiniTest::Unit::TestCase
+  include TestExtensionsRepositoryBase
   
   def self.before_suite
     RepositoryHelper.create_repo
@@ -88,8 +88,8 @@ class TestPulpRepositoryExtensionSearch < MiniTest::Unit::TestCase
 end
 
 
-class TestPulpRepositoryExtensionUnitCopy < MiniTest::Unit::TestCase
-  include TestPulpRepositoryExtensionBase
+class TestExtensionsRepositoryCreate < MiniTest::Unit::TestCase
+  include TestExtensionsRepositoryBase
 
   def setup
     super

@@ -21,11 +21,9 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-require 'runcible/base'
-
 
 module Runcible
-  module Pulp
+  module Resources
     class Repository < Runcible::Base
 
       def self.path(id=nil)

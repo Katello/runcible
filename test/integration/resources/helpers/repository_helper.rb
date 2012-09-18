@@ -20,9 +20,9 @@ module RepositoryHelper
   @repo_url       = "file://#{File.expand_path(File.dirname(__FILE__))}".gsub("resources/helpers", "fixtures/repositories/zoo5")
   @repo_id        = "integration_test_id"
   @repo_name      = @repo_id
-  @repo_resource  = Runcible::Pulp::Repository
-  @repo_extension = Runcible::Pulp::RepositoryExtension
-  @task_resource  = Runcible::Pulp::Task
+  @repo_resource  = Runcible::Resources::Repository
+  @repo_extension = Runcible::Extensions::Repository
+  @task_resource  = Runcible::Resources::Task
 
   def self.repo_name
     @repo_name
