@@ -36,9 +36,24 @@ module Runcible
         create(id, required)
       end
 
-      def self.create_with_importer_and_distributors(id, importer_type_id, importer_config, distributors)
-        required = required_params(binding.send(:local_variables), binding, ["id"])
-        create(id, required)
+      def self.create_with_importer_and_distributors(id, importer, distributors, optional={})
+        if importer.is_a?(Importer)
+          optional[:importer_type_id] = importer.id
+          optional[:importer_config] = importer.config
+        else
+          optional[:importer_type_id] = importer.delete('id')
+          optional[:importer_config] = importer
+        end
+
+        optional[:distributors] = distributors.collect do |d|
+          if d.is_a?(Distributor)
+            [d.type_id, d.config, d.auto_publish, d.id]
+          else
+            [d['type_id'], d['config'], d['auto_publish'], d['id']]
+          end
+        end
+        optional[:id] = id
+        create(id, optional)
       end
 
       def self.search_by_repository_ids(repository_ids)
