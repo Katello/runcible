@@ -147,11 +147,26 @@ class TestExtensionsRepositoryCopy < MiniTest::Unit::TestCase
   end
 
   def test_package_copy
-    response = @extension.rpm_copy(@clone_name, RepositoryHelper.repo_id)
+    response = @extension.rpm_copy(RepositoryHelper.repo_id, @clone_name)
     RepositoryHelper.task = response
     assert response.code == 202
     assert response['tags'].include?('pulp:action:associate')
   end
+
+  def test_errata_copy
+     response = @extension.errata_copy(RepositoryHelper.repo_id, @clone_name)
+     RepositoryHelper.task = response
+     assert response.code == 202
+     assert response['tags'].include?('pulp:action:associate')
+  end
+
+  def test_distribution_copy
+     response = @extension.distribution_copy(RepositoryHelper.repo_id, @clone_name)
+     RepositoryHelper.task = response
+     assert response.code == 202
+     assert response['tags'].include?('pulp:action:associate')
+  end
+
 
 end
 

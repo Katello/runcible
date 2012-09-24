@@ -21,6 +21,7 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+require 'active_support/core_ext/hash'
 
 module Runcible
   module Resources
@@ -35,8 +36,8 @@ module Runcible
         call(:post, path, :payload => { :required => required, :optional => optional })
       end
 
-      def self.retrieve(id, params={})
-        call(:get, path(id), :params => params)
+      def self.retrieve(id, details=true)
+        call(:get, path(id) + "?details=#{details}").with_indifferent_access
       end
 
       def self.update(id, optional={})
@@ -72,7 +73,8 @@ module Runcible
 
       def self.unit_copy(destination_repo_id, source_repo_id, optional={})
         required = required_params(binding.send(:local_variables), binding, ["destination_repo_id"])
-        call(:post, "#{path(destination_repo_id)}actions/associate/", :payload => { :required => required, :optional=> optional })
+        call(:post, "#{path(destination_repo_id)}actions/associate/",
+             :payload => { :required => required, :optional=> optional }).with_indifferent_access
       end
 
     end
