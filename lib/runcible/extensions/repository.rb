@@ -26,24 +26,22 @@ module Runcible
   module Extensions
     class Repository < Runcible::Resources::Repository
 
-      def self.create_with_importer(id, importer_type_id, importer_config)
-        required = required_params(binding.send(:local_variables), binding, ["id"])
-        create(id, required)
+      def self.create_with_importer(id, importer)
+        create_with_importer_and_distributors(id, importer)
       end
 
       def self.create_with_distributors(id, distributors)
-        required = required_params(binding.send(:local_variables), binding, ["id"])
-        create(id, required)
+        create_with_importer_and_distributors(id, nil, distributors)
       end
 
-      def self.create_with_importer_and_distributors(id, importer, distributors, optional={})
+      def self.create_with_importer_and_distributors(id, importer, distributors=[], optional={})
         if importer.is_a?(Importer)
           optional[:importer_type_id] = importer.id
           optional[:importer_config] = importer.config
         else
-          optional[:importer_type_id] = importer.delete('id')
+          optional[:importer_type_id] = importer.delete('id') || importer.delete(:id)
           optional[:importer_config] = importer
-        end
+        end if importer
 
         optional[:distributors] = distributors.collect do |d|
           if d.is_a?(Distributor)
@@ -51,8 +49,9 @@ module Runcible
           else
             [d['type_id'], d['config'], d['auto_publish'], d['id']]
           end
-        end
+        end if !distributors.empty?
         optional[:id] = id
+        #debugger
         create(id, optional)
       end
 

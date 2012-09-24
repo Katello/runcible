@@ -71,7 +71,7 @@ module RepositoryHelper
 
     VCR.use_cassette('pulp_repository_helper') do
       if options[:importer]
-        repo = @repo_extension.create_with_importer(@repo_id, "yum_importer", {:feed_url => @repo_url})
+        repo = @repo_extension.create_with_importer(@repo_id, {:id=>'yum_importer', :feed_url => @repo_url})
       else
         repo = @repo_resource.create(@repo_id)
       end
@@ -81,7 +81,7 @@ module RepositoryHelper
 
     VCR.use_cassette('pulp_repository_helper') do
       if options[:importer]
-        repo = @repo_extension.create_with_importer(@repo_id, "yum_importer", {:feed_url => @repo_url})
+        repo = @repo_extension.create_with_importer(@repo_id, {:id=>'yum_importer', :feed_url => @repo_url})
       else
         repo = @repo_resource.create(@repo_id)
       end
