@@ -100,6 +100,56 @@ module Runcible
         unit_copy(destination_repo_id, source_repo_id, payload)
       end
 
+      def self.package_ids id
+        criteria = {:type_ids=>['rpm'],
+                :sort => {
+                    :unit => [ ['name', 'ascending'], ['version', 'descending'] ]
+                }}
+        self.unit_search(id, criteria).collect{|i| i['unit_id']}
+      end
+
+      def self.packages_by_nvre(id, name, version=nil, release=nil, epoch=nil)
+        and_condition = []
+        and_condition << {:name=>name} if name
+        and_condition << {:version=>version} if version
+        and_condition << {:release=>release} if release
+        and_condition << {:epoch=>epoch} if epoch
+
+        criteria = {:type_ids=>['rpm'],
+                :filters => {
+                    :unit => {
+                      "$and" => and_condition
+                    }
+                },
+                :sort => {
+                    :unit => [ ['name', 'ascending'], ['version', 'descending'] ]
+                }}
+        self.unit_search(id, criteria, true).collect{|p| p['metadata'].with_indifferent_access}
+      end
+
+      def self.errata_ids(id, filter = {})
+         criteria = {
+            :type_ids=>['erratum'],
+            :sort => {
+                :unit => [ ['title', 'ascending'] ]
+            }
+           }
+
+         self.unit_search(id, criteria).collect{|i| i['unit_id']}
+      end
+
+      def self.distributions(id)
+        criteria = {
+                  :type_ids=>['distribution'],
+                  :sort => {
+                      :unit => [ ['id', 'ascending'] ]
+                  }
+            }
+
+        self.unit_search(id, criteria).collect{|i| i['metadata'].with_indifferent_access}
+      end
+
+
     end
   end
 end

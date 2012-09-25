@@ -91,7 +91,6 @@ module Runcible
       else
         payload = {}
       end
-
       return payload.to_json
     end
 
