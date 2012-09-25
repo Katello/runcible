@@ -31,15 +31,23 @@ module Runcible
       end
 
       def self.poll(id)
-        call(:get, path(id))
+        call(:get, path(id)).with_indifferent_access
       end
 
       def self.cancel(id)
-        call(:delete, path(id))
+        #cancelling a task may require cancelling some higher level
+        #  task, so query the tasks _href field to make sure
+        call(:delete, poll(id)['_href'])
       end
 
-      def self.list(params={})
-        call(:get, path, :params => params)
+      def self.list(params)
+        call(:get, path + args, :params => params).collect{|t| t.with_indifferent_access}
+      end
+
+      def self.poll_all(ids)
+        # temporary solution until https://bugzilla.redhat.com/show_bug.cgi?id=860089
+        #  is resolved
+        return ids.collect{|id| self.poll(id)}
       end
 
     end

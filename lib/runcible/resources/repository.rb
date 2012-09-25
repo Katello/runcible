@@ -71,6 +71,12 @@ module Runcible
         call(:post, "#{path(id)}actions/sync/", :payload => { :optional => optional })
       end
 
+      def self.sync_history(id)
+          call(:get, "#{path(id)}/history/sync/").collect{|i| i.with_indifferent_access}
+      end
+
+
+
       def self.unit_copy(destination_repo_id, source_repo_id, optional={})
         required = required_params(binding.send(:local_variables), binding, ["destination_repo_id"])
         call(:post, "#{path(destination_repo_id)}actions/associate/",

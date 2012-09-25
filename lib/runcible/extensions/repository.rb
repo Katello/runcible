@@ -55,6 +55,10 @@ module Runcible
         create(id, optional)
       end
 
+      def sync_status(repo_id)
+        Task.list(:tags=> ["pulp:repository:#{repo_id}", "pulp:action:sync"])
+      end
+
       def self.search_by_repository_ids(repository_ids)
         criteria = {:filters => 
                       { "id" => {"$in" => repository_ids}}
@@ -78,24 +82,7 @@ module Runcible
         unit_copy(destination_repo_id, source_repo_id, payload)
       end
 
-      # optional
-      #   :package_ids
-      #   :name_blacklist
-      #   :override_config
-      def self.rpm_copy(source_repo_id, destination_repo_id, optional={})
-
-        criteria = {:type_ids => ['rpm'], :filters => {}}
-        criteria[:filters][:association] = {'unit_id' => {'$in' => optional[:package_ids]}} if optional[:package_ids]
-        criteria[:filters][:unit] = { 'name' => {'$not' => {'$in' => optional[:name_blacklist]}}} if optional[:name_blacklist]
-
-        payload = {}
-        payload[:criteria] = criteria
-        payload[:override_config] = optional[:override_config] if optional[:override_config]
-
-        unit_copy(destination_repo_id, source_repo_id, payload)
-      end
-
-      #optoinal
+       #optional
       #  errata_ids
       def self.errata_copy(source_repo_id, destination_repo_id, optional={})
         criteria = {:type_ids => ['erratum'], :filters => {}}
