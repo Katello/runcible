@@ -22,9 +22,6 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
-require 'lib/runcible/extensions/distributor'
-require 'lib/runcible/extensions/importer'
-
 module Runcible
   module Extensions
     class Repository < Runcible::Resources::Repository
@@ -152,6 +149,21 @@ module Runcible
         self.unit_search(id, criteria).collect{|i| i['metadata'].with_indifferent_access}
       end
 
+      def create_or_update_schedule(repo_id, type, schedule)
+        schedules = Runcible::Resources::RepositorySchedule.list(repo_id, type)
+        if schedules.empty?
+          Runcible::Resources::RepositorySchedule.create(repo_id, type, schedule)
+        else
+          Runcible::Resources::RepositorySchedule.update(repo_id, type, schedules[0]['_id'], {:schedule=>schedule})
+        end
+      end
+
+      def remove_schedules(repo_id, type)
+        schedules = Runcible::Resources::RepositorySchedule.list(repo_id, type)
+        schedules.each do |schedule|
+          Runcible::Resources::RepositorySchedule.delete(repo_id, type, schedule['_id'])
+        end
+      end
 
     end
   end

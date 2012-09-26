@@ -35,6 +35,8 @@ module Runcible
     end
 
     class YumImporter < Importer
+      ID = 'yum_importer'
+
       #https://github.com/pulp/pulp/blob/master/rpm-support/plugins/importers/yum_importer/importer.py
       attr_accessor 'feed_url', 'ssl_verify', 'ssl_ca_cert', 'ssl_client_cert', 'ssl_client_key',
                         'proxy_url', 'proxy_port', 'proxy_pass', 'proxy_user',
@@ -43,7 +45,7 @@ module Runcible
                         'num_retries', 'retry_delay'
 
       def id
-         'yum_importer'
+         YumImporter::ID
       end
 
       def config

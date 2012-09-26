@@ -16,7 +16,8 @@ require './test/integration/resources/helpers/repository_helper'
 require './lib/runcible/resources/repository'
 require './lib/runcible/resources/repository_schedule'
 require './lib/runcible/extensions/repository'
-
+require './lib/runcible/extensions/distributor'
+require './lib/runcible/extensions/importer'
 
 module TestResourcesScheduleBase
   include RepositoryHelper
