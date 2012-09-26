@@ -12,6 +12,7 @@
 require 'rubygems'
 
 require './lib/runcible/resources/repository'
+require './lib/runcible/resources/repository_schedule'
 require './lib/runcible/resources/task'
 require './lib/runcible/extensions/repository'
 
@@ -21,8 +22,11 @@ module RepositoryHelper
   @repo_id        = "integration_test_id"
   @repo_name      = @repo_id
   @repo_resource  = Runcible::Resources::Repository
+  @schedule_resource  = Runcible::Resources::RepositorySchedule
   @repo_extension = Runcible::Extensions::Repository
   @task_resource  = Runcible::Resources::Task
+  @schedule_time  = '2012-09-25T20:44:00Z/P7D'
+  @importer_type  = 'yum_importer'
 
   def self.repo_name
     @repo_name
@@ -34,6 +38,10 @@ module RepositoryHelper
 
   def self.repo_url
     @repo_url
+  end
+
+  def self.schedule_time
+    @schedule_time
   end
 
   def self.task_resource
@@ -71,7 +79,7 @@ module RepositoryHelper
 
     VCR.use_cassette('pulp_repository_helper') do
       if options[:importer]
-        repo = @repo_extension.create_with_importer(@repo_id, {:id=>'yum_importer', :feed_url => @repo_url})
+        repo = @repo_extension.create_with_importer(@repo_id, {:id=>@importer_type, :feed_url => @repo_url})
       else
         repo = @repo_resource.create(@repo_id)
       end
@@ -81,7 +89,7 @@ module RepositoryHelper
 
     VCR.use_cassette('pulp_repository_helper') do
       if options[:importer]
-        repo = @repo_extension.create_with_importer(@repo_id, {:id=>'yum_importer', :feed_url => @repo_url})
+        repo = @repo_extension.create_with_importer(@repo_id, {:id=>@importer_type, :feed_url => @repo_url})
       else
         repo = @repo_resource.create(@repo_id)
       end
@@ -103,6 +111,14 @@ module RepositoryHelper
     end
   rescue Exception => e
     puts e
+  end
+
+  def self.create_schedule
+    schedule = {}
+    VCR.use_cassette('pulp_repository_helper') do
+      schedule = @schedule_resource.create(@repo_id, @importer_type, @schedule_time)
+    end
+    schedule['_id']
   end
 
   def self.destroy_repo(id=@repo_id)
