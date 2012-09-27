@@ -149,7 +149,7 @@ module Runcible
         self.unit_search(id, criteria).collect{|i| i['metadata'].with_indifferent_access}
       end
 
-      def create_or_update_schedule(repo_id, type, schedule)
+      def self.create_or_update_schedule(repo_id, type, schedule)
         schedules = Runcible::Resources::RepositorySchedule.list(repo_id, type)
         if schedules.empty?
           Runcible::Resources::RepositorySchedule.create(repo_id, type, schedule)
@@ -158,11 +158,21 @@ module Runcible
         end
       end
 
-      def remove_schedules(repo_id, type)
+      def self.remove_schedules(repo_id, type)
         schedules = Runcible::Resources::RepositorySchedule.list(repo_id, type)
         schedules.each do |schedule|
           Runcible::Resources::RepositorySchedule.delete(repo_id, type, schedule['_id'])
         end
+      end
+
+      def self.publish_all(repo_id)
+        self.retrieve(repo_id)['distributors'].each do |d|
+          self.publish(repo_id, d['id'])
+        end
+      end
+
+      def self.delete_distributors(repo_id)
+
       end
 
     end

@@ -21,18 +21,36 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-require 'active_support/core_ext/hash'
 require 'active_support/json'
-
+require 'securerandom'
 
 module Runcible
   module Extensions
-    #Importers should supply  id & config methods
-    class Importer
-      def initialize params={}
-        params.each{|k,v| self.send("#{k.to_s}=",v)}
+    class YumDistributor < Distributor
+      #required
+      attr_accessor "relative_url", "http", "https"
+      #optional
+      attr_accessor "protected", "auth_cert", "auth_ca",
+                    "https_ca", "gpgkey", "generate_metadata",
+                    "checksum_type", "skip", "https_publish_dir", "http_publish_dir"
+
+      def initialize relative_url, http, https, params={}
+        @relative_url=relative_url
+        @http = http
+        @https = https
+        super(params)
+      end
+
+      def type_id
+        'yum_distributor'
+      end
+
+      def config
+        to_ret = self.as_json
+        to_ret.delete('auto_publish')
+        to_ret.delete('id')
+        to_ret
       end
     end
-
   end
 end

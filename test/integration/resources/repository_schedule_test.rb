@@ -18,6 +18,8 @@ require './lib/runcible/resources/repository_schedule'
 require './lib/runcible/extensions/repository'
 require './lib/runcible/extensions/distributor'
 require './lib/runcible/extensions/importer'
+require './lib/runcible/extensions/yum_importer'
+
 
 module TestResourcesScheduleBase
   include RepositoryHelper

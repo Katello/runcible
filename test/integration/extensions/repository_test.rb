@@ -15,7 +15,9 @@ require 'minitest/autorun'
 require './test/integration/resources/helpers/repository_helper'
 require './lib/runcible/extensions/repository'
 require './lib/runcible/extensions/importer'
+require './lib/runcible/extensions/yum_importer'
 require './lib/runcible/extensions/distributor'
+require './lib/runcible/extensions/yum_distributor'
 
 
 module TestExtensionsRepositoryBase

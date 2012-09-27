@@ -25,5 +25,7 @@ require "runcible/version"
 require "runcible/base"
 
 resources = Dir[File.dirname(__FILE__) + '/runcible/resources/*.rb']
+resources += Dir[File.dirname(__FILE__) + '/runcible/extensions/importer.rb']
+resources += Dir[File.dirname(__FILE__) + '/runcible/extensions/distributor.rb']
 resources += Dir[File.dirname(__FILE__) + '/runcible/extensions/*.rb']
 resources.each{ |f| require f }
