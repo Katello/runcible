@@ -40,8 +40,8 @@ module Runcible
         call(:delete, poll(id)['_href'])
       end
 
-      def self.list(params)
-        call(:get, path + args, :params => params).collect{|t| t.with_indifferent_access}
+      def self.list(tags=[])
+        call(:get, path, :params=>{:tag=>tags}).collect{|t| t.with_indifferent_access}
       end
 
       def self.poll_all(ids)

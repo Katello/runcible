@@ -55,8 +55,8 @@ module Runcible
         create(id, optional)
       end
 
-      def sync_status(repo_id)
-        Task.list(:tags=> ["pulp:repository:#{repo_id}", "pulp:action:sync"])
+      def self.sync_status(repo_id)
+        Runcible::Resources::Task.list(["pulp:repository:#{repo_id}", "pulp:action:sync"]).collect{|i| i.with_indifferent_access}
       end
 
       def self.search_by_repository_ids(repository_ids)
@@ -171,9 +171,6 @@ module Runcible
         end
       end
 
-      def self.delete_distributors(repo_id)
-
-      end
 
     end
   end
