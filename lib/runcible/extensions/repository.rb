@@ -100,7 +100,7 @@ module Runcible
         unit_copy(destination_repo_id, source_repo_id, payload)
       end
 
-      def self.package_ids id
+      def self.package_ids(id)
         criteria = {:type_ids=>['rpm'],
                 :sort => {
                     :unit => [ ['name', 'ascending'], ['version', 'descending'] ]

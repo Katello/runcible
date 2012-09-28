@@ -86,7 +86,7 @@ module Runcible
       end
 
       def self.publish(repo_id, distributor_id)
-        call(:post, "#{path(repo_id)}actions/publish/", :payload=>{:requires=>{:id=>distributor_id}})
+        call(:post, "#{path(repo_id)}actions/publish/", :payload=>{:required=>{:id=>distributor_id}})
       end
 
       def self.delete_distributor(repo_id, distributor_id)

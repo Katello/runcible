@@ -29,7 +29,7 @@ module Runcible
   module Extensions
     #Importers should supply  id & config methods
     class Importer
-      def initialize params={}
+      def initialize(params={})
         params.each{|k,v| self.send("#{k.to_s}=",v)}
       end
     end

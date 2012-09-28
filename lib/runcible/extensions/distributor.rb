@@ -29,7 +29,7 @@ module Runcible
     class Distributor
       attr_accessor 'auto_publish', 'id'
 
-      def initialize params={}
+      def initialize(params={})
         @auto_publish = false
         self.id = SecureRandom.hex(10)
         params.each{|k,v| self.send("#{k.to_s}=",v)}

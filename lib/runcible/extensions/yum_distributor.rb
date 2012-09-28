@@ -34,7 +34,7 @@ module Runcible
                     "https_ca", "gpgkey", "generate_metadata",
                     "checksum_type", "skip", "https_publish_dir", "http_publish_dir"
 
-      def initialize relative_url, http, https, params={}
+      def initialize(relative_url, http, https, params={})
         @relative_url=relative_url
         @http = http
         @https = https
