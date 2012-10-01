@@ -37,7 +37,7 @@ module Runcible
       end
 
       def self.retrieve(id, details=true)
-        call(:get, path(id) + "?details=#{details}").with_indifferent_access
+        call(:get, path(id) + "?details=#{details}")
       end
 
       def self.update(id, optional={})
@@ -72,19 +72,19 @@ module Runcible
       end
 
       def self.sync_history(id)
-          call(:get, "#{path(id)}/history/sync/").collect{|i| i.with_indifferent_access}
+          call(:get, "#{path(id)}/history/sync/").collect{|i| i}
       end
 
       def self.unit_copy(destination_repo_id, source_repo_id, optional={:criteria=>{}})
         required = required_params(binding.send(:local_variables), binding, ["destination_repo_id"])
         call(:post, "#{path(destination_repo_id)}actions/associate/",
-             :payload => { :required => required, :optional=> optional }).with_indifferent_access
+             :payload => { :required => required, :optional=> optional })
       end
 
       def self.unassociate_units(source_repo_id, optional={})
         required = required_params(binding.send(:local_variables), binding, ["source_repo_id"])
         call(:post, "#{path(source_repo_id)}actions/unassociate/",
-             :payload => { :required => required, :optional=> optional }).with_indifferent_access
+             :payload => { :required => required, :optional=> optional })
       end
 
       def self.unit_search(id, criteria={})

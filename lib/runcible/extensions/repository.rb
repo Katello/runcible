@@ -56,7 +56,7 @@ module Runcible
       end
 
       def self.sync_status(repo_id)
-        Runcible::Resources::Task.list(["pulp:repository:#{repo_id}", "pulp:action:sync"]).collect{|i| i.with_indifferent_access}
+        Runcible::Resources::Task.list(["pulp:repository:#{repo_id}", "pulp:action:sync"])
       end
 
       def self.search_by_repository_ids(repository_ids)

@@ -111,7 +111,15 @@ module Runcible
 
     def self.process_response(response)
       begin
-        response = RestClient::Response.create(JSON.parse(response.body), response.net_http_res, response.args)
+        body = JSON.parse(response.body)
+        if body.respond_to? :with_indifferent_access
+          body = body.with_indifferent_access
+        elsif body.is_a? Array
+          body = body.collect  do |i|
+            i.respond_to?(:with_indifferent_access) ? i.with_indifferent_access : i
+          end
+        end
+        response = RestClient::Response.create(body, response.net_http_res, response.args)
       rescue JSON::ParserError
       end
 

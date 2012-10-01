@@ -31,7 +31,7 @@ module Runcible
       end
 
       def self.poll(id)
-        call(:get, path(id)).with_indifferent_access
+        call(:get, path(id))
       end
 
       def self.cancel(id)
@@ -41,7 +41,7 @@ module Runcible
       end
 
       def self.list(tags=[])
-        call(:get, path, :params=>{:tag=>tags}).collect{|t| t.with_indifferent_access}
+        call(:get, path, :params=>{:tag=>tags})
       end
 
       def self.poll_all(ids)
