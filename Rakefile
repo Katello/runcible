@@ -14,7 +14,7 @@ namespace :test do
     options[:test_name] = ENV['test']
     options[:auth_type] = ENV['auth_type']
 
-    if !['recorded', 'live'].include?(options[:mode])
+    if !['recorded', 'live', 'none'].include?(options[:mode])
       puts "Invalid test mode"
     else
       require "test/integration/test_runner"

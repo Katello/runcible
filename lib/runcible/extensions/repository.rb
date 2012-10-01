@@ -55,8 +55,8 @@ module Runcible
         create(id, optional)
       end
 
-      def sync_status(repo_id)
-        Task.list(:tags=> ["pulp:repository:#{repo_id}", "pulp:action:sync"])
+      def self.sync_status(repo_id)
+        Runcible::Resources::Task.list(["pulp:repository:#{repo_id}", "pulp:action:sync"])
       end
 
       def self.search_by_repository_ids(repository_ids)
@@ -75,11 +75,17 @@ module Runcible
         criteria[:filters]['association'] = {'unit_id' => {'$in' => optional[:package_ids]}} if optional[:package_ids]
         criteria[:filters]['unit'] = { 'name' => {'$not' => {'$in' => optional[:name_blacklist]}}} if optional[:name_blacklist]
 
+        payload = {:criteria=>criteria}
+        payload[:override_config] = optional[:override_config] if optional[:override_config]
+        unit_copy(destination_repo_id, source_repo_id, payload)
+      end
+
+      def self.rpm_remove(repo_id, package_ids)
+        criteria = {:type_ids => ['rpm'], :filters => {}}
+        criteria[:filters]['association'] = {'unit_id' => {'$in' => package_ids}}
         payload = {}
         payload[:criteria] = criteria
-        payload[:override_config] = optional[:override_config] if optional[:override_config]
-
-        unit_copy(destination_repo_id, source_repo_id, payload)
+        self.unassociate_units(repo_id, payload)
       end
 
        #optional
@@ -91,6 +97,13 @@ module Runcible
         unit_copy(destination_repo_id, source_repo_id, payload)
       end
 
+      def self.errata_remove(repo_id, errata_ids)
+        criteria = {:type_ids => ['erratum'], :filters => {}}
+        criteria[:filters][:unit] = { :id=>{ '$in' => errata_ids } }
+        payload = {:criteria => criteria}
+        self.unassociate_units(repo_id, payload)
+      end
+
       #optoinal
       #  distribution_ids
       def self.distribution_copy(source_repo_id, destination_repo_id, optional={})
@@ -99,6 +112,85 @@ module Runcible
         payload = {:criteria => criteria}
         unit_copy(destination_repo_id, source_repo_id, payload)
       end
+
+      def self.distribution_remove(repo_id, distribution_id)
+        criteria = {:type_ids => ['distribution'], :filters => {}}
+        criteria[:filters][:unit] = { :id=>{ '$in' => [distribution_id] } }
+        payload = {:criteria => criteria}
+        self.unassociate_units(repo_id, payload)
+      end
+
+      def self.package_ids(id)
+        criteria = {:type_ids=>['rpm'],
+                :sort => {
+                    :unit => [ ['name', 'ascending'], ['version', 'descending'] ]
+                }}
+        self.unit_search(id, criteria).collect{|i| i['unit_id']}
+      end
+
+      def self.packages_by_nvre(id, name, version=nil, release=nil, epoch=nil)
+        and_condition = []
+        and_condition << {:name=>name} if name
+        and_condition << {:version=>version} if version
+        and_condition << {:release=>release} if release
+        and_condition << {:epoch=>epoch} if epoch
+
+        criteria = {:type_ids=>['rpm'],
+                :filters => {
+                    :unit => {
+                      "$and" => and_condition
+                    }
+                },
+                :sort => {
+                    :unit => [ ['name', 'ascending'], ['version', 'descending'] ]
+                }}
+        self.unit_search(id, criteria, true).collect{|p| p['metadata'].with_indifferent_access}
+      end
+
+      def self.errata_ids(id, filter = {})
+         criteria = {
+            :type_ids=>['erratum'],
+            :sort => {
+                :unit => [ ['title', 'ascending'] ]
+            }
+           }
+
+         self.unit_search(id, criteria).collect{|i| i['unit_id']}
+      end
+
+      def self.distributions(id)
+        criteria = {
+                  :type_ids=>['distribution'],
+                  :sort => {
+                      :unit => [ ['id', 'ascending'] ]
+                  }
+            }
+
+        self.unit_search(id, criteria).collect{|i| i['metadata'].with_indifferent_access}
+      end
+
+      def self.create_or_update_schedule(repo_id, type, schedule)
+        schedules = Runcible::Resources::RepositorySchedule.list(repo_id, type)
+        if schedules.empty?
+          Runcible::Resources::RepositorySchedule.create(repo_id, type, schedule)
+        else
+          Runcible::Resources::RepositorySchedule.update(repo_id, type, schedules[0]['_id'], {:schedule=>schedule})
+        end
+      end
+
+      def self.remove_schedules(repo_id, type)
+        schedules = Runcible::Resources::RepositorySchedule.list(repo_id, type)
+        schedules.each do |schedule|
+          Runcible::Resources::RepositorySchedule.delete(repo_id, type, schedule['_id'])
+        end
+      end
+
+      def self.publish_all(repo_id)
+        self.retrieve(repo_id)['distributors'].each do |d|
+          self.publish(repo_id, d['id'])
+        end
+      end
+
 
     end
   end

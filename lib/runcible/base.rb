@@ -53,19 +53,23 @@ module Runcible
     end
 
     def self.call(method, path, options={})
-      path = config[:api_path] + path
+      clone_config = self.config.clone
+      path = clone_config[:api_path] + path
 
-      RestClient.log = config[:logger] if config[:logger]
+      RestClient.log = clone_config[:logger] if clone_config[:logger]
 
-      headers = config[:headers]
-      headers[:params] = options[:params] if options[:params]
+      headers = clone_config[:headers].clone
 
-      if config[:oauth]
-        headers = add_oauth_header(method, path, headers) if config[:oauth]
-        headers["pulp-user"] = config[:user]
-        client = RestClient::Resource.new(config[:url])
+      get_params = options[:params] if options[:params]
+      path = combine_get_params(path, get_params) if get_params
+
+
+      if clone_config[:oauth]
+        headers = add_oauth_header(method, path, headers) if clone_config[:oauth]
+        headers["pulp-user"] = clone_config[:user]
+        client = RestClient::Resource.new(clone_config[:url])
       else
-        client = RestClient::Resource.new(config[:url], :user => config[:user], :password => config[:http_auth][:password])
+        client = RestClient::Resource.new(clone_config[:url], :user => clone_config[:user], :password => config[:http_auth][:password])
       end
 
       args = [method]
@@ -73,6 +77,17 @@ module Runcible
       args << headers 
 
       process_response(client[path].send(*args))
+    end
+
+    def self.combine_get_params(path, params)
+      query_string  = params.collect do |k, v|
+        if v.is_a? Array
+          v.collect{|y| "#{k.to_s}=#{y.to_s}" }.join('&')
+        else
+          "#{k.to_s}=#{v.to_s}"
+        end
+      end.flatten().join('&')
+      path + "?#{query_string}"
     end
 
     def self.generate_payload(options)
@@ -91,13 +106,20 @@ module Runcible
       else
         payload = {}
       end
-
       return payload.to_json
     end
 
     def self.process_response(response)
       begin
-        response = RestClient::Response.create(JSON.parse(response.body), response.net_http_res, response.args)
+        body = JSON.parse(response.body)
+        if body.respond_to? :with_indifferent_access
+          body = body.with_indifferent_access
+        elsif body.is_a? Array
+          body = body.collect  do |i|
+            i.respond_to?(:with_indifferent_access) ? i.with_indifferent_access : i
+          end
+        end
+        response = RestClient::Response.create(body, response.net_http_res, response.args)
       rescue JSON::ParserError
       end
 

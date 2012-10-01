@@ -23,13 +23,13 @@ TODO: Write usage instructions here
 ## Testing
 
 To run all tests using recorded data, run:
-   rake test:integration mode=recorded
+   rake test:integration mode=none
 
 To run all tests to record data:
    rake test:integration mode=live
 
 To run a single test using recorded data, run:
-   rake test:integration mode=recorded test=/path/to/test.rb
+   rake test:integration mode=none test=/path/to/test.rb
 
 To run with  oauth, simply append the following to any commend:
    auth_type=oauth

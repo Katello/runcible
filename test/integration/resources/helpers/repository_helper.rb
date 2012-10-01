@@ -12,6 +12,7 @@
 require 'rubygems'
 
 require './lib/runcible/resources/repository'
+require './lib/runcible/resources/repository_schedule'
 require './lib/runcible/resources/task'
 require './lib/runcible/extensions/repository'
 
@@ -21,8 +22,11 @@ module RepositoryHelper
   @repo_id        = "integration_test_id"
   @repo_name      = @repo_id
   @repo_resource  = Runcible::Resources::Repository
+  @schedule_resource  = Runcible::Resources::RepositorySchedule
   @repo_extension = Runcible::Extensions::Repository
   @task_resource  = Runcible::Resources::Task
+  @schedule_time  = '2012-09-25T20:44:00Z/P7D'
+  @importer_type  = 'yum_importer'
 
   def self.repo_name
     @repo_name
@@ -34,6 +38,10 @@ module RepositoryHelper
 
   def self.repo_url
     @repo_url
+  end
+
+  def self.schedule_time
+    @schedule_time
   end
 
   def self.task_resource
@@ -71,7 +79,7 @@ module RepositoryHelper
 
     VCR.use_cassette('pulp_repository_helper') do
       if options[:importer]
-        repo = @repo_extension.create_with_importer(@repo_id, {:id=>'yum_importer', :feed_url => @repo_url})
+        repo = @repo_extension.create_with_importer(@repo_id, {:id=>@importer_type, :feed_url => @repo_url})
       else
         repo = @repo_resource.create(@repo_id)
       end
@@ -81,7 +89,7 @@ module RepositoryHelper
 
     VCR.use_cassette('pulp_repository_helper') do
       if options[:importer]
-        repo = @repo_extension.create_with_importer(@repo_id, {:id=>'yum_importer', :feed_url => @repo_url})
+        repo = @repo_extension.create_with_importer(@repo_id, {:id=>@importer_type, :feed_url => @repo_url})
       else
         repo = @repo_resource.create(@repo_id)
       end
@@ -95,14 +103,26 @@ module RepositoryHelper
       @task = @repo_resource.sync(@repo_name).first
 
       if !options[:wait]
-        while !(['finished', 'error', 'timed_out', 'canceled', 'reset'].include?(@task['state'])) do
-          @task = @task_resource.poll(@task["task_id"]).first
-          sleep 0.5 # do not overload backend engines
-        end
+        self.wait_on_task(task)
       end
     end
   rescue Exception => e
     puts e
+  end
+
+  def self.wait_on_task task
+    while !(['finished', 'error', 'timed_out', 'canceled', 'reset'].include?(task['state'])) do
+      task = @task_resource.poll(task["task_id"])
+      sleep 0.1 # do not overload backend engines
+    end
+  end
+
+  def self.create_schedule
+    schedule = {}
+    VCR.use_cassette('pulp_repository_helper') do
+      schedule = @schedule_resource.create(@repo_id, @importer_type, @schedule_time)
+    end
+    schedule['_id']
   end
 
   def self.destroy_repo(id=@repo_id)
