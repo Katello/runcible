@@ -75,10 +75,8 @@ module Runcible
         criteria[:filters]['association'] = {'unit_id' => {'$in' => optional[:package_ids]}} if optional[:package_ids]
         criteria[:filters]['unit'] = { 'name' => {'$not' => {'$in' => optional[:name_blacklist]}}} if optional[:name_blacklist]
 
-        payload = {}
-        payload[:criteria] = criteria
+        payload = {:criteria=>criteria}
         payload[:override_config] = optional[:override_config] if optional[:override_config]
-
         unit_copy(destination_repo_id, source_repo_id, payload)
       end
 

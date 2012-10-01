@@ -34,7 +34,7 @@ module Runcible
       end
 
       def self.list(repo_id, importer_type)
-        call(:get, path(repo_id, importer_type)).collect{|s| s.with_indifferent_access}
+        call(:get, path(repo_id, importer_type))
       end
 
       def self.create(repo_id, importer_type, schedule, optional={})
