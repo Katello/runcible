@@ -1,4 +1,4 @@
-# Copyright (c) 2012 Justin Sherrill
+# Copyright (c) 2012 Eric D Helms
 #
 # MIT License
 #
@@ -21,18 +21,35 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-require 'active_support/json'
-require 'securerandom'
+require 'active_support/core_ext/hash'
 
 module Runcible
-  module Extensions
-    class Distributor
-      attr_accessor 'auto_publish', 'id'
+  module Resources
+    class RepositorySchedule < Runcible::Base
 
-      def initialize(params={})
-        @auto_publish = false
-        self.id = SecureRandom.hex(10)
-        params.each{|k,v| self.send("#{k.to_s}=",v)}
+      def self.path(repo_id, importer, schedule_id=nil)
+        repo_path = Runcible::Resources::Repository.path(repo_id)
+        path = "#{repo_path}importers/#{importer}/sync_schedules/"
+        (schedule_id == nil) ? path : "#{path}#{schedule_id}/"
+      end
+
+      def self.list(repo_id, importer_type)
+        call(:get, path(repo_id, importer_type))
+      end
+
+      def self.create(repo_id, importer_type, schedule, optional={})
+        call(:post, path(repo_id, importer_type),
+             :payload => { :required => {:schedule=>schedule}, :optional => optional })
+      end
+
+      # specific call to just update the sync schedule for a repo
+      def self.update(repo_id, importer_type, schedule_id, optional={})
+        call(:put, path(repo_id, importer_type, schedule_id),
+             :payload => {:optional => optional })
+      end
+
+      def self.delete(repo_id, importer_type, schedule_id)
+        call(:delete, path(repo_id, importer_type, schedule_id))
       end
     end
   end
