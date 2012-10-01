@@ -19,7 +19,6 @@ require './lib/runcible/extensions/yum_importer'
 require './lib/runcible/extensions/distributor'
 require './lib/runcible/extensions/yum_distributor'
 
-=begin
 module TestExtensionsRepositoryBase
   include RepositoryHelper
 
@@ -170,7 +169,6 @@ class TestExtensionsRepositoryCopy < MiniTest::Unit::TestCase
   end
 end
 
-=end
 
 class TestExtensionsRepositoryUnassociate < MiniTest::Unit::TestCase
 
