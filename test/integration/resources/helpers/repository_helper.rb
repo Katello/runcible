@@ -103,14 +103,18 @@ module RepositoryHelper
       @task = @repo_resource.sync(@repo_name).first
 
       if !options[:wait]
-        while !(['finished', 'error', 'timed_out', 'canceled', 'reset'].include?(@task['state'])) do
-          @task = @task_resource.poll(@task["task_id"]).first
-          sleep 0.5 # do not overload backend engines
-        end
+        self.wait_on_task(task)
       end
     end
   rescue Exception => e
     puts e
+  end
+
+  def self.wait_on_task task
+    while !(['finished', 'error', 'timed_out', 'canceled', 'reset'].include?(task['state'])) do
+      task = @task_resource.poll(task["task_id"])
+      sleep 0.1 # do not overload backend engines
+    end
   end
 
   def self.create_schedule

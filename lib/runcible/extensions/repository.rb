@@ -82,6 +82,14 @@ module Runcible
         unit_copy(destination_repo_id, source_repo_id, payload)
       end
 
+      def self.rpm_remove(repo_id, package_ids)
+        criteria = {:type_ids => ['rpm'], :filters => {}}
+        criteria[:filters]['association'] = {'unit_id' => {'$in' => package_ids}}
+        payload = {}
+        payload[:criteria] = criteria
+        self.unassociate_units(repo_id, payload)
+      end
+
        #optional
       #  errata_ids
       def self.errata_copy(source_repo_id, destination_repo_id, optional={})
@@ -91,6 +99,13 @@ module Runcible
         unit_copy(destination_repo_id, source_repo_id, payload)
       end
 
+      def self.errata_remove(repo_id, errata_ids)
+        criteria = {:type_ids => ['erratum'], :filters => {}}
+        criteria[:filters][:unit] = { :id=>{ '$in' => errata_ids } }
+        payload = {:criteria => criteria}
+        self.unassociate_units(repo_id, payload)
+      end
+
       #optoinal
       #  distribution_ids
       def self.distribution_copy(source_repo_id, destination_repo_id, optional={})
@@ -98,6 +113,13 @@ module Runcible
         criteria[:filters][:unit] = { :id=>{ '$in' => optional[:distribution_ids] } } if optional[:distribution_ids]
         payload = {:criteria => criteria}
         unit_copy(destination_repo_id, source_repo_id, payload)
+      end
+
+      def self.distribution_remove(repo_id, distribution_id)
+        criteria = {:type_ids => ['distribution'], :filters => {}}
+        criteria[:filters][:unit] = { :id=>{ '$in' => [distribution_id] } }
+        payload = {:criteria => criteria}
+        self.unassociate_units(repo_id, payload)
       end
 
       def self.package_ids(id)
