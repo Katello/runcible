@@ -109,12 +109,12 @@ class TestExtensionsRepositoryCreate < MiniTest::Unit::TestCase
 
 end
 
-class TestExtensionsRepositorySearch < MiniTest::Unit::TestCase
+class TestExtensionsRepositoryMisc < MiniTest::Unit::TestCase
   include TestExtensionsRepositoryBase
 
   def setup
     super
-    RepositoryHelper.create_repo
+    RepositoryHelper.create_repo(:importer=>true)
   end
 
   def teardown
@@ -127,6 +127,13 @@ class TestExtensionsRepositorySearch < MiniTest::Unit::TestCase
     assert response.code == 200
 
     assert response.collect{ |repo| repo["display_name"] == RepositoryHelper.repo_id }.length > 0
+  end
+
+  def test_create_or_update_schedule
+    response = @extension.create_or_update_schedule(RepositoryHelper.repo_id, 'yum_importer', "2012-09-25T20:44:00Z/P7D")
+    assert response.code == 201
+    response = @extension.create_or_update_schedule(RepositoryHelper.repo_id, 'yum_importer', "2011-09-25T20:44:00Z/P7D")
+    assert response.code == 200
   end
 
 end
@@ -219,9 +226,5 @@ class TestExtensionsRepositoryUnassociate < MiniTest::Unit::TestCase
     RepositoryHelper.wait_on_task(task)
     assert_equal((dist_ids.length - 1), @@extension.distributions(@@clone_name).length)
   end
-
-
-
-
 
 end

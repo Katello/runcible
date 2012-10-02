@@ -190,8 +190,6 @@ module Runcible
           self.publish(repo_id, d['id'])
         end
       end
-
-
     end
   end
 end
