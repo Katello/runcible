@@ -15,6 +15,8 @@ require 'minitest/autorun'
 require './test/integration/resources/helpers/repository_helper'
 require './lib/runcible/resources/repository'
 require './lib/runcible/extensions/repository'
+require './lib/runcible/extensions/importer'
+require './lib/runcible/extensions/yum_importer'
 
 
 module TestResourcesRepositoryBase
@@ -179,7 +181,7 @@ class TestResourcesRepositoryClone < MiniTest::Unit::TestCase
     RepositoryHelper.destroy_repo(@clone_name)
     RepositoryHelper.destroy_repo
     RepositoryHelper.create_and_sync_repo(:importer => true)
-    @extension.create_with_importer(@clone_name, "yum_importer", {})
+    @extension.create_with_importer(@clone_name, :id => "yum_importer")
   end
 
   def teardown
