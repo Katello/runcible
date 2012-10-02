@@ -115,6 +115,8 @@ class PulpMiniTestRunner
   def set_vcr_config(mode)
     if mode == "live"
       configure_vcr(:all)
+    elsif mode == "none"
+      configure_vcr(:none)
     else
       configure_vcr(:new_episodes)
     end
