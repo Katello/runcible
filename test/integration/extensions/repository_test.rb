@@ -24,7 +24,7 @@ module TestExtensionsRepositoryBase
 
   def setup
     @extension = Runcible::Extensions::Repository
-    VCR.insert_cassette('extensions/pulp_repository_extensions')
+    VCR.insert_cassette('extensions/repository_extensions')
   end
 
   def teardown
@@ -62,12 +62,15 @@ class TestExtensionsRepositoryCreate < MiniTest::Unit::TestCase
 
 
   def test_create_with_distributors
-    distributors = [{'type_id' => 'yum_distributor', 'id'=>'123', 'auto_publish'=>true,
-                     'config'=>{'relative_url' => '/', 'http' => true, 'https' => true}}]
+    VCR.use_cassette('extensions/repository_create_with_importer') do
 
-    response = @extension.create_with_distributors(RepositoryHelper.repo_id, distributors)
-    assert response.code == 201
-    assert response['id'] == RepositoryHelper.repo_id
+      distributors = [{'type_id' => 'yum_distributor', 'id'=>'123', 'auto_publish'=>true,
+                       'config'=>{'relative_url' => '/path', 'http' => true, 'https' => true}}]
+
+      response = @extension.create_with_distributors(RepositoryHelper.repo_id, distributors)
+      assert response.code == 201
+      assert response['id'] == RepositoryHelper.repo_id
+    end
   end
 
   def test_create_with_distributor_object
@@ -130,41 +133,42 @@ end
 
 
 class TestExtensionsRepositoryCopy < MiniTest::Unit::TestCase
-  include TestExtensionsRepositoryBase
 
-  def setup
-    super
-    @clone_name = RepositoryHelper.repo_id + "_clone"
-    RepositoryHelper.destroy_repo(@clone_name)
+  @@extension = Runcible::Extensions::Repository
+  @@clone_name = RepositoryHelper.repo_id + "_clone"
+
+  def self.before_suite
+    VCR.insert_cassette('extensions/repository_associate')
+    RepositoryHelper.destroy_repo(@@clone_name)
     RepositoryHelper.destroy_repo
     RepositoryHelper.create_and_sync_repo(:importer => true)
-    @extension.create_with_importer(@clone_name, {:id=>"yum_importer"})
+    @@extension.create_with_importer(@@clone_name, {:id=>"yum_importer"})
   end
 
-  def teardown
-    RepositoryHelper.destroy_repo(@clone_name)
+  def self.after_suite
+    RepositoryHelper.destroy_repo(@@clone_name)
     RepositoryHelper.destroy_repo
-    super
+    VCR.eject_cassette
   end
 
   def test_package_copy
-    response = @extension.rpm_copy(RepositoryHelper.repo_id, @clone_name)
+    response = @@extension.rpm_copy(RepositoryHelper.repo_id, @@clone_name)
     RepositoryHelper.task = response
-    #assert response.code == 202
+    assert response.code == 202
     assert response['tags'].include?('pulp:action:associate')
   end
 
   def test_errata_copy
-     response = @extension.errata_copy(RepositoryHelper.repo_id, @clone_name)
+     response = @@extension.errata_copy(RepositoryHelper.repo_id, @@clone_name)
      RepositoryHelper.task = response
-     #assert response.code == 202
+     assert response.code == 202
      assert response['tags'].include?('pulp:action:associate')
   end
 
   def test_distribution_copy
-     response = @extension.distribution_copy(RepositoryHelper.repo_id, @clone_name)
+     response = @@extension.distribution_copy(RepositoryHelper.repo_id, @@clone_name)
      RepositoryHelper.task = response
-     #assert response.code == 202
+     assert response.code == 202
      assert response['tags'].include?('pulp:action:associate')
   end
 end
@@ -172,48 +176,51 @@ end
 
 class TestExtensionsRepositoryUnassociate < MiniTest::Unit::TestCase
 
-  def setup
-    @extension = Runcible::Extensions::Repository
-    VCR.insert_cassette('extensions/pulp_repository_dissassociate')
+  @@extension = Runcible::Extensions::Repository
+  @@clone_name = RepositoryHelper.repo_id + "_clone"
 
-    @clone_name = RepositoryHelper.repo_id + "_clone"
-    RepositoryHelper.destroy_repo(@clone_name)
+  def self.before_suite
+    VCR.insert_cassette('extensions/repository_dissassociate')
+    RepositoryHelper.destroy_repo(@@clone_name)
     RepositoryHelper.destroy_repo
     RepositoryHelper.create_and_sync_repo(:importer => true)
-    @extension.create_with_importer(@clone_name, {:id=>"yum_importer"})
-    task = @extension.unit_copy(@clone_name, RepositoryHelper.repo_id)
+    @@extension.create_with_importer(@@clone_name, {:id=>"yum_importer"})
+    task = @@extension.unit_copy(@@clone_name, RepositoryHelper.repo_id)
     RepositoryHelper.wait_on_task(task)
   end
 
-  def test_rpm_remove
-    pkg_ids = @extension.package_ids(RepositoryHelper.repo_id)
-    assert pkg_ids.first
-    task = @extension.rpm_remove(@clone_name, [pkg_ids.first])
-    RepositoryHelper.wait_on_task(task)
-    assert_equal((pkg_ids.length - 1), @extension.package_ids(@clone_name).length)
-  end
-
-  def test_errata_remove
-    errata_ids = @extension.errata_ids(RepositoryHelper.repo_id)
-    assert errata_ids.first
-    task = @extension.errata_remove(@clone_name, [errata_ids.first])
-    RepositoryHelper.wait_on_task(task)
-    assert_equal((errata_ids.length - 1), @extension.errata_ids(@clone_name).length)
-  end
-
-  def test_distribution_remove
-    dist_ids = @extension.distributions(RepositoryHelper.repo_id).collect{|d| d['id']}
-    assert dist_ids.first
-    task = @extension.distribution_remove(@clone_name, dist_ids.first)
-    RepositoryHelper.wait_on_task(task)
-    assert_equal((dist_ids.length - 1), @extension.distributions(@clone_name).length)
-  end
-
-  def teardown
-    RepositoryHelper.destroy_repo(@clone_name)
+  def self.after_suite
+    RepositoryHelper.destroy_repo(@@clone_name)
     RepositoryHelper.destroy_repo
     VCR.eject_cassette
   end
+
+
+  def test_rpm_remove
+    pkg_ids = @@extension.package_ids(RepositoryHelper.repo_id)
+    assert pkg_ids.first
+    task = @@extension.rpm_remove(@@clone_name, [pkg_ids.first])
+    RepositoryHelper.wait_on_task(task)
+    assert_equal((pkg_ids.length - 1), @@extension.package_ids(@@clone_name).length)
+  end
+
+  def test_errata_remove
+    errata_ids = @@extension.errata_ids(RepositoryHelper.repo_id)
+    assert errata_ids.first
+    task = @@extension.errata_remove(@@clone_name, [errata_ids.first])
+    RepositoryHelper.wait_on_task(task)
+    assert_equal((errata_ids.length - 1), @@extension.errata_ids(@@clone_name).length)
+  end
+
+  def test_distribution_remove
+    dist_ids = @@extension.distributions(RepositoryHelper.repo_id).collect{|d| d['id']}
+    assert dist_ids.first
+    task = @@extension.distribution_remove(@@clone_name, dist_ids.first)
+    RepositoryHelper.wait_on_task(task)
+    assert_equal((dist_ids.length - 1), @@extension.distributions(@@clone_name).length)
+  end
+
+
 
 
 
