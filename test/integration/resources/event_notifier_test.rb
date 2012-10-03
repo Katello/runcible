@@ -30,6 +30,7 @@ class TestEventNotifier < MiniTest::Unit::TestCase
 
   def teardown
     @resource.delete(@@notifier_id) if @@notifier_id
+  ensure
     VCR.eject_cassette
   end
 
