@@ -1,0 +1,94 @@
+--- 
+recorded_with: VCR 2.2.5
+http_interactions: 
+- request: 
+    method: post
+    uri: https://admin:admin@localhost/pulp/api/v2/events/
+    body: 
+      string: "{\"notifier_config\":{\"url\":\"http://foo.com/foo/\"},\"notifier_type_id\":\"rest-api\",\"event_types\":[\"repo-publish-finished\"]}"
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Length: 
+      - "119"
+      Content-Type: 
+      - application/json
+  response: 
+    status: 
+      code: 201
+      message: Created
+    headers: 
+      Location: 
+      - /pulp/api/v2/events/506c4b7b9c60ed36440001d5/
+      Date: 
+      - Wed, 03 Oct 2012 14:28:11 GMT
+      Content-Length: 
+      - "288"
+      Content-Type: 
+      - application/json
+      Server: 
+      - Apache/2.2.22 (Fedora)
+    body: 
+      string: "{\"notifier_config\": {\"url\": \"http://foo.com/foo/\"}, \"_ns\": \"event_listeners\", \"event_types\": [\"repo-publish-finished\"], \"_id\": {\"$oid\": \"506c4b7b9c60ed36440001d5\"}, \"id\": \"506c4b7b9c60ed36440001d5\", \"notifier_type_id\": \"rest-api\", \"_href\": \"/pulp/api/v2/events/506c4b7b9c60ed36440001d5/\"}"
+    http_version: 
+  recorded_at: Wed, 03 Oct 2012 14:28:11 GMT
+- request: 
+    method: delete
+    uri: https://admin:admin@localhost/pulp/api/v2/events/506c4b7b9c60ed36440001d5/
+    body: 
+      string: ""
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/json
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Date: 
+      - Wed, 03 Oct 2012 14:28:11 GMT
+      Content-Length: 
+      - "4"
+      Content-Type: 
+      - application/json
+      Server: 
+      - Apache/2.2.22 (Fedora)
+    body: 
+      string: "null"
+    http_version: 
+  recorded_at: Wed, 03 Oct 2012 14:28:11 GMT
+- request: 
+    method: get
+    uri: https://admin:admin@localhost/pulp/api/v2/events/
+    body: 
+      string: ""
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/json
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Date: 
+      - Wed, 03 Oct 2012 14:28:11 GMT
+      Content-Length: 
+      - "303"
+      Content-Type: 
+      - application/json
+      Server: 
+      - Apache/2.2.22 (Fedora)
+    body: 
+      string: "[{\"notifier_config\": {\"url\": \"http://localhost:3000/katello/api/repositories/sync_complete\"}, \"_ns\": \"event_listeners\", \"event_types\": [\"repo-sync-finished\"], \"_id\": {\"$oid\": \"506b2d2a9c60ed3644000039\"}, \"id\": \"506b2d2a9c60ed3644000039\", \"notifier_type_id\": \"rest-api\", \"_href\": \"/pulp/api/v2/events/\"}]"
+    http_version: 
+  recorded_at: Wed, 03 Oct 2012 14:28:11 GMT

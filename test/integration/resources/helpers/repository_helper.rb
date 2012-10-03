@@ -132,7 +132,7 @@ module RepositoryHelper
       if @task
         while !(['finished', 'error', 'timed_out', 'canceled', 'reset'].include?(@task['state'])) do
           @task = @task_resource.poll(@task["task_id"])
-          sleep 0.5 # do not overload backend engines
+          sleep 0.1 # do not overload backend engines
         end
 
         @task = nil
