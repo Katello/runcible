@@ -14,12 +14,12 @@ module Runcible
         REST_API = 'rest-api'
       end
 
-      def self.create notifier_type_id, notifier_config, event_types
+      def self.create(notifier_type_id, notifier_config, event_types)
         required = required_params(binding.send(:local_variables), binding)
         call(:post, path, :payload => {:required => required})
       end
 
-      def self.delete id
+      def self.delete(id)
         call(:delete, path(id))
       end
 
@@ -28,7 +28,7 @@ module Runcible
       end
 
       def self.path(id=nil)
-        ("/events/") + ("#{id}/"|| '')
+        (id == nil) ? "events/" : "events/#{id}/"
       end
     end
   end
