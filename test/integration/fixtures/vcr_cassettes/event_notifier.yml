@@ -1,94 +1,94 @@
 --- 
+recorded_with: VCR 2.2.5
 http_interactions: 
 - request: 
     method: post
-    uri: https://admin:admin@localhost/pulp/api/v2//events//
+    uri: https://admin:admin@localhost/pulp/api/v2/events/
     body: 
-      string: "{\"notifier_config\":{\"url\":\"http://foo.com/foo/\"},\"event_types\":[\"repo-publish-finished\"],\"notifier_type_id\":\"rest-api\"}"
+      string: "{\"notifier_config\":{\"url\":\"http://foo.com/foo/\"},\"notifier_type_id\":\"rest-api\",\"event_types\":[\"repo-publish-finished\"]}"
     headers: 
-      Content-Length: 
-      - "119"
+      Accept: 
+      - application/json
       Accept-Encoding: 
       - gzip, deflate
+      Content-Length: 
+      - "119"
       Content-Type: 
-      - application/json
-      Accept: 
       - application/json
   response: 
     status: 
       code: 201
       message: Created
     headers: 
+      Location: 
+      - /pulp/api/v2/events/506c4b7a9c60ed36440001d1/
+      Date: 
+      - Wed, 03 Oct 2012 14:28:10 GMT
       Content-Length: 
       - "288"
-      Date: 
-      - Tue, 02 Oct 2012 16:25:56 GMT
-      Server: 
-      - Apache/2.2.22 (Fedora)
       Content-Type: 
       - application/json
-      Location: 
-      - /pulp/api/v2/events/506b15949c60ed0dfc0020ac/
+      Server: 
+      - Apache/2.2.22 (Fedora)
     body: 
-      string: "{\"notifier_config\": {\"url\": \"http://foo.com/foo/\"}, \"_ns\": \"event_listeners\", \"event_types\": [\"repo-publish-finished\"], \"_id\": {\"$oid\": \"506b15949c60ed0dfc0020ac\"}, \"id\": \"506b15949c60ed0dfc0020ac\", \"notifier_type_id\": \"rest-api\", \"_href\": \"/pulp/api/v2/events/506b15949c60ed0dfc0020ac/\"}"
+      string: "{\"notifier_config\": {\"url\": \"http://foo.com/foo/\"}, \"_ns\": \"event_listeners\", \"event_types\": [\"repo-publish-finished\"], \"_id\": {\"$oid\": \"506c4b7a9c60ed36440001d1\"}, \"id\": \"506c4b7a9c60ed36440001d1\", \"notifier_type_id\": \"rest-api\", \"_href\": \"/pulp/api/v2/events/506c4b7a9c60ed36440001d1/\"}"
     http_version: 
-  recorded_at: Tue, 02 Oct 2012 16:25:56 GMT
+  recorded_at: Wed, 03 Oct 2012 14:28:10 GMT
 - request: 
     method: delete
-    uri: https://admin:admin@localhost/pulp/api/v2//events/506b15949c60ed0dfc0020ac/
+    uri: https://admin:admin@localhost/pulp/api/v2/events/506c4b7a9c60ed36440001d1/
     body: 
       string: ""
     headers: 
+      Accept: 
+      - application/json
       Accept-Encoding: 
       - gzip, deflate
       Content-Type: 
-      - application/json
-      Accept: 
       - application/json
   response: 
     status: 
       code: 200
       message: OK
     headers: 
+      Date: 
+      - Wed, 03 Oct 2012 14:28:10 GMT
       Content-Length: 
       - "4"
-      Date: 
-      - Tue, 02 Oct 2012 16:25:56 GMT
-      Server: 
-      - Apache/2.2.22 (Fedora)
       Content-Type: 
       - application/json
+      Server: 
+      - Apache/2.2.22 (Fedora)
     body: 
       string: "null"
     http_version: 
-  recorded_at: Tue, 02 Oct 2012 16:25:57 GMT
+  recorded_at: Wed, 03 Oct 2012 14:28:10 GMT
 - request: 
     method: get
-    uri: https://admin:admin@localhost/pulp/api/v2//events//
+    uri: https://admin:admin@localhost/pulp/api/v2/events/
     body: 
       string: ""
     headers: 
+      Accept: 
+      - application/json
       Accept-Encoding: 
       - gzip, deflate
       Content-Type: 
-      - application/json
-      Accept: 
       - application/json
   response: 
     status: 
       code: 200
       message: OK
     headers: 
-      Content-Length: 
-      - "2158"
       Date: 
-      - Tue, 02 Oct 2012 16:25:57 GMT
-      Server: 
-      - Apache/2.2.22 (Fedora)
+      - Wed, 03 Oct 2012 14:28:10 GMT
+      Content-Length: 
+      - "303"
       Content-Type: 
       - application/json
+      Server: 
+      - Apache/2.2.22 (Fedora)
     body: 
-      string: "[{\"notifier_config\": {\"url\": \"http://localhost:3000/katello/api/repositories/sync_complete\"}, \"_ns\": \"event_listeners\", \"event_types\": [\"repo-sync-finished\"], \"_id\": {\"$oid\": \"506469d79c60ed48fc000027\"}, \"id\": \"506469d79c60ed48fc000027\", \"notifier_type_id\": \"rest-api\", \"_href\": \"/pulp/api/v2/events/\"}, {\"notifier_config\": {\"url\": \"http://foo.com/foo/\"}, \"_ns\": \"event_listeners\", \"event_types\": [\"repo-publish-finished\"], \"_id\": {\"$oid\": \"506b10b89c60ed0dfc002086\"}, \"id\": \"506b10b89c60ed0dfc002086\", \"notifier_type_id\": \"rest-api\", \"_href\": \"/pulp/api/v2/events/\"}, {\"notifier_config\": {\"url\": \"http://foo.com/foo/\"}, \"_ns\": \"event_listeners\", \"event_types\": [\"repo-publish-finished\"], \"_id\": {\"$oid\": \"506b10e59c60ed0dfc002088\"}, \"id\": \"506b10e59c60ed0dfc002088\", \"notifier_type_id\": \"rest-api\", \"_href\": \"/pulp/api/v2/events/\"}, {\"notifier_config\": {\"url\": \"http://foo.com/foo/\"}, \"_ns\": \"event_listeners\", \"event_types\": [\"repo-publish-finished\"], \"_id\": {\"$oid\": \"506b133a9c60ed0dfc00208b\"}, \"id\": \"506b133a9c60ed0dfc00208b\", \"notifier_type_id\": \"rest-api\", \"_href\": \"/pulp/api/v2/events/\"}, {\"notifier_config\": {\"url\": \"http://foo.com/foo/\"}, \"_ns\": \"event_listeners\", \"event_types\": [\"repo-publish-finished\"], \"_id\": {\"$oid\": \"506b13a19c60ed0dfc00208e\"}, \"id\": \"506b13a19c60ed0dfc00208e\", \"notifier_type_id\": \"rest-api\", \"_href\": \"/pulp/api/v2/events/\"}, {\"notifier_config\": {\"url\": \"http://foo.com/foo/\"}, \"_ns\": \"event_listeners\", \"event_types\": [\"repo-publish-finished\"], \"_id\": {\"$oid\": \"506b13ca9c60ed0dfc002090\"}, \"id\": \"506b13ca9c60ed0dfc002090\", \"notifier_type_id\": \"rest-api\", \"_href\": \"/pulp/api/v2/events/\"}, {\"notifier_config\": {\"url\": \"http://foo.com/foo/\"}, \"_ns\": \"event_listeners\", \"event_types\": [\"repo-publish-finished\"], \"_id\": {\"$oid\": \"506b13f69c60ed0dfc002092\"}, \"id\": \"506b13f69c60ed0dfc002092\", \"notifier_type_id\": \"rest-api\", \"_href\": \"/pulp/api/v2/events/\"}, {\"notifier_config\": {\"url\": \"http://foo.com/foo/\"}, \"_ns\": \"event_listeners\", \"event_types\": [\"repo-publish-finished\"], \"_id\": {\"$oid\": \"506b14189c60ed0dfc002094\"}, \"id\": \"506b14189c60ed0dfc002094\", \"notifier_type_id\": \"rest-api\", \"_href\": \"/pulp/api/v2/events/\"}]"
+      string: "[{\"notifier_config\": {\"url\": \"http://localhost:3000/katello/api/repositories/sync_complete\"}, \"_ns\": \"event_listeners\", \"event_types\": [\"repo-sync-finished\"], \"_id\": {\"$oid\": \"506b2d2a9c60ed3644000039\"}, \"id\": \"506b2d2a9c60ed3644000039\", \"notifier_type_id\": \"rest-api\", \"_href\": \"/pulp/api/v2/events/\"}]"
     http_version: 
-  recorded_at: Tue, 02 Oct 2012 16:25:57 GMT
-recorded_with: VCR 2.2.5
+  recorded_at: Wed, 03 Oct 2012 14:28:11 GMT
