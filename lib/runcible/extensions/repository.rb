@@ -169,6 +169,27 @@ module Runcible
         self.unit_search(id, criteria).collect{|i| i['metadata'].with_indifferent_access}
       end
 
+      def self.package_groups(id)
+        criteria = {
+                  :type_ids=>[PackageGroup::TYPE],
+                  :sort => {
+                      :unit => [ ['id', 'ascending'] ]
+                  }
+            }
+
+        self.unit_search(id, criteria).collect{|i| i['metadata'].with_indifferent_access}
+      end
+
+      def self.package_categories(id)
+        criteria = {
+                  :type_ids=>[PackageCategory::TYPE],
+                  :sort => {
+                      :unit => [ ['id', 'ascending'] ]
+                  }
+            }
+        self.unit_search(id, criteria).collect{|i| i['metadata'].with_indifferent_access}
+      end
+
       def self.create_or_update_schedule(repo_id, type, schedule)
         schedules = Runcible::Resources::RepositorySchedule.list(repo_id, type)
         if schedules.empty?
