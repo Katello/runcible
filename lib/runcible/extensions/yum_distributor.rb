@@ -31,7 +31,7 @@ module Runcible
       attr_accessor "relative_url", "http", "https"
       #optional
       attr_accessor "protected", "auth_cert", "auth_ca",
-                    "https_ca", "gpgkey",
+                    "https_ca", "gpgkey", "generate_metadata",
                     "checksum_type", "skip", "https_publish_dir", "http_publish_dir"
 
       def initialize(relative_url, http, https, params={})
