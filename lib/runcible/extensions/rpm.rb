@@ -12,7 +12,7 @@ module Runcible
       end
 
       def self.find_all(ids)
-        search(TYPE, :filters => {'_id'=> {'$in'=> ids}})
+        Runcible::Resources::Unit.search(TYPE, :filters => {'_id'=> {'$in'=> ids}})
       end
     end
   end
