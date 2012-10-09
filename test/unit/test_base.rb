@@ -24,7 +24,6 @@
 require 'rubygems'
 require 'minitest/autorun'
 require 'minitest/mock'
-require 'ruby-debug'
 require './lib/runcible/base'
 
 
