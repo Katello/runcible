@@ -13,11 +13,8 @@ require 'rubygems'
 require 'minitest/autorun'
 
 require './test/integration/resources/helpers/repository_helper'
-require './lib/runcible/extensions/repository'
-require './lib/runcible/extensions/importer'
-require './lib/runcible/extensions/yum_importer'
-require './lib/runcible/extensions/distributor'
-require './lib/runcible/extensions/yum_distributor'
+require './lib/runcible'
+
 
 module TestExtensionsRepositoryBase
   include RepositoryHelper
@@ -74,13 +71,16 @@ class TestExtensionsRepositoryCreate < MiniTest::Unit::TestCase
   end
 
   def test_create_with_distributor_object
-    response = @extension.create_with_distributors(RepositoryHelper.repo_id, [Runcible::Extensions::YumDistributor.new(
+    repo_id = RepositoryHelper.repo_id + "_distro"
+    response = @extension.create_with_distributors(repo_id, [Runcible::Extensions::YumDistributor.new(
         '/path', true, true)])
     assert response.code == 201
 
-    response = @extension.retrieve(RepositoryHelper.repo_id, {:details => true})
-    assert response['id'] == RepositoryHelper.repo_id
+    response = @extension.retrieve(repo_id, {:details => true})
+    assert response['id'] == repo_id
     assert response['distributors'].first['distributor_type_id'] == 'yum_distributor'
+  ensure
+    RepositoryHelper.destroy_repo(repo_id)
   end
 
   def test_create_with_importer_and_distributors
@@ -134,6 +134,72 @@ class TestExtensionsRepositoryMisc < MiniTest::Unit::TestCase
     assert response.code == 201
     response = @extension.create_or_update_schedule(RepositoryHelper.repo_id, 'yum_importer', "2011-09-25T20:44:00Z/P7D")
     assert response.code == 200
+  end
+
+end
+
+
+class TestExtensionsRepositoryUnitList < MiniTest::Unit::TestCase
+
+  @@extension = Runcible::Extensions::Repository
+
+  def self.before_suite
+    VCR.insert_cassette('extensions/repository_unit_list', :match_requests_on => [:method, :uri, :body])
+    RepositoryHelper.destroy_repo
+    RepositoryHelper.create_and_sync_repo(:importer => true)
+  end
+
+  def self.after_suite
+    RepositoryHelper.destroy_repo
+    VCR.eject_cassette
+  end
+
+
+  def test_rpm_ids
+    response = @@extension.rpm_ids(RepositoryHelper.repo_id)
+    assert !response.empty?
+    assert response.first.is_a?(String)
+  end
+
+  def test_rpms
+    response = @@extension.rpms(RepositoryHelper.repo_id)
+    assert !response.empty?
+    assert response.first.is_a?(Hash)
+  end
+
+  def test_errata_list
+    response = @@extension.errata_ids(RepositoryHelper.repo_id)
+    assert !response.empty?
+  end
+
+  def test_distribution_list
+    response = @@extension.distributions(RepositoryHelper.repo_id)
+    assert !response.empty?
+  end
+
+  def test_package_groups
+    response = @@extension.package_groups(RepositoryHelper.repo_id)
+    assert !response.empty?
+  end
+
+  def test_package_categories
+      response = @@extension.package_categories(RepositoryHelper.repo_id)
+      assert !response.empty?
+  end
+
+  def test_packages_by_name
+    list = @@extension.rpms(RepositoryHelper.repo_id)
+    rpm = list.first
+    response = @@extension.packages_by_nvre(RepositoryHelper.repo_id, rpm['name'])
+    assert !response.empty?
+  end
+
+  def test_packages_by_nvrea
+    list = @@extension.rpms(RepositoryHelper.repo_id)
+    rpm = list.first
+    response = @@extension.packages_by_nvre(RepositoryHelper.repo_id, rpm['name'], rpm['version'],
+                                            rpm['release'], rpm['epoch'])
+    assert !response.empty?
   end
 
 end
@@ -204,11 +270,11 @@ class TestExtensionsRepositoryUnassociate < MiniTest::Unit::TestCase
 
 
   def test_rpm_remove
-    pkg_ids = @@extension.package_ids(RepositoryHelper.repo_id)
+    pkg_ids = @@extension.rpm_ids(RepositoryHelper.repo_id)
     assert pkg_ids.first
     task = @@extension.rpm_remove(@@clone_name, [pkg_ids.first])
     RepositoryHelper.wait_on_task(task)
-    assert_equal((pkg_ids.length - 1), @@extension.package_ids(@@clone_name).length)
+    assert_equal((pkg_ids.length - 1), @@extension.rpm_ids(@@clone_name).length)
   end
 
   def test_errata_remove
