@@ -13,6 +13,7 @@ namespace :test do
     options[:mode]      = ENV['mode'] || 'none'
     options[:test_name] = ENV['test']
     options[:auth_type] = ENV['auth_type']
+    options[:logging]   = ENV['logging']
 
     if !['recorded', 'live', 'none'].include?(options[:mode])
       puts "Invalid test mode"
