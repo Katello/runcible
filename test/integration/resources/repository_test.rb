@@ -13,8 +13,7 @@ require 'rubygems'
 require 'minitest/autorun'
 
 require './test/integration/resources/helpers/repository_helper'
-require './lib/runcible/resources/repository'
-require './lib/runcible/extensions/repository'
+require './lib/runcible'
 
 
 module TestResourcesRepositoryBase
@@ -32,7 +31,7 @@ module TestResourcesRepositoryBase
 
 end
 
-=begin
+
 class TestResourcesRepositoryCreate < MiniTest::Unit::TestCase
   include TestResourcesRepositoryBase
 
@@ -168,7 +167,6 @@ class TestResourcesRepositorySync < MiniTest::Unit::TestCase
     assert response.first["tags"].include?('pulp:action:sync')
   end
 end
-=end
 
 class TestResourcesRepositoryClone < MiniTest::Unit::TestCase
   include TestResourcesRepositoryBase
@@ -196,112 +194,3 @@ class TestResourcesRepositoryClone < MiniTest::Unit::TestCase
   end
 
 end
-
-
-=begin
-
-  def test_discovery
-    response = @resource.start_discovery(RepositoryHelper.repo_url, 'yum')
-    assert response.length > 0
-  end
-
-  def test_all
-    response = @resource.all()
-    assert response.length > 0
-    assert response.select { |r| r["name"] == RepositoryHelper.repo_id }.length > 0
-  end
-
-  def test_update_schedule
-    response = @resource.update_schedule(RepositoryHelper.repo_id, "R1/" << Time.now.advance(:years => 1).iso8601 << "/P1D")
-    assert JSON.parse(response)["id"] == RepositoryHelper.repo_id
-    @resource.delete_schedule(RepositoryHelper.repo_id)
-  end
-
-  def test_delete_schedule
-    @resource.update_schedule(RepositoryHelper.repo_id, "R1/" << Time.now.advance(:years => 1).iso8601 << "/P1D")
-    response = @resource.delete_schedule(RepositoryHelper.repo_id)
-    assert JSON.parse(response)["id"] == RepositoryHelper.repo_id
-  end
-
-  def test_add_filters
-    response = @resource.add_filters(RepositoryHelper.repo_id, [FilterHelper.filter_id])
-    assert response == "true"
-  end
-
-  def test_remove_filters
-    response = @resource.remove_filters(RepositoryHelper.repo_id, [FilterHelper.filter_id])
-    assert response == "true"
-  end
-
-  def test_destroy
-    response = @resource.destroy(RepositoryHelper.repo_id)
-    assert response == 202
-  end
-end
-
-
-class TestResourcesRepositoryRequiresSync < MiniTest::Unit::TestCase
-  include TestResourcesRepositoryBase
-
-  def self.before_suite
-    RepositoryHelper.create_and_sync_repo
-  end
-
-  def self.after_suite
-    RepositoryHelper.destroy_repo
-  end
-
-  def test_packages
-    response = @resource.packages(RepositoryHelper.repo_id)
-    assert response.length > 0
-  end
-
-  def test_packages_by_name
-    response = @resource.packages_by_name(RepositoryHelper.repo_id, "cheetah")
-    assert response.length > 0
-    assert response.select { |r| r["name"] == "cheetah" }.length > 0
-  end
-
-  def test_packages_by_nvre
-    response = @resource.packages_by_nvre(RepositoryHelper.repo_id, "cheetah", "0.3", "0.8", "")
-    assert response.length > 0
-    assert response.select { |r| r["name"] == "cheetah" }.length > 0
-  end
-
-  def test_errata
-    response = @resource.errata(RepositoryHelper.repo_id)
-    assert response.length > 0
-  end
-
-  def test_errata_with_filter
-    response = @resource.errata(RepositoryHelper.repo_id, { :type => 'security' })
-    assert response.length > 0
-    assert response.select { |errata| errata['id'] == "RHEA-2010:0002" }.length > 0
-  end
-
-  def test_distributions
-    response = @resource.distributions(RepositoryHelper.repo_id)
-    assert response.kind_of?(Array)
-  end
-
-  def test_sync_history
-    response = @resource.sync_history(RepositoryHelper.repo_id)
-    assert response.length > 0
-  end
-
-  def test_add_packages
-    response = @resource.add_packages(RepositoryHelper.repo_id, [])
-    assert response == "[[], 0]"
-  end
-
-  def test_add_errata 
-    response = @resource.add_errata(RepositoryHelper.repo_id, ["RHEA-2010:0002"])
-    assert response == "[]"
-  end
-
-  def test_add_distribution
-    response = @resource.add_distribution(RepositoryHelper.repo_id, "ks-Test Family-TestVariant-16-x86_64")
-    assert response == "true"
-  end
-end
-=end
