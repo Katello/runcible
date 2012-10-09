@@ -7,10 +7,6 @@ gem 'json'
 gem 'rest-client', '>= 1.6.1'
 gem 'oauth'
 
-group :development, :test do
-  gem 'ruby-debug'
-end
-
 group :test do
   gem 'vcr'
   gem 'webmock'

@@ -10,7 +10,7 @@ namespace :test do
   task :integration do
     options = {}
 
-    options[:mode]      = ENV['mode']
+    options[:mode]      = ENV['mode'] || 'none'
     options[:test_name] = ENV['test']
     options[:auth_type] = ENV['auth_type']
 
