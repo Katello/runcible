@@ -1,4 +1,4 @@
-# Copyright (c) 2012 Eric D Helms
+# Copyright (c) 2012
 #
 # MIT License
 #
@@ -57,6 +57,33 @@ module Runcible
         call(:delete, path(id))
       end
 
+      def self.bind(id, repo_id, distributor_id)
+        required = required_params(binding.send(:local_variables), binding, ["id"])
+        call(:post, path("#{id}/bindings"), :payload => { :required => required })
+      end
+
+      def self.unbind(id, repo_id, distributor_id)
+        call(:delete, path("#{id}/bindings/#{repo_id}/#{distributor_id}"))
+      end
+
+      def self.repos(id)
+        call(:get, path("#{id}/bindings/"))
+      end
+
+      def self.install_content(id, units, options="")
+        required = required_params(binding.send(:local_variables), binding, ["id"])
+        call(:post, path("#{id}/actions/content/install/"), :payload => { :required => required })
+      end
+
+      def self.update_content(id, units, options="")
+        required = required_params(binding.send(:local_variables), binding, ["id"])
+        call(:post, path("#{id}/actions/content/update/"), :payload => { :required => required })
+      end
+
+      def self.uninstall_content(id, units, options="")
+        required = required_params(binding.send(:local_variables), binding, ["id"])
+        call(:post, path("#{id}/actions/content/uninstall/"), :payload => { :required => required })
+      end
     end
   end
 end
