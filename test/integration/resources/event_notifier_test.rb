@@ -11,13 +11,8 @@
 
 require 'rubygems'
 require 'minitest/autorun'
-
-
 require './test/integration/resources/helpers/repository_helper'
-
 require './lib/runcible/resources/event_notifier'
-
-
 
 
 class TestEventNotifier < MiniTest::Unit::TestCase
