@@ -177,7 +177,7 @@ class TestResourcesRepositoryClone < MiniTest::Unit::TestCase
     RepositoryHelper.destroy_repo(@clone_name)
     RepositoryHelper.destroy_repo
     RepositoryHelper.create_and_sync_repo(:importer => true)
-    @extension.create_with_importer(@clone_name, {:id=>"yum_importer"})
+    @extension.create_with_importer(@clone_name, :id => "yum_importer")
   end
 
   def teardown
