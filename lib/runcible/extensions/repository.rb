@@ -120,12 +120,20 @@ module Runcible
         self.unassociate_units(repo_id, payload)
       end
 
-      def self.package_ids(id)
+      def self.rpm_ids(id)
         criteria = {:type_ids=>['rpm'],
                 :sort => {
                     :unit => [ ['name', 'ascending'], ['version', 'descending'] ]
                 }}
         self.unit_search(id, criteria).collect{|i| i['unit_id']}
+      end
+
+      def self.rpms(id)
+        criteria = {:type_ids=>['rpm'],
+                :sort => {
+                    :unit => [ ['name', 'ascending'], ['version', 'descending'] ]
+                }}
+        self.unit_search(id, criteria).collect{|i| i['metadata'].with_indifferent_access}
       end
 
       def self.packages_by_nvre(id, name, version=nil, release=nil, epoch=nil)
@@ -144,7 +152,7 @@ module Runcible
                 :sort => {
                     :unit => [ ['name', 'ascending'], ['version', 'descending'] ]
                 }}
-        self.unit_search(id, criteria, true).collect{|p| p['metadata'].with_indifferent_access}
+        self.unit_search(id, criteria).collect{|p| p['metadata'].with_indifferent_access}
       end
 
       def self.errata_ids(id, filter = {})
@@ -171,7 +179,7 @@ module Runcible
 
       def self.package_groups(id)
         criteria = {
-                  :type_ids=>[PackageGroup::TYPE],
+                  :type_ids=>[Runcible::Extensions::PackageGroup::TYPE],
                   :sort => {
                       :unit => [ ['id', 'ascending'] ]
                   }
@@ -182,7 +190,7 @@ module Runcible
 
       def self.package_categories(id)
         criteria = {
-                  :type_ids=>[PackageCategory::TYPE],
+                  :type_ids=>[Runcible::Extensions::PackageCategory::TYPE],
                   :sort => {
                       :unit => [ ['id', 'ascending'] ]
                   }

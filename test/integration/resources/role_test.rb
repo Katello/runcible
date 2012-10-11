@@ -9,23 +9,4 @@
 # have received a copy of GPLv2 along with this software; if not, see
 # http://www.gnu.org/licenses/old-licenses/gpl-2.0.txt.
 
-require 'rubygems'
-require 'minitest/autorun'
-require 'test/integration/pulp/vcr_pulp_setup'
 
-
-class TestPulpPing < MiniTest::Unit::TestCase
-  def setup
-    @resource = Resources::Pulp::PulpPing
-    VCR.insert_cassette('pulp_ping')
-  end
-
-  def teardown
-    VCR.eject_cassette
-  end
-
-  def test_ping
-    response = @resource.ping()
-    assert response.length > 0
-  end
-end
