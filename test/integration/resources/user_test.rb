@@ -17,7 +17,7 @@ require './lib/runcible/resources/user'
 
 module TestResourcesUserBase
   def setup
-    VCR.insert_cassette('pulp_user')
+    VCR.insert_cassette('user')
     @username = "integration_test_user"
     @resource = Runcible::Resources::User
   end
@@ -32,7 +32,7 @@ class TestResourcesUserCreate < MiniTest::Unit::TestCase
 
   def teardown
     super
-    VCR.use_cassette('pulp_user_helper') do
+    VCR.use_cassette('user_helper') do
       begin
         @resource.retrieve(@username)
         @resource.delete(@username)
@@ -61,7 +61,7 @@ class TestResourcesUser < MiniTest::Unit::TestCase
 
   def setup
     super
-    VCR.use_cassette('pulp_user_helper') do
+    VCR.use_cassette('user_helper') do
       begin
         @resource.retrieve(@username)
       rescue RestClient::ResourceNotFound => e
@@ -72,7 +72,7 @@ class TestResourcesUser < MiniTest::Unit::TestCase
 
   def teardown
     super
-    VCR.use_cassette('pulp_user_helper') do
+    VCR.use_cassette('user_helper') do
       begin
         @resource.retrieve(@username)
         @resource.delete(@username)
@@ -95,6 +95,12 @@ class TestResourcesUser < MiniTest::Unit::TestCase
     response = @resource.retrieve(@username)
     assert response.code == 200
     assert response["login"] == @username
+  end
+
+  def test_retrieve_all
+    response = @resource.retrieve_all()
+    assert response.code == 200
+    assert !response.empty?
   end
 
   def test_delete
