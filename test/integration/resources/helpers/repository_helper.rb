@@ -61,7 +61,6 @@ module RepositoryHelper
   end
 
   def self.create_and_sync_repo(options={})
-    puts "Creating and Sync'ing repository."
     create_repo(options)
     sync_repo(options)
   end
@@ -126,8 +125,6 @@ module RepositoryHelper
   end
 
   def self.destroy_repo(id=@repo_id)
-    puts "Destroying Repository."
-
     VCR.use_cassette('pulp_repository_helper') do
       if @task
         while !(['finished', 'error', 'timed_out', 'canceled', 'reset'].include?(@task['state'])) do
