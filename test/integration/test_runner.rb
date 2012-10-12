@@ -10,7 +10,6 @@
 # http://www.gnu.org/licenses/old-licenses/gpl-2.0.txt.
 
 require 'rubygems'
-require 'ruby-debug'
 require 'minitest/unit'
 require 'minitest/autorun'
 
@@ -57,10 +56,16 @@ class PulpMiniTestRunner
     mode      = options[:mode] || "recorded" 
     test_name = options[:test_name] || nil
     auth_type = options[:auth_type] || "http"
+    logging   = options[:logging] || false
 
     MiniTest::Unit.runner = CustomMiniTestRunner::Unit.new
 
-    set_runcible_config(auth_type)
+    if mode == "live"
+      set_runcible_config({ :auth_type => auth_type, :logging => logging })
+    else
+      set_runcible_config({ :logging => logging })
+    end
+
     set_vcr_config(mode)
 
     if test_name
@@ -71,13 +76,17 @@ class PulpMiniTestRunner
     end
   end
 
-  def set_runcible_config(auth_type)
-    if auth_type == "http"
-      Runcible::Base.config = {
-        :api_path   => "/pulp/api/v2/",
-        :http_auth  => {},
-        :logger     => 'stdout'
-      }
+  def set_runcible_config(options)
+    Runcible::Base.config = {
+      :api_path   => "/pulp/api/v2/",
+      :http_auth  => {}
+    }
+
+    if options[:logging] == "true"
+      Runcible::Base.config[:logger] = 'stdout'
+    end
+
+    if options[:auth_type] == "http"
 
       File.open('/etc/pulp/server.conf') do |f|
         f.each_line do |line|
@@ -90,11 +99,7 @@ class PulpMiniTestRunner
           end
         end
       end
-    elsif auth_type == "oauth"
-      Runcible::Base.config = {
-        :api_path => "/pulp/api/v2/",
-        :oauth => {}
-      }
+    elsif options[:auth_type] == "oauth"
 
       File.open('/etc/pulp/server.conf') do |f|
         f.each_line do |line|
@@ -109,6 +114,10 @@ class PulpMiniTestRunner
           end
         end
       end
+    else
+      Runcible::Base.config[:http_auth][:password] = 'admin'
+      Runcible::Base.config[:user]  = 'admin'
+      Runcible::Base.config[:url]   = "https://localhost"
     end
   end
 
