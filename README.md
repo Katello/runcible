@@ -1,6 +1,8 @@
 # Runcible
 
-TODO: Write a gem description
+[![Build Status](https://secure.travis-ci.org/Katello/runcible.png)](http://travis-ci.org/Katello/runcible)
+
+Exposing Pulp's juiciest parts. http://www.pulpproject.org/
 
 ## Installation
 
@@ -34,6 +36,8 @@ To run a single test using recorded data, run:
 To run with  oauth, simply append the following to any commend:
    auth_type=oauth
 
+To see RestClient logs while testing:
+  logging=true
 
 ## Contributing
 
