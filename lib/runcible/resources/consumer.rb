@@ -40,9 +40,9 @@ module Runcible
       end
 
       def self.update(id, optional={})
-        required = required_params(binding.send(:local_variables), binding)
-        call(:put, path(id), :payload => { :required => required, :optional => optional })
+        call(:put, path(id), :payload => { :delta => optional })
       end
+
 
       def self.upload_profile(id, content_type, profile)
         required = required_params(binding.send(:local_variables), binding, ["id"])
@@ -55,6 +55,16 @@ module Runcible
 
       def self.delete(id)
         call(:delete, path(id))
+      end
+
+      def self.retrieve_bindings(id, repo_id = nil, distributor_id = nil)
+        required = required_params(binding.send(:local_variables), binding, ["id"])
+        if repo_id && distributor_id
+          url =  path("#{id}/bindings/#{repo_id}/#{distributor_id}")
+        else
+          url =  path("#{id}/bindings/")
+        end
+        call(:get, url)
       end
 
       def self.bind(id, repo_id, distributor_id)
@@ -70,17 +80,17 @@ module Runcible
         call(:get, path("#{id}/bindings/"))
       end
 
-      def self.install_content(id, units, options="")
+      def self.install_units(id, units, options="")
         required = required_params(binding.send(:local_variables), binding, ["id"])
         call(:post, path("#{id}/actions/content/install/"), :payload => { :required => required })
       end
 
-      def self.update_content(id, units, options="")
+      def self.update_units(id, units, options="")
         required = required_params(binding.send(:local_variables), binding, ["id"])
         call(:post, path("#{id}/actions/content/update/"), :payload => { :required => required })
       end
 
-      def self.uninstall_content(id, units, options="")
+      def self.uninstall_units(id, units, options="")
         required = required_params(binding.send(:local_variables), binding, ["id"])
         call(:post, path("#{id}/actions/content/uninstall/"), :payload => { :required => required })
       end
