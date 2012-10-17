@@ -4,10 +4,10 @@ module Runcible
     class EventNotifier < Runcible::Base
 
       class EventTypes
-        REPO_SYNC_COMPLETE = 'repo-sync-finished'
-        REPO_SYNC_START = 'repo-sync-started'
-        REPO_PUBLISH_COMPLETE = 'repo-publish-finished'
-        REPO_PUBLISH_START = 'repo-publish-started'
+        REPO_SYNC_COMPLETE = 'repo.sync.finish'
+        REPO_SYNC_START = 'repo.sync.start'
+        REPO_PUBLISH_COMPLETE = 'repo.publish.finish'
+        REPO_PUBLISH_START = 'repo.publish.start'
       end
 
       class NotifierTypes
