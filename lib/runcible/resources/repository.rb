@@ -37,7 +37,7 @@ module Runcible
       end
 
       def self.retrieve(id, details=true)
-        call(:get, path(id) + "?details=#{details}&importers=#{details}&distributor_list=#{details}")
+        call(:get, path(id) + "?details=#{details}")
       end
 
       def self.update(id, optional={})
