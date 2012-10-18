@@ -57,15 +57,14 @@ module Runcible
         call(:delete, path(id))
       end
 
-      def self.retrieve_bindings(id, repo_id = nil, distributor_id = nil)
-        required = required_params(binding.send(:local_variables), binding, ["id"])
-        if repo_id && distributor_id
-          url =  path("#{id}/bindings/#{repo_id}/#{distributor_id}")
-        else
-          url =  path("#{id}/bindings/")
-        end
-        call(:get, url)
+      def self.retrieve_binding(id, repo_id, distributor_id)
+        call(:get, path("#{id}/bindings/#{repo_id}/#{distributor_id}"))
       end
+
+      def self.retrieve_bindings(id)
+        call(:get, path("#{id}/bindings/"))
+      end
+
 
       def self.bind(id, repo_id, distributor_id)
         required = required_params(binding.send(:local_variables), binding, ["id"])
