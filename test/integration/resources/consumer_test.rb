@@ -20,7 +20,8 @@ require 'active_support/core_ext/time/calculations'
 module TestConsumerBase
 
   def setup
-    @resource = Runcible::Extensions::Consumer
+    @resource = Runcible::Resources::Consumer
+    @extension = Runcible::Extensions::Consumer
     @consumer_id = "integration_test_consumer"
     VCR.insert_cassette('pulp_consumer')
   end
@@ -29,7 +30,7 @@ module TestConsumerBase
     VCR.eject_cassette
   end
 
-  def create_consumer package_profile = false
+  def create_consumer(package_profile = false)
     consumer = @resource.create(@consumer_id, :name=>"boo")
     if package_profile
       @consumer_resource.upload_profile(@consumer_id,'rpm',[{"name" => "elephant", "version" => "0.2", "release" => "0.7",
@@ -44,7 +45,7 @@ module TestConsumerBase
 
 
   def bind_repo
-    @resource.bind_all(@consumer_id, RepositoryHelper.repo_id)
+    @extension.bind_all(@consumer_id, RepositoryHelper.repo_id)
   end
 end
 
@@ -104,7 +105,7 @@ class TestGeneralMethods  < ConsumerTests
     assert_match("consumers/#{@consumer_id}/", path)
   end
 
-  def test_find
+  def test_retrieve
     response = @resource.retrieve(@consumer_id)
     assert response.length > 0
     assert response['id'] == @consumer_id
@@ -130,7 +131,7 @@ class TestProfiles < ConsumerTests
     assert_equal(packages, response['profile'])
   end
 
-  def test_load_profile
+  def test_profile
     packages = [{"vendor" => "FedoraHosted", "name" => "elephant",
                  "version" => "0.3", "release" => "0.8",
                  "arch" => "noarch"}]
@@ -152,212 +153,48 @@ class TestConsumerRequiresRepo < ConsumerTests
     RepositoryHelper.destroy_repo
   end
 
+  def distributor
+    Runcible::Extensions::Repository.retrieve(RepositoryHelper.repo_id)['distributors'].first
+  end
+
   def setup
     super
     bind_repo
   end
-  #
-  #
-  #def test_installed_packages
-  #  response = @resource.installed_packages(@consumer_id)
-  #  assert response.length > 0
-  #  assert response.select { |pack| pack['name'] == 'elephant' }.length > 0
-  #end
-  #
-  #def test_errata
-  #  response = @resource.errata(@consumer_id)
-  #  assert response.select { |errata| errata['id'] == "RHEA-2010:0002" }.length > 0
-  #end
 
   def test_bind
-    @resource.unbind_all(@consumer_id, RepositoryHelper.repo_id)
+    distro_id = distributor['id']
+    @resource.unbind(@consumer_id, RepositoryHelper.repo_id, distro_id)
     assert(@resource.retrieve_bindings(@consumer_id).empty?)
-    response = @resource.bind_all(@consumer_id, RepositoryHelper.repo_id)
+
+    response = @resource.bind(@consumer_id, RepositoryHelper.repo_id, distro_id)
+    assert_equal(RepositoryHelper.repo_id, response[:repo_id])
+    assert(!@resource.retrieve_bindings(@consumer_id).empty?)
+  end
+
+  def test_unbind
+    distro_id = distributor['id']
+    assert(!@resource.retrieve_bindings(@consumer_id).empty?)
+    response = @resource.unbind(@consumer_id, RepositoryHelper.repo_id, distro_id)
+    assert(@resource.retrieve_bindings(@consumer_id).empty?)
+  end
+
+  def test_bind_all
+    @extension.unbind_all(@consumer_id, RepositoryHelper.repo_id)
+    assert(@resource.retrieve_bindings(@consumer_id).empty?)
+    response = @extension.bind_all(@consumer_id, RepositoryHelper.repo_id)
     assert_equal(RepositoryHelper.repo_id, response.first[:repo_id])
-
     assert(!@resource.retrieve_bindings(@consumer_id).empty?)
   end
 
-  def test_unbind
+  def test_unbind_all
     assert(!@resource.retrieve_bindings(@consumer_id).empty?)
-    response = @resource.unbind_all(@consumer_id, RepositoryHelper.repo_id)
+    response = @extension.unbind_all(@consumer_id, RepositoryHelper.repo_id)
     assert(@resource.retrieve_bindings(@consumer_id).empty?)
   end
 
-  #def test_repoids
-  #  response = @resource.repoids(@consumer_id)
-  #  assert response.key?(RepositoryHelper.repo_id)
-  #end
-  #
-  #def test_errata_by_consumer
-  #  response = @resource.errata_by_consumer([OpenStruct.new({ :pulp_id => RepositoryHelper.repo_id})])
-  #  assert response.key?("RHEA-2010:0002")
-  #end
-  #
-  #def test_install_errata
-  #  response = @resource.install_errata(@consumer_id, ['RHEA-2010:0002'], Time.now.advance(:years => 1).iso8601)
-  #  @task = response
-  #  assert response["method_name"] == "__installpackages"
-  #end
-  #
-  #def test_install_packages
-  #  response = @resource.install_packages(@consumer_id, ['cheetah'], Time.now.advance(:years => 1).iso8601)
-  #  @task = response
-  #  assert response["method_name"] == "__installpackages"
-  #end
-  #
-  #def test_uninstall_packages
-  #  response = @resource.uninstall_packages(@consumer_id, ['elephant'], Time.now.advance(:years => 1).iso8601)
-  #  @task = response
-  #  assert response["method_name"] == "__uninstallpackages"
-  #end
-  #
-  #def test_update_packages
-  #  response = @resource.update_packages(@consumer_id, ['elephant'], Time.now.advance(:years => 1).iso8601)
-  #  @task = response
-  #  assert response["method_name"] == "__updatepackages"
-  #end
-  #
-  #def test_install_package_groups
-  #  response = @resource.install_package_groups(@consumer_id, ['mammals'], Time.now.advance(:years => 1).iso8601)
-  #  @task = response
-  #  assert response["method_name"] == "__installpackagegroups"
-  #end
-  #
-  #def test_uninstall_package_groups
-  #  response = @resource.uninstall_package_groups(@consumer_id, ['mammals'], Time.now.advance(:years => 1).iso8601)
-  #  @task = response
-  #  assert response["method_name"] == "__uninstallpackagegroups"
-  #end
+
+
 end
 
 
-=begin
-    class Consumer < Runcible::Base
-
-      def self.bind(id, repo_id, distributor_id)
-        required = required_params(binding.send(:local_variables), binding, ["id"])
-        call(:post, path("#{id}/bindings"), :payload => { :required => required })
-      end
-
-      def self.unbind(id, repo_id, distributor_id)
-        call(:delete, path("#{id}/bindings/#{repo_id}/#{distributor_id}"))
-      end
-
-      def self.repos(id)
-        call(:get, path("#{id}/bindings/"))
-      end
-
-      def self.install_content(id, units, options="")
-        required = required_params(binding.send(:local_variables), binding, ["id"])
-        call(:post, path("#{id}/actions/content/install/"), :payload => { :required => required })
-      end
-
-      def self.update_content(id, units, options="")
-        required = required_params(binding.send(:local_variables), binding, ["id"])
-        call(:post, path("#{id}/actions/content/update/"), :payload => { :required => required })
-      end
-
-      def self.uninstall_content(id, units, options="")
-        required = required_params(binding.send(:local_variables), binding, ["id"])
-        call(:post, path("#{id}/actions/content/uninstall/"), :payload => { :required => required })
-      end
-    end
-=end
-
-
-=begin
-
-
-class TestConsumerRequiresRepo < MiniTest::Unit::TestCase
-  include TestConsumerBase
-
-  def self.before_suite
-    RepositoryHelper.create_and_sync_repo
-  end
-
-  def self.after_suite
-    RepositoryHelper.destroy_repo
-  end
-
-  def setup
-    super
-    ConsumerHelper.create_consumer(true)
-    bind_repo
-  end
-
-  def teardown
-    ConsumerHelper.destroy_consumer
-    super
-  end
-
-  def test_installed_packages
-    response = @resource.installed_packages(@consumer_id)
-    assert response.length > 0
-    assert response.select { |pack| pack['name'] == 'elephant' }.length > 0
-  end
-
-  def test_errata
-    response = @resource.errata(@consumer_id)
-    assert response.select { |errata| errata['id'] == "RHEA-2010:0002" }.length > 0
-  end
-
-  def test_bind
-    @resource.unbind(@consumer_id, RepositoryHelper.repo_id)
-    response = @resource.bind(@consumer_id, RepositoryHelper.repo_id)
-    response = JSON.parse(response)
-    assert response['repo']['name'] = RepositoryHelper.repo_name
-  end
-
-  def test_unbind
-    response = @resource.unbind(@consumer_id, RepositoryHelper.repo_id)
-    assert response == "true"
-  end
-
-  def test_repoids
-    response = @resource.repoids(@consumer_id)
-    assert response.key?(RepositoryHelper.repo_id)
-  end
-
-  def test_errata_by_consumer
-    response = @resource.errata_by_consumer([OpenStruct.new({ :pulp_id => RepositoryHelper.repo_id})])
-    assert response.key?("RHEA-2010:0002")
-  end
-
-  def test_install_errata
-    response = @resource.install_errata(@consumer_id, ['RHEA-2010:0002'], Time.now.advance(:years => 1).iso8601)
-    @task = response
-    assert response["method_name"] == "__installpackages"
-  end
-
-  def test_install_packages
-    response = @resource.install_packages(@consumer_id, ['cheetah'], Time.now.advance(:years => 1).iso8601)
-    @task = response
-    assert response["method_name"] == "__installpackages"
-  end
-
-  def test_uninstall_packages
-    response = @resource.uninstall_packages(@consumer_id, ['elephant'], Time.now.advance(:years => 1).iso8601)
-    @task = response
-    assert response["method_name"] == "__uninstallpackages"
-  end
-
-  def test_update_packages
-    response = @resource.update_packages(@consumer_id, ['elephant'], Time.now.advance(:years => 1).iso8601)
-    @task = response
-    assert response["method_name"] == "__updatepackages"
-  end
-
-  def test_install_package_groups
-    response = @resource.install_package_groups(@consumer_id, ['mammals'], Time.now.advance(:years => 1).iso8601)
-    @task = response
-    assert response["method_name"] == "__installpackagegroups"
-  end
-
-  def test_uninstall_package_groups
-    response = @resource.uninstall_package_groups(@consumer_id, ['mammals'], Time.now.advance(:years => 1).iso8601)
-    @task = response
-    assert response["method_name"] == "__uninstallpackagegroups"
-  end
-end
-=end
