@@ -34,6 +34,11 @@ module RepositoryHelper
   @distributors = [Runcible::Extensions::YumDistributor.new('/path', true, true)]
 
 
+
+  def self.distributor
+    Runcible::Extensions::Repository.retrieve(RepositoryHelper.repo_id)['distributors'].first
+  end
+
   def self.repo_name
     @repo_name
   end

@@ -153,17 +153,13 @@ class TestConsumerRequiresRepo < ConsumerTests
     RepositoryHelper.destroy_repo
   end
 
-  def distributor
-    Runcible::Extensions::Repository.retrieve(RepositoryHelper.repo_id)['distributors'].first
-  end
-
   def setup
     super
     bind_repo
   end
 
   def test_bind
-    distro_id = distributor['id']
+    distro_id = RepositoryHelper.distributor()['id']
     @resource.unbind(@consumer_id, RepositoryHelper.repo_id, distro_id)
     assert(@resource.retrieve_bindings(@consumer_id).empty?)
 
@@ -173,27 +169,11 @@ class TestConsumerRequiresRepo < ConsumerTests
   end
 
   def test_unbind
-    distro_id = distributor['id']
+    distro_id = RepositoryHelper.distributor()['id']
     assert(!@resource.retrieve_bindings(@consumer_id).empty?)
     response = @resource.unbind(@consumer_id, RepositoryHelper.repo_id, distro_id)
     assert(@resource.retrieve_bindings(@consumer_id).empty?)
   end
-
-  def test_bind_all
-    @extension.unbind_all(@consumer_id, RepositoryHelper.repo_id)
-    assert(@resource.retrieve_bindings(@consumer_id).empty?)
-    response = @extension.bind_all(@consumer_id, RepositoryHelper.repo_id)
-    assert_equal(RepositoryHelper.repo_id, response.first[:repo_id])
-    assert(!@resource.retrieve_bindings(@consumer_id).empty?)
-  end
-
-  def test_unbind_all
-    assert(!@resource.retrieve_bindings(@consumer_id).empty?)
-    response = @extension.unbind_all(@consumer_id, RepositoryHelper.repo_id)
-    assert(@resource.retrieve_bindings(@consumer_id).empty?)
-  end
-
-
 
 end
 
