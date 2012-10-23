@@ -15,6 +15,10 @@ require './lib/runcible/resources/repository'
 require './lib/runcible/resources/repository_schedule'
 require './lib/runcible/resources/task'
 require './lib/runcible/extensions/repository'
+require './lib/runcible/extensions/distributor'
+require './lib/runcible/extensions/yum_distributor'
+require './lib/runcible/extensions/importer'
+require './lib/runcible/extensions/yum_importer'
 
 module RepositoryHelper
 
@@ -27,6 +31,13 @@ module RepositoryHelper
   @task_resource  = Runcible::Resources::Task
   @schedule_time  = '2012-09-25T20:44:00Z/P7D'
   @importer_type  = 'yum_importer'
+  @distributors = [Runcible::Extensions::YumDistributor.new('/path', true, true)]
+
+
+
+  def self.distributor
+    Runcible::Extensions::Repository.retrieve(RepositoryHelper.repo_id)['distributors'].first
+  end
 
   def self.repo_name
     @repo_name
@@ -79,6 +90,8 @@ module RepositoryHelper
     VCR.use_cassette('pulp_repository_helper') do
       if options[:importer]
         repo = @repo_extension.create_with_importer(@repo_id, {:id=>@importer_type, :feed_url => @repo_url})
+      elsif options[:importer_and_distributor]
+        repo = @repo_extension.create_with_importer_and_distributors(@repo_id, {:id=>@importer_type, :feed_url => @repo_url}, @distributors)
       else
         repo = @repo_resource.create(@repo_id)
       end
@@ -89,6 +102,8 @@ module RepositoryHelper
     VCR.use_cassette('pulp_repository_helper') do
       if options[:importer]
         repo = @repo_extension.create_with_importer(@repo_id, {:id=>@importer_type, :feed_url => @repo_url})
+      elsif options[:importer_and_distributor]
+        repo = @repo_extension.create_with_importer_and_distributors(@repo_id, {:id=>@importer_type, :feed_url => @repo_url}, @distributors)
       else
         repo = @repo_resource.create(@repo_id)
       end

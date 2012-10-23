@@ -45,13 +45,20 @@ module Runcible
 
         optional[:distributors] = distributors.collect do |d|
           if d.is_a?(Distributor)
-            [d.type_id, d.config, d.auto_publish, d.id]
+            {'distributor_type' => d.type_id,
+              "distributor_config" => d.config,
+              "auto_publish" => d.auto_publish,
+              "distributor_id" => d.id
+            }
           else
-            [d['type_id'], d['config'], d['auto_publish'], d['id']]
+            {'distributor_type' => d['type_id'],
+             "distributor_config" => d['config'],
+             "auto_publish" => d['auto_publish'],
+             "distributor_id" => d['id']
+            }
           end
         end if !distributors.empty?
         optional[:id] = id
-        #debugger
         create(id, optional)
       end
 

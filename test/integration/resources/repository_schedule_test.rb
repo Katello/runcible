@@ -52,7 +52,7 @@ class TestResourcesRepositoryCreateSchedule < MiniTest::Unit::TestCase
 
   def test_repository_schedules_path
     path = @resource.path('foo', 'some_importer')
-    assert_match("repositories/foo/importers/some_importer/sync_schedules/", path)
+    assert_match("repositories/foo/importers/some_importer/schedules/sync/", path)
   end
 
   def test_schedule_create

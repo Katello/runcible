@@ -40,16 +40,16 @@ module Runcible
         end
       end
 
-      def self.install(id, type_id, units)
-        self.install_content(id, generate_content(type_id, units))
+      def self.install_content(id, type_id, units)
+        self.install_units(id, generate_content(type_id, units))
       end
 
-      def self.update(id, type_id, units)
-        self.update_content(id, generate_content(type_id, units))
+      def self.update_content(id, type_id, units)
+        self.update_units(id, generate_content(type_id, units))
       end
 
-      def self.uninstall(id, type_id, units)
-        self.uninstall_content(id, generate_content(type_id, units))
+      def self.uninstall_content(id, type_id, units)
+        self.uninstall_units(id, generate_content(type_id, units))
       end
 
       def self.generate_content(type_id, units)

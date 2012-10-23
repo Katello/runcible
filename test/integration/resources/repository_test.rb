@@ -154,7 +154,7 @@ class TestResourcesRepositorySync < MiniTest::Unit::TestCase
 
     assert response.code == 202
     assert response.length == 1
-    assert response[0]["tags"].include?('pulp:action:sync')
+    assert response[0]["call_request_tags"].include?('pulp:action:sync')
   end
 
   def test_sync_repo_with_yum_importer
@@ -164,7 +164,7 @@ class TestResourcesRepositorySync < MiniTest::Unit::TestCase
 
     assert response.code == 202
     assert response.length == 1
-    assert response.first["tags"].include?('pulp:action:sync')
+    assert response.first["call_request_tags"].include?('pulp:action:sync')
   end
 end
 
@@ -190,7 +190,7 @@ class TestResourcesRepositoryClone < MiniTest::Unit::TestCase
     response = @resource.unit_copy(@clone_name, RepositoryHelper.repo_id)
     RepositoryHelper.task = response
     assert response.code == 202
-    assert response['tags'].include?('pulp:action:associate')
+    assert response['call_request_tags'].include?('pulp:action:associate')
   end
 
 end

@@ -228,21 +228,21 @@ class TestExtensionsRepositoryCopy < MiniTest::Unit::TestCase
     response = @@extension.rpm_copy(RepositoryHelper.repo_id, @@clone_name)
     RepositoryHelper.task = response
     assert response.code == 202
-    assert response['tags'].include?('pulp:action:associate')
+    assert response['call_request_tags'].include?('pulp:action:associate')
   end
 
   def test_errata_copy
      response = @@extension.errata_copy(RepositoryHelper.repo_id, @@clone_name)
      RepositoryHelper.task = response
      assert response.code == 202
-     assert response['tags'].include?('pulp:action:associate')
+     assert response['call_request_tags'].include?('pulp:action:associate')
   end
 
   def test_distribution_copy
      response = @@extension.distribution_copy(RepositoryHelper.repo_id, @@clone_name)
      RepositoryHelper.task = response
      assert response.code == 202
-     assert response['tags'].include?('pulp:action:associate')
+     assert response['call_request_tags'].include?('pulp:action:associate')
   end
 end
 
@@ -276,6 +276,7 @@ class TestExtensionsRepositoryUnassociate < MiniTest::Unit::TestCase
     RepositoryHelper.wait_on_task(task)
     assert_equal((pkg_ids.length - 1), @@extension.rpm_ids(@@clone_name).length)
   end
+
 
   def test_errata_remove
     errata_ids = @@extension.errata_ids(RepositoryHelper.repo_id)
