@@ -4,33 +4,33 @@ http_interactions:
     method: post
     uri: https://admin:admin@localhost/pulp/api/v2/repositories/
     body: 
-      string: "{\"id\":\"integration_test_id\",\"distributors\":[[\"yum_distributor\",{\"http\":true,\"relative_url\":\"/path\",\"https\":true},true,\"123\"]]}"
+      string: "{\"distributors\":[{\"distributor_type\":\"yum_distributor\",\"distributor_id\":\"123\",\"auto_publish\":true,\"distributor_config\":{\"relative_url\":\"/path\",\"http\":true,\"https\":true}}],\"id\":\"integration_test_id\"}"
     headers: 
       Accept: 
       - application/json
+      Accept-Encoding: 
+      - gzip, deflate
       Content-Type: 
       - application/json
       Content-Length: 
-      - "126"
-      Accept-Encoding: 
-      - gzip, deflate
+      - "198"
   response: 
     status: 
       code: 201
       message: Created
     headers: 
+      Location: 
+      - integration_test_id
       Content-Type: 
       - application/json
+      Date: 
+      - Tue, 23 Oct 2012 11:35:26 GMT
       Server: 
       - Apache/2.2.22 (Fedora)
       Content-Length: 
       - "265"
-      Location: 
-      - integration_test_id
-      Date: 
-      - Tue, 09 Oct 2012 18:53:21 GMT
     body: 
-      string: "{\"scratchpad\": {}, \"display_name\": \"integration_test_id\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_count\": 0, \"_id\": {\"$oid\": \"507472a19c60ed490b002b03\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\"}"
+      string: "{\"scratchpad\": {}, \"display_name\": \"integration_test_id\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_count\": 0, \"_id\": {\"$oid\": \"508680ff196cbe398600080d\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\"}"
     http_version: 
-  recorded_at: Tue, 09 Oct 2012 18:53:21 GMT
+  recorded_at: Tue, 23 Oct 2012 11:35:27 GMT
 recorded_with: VCR 2.2.5
