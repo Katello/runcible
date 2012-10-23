@@ -21,11 +21,14 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-require "runcible/version"
-require "runcible/base"
+# require "runcible/version"
+# require "runcible/base"
 
-resources = Dir[File.dirname(__FILE__) + '/runcible/resources/*.rb']
+resources = Dir[File.dirname(__FILE__) + '/runcible/version.rb']
+resources += Dir[File.dirname(__FILE__) + '/runcible/base.rb']
+resources += Dir[File.dirname(__FILE__) + '/runcible/resources/*.rb']
 resources += Dir[File.dirname(__FILE__) + '/runcible/extensions/importer.rb']
 resources += Dir[File.dirname(__FILE__) + '/runcible/extensions/distributor.rb']
 resources += Dir[File.dirname(__FILE__) + '/runcible/extensions/*.rb']
+
 resources.each{ |f| require f }

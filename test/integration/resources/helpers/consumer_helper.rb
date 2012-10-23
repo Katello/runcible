@@ -10,12 +10,11 @@
 # http://www.gnu.org/licenses/old-licenses/gpl-2.0.txt.
 
 require 'rubygems'
-require 'test/integration/pulp/vcr_pulp_setup'
-
+require './lib/runcible/resources/consumer'
 
 module ConsumerHelper
 
-  @consumer_resource = Resources::Pulp::Consumer
+  @consumer_resource = Runcible::Resources::Consumer
   @consumer_id = "integration_test_consumer"
 
   def self.consumer_id
@@ -26,8 +25,7 @@ module ConsumerHelper
     consumer = {}
     destroy_consumer
     VCR.use_cassette('pulp_consumer_helper') do
-      consumer = @consumer_resource.create("", @consumer_id)
-
+      consumer = @consumer_resource.create(@consumer_id)
       if package_profile
         @consumer_resource.upload_package_profile(@consumer_id, [{"name" => "elephant", "version" => "0.2", "release" => "0.7", 
                                                         "epoch" => 0, "arch" => "noarch"}])

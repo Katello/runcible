@@ -29,7 +29,7 @@ module Runcible
 
       def self.path(repo_id, importer, schedule_id=nil)
         repo_path = Runcible::Resources::Repository.path(repo_id)
-        path = "#{repo_path}importers/#{importer}/sync_schedules/"
+        path = "#{repo_path}importers/#{importer}/schedules/sync/"
         (schedule_id == nil) ? path : "#{path}#{schedule_id}/"
       end
 
