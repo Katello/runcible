@@ -67,6 +67,22 @@ class TestConsumer < MiniTest::Unit::TestCase
     #assert(@resource.retrieve_bindings(@consumer_id).empty?)
   end
 
+  def test_install_content
+    response = @extension.install_content(@consumer_id, "rpm", ["zsh", "foo"])
+    assert_equal(202, response.code)
+  end
+
+  def test_update_content
+    response = @extension.update_content(@consumer_id, "rpm", ["zsh", "foo"])
+    assert_equal(202, response.code)
+  end
+
+  def test_uninstall_content
+    response = @extension.uninstall_content(@consumer_id, "rpm", ["zsh", "foo"])
+    assert_equal(202, response.code)
+  end
+
+
 end
 
 
