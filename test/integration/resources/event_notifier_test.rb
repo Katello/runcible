@@ -11,7 +11,8 @@
 
 require 'rubygems'
 require 'minitest/autorun'
-require './test/integration/resources/helpers/repository_helper'
+
+require './test/support/repository_support'
 require './lib/runcible/resources/event_notifier'
 
 

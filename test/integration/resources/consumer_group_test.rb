@@ -12,18 +12,17 @@
 require 'rubygems'
 require 'minitest/autorun'
 require './lib/runcible/resources/consumer_group'
-#require 'test/integration/resources/helpers/consumer_helper'
-require 'test/integration/resources/helpers/repository_helper'
-#require 'active_support/core_ext/time/calculations'
+#require 'test/integration/resources/supports/consumer_support'
+require 'test/support/repository_support'
 
 
 module TestConsumerGroupBase
-  include RepositoryHelper
+  include RepositorySupport
 
   def setup
     @resource = Runcible::Resources::ConsumerGroup
     @consumer_group_id = "integration_test_consumer_group"
-    VCR.insert_cassette('pulp_consumer_group')
+    VCR.insert_cassette('consumer_group')
   end
 
   def teardown
@@ -33,13 +32,13 @@ module TestConsumerGroupBase
   def create_consumer_group
     @resource.create(@consumer_group_id, :display_name => "foo" , :description => 'Test description.', :consumer_ids => [])
   rescue Exception => e
-    p "TestConsumerGroup: ConsumerGroup #{@consumer_group_id} already existed."
+    puts e
   end
 
   def destroy_consumer_group
     @resource.delete(@consumer_group_id)
   rescue Exception => e
-    p "TestConsumerGroup: No consumer_group #{@consumer_group_id} to delete."
+    puts e
   end
 
 end
@@ -91,12 +90,12 @@ class TestConsumerGroup < MiniTest::Unit::TestCase
 
   def test_path
     path = @resource.path
-    assert_match('/consumer_groups/', path)
+    assert_match('consumer_groups/', path)
   end
 
   def test_path_with_id
     path = @resource.path(@consumer_group_id)
-    assert_match("/consumer_groups/#{@consumer_group_id}/", path)
+    assert_match("consumer_groups/#{@consumer_group_id}/", path)
   end
 
   def test_retrieve
@@ -105,5 +104,6 @@ class TestConsumerGroup < MiniTest::Unit::TestCase
     assert response['id'] == @consumer_group_id
     assert response['consumer_ids'] == []
   end
+
 end
 

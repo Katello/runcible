@@ -1,4 +1,4 @@
-# Copyright (c) 2012 Eric D Helms
+# Copyright (c) 2012 Red Hat
 #
 # MIT License
 #
@@ -32,11 +32,11 @@ module Runcible
 
       def self.add(id, login)
         required = required_params(binding.send(:local_variables), binding, ["id"])
-        call(:post, "#{path(id)}/users/", :payload => { :required => required })
+        call(:post, "#{path(id)}users/", :payload => { :required => required })
       end
 
       def self.remove(id, login)
-        call(:delete, "#{path(id)}/users/#{login}/")
+        call(:delete, "#{path(id)}users/#{login}/")
       end
 
     end
