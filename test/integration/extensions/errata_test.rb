@@ -1,4 +1,4 @@
-# Copyright (c) 2012 Eric D Helms
+# Copyright (c) 2012 Red Hat
 #
 # MIT License
 #

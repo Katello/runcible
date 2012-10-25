@@ -26,21 +26,21 @@ Or install it yourself as:
 
 The base configuration allows for the following to be set.
 
-  Runcible::Base.config = { 
+    Runcible::Base.config = { 
                 :url      => "",
                 :api_path => "",
                 :user     => "",
                 :logger   => ""
               }
 
-  Required Configuration
+Required Configuration
 
     :uri      => The base URI of the Pulp server (default: https://localhost)
     :api_path => The API path of the Pulp server (default: pulp/api/v2/)
     :user     => The Pulp username to be used in authentication
     :logger   => The location to log RestClient calls (e.g. stdout)
   
-  Authentication Options are either HTTP or Oauth:
+Authentication Options are either HTTP or Oauth:
 
     :http_auth  => {:password => ''}
 
@@ -53,21 +53,21 @@ For an example on parsing the Pulp server.conf and using values provided within 
 
 Runcible provides two represntation's of Pulp entities to make API calls: [resources](https://github.com/Katello/runcible/tree/master/lib/runcible/resources) and [extensions](https://github.com/Katello/runcible/tree/master/lib/runcible/extensions)
 
-The best examples of how to use either the resources or extensions can be found within the tests.
+The best examples of how to use either the resources or extensions can be found within the [tests](https://github.com/Katello/runcible/tree/master/test/integration)
 
 #### Resources
 
 Resources are designed to be one-for-one with the Pulp API calls in terms of required parameters and naming of the calls.  For example, in order to create a repository, associate a Yum importer and a distributor:
 
-  Runcible::Resources::Repository.create("Repository_ID")
-  Runcible::Resources::Repository.associate_importer("Repository_ID", "yum_importer", {})
-  Runcible::Resources::Repository.associate_distributor("Repository_ID", "yum_distributor", {"relative_url" => "/", "http" => true, "https" => true})
+    Runcible::Resources::Repository.create("Repository_ID")
+    Runcible::Resources::Repository.associate_importer("Repository_ID", "yum_importer", {})
+    Runcible::Resources::Repository.associate_distributor("Repository_ID", "yum_distributor", {"relative_url" => "/", "http" => true, "https" => true})
 
 #### Extensions
 
 Extensions are constructs around the Pulp API that make retrieving, accessing or creating certain data types easier.  For example, providing objects that represent the details of a yum importer or distributor, and providing functions to create a Repository with an importer and distributors in a single call.  The same three step process above using extensions is:
 
-  Runcible::Extensions::Repository.create_with_importer_and_distributors("Repository_ID", {:id=>'yum_importer'}, [{'type_id' => 'yum_distributor', 'id'=>'123', 'auto_publish'=>true, 'config'=>{'relative_url' => '/', 'http' => true, 'https' => true}}])
+    Runcible::Extensions::Repository.create_with_importer_and_distributors("Repository_ID", {:id=>'yum_importer'}, [{'type_id' => 'yum_distributor', 'id'=>'123', 'auto_publish'=>true, 'config'=>{'relative_url' => '/', 'http' => true, 'https' => true}}])
 
 Alternatively, using distributor and importer objects:
 
@@ -79,19 +79,24 @@ Alternatively, using distributor and importer objects:
 ## Testing
 
 To run all tests using recorded data, run:
-   rake test:integration mode=none
+
+    rake test:integration mode=none
 
 To run all tests to record data:
-   rake test:integration mode=live
+   
+    rake test:integration mode=live
 
 To run a single test using recorded data, run:
-   rake test:integration mode=none test=extensions/respository
+   
+    rake test:integration mode=none test=extensions/respository
 
 To run with  oauth, simply append the following to any commend:
-   auth_type=oauth
+   
+    auth_type=oauth
 
 To see RestClient logs while testing:
-  logging=true
+  
+    logging=true
 
 ## Contributing
 
