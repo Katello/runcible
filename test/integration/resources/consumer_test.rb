@@ -115,8 +115,7 @@ class TestGeneralMethods  < ConsumerTests
     description = "Test description"
     response = @resource.update(@consumer_id, :description => description)
     assert response.code == 200
-    consumer = @resource.retrieve(@consumer_id)
-    assert consumer['description'] == description
+    assert_equal(description, response['description'])
   end
 end
 
@@ -181,6 +180,23 @@ class TestConsumerRequiresRepo < ConsumerTests
     #assert(@resource.retrieve_bindings(@consumer_id).empty?)
     assert(200, response.code)
   end
+
+  def test_install_units
+    response  = @resource.install_units(@consumer_id,{"units"=>["unit_key"=>{:name => "zsh"}]})
+    assert_equal(202, response.code)
+  end
+
+  def test_update_units
+    response  = @resource.update_units(@consumer_id,{"units"=>["unit_key"=>{:name => "zsh"}]})
+    assert_equal(202, response.code)
+  end
+
+  def test_uninstall_units
+    response  = @resource.uninstall_units(@consumer_id,{"units"=>["unit_key"=>{:name => "zsh"}]})
+    assert_equal(202, response.code)
+  end
+
+
 
 end
 
