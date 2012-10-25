@@ -13,7 +13,7 @@ require 'rubygems'
 require 'minitest/autorun'
 require './lib/runcible/resources/consumer'
 require './lib/runcible/extensions/consumer'
-require './test/integration/resources/helpers/repository_helper'
+require './test/support/repository_support'
 
 
 class TestConsumer < MiniTest::Unit::TestCase
@@ -41,27 +41,27 @@ class TestConsumer < MiniTest::Unit::TestCase
   end
 
   def bind_repo
-    @extension.bind_all(@consumer_id, RepositoryHelper.repo_id)
+    @extension.bind_all(@consumer_id, RepositorySupport.repo_id)
   end
 
   def self.before_suite
-    RepositoryHelper.create_and_sync_repo(:importer_and_distributor => true)
+    RepositorySupport.create_and_sync_repo(:importer_and_distributor => true)
   end
 
   def self.after_suite
-    RepositoryHelper.destroy_repo
+    RepositorySupport.destroy_repo
   end
 
   def test_bind_all
-    @extension.unbind_all(@consumer_id, RepositoryHelper.repo_id)
-    response = @extension.bind_all(@consumer_id, RepositoryHelper.repo_id)
-    assert_equal(RepositoryHelper.repo_id, response.first[:repo_id])
+    @extension.unbind_all(@consumer_id, RepositorySupport.repo_id)
+    response = @extension.bind_all(@consumer_id, RepositorySupport.repo_id)
+    assert_equal(RepositorySupport.repo_id, response.first[:repo_id])
 
     #assert(!@resource.retrieve_bindings(@consumer_id).empty?)
   end
 
   def test_unbind_all
-    response = @extension.unbind_all(@consumer_id, RepositoryHelper.repo_id)
+    response = @extension.unbind_all(@consumer_id, RepositorySupport.repo_id)
     assert(response.size > 0)
     #assert(@resource.retrieve_bindings(@consumer_id).empty?)
   end

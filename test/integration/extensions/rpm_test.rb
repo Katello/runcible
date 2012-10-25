@@ -2,7 +2,7 @@ require 'rubygems'
 require 'minitest/autorun'
 
 require './lib/runcible'
-require './test/integration/resources/helpers/repository_helper'
+require './test/support/repository_support'
 
 
 class TestExtenionsRpm < MiniTest::Unit::TestCase
@@ -10,11 +10,11 @@ class TestExtenionsRpm < MiniTest::Unit::TestCase
   def self.before_suite
     @@extension = Runcible::Extensions::Rpm
     VCR.insert_cassette('extensions/rpm', :match_requests_on => [:method, :path, :params, :body_json])
-    RepositoryHelper.create_and_sync_repo(:importer => true)
+    RepositorySupport.create_and_sync_repo(:importer => true)
   end
 
   def self.after_suite
-    RepositoryHelper.destroy_repo
+    RepositorySupport.destroy_repo
     VCR.eject_cassette
   end
 

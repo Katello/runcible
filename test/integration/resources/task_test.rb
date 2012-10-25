@@ -12,12 +12,12 @@
 require 'rubygems'
 require 'minitest/autorun'
 
-require './test/integration/resources/helpers/repository_helper'
+require './test/support/repository_support'
 require './lib/runcible/resources/task'
 
 
 module TestResourcesTaskBase
-  include RepositoryHelper
+  include RepositorySupport
 
   def setup
     @resource = Runcible::Resources::Task
@@ -35,12 +35,12 @@ class TestResourcesTask < MiniTest::Unit::TestCase
   include TestResourcesTaskBase
 
   def self.before_suite
-    RepositoryHelper.create_repo(:importer => true)
-    RepositoryHelper.sync_repo
+    RepositorySupport.create_repo(:importer => true)
+    RepositorySupport.sync_repo
   end
 
   def self.after_suite
-    RepositoryHelper.destroy_repo
+    RepositorySupport.destroy_repo
   end
 
   def test_path
@@ -49,27 +49,27 @@ class TestResourcesTask < MiniTest::Unit::TestCase
   end
 
   def test_path_with_task_id
-    path = @resource.path(RepositoryHelper.task['task_id'])
-    assert_match("tasks/#{RepositoryHelper.task['task_id']}/", path)
+    path = @resource.path(RepositorySupport.task['task_id'])
+    assert_match("tasks/#{RepositorySupport.task['task_id']}/", path)
   end
 
   def test_poll
-    response = @resource.poll(RepositoryHelper.task['task_id'])
+    response = @resource.poll(RepositorySupport.task['task_id'])
     assert response.code == 200
-    assert response['task_id'] == RepositoryHelper.task['task_id']
+    assert response['task_id'] == RepositorySupport.task['task_id']
   end
 
   def test_list
     response = @resource.list
     assert response.code == 200
     assert response.length > 0
-    #assert response.first['task_id'] == RepositoryHelper.task['task_id']
+    #assert response.first['task_id'] == RepositorySupport.task['task_id']
   end
 
 =begin
   #TODO: Needs more reliable testable scenario - scheduled sync in the future?
   def test_cancel
-    response = @resource.cancel(RepositoryHelper.task['task_id'])
+    response = @resource.cancel(RepositorySupport.task['task_id'])
     assert response.code == 200
   end
 =end

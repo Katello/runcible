@@ -32,7 +32,7 @@ class TestResourcesUserCreate < MiniTest::Unit::TestCase
 
   def teardown
     super
-    VCR.use_cassette('user_helper') do
+    VCR.use_cassette('user_support') do
       begin
         @resource.retrieve(@username)
         @resource.delete(@username)
@@ -61,7 +61,7 @@ class TestResourcesUser < MiniTest::Unit::TestCase
 
   def setup
     super
-    VCR.use_cassette('user_helper') do
+    VCR.use_cassette('user_support') do
       begin
         @resource.retrieve(@username)
       rescue RestClient::ResourceNotFound => e
@@ -72,7 +72,7 @@ class TestResourcesUser < MiniTest::Unit::TestCase
 
   def teardown
     super
-    VCR.use_cassette('user_helper') do
+    VCR.use_cassette('user_support') do
       begin
         @resource.retrieve(@username)
         @resource.delete(@username)

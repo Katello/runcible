@@ -12,7 +12,7 @@
 require 'rubygems'
 require 'minitest/autorun'
 
-require './test/integration/resources/helpers/repository_helper'
+require './test/support/repository_support'
 require './lib/runcible/resources/repository'
 require './lib/runcible/resources/repository_schedule'
 require './lib/runcible/extensions/repository'
@@ -22,7 +22,7 @@ require './lib/runcible/extensions/yum_importer'
 
 
 module TestResourcesScheduleBase
-  include RepositoryHelper
+  include RepositorySupport
 
   def setup
     @resource = Runcible::Resources::RepositorySchedule
@@ -40,12 +40,12 @@ class TestResourcesRepositoryCreateSchedule < MiniTest::Unit::TestCase
   def setup
     super
     VCR.insert_cassette('repository_schedules')
-    RepositoryHelper.create_repo :importer=>true
-    RepositoryHelper.create_schedule
+    RepositorySupport.create_repo :importer=>true
+    RepositorySupport.create_schedule
   end
 
   def teardown
-    RepositoryHelper.destroy_repo
+    RepositorySupport.destroy_repo
     super
   end
 
@@ -55,13 +55,13 @@ class TestResourcesRepositoryCreateSchedule < MiniTest::Unit::TestCase
   end
 
   def test_schedule_create
-    response = @resource.create(RepositoryHelper.repo_id, 'yum_importer', "2012-09-25T20:44:00Z/P7D")
+    response = @resource.create(RepositorySupport.repo_id, 'yum_importer', "2012-09-25T20:44:00Z/P7D")
     assert response.code == 201
   end
 
   def test_list_schedules
-    list = @resource.list(RepositoryHelper.repo_id, 'yum_importer')
-    assert_match(list.first[:schedule], RepositoryHelper.schedule_time)
+    list = @resource.list(RepositorySupport.repo_id, 'yum_importer')
+    assert_match(list.first[:schedule], RepositorySupport.schedule_time)
   end
 
 end
@@ -72,18 +72,18 @@ class TestResourcesScheduleUpdate < MiniTest::Unit::TestCase
   def setup
     super
     VCR.insert_cassette('repository_schedules_update')
-    RepositoryHelper.create_repo :importer=>true
-    RepositoryHelper.create_schedule
+    RepositorySupport.create_repo :importer=>true
+    RepositorySupport.create_schedule
   end
 
   def teardown
-    RepositoryHelper.destroy_repo
+    RepositorySupport.destroy_repo
     super
   end
 
   def test_update_schedule
-    id = @resource.list(RepositoryHelper.repo_id, 'yum_importer').first['_id']
-    response = @resource.update(RepositoryHelper.repo_id, 'yum_importer', id, {:schedule=>'P1DT'})
+    id = @resource.list(RepositorySupport.repo_id, 'yum_importer').first['_id']
+    response = @resource.update(RepositorySupport.repo_id, 'yum_importer', id, {:schedule=>'P1DT'})
     assert response.code == 200
   end
 end
@@ -95,18 +95,18 @@ class TestResourcesScheduleDelete < MiniTest::Unit::TestCase
   def setup
     super
     VCR.insert_cassette('repository_schedules_delete')
-    RepositoryHelper.create_repo :importer=>true
-    RepositoryHelper.create_schedule
+    RepositorySupport.create_repo :importer=>true
+    RepositorySupport.create_schedule
   end
 
   def teardown
-    RepositoryHelper.destroy_repo
+    RepositorySupport.destroy_repo
     super
   end
 
   def test_delete_schedules
-    id = @resource.list(RepositoryHelper.repo_id, 'yum_importer').first['_id']
-    response = @resource.delete(RepositoryHelper.repo_id, 'yum_importer', id)
+    id = @resource.list(RepositorySupport.repo_id, 'yum_importer').first['_id']
+    response = @resource.delete(RepositorySupport.repo_id, 'yum_importer', id)
     assert response.code == 200
   end
 

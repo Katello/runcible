@@ -11,9 +11,10 @@
 
 require 'rubygems'
 require 'minitest/autorun'
+
 require './lib/runcible/resources/consumer'
 require './lib/runcible/extensions/consumer'
-require './test/integration/resources/helpers/repository_helper'
+require './test/support/repository_support'
 
 
 module TestConsumerBase
@@ -43,7 +44,7 @@ module TestConsumerBase
   end
 
   def bind_repo
-    @extension.bind_all(@consumer_id, RepositoryHelper.repo_id)
+    @extension.bind_all(@consumer_id, RepositorySupport.repo_id)
   end
 
 end
@@ -144,11 +145,11 @@ end
 class TestConsumerRequiresRepo < ConsumerTests
 
   def self.before_suite
-    RepositoryHelper.create_and_sync_repo(:importer_and_distributor => true)
+    RepositorySupport.create_and_sync_repo(:importer_and_distributor => true)
   end
 
   def self.after_suite
-    RepositoryHelper.destroy_repo
+    RepositorySupport.destroy_repo
   end
 
   def setup
@@ -157,25 +158,25 @@ class TestConsumerRequiresRepo < ConsumerTests
   end
 
   def test_bind_empty
-    distro_id = RepositoryHelper.distributor()['id']
-    response = @resource.unbind(@consumer_id, RepositoryHelper.repo_id, distro_id)
+    distro_id = RepositorySupport.distributor()['id']
+    response = @resource.unbind(@consumer_id, RepositorySupport.repo_id, distro_id)
     assert(200, response.code)
     #assert(@resource.retrieve_bindings(@consumer_id).empty?)
 
   end
 
   def test_bind_success
-    distro_id = RepositoryHelper.distributor()['id']
-    response = @resource.bind(@consumer_id, RepositoryHelper.repo_id, distro_id)
-    assert_equal(RepositoryHelper.repo_id, response[:repo_id])
+    distro_id = RepositorySupport.distributor()['id']
+    response = @resource.bind(@consumer_id, RepositorySupport.repo_id, distro_id)
+    assert_equal(RepositorySupport.repo_id, response[:repo_id])
     assert(200, response.code)
     #assert(!@resource.retrieve_bindings(@consumer_id).empty?)
   end
 
   def test_unbind
-    distro_id = RepositoryHelper.distributor()['id']
+    distro_id = RepositorySupport.distributor()['id']
     assert(!@resource.retrieve_bindings(@consumer_id).empty?)
-    response = @resource.unbind(@consumer_id, RepositoryHelper.repo_id, distro_id)
+    response = @resource.unbind(@consumer_id, RepositorySupport.repo_id, distro_id)
     #assert(@resource.retrieve_bindings(@consumer_id).empty?)
     assert(200, response.code)
   end

@@ -12,12 +12,12 @@
 require 'rubygems'
 require 'minitest/autorun'
 require './lib/runcible/resources/consumer_group'
-#require 'test/integration/resources/helpers/consumer_helper'
-require 'test/integration/resources/helpers/repository_helper'
+#require 'test/integration/resources/supports/consumer_support'
+require 'test/support/repository_support'
 
 
 module TestConsumerGroupBase
-  include RepositoryHelper
+  include RepositorySupport
 
   def setup
     @resource = Runcible::Resources::ConsumerGroup
