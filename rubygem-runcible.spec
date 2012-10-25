@@ -35,7 +35,7 @@ Name:           rubygem-%{gem_name}
 Summary:        A gem exposing Pulp's juiciest parts
 Group:          Applications/System
 License:        MIT
-Version:        0.1.1
+Version:        0.1.2
 Release:        1%{?dist}
 URL:            https://github.com/Katello/runcible
 Source0:        %{name}-%{version}.tar.gz
@@ -93,6 +93,39 @@ This package contains documentation for rubygem-%{gem_name}
 %doc %{gem_docdir}
 
 %changelog
+* Thu Oct 25 2012 Eric D. Helms <ehelms@redhat.com> 0.1.2-1
+- Version bump. (ehelms@redhat.com)
+- Updates README indentation for code blocks and moves all Copyrights to Red
+  Hat. (ehelms@redhat.com)
+- Updates README to include configuration and examples. (ehelms@redhat.com)
+- Updates to add bold emphasis to pulp version in README. (ehelms@redhat.com)
+- Adds Rake task to grab pulp version and input to the README.
+  (ehelms@redhat.com)
+- Adds missing errata test and cassette. (ehelms@redhat.com)
+- Moves helpers to be under test/support. (ehelms@redhat.com)
+- Adds missing cassette file. (ehelms@redhat.com)
+- Merge branch 'master' of github.com:Katello/runcible (ehelms@redhat.com)
+- Merge pull request #13 from parthaa/consumer-groups (ericdhelms@gmail.com)
+- Initial set of runcible consumer group bindings (paji@redhat.com)
+- Added  consumer tests for content install/update/uninstall (paji@redhat.com)
+- Moves fixtures to be under test/fixtures instead of test/integration.
+  (ehelms@redhat.com)
+- Fixed repo sync schedule based tests (paji@redhat.com)
+- Adding back previously deleted test files. (ehelms@redhat.com)
+- Misc Fixes to get pulp artifacts running (paji@redhat.com)
+- Patch to get all tests running right in live mode (paji@redhat.com)
+- Tweaked the tests to pass in the 'none' mode (paji@redhat.com)
+- Split up the extension/resources tests in  different files (paji@redhat.com)
+- Fixed consumer unit tests based on comments offered in the pull
+  (paji@redhat.com)
+- Moved the binding methods to follow the runcible convention of separate calls
+  (paji@redhat.com)
+- Reverting a previous change on this file (paji@redhat.com)
+- Merge branch 'master' into pulp-consumer-changes (paji@redhat.com)
+- Added tests for consumer API (paji@redhat.com)
+- Changes to deal with pulp-server-0.0.331-1.fc16.noarch (paji@redhat.com)
+- Fixed notifications to work with the new pulp (paji@redhat.com)
+
 * Tue Oct 16 2012 Eric D. Helms <ehelms@redhat.com> 0.1.1-1
 - Version bump. (ehelms@redhat.com)
 
