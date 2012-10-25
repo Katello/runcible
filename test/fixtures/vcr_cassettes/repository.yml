@@ -1,313 +1,313 @@
 --- 
-recorded_with: VCR 2.2.5
 http_interactions: 
-- request: 
-    method: post
-    uri: https://admin:admin@knifeparty.localdomain/pulp/api/v2/repositories/integration_test_id/distributors/
-    body: 
-      string: "{\"distributor_type_id\":\"yum_distributor\",\"distributor_config\":{\"https\":true,\"http\":true,\"relative_url\":\"/\"}}"
-    headers: 
-      Content-Type: 
-      - application/json
-      Accept-Encoding: 
-      - gzip, deflate
-      Accept: 
-      - application/json
-      Content-Length: 
-      - "108"
-  response: 
-    status: 
-      code: 201
-      message: Created
-    headers: 
-      Content-Type: 
-      - application/json
-      Date: 
-      - Thu, 25 Oct 2012 01:02:02 GMT
-      Server: 
-      - Apache/2.2.22 (Fedora)
-      Content-Length: 
-      - "349"
-      Location: 
-      - None
-    body: 
-      string: "{\"repo_id\": \"integration_test_id\", \"_ns\": \"repo_distributors\", \"last_publish\": null, \"auto_publish\": false, \"scheduled_publishes\": [], \"distributor_type_id\": \"yum_distributor\", \"scratchpad\": null, \"_id\": {\"$oid\": \"50888f8bdc7921558d002337\"}, \"config\": {\"http\": true, \"https\": true, \"relative_url\": \"/\"}, \"id\": \"037f60b5-df59-434c-a66b-45a210ae476a\"}"
-    http_version: 
-  recorded_at: Thu, 25 Oct 2012 01:02:03 GMT
-- request: 
-    method: put
-    uri: https://admin:admin@knifeparty.localdomain/pulp/api/v2/repositories/integration_test_id/
-    body: 
-      string: "{\"delta\":{\"description\":\"updated_description_integration_test_id\"}}"
-    headers: 
-      Content-Type: 
-      - application/json
-      Accept-Encoding: 
-      - gzip, deflate
-      Accept: 
-      - application/json
-      Content-Length: 
-      - "67"
-  response: 
-    status: 
-      code: 200
-      message: OK
-    headers: 
-      Content-Type: 
-      - application/json
-      Date: 
-      - Thu, 25 Oct 2012 01:02:03 GMT
-      Server: 
-      - Apache/2.2.22 (Fedora)
-      Content-Length: 
-      - "302"
-    body: 
-      string: "{\"scratchpad\": {}, \"display_name\": \"integration_test_id\", \"description\": \"updated_description_integration_test_id\", \"_ns\": \"repos\", \"notes\": {}, \"content_unit_count\": 0, \"_id\": {\"$oid\": \"50888f89dc7921558d00232d\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\"}"
-    http_version: 
-  recorded_at: Thu, 25 Oct 2012 01:02:03 GMT
-- request: 
-    method: post
-    uri: https://admin:admin@knifeparty.localdomain/pulp/api/v2/repositories/search/
-    body: 
-      string: "{\"criteria\":{}}"
-    headers: 
-      Content-Type: 
-      - application/json
-      Accept-Encoding: 
-      - gzip, deflate
-      Accept: 
-      - application/json
-      Content-Length: 
-      - "15"
-  response: 
-    status: 
-      code: 200
-      message: OK
-    headers: 
-      Content-Type: 
-      - application/json
-      Date: 
-      - Thu, 25 Oct 2012 01:02:03 GMT
-      Server: 
-      - Apache/2.2.22 (Fedora)
-      Content-Length: 
-      - "805"
-    body: 
-      string: "[{\"scratchpad\": {\"checksum_type\": \"sha256\", \"importer_working_dir\": \"/var/lib/pulp/working/repos/ACME_Corporation-Katello-Katello_Fedora_17/importers/yum_importer/ACME_Corporation-Katello-Katello_Fedora_17\"}, \"display_name\": \"Katello Fedora 17\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_count\": 51, \"_id\": {\"$oid\": \"5071553edc79215650000041\"}, \"id\": \"ACME_Corporation-Katello-Katello_Fedora_17\", \"_href\": \"/pulp/api/v2/repositories/ACME_Corporation-Katello-Katello_Fedora_17/\"}, {\"scratchpad\": {}, \"display_name\": \"integration_test_id\", \"description\": \"updated_description_integration_test_id\", \"_ns\": \"repos\", \"notes\": {}, \"content_unit_count\": 0, \"_id\": {\"$oid\": \"50888f89dc7921558d00232d\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\"}]"
-    http_version: 
-  recorded_at: Thu, 25 Oct 2012 01:02:03 GMT
-- request: 
-    method: get
-    uri: https://admin:admin@knifeparty.localdomain/pulp/api/v2/repositories/
-    body: 
-      string: ""
-    headers: 
-      Content-Type: 
-      - application/json
-      Accept-Encoding: 
-      - gzip, deflate
-      Accept: 
-      - application/json
-  response: 
-    status: 
-      code: 200
-      message: OK
-    headers: 
-      Content-Type: 
-      - application/json
-      Date: 
-      - Thu, 25 Oct 2012 01:02:03 GMT
-      Server: 
-      - Apache/2.2.22 (Fedora)
-      Content-Length: 
-      - "805"
-    body: 
-      string: "[{\"scratchpad\": {\"checksum_type\": \"sha256\", \"importer_working_dir\": \"/var/lib/pulp/working/repos/ACME_Corporation-Katello-Katello_Fedora_17/importers/yum_importer/ACME_Corporation-Katello-Katello_Fedora_17\"}, \"display_name\": \"Katello Fedora 17\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_count\": 51, \"_id\": {\"$oid\": \"5071553edc79215650000041\"}, \"id\": \"ACME_Corporation-Katello-Katello_Fedora_17\", \"_href\": \"/pulp/api/v2/repositories/ACME_Corporation-Katello-Katello_Fedora_17/\"}, {\"scratchpad\": {}, \"display_name\": \"integration_test_id\", \"description\": \"updated_description_integration_test_id\", \"_ns\": \"repos\", \"notes\": {}, \"content_unit_count\": 0, \"_id\": {\"$oid\": \"50888f89dc7921558d00232d\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\"}]"
-    http_version: 
-  recorded_at: Thu, 25 Oct 2012 01:02:04 GMT
-- request: 
-    method: post
-    uri: https://admin:admin@knifeparty.localdomain/pulp/api/v2/repositories/integration_test_id/importers/
-    body: 
-      string: "{\"importer_type_id\":\"yum_importer\",\"id\":\"integration_test_id\",\"importer_config\":{}}"
-    headers: 
-      Content-Type: 
-      - application/json
-      Accept-Encoding: 
-      - gzip, deflate
-      Accept: 
-      - application/json
-      Content-Length: 
-      - "83"
-  response: 
-    status: 
-      code: 201
-      message: Created
-    headers: 
-      Content-Type: 
-      - application/json
-      Date: 
-      - Thu, 25 Oct 2012 01:02:04 GMT
-      Server: 
-      - Apache/2.2.22 (Fedora)
-      Content-Length: 
-      - "238"
-      Location: 
-      - importer
-    body: 
-      string: "{\"repo_id\": \"integration_test_id\", \"_ns\": \"repo_importers\", \"importer_type_id\": \"yum_importer\", \"last_sync\": null, \"scheduled_syncs\": [], \"scratchpad\": null, \"_id\": {\"$oid\": \"50888f8cdc7921558d00234c\"}, \"config\": {}, \"id\": \"yum_importer\"}"
-    http_version: 
-  recorded_at: Thu, 25 Oct 2012 01:02:04 GMT
 - request: 
     method: get
     uri: https://admin:admin@knifeparty.localdomain/pulp/api/v2/repositories/integration_test_id/?details=true
     body: 
       string: ""
     headers: 
-      Content-Type: 
-      - application/json
       Accept-Encoding: 
       - gzip, deflate
       Accept: 
+      - application/json
+      Content-Type: 
       - application/json
   response: 
     status: 
       code: 200
       message: OK
     headers: 
+      Content-Length: 
+      - "624"
+      Date: 
+      - Thu, 25 Oct 2012 02:59:30 GMT
       Content-Type: 
       - application/json
-      Date: 
-      - Thu, 25 Oct 2012 01:02:04 GMT
       Server: 
       - Apache/2.2.22 (Fedora)
-      Content-Length: 
-      - "926"
     body: 
-      string: "{\"scratchpad\": {}, \"display_name\": \"integration_test_id\", \"description\": \"updated_description_integration_test_id\", \"_ns\": \"repos\", \"notes\": {}, \"content_unit_count\": 0, \"_id\": {\"$oid\": \"50888f89dc7921558d00232d\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\", \"importers\": [{\"repo_id\": \"integration_test_id\", \"_ns\": \"repo_importers\", \"importer_type_id\": \"yum_importer\", \"last_sync\": null, \"scratchpad\": null, \"scheduled_syncs\": [], \"_id\": {\"$oid\": \"50888f8cdc7921558d00234c\"}, \"config\": {}, \"id\": \"yum_importer\"}], \"distributors\": [{\"repo_id\": \"integration_test_id\", \"_ns\": \"repo_distributors\", \"last_publish\": null, \"auto_publish\": false, \"scheduled_publishes\": [], \"distributor_type_id\": \"yum_distributor\", \"scratchpad\": null, \"_id\": {\"$oid\": \"50888f8bdc7921558d002337\"}, \"config\": {\"http\": true, \"relative_url\": \"/\", \"https\": true}, \"id\": \"037f60b5-df59-434c-a66b-45a210ae476a\"}]}"
+      string: "{\"scratchpad\": {}, \"display_name\": \"integration_test_id\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_count\": 0, \"_id\": {\"$oid\": \"5088ab10dc7921558d00381c\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\", \"importers\": [{\"repo_id\": \"integration_test_id\", \"_ns\": \"repo_importers\", \"importer_type_id\": \"yum_importer\", \"last_sync\": null, \"scratchpad\": null, \"scheduled_syncs\": [], \"_id\": {\"$oid\": \"5088ab10dc7921558d00381d\"}, \"config\": {\"feed_url\": \"file:///home/ehelms/workspace/runcible/test/fixtures/repositories/zoo5\"}, \"id\": \"yum_importer\"}], \"distributors\": []}"
     http_version: 
-  recorded_at: Thu, 25 Oct 2012 01:02:04 GMT
+  recorded_at: Thu, 25 Oct 2012 02:59:30 GMT
+- request: 
+    method: post
+    uri: https://admin:admin@knifeparty.localdomain/pulp/api/v2/repositories/integration_test_id/distributors/
+    body: 
+      string: "{\"distributor_config\":{\"https\":true,\"http\":true,\"relative_url\":\"/\"},\"distributor_type_id\":\"yum_distributor\"}"
+    headers: 
+      Content-Length: 
+      - "108"
+      Accept-Encoding: 
+      - gzip, deflate
+      Accept: 
+      - application/json
+      Content-Type: 
+      - application/json
+  response: 
+    status: 
+      code: 201
+      message: Created
+    headers: 
+      Content-Length: 
+      - "349"
+      Date: 
+      - Thu, 25 Oct 2012 02:59:30 GMT
+      Content-Type: 
+      - application/json
+      Server: 
+      - Apache/2.2.22 (Fedora)
+      Location: 
+      - None
+    body: 
+      string: "{\"repo_id\": \"integration_test_id\", \"_ns\": \"repo_distributors\", \"last_publish\": null, \"auto_publish\": false, \"scheduled_publishes\": [], \"distributor_type_id\": \"yum_distributor\", \"scratchpad\": null, \"_id\": {\"$oid\": \"5088ab12dc7921558d003827\"}, \"config\": {\"http\": true, \"https\": true, \"relative_url\": \"/\"}, \"id\": \"28ff438f-048b-4cf4-8dbd-e314a01dfac7\"}"
+    http_version: 
+  recorded_at: Thu, 25 Oct 2012 02:59:30 GMT
+- request: 
+    method: post
+    uri: https://admin:admin@knifeparty.localdomain/pulp/api/v2/repositories/integration_test_id/importers/
+    body: 
+      string: "{\"importer_type_id\":\"yum_importer\",\"id\":\"integration_test_id\",\"importer_config\":{}}"
+    headers: 
+      Content-Length: 
+      - "83"
+      Accept-Encoding: 
+      - gzip, deflate
+      Accept: 
+      - application/json
+      Content-Type: 
+      - application/json
+  response: 
+    status: 
+      code: 201
+      message: Created
+    headers: 
+      Content-Length: 
+      - "238"
+      Date: 
+      - Thu, 25 Oct 2012 02:59:30 GMT
+      Content-Type: 
+      - application/json
+      Server: 
+      - Apache/2.2.22 (Fedora)
+      Location: 
+      - importer
+    body: 
+      string: "{\"repo_id\": \"integration_test_id\", \"_ns\": \"repo_importers\", \"importer_type_id\": \"yum_importer\", \"last_sync\": null, \"scheduled_syncs\": [], \"scratchpad\": null, \"_id\": {\"$oid\": \"5088ab13dc7921558d003830\"}, \"config\": {}, \"id\": \"yum_importer\"}"
+    http_version: 
+  recorded_at: Thu, 25 Oct 2012 02:59:31 GMT
+- request: 
+    method: get
+    uri: https://admin:admin@knifeparty.localdomain/pulp/api/v2/repositories/
+    body: 
+      string: ""
+    headers: 
+      Accept-Encoding: 
+      - gzip, deflate
+      Accept: 
+      - application/json
+      Content-Type: 
+      - application/json
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Content-Length: 
+      - "768"
+      Date: 
+      - Thu, 25 Oct 2012 02:59:31 GMT
+      Content-Type: 
+      - application/json
+      Server: 
+      - Apache/2.2.22 (Fedora)
+    body: 
+      string: "[{\"scratchpad\": {\"checksum_type\": \"sha256\", \"importer_working_dir\": \"/var/lib/pulp/working/repos/ACME_Corporation-Katello-Katello_Fedora_17/importers/yum_importer/ACME_Corporation-Katello-Katello_Fedora_17\"}, \"display_name\": \"Katello Fedora 17\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_count\": 51, \"_id\": {\"$oid\": \"5071553edc79215650000041\"}, \"id\": \"ACME_Corporation-Katello-Katello_Fedora_17\", \"_href\": \"/pulp/api/v2/repositories/ACME_Corporation-Katello-Katello_Fedora_17/\"}, {\"scratchpad\": {}, \"display_name\": \"integration_test_id\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_count\": 0, \"_id\": {\"$oid\": \"5088ab10dc7921558d00381c\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\"}]"
+    http_version: 
+  recorded_at: Thu, 25 Oct 2012 02:59:31 GMT
 - request: 
     method: get
     uri: https://admin:admin@knifeparty.localdomain/pulp/api/v2/repositories/integration_test_id/?details=detailstrue
     body: 
       string: ""
     headers: 
-      Content-Type: 
-      - application/json
       Accept-Encoding: 
       - gzip, deflate
       Accept: 
+      - application/json
+      Content-Type: 
       - application/json
   response: 
     status: 
       code: 200
       message: OK
     headers: 
+      Content-Length: 
+      - "889"
+      Date: 
+      - Thu, 25 Oct 2012 02:59:31 GMT
       Content-Type: 
       - application/json
-      Date: 
-      - Thu, 25 Oct 2012 01:02:04 GMT
       Server: 
       - Apache/2.2.22 (Fedora)
-      Content-Length: 
-      - "926"
     body: 
-      string: "{\"scratchpad\": {}, \"display_name\": \"integration_test_id\", \"description\": \"updated_description_integration_test_id\", \"_ns\": \"repos\", \"notes\": {}, \"content_unit_count\": 0, \"_id\": {\"$oid\": \"50888f89dc7921558d00232d\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\", \"importers\": [{\"repo_id\": \"integration_test_id\", \"_ns\": \"repo_importers\", \"importer_type_id\": \"yum_importer\", \"last_sync\": null, \"scratchpad\": null, \"scheduled_syncs\": [], \"_id\": {\"$oid\": \"50888f8cdc7921558d00234c\"}, \"config\": {}, \"id\": \"yum_importer\"}], \"distributors\": [{\"repo_id\": \"integration_test_id\", \"_ns\": \"repo_distributors\", \"last_publish\": null, \"auto_publish\": false, \"scheduled_publishes\": [], \"distributor_type_id\": \"yum_distributor\", \"scratchpad\": null, \"_id\": {\"$oid\": \"50888f8bdc7921558d002337\"}, \"config\": {\"http\": true, \"relative_url\": \"/\", \"https\": true}, \"id\": \"037f60b5-df59-434c-a66b-45a210ae476a\"}]}"
+      string: "{\"scratchpad\": {}, \"display_name\": \"integration_test_id\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_count\": 0, \"_id\": {\"$oid\": \"5088ab10dc7921558d00381c\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\", \"importers\": [{\"repo_id\": \"integration_test_id\", \"_ns\": \"repo_importers\", \"importer_type_id\": \"yum_importer\", \"last_sync\": null, \"scratchpad\": null, \"scheduled_syncs\": [], \"_id\": {\"$oid\": \"5088ab13dc7921558d003830\"}, \"config\": {}, \"id\": \"yum_importer\"}], \"distributors\": [{\"repo_id\": \"integration_test_id\", \"_ns\": \"repo_distributors\", \"last_publish\": null, \"auto_publish\": false, \"scheduled_publishes\": [], \"distributor_type_id\": \"yum_distributor\", \"scratchpad\": null, \"_id\": {\"$oid\": \"5088ab12dc7921558d003827\"}, \"config\": {\"http\": true, \"relative_url\": \"/\", \"https\": true}, \"id\": \"28ff438f-048b-4cf4-8dbd-e314a01dfac7\"}]}"
     http_version: 
-  recorded_at: Thu, 25 Oct 2012 01:02:04 GMT
+  recorded_at: Thu, 25 Oct 2012 02:59:31 GMT
 - request: 
-    method: post
-    uri: https://admin:admin@knifeparty.localdomain/pulp/api/v2/repositories/
+    method: put
+    uri: https://admin:admin@knifeparty.localdomain/pulp/api/v2/repositories/integration_test_id/
     body: 
-      string: "{\"importer_type_id\":\"yum_importer\",\"importer_config\":{},\"id\":\"integration_test_id_clone\"}"
+      string: "{\"delta\":{\"description\":\"updated_description_integration_test_id\"}}"
     headers: 
-      Content-Type: 
-      - application/json
+      Content-Length: 
+      - "67"
       Accept-Encoding: 
       - gzip, deflate
       Accept: 
       - application/json
+      Content-Type: 
+      - application/json
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Content-Length: 
+      - "302"
+      Date: 
+      - Thu, 25 Oct 2012 02:59:31 GMT
+      Content-Type: 
+      - application/json
+      Server: 
+      - Apache/2.2.22 (Fedora)
+    body: 
+      string: "{\"scratchpad\": {}, \"display_name\": \"integration_test_id\", \"description\": \"updated_description_integration_test_id\", \"_ns\": \"repos\", \"notes\": {}, \"content_unit_count\": 0, \"_id\": {\"$oid\": \"5088ab10dc7921558d00381c\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\"}"
+    http_version: 
+  recorded_at: Thu, 25 Oct 2012 02:59:31 GMT
+- request: 
+    method: post
+    uri: https://admin:admin@knifeparty.localdomain/pulp/api/v2/repositories/search/
+    body: 
+      string: "{\"criteria\":{}}"
+    headers: 
+      Content-Length: 
+      - "15"
+      Accept-Encoding: 
+      - gzip, deflate
+      Accept: 
+      - application/json
+      Content-Type: 
+      - application/json
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Content-Length: 
+      - "805"
+      Date: 
+      - Thu, 25 Oct 2012 02:59:31 GMT
+      Content-Type: 
+      - application/json
+      Server: 
+      - Apache/2.2.22 (Fedora)
+    body: 
+      string: "[{\"scratchpad\": {\"checksum_type\": \"sha256\", \"importer_working_dir\": \"/var/lib/pulp/working/repos/ACME_Corporation-Katello-Katello_Fedora_17/importers/yum_importer/ACME_Corporation-Katello-Katello_Fedora_17\"}, \"display_name\": \"Katello Fedora 17\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_count\": 51, \"_id\": {\"$oid\": \"5071553edc79215650000041\"}, \"id\": \"ACME_Corporation-Katello-Katello_Fedora_17\", \"_href\": \"/pulp/api/v2/repositories/ACME_Corporation-Katello-Katello_Fedora_17/\"}, {\"scratchpad\": {}, \"display_name\": \"integration_test_id\", \"description\": \"updated_description_integration_test_id\", \"_ns\": \"repos\", \"notes\": {}, \"content_unit_count\": 0, \"_id\": {\"$oid\": \"5088ab10dc7921558d00381c\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\"}]"
+    http_version: 
+  recorded_at: Thu, 25 Oct 2012 02:59:32 GMT
+- request: 
+    method: post
+    uri: https://admin:admin@knifeparty.localdomain/pulp/api/v2/repositories/
+    body: 
+      string: "{\"importer_type_id\":\"yum_importer\",\"id\":\"integration_test_id_clone\",\"importer_config\":{}}"
+    headers: 
       Content-Length: 
       - "89"
+      Accept-Encoding: 
+      - gzip, deflate
+      Accept: 
+      - application/json
+      Content-Type: 
+      - application/json
   response: 
     status: 
       code: 201
       message: Created
     headers: 
-      Content-Type: 
-      - application/json
-      Date: 
-      - Thu, 25 Oct 2012 01:02:11 GMT
-      Server: 
-      - Apache/2.2.22 (Fedora)
       Content-Length: 
       - "283"
+      Date: 
+      - Thu, 25 Oct 2012 02:59:42 GMT
+      Content-Type: 
+      - application/json
+      Server: 
+      - Apache/2.2.22 (Fedora)
       Location: 
       - integration_test_id_clone
     body: 
-      string: "{\"scratchpad\": {}, \"display_name\": \"integration_test_id_clone\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_count\": 0, \"_id\": {\"$oid\": \"50888f93dc7921558d00238e\"}, \"id\": \"integration_test_id_clone\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id_clone/\"}"
+      string: "{\"scratchpad\": {}, \"display_name\": \"integration_test_id_clone\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_count\": 0, \"_id\": {\"$oid\": \"5088ab1edc7921558d00387b\"}, \"id\": \"integration_test_id_clone\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id_clone/\"}"
     http_version: 
-  recorded_at: Thu, 25 Oct 2012 01:02:11 GMT
+  recorded_at: Thu, 25 Oct 2012 02:59:42 GMT
 - request: 
     method: post
     uri: https://admin:admin@knifeparty.localdomain/pulp/api/v2/repositories/integration_test_id_clone/actions/associate/
     body: 
-      string: "{\"source_repo_id\":\"integration_test_id\",\"criteria\":{}}"
+      string: "{\"criteria\":{},\"source_repo_id\":\"integration_test_id\"}"
     headers: 
-      Content-Type: 
-      - application/json
+      Content-Length: 
+      - "54"
       Accept-Encoding: 
       - gzip, deflate
       Accept: 
       - application/json
-      Content-Length: 
-      - "54"
+      Content-Type: 
+      - application/json
   response: 
     status: 
       code: 202
       message: Accepted
     headers: 
-      Content-Type: 
-      - application/json
-      Content-Encoding: 
-      - utf-8
-      Date: 
-      - Thu, 25 Oct 2012 01:02:11 GMT
-      Server: 
-      - Apache/2.2.22 (Fedora)
       Content-Length: 
       - "730"
+      Date: 
+      - Thu, 25 Oct 2012 02:59:42 GMT
+      Content-Encoding: 
+      - utf-8
+      Content-Type: 
+      - application/json
+      Server: 
+      - Apache/2.2.22 (Fedora)
     body: 
-      string: "{\"task_group_id\": null, \"exception\": null, \"traceback\": null, \"_href\": \"/pulp/api/v2/tasks/7dd56ef3-627c-473d-8957-6764be9d4f1e/\", \"task_id\": \"7dd56ef3-627c-473d-8957-6764be9d4f1e\", \"call_request_tags\": [\"pulp:repository:integration_test_id_clone\", \"pulp:repository:integration_test_id\", \"pulp:action:associate\"], \"reasons\": [], \"start_time\": null, \"tags\": [\"pulp:repository:integration_test_id_clone\", \"pulp:repository:integration_test_id\", \"pulp:action:associate\"], \"state\": \"waiting\", \"finish_time\": null, \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": null, \"call_request_id\": \"7dd56ef3-627c-473d-8957-6764be9d4f1e\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}"
+      string: "{\"task_group_id\": null, \"exception\": null, \"traceback\": null, \"_href\": \"/pulp/api/v2/tasks/8eb0c317-bc66-4481-bad0-6fd7d15d6cfb/\", \"task_id\": \"8eb0c317-bc66-4481-bad0-6fd7d15d6cfb\", \"call_request_tags\": [\"pulp:repository:integration_test_id_clone\", \"pulp:repository:integration_test_id\", \"pulp:action:associate\"], \"reasons\": [], \"start_time\": null, \"tags\": [\"pulp:repository:integration_test_id_clone\", \"pulp:repository:integration_test_id\", \"pulp:action:associate\"], \"state\": \"waiting\", \"finish_time\": null, \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": null, \"call_request_id\": \"8eb0c317-bc66-4481-bad0-6fd7d15d6cfb\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}"
     http_version: 
-  recorded_at: Thu, 25 Oct 2012 01:02:12 GMT
+  recorded_at: Thu, 25 Oct 2012 02:59:43 GMT
 - request: 
     method: delete
     uri: https://admin:admin@knifeparty.localdomain/pulp/api/v2/repositories/integration_test_id/
     body: 
       string: ""
     headers: 
-      Content-Type: 
-      - application/json
       Accept-Encoding: 
       - gzip, deflate
       Accept: 
+      - application/json
+      Content-Type: 
       - application/json
   response: 
     status: 
       code: 200
       message: OK
     headers: 
-      Content-Type: 
-      - application/json
-      Date: 
-      - Thu, 25 Oct 2012 01:02:36 GMT
-      Server: 
-      - Apache/2.2.22 (Fedora)
       Content-Length: 
       - "4"
+      Date: 
+      - Thu, 25 Oct 2012 03:00:28 GMT
+      Content-Type: 
+      - application/json
+      Server: 
+      - Apache/2.2.22 (Fedora)
     body: 
       string: "null"
     http_version: 
-  recorded_at: Thu, 25 Oct 2012 01:02:36 GMT
+  recorded_at: Thu, 25 Oct 2012 03:00:29 GMT
+recorded_with: VCR 2.2.5
