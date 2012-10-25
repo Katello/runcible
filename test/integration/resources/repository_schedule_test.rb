@@ -49,7 +49,6 @@ class TestResourcesRepositoryCreateSchedule < MiniTest::Unit::TestCase
     super
   end
 
-
   def test_repository_schedules_path
     path = @resource.path('foo', 'some_importer')
     assert_match("repositories/foo/importers/some_importer/schedules/sync/", path)
@@ -59,7 +58,6 @@ class TestResourcesRepositoryCreateSchedule < MiniTest::Unit::TestCase
     response = @resource.create(RepositoryHelper.repo_id, 'yum_importer', "2012-09-25T20:44:00Z/P7D")
     assert response.code == 201
   end
-
 
   def test_list_schedules
     list = @resource.list(RepositoryHelper.repo_id, 'yum_importer')

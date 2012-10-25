@@ -30,6 +30,12 @@ class CustomMiniTestRunner
 
     def _run_suites(suites, type)
       begin
+        if ENV['suite']
+          suites = suites.select do |suite|
+                     suite.name == ENV['suite']
+                   end
+        end
+
         before_suites
         super(suites, type)
       ensure
@@ -69,7 +75,7 @@ class PulpMiniTestRunner
     set_vcr_config(mode)
 
     if test_name
-      require test_name
+      require "test/integration/#{test_name}_test.rb"
     else
       Dir["test/integration/resources/*_test.rb"].each {|file| require file }
       Dir["test/integration/extensions/*_test.rb"].each {|file| require file }

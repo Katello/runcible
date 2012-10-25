@@ -22,7 +22,7 @@ module TestResourcesRepositoryBase
   def setup
     @resource = Runcible::Resources::Repository
     @extension = Runcible::Extensions::Repository
-    VCR.insert_cassette('pulp_repository')
+    VCR.insert_cassette('repository')
   end
 
   def teardown
@@ -139,7 +139,7 @@ class TestResourcesRepositorySync < MiniTest::Unit::TestCase
   def setup
     super
     VCR.eject_cassette
-    VCR.insert_cassette('pulp_repository_sync')
+    VCR.insert_cassette('repository_sync')
   end
 
   def teardown
@@ -174,8 +174,6 @@ class TestResourcesRepositoryClone < MiniTest::Unit::TestCase
   def setup
     super
     @clone_name = RepositoryHelper.repo_id + "_clone"
-    RepositoryHelper.destroy_repo(@clone_name)
-    RepositoryHelper.destroy_repo
     RepositoryHelper.create_and_sync_repo(:importer => true)
     @extension.create_with_importer(@clone_name, :id => "yum_importer")
   end

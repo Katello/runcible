@@ -25,14 +25,12 @@ namespace :test do
       if options[:test_name]
         puts "Running tests for: #{options[:test_name]}"
         puts "Using #{options[:mode]} Pulp."
-
-        test_runner.run_tests(options)
       else
         puts "Running full test suite."
         puts "Using #{options[:mode]} data."
-
-        test_runner.run_tests(options)
       end
+      
+      test_runner.run_tests(options)
     end
   end
 end

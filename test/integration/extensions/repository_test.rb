@@ -21,7 +21,7 @@ module TestExtensionsRepositoryBase
 
   def setup
     @extension = Runcible::Extensions::Repository
-    VCR.insert_cassette('extensions/repository_extensions')
+    VCR.insert_cassette('extensions/repository_extensions', :match_requests_on => [:body_json, :path, :method])
   end
 
   def teardown
@@ -73,7 +73,7 @@ class TestExtensionsRepositoryCreate < MiniTest::Unit::TestCase
   def test_create_with_distributor_object
     repo_id = RepositoryHelper.repo_id + "_distro"
     response = @extension.create_with_distributors(repo_id, [Runcible::Extensions::YumDistributor.new(
-        '/path', true, true)])
+        '/path', true, true, :id => '123')])
     assert response.code == 201
 
     response = @extension.retrieve(repo_id, {:details => true})
@@ -96,7 +96,7 @@ class TestExtensionsRepositoryCreate < MiniTest::Unit::TestCase
 
   def test_create_with_importer_and_distributors_objects
     distributors = [Runcible::Extensions::YumDistributor.new(
-            '/path', true, true)]
+            '/path', true, true, :id => '123')]
     importer = Runcible::Extensions::YumImporter.new()
     response = @extension.create_with_importer_and_distributors(RepositoryHelper.repo_id, importer, distributors)
     assert response.code == 201
@@ -144,7 +144,7 @@ class TestExtensionsRepositoryUnitList < MiniTest::Unit::TestCase
   @@extension = Runcible::Extensions::Repository
 
   def self.before_suite
-    VCR.insert_cassette('extensions/repository_unit_list', :match_requests_on => [:method, :uri, :body])
+    VCR.insert_cassette('extensions/repository_unit_list', :match_requests_on => [:method, :path, :params, :body_json])
     RepositoryHelper.destroy_repo
     RepositoryHelper.create_and_sync_repo(:importer => true)
   end
@@ -253,7 +253,7 @@ class TestExtensionsRepositoryUnassociate < MiniTest::Unit::TestCase
   @@clone_name = RepositoryHelper.repo_id + "_clone"
 
   def self.before_suite
-    VCR.insert_cassette('extensions/repository_dissassociate')
+    VCR.insert_cassette('extensions/repository_dissassociate', :match_requests_on => [:body_json, :path, :method, :params])
     RepositoryHelper.destroy_repo(@@clone_name)
     RepositoryHelper.destroy_repo
     RepositoryHelper.create_and_sync_repo(:importer => true)
@@ -270,8 +270,8 @@ class TestExtensionsRepositoryUnassociate < MiniTest::Unit::TestCase
 
 
   def test_rpm_remove
-    pkg_ids = @@extension.rpm_ids(RepositoryHelper.repo_id)
-    assert pkg_ids.first
+    pkg_ids = RepositoryHelper.rpm_ids
+    assert !pkg_ids.empty?
     task = @@extension.rpm_remove(@@clone_name, [pkg_ids.first])
     RepositoryHelper.wait_on_task(task)
     assert_equal((pkg_ids.length - 1), @@extension.rpm_ids(@@clone_name).length)

@@ -23,7 +23,7 @@ module TestConsumerBase
     @resource = Runcible::Resources::Consumer
     @extension = Runcible::Extensions::Consumer
     @consumer_id = "integration_test_consumer"
-    VCR.insert_cassette('pulp_consumer')
+    VCR.insert_cassette('consumer')
   end
 
   def teardown
@@ -43,10 +43,10 @@ module TestConsumerBase
     @resource.delete(@consumer_id)
   end
 
-
   def bind_repo
     @extension.bind_all(@consumer_id, RepositoryHelper.repo_id)
   end
+
 end
 
 class TestConsumerCreate < MiniTest::Unit::TestCase

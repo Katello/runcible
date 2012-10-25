@@ -31,7 +31,7 @@ module Runcible
 
       def initialize(params={})
         @auto_publish = false
-        self.id = SecureRandom.hex(10)
+        self.id = params[:id] || SecureRandom.hex(10)
         params.each{|k,v| self.send("#{k.to_s}=",v)}
       end
     end

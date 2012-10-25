@@ -9,7 +9,7 @@ class TestExtenionsPackageGroup < MiniTest::Unit::TestCase
 
   def self.before_suite
     @@extension = Runcible::Extensions::PackageCategory
-    VCR.insert_cassette('extensions/package_category', :match_requests_on => [:method, :uri, :body])
+    VCR.insert_cassette('extensions/package_category', :match_requests_on => [:method, :path, :params, :body_json])
     RepositoryHelper.create_and_sync_repo(:importer => true)
   end
 

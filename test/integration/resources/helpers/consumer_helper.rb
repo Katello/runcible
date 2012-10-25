@@ -24,7 +24,7 @@ module ConsumerHelper
   def self.create_consumer(package_profile=false)
     consumer = {}
     destroy_consumer
-    VCR.use_cassette('pulp_consumer_helper') do
+    VCR.use_cassette('consumer_helper') do
       consumer = @consumer_resource.create(@consumer_id)
       if package_profile
         @consumer_resource.upload_package_profile(@consumer_id, [{"name" => "elephant", "version" => "0.2", "release" => "0.7", 
@@ -37,7 +37,7 @@ module ConsumerHelper
   end
 
   def self.destroy_consumer
-    VCR.use_cassette('pulp_consumer_helper') do
+    VCR.use_cassette('consumer_helper') do
       @consumer_resource.destroy(@consumer_id)
     end
   rescue Exception => e

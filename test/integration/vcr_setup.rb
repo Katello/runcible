@@ -13,10 +13,37 @@ require 'rubygems'
 require 'vcr'
 
 
-def configure_vcr(record_mode=:all)
+def configure_vcr(record_mode=:none)
   VCR.configure do |c|
-    c.cassette_library_dir = 'test/integration/fixtures/vcr_cassettes'
+    c.cassette_library_dir = 'test/fixtures/vcr_cassettes'
     c.hook_into :webmock
-    c.default_cassette_options = { :record => record_mode } #forcing all requests to Pulp currently
+    c.default_cassette_options = {
+      :record => record_mode,
+      :match_requests_on => [:method, :path, :params]
+    }
+
+    begin
+      c.register_request_matcher :body_json do |request_1, request_2|
+        begin
+          json_1 = JSON.parse(request_1.body) 
+          json_2 = JSON.parse(request_2.body)
+
+          json_1 == json_2
+        rescue
+          #fallback incase there is a JSON parse error
+          request_1.body == request_2.body
+        end
+      end
+    rescue => e
+      #ignore the warning thrown about this matcher already being resgistered
+    end
+
+    begin
+      c.register_request_matcher :params do |request_1, request_2|
+        URI(request_1.uri).query == URI(request_2.uri).query
+      end
+    rescue => e
+      #ignore the warning thrown about this matcher already being resgistered
+    end
   end
 end

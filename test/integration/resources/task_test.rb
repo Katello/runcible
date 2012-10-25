@@ -21,7 +21,7 @@ module TestResourcesTaskBase
 
   def setup
     @resource = Runcible::Resources::Task
-    VCR.insert_cassette('pulp_task')
+    VCR.insert_cassette('task', :match_requests_on => [:body_json, :path, :method])
   end
 
   def teardown
@@ -34,14 +34,12 @@ end
 class TestResourcesTask < MiniTest::Unit::TestCase
   include TestResourcesTaskBase
 
-  def setup
-    super
+  def self.before_suite
     RepositoryHelper.create_repo(:importer => true)
-    RepositoryHelper.sync_repo(false)
+    RepositoryHelper.sync_repo
   end
 
-  def teardown
-    super
+  def self.after_suite
     RepositoryHelper.destroy_repo
   end
 

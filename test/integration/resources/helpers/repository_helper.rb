@@ -22,7 +22,7 @@ require './lib/runcible/extensions/yum_importer'
 
 module RepositoryHelper
 
-  @repo_url       = "file://#{File.expand_path(File.dirname(__FILE__))}".gsub("resources/helpers", "fixtures/repositories/zoo5")
+  @repo_url       = "file://#{File.expand_path(File.dirname(__FILE__))}".gsub("integration/resources/helpers", "fixtures/repositories/zoo5")
   @repo_id        = "integration_test_id"
   @repo_name      = @repo_id
   @repo_resource  = Runcible::Resources::Repository
@@ -79,7 +79,7 @@ module RepositoryHelper
   def self.create_repo(options={})
     repo = nil
     
-    VCR.use_cassette('pulp_repository_helper') do
+    VCR.use_cassette('repository_helper') do
       repo = @repo_resource.retrieve(@repo_id)
     end
 
@@ -87,7 +87,7 @@ module RepositoryHelper
       destroy_repo
     end
 
-    VCR.use_cassette('pulp_repository_helper') do
+    VCR.use_cassette('repository_helper') do
       if options[:importer]
         repo = @repo_extension.create_with_importer(@repo_id, {:id=>@importer_type, :feed_url => @repo_url})
       elsif options[:importer_and_distributor]
@@ -99,7 +99,7 @@ module RepositoryHelper
 
   rescue RestClient::ResourceNotFound
 
-    VCR.use_cassette('pulp_repository_helper') do
+    VCR.use_cassette('repository_helper') do
       if options[:importer]
         repo = @repo_extension.create_with_importer(@repo_id, {:id=>@importer_type, :feed_url => @repo_url})
       elsif options[:importer_and_distributor]
@@ -113,7 +113,7 @@ module RepositoryHelper
   end
 
   def self.sync_repo(options={})
-    VCR.use_cassette('pulp_repository_helper') do
+    VCR.use_cassette('repository_helper') do
       @task = @repo_resource.sync(@repo_name).first
 
       if !options[:wait]
@@ -133,14 +133,14 @@ module RepositoryHelper
 
   def self.create_schedule
     schedule = {}
-    VCR.use_cassette('pulp_repository_helper') do
+    VCR.use_cassette('repository_helper') do
       schedule = @schedule_resource.create(@repo_id, @importer_type, @schedule_time)
     end
     schedule['_id']
   end
 
   def self.destroy_repo(id=@repo_id)
-    VCR.use_cassette('pulp_repository_helper') do
+    VCR.use_cassette('repository_helper') do
       if @task
         while !(['finished', 'error', 'timed_out', 'canceled', 'reset'].include?(@task['state'])) do
           @task = @task_resource.poll(@task["task_id"])
@@ -153,7 +153,14 @@ module RepositoryHelper
       @repo_resource.delete(id)
     end
   rescue Exception => e
-    puts "RepositoryHelper: Repository #{id} could not be destroyed."
+  end
+
+  def self.rpm_ids
+    pkg_ids = []
+    VCR.use_cassette('repository_helper', :match_requests_on => [:body_json, :path, :method]) do
+      pkg_ids = @repo_extension.rpm_ids(@repo_id)
+    end
+    return pkg_ids
   end
 
 end
