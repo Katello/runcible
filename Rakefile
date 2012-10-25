@@ -45,7 +45,7 @@ task :update_test_version do
   File.open('README.md', 'w+') do |file|
     original_regex = /Latest Live Tested Version: *.*/
     pulp_version = `rpm -q pulp-server`.strip
-    replacement_string = "Latest Live Tested Version: *#{pulp_version}*"
+    replacement_string = "Latest Live Tested Version: **#{pulp_version}**"
     replace = text.gsub!(original_regex, replacement_string)
     file.puts replace
   end
