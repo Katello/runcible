@@ -4,6 +4,8 @@
 
 Exposing Pulp's juiciest parts. http://www.pulpproject.org/
 
+Latest Live Tested Version: *pulp-server-0.0.333-1.fc16.noarch*
+
 ## Installation
 
 Add this line to your application's Gemfile:

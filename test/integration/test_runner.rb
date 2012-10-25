@@ -132,6 +132,8 @@ class PulpMiniTestRunner
       configure_vcr(:all)
     elsif mode == "none"
       configure_vcr(:none)
+    elsif mode == "once"
+      configure_vcr(:once)
     else
       configure_vcr(:new_episodes)
     end
