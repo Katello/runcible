@@ -28,7 +28,7 @@ module Runcible
     class ConsumerGroup < Runcible::Base
 
       def self.path(id=nil)
-        groups = "/consumer_groups/"
+        groups = "consumer_groups/"
         id.nil? ? groups : groups + "#{id}/"
       end
       

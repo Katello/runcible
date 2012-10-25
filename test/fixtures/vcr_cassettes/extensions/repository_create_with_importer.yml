@@ -1,0 +1,36 @@
+--- 
+http_interactions: 
+- request: 
+    method: post
+    uri: https://admin:admin@knifeparty.localdomain/pulp/api/v2/repositories/
+    body: 
+      string: "{\"id\":\"integration_test_id\",\"distributors\":[{\"auto_publish\":true,\"distributor_config\":{\"https\":true,\"http\":true,\"relative_url\":\"/path\"},\"distributor_id\":\"123\",\"distributor_type\":\"yum_distributor\"}]}"
+    headers: 
+      Content-Length: 
+      - "198"
+      Accept-Encoding: 
+      - gzip, deflate
+      Accept: 
+      - application/json
+      Content-Type: 
+      - application/json
+  response: 
+    status: 
+      code: 201
+      message: Created
+    headers: 
+      Content-Length: 
+      - "265"
+      Date: 
+      - Thu, 25 Oct 2012 02:58:26 GMT
+      Content-Type: 
+      - application/json
+      Server: 
+      - Apache/2.2.22 (Fedora)
+      Location: 
+      - integration_test_id
+    body: 
+      string: "{\"scratchpad\": {}, \"display_name\": \"integration_test_id\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_count\": 0, \"_id\": {\"$oid\": \"5088aad2dc7921558d003622\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\"}"
+    http_version: 
+  recorded_at: Thu, 25 Oct 2012 02:58:27 GMT
+recorded_with: VCR 2.2.5

@@ -12,17 +12,17 @@
 require 'rubygems'
 require 'minitest/autorun'
 
-require './test/integration/resources/helpers/repository_helper'
+require './test/support/repository_support'
 require './lib/runcible'
 
 
 module TestResourcesRepositoryBase
-  include RepositoryHelper
+  include RepositorySupport
 
   def setup
     @resource = Runcible::Resources::Repository
     @extension = Runcible::Extensions::Repository
-    VCR.insert_cassette('pulp_repository')
+    VCR.insert_cassette('repository')
   end
 
   def teardown
@@ -36,14 +36,14 @@ class TestResourcesRepositoryCreate < MiniTest::Unit::TestCase
   include TestResourcesRepositoryBase
 
   def teardown
-    RepositoryHelper.destroy_repo
+    RepositorySupport.destroy_repo
     super
   end
 
   def test_create
-    response = RepositoryHelper.create_repo
+    response = RepositorySupport.create_repo
     assert response.code == 201
-    assert response['id'] == RepositoryHelper.repo_id
+    assert response['id'] == RepositorySupport.repo_id
   end
 end
 
@@ -53,11 +53,11 @@ class TestResourcesRepositoryDelete < MiniTest::Unit::TestCase
 
   def setup
     super
-    RepositoryHelper.create_repo
+    RepositorySupport.create_repo
   end
 
   def test_delete
-    response = @resource.delete(RepositoryHelper.repo_id)
+    response = @resource.delete(RepositorySupport.repo_id)
     assert response.code == 200
   end
 
@@ -68,11 +68,11 @@ class TestResourcesRepository < MiniTest::Unit::TestCase
   include TestResourcesRepositoryBase
   
   def self.before_suite
-    RepositoryHelper.create_repo(:importer => true)
+    RepositorySupport.create_repo(:importer => true)
   end
 
   def self.after_suite
-    RepositoryHelper.destroy_repo
+    RepositorySupport.destroy_repo
   end
 
   def test_repository_path
@@ -81,24 +81,24 @@ class TestResourcesRepository < MiniTest::Unit::TestCase
   end
 
   def test_repository_path_with_id
-    path = @resource.path(RepositoryHelper.repo_id)
-    assert_match("repositories/#{RepositoryHelper.repo_id}", path)
+    path = @resource.path(RepositorySupport.repo_id)
+    assert_match("repositories/#{RepositorySupport.repo_id}", path)
   end
 
   def test_update
-    response = @resource.update(RepositoryHelper.repo_id, { :description => "updated_description_" + RepositoryHelper.repo_id })
+    response = @resource.update(RepositorySupport.repo_id, { :description => "updated_description_" + RepositorySupport.repo_id })
     assert response.code == 200
-    assert response["description"] == "updated_description_" + RepositoryHelper.repo_id
+    assert response["description"] == "updated_description_" + RepositorySupport.repo_id
   end
 
   def test_retrieve
-    response = @resource.retrieve(RepositoryHelper.repo_id)
+    response = @resource.retrieve(RepositorySupport.repo_id)
     assert response.code == 200
-    assert response["display_name"] == RepositoryHelper.repo_id
+    assert response["display_name"] == RepositorySupport.repo_id
   end
 
   def test_retrieve_with_details
-    response = @resource.retrieve(RepositoryHelper.repo_id, {:details => true})
+    response = @resource.retrieve(RepositorySupport.repo_id, {:details => true})
     assert response.code == 200
     assert response.has_key?("distributors")
     assert response.has_key?("importers")
@@ -107,17 +107,17 @@ class TestResourcesRepository < MiniTest::Unit::TestCase
   def test_retrieve_all
     response = @resource.retrieve_all()
     assert response.code == 200
-    assert response.collect{ |repo| repo["display_name"] == RepositoryHelper.repo_id }.length > 0
+    assert response.collect{ |repo| repo["display_name"] == RepositorySupport.repo_id }.length > 0
   end
 
   def test_search
     response = @resource.search({})
     assert response.code == 200
-    assert response.collect{ |repo| repo["display_name"] == RepositoryHelper.repo_id }.length > 0
+    assert response.collect{ |repo| repo["display_name"] == RepositorySupport.repo_id }.length > 0
   end
 
   def test_associate_importer
-    response = @resource.associate_importer(RepositoryHelper.repo_id, "yum_importer", {})
+    response = @resource.associate_importer(RepositorySupport.repo_id, "yum_importer", {})
     assert response.code == 201
     assert response['importer_type_id'] == "yum_importer"
   end
@@ -125,7 +125,7 @@ class TestResourcesRepository < MiniTest::Unit::TestCase
   def test_associate_distributor
     distributor_config = {"relative_url" => "/", "http" => true, "https" => true}
 
-    response = @resource.associate_distributor(RepositoryHelper.repo_id, "yum_distributor", distributor_config)
+    response = @resource.associate_distributor(RepositorySupport.repo_id, "yum_distributor", distributor_config)
     assert response.code == 201
     assert response['distributor_type_id'] == "yum_distributor"
   end
@@ -139,18 +139,18 @@ class TestResourcesRepositorySync < MiniTest::Unit::TestCase
   def setup
     super
     VCR.eject_cassette
-    VCR.insert_cassette('pulp_repository_sync')
+    VCR.insert_cassette('repository_sync')
   end
 
   def teardown
-    RepositoryHelper.destroy_repo
+    RepositorySupport.destroy_repo
     super
   end
 
   def test_sync_repo
-    RepositoryHelper.create_repo
-    response = @resource.sync(RepositoryHelper.repo_id)
-    RepositoryHelper.task = response[0]
+    RepositorySupport.create_repo
+    response = @resource.sync(RepositorySupport.repo_id)
+    RepositorySupport.task = response[0]
 
     assert response.code == 202
     assert response.length == 1
@@ -158,9 +158,9 @@ class TestResourcesRepositorySync < MiniTest::Unit::TestCase
   end
 
   def test_sync_repo_with_yum_importer
-    RepositoryHelper.create_repo(:importer => true)
-    response = @resource.sync(RepositoryHelper.repo_id)
-    RepositoryHelper.task = response.first
+    RepositorySupport.create_repo(:importer => true)
+    response = @resource.sync(RepositorySupport.repo_id)
+    RepositorySupport.task = response.first
 
     assert response.code == 202
     assert response.length == 1
@@ -173,22 +173,20 @@ class TestResourcesRepositoryClone < MiniTest::Unit::TestCase
 
   def setup
     super
-    @clone_name = RepositoryHelper.repo_id + "_clone"
-    RepositoryHelper.destroy_repo(@clone_name)
-    RepositoryHelper.destroy_repo
-    RepositoryHelper.create_and_sync_repo(:importer => true)
+    @clone_name = RepositorySupport.repo_id + "_clone"
+    RepositorySupport.create_and_sync_repo(:importer => true)
     @extension.create_with_importer(@clone_name, :id => "yum_importer")
   end
 
   def teardown
-    RepositoryHelper.destroy_repo(@clone_name)
-    RepositoryHelper.destroy_repo
+    RepositorySupport.destroy_repo(@clone_name)
+    RepositorySupport.destroy_repo
     super
   end
 
   def test_unit_copy
-    response = @resource.unit_copy(@clone_name, RepositoryHelper.repo_id)
-    RepositoryHelper.task = response
+    response = @resource.unit_copy(@clone_name, RepositorySupport.repo_id)
+    RepositorySupport.task = response
     assert response.code == 202
     assert response['call_request_tags'].include?('pulp:action:associate')
   end
