@@ -14,7 +14,6 @@ require 'minitest/autorun'
 require './lib/runcible/resources/consumer'
 require './lib/runcible/extensions/consumer'
 require './test/integration/resources/helpers/repository_helper'
-require 'active_support/core_ext/time/calculations'
 
 
 class TestConsumer < MiniTest::Unit::TestCase
@@ -66,6 +65,22 @@ class TestConsumer < MiniTest::Unit::TestCase
     assert(response.size > 0)
     #assert(@resource.retrieve_bindings(@consumer_id).empty?)
   end
+
+  def test_install_content
+    response = @extension.install_content(@consumer_id, "rpm", ["zsh", "foo"])
+    assert_equal(202, response.code)
+  end
+
+  def test_update_content
+    response = @extension.update_content(@consumer_id, "rpm", ["zsh", "foo"])
+    assert_equal(202, response.code)
+  end
+
+  def test_uninstall_content
+    response = @extension.uninstall_content(@consumer_id, "rpm", ["zsh", "foo"])
+    assert_equal(202, response.code)
+  end
+
 
 end
 
