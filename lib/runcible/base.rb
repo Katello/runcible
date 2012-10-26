@@ -54,7 +54,8 @@ module Runcible
 
     def self.call(method, path, options={})
       clone_config = self.config.clone
-      path = clone_config[:api_path] + path
+      #on occation path will already have prefix (sync cancel)
+      path = clone_config[:api_path] + path if !path.start_with?(clone_config[:api_path])
 
       RestClient.log = clone_config[:logger] if clone_config[:logger]
 
