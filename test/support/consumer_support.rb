@@ -11,6 +11,7 @@
 
 require 'rubygems'
 require './lib/runcible/resources/consumer'
+require './lib/runcible/extensions/consumer'
 
 module ConsumerSupport
 

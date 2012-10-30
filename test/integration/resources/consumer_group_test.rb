@@ -118,11 +118,9 @@ class ConsumerGroupWithConsumerTests < ConsumerGroupTests
                        {:id =>ConsumerSupport.consumer_id}
                      }
                 }
-    # create consumer
   end
 
   def teardown
-    # destroy consumer
     ConsumerSupport.destroy_consumer
     super
   end

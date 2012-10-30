@@ -25,7 +25,21 @@
 module Runcible
   module Extensions
     class ConsumerGroup < Runcible::Resources::ConsumerGroup
-      def self.add_conusmers_by_id(id, consumer_ids)
+      def self.add_consumers_by_id(id, consumer_ids)
+        self.associate(id, make_consumer_criteria(consumer_ids))
+      end
+
+      def self.remove_consumers_by_id(id, consumer_ids)
+        self.unassociate(id, make_consumer_criteria(consumer_ids))
+      end
+
+
+      def self.make_consumer_criteria(consumer_ids)
+        {:criteria =>
+              {:filters =>
+                {:id =>{"$in" =>consumer_ids}}
+              }
+        }
 
       end
 
