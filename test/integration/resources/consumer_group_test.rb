@@ -12,9 +12,10 @@
 require 'rubygems'
 require 'minitest/autorun'
 require './lib/runcible/resources/consumer_group'
-#require 'test/integration/resources/supports/consumer_support'
+require './lib/runcible/resources/consumer'
+require './lib/runcible/extensions/consumer'
 require 'test/support/repository_support'
-
+require 'test/support/consumer_support'
 
 module TestConsumerGroupBase
   include RepositorySupport
@@ -74,8 +75,7 @@ class TestConsumerGroupDestroy < MiniTest::Unit::TestCase
 
 end
 
-
-class TestConsumerGroup < MiniTest::Unit::TestCase
+class ConsumerGroupTests  < MiniTest::Unit::TestCase
   include TestConsumerGroupBase
 
   def setup
@@ -87,7 +87,9 @@ class TestConsumerGroup < MiniTest::Unit::TestCase
     destroy_consumer_group
     super
   end
+end
 
+class TestConsumerGroup < ConsumerGroupTests
   def test_path
     path = @resource.path
     assert_match('consumer_groups/', path)
@@ -107,3 +109,44 @@ class TestConsumerGroup < MiniTest::Unit::TestCase
 
 end
 
+class ConsumerGroupWithConsumerTests < ConsumerGroupTests
+  def setup
+    super
+    ConsumerSupport.create_consumer
+    @criteria = {:criteria =>
+                     {:filters =>
+                       {:id =>ConsumerSupport.consumer_id}
+                     }
+                }
+    # create consumer
+  end
+
+  def teardown
+    # destroy consumer
+    ConsumerSupport.destroy_consumer
+    super
+  end
+end
+
+class TestConsumerGroupAssociate < ConsumerGroupWithConsumerTests
+  def test_associate
+    response = @resource.associate(@consumer_group_id, @criteria)
+    assert_equal(200, response.code)
+    assert(Array === response)
+    assert(response.include?(ConsumerSupport.consumer_id))
+  end
+end
+
+class TestConsumerGroupUnassociate < ConsumerGroupWithConsumerTests
+  def setup
+    super
+    @resource.associate(@consumer_group_id, @criteria)
+  end
+
+  def test_unassociate
+    response = @resource.unassociate(@consumer_group_id, @criteria)
+    assert_equal(200, response.code)
+    assert(Array === response)
+    assert(!response.include?(ConsumerSupport.consumer_id))
+  end
+end

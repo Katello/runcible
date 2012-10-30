@@ -44,6 +44,32 @@ module Runcible
       def self.retrieve(id)
         call(:get, path(id))
       end
+
+
+      def self.associate(id, criteria)
+        call(:post, path(id) + "actions/associate/", :payload => {:required => criteria})
+      end
+
+      def self.unassociate(id, criteria)
+        call(:post, path(id) + "actions/unassociate/", :payload => {:required => criteria})
+      end
+
+
+      def self.install_units(id, units, options="")
+        required = required_params(binding.send(:local_variables), binding, ["id"])
+        call(:post, path("#{id}/actions/content/install/"), :payload => { :required => required })
+      end
+
+      def self.update_units(id, units, options="")
+        required = required_params(binding.send(:local_variables), binding, ["id"])
+        call(:post, path("#{id}/actions/content/update/"), :payload => { :required => required })
+      end
+
+      def self.uninstall_units(id, units, options="")
+        required = required_params(binding.send(:local_variables), binding, ["id"])
+        call(:post, path("#{id}/actions/content/uninstall/"), :payload => { :required => required })
+      end
+
     end
   end
 end

@@ -14,8 +14,8 @@ require './lib/runcible/resources/consumer'
 
 module ConsumerSupport
 
-  @consumer_resource = Runcible::Resources::Consumer
-  @consumer_id = "integration_test_consumer"
+  @consumer_resource = Runcible::Extensions::Consumer
+  @consumer_id = "integration_test_consumer_support"
 
   def self.consumer_id
     @consumer_id
@@ -38,9 +38,11 @@ module ConsumerSupport
 
   def self.destroy_consumer
     VCR.use_cassette('consumer_support') do
-      @consumer_resource.destroy(@consumer_id)
+      @consumer_resource.delete(@consumer_id)
     end
+
   rescue Exception => e
+    raise e unless e.class == RestClient::ResourceNotFound
     p "TestPulpConsumer: No consumer #{@consumer_id} to delete."
   end
 
