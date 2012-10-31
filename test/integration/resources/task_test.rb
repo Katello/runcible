@@ -21,7 +21,7 @@ module TestResourcesTaskBase
 
   def setup
     @resource = Runcible::Resources::Task
-    VCR.insert_cassette('task', :match_requests_on => [:body_json, :path, :method])
+    VCR.insert_cassette('task', :match_requests_on => [:method, :path, :body])
   end
 
   def teardown

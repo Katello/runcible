@@ -13,7 +13,7 @@ require 'rubygems'
 require 'minitest/autorun'
 require './lib/runcible/resources/consumer_group'
 #require 'test/integration/resources/supports/consumer_support'
-require 'test/support/repository_support'
+require './test/support/repository_support'
 
 
 module TestConsumerGroupBase
@@ -30,7 +30,7 @@ module TestConsumerGroupBase
   end
 
   def create_consumer_group
-    @resource.create(@consumer_group_id, :display_name => "foo" , :description => 'Test description.', :consumer_ids => [])
+    @resource.create(@consumer_group_id, :display_name => "foo", :description => 'Test description.', :consumer_ids => [])
   rescue Exception => e
     puts e
   end

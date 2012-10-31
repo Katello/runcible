@@ -107,6 +107,7 @@ module Runcible
       else
         payload = {}
       end
+
       return payload.to_json
     end
 
@@ -134,10 +135,14 @@ module Runcible
         acc
       end
 
+      #The double delete is to support 1.8.7 and 1.9.3
+      local_names.delete(:payload)
+      local_names.delete(:optional)
       local_names.delete("payload")
       local_names.delete("optional")
       keys_to_remove.each do |key|
         local_names.delete(key)
+        local_names.delete(key.to_sym)
       end
 
       return local_names

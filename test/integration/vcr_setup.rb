@@ -19,13 +19,14 @@ def configure_vcr(record_mode=:none)
     c.hook_into :webmock
     c.default_cassette_options = {
       :record => record_mode,
-      :match_requests_on => [:method, :path, :params]
+      :match_requests_on => [:method, :path, :params],
+      :serialize_with => :syck
     }
 
     begin
       c.register_request_matcher :body_json do |request_1, request_2|
         begin
-          json_1 = JSON.parse(request_1.body) 
+          json_1 = JSON.parse(request_1.body)
           json_2 = JSON.parse(request_2.body)
 
           json_1 == json_2
