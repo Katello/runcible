@@ -6,8 +6,8 @@ module Runcible
         "content/units/#{type}/search/"
       end
 
-      def self.search(type, criteria)
-        call(:post, path(type), :payload=>{:required=>{:criteria=>criteria}})
+      def self.search(type, criteria, optional={})
+        call(:post, path(type), :payload=>{:required=>{:criteria=>criteria}, :optional=>optional})
       end
     end
 
