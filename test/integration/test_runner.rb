@@ -13,7 +13,7 @@ require 'rubygems'
 require 'minitest/unit'
 require 'minitest/autorun'
 
-require 'test/integration/vcr_setup'
+require './test/integration/vcr_setup'
 require './lib/runcible/base'
 
 
@@ -75,10 +75,10 @@ class PulpMiniTestRunner
     set_vcr_config(mode)
 
     if test_name
-      require "test/integration/#{test_name}_test.rb"
+      require "./test/integration/#{test_name}_test.rb"
     else
-      Dir["test/integration/resources/*_test.rb"].each {|file| require file }
-      Dir["test/integration/extensions/*_test.rb"].each {|file| require file }
+      Dir["./test/integration/resources/*_test.rb"].each {|file| require file }
+      Dir["./test/integration/extensions/*_test.rb"].each {|file| require file }
     end
   end
 

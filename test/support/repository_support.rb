@@ -36,7 +36,7 @@ module RepositorySupport
 
 
   def self.distributor
-    Runcible::Extensions::Repository.retrieve(RepositorySupport.repo_id)['distributors'].first
+    Runcible::Extensions::Repository.retrieve_with_details(RepositorySupport.repo_id)['distributors'].first
   end
 
   def self.repo_name

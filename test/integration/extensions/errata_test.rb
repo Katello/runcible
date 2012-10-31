@@ -24,7 +24,7 @@
 require 'rubygems'
 require 'minitest/autorun'
 
-require './lib/runcible'
+require './lib/runcible/extensions/errata'
 require './test/support/repository_support'
 
 
