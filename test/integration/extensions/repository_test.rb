@@ -136,6 +136,13 @@ class TestExtensionsRepositoryMisc < MiniTest::Unit::TestCase
     assert response.code == 200
   end
 
+  def test_retrieve_with_details
+    response = @extension.retrieve_with_details(RepositorySupport.repo_id)
+  
+    assert response.code == 200
+    assert response.key?('distributors')
+  end
+
 end
 
 
@@ -253,9 +260,7 @@ class TestExtensionsRepositoryUnassociate < MiniTest::Unit::TestCase
   @@clone_name = RepositorySupport.repo_id + "_clone"
 
   def self.before_suite
-    VCR.insert_cassette('extensions/repository_dissassociate', :match_requests_on => [:body_json, :path, :method, :params])
-    RepositorySupport.destroy_repo(@@clone_name)
-    RepositorySupport.destroy_repo
+    VCR.insert_cassette('extensions/repository_dissassociate', :match_requests_on => [:method, :path, :params, :body_json])
     RepositorySupport.create_and_sync_repo(:importer => true)
     @@extension.create_with_importer(@@clone_name, {:id=>"yum_importer"})
     task = @@extension.unit_copy(@@clone_name, RepositorySupport.repo_id)
