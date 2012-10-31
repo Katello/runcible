@@ -36,11 +36,13 @@ module Runcible
        end
 
       def self.find_all(ids)
-        Runcible::Resources::Unit.search(TYPE, :filters=> {:id=> {'$in'=> ids}})
+        Runcible::Resources::Unit.search(TYPE, {:filters=>{:id=> {'$in'=> ids}}},
+                                         {:include_repos => true})
       end
 
       def self.find_all_by_unit_ids(ids)
-        Runcible::Resources::Unit.search(TYPE, :filters=> {:_id=> {'$in'=> ids}})
+        Runcible::Resources::Unit.search(TYPE, {:filters=> {:_id=> {'$in'=> ids}}},
+                                         {:include_repos=>true})
       end
 
     end
