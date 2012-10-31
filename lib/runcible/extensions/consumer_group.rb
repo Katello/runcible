@@ -43,6 +43,29 @@ module Runcible
 
       end
 
+      def self.install_content(id, type_id, units)
+        self.install_units(id, generate_content(type_id, units))
+      end
+
+      def self.update_content(id, type_id, units)
+        self.update_units(id, generate_content(type_id, units))
+      end
+
+      def self.uninstall_content(id, type_id, units)
+        self.uninstall_units(id, generate_content(type_id, units))
+      end
+
+      def self.generate_content(type_id, units)
+        content = []
+        units.each do |unit|
+          content_unit = {}
+          content_unit[:type_id] = type_id
+          content_unit[:unit_key] = { :name => unit }
+          content.push(content_unit)
+        end
+        content
+      end
+
     end
   end
 end

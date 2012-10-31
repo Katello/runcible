@@ -45,10 +45,19 @@ class CustomMiniTestRunner
 
     def _run_suite(suite, type)
       begin
+        if Runcible::Base.config[:logging]
+          puts "Running Suite #{suite.inspect} - #{type.inspect} "
+        end
+
         suite.before_suite if suite.respond_to?(:before_suite)
         super(suite, type)
       ensure
         suite.after_suite if suite.respond_to?(:after_suite)
+        if Runcible::Base.config[:logging]
+          puts "Completed Running Suite #{suite.inspect} - #{type.inspect} "
+        end
+
+
       end
     end
 
@@ -90,6 +99,7 @@ class PulpMiniTestRunner
 
     if options[:logging] == "true"
       Runcible::Base.config[:logger] = 'stdout'
+      Runcible::Base.config[:logging] = true
     end
 
     if options[:auth_type] == "http"

@@ -72,6 +72,7 @@ module RepositorySupport
   end
 
   def self.create_and_sync_repo(options={})
+    destroy_repo
     create_repo(options)
     sync_repo(options)
   end

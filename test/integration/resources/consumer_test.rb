@@ -42,11 +42,6 @@ module TestConsumerBase
   def destroy_consumer
     @resource.delete(@consumer_id)
   end
-
-  def bind_repo
-    @extension.bind_all(@consumer_id, RepositorySupport.repo_id)
-  end
-
 end
 
 class TestConsumerCreate < MiniTest::Unit::TestCase
@@ -142,8 +137,7 @@ class TestProfiles < ConsumerTests
   end
 end
 
-class TestConsumerRequiresRepo < ConsumerTests
-
+class ConsumerRequiresRepoTests < ConsumerTests
   def self.before_suite
     RepositorySupport.create_and_sync_repo(:importer_and_distributor => true)
   end
@@ -152,28 +146,25 @@ class TestConsumerRequiresRepo < ConsumerTests
     RepositorySupport.destroy_repo
   end
 
-  def setup
-    super
-    bind_repo
-  end
-
-  def test_bind_empty
+  def bind_repo
     distro_id = RepositorySupport.distributor()['id']
-    response = @resource.unbind(@consumer_id, RepositorySupport.repo_id, distro_id)
-    assert(200, response.code)
-    #assert(@resource.retrieve_bindings(@consumer_id).empty?)
-
+    @resource.bind(@consumer_id, RepositorySupport.repo_id, distro_id)
   end
+
+end
+
+class TestConsumerBindings < ConsumerRequiresRepoTests
+
 
   def test_bind_success
-    distro_id = RepositorySupport.distributor()['id']
-    response = @resource.bind(@consumer_id, RepositorySupport.repo_id, distro_id)
+    response = bind_repo
     assert_equal(RepositorySupport.repo_id, response[:repo_id])
     assert(200, response.code)
     #assert(!@resource.retrieve_bindings(@consumer_id).empty?)
   end
 
   def test_unbind
+    bind_repo
     distro_id = RepositorySupport.distributor()['id']
     assert(!@resource.retrieve_bindings(@consumer_id).empty?)
     response = @resource.unbind(@consumer_id, RepositorySupport.repo_id, distro_id)
@@ -181,19 +172,30 @@ class TestConsumerRequiresRepo < ConsumerTests
     assert(200, response.code)
   end
 
+end
+
+
+class TestConsumerRequiresRepo < ConsumerRequiresRepoTests
+  def setup
+    super
+    bind_repo
+  end
   def test_install_units
     response  = @resource.install_units(@consumer_id,{"units"=>["unit_key"=>{:name => "zsh"}]})
     assert_equal(202, response.code)
+    assert(response["task_id"])
   end
 
   def test_update_units
     response  = @resource.update_units(@consumer_id,{"units"=>["unit_key"=>{:name => "zsh"}]})
     assert_equal(202, response.code)
+    assert(response["task_id"])
   end
 
   def test_uninstall_units
     response  = @resource.uninstall_units(@consumer_id,{"units"=>["unit_key"=>{:name => "zsh"}]})
     assert_equal(202, response.code)
+    assert(response["task_id"])
   end
 
 

@@ -18,7 +18,7 @@ require './test/support/consumer_group_support'
 require './test/support/repository_support'
 
 
-class TestConsumerGroup < MiniTest::Unit::TestCase
+class TestConsumerGroupExtension < MiniTest::Unit::TestCase
 
   def setup
     @resource = Runcible::Resources::ConsumerGroup
@@ -51,6 +51,24 @@ class TestConsumerGroup < MiniTest::Unit::TestCase
     assert(!response.include?(ConsumerSupport.consumer_id))
   end
 
+
+  def test_install_content
+    response = @extension.install_content(@consumer_group_id, "rpm", ["zsh", "foo"])
+    assert(response["task_id"])
+    assert_equal(202, response.code)
+  end
+
+  def test_update_content
+    response = @extension.update_content(@consumer_group_id, "rpm", ["zsh", "foo"])
+    assert(response["task_id"])
+    assert_equal(202, response.code)
+  end
+
+  def test_uninstall_content
+    response = @extension.uninstall_content(@consumer_group_id, "rpm", ["zsh", "foo"])
+    assert(response["task_id"])
+    assert_equal(202, response.code)
+  end
 end
 
 

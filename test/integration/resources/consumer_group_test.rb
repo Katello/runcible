@@ -148,3 +148,73 @@ class TestConsumerGroupUnassociate < ConsumerGroupWithConsumerTests
     assert(!response.include?(ConsumerSupport.consumer_id))
   end
 end
+
+
+
+class ConsumerGroupRequiresRepoTests < ConsumerGroupTests
+  def self.before_suite
+    RepositorySupport.create_and_sync_repo(:importer_and_distributor => true)
+  end
+
+  def self.after_suite
+    RepositorySupport.destroy_repo
+  end
+
+  def bind_repo
+    distro_id = RepositorySupport.distributor()['id']
+    @resource.bind(@consumer_group_id, RepositorySupport.repo_id, distro_id)
+  end
+
+end
+
+#class TestConsumerGroupBindings < ConsumerGroupRequiresRepoTests
+#
+#
+#  def test_bind_success
+#    response = bind_repo
+#    require "ruby-debug";debugger
+#    assert_equal(RepositorySupport.repo_id, response[:repo_id])
+#    assert(200, response.code)
+#    #assert(!@resource.retrieve_bindings(@consumer_id).empty?)
+#  end
+#
+#  def test_unbind
+#    bind_repo
+#    distro_id = RepositorySupport.distributor()['id']
+#    assert(!@resource.retrieve_bindings(@consumer_id).empty?)
+#    response = @resource.unbind(@consumer_id, RepositorySupport.repo_id, distro_id)
+#    #assert(@resource.retrieve_bindings(@consumer_id).empty?)
+#    assert(200, response.code)
+#  end
+#
+#end
+
+class TestConsumerGroupRequiresRepo < ConsumerGroupRequiresRepoTests
+  def setup
+    super
+    #bind_repo
+  end
+
+  def test_install_units
+    response  = @resource.install_units(@consumer_group_id,{"units"=>["unit_key"=>{:name => "zsh"}]})
+    assert_equal(202, response.code)
+    assert(response["task_id"])
+  end
+
+  def test_update_units
+    response  = @resource.update_units(@consumer_group_id,{"units"=>["unit_key"=>{:name => "zsh"}]})
+    assert_equal(202, response.code)
+    assert(response["task_id"])
+  end
+
+  def test_uninstall_units
+    response  = @resource.uninstall_units(@consumer_group_id,{"units"=>["unit_key"=>{:name => "zsh"}]})
+    assert_equal(202, response.code)
+    assert(response["task_id"])
+  end
+
+
+
+end
+
+
