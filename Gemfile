@@ -15,4 +15,5 @@ group :test do
   gem 'webmock'
   gem 'minitest'
   gem 'parseconfig'
+  gem 'ruby-debug'
 end
