@@ -1,64 +1,30 @@
 --- 
-recorded_with: VCR 2.2.5
 http_interactions: 
-- request: 
-    method: post
-    uri: https://admin:admin@localhost/pulp/api/v2/users/
-    body: 
-      string: "{\"login\":\"integration_test_user\"}"
-    headers: 
-      Content-Length: 
-      - "33"
-      Accept-Encoding: 
-      - gzip, deflate
-      Accept: 
-      - application/json
-      Content-Type: 
-      - application/json
-  response: 
-    status: 
-      code: 201
-      message: Created
-    headers: 
-      Server: 
-      - Apache/2.2.22 (Fedora)
-      Content-Length: 
-      - "229"
-      Date: 
-      - Thu, 01 Nov 2012 15:24:04 GMT
-      Content-Type: 
-      - application/json
-      Location: 
-      - integration_test_user
-    body: 
-      string: "{\"_id\": {\"$oid\": \"50929414196cbe4a880040cd\"}, \"name\": \"integration_test_user\", \"roles\": [], \"_ns\": \"users\", \"login\": \"integration_test_user\", \"id\": \"50929414196cbe4a880040cd\", \"_href\": \"/pulp/api/v2/users/integration_test_user/\"}"
-    http_version: 
-  recorded_at: Thu, 01 Nov 2012 15:24:04 GMT
 - request: 
     method: get
     uri: https://admin:admin@localhost/pulp/api/v2/users/integration_test_user/
     body: 
       string: ""
     headers: 
+      Content-Type: 
+      - application/json
       Accept-Encoding: 
       - gzip, deflate
       Accept: 
-      - application/json
-      Content-Type: 
       - application/json
   response: 
     status: 
       code: 200
       message: OK
     headers: 
-      Server: 
-      - Apache/2.2.22 (Fedora)
-      Content-Length: 
-      - "302"
-      Date: 
-      - Thu, 01 Nov 2012 15:24:06 GMT
       Content-Type: 
       - application/json
+      Date: 
+      - Thu, 01 Nov 2012 15:24:06 GMT
+      Content-Length: 
+      - "302"
+      Server: 
+      - Apache/2.2.22 (Fedora)
     body: 
       string: "{\"_id\": {\"$oid\": \"50929416196cbe4a880040fb\"}, \"name\": \"integration_test_user\", \"roles\": [], \"_ns\": \"users\", \"login\": \"integration_test_user\", \"password\": \"pFjBy3fsSEo=,tEuBGmt74p+MRHkQfZcsE1O/4Q9JejE92iHazj27nSY=\", \"id\": \"50929416196cbe4a880040fb\", \"_href\": \"/pulp/api/v2/users/integration_test_user/\"}"
     http_version: 
@@ -69,26 +35,118 @@ http_interactions:
     body: 
       string: ""
     headers: 
+      Content-Type: 
+      - application/json
       Accept-Encoding: 
       - gzip, deflate
       Accept: 
-      - application/json
-      Content-Type: 
       - application/json
   response: 
     status: 
       code: 200
       message: OK
     headers: 
-      Server: 
-      - Apache/2.2.22 (Fedora)
-      Content-Length: 
-      - "4"
-      Date: 
-      - Thu, 01 Nov 2012 15:24:06 GMT
       Content-Type: 
       - application/json
+      Date: 
+      - Thu, 01 Nov 2012 15:24:06 GMT
+      Content-Length: 
+      - "4"
+      Server: 
+      - Apache/2.2.22 (Fedora)
     body: 
       string: "null"
     http_version: 
   recorded_at: Thu, 01 Nov 2012 15:24:06 GMT
+- request: 
+    method: post
+    uri: https://admin:admin@localhost/pulp/api/v2/users/
+    body: 
+      string: "{\"login\":\"integration_test_user_extension\"}"
+    headers: 
+      Content-Type: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Length: 
+      - "43"
+      Accept: 
+      - application/json
+  response: 
+    status: 
+      code: 201
+      message: Created
+    headers: 
+      Location: 
+      - integration_test_user_extension
+      Content-Type: 
+      - application/json
+      Date: 
+      - Thu, 01 Nov 2012 23:19:30 GMT
+      Content-Length: 
+      - "259"
+      Server: 
+      - Apache/2.2.22 (Fedora)
+    body: 
+      string: "{\"_id\": {\"$oid\": \"50930383196cbe4a880045b9\"}, \"name\": \"integration_test_user_extension\", \"roles\": [], \"_ns\": \"users\", \"login\": \"integration_test_user_extension\", \"id\": \"50930383196cbe4a880045b9\", \"_href\": \"/pulp/api/v2/users/integration_test_user_extension/\"}"
+    http_version: 
+  recorded_at: Thu, 01 Nov 2012 23:19:31 GMT
+- request: 
+    method: get
+    uri: https://admin:admin@localhost/pulp/api/v2/users/integration_test_user_extension/
+    body: 
+      string: ""
+    headers: 
+      Content-Type: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Accept: 
+      - application/json
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Content-Type: 
+      - application/json
+      Date: 
+      - Thu, 01 Nov 2012 23:19:31 GMT
+      Content-Length: 
+      - "277"
+      Server: 
+      - Apache/2.2.22 (Fedora)
+    body: 
+      string: "{\"_id\": {\"$oid\": \"50930383196cbe4a880045b9\"}, \"name\": \"integration_test_user_extension\", \"roles\": [], \"_ns\": \"users\", \"login\": \"integration_test_user_extension\", \"password\": null, \"id\": \"50930383196cbe4a880045b9\", \"_href\": \"/pulp/api/v2/users/integration_test_user_extension/\"}"
+    http_version: 
+  recorded_at: Thu, 01 Nov 2012 23:19:31 GMT
+- request: 
+    method: delete
+    uri: https://admin:admin@localhost/pulp/api/v2/users/integration_test_user_extension/
+    body: 
+      string: ""
+    headers: 
+      Content-Type: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Accept: 
+      - application/json
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Content-Type: 
+      - application/json
+      Date: 
+      - Thu, 01 Nov 2012 23:19:31 GMT
+      Content-Length: 
+      - "4"
+      Server: 
+      - Apache/2.2.22 (Fedora)
+    body: 
+      string: "null"
+    http_version: 
+  recorded_at: Thu, 01 Nov 2012 23:19:31 GMT
+recorded_with: VCR 2.2.5
