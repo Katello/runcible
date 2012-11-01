@@ -28,14 +28,14 @@ module Runcible
 
       def self.bind_all(id, repo_id)
         # bind the consumer to all repositories with the given repo_id
-        Runcible::Extensions::Repository.retrieve(repo_id)['distributors'].each do |d|
+        Runcible::Extensions::Repository.retrieve_with_details(repo_id)['distributors'].each do |d|
           self.bind(id, repo_id, d['id'])
         end
       end
 
       def self.unbind_all(id, repo_id)
         # unbind the consumer from all repositories with the given repo_id
-        Runcible::Extensions::Repository.retrieve(repo_id)['distributors'].each do |d|
+        Runcible::Extensions::Repository.retrieve_with_details(repo_id)['distributors'].each do |d|
           self.unbind(id, repo_id, d['id'])
         end
       end

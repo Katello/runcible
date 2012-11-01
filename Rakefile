@@ -20,7 +20,7 @@ namespace :test do
     if !['new_episodes', 'live', 'none', 'once'].include?(options[:mode])
       puts "Invalid test mode"
     else
-      require "test/integration/test_runner"
+      require "./test/integration/test_runner"
 
       test_runner = PulpMiniTestRunner.new
 

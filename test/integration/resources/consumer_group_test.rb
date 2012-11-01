@@ -31,7 +31,7 @@ module TestConsumerGroupBase
   end
 
   def create_consumer_group
-    @resource.create(@consumer_group_id, :display_name => "foo" , :description => 'Test description.', :consumer_ids => [])
+    @resource.create(@consumer_group_id, :display_name => "foo", :description => 'Test description.', :consumer_ids => [])
   rescue Exception => e
     puts e
   end

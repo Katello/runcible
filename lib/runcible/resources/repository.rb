@@ -36,8 +36,8 @@ module Runcible
         call(:post, path, :payload => { :required => required, :optional => optional })
       end
 
-      def self.retrieve(id, details=true)
-        call(:get, path(id) + "?details=#{details}")
+      def self.retrieve(id, params={})
+        call(:get, path(id), :params => params)
       end
 
       def self.update(id, optional={})

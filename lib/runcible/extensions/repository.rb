@@ -228,6 +228,10 @@ module Runcible
         end
         to_ret
       end
+
+      def self.retrieve_with_details(repo_id)
+        self.retrieve(repo_id, {:details => true})
+      end
     end
   end
 end
