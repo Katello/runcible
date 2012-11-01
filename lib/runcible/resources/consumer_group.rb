@@ -71,17 +71,17 @@ module Runcible
       #  call(:delete, path("#{id}/bindings/#{repo_id}/#{distributor_id}"))
       #end
 
-      def self.install_units(id, units, options="")
+      def self.install_units(id, units, options={})
         required = required_params(binding.send(:local_variables), binding, ["id"])
         call(:post, path("#{id}/actions/content/install/"), :payload => { :required => required })
       end
 
-      def self.update_units(id, units, options="")
+      def self.update_units(id, units, options={})
         required = required_params(binding.send(:local_variables), binding, ["id"])
         call(:post, path("#{id}/actions/content/update/"), :payload => { :required => required })
       end
 
-      def self.uninstall_units(id, units, options="")
+      def self.uninstall_units(id, units, options={})
         required = required_params(binding.send(:local_variables), binding, ["id"])
         call(:post, path("#{id}/actions/content/uninstall/"), :payload => { :required => required })
       end
