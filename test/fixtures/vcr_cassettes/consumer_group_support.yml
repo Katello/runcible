@@ -3,12 +3,12 @@ recorded_with: VCR 2.2.5
 http_interactions: 
 - request: 
     method: post
-    uri: https://admin:admin@localhost/pulp/api/v2/roles/super-users/users/
+    uri: https://admin:admin@localhost/pulp/api/v2/consumer_groups/
     body: 
-      string: "{\"login\":\"integration_test_user\"}"
+      string: "{\"id\":\"integration_test_consumer_group_support\"}"
     headers: 
       Content-Length: 
-      - "33"
+      - "48"
       Accept-Encoding: 
       - gzip, deflate
       Accept: 
@@ -17,24 +17,26 @@ http_interactions:
       - application/json
   response: 
     status: 
-      code: 200
-      message: OK
+      code: 201
+      message: Created
     headers: 
       Server: 
       - Apache/2.2.22 (Fedora)
       Content-Length: 
-      - "4"
+      - "298"
       Date: 
-      - Thu, 01 Nov 2012 15:23:43 GMT
+      - Thu, 01 Nov 2012 15:21:30 GMT
       Content-Type: 
       - application/json
+      Location: 
+      - /pulp/api/v2/consumer_groups/integration_test_consumer_group_support/
     body: 
-      string: "null"
+      string: "{\"scratchpad\": null, \"display_name\": null, \"description\": null, \"_ns\": \"consumer_groups\", \"notes\": {}, \"consumer_ids\": [], \"_id\": {\"$oid\": \"5092937a196cbe4a8800383a\"}, \"id\": \"integration_test_consumer_group_support\", \"_href\": \"/pulp/api/v2/consumer_groups/integration_test_consumer_group_support/\"}"
     http_version: 
-  recorded_at: Thu, 01 Nov 2012 15:23:43 GMT
+  recorded_at: Thu, 01 Nov 2012 15:21:30 GMT
 - request: 
     method: delete
-    uri: https://admin:admin@localhost/pulp/api/v2/roles/super-users/users/integration_test_user/
+    uri: https://admin:admin@localhost/pulp/api/v2/consumer_groups/integration_test_consumer_group_support/
     body: 
       string: ""
     headers: 
@@ -54,10 +56,10 @@ http_interactions:
       Content-Length: 
       - "4"
       Date: 
-      - Thu, 01 Nov 2012 15:23:43 GMT
+      - Thu, 01 Nov 2012 15:21:32 GMT
       Content-Type: 
       - application/json
     body: 
       string: "null"
     http_version: 
-  recorded_at: Thu, 01 Nov 2012 15:23:44 GMT
+  recorded_at: Thu, 01 Nov 2012 15:21:32 GMT

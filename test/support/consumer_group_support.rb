@@ -22,41 +22,36 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 require 'rubygems'
-require 'vcr'
+require './lib/runcible/resources/consumer_group'
+require './lib/runcible/extensions/consumer_group'
+module ConsumerGroupSupport
 
+  @consumer_group_resource = Runcible::Extensions::ConsumerGroup
+  @consumer_group_id = "integration_test_consumer_group_support"
 
-def configure_vcr(record_mode=:none)
-  VCR.configure do |c|
-    c.cassette_library_dir = 'test/fixtures/vcr_cassettes'
-    c.hook_into :webmock
-    c.default_cassette_options = {
-      :record => record_mode,
-      :match_requests_on => [:method, :path, :params],
-      :serialize_with => :syck
-    }
-
-    begin
-      c.register_request_matcher :body_json do |request_1, request_2|
-        begin
-          json_1 = JSON.parse(request_1.body)
-          json_2 = JSON.parse(request_2.body)
-
-          json_1 == json_2
-        rescue
-          #fallback incase there is a JSON parse error
-          request_1.body == request_2.body
-        end
-      end
-    rescue => e
-      #ignore the warning thrown about this matcher already being resgistered
-    end
-
-    begin
-      c.register_request_matcher :params do |request_1, request_2|
-        URI(request_1.uri).query == URI(request_2.uri).query
-      end
-    rescue => e
-      #ignore the warning thrown about this matcher already being resgistered
-    end
+  def self.consumer_group_id
+    @consumer_group_id
   end
+
+  def self.create_consumer_group()
+    consumer_group = {}
+    destroy_consumer_group
+    VCR.use_cassette('consumer_group_support') do
+      consumer_group = @consumer_group_resource.create(@consumer_group_id)
+    end
+    return consumer_group
+  rescue Exception => e
+    p "TestPulpConsumerGroup: Consumer #{@consumer_group_id} already existed."
+  end
+
+  def self.destroy_consumer_group
+    VCR.use_cassette('consumer_group_support') do
+      @consumer_group_resource.delete(@consumer_group_id)
+    end
+
+  rescue Exception => e
+    raise e unless e.class == RestClient::ResourceNotFound
+    p "TestPulpConsumerGroup: No consumer group #{@consumer_group_id} to delete."
+  end
+
 end

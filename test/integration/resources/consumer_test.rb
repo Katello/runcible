@@ -1,13 +1,25 @@
 # Copyright 2012 Red Hat, Inc.
 #
-# This software is licensed to you under the GNU General Public
-# License as published by the Free Software Foundation; either version
-# 2 of the License (GPLv2) or (at your option) any later version.
-# There is NO WARRANTY for this software, express or implied,
-# including the implied warranties of MERCHANTABILITY,
-# NON-INFRINGEMENT, or FITNESS FOR A PARTICULAR PURPOSE. You should
-# have received a copy of GPLv2 along with this software; if not, see
-# http://www.gnu.org/licenses/old-licenses/gpl-2.0.txt.
+# MIT License
+#
+# Permission is hereby granted, free of charge, to any person obtaining
+# a copy of this software and associated documentation files (the
+# "Software"), to deal in the Software without restriction, including
+# without limitation the rights to use, copy, modify, merge, publish,
+# distribute, sublicense, and/or sell copies of the Software, and to
+# permit persons to whom the Software is furnished to do so, subject to
+# the following conditions:
+#
+# The above copyright notice and this permission notice shall be
+# included in all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+# NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+# LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+# OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+# WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 require 'rubygems'
 require 'minitest/autorun'
@@ -42,11 +54,6 @@ module TestConsumerBase
   def destroy_consumer
     @resource.delete(@consumer_id)
   end
-
-  def bind_repo
-    @extension.bind_all(@consumer_id, RepositorySupport.repo_id)
-  end
-
 end
 
 class TestConsumerCreate < MiniTest::Unit::TestCase
@@ -142,8 +149,7 @@ class TestProfiles < ConsumerTests
   end
 end
 
-class TestConsumerRequiresRepo < ConsumerTests
-
+class ConsumerRequiresRepoTests < ConsumerTests
   def self.before_suite
     RepositorySupport.create_and_sync_repo(:importer_and_distributor => true)
   end
@@ -152,28 +158,25 @@ class TestConsumerRequiresRepo < ConsumerTests
     RepositorySupport.destroy_repo
   end
 
-  def setup
-    super
-    bind_repo
-  end
-
-  def test_bind_empty
+  def bind_repo
     distro_id = RepositorySupport.distributor()['id']
-    response = @resource.unbind(@consumer_id, RepositorySupport.repo_id, distro_id)
-    assert(200, response.code)
-    #assert(@resource.retrieve_bindings(@consumer_id).empty?)
-
+    @resource.bind(@consumer_id, RepositorySupport.repo_id, distro_id)
   end
+
+end
+
+class TestConsumerBindings < ConsumerRequiresRepoTests
+
 
   def test_bind_success
-    distro_id = RepositorySupport.distributor()['id']
-    response = @resource.bind(@consumer_id, RepositorySupport.repo_id, distro_id)
+    response = bind_repo
     assert_equal(RepositorySupport.repo_id, response[:repo_id])
     assert(200, response.code)
     #assert(!@resource.retrieve_bindings(@consumer_id).empty?)
   end
 
   def test_unbind
+    bind_repo
     distro_id = RepositorySupport.distributor()['id']
     assert(!@resource.retrieve_bindings(@consumer_id).empty?)
     response = @resource.unbind(@consumer_id, RepositorySupport.repo_id, distro_id)
@@ -181,19 +184,30 @@ class TestConsumerRequiresRepo < ConsumerTests
     assert(200, response.code)
   end
 
+end
+
+
+class TestConsumerRequiresRepo < ConsumerRequiresRepoTests
+  def setup
+    super
+    bind_repo
+  end
   def test_install_units
     response  = @resource.install_units(@consumer_id,{"units"=>["unit_key"=>{:name => "zsh"}]})
     assert_equal(202, response.code)
+    assert(response["task_id"])
   end
 
   def test_update_units
     response  = @resource.update_units(@consumer_id,{"units"=>["unit_key"=>{:name => "zsh"}]})
     assert_equal(202, response.code)
+    assert(response["task_id"])
   end
 
   def test_uninstall_units
     response  = @resource.uninstall_units(@consumer_id,{"units"=>["unit_key"=>{:name => "zsh"}]})
     assert_equal(202, response.code)
+    assert(response["task_id"])
   end
 
 

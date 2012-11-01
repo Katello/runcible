@@ -1,21 +1,34 @@
 # Copyright 2012 Red Hat, Inc.
 #
-# This software is licensed to you under the GNU General Public
-# License as published by the Free Software Foundation; either version
-# 2 of the License (GPLv2) or (at your option) any later version.
-# There is NO WARRANTY for this software, express or implied,
-# including the implied warranties of MERCHANTABILITY,
-# NON-INFRINGEMENT, or FITNESS FOR A PARTICULAR PURPOSE. You should
-# have received a copy of GPLv2 along with this software; if not, see
-# http://www.gnu.org/licenses/old-licenses/gpl-2.0.txt.
+# MIT License
+#
+# Permission is hereby granted, free of charge, to any person obtaining
+# a copy of this software and associated documentation files (the
+# "Software"), to deal in the Software without restriction, including
+# without limitation the rights to use, copy, modify, merge, publish,
+# distribute, sublicense, and/or sell copies of the Software, and to
+# permit persons to whom the Software is furnished to do so, subject to
+# the following conditions:
+#
+# The above copyright notice and this permission notice shall be
+# included in all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+# NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+# LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+# OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+# WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 require 'rubygems'
 require './lib/runcible/resources/consumer'
+require './lib/runcible/extensions/consumer'
 
 module ConsumerSupport
 
-  @consumer_resource = Runcible::Resources::Consumer
-  @consumer_id = "integration_test_consumer"
+  @consumer_resource = Runcible::Extensions::Consumer
+  @consumer_id = "integration_test_consumer_support"
 
   def self.consumer_id
     @consumer_id
@@ -38,9 +51,11 @@ module ConsumerSupport
 
   def self.destroy_consumer
     VCR.use_cassette('consumer_support') do
-      @consumer_resource.destroy(@consumer_id)
+      @consumer_resource.delete(@consumer_id)
     end
+
   rescue Exception => e
+    raise e unless e.class == RestClient::ResourceNotFound
     p "TestPulpConsumer: No consumer #{@consumer_id} to delete."
   end
 
