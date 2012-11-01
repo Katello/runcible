@@ -26,8 +26,8 @@ require 'minitest/autorun'
 require './lib/runcible/resources/consumer_group'
 require './lib/runcible/resources/consumer'
 require './lib/runcible/extensions/consumer'
-require 'test/support/repository_support'
-require 'test/support/consumer_support'
+require './test/support/repository_support'
+require './test/support/consumer_support'
 
 module TestConsumerGroupBase
   include RepositorySupport
