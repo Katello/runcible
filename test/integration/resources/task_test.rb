@@ -48,7 +48,7 @@ class TestResourcesTask < MiniTest::Unit::TestCase
 
   def self.before_suite
     RepositorySupport.create_repo(:importer => true)
-    RepositorySupport.sync_repo
+    @@task = RepositorySupport.sync_repo
   end
 
   def self.after_suite
@@ -61,14 +61,14 @@ class TestResourcesTask < MiniTest::Unit::TestCase
   end
 
   def test_path_with_task_id
-    path = @resource.path(RepositorySupport.task['task_id'])
-    assert_match("tasks/#{RepositorySupport.task['task_id']}/", path)
+    path = @resource.path(@@task['task_id'])
+    assert_match("tasks/#{@@task['task_id']}/", path)
   end
 
   def test_poll
-    response = @resource.poll(RepositorySupport.task['task_id'])
+    response = @resource.poll(@@task['task_id'])
     assert response.code == 200
-    assert response['task_id'] == RepositorySupport.task['task_id']
+    assert response['task_id'] == @@task['task_id']
   end
 
   def test_list

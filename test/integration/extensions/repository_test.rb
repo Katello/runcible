@@ -126,7 +126,7 @@ class TestExtensionsRepositoryMisc < MiniTest::Unit::TestCase
 
   def setup
     super
-    RepositorySupport.create_repo(:importer=>true)
+    RepositorySupport.create_and_sync_repo(:importer_and_distributor => true)
   end
 
   def teardown
@@ -153,6 +153,12 @@ class TestExtensionsRepositoryMisc < MiniTest::Unit::TestCase
   
     assert response.code == 200
     assert response.key?('distributors')
+  end
+  
+  def test_publish_all
+    response = @extension.publish_all(RepositorySupport.repo_id)
+    RepositorySupport.wait_on_tasks(response)
+    assert response.first['call_request_tags'].include?('pulp:action:publish')
   end
 
 end

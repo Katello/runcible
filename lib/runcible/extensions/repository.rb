@@ -223,7 +223,7 @@ module Runcible
 
       def self.publish_all(repo_id)
         to_ret = []
-        self.retrieve(repo_id)['distributors'].each do |d|
+        self.retrieve_with_details(repo_id)['distributors'].each do |d|
           to_ret << self.publish(repo_id, d['id'])
         end
         to_ret

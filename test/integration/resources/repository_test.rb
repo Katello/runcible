@@ -109,13 +109,6 @@ class TestResourcesRepository < MiniTest::Unit::TestCase
     assert response["display_name"] == RepositorySupport.repo_id
   end
 
-  def test_retrieve_with_details
-    response = @resource.retrieve(RepositorySupport.repo_id, {:details => true})
-    assert response.code == 200
-    assert response.has_key?("distributors")
-    assert response.has_key?("importers")
-  end
-
   def test_retrieve_all
     response = @resource.retrieve_all()
     assert response.code == 200
@@ -179,6 +172,30 @@ class TestResourcesRepositorySync < MiniTest::Unit::TestCase
     assert response.first["call_request_tags"].include?('pulp:action:sync')
   end
 end
+
+
+class TestResourcesRepositoryRequiresSync < MiniTest::Unit::TestCase
+  include TestResourcesRepositoryBase
+
+  def setup
+    super
+    RepositorySupport.create_and_sync_repo(:importer_and_distributor => true)
+  end
+
+  def teardown
+    RepositorySupport.destroy_repo
+    super
+  end
+
+  def test_publish
+    response = @resource.publish(RepositorySupport.repo_id, RepositorySupport.distributor)
+    RepositorySupport.wait_on_task(response)
+    assert response.code == 202
+    assert response['call_request_tags'].include?('pulp:action:publish')
+  end
+
+end
+
 
 class TestResourcesRepositoryClone < MiniTest::Unit::TestCase
   include TestResourcesRepositoryBase
