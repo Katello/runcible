@@ -133,8 +133,16 @@ module RepositorySupport
         self.wait_on_task(task)
       end
     end
+  
+    return @task
   rescue Exception => e
     puts e
+  end
+
+  def self.wait_on_tasks(tasks)
+    tasks.each do |task|
+      self.wait_on_task(task)
+    end
   end
 
   def self.wait_on_task task

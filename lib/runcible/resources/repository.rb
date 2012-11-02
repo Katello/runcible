@@ -72,7 +72,7 @@ module Runcible
       end
 
       def self.sync_history(id)
-          call(:get, "#{path(id)}/history/sync/")
+        call(:get, "#{path(id)}/history/sync/")
       end
 
       def self.unit_copy(destination_repo_id, source_repo_id, optional={:criteria=>{}})
