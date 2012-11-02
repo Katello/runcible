@@ -1,36 +1,36 @@
 --- 
-recorded_with: VCR 2.2.5
+recorded_with: VCR 2.3.0
 http_interactions: 
 - request: 
     method: post
-    uri: https://admin:admin@localhost/pulp/api/v2/repositories/
+    uri: https://admin:admin@knifeparty.localdomain/pulp/api/v2/repositories/
     body: 
-      string: "{\"id\":\"integration_test_id\",\"distributors\":[{\"distributor_type\":\"yum_distributor\",\"auto_publish\":true,\"distributor_config\":{\"http\":true,\"relative_url\":\"/path\",\"https\":true},\"distributor_id\":\"123\"}]}"
+      string: "{\"distributors\":[{\"distributor_type\":\"yum_distributor\",\"distributor_id\":\"123\",\"auto_publish\":true,\"distributor_config\":{\"relative_url\":\"/path\",\"https\":true,\"http\":true}}],\"id\":\"integration_test_id\"}"
     headers: 
-      Content-Length: 
-      - "198"
+      Content-Type: 
+      - application/json
       Accept-Encoding: 
       - gzip, deflate
+      Content-Length: 
+      - "198"
       Accept: 
-      - application/json
-      Content-Type: 
       - application/json
   response: 
     status: 
       code: 201
       message: Created
     headers: 
-      Server: 
-      - Apache/2.2.22 (Fedora)
-      Content-Length: 
-      - "265"
-      Date: 
-      - Thu, 01 Nov 2012 15:22:24 GMT
       Content-Type: 
       - application/json
       Location: 
       - integration_test_id
+      Date: 
+      - Fri, 02 Nov 2012 19:24:42 GMT
+      Content-Length: 
+      - "265"
+      Server: 
+      - Apache/2.2.22 (Fedora)
     body: 
-      string: "{\"scratchpad\": {}, \"display_name\": \"integration_test_id\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_count\": 0, \"_id\": {\"$oid\": \"509293b0196cbe4a88003bbe\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\"}"
+      string: "{\"scratchpad\": {}, \"display_name\": \"integration_test_id\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_count\": 0, \"_id\": {\"$oid\": \"50941dfadc7921763c001575\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\"}"
     http_version: 
-  recorded_at: Thu, 01 Nov 2012 15:22:24 GMT
+  recorded_at: Fri, 02 Nov 2012 19:24:42 GMT
