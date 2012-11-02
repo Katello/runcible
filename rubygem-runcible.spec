@@ -47,7 +47,7 @@ Name:           rubygem-%{gem_name}
 Summary:        A gem exposing Pulp's juiciest parts
 Group:          Applications/System
 License:        MIT
-Version:        0.1.2
+Version:        0.1.3
 Release:        1%{?dist}
 URL:            https://github.com/Katello/runcible
 Source0:        %{name}-%{version}.tar.gz
@@ -105,6 +105,31 @@ This package contains documentation for rubygem-%{gem_name}
 %doc %{gem_docdir}
 
 %changelog
+* Fri Nov 02 2012 Eric D. Helms <ehelms@redhat.com> 0.1.3-1
+- Version bump. (ehelms@redhat.com)
+- Cassette updates for tests. (ehelms@redhat.com)
+- Fixes broken publish_all call and adds tests for publish and publish_all.
+  (ehelms@redhat.com)
+- Adding files to make travis happy in theory (paji@redhat.com)
+- Changed the 'options' parameter to be  empty hash instead of a string since
+  pulp expects that (paji@redhat.com)
+- Changed the check for 'logging' suite name as suggested (paji@redhat.com)
+- Replaced all the GPL licenses with MIT as requested by eric (paji@redhat.com)
+- Fixed merge conflicts and regenerated yml cassettes (paji@redhat.com)
+- Updated the required yml to make the runcible tests run (paji@redhat.com)
+- Fixed a few consumer group tests (paji@redhat.com)
+- Travis - Adds testing against 1.9.3 (ehelms@redhat.com)
+- Merge branch 'master' of github.com:Katello/runcible (ehelms@redhat.com)
+- Ruby 1.9.3 - Updates to get code and tests passing on both Ruby 1.8.7 and
+  Ruby 1.9.3 (ehelms@redhat.com)
+- Added calls in extensions to simplify adding and removing consumers from
+  consumer groups (paji@redhat.com)
+- Added consumer group associate and unassociate calls (paji@redhat.com)
+- cassette update (jsherril@redhat.com)
+- adding support for repository ids as part of repository unit listing
+  (jsherril@redhat.com)
+- fixing issue with sync cancel not working properly (jsherril@redhat.com)
+
 * Thu Oct 25 2012 Eric D. Helms <ehelms@redhat.com> 0.1.2-1
 - Version bump. (ehelms@redhat.com)
 - Updates README indentation for code blocks and moves all Copyrights to Red
