@@ -1,36 +1,36 @@
 --- 
+recorded_with: VCR 2.2.5
 http_interactions: 
 - request: 
     method: post
     uri: https://admin:admin@localhost/pulp/api/v2/repositories/
     body: 
-      string: "{\"id\":\"integration_test_id\",\"distributors\":[{\"auto_publish\":true,\"distributor_config\":{\"https\":true,\"relative_url\":\"/path\",\"http\":true},\"distributor_id\":\"123\",\"distributor_type\":\"yum_distributor\"}]}"
+      string: "{\"id\":\"integration_test_id\",\"distributors\":[{\"distributor_config\":{\"https\":true,\"http\":true,\"relative_url\":\"/path\"},\"auto_publish\":true,\"distributor_type\":\"yum_distributor\",\"distributor_id\":\"123\"}]}"
     headers: 
-      Accept: 
-      - application/json
       Content-Length: 
       - "198"
-      Content-Type: 
-      - application/json
       Accept-Encoding: 
       - gzip, deflate
+      Accept: 
+      - application/json
+      Content-Type: 
+      - application/json
   response: 
     status: 
       code: 201
       message: Created
     headers: 
-      Date: 
-      - Tue, 06 Nov 2012 18:36:44 GMT
       Content-Length: 
       - "265"
       Content-Type: 
       - application/json
-      Server: 
-      - Apache/2.2.22 (Fedora)
       Location: 
       - integration_test_id
+      Date: 
+      - Wed, 07 Nov 2012 19:40:02 GMT
+      Server: 
+      - Apache/2.2.22 (Fedora)
     body: 
-      string: "{\"scratchpad\": {}, \"display_name\": \"integration_test_id\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_count\": 0, \"_id\": {\"$oid\": \"509958bc196cbe4ddc000a04\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\"}"
+      string: "{\"scratchpad\": {}, \"display_name\": \"integration_test_id\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_count\": 0, \"_id\": {\"$oid\": \"509ab9129c60ed36560014c5\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\"}"
     http_version: 
-  recorded_at: Tue, 06 Nov 2012 18:36:44 GMT
-recorded_with: VCR 2.2.5
+  recorded_at: Wed, 07 Nov 2012 19:40:02 GMT
