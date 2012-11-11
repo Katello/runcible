@@ -99,10 +99,12 @@ class ConsumerTests < MiniTest::Unit::TestCase
     destroy_consumer
     super
   end
+
 end
 
 class TestGeneralMethods  < ConsumerTests
-  def test_consumer_path
+
+  def test_path
     path = @resource.path
     assert_match('consumers/', path)
   end
@@ -124,10 +126,12 @@ class TestGeneralMethods  < ConsumerTests
     assert response.code == 200
     assert_equal(description, response['description'])
   end
+
 end
 
 
 class TestProfiles < ConsumerTests
+
   def test_upload_profile
     packages = [{"vendor" => "FedoraHosted", "name" => "elephant",
                  "version" => "0.3", "release" => "0.8",
@@ -147,9 +151,12 @@ class TestProfiles < ConsumerTests
     assert_equal(@consumer_id, response["consumer_id"])
     assert_equal(packages, response["profile"])
   end
+
 end
 
+
 class ConsumerRequiresRepoTests < ConsumerTests
+
   def self.before_suite
     RepositorySupport.create_and_sync_repo(:importer_and_distributor => true)
   end
@@ -165,10 +172,10 @@ class ConsumerRequiresRepoTests < ConsumerTests
 
 end
 
+
 class TestConsumerBindings < ConsumerRequiresRepoTests
 
-
-  def test_bind_success
+  def test_bind
     response = bind_repo
     assert_equal(RepositorySupport.repo_id, response[:repo_id])
     assert(200, response.code)
@@ -181,17 +188,34 @@ class TestConsumerBindings < ConsumerRequiresRepoTests
     assert(!@resource.retrieve_bindings(@consumer_id).empty?)
     response = @resource.unbind(@consumer_id, RepositorySupport.repo_id, distro_id)
     #assert(@resource.retrieve_bindings(@consumer_id).empty?)
-    assert(200, response.code)
+    assert_equal 200, response.code
   end
 
 end
 
 
 class TestConsumerRequiresRepo < ConsumerRequiresRepoTests
+
   def setup
     super
     bind_repo
   end
+
+  def test_retrieve_binding
+    distributor_id = RepositorySupport.distributor()['id']
+    response = @resource.retrieve_binding(@consumer_id, RepositorySupport.repo_id, distributor_id)
+
+    assert_equal 200, response.code
+    assert_equal RepositorySupport.repo_id, response['repo_id']
+  end
+
+  def test_retrieve_bindings
+    response  = @resource.retrieve_binding(@consumer_id)
+
+    assert_equal 200, response.code
+    refute_empty response
+  end
+
   def test_install_units
     response  = @resource.install_units(@consumer_id,{"units"=>["unit_key"=>{:name => "zsh"}]})
     assert_equal(202, response.code)
@@ -209,8 +233,6 @@ class TestConsumerRequiresRepo < ConsumerRequiresRepoTests
     assert_equal(202, response.code)
     assert(response["task_id"])
   end
-
-
 
 end
 

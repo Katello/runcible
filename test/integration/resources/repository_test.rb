@@ -87,7 +87,7 @@ class TestResourcesRepository < MiniTest::Unit::TestCase
     RepositorySupport.destroy_repo
   end
 
-  def test_repository_path
+  def test_path
     path = @resource.path
     assert_match("repositories/", path)
   end
@@ -135,6 +135,15 @@ class TestResourcesRepository < MiniTest::Unit::TestCase
     assert response['distributor_type_id'] == "yum_distributor"
   end
 
+  def test_delete_distributor
+    distributor_config = {"distributor_id" : "dist_1"}
+    @resource.associate_distributor(RepositorySupport.repo_id, "yum_distributor", distributor_config)
+
+    response = @resource.delete_distributor(RepositorySupport.repo_id, "dist_1")
+
+    assert_equal 200, response.code
+  end
+
 end
 
 
@@ -152,7 +161,7 @@ class TestResourcesRepositorySync < MiniTest::Unit::TestCase
     super
   end
 
-  def test_sync_repo
+  def test_sync
     RepositorySupport.create_repo
     response = @resource.sync(RepositorySupport.repo_id)
     RepositorySupport.task = response[0]
@@ -192,6 +201,27 @@ class TestResourcesRepositoryRequiresSync < MiniTest::Unit::TestCase
     RepositorySupport.wait_on_task(response)
     assert response.code == 202
     assert response['call_request_tags'].include?('pulp:action:publish')
+  end
+
+  def test_unassociate_units
+    response = @resource.unassociate_units(RepositorySupport.repo_id, {})
+    RespotiroySupport.wait_on_task(response)
+
+    assert_equal 202, response.code
+  end
+
+  def test_unit_search
+    response = @resource.unit_search(RepositorySupport.repo_id, {})
+
+    assert_equal 200, response.code
+    refute_empty response
+  end
+
+  def test_sync_history
+    response = @resource.sync_history(RepositorySupport.repo_id)
+
+    assert        200, response.code
+    refute_empty  response
   end
 
 end

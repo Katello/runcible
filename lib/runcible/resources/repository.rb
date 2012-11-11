@@ -81,10 +81,10 @@ module Runcible
              :payload => { :required => required, :optional=> optional })
       end
 
-      def self.unassociate_units(source_repo_id, optional={})
+      def self.unassociate_units(source_repo_id, criteria={})
         required = required_params(binding.send(:local_variables), binding, ["source_repo_id"])
         call(:post, "#{path(source_repo_id)}actions/unassociate/",
-             :payload => { :required => required, :optional=> optional })
+             :payload => { :required => { :criteria => criteria }})
       end
 
       def self.unit_search(id, criteria={})

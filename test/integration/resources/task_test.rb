@@ -67,23 +67,30 @@ class TestResourcesTask < MiniTest::Unit::TestCase
 
   def test_poll
     response = @resource.poll(@@task['task_id'])
-    assert response.code == 200
-    assert response['task_id'] == @@task['task_id']
+
+    assert_equal 200, response.code
+    assert_equal @@task['task_id'], response['task_id']
   end
 
   def test_list
     response = @resource.list
-    assert response.code == 200
-    assert response.length > 0
-    #assert response.first['task_id'] == RepositorySupport.task['task_id']
+
+    assert_equal 200, response.code
+    refute_empty response
   end
 
-=begin
-  #TODO: Needs more reliable testable scenario - scheduled sync in the future?
   def test_cancel
+    skip "TODO: Needs more reliable testable scenario - scheduled sync in the future?"
     response = @resource.cancel(RepositorySupport.task['task_id'])
-    assert response.code == 200
+
+    assert_equal 200, response.code
   end
-=end
+
+  def test_poll_all
+    tasks = @resource.poll_all([RepositorySupport.task['task_id']])
+    
+    refute_empty tasks
+    refute_empty tasks.select{ |task| task['task_id'] == RepositorySupport.task['task_id'] }
+  end
 
 end
