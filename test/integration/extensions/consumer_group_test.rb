@@ -87,7 +87,7 @@ class TestConsumerGroupExtension < MiniTest::Unit::TestCase
   end
 
   def test_make_consumer_criteria
-    criteria = @extensions.make_consumer_criteria([ConsumerSupport.consumer_id])
+    criteria = @extension.make_consumer_criteria([ConsumerSupport.consumer_id])
 
     assert_kind_of  Hash, criteria
     refute_empty    criteria[:criteria][:filters][:id]["$in"]

@@ -33,7 +33,9 @@ module TestExtensionsRepositoryBase
 
   def setup
     @extension = Runcible::Extensions::Repository
-    VCR.insert_cassette('extensions/repository_extensions', :match_requests_on => [:body_json, :path, :method])
+    VCR.insert_cassette('extensions/repository_extensions', 
+                        :match_requests_on => [:body_json, :path, :method],
+                        :allow_playback_repeats => true)
   end
 
   def teardown
@@ -149,7 +151,7 @@ class TestExtensionsRepositoryMisc < MiniTest::Unit::TestCase
   end
 
   def test_remove_schedules
-    @extension.create_or_update_schedule(RepositorySupport.repo_id, 'yum_importer', "2012-09-25T20:44:00Z/P7D")
+    Runcible::Resources::RepositorySchedule.create(RepositorySupport.repo_id, 'yum_importer', "2012-10-25T20:44:00Z/P7D")
     response = @extension.remove_schedules(RepositorySupport.repo_id, "yum_importer")
     
     assert_equal 200, response.code
@@ -204,8 +206,11 @@ class TestExtensionsRepositoryUnitList < MiniTest::Unit::TestCase
   end
 
   def test_errata_ids
+    skip "Currently not working in Pulp"
     response = @@extension.errata_ids(RepositorySupport.repo_id)
-    assert !response.empty?
+    
+    assert_equal 200, response.code
+    refute_empty response
   end
 
   def test_distributions
@@ -311,6 +316,7 @@ class TestExtensionsRepositoryUnassociate < MiniTest::Unit::TestCase
   end
 
   def test_errata_remove
+    skip "Currently not working in Pulp"
     errata_ids = @@extension.errata_ids(RepositorySupport.repo_id)
     refute_empty errata_ids
 

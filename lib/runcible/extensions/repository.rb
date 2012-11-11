@@ -90,9 +90,7 @@ module Runcible
       def self.rpm_remove(repo_id, package_ids)
         criteria = {:type_ids => ['rpm'], :filters => {}}
         criteria[:filters]['association'] = {'unit_id' => {'$in' => package_ids}}
-        payload = {}
-        payload[:criteria] = criteria
-        self.unassociate_units(repo_id, payload)
+        self.unassociate_units(repo_id, criteria)
       end
 
        #optional
@@ -107,8 +105,7 @@ module Runcible
       def self.errata_remove(repo_id, errata_ids)
         criteria = {:type_ids => ['erratum'], :filters => {}}
         criteria[:filters][:unit] = { :id=>{ '$in' => errata_ids } }
-        payload = {:criteria => criteria}
-        self.unassociate_units(repo_id, payload)
+        self.unassociate_units(repo_id, criteria)
       end
 
       #optoinal
@@ -123,8 +120,7 @@ module Runcible
       def self.distribution_remove(repo_id, distribution_id)
         criteria = {:type_ids => ['distribution'], :filters => {}}
         criteria[:filters][:unit] = { :id=>{ '$in' => [distribution_id] } }
-        payload = {:criteria => criteria}
-        self.unassociate_units(repo_id, payload)
+        self.unassociate_units(repo_id, criteria)
       end
 
       def self.rpm_ids(id)

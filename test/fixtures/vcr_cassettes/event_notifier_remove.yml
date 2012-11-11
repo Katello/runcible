@@ -1,73 +1,16 @@
 --- 
+recorded_with: VCR 2.3.0
 http_interactions: 
 - request: 
-    method: delete
-    uri: https://admin:admin@localhost/pulp/api/v2/events/5092938f196cbe4a880039f7/
-    body: 
-      string: ""
-    headers: 
-      Accept: 
-      - application/json
-      Content-Type: 
-      - application/json
-      Accept-Encoding: 
-      - gzip, deflate
-  response: 
-    status: 
-      code: 200
-      message: OK
-    headers: 
-      Date: 
-      - Thu, 01 Nov 2012 15:21:51 GMT
-      Content-Length: 
-      - "4"
-      Content-Type: 
-      - application/json
-      Server: 
-      - Apache/2.2.22 (Fedora)
-    body: 
-      string: "null"
-    http_version: 
-  recorded_at: Thu, 01 Nov 2012 15:21:51 GMT
-- request: 
-    method: delete
-    uri: https://admin:admin@knifeparty.localdomain/pulp/api/v2/events/50941dccdc7921763c0013d5/
-    body: 
-      string: ""
-    headers: 
-      Accept: 
-      - application/json
-      Content-Type: 
-      - application/json
-      Accept-Encoding: 
-      - gzip, deflate
-  response: 
-    status: 
-      code: 200
-      message: OK
-    headers: 
-      Date: 
-      - Fri, 02 Nov 2012 19:23:56 GMT
-      Content-Length: 
-      - "4"
-      Content-Type: 
-      - application/json
-      Server: 
-      - Apache/2.2.22 (Fedora)
-    body: 
-      string: "null"
-    http_version: 
-  recorded_at: Fri, 02 Nov 2012 19:23:56 GMT
-- request: 
     method: post
-    uri: https://admin:admin@localhost/pulp/api/v2/events/
+    uri: https://admin:admin@knifeparty.localdomain/pulp/api/v2/events/
     body: 
-      string: "{\"event_types\":[\"repo.publish.finish\"],\"notifier_type_id\":\"rest-api\",\"notifier_config\":{\"url\":\"http://foo.com/foo/\"}}"
+      string: "{\"notifier_config\":{\"url\":\"http://foo.com/foo/\"},\"notifier_type_id\":\"rest-api\",\"event_types\":[\"repo.publish.finish\"]}"
     headers: 
-      Accept: 
-      - application/json
       Content-Length: 
       - "117"
+      Accept: 
+      - application/json
       Content-Type: 
       - application/json
       Accept-Encoding: 
@@ -77,23 +20,23 @@ http_interactions:
       code: 201
       message: Created
     headers: 
-      Date: 
-      - Tue, 06 Nov 2012 18:35:15 GMT
       Content-Length: 
       - "286"
-      Content-Type: 
-      - application/json
+      Location: 
+      - /pulp/api/v2/events/50a01330dc79215671003ab8/
       Server: 
       - Apache/2.2.22 (Fedora)
-      Location: 
-      - /pulp/api/v2/events/50995863196cbe4ddc00087f/
+      Date: 
+      - Sun, 11 Nov 2012 21:05:52 GMT
+      Content-Type: 
+      - application/json
     body: 
-      string: "{\"notifier_config\": {\"url\": \"http://foo.com/foo/\"}, \"_ns\": \"event_listeners\", \"event_types\": [\"repo.publish.finish\"], \"_id\": {\"$oid\": \"50995863196cbe4ddc00087f\"}, \"id\": \"50995863196cbe4ddc00087f\", \"notifier_type_id\": \"rest-api\", \"_href\": \"/pulp/api/v2/events/50995863196cbe4ddc00087f/\"}"
+      string: "{\"notifier_config\": {\"url\": \"http://foo.com/foo/\"}, \"_ns\": \"event_listeners\", \"event_types\": [\"repo.publish.finish\"], \"_id\": {\"$oid\": \"50a01330dc79215671003ab8\"}, \"id\": \"50a01330dc79215671003ab8\", \"notifier_type_id\": \"rest-api\", \"_href\": \"/pulp/api/v2/events/50a01330dc79215671003ab8/\"}"
     http_version: 
-  recorded_at: Tue, 06 Nov 2012 18:35:15 GMT
+  recorded_at: Sun, 11 Nov 2012 21:05:52 GMT
 - request: 
     method: delete
-    uri: https://admin:admin@localhost/pulp/api/v2/events/50995863196cbe4ddc00087f/
+    uri: https://admin:admin@knifeparty.localdomain/pulp/api/v2/events/50a01330dc79215671003ab8/
     body: 
       string: ""
     headers: 
@@ -108,21 +51,21 @@ http_interactions:
       code: 200
       message: OK
     headers: 
-      Date: 
-      - Tue, 06 Nov 2012 18:35:15 GMT
       Content-Length: 
       - "4"
-      Content-Type: 
-      - application/json
       Server: 
       - Apache/2.2.22 (Fedora)
+      Date: 
+      - Sun, 11 Nov 2012 21:05:52 GMT
+      Content-Type: 
+      - application/json
     body: 
       string: "null"
     http_version: 
-  recorded_at: Tue, 06 Nov 2012 18:35:15 GMT
+  recorded_at: Sun, 11 Nov 2012 21:05:52 GMT
 - request: 
     method: get
-    uri: https://admin:admin@localhost/pulp/api/v2/events/
+    uri: https://admin:admin@knifeparty.localdomain/pulp/api/v2/events/
     body: 
       string: ""
     headers: 
@@ -137,16 +80,15 @@ http_interactions:
       code: 200
       message: OK
     headers: 
-      Date: 
-      - Tue, 06 Nov 2012 18:35:15 GMT
       Content-Length: 
-      - "243"
-      Content-Type: 
-      - application/json
+      - "245"
       Server: 
       - Apache/2.2.22 (Fedora)
+      Date: 
+      - Sun, 11 Nov 2012 21:05:53 GMT
+      Content-Type: 
+      - application/json
     body: 
-      string: "[{\"notifier_config\": {\"url\": null}, \"_ns\": \"event_listeners\", \"event_types\": [\"repo.sync.finish\"], \"_id\": {\"$oid\": \"5099555f196cbe4ddc00002f\"}, \"id\": \"5099555f196cbe4ddc00002f\", \"notifier_type_id\": \"rest-api\", \"_href\": \"/pulp/api/v2/events/\"}]"
+      string: "[{\"notifier_config\": {\"url\": null}, \"_ns\": \"event_listeners\", \"event_types\": [\"repo-sync-finished\"], \"_id\": {\"$oid\": \"5071542adc79215650000039\"}, \"id\": \"5071542adc79215650000039\", \"notifier_type_id\": \"rest-api\", \"_href\": \"/pulp/api/v2/events/\"}]"
     http_version: 
-  recorded_at: Tue, 06 Nov 2012 18:35:15 GMT
-recorded_with: VCR 2.2.5
+  recorded_at: Sun, 11 Nov 2012 21:05:53 GMT

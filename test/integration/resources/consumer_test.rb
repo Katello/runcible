@@ -210,7 +210,7 @@ class TestConsumerRequiresRepo < ConsumerRequiresRepoTests
   end
 
   def test_retrieve_bindings
-    response  = @resource.retrieve_binding(@consumer_id)
+    response  = @resource.retrieve_bindings(@consumer_id)
 
     assert_equal 200, response.code
     refute_empty response

@@ -1,18 +1,5 @@
 # Copyright 2012 Red Hat, Inc.
 #
-# MIT License
-#
-# Permission is hereby granted, free of charge, to any person obtaining
-# a copy of this software and associated documentation files (the
-# "Software"), to deal in the Software without restriction, including
-# without limitation the rights to use, copy, modify, merge, publish,
-# distribute, sublicense, and/or sell copies of the Software, and to
-# permit persons to whom the Software is furnished to do so, subject to
-# the following conditions:
-#
-# The above copyright notice and this permission notice shall be
-# included in all copies or substantial portions of the Software.
-#
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 # EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 # MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -136,8 +123,9 @@ class TestResourcesRepository < MiniTest::Unit::TestCase
   end
 
   def test_delete_distributor
-    distributor_config = {"distributor_id" : "dist_1"}
-    @resource.associate_distributor(RepositorySupport.repo_id, "yum_distributor", distributor_config)
+    distributor_config = {"relative_url" => "/", "http" => true, "https" => true}
+    response = @resource.associate_distributor(RepositorySupport.repo_id, "yum_distributor",
+                distributor_config, {:distributor_id => "dist_1"})
 
     response = @resource.delete_distributor(RepositorySupport.repo_id, "dist_1")
 
@@ -205,7 +193,7 @@ class TestResourcesRepositoryRequiresSync < MiniTest::Unit::TestCase
 
   def test_unassociate_units
     response = @resource.unassociate_units(RepositorySupport.repo_id, {})
-    RespotiroySupport.wait_on_task(response)
+    RepositorySupport.wait_on_task(response)
 
     assert_equal 202, response.code
   end
