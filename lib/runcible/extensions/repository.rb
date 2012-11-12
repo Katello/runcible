@@ -128,18 +128,12 @@ module Runcible
       end
 
       def self.rpm_ids(id)
-        criteria = {:type_ids=>['rpm'],
-                :sort => {
-                    :unit => [ ['name', 'ascending'], ['version', 'descending'] ]
-                }}
+        criteria = {:type_ids=>['rpm']}
         self.unit_search(id, criteria).collect{|i| i['unit_id']}
       end
 
       def self.rpms(id)
-        criteria = {:type_ids=>['rpm'],
-                :sort => {
-                    :unit => [ ['name', 'ascending'], ['version', 'descending'] ]
-                }}
+        criteria = {:type_ids=>['rpm']}
         self.unit_search(id, criteria).collect{|i| i['metadata'].with_indifferent_access}
       end
 
@@ -163,45 +157,25 @@ module Runcible
       end
 
       def self.errata_ids(id, filter = {})
-         criteria = {
-            :type_ids=>['erratum'],
-            :sort => {
-                :unit => [ ['title', 'ascending'] ]
-            }
-           }
+         criteria = {:type_ids=>['erratum']}
 
          self.unit_search(id, criteria).collect{|i| i['unit_id']}
       end
 
       def self.distributions(id)
-        criteria = {
-                  :type_ids=>['distribution'],
-                  :sort => {
-                      :unit => [ ['id', 'ascending'] ]
-                  }
-            }
+        criteria = {:type_ids=>['distribution']}
 
         self.unit_search(id, criteria).collect{|i| i['metadata'].with_indifferent_access}
       end
 
       def self.package_groups(id)
-        criteria = {
-                  :type_ids=>[Runcible::Extensions::PackageGroup::TYPE],
-                  :sort => {
-                      :unit => [ ['id', 'ascending'] ]
-                  }
-            }
+        criteria = {:type_ids=>[Runcible::Extensions::PackageGroup::TYPE]}
 
         self.unit_search(id, criteria).collect{|i| i['metadata'].with_indifferent_access}
       end
 
       def self.package_categories(id)
-        criteria = {
-                  :type_ids=>[Runcible::Extensions::PackageCategory::TYPE],
-                  :sort => {
-                      :unit => [ ['id', 'ascending'] ]
-                  }
-            }
+        criteria = {:type_ids=>[Runcible::Extensions::PackageCategory::TYPE]}
         self.unit_search(id, criteria).collect{|i| i['metadata'].with_indifferent_access}
       end
 
