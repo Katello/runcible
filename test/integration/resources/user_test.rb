@@ -93,7 +93,7 @@ class TestResourcesUser < MiniTest::Unit::TestCase
     end
   end
 
-  def test_path_without_username
+  def test_path
     path = @resource.path
     assert_match("users/", path)
   end

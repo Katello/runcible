@@ -33,7 +33,8 @@ module TestExtensionsRepositoryBase
 
   def setup
     @extension = Runcible::Extensions::Repository
-    VCR.insert_cassette('extensions/repository_extensions', :match_requests_on => [:body_json, :path, :method])
+    VCR.insert_cassette('extensions/repository_extensions', 
+                        :match_requests_on => [:body_json, :path, :method])
   end
 
   def teardown
@@ -148,6 +149,15 @@ class TestExtensionsRepositoryMisc < MiniTest::Unit::TestCase
     assert response.code == 200
   end
 
+  def test_remove_schedules
+    VCR.use_cassette('extensions/repository_schedule_removal') do
+      Runcible::Resources::RepositorySchedule.create(RepositorySupport.repo_id, 'yum_importer', "2012-10-25T20:44:00Z/P7D")
+      response = @extension.remove_schedules(RepositorySupport.repo_id, "yum_importer")
+      
+      assert_equal 200, response.code
+    end
+  end
+
   def test_retrieve_with_details
     response = @extension.retrieve_with_details(RepositorySupport.repo_id)
   
@@ -159,6 +169,11 @@ class TestExtensionsRepositoryMisc < MiniTest::Unit::TestCase
     response = @extension.publish_all(RepositorySupport.repo_id)
     RepositorySupport.wait_on_tasks(response)
     assert response.first['call_request_tags'].include?('pulp:action:publish')
+  end
+
+  def test_sync_status
+    response = @extension.sync_status(RepositorySupport.repo_id)
+    assert_equal response.code, 200
   end
 
 end
@@ -179,7 +194,6 @@ class TestExtensionsRepositoryUnitList < MiniTest::Unit::TestCase
     VCR.eject_cassette
   end
 
-
   def test_rpm_ids
     response = @@extension.rpm_ids(RepositorySupport.repo_id)
     assert !response.empty?
@@ -192,12 +206,15 @@ class TestExtensionsRepositoryUnitList < MiniTest::Unit::TestCase
     assert response.first.is_a?(Hash)
   end
 
-  def test_errata_list
+  def test_errata_ids
+    skip "Currently not working in Pulp"
     response = @@extension.errata_ids(RepositorySupport.repo_id)
-    assert !response.empty?
+    
+    assert_equal 200, response.code
+    refute_empty response
   end
 
-  def test_distribution_list
+  def test_distributions
     response = @@extension.distributions(RepositorySupport.repo_id)
     assert !response.empty?
   end
@@ -219,7 +236,7 @@ class TestExtensionsRepositoryUnitList < MiniTest::Unit::TestCase
     assert !response.empty?
   end
 
-  def test_packages_by_nvrea
+  def test_packages_by_nvre
     list = @@extension.rpms(RepositorySupport.repo_id)
     rpm = list.first
     response = @@extension.packages_by_nvre(RepositorySupport.repo_id, rpm['name'], rpm['version'],
@@ -249,7 +266,7 @@ class TestExtensionsRepositoryCopy < MiniTest::Unit::TestCase
     VCR.eject_cassette
   end
 
-  def test_package_copy
+  def test_rpm_copy
     response = @@extension.rpm_copy(RepositorySupport.repo_id, @@clone_name)
     RepositorySupport.task = response
     assert response.code == 202
@@ -291,7 +308,6 @@ class TestExtensionsRepositoryUnassociate < MiniTest::Unit::TestCase
     VCR.eject_cassette
   end
 
-
   def test_rpm_remove
     pkg_ids = RepositorySupport.rpm_ids
     assert !pkg_ids.empty?
@@ -300,10 +316,11 @@ class TestExtensionsRepositoryUnassociate < MiniTest::Unit::TestCase
     assert_equal((pkg_ids.length - 1), @@extension.rpm_ids(@@clone_name).length)
   end
 
-
   def test_errata_remove
+    skip "Currently not working in Pulp"
     errata_ids = @@extension.errata_ids(RepositorySupport.repo_id)
-    assert errata_ids.first
+    refute_empty errata_ids
+
     task = @@extension.errata_remove(@@clone_name, [errata_ids.first])
     RepositorySupport.wait_on_task(task)
     assert_equal((errata_ids.length - 1), @@extension.errata_ids(@@clone_name).length)

@@ -1,18 +1,5 @@
 # Copyright 2012 Red Hat, Inc.
 #
-# MIT License
-#
-# Permission is hereby granted, free of charge, to any person obtaining
-# a copy of this software and associated documentation files (the
-# "Software"), to deal in the Software without restriction, including
-# without limitation the rights to use, copy, modify, merge, publish,
-# distribute, sublicense, and/or sell copies of the Software, and to
-# permit persons to whom the Software is furnished to do so, subject to
-# the following conditions:
-#
-# The above copyright notice and this permission notice shall be
-# included in all copies or substantial portions of the Software.
-#
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 # EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 # MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -87,7 +74,7 @@ class TestResourcesRepository < MiniTest::Unit::TestCase
     RepositorySupport.destroy_repo
   end
 
-  def test_repository_path
+  def test_path
     path = @resource.path
     assert_match("repositories/", path)
   end
@@ -135,6 +122,16 @@ class TestResourcesRepository < MiniTest::Unit::TestCase
     assert response['distributor_type_id'] == "yum_distributor"
   end
 
+  def test_delete_distributor
+    distributor_config = {"relative_url" => "/", "http" => true, "https" => true}
+    response = @resource.associate_distributor(RepositorySupport.repo_id, "yum_distributor",
+                distributor_config, {:distributor_id => "dist_1"})
+
+    response = @resource.delete_distributor(RepositorySupport.repo_id, "dist_1")
+
+    assert_equal 200, response.code
+  end
+
 end
 
 
@@ -152,7 +149,7 @@ class TestResourcesRepositorySync < MiniTest::Unit::TestCase
     super
   end
 
-  def test_sync_repo
+  def test_sync
     RepositorySupport.create_repo
     response = @resource.sync(RepositorySupport.repo_id)
     RepositorySupport.task = response[0]
@@ -192,6 +189,27 @@ class TestResourcesRepositoryRequiresSync < MiniTest::Unit::TestCase
     RepositorySupport.wait_on_task(response)
     assert response.code == 202
     assert response['call_request_tags'].include?('pulp:action:publish')
+  end
+
+  def test_unassociate_units
+    response = @resource.unassociate_units(RepositorySupport.repo_id, {})
+    RepositorySupport.wait_on_task(response)
+
+    assert_equal 202, response.code
+  end
+
+  def test_unit_search
+    response = @resource.unit_search(RepositorySupport.repo_id, {})
+
+    assert_equal 200, response.code
+    refute_empty response
+  end
+
+  def test_sync_history
+    response = @resource.sync_history(RepositorySupport.repo_id)
+
+    assert        200, response.code
+    refute_empty  response
   end
 
 end

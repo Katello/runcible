@@ -47,8 +47,6 @@ class TestConsumerGroupExtension < MiniTest::Unit::TestCase
     VCR.eject_cassette
   end
 
-
-
   def test_add_consumers_by_id
     response = @extension.add_consumers_by_id(ConsumerGroupSupport.consumer_group_id, [ConsumerSupport.consumer_id])
     assert_equal(200, response.code)
@@ -62,7 +60,6 @@ class TestConsumerGroupExtension < MiniTest::Unit::TestCase
     assert(Array === response)
     assert(!response.include?(ConsumerSupport.consumer_id))
   end
-
 
   def test_install_content
     response = @extension.install_content(@consumer_group_id, "rpm", ["zsh", "foo"])
@@ -81,6 +78,19 @@ class TestConsumerGroupExtension < MiniTest::Unit::TestCase
     assert(response["task_id"])
     assert_equal(202, response.code)
   end
+
+  def test_generate_content
+    content = @extension.generate_content("rpm", ["unit_1", "unit_2"])
+
+    refute_empty content
+    refute_empty content.select{ |unit| unit[:type_id] == "rpm" }
+  end
+
+  def test_make_consumer_criteria
+    criteria = @extension.make_consumer_criteria([ConsumerSupport.consumer_id])
+
+    assert_kind_of  Hash, criteria
+    refute_empty    criteria[:criteria][:filters][:id]["$in"]
+  end
+
 end
-
-
