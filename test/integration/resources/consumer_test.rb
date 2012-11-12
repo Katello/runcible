@@ -168,13 +168,13 @@ class TestProfiles < MiniTest::Unit::TestCase
     assert_equal(packages, response['profile'])
   end
 
-  def test_profile
+  def test_retrieve_profile
     packages = [{"vendor" => "FedoraHosted", "name" => "elephant",
                  "version" => "0.3", "release" => "0.8",
                  "arch" => "noarch"}]
 
     @resource.upload_profile(@consumer_id, 'rpm', packages)
-    response = @resource.profile(@consumer_id, 'rpm')
+    response = @resource.retrieve_profile(@consumer_id, 'rpm')
     assert_equal(@consumer_id, response["consumer_id"])
     assert_equal(packages, response["profile"])
   end
