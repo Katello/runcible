@@ -27,76 +27,156 @@ module Runcible
   module Resources
     class Repository < Runcible::Base
 
+      # Generates the API path for repositories
+      #
+      # @param  [String]  id  the id of the repository
+      # @return [String]      the repository path, may contain the id if passed      
       def self.path(id=nil)
         (id == nil) ? "repositories/" : "repositories/#{id}/" 
       end
 
+      # Creates a repository
+      #
+      # @param  [String]                id        the id of the repository
+      # @param  [Hash]                  optional  container for all optional parameters
+      # @return [RestClient::Response]            
       def self.create(id, optional={})
         required = required_params(binding.send(:local_variables), binding)
         call(:post, path, :payload => { :required => required, :optional => optional })
       end
 
+      # Retrieves a repository
+      #
+      # @param  [String]                id      the id of the repository
+      # @param  [Hash]                  params  container for optional query parameters
+      # @return [RestClient::Response]          
       def self.retrieve(id, params={})
         call(:get, path(id), :params => params)
       end
 
+      # Updates a repository
+      #
+      # @param  [String]                id        the id of the repository
+      # @param  [Hash]                  optional  container for all optional parameters
+      # @return [RestClient::Response]            
       def self.update(id, optional={})
         call(:put, path(id), :payload => { :delta => optional })
       end
 
+      # Deletes a repository
+      #
+      # @param  [String]                id  the id of the repository
+      # @return [RestClient::Response]            
       def self.delete(id)
         call(:delete, path(id))
       end
 
+      # Retrieve all repositories
+      #
+      # @param  [Hash]                  optional  container for all optional parameters
+      # @return [RestClient::Response]            
       def self.retrieve_all(optional={})
         call(:get, path, :payload => { :optional => optional })
       end
 
+      # Searches for repositories based on criteria
+      #
+      # @param  [Hash]                  criteria  criteria object containing Mongo syntax
+      # @param  [Hash]                  optional  container for all optional parameters
+      # @return [RestClient::Response]            
       def self.search(criteria, optional={})
         required = required_params(binding.send(:local_variables), binding)
         call(:post, path("search"), :payload => { :required => required, :optional => optional })
       end
 
+      # Associates an importer to a repository
+      #
+      # @param  [String]                id                the ID of the repository
+      # @param  [String]                importer_type_id  the type ID of the importer being associated
+      # @param  [Hash]                  importer_config   configuration options for the importer
+      # @return [RestClient::Response]            
       def self.associate_importer(id, importer_type_id, importer_config)
         required = required_params(binding.send(:local_variables), binding)
         call(:post, path("#{id}/importers"), :payload => { :required => required })
       end
 
+      # Associates a distributor to a repository
+      #
+      # @param  [String]                id                  the ID of the repository
+      # @param  [String]                distributor_type_id the type ID of the distributor being associated
+      # @param  [Hash]                  distributor_config  configuration options for the distributor
+      # @param  [Hash]                  optional            container for all optional parameters
+      # @return [RestClient::Response]            
       def self.associate_distributor(id, distributor_type_id, distributor_config, optional={})
         required = required_params(binding.send(:local_variables), binding, ["id"])
         call(:post, path("#{id}/distributors"), :payload => { :required => required, :optional => optional })
       end
 
+      # Syncs a repository
+      #
+      # @param  [String]                id        the id of the repository
+      # @param  [Hash]                  optional  container for all optional parameters
+      # @return [RestClient::Response]            
       def self.sync(id, optional={})
         call(:post, "#{path(id)}actions/sync/", :payload => { :optional => optional })
       end
 
+      # History of all sync actions on a repository
+      #
+      # @param  [String]                id  the id of the repository
+      # @return [RestClient::Response]            
       def self.sync_history(id)
         call(:get, "#{path(id)}/history/sync/")
       end
 
-      def self.unit_copy(destination_repo_id, source_repo_id, optional={:criteria=>{}})
+      # Copies units from one repository to another
+      #
+      # @param  [String]                destination_repo_id the id of the destination repository
+      # @param  [String]                source_repo_id      the id of the source repository
+      # @param  [Hash]                  criteria            criteria object containing Mongo syntax
+      # @return [RestClient::Response]            
+      def self.unit_copy(destination_repo_id, source_repo_id, criteria={})
         required = required_params(binding.send(:local_variables), binding, ["destination_repo_id"])
         call(:post, "#{path(destination_repo_id)}actions/associate/",
-             :payload => { :required => required, :optional=> optional })
+             :payload => { :required => required })
       end
 
+      # Unassociates units from the repository
+      #
+      # @param  [String]                source_repo_id  the id of the source repository
+      # @param  [Hash]                  criteria        criteria object containing Mongo syntax
+      # @return [RestClient::Response]            
       def self.unassociate_units(source_repo_id, criteria={})
         required = required_params(binding.send(:local_variables), binding, ["source_repo_id"])
         call(:post, "#{path(source_repo_id)}actions/unassociate/",
-             :payload => { :required => { :criteria => criteria }})
+             :payload => { :required => required })
       end
 
+      # Searches the repository for units based on criteria
+      #
+      # @param  [String]                id        the id of the repository
+      # @param  [Hash]                  criteria  criteria object containing Mongo syntax
+      # @return [RestClient::Response]            
       def self.unit_search(id, criteria={})
         call(:post, "#{path(id)}search/units/", :payload=>{:required=>{:criteria=>criteria}})
       end
 
-      def self.publish(repo_id, distributor_id)
-        call(:post, "#{path(repo_id)}actions/publish/", :payload=>{:required=>{:id=>distributor_id}})
+      # Publishes a repository using the specified distributor
+      #
+      # @param  [String]                id              the id of the repository
+      # @param  [String]                distributor_id  the id of the distributor
+      # @return [RestClient::Response]            
+      def self.publish(id, distributor_id)
+        call(:post, "#{path(id)}actions/publish/", :payload=>{:required=>{:id=>distributor_id}})
       end
 
-      def self.delete_distributor(repo_id, distributor_id)
-        call(:delete, "#{path(repo_id)}/distributors/#{distributor_id}/")
+      # Deletes the specified distributor from the repository
+      #
+      # @param  [String]                id              the id of the repository
+      # @param  [String]                distributor_id  the id of the distributor
+      # @return [RestClient::Response]            
+      def self.delete_distributor(id, distributor_id)
+        call(:delete, "#{path(id)}/distributors/#{distributor_id}/")
       end
 
     end
