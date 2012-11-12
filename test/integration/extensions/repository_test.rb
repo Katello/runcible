@@ -34,8 +34,7 @@ module TestExtensionsRepositoryBase
   def setup
     @extension = Runcible::Extensions::Repository
     VCR.insert_cassette('extensions/repository_extensions', 
-                        :match_requests_on => [:body_json, :path, :method],
-                        :allow_playback_repeats => true)
+                        :match_requests_on => [:body_json, :path, :method])
   end
 
   def teardown
@@ -151,10 +150,12 @@ class TestExtensionsRepositoryMisc < MiniTest::Unit::TestCase
   end
 
   def test_remove_schedules
-    Runcible::Resources::RepositorySchedule.create(RepositorySupport.repo_id, 'yum_importer', "2012-10-25T20:44:00Z/P7D")
-    response = @extension.remove_schedules(RepositorySupport.repo_id, "yum_importer")
-    
-    assert_equal 200, response.code
+    VCR.use_cassette('extensions/repository_schedule_removal') do
+      Runcible::Resources::RepositorySchedule.create(RepositorySupport.repo_id, 'yum_importer', "2012-10-25T20:44:00Z/P7D")
+      response = @extension.remove_schedules(RepositorySupport.repo_id, "yum_importer")
+      
+      assert_equal 200, response.code
+    end
   end
 
   def test_retrieve_with_details
