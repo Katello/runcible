@@ -24,11 +24,11 @@
 
 module Runcible
   module Extensions
-    class Errata < Runcible::Base
+    class Errata < Runcible::Resources::Unit
       TYPE = 'erratum'
 
       def self.all()
-        Runcible::Resources::Unit.search(TYPE, {})
+        search(TYPE, {})
       end
 
       def self.find(id)
@@ -36,13 +36,11 @@ module Runcible
        end
 
       def self.find_all(ids)
-        Runcible::Resources::Unit.search(TYPE, {:filters=>{:id=> {'$in'=> ids}}},
-                                         {:include_repos => true})
+        search(TYPE, {:filters=>{:id=> {'$in'=> ids}}}, {:include_repos => true})
       end
 
       def self.find_all_by_unit_ids(ids)
-        Runcible::Resources::Unit.search(TYPE, {:filters=> {:_id=> {'$in'=> ids}}},
-                                         {:include_repos=>true})
+        search(TYPE, {:filters=> {:_id=> {'$in'=> ids}}}, {:include_repos=>true})
       end
 
     end

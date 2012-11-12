@@ -43,7 +43,6 @@ module Runcible
         call(:put, path(id), :payload => { :delta => optional })
       end
 
-
       def self.upload_profile(id, content_type, profile)
         required = required_params(binding.send(:local_variables), binding, ["id"])
         call(:post, path("#{id}/profiles/"), :payload => { :required => required })
@@ -65,7 +64,6 @@ module Runcible
         call(:get, path("#{id}/bindings/"))
       end
 
-
       def self.bind(id, repo_id, distributor_id)
         required = required_params(binding.send(:local_variables), binding, ["id"])
         call(:post, path("#{id}/bindings"), :payload => { :required => required })
@@ -73,10 +71,6 @@ module Runcible
 
       def self.unbind(id, repo_id, distributor_id)
         call(:delete, path("#{id}/bindings/#{repo_id}/#{distributor_id}"))
-      end
-
-      def self.repos(id)
-        call(:get, path("#{id}/bindings/"))
       end
 
       def self.install_units(id, units, options={})
@@ -93,6 +87,7 @@ module Runcible
         required = required_params(binding.send(:local_variables), binding, ["id"])
         call(:post, path("#{id}/actions/content/uninstall/"), :payload => { :required => required })
       end
+
     end
   end
 end

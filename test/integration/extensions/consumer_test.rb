@@ -30,6 +30,14 @@ require './test/support/repository_support'
 
 class TestConsumerExtension < MiniTest::Unit::TestCase
 
+  def self.before_suite
+    RepositorySupport.create_and_sync_repo(:importer_and_distributor => true)
+  end
+
+  def self.after_suite
+    RepositorySupport.destroy_repo
+  end
+
   def setup
     @resource = Runcible::Resources::Consumer
     @extension = Runcible::Extensions::Consumer
@@ -54,14 +62,6 @@ class TestConsumerExtension < MiniTest::Unit::TestCase
 
   def bind_repo
     @extension.bind_all(@consumer_id, RepositorySupport.repo_id)
-  end
-
-  def self.before_suite
-    RepositorySupport.create_and_sync_repo(:importer_and_distributor => true)
-  end
-
-  def self.after_suite
-    RepositorySupport.destroy_repo
   end
 
   def test_bind_all
@@ -96,6 +96,12 @@ class TestConsumerExtension < MiniTest::Unit::TestCase
     assert(response["task_id"])
   end
 
+  def test_generate_content
+    content = @extension.generate_content("rpm", ["unit_1", "unit_2"])
+
+    refute_empty content
+    refute_empty content.select{ |unit| unit[:type_id] == "rpm" }
+  end
 
 end
 

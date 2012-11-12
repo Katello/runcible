@@ -24,7 +24,7 @@
 require 'rubygems'
 require 'minitest/autorun'
 
-require './lib/runcible/extensions/errata'
+require './lib/runcible'
 require './test/support/repository_support'
 
 
@@ -57,7 +57,6 @@ class TestExtensionsErrata < MiniTest::Unit::TestCase
   def test_find_unknown
     response = @@extension.find_all(['f'])
     assert response.empty?
-
   end
 
   def test_find_all_by_unit_ids

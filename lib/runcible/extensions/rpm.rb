@@ -24,11 +24,11 @@
 
 module Runcible
   module Extensions
-    class Rpm < Runcible::Base
+    class Rpm < Runcible::Resources::Unit
       TYPE = 'rpm'
 
       def self.all
-        Runcible::Resources::Unit.search(TYPE, {})
+        search(TYPE, {})
       end
 
       def self.find(id)
@@ -36,7 +36,7 @@ module Runcible
       end
 
       def self.find_all(ids)
-        Runcible::Resources::Unit.search(TYPE, {:filters => {'_id'=> {'$in'=> ids}}}, {:include_repos=>true})
+        search(TYPE, {:filters => {'_id'=> {'$in'=> ids}}}, {:include_repos=>true})
       end
     end
   end

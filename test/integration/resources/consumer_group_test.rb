@@ -45,13 +45,11 @@ module TestConsumerGroupBase
   def create_consumer_group
     @resource.create(@consumer_group_id, :display_name => "foo", :description => 'Test description.', :consumer_ids => [])
   rescue Exception => e
-    puts e
   end
 
   def destroy_consumer_group
     @resource.delete(@consumer_group_id)
   rescue Exception => e
-    puts e
   end
 
 end
