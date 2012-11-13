@@ -125,7 +125,9 @@ class ConsumerGroupWithConsumerTests < ConsumerGroupTests
     ConsumerSupport.create_consumer
     @criteria = {:criteria =>
                      {:filters =>
-                       {:id =>ConsumerSupport.consumer_id}
+                       {:id => 
+                          {"$in" => [ConsumerSupport.consumer_id]}
+                       }
                      }
                 }
   end
@@ -146,6 +148,7 @@ class TestConsumerGroupAssociate < ConsumerGroupWithConsumerTests
 end
 
 class TestConsumerGroupUnassociate < ConsumerGroupWithConsumerTests
+
   def setup
     super
     @resource.associate(@consumer_group_id, @criteria)
@@ -153,15 +156,15 @@ class TestConsumerGroupUnassociate < ConsumerGroupWithConsumerTests
 
   def test_unassociate
     response = @resource.unassociate(@consumer_group_id, @criteria)
-    assert_equal(200, response.code)
-    assert(Array === response)
-    assert(!response.include?(ConsumerSupport.consumer_id))
+
+    assert_equal    200, response.code
+    assert_includes response, ConsumerSupport.consumer_id
   end
 end
 
 
-
 class ConsumerGroupRequiresRepoTests < ConsumerGroupTests
+
   def self.before_suite
     RepositorySupport.create_and_sync_repo(:importer_and_distributor => true)
   end
@@ -222,8 +225,6 @@ class TestConsumerGroupRequiresRepo < ConsumerGroupRequiresRepoTests
     assert_equal(202, response.code)
     assert(response["task_id"])
   end
-
-
 
 end
 

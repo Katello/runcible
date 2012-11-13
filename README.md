@@ -4,7 +4,7 @@
 
 Exposing Pulp's juiciest parts. http://www.pulpproject.org/
 
-Latest Live Tested Version: **pulp-server-0.0.335-1.fc16.noarch**
+Latest Live Tested Version: **pulp-server-2.0.6-0.2.beta.noarch**
 
 ## Installation
 

@@ -53,29 +53,33 @@ class TestConsumerExtension < MiniTest::Unit::TestCase
   end
 
   def create_consumer
+    destroy_consumer
     @resource.create(@consumer_id, :name=>"boo")
   end
 
   def destroy_consumer
     @resource.delete(@consumer_id)
+  rescue
   end
 
   def bind_repo
-    @extension.bind_all(@consumer_id, RepositorySupport.repo_id)
+    tasks = @extension.bind_all(@consumer_id, RepositorySupport.repo_id)
+    RepositorySupport.wait_on_tasks(tasks)
   end
 
   def test_bind_all
     @extension.unbind_all(@consumer_id, RepositorySupport.repo_id)
     response = @extension.bind_all(@consumer_id, RepositorySupport.repo_id)
-    assert_equal(RepositorySupport.repo_id, response.first[:repo_id])
+    RepositorySupport.wait_on_tasks(response)
 
-    #assert(!@resource.retrieve_bindings(@consumer_id).empty?)
+    refute_empty response
   end
 
   def test_unbind_all
     response = @extension.unbind_all(@consumer_id, RepositorySupport.repo_id)
-    assert(response.size > 0)
-    #assert(@resource.retrieve_bindings(@consumer_id).empty?)
+    RepositorySupport.wait_on_tasks(response)
+
+    refute_empty response
   end
 
   def test_install_content

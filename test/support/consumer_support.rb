@@ -27,8 +27,8 @@ require './lib/runcible/extensions/consumer'
 
 module ConsumerSupport
 
-  @consumer_resource = Runcible::Extensions::Consumer
-  @consumer_id = "integration_test_consumer_support"
+  @consumer_resource  = Runcible::Extensions::Consumer
+  @consumer_id        = "integration_test_consumer_support"
 
   def self.consumer_id
     @consumer_id
@@ -37,7 +37,7 @@ module ConsumerSupport
   def self.create_consumer(package_profile=false)
     consumer = {}
     destroy_consumer
-    VCR.use_cassette('consumer_support') do
+    VCR.use_cassette('support/consumer') do
       consumer = @consumer_resource.create(@consumer_id)
       if package_profile
         @consumer_resource.upload_package_profile(@consumer_id, [{"name" => "elephant", "version" => "0.2", "release" => "0.7", 
@@ -45,8 +45,7 @@ module ConsumerSupport
       end
     end
     return consumer
-  rescue Exception => e
-    p "TestPulpConsumer: Consumer #{@consumer_id} already existed."
+  rescue
   end
 
   def self.destroy_consumer
@@ -56,7 +55,6 @@ module ConsumerSupport
 
   rescue Exception => e
     raise e unless e.class == RestClient::ResourceNotFound
-    p "TestPulpConsumer: No consumer #{@consumer_id} to delete."
   end
 
 end

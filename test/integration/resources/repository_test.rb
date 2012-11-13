@@ -57,7 +57,9 @@ class TestResourcesRepositoryDelete < MiniTest::Unit::TestCase
 
   def test_delete
     response = @resource.delete(RepositorySupport.repo_id)
-    assert response.code == 200
+    RepositorySupport.wait_on_tasks(response)
+
+    assert_equal 202, response.code
   end
 
 end
@@ -128,8 +130,9 @@ class TestResourcesRepository < MiniTest::Unit::TestCase
                 distributor_config, {:distributor_id => "dist_1"})
 
     response = @resource.delete_distributor(RepositorySupport.repo_id, "dist_1")
+    RepositorySupport.wait_on_tasks(response)
 
-    assert_equal 200, response.code
+    assert_equal 202, response.code
   end
 
 end

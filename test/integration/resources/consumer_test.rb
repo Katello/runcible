@@ -53,39 +53,10 @@ module TestConsumerBase
 
   def destroy_consumer
     @resource.delete(@consumer_id)
+  rescue
   end
+
 end
-
-class TestConsumerCreate < MiniTest::Unit::TestCase
-  include TestConsumerBase
-
-  def teardown
-    destroy_consumer
-    super
-  end
-
-  def test_create
-    response = create_consumer
-    assert response.kind_of? Hash
-    assert response['id'] == @consumer_id
-  end
-end
-
-class TestConsumerDestroy < MiniTest::Unit::TestCase
-  include TestConsumerBase
-
-  def setup
-    super
-    create_consumer
-  end
-
-
-  def test_destroy
-    response = destroy_consumer
-    assert response.code == 200
-  end
-end
-
 
 class ConsumerTests < MiniTest::Unit::TestCase
   include TestConsumerBase
@@ -102,7 +73,51 @@ class ConsumerTests < MiniTest::Unit::TestCase
 
 end
 
-class TestGeneralMethods  < ConsumerTests
+
+class TestConsumerCreate < MiniTest::Unit::TestCase
+  include TestConsumerBase
+
+  def teardown
+    destroy_consumer
+    super
+  end
+
+  def test_create
+    response = create_consumer
+    assert response.kind_of? Hash
+    assert response['id'] == @consumer_id
+  end
+
+end
+
+class TestConsumerDestroy < MiniTest::Unit::TestCase
+  include TestConsumerBase
+
+  def setup
+    super
+    create_consumer
+  end
+
+  def test_destroy
+    response = destroy_consumer
+    assert response.code == 200
+  end
+
+end
+
+
+class TestGeneralMethods < MiniTest::Unit::TestCase
+  include TestConsumerBase
+
+  def setup
+    super
+    create_consumer
+  end
+
+  def teardown
+    destroy_consumer
+    super
+  end
 
   def test_path
     path = @resource.path
@@ -130,7 +145,18 @@ class TestGeneralMethods  < ConsumerTests
 end
 
 
-class TestProfiles < ConsumerTests
+class TestProfiles < MiniTest::Unit::TestCase
+  include TestConsumerBase
+
+  def setup
+    super
+    create_consumer
+  end
+
+  def teardown
+    destroy_consumer
+    super
+  end
 
   def test_upload_profile
     packages = [{"vendor" => "FedoraHosted", "name" => "elephant",
@@ -155,19 +181,27 @@ class TestProfiles < ConsumerTests
 end
 
 
-class ConsumerRequiresRepoTests < ConsumerTests
+class ConsumerRequiresRepoTests < MiniTest::Unit::TestCase
+  include TestConsumerBase
 
   def self.before_suite
+    ConsumerSupport.create_consumer
     RepositorySupport.create_and_sync_repo(:importer_and_distributor => true)
   end
 
   def self.after_suite
+    ConsumerSupport.destroy_consumer
     RepositorySupport.destroy_repo
   end
 
-  def bind_repo
-    distro_id = RepositorySupport.distributor()['id']
-    @resource.bind(@consumer_id, RepositorySupport.repo_id, distro_id)
+  def self.bind_repo
+    tasks = []
+    VCR.use_cassette('support/consumer') do
+      distro_id = RepositorySupport.distributor()['id']
+      tasks = Runcible::Resources::Consumer.bind(ConsumerSupport.consumer_id, RepositorySupport.repo_id, distro_id)
+      RepositorySupport.wait_on_tasks(tasks)
+    end
+    return tasks
   end
 
 end
@@ -176,41 +210,41 @@ end
 class TestConsumerBindings < ConsumerRequiresRepoTests
 
   def test_bind
-    response = bind_repo
-    assert_equal(RepositorySupport.repo_id, response[:repo_id])
-    assert(200, response.code)
-    #assert(!@resource.retrieve_bindings(@consumer_id).empty?)
+    response = self.class.bind_repo
+
+    refute_empty response
+    assert_equal 202, response.code
   end
 
   def test_unbind
-    bind_repo
+    self.class.bind_repo
     distro_id = RepositorySupport.distributor()['id']
-    assert(!@resource.retrieve_bindings(@consumer_id).empty?)
-    response = @resource.unbind(@consumer_id, RepositorySupport.repo_id, distro_id)
-    #assert(@resource.retrieve_bindings(@consumer_id).empty?)
-    assert_equal 200, response.code
+    refute_empty @resource.retrieve_bindings(ConsumerSupport.consumer_id)
+
+    response = @resource.unbind(ConsumerSupport.consumer_id, RepositorySupport.repo_id, distro_id)
+    assert_equal 202, response.code
   end
 
 end
 
 
 class TestConsumerRequiresRepo < ConsumerRequiresRepoTests
-
-  def setup
-    super
+    
+  def self.before_suite
+    super  
     bind_repo
   end
 
   def test_retrieve_binding
     distributor_id = RepositorySupport.distributor()['id']
-    response = @resource.retrieve_binding(@consumer_id, RepositorySupport.repo_id, distributor_id)
+    response = @resource.retrieve_binding(ConsumerSupport.consumer_id, RepositorySupport.repo_id, distributor_id)
 
     assert_equal 200, response.code
     assert_equal RepositorySupport.repo_id, response['repo_id']
   end
 
   def test_retrieve_bindings
-    response  = @resource.retrieve_bindings(@consumer_id)
+    response  = @resource.retrieve_bindings(ConsumerSupport.consumer_id)
 
     assert_equal 200, response.code
     refute_empty response
@@ -218,20 +252,26 @@ class TestConsumerRequiresRepo < ConsumerRequiresRepoTests
 
   def test_install_units
     response  = @resource.install_units(@consumer_id,{"units"=>["unit_key"=>{:name => "zsh"}]})
-    assert_equal(202, response.code)
-    assert(response["task_id"])
+    RepositorySupport.wait_on_task(response)
+
+    assert_equal 202, response.code
+    refute_empty response
   end
 
   def test_update_units
     response  = @resource.update_units(@consumer_id,{"units"=>["unit_key"=>{:name => "zsh"}]})
-    assert_equal(202, response.code)
-    assert(response["task_id"])
+    RepositorySupport.wait_on_task(response)
+
+    assert_equal 202, response.code
+    refute_empty response
   end
 
   def test_uninstall_units
     response  = @resource.uninstall_units(@consumer_id,{"units"=>["unit_key"=>{:name => "zsh"}]})
-    assert_equal(202, response.code)
-    assert(response["task_id"])
+    RepositorySupport.wait_on_task(response)
+
+    assert_equal 202, response.code
+    refute_empty response
   end
 
 end

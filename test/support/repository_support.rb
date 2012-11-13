@@ -46,7 +46,6 @@ module RepositorySupport
   @distributors = [Runcible::Extensions::YumDistributor.new('/path', true, true)]
 
 
-
   def self.distributor
     Runcible::Extensions::Repository.retrieve_with_details(RepositorySupport.repo_id)['distributors'].first
   end
@@ -92,7 +91,7 @@ module RepositorySupport
   def self.create_repo(options={})
     repo = nil
     
-    VCR.use_cassette('repository_support') do
+    VCR.use_cassette('support/repository') do
       repo = @repo_resource.retrieve(@repo_id)
     end
 
@@ -100,7 +99,7 @@ module RepositorySupport
       destroy_repo
     end
 
-    VCR.use_cassette('repository_support') do
+    VCR.use_cassette('support/repository') do
       if options[:importer]
         repo = @repo_extension.create_with_importer(@repo_id, {:id=>@importer_type, :feed_url => @repo_url})
       elsif options[:importer_and_distributor]
@@ -112,7 +111,7 @@ module RepositorySupport
 
   rescue RestClient::ResourceNotFound
 
-    VCR.use_cassette('repository_support') do
+    VCR.use_cassette('support/repository') do
       if options[:importer]
         repo = @repo_extension.create_with_importer(@repo_id, {:id=>@importer_type, :feed_url => @repo_url})
       elsif options[:importer_and_distributor]
@@ -126,7 +125,7 @@ module RepositorySupport
   end
 
   def self.sync_repo(options={})
-    VCR.use_cassette('repository_support') do
+    VCR.use_cassette('support/repository') do
       @task = @repo_resource.sync(@repo_name).first
 
       if !options[:wait]
@@ -146,22 +145,24 @@ module RepositorySupport
   end
 
   def self.wait_on_task task
-    while !(['finished', 'error', 'timed_out', 'canceled', 'reset'].include?(task['state'])) do
-      task = @task_resource.poll(task["task_id"])
-      sleep 0.1 # do not overload backend engines
+    VCR.use_cassette('support/task') do
+      while !(['finished', 'error', 'timed_out', 'canceled', 'reset'].include?(task['state'])) do
+        task = @task_resource.poll(task["task_id"])
+        sleep 0.1 # do not overload backend engines
+      end
     end
   end
 
   def self.create_schedule
     schedule = {}
-    VCR.use_cassette('repository_support') do
+    VCR.use_cassette('support/repository') do
       schedule = @schedule_resource.create(@repo_id, @importer_type, @schedule_time)
     end
     schedule['_id']
   end
 
   def self.destroy_repo(id=@repo_id)
-    VCR.use_cassette('repository_support') do
+    VCR.use_cassette('support/repository') do
       if @task
         while !(['finished', 'error', 'timed_out', 'canceled', 'reset'].include?(@task['state'])) do
           @task = @task_resource.poll(@task["task_id"])
@@ -178,7 +179,7 @@ module RepositorySupport
 
   def self.rpm_ids
     pkg_ids = []
-    VCR.use_cassette('repository_support', :match_requests_on => [:body_json, :path, :method]) do
+    VCR.use_cassette('support/repository', :match_requests_on => [:body_json, :path, :method]) do
       pkg_ids = @repo_extension.rpm_ids(@repo_id)
     end
     return pkg_ids
