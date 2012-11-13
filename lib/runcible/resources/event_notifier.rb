@@ -24,6 +24,7 @@
 
 module Runcible
   module Resources
+    # @see https://pulp-dev-guide.readthedocs.org/en/latest/events/index.html
     class EventNotifier < Runcible::Base
 
       class EventTypes

@@ -25,6 +25,7 @@ require 'active_support/core_ext/hash'
 
 module Runcible
   module Resources
+    # @see https://pulp-dev-guide.readthedocs.org/en/latest/rest-api/consumer/group/index.html
     class ConsumerGroup < Runcible::Base
 
       # Generates the API path for Consumer Groups

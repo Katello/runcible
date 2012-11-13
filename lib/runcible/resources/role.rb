@@ -24,6 +24,7 @@
 
 module Runcible
   module Resources
+    # @see https://pulp-dev-guide.readthedocs.org/en/latest/rest-api/role/index.html
     class Role < Runcible::Base
 
       # Generates the API path for Roles

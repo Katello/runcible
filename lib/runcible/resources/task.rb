@@ -24,6 +24,7 @@
 
 module Runcible
   module Resources
+    # @see https://pulp-dev-guide.readthedocs.org/en/latest/rest-api/dispatch/index.html
     class Task < Runcible::Base
 
       # Generates the API path for Tasks

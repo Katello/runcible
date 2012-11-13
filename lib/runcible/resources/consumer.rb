@@ -24,6 +24,7 @@
 
 module Runcible
   module Resources
+    # @see https://pulp-dev-guide.readthedocs.org/en/latest/rest-api/consumer/index.html
     class Consumer < Runcible::Base
 
       # Generates the API path for Consumers
