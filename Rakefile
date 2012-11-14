@@ -66,3 +66,15 @@ task :untested do
     exit 1 
   end
 end
+
+desc "Clears out all cassette files"
+task :clear_cassettes do
+  `rm -rf test/fixtures/vcr_cassettes/*.yml`
+  `rm -rf test/fixtures/vcr_cassettes/extesions/*.yml`
+  `rm -rf test/fixtures/vcr_cassettes/support/*.yml`
+end
+
+desc "Runs all tests"
+task :test do
+  Rake::Task['test:integration'].invoke
+end

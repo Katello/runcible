@@ -155,7 +155,7 @@ module Runcible
       def self.errata_ids(id, filter = {})
          criteria = {:type_ids=>['erratum']}
 
-         self.unit_search(id, criteria).collect{|i| i['unit_id']}
+         self.unit_search(id, criteria).collect{|i| i['metadata']['id']}
       end
 
       def self.distributions(id)

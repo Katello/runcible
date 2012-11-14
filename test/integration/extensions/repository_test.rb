@@ -207,10 +207,8 @@ class TestExtensionsRepositoryUnitList < MiniTest::Unit::TestCase
   end
 
   def test_errata_ids
-    skip "Currently not working in Pulp"
     response = @@extension.errata_ids(RepositorySupport.repo_id)
     
-    assert_equal 200, response.code
     refute_empty response
   end
 
@@ -317,7 +315,6 @@ class TestExtensionsRepositoryUnassociate < MiniTest::Unit::TestCase
   end
 
   def test_errata_remove
-    skip "Currently not working in Pulp"
     errata_ids = @@extension.errata_ids(RepositorySupport.repo_id)
     refute_empty errata_ids
 

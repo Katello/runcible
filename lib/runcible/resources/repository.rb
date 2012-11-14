@@ -133,12 +133,12 @@ module Runcible
       #
       # @param  [String]                destination_repo_id the id of the destination repository
       # @param  [String]                source_repo_id      the id of the source repository
-      # @param  [Hash]                  criteria            criteria object containing Mongo syntax
+      # @param  [Hash]                  optional            container for all optional parameters
       # @return [RestClient::Response]            
-      def self.unit_copy(destination_repo_id, source_repo_id, criteria={})
+      def self.unit_copy(destination_repo_id, source_repo_id, optional={})
         required = required_params(binding.send(:local_variables), binding, ["destination_repo_id"])
         call(:post, "#{path(destination_repo_id)}actions/associate/",
-             :payload => { :required => required })
+             :payload => { :required => required, :optional => optional })
       end
 
       # Unassociates units from the repository

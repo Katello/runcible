@@ -56,9 +56,9 @@ class TestConsumerGroupExtension < MiniTest::Unit::TestCase
 
   def test_remove_consumers_by_id
     response = @extension.remove_consumers_by_id(ConsumerGroupSupport.consumer_group_id, [ConsumerSupport.consumer_id])
-    assert_equal(200, response.code)
-    assert(Array === response)
-    assert(!response.include?(ConsumerSupport.consumer_id))
+
+    assert_equal    200, response.code
+    assert_includes response, ConsumerSupport.consumer_id
   end
 
   def test_install_content
