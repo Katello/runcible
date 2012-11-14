@@ -27,6 +27,7 @@ require 'minitest/autorun'
 require './lib/runcible/resources/consumer'
 require './lib/runcible/extensions/consumer'
 require './test/support/repository_support'
+require './test/support/consumer_support'
 
 
 module TestConsumerBase
@@ -222,6 +223,8 @@ class TestConsumerBindings < ConsumerRequiresRepoTests
     refute_empty @resource.retrieve_bindings(ConsumerSupport.consumer_id)
 
     response = @resource.unbind(ConsumerSupport.consumer_id, RepositorySupport.repo_id, distro_id)
+    RepositorySupport.wait_on_tasks(response)
+
     assert_equal 202, response.code
   end
 

@@ -172,7 +172,8 @@ module RepositorySupport
         @task = nil
       end
 
-      @repo_resource.delete(id)
+      tasks = @repo_resource.delete(id)
+      wait_on_tasks(tasks)
     end
   rescue Exception => e
   end
