@@ -25,9 +25,10 @@ require 'active_support/core_ext/hash'
 
 module Runcible
   module Resources
+    # @see https://pulp-dev-guide.readthedocs.org/en/latest/rest-api/repo/index.html
     class Repository < Runcible::Base
 
-      # Generates the API path for repositories
+      # Generates the API path for Repositories
       #
       # @param  [String]  id  the id of the repository
       # @return [String]      the repository path, may contain the id if passed      
