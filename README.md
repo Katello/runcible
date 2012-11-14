@@ -6,6 +6,8 @@ Exposing Pulp's juiciest parts. http://www.pulpproject.org/
 
 Latest Live Tested Version: **pulp-server-2.0.6-0.2.beta.noarch**
 
+For in-depth class and method documentation: http://katello.github.com/runcible/
+
 ## Installation
 
 Add this line to your application's Gemfile:
