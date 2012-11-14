@@ -66,7 +66,7 @@ module Runcible
 
       def self.bind(id, repo_id, distributor_id)
         required = required_params(binding.send(:local_variables), binding, ["id"])
-        call(:post, path("#{id}/bindings"), :payload => { :required => required })
+        call(:post, path("#{id}/bindings/"), :payload => { :required => required })
       end
 
       def self.unbind(id, repo_id, distributor_id)

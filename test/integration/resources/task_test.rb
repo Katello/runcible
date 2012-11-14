@@ -33,7 +33,7 @@ module TestResourcesTaskBase
 
   def setup
     @resource = Runcible::Resources::Task
-    VCR.insert_cassette('task', :match_requests_on => [:method, :path, :body])
+    VCR.insert_cassette('task', :match_requests_on => [:method, :path, :body], :allow_playback_repeats => true)
   end
 
   def teardown
@@ -80,7 +80,7 @@ class TestResourcesTask < MiniTest::Unit::TestCase
   end
 
   def test_cancel
-    skip "TODO: Needs more reliable testable scenario - scheduled sync in the future?"
+    skip "TODO: Needs more reliable testable scenario"
     response = @resource.cancel(RepositorySupport.task['task_id'])
 
     assert_equal 200, response.code
