@@ -70,7 +70,7 @@ end
 desc "Clears out all cassette files"
 task :clear_cassettes do
   `rm -rf test/fixtures/vcr_cassettes/*.yml`
-  `rm -rf test/fixtures/vcr_cassettes/extesions/*.yml`
+  `rm -rf test/fixtures/vcr_cassettes/extensions/*.yml`
   `rm -rf test/fixtures/vcr_cassettes/support/*.yml`
 end
 
