@@ -211,7 +211,11 @@ class TestExtensionsRepositoryUnitList < MiniTest::Unit::TestCase
 
   def test_errata_ids
     response = @@extension.errata_ids(RepositorySupport.repo_id)
-    
+    refute_empty response
+  end
+
+  def test_errata
+    response = @@extension.errata(RepositorySupport.repo_id)
     refute_empty response
   end
 
