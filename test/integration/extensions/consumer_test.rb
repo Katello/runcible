@@ -86,20 +86,23 @@ class TestConsumerExtension < MiniTest::Unit::TestCase
 
   def test_install_content
     response = @extension.install_content(@consumer_id, "rpm", ["zsh", "foo"])
+
     assert_equal(202, response.code)
     assert(response["task_id"])
   end
 
   def test_update_content
     response = @extension.update_content(@consumer_id, "rpm", ["zsh", "foo"])
-    assert_equal(202, response.code)
-    assert(response["task_id"])
+
+    assert_equal 202, response.code
+    assert       response["task_id"]
   end
 
   def test_uninstall_content
     response = @extension.uninstall_content(@consumer_id, "rpm", ["zsh", "foo"])
-    assert_equal(202, response.code)
-    assert(response["task_id"])
+
+    assert_equal 202, response.code
+    assert       response["task_id"]
   end
 
   def test_generate_content
