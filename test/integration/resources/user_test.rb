@@ -55,14 +55,16 @@ class TestResourcesUserCreate < MiniTest::Unit::TestCase
 
   def test_create
     response = @resource.create(@username)
-    assert response.code == 201
-    assert response['login'] == @username
+
+    assert_equal 201, response.code
+    assert_equal @username, response['login']
   end
 
   def test_create_with_name_and_password
     response = @resource.create(@username, {:name => @username, :password => "integration_test_password"})
-    assert response.code == 201
-    assert response['name'] == @username
+
+    assert_equal 201, response.code
+    assert_equal @username, response['name']
   end
 
 end
@@ -95,29 +97,34 @@ class TestResourcesUser < MiniTest::Unit::TestCase
 
   def test_path
     path = @resource.path
-    assert_match("users/", path)
+
+    assert_match "users/", path
   end
 
   def test_path_with_username
     path = @resource.path(@username)
-    assert_match("users/#{@username}", path)
+
+    assert_match "users/#{@username}", path
   end
 
   def test_retrieve
     response = @resource.retrieve(@username)
-    assert response.code == 200
-    assert response["login"] == @username
+
+    assert_equal 200, response.code
+    assert_equal @username, response["login"]
   end
 
   def test_retrieve_all
     response = @resource.retrieve_all()
-    assert response.code == 200
-    assert !response.empty?
+
+    assert_equal 200, response.code
+    refute_empty response
   end
 
   def test_delete
     response = @resource.delete(@username)
-    assert response.code == 200
+
+    assert_equal 200, response.code
   end
 
 end

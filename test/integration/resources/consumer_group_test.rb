@@ -65,7 +65,8 @@ class TestConsumerGroupCreate < MiniTest::Unit::TestCase
 
   def test_create
     response = create_consumer_group
-    assert response['id'] == @consumer_group_id
+
+    assert_equal @consumer_group_id, response['id']
   end
 end
 
@@ -80,7 +81,8 @@ class TestConsumerGroupDestroy < MiniTest::Unit::TestCase
 
   def test_destroy
     response = @resource.delete(@consumer_group_id)
-    assert_equal(200, response.code)
+
+    assert_equal 200, response.code
   end
 
 end
@@ -102,19 +104,23 @@ end
 class TestConsumerGroup < ConsumerGroupTests
   def test_path
     path = @resource.path
-    assert_match('consumer_groups/', path)
+
+    assert_match 'consumer_groups/', path
   end
 
   def test_path_with_id
     path = @resource.path(@consumer_group_id)
-    assert_match("consumer_groups/#{@consumer_group_id}/", path)
+
+    assert_match "consumer_groups/#{@consumer_group_id}/", path
   end
 
   def test_retrieve
     response = @resource.retrieve(@consumer_group_id)
-    assert response.length > 0
-    assert response['id'] == @consumer_group_id
-    assert response['consumer_ids'] == []
+
+    assert_equal 200, response.code
+    refute_empty response
+    assert_equal @consumer_group_id, response['id']
+    assert_empty response['consumer_ids']
   end
 
 end
@@ -141,9 +147,9 @@ end
 class TestConsumerGroupAssociate < ConsumerGroupWithConsumerTests
   def test_associate
     response = @resource.associate(@consumer_group_id, @criteria)
-    assert_equal(200, response.code)
-    assert(Array === response)
-    assert(response.include?(ConsumerSupport.consumer_id))
+
+    assert_equal    200, response.code
+    assert_includes response, ConsumerSupport.consumer_id
   end
 end
 
@@ -180,52 +186,31 @@ class ConsumerGroupRequiresRepoTests < ConsumerGroupTests
 
 end
 
-#class TestConsumerGroupBindings < ConsumerGroupRequiresRepoTests
-#
-#
-#  def test_bind_success
-#    response = bind_repo
-#    require "ruby-debug";debugger
-#    assert_equal(RepositorySupport.repo_id, response[:repo_id])
-#    assert(200, response.code)
-#    #assert(!@resource.retrieve_bindings(@consumer_id).empty?)
-#  end
-#
-#  def test_unbind
-#    bind_repo
-#    distro_id = RepositorySupport.distributor()['id']
-#    assert(!@resource.retrieve_bindings(@consumer_id).empty?)
-#    response = @resource.unbind(@consumer_id, RepositorySupport.repo_id, distro_id)
-#    #assert(@resource.retrieve_bindings(@consumer_id).empty?)
-#    assert(200, response.code)
-#  end
-#
-#end
 
 class TestConsumerGroupRequiresRepo < ConsumerGroupRequiresRepoTests
-  def setup
-    super
-    #bind_repo
-  end
 
   def test_install_units
     response  = @resource.install_units(@consumer_group_id,{"units"=>["unit_key"=>{:name => "zsh"}]})
-    assert_equal(202, response.code)
-    assert(response["task_id"])
+    #RepositorySupport.wait_on_task(response)
+
+    assert_equal 202, response.code
+    assert       response["task_id"]
   end
 
   def test_update_units
     response  = @resource.update_units(@consumer_group_id,{"units"=>["unit_key"=>{:name => "zsh"}]})
-    assert_equal(202, response.code)
-    assert(response["task_id"])
+    #RepositorySupport.wait_on_task(response)
+
+    assert_equal 202, response.code
+    assert       response["task_id"]
   end
 
   def test_uninstall_units
     response  = @resource.uninstall_units(@consumer_group_id,{"units"=>["unit_key"=>{:name => "zsh"}]})
-    assert_equal(202, response.code)
-    assert(response["task_id"])
+    #RepositorySupport.wait_on_task(response)
+    
+    assert_equal 202, response.code
+    assert       response["task_id"]
   end
 
 end
-
-
