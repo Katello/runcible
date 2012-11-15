@@ -97,7 +97,7 @@ module Runcible
       #  errata_ids
       def self.errata_copy(source_repo_id, destination_repo_id, optional={})
         criteria = {:type_ids => ['erratum'], :filters => {}}
-        criteria[:filters][:unit] = { :id=>{ '$in' => optional[:errata_ids] } } if optional[:errata_ids]
+        criteria[:filters]['association'] = {'unit_id' => {'$in' => optional[:errata_ids]}} if optional[:errata_ids]
         payload = {:criteria => criteria}
         unit_copy(destination_repo_id, source_repo_id, payload)
       end
