@@ -53,33 +53,31 @@ class TestExtensionsRepositoryCreate < MiniTest::Unit::TestCase
 
   def test_create_with_importer
     response = @extension.create_with_importer(RepositorySupport.repo_id, {:id=>"yum_importer"})
-    assert response.code == 201
+    assert_equal 201, response.code
 
     response = @extension.retrieve(RepositorySupport.repo_id, {:details => true})
-    assert response['id'] == RepositorySupport.repo_id
-    assert response['importers'].first['importer_type_id'] == 'yum_importer'
+    assert_equal RepositorySupport.repo_id, response['id']
+    assert_equal "yum_importer", response['importers'].first['importer_type_id']
   end
-
 
   def test_create_with_importer_object
     response = @extension.create_with_importer(RepositorySupport.repo_id, Runcible::Extensions::YumImporter.new())
-    assert response.code == 201
+    assert_equal 201, response.code
 
     response = @extension.retrieve(RepositorySupport.repo_id, {:details => true})
-    assert response['id'] == RepositorySupport.repo_id
-    assert response['importers'].first['importer_type_id'] == 'yum_importer'
+    assert_equal RepositorySupport.repo_id, response['id']
+    assert_equal "yum_importer", response['importers'].first['importer_type_id']
   end
-
 
   def test_create_with_distributors
     VCR.use_cassette('extensions/repository_create_with_importer') do
 
       distributors = [{'type_id' => 'yum_distributor', 'id'=>'123', 'auto_publish'=>true,
                        'config'=>{'relative_url' => '/path', 'http' => true, 'https' => true}}]
-
       response = @extension.create_with_distributors(RepositorySupport.repo_id, distributors)
-      assert response.code == 201
-      assert response['id'] == RepositorySupport.repo_id
+
+      assert_equal 201, response.code
+      assert_equal RepositorySupport.repo_id, response['id']
     end
   end
 
@@ -87,11 +85,11 @@ class TestExtensionsRepositoryCreate < MiniTest::Unit::TestCase
     repo_id = RepositorySupport.repo_id + "_distro"
     response = @extension.create_with_distributors(repo_id, [Runcible::Extensions::YumDistributor.new(
         '/path', true, true, :id => '123')])
-    assert response.code == 201
+    assert_equal 201, response.code
 
     response = @extension.retrieve(repo_id, {:details => true})
-    assert response['id'] == repo_id
-    assert response['distributors'].first['distributor_type_id'] == 'yum_distributor'
+    assert_equal repo_id, response['id']
+    assert_equal 'yum_distributor', response['distributors'].first['distributor_type_id']
   ensure
     RepositorySupport.destroy_repo(repo_id)
   end
@@ -100,11 +98,11 @@ class TestExtensionsRepositoryCreate < MiniTest::Unit::TestCase
     distributors = [{'type_id' => 'yum_distributor', 'id'=>'123', 'auto_publish'=>true,
                      'config'=>{'relative_url' => '/', 'http' => true, 'https' => true}}]
     response = @extension.create_with_importer_and_distributors(RepositorySupport.repo_id, {:id=>'yum_importer'}, distributors)
-    assert response.code == 201
+    assert_equal 201, response.code
 
     response = @extension.retrieve(RepositorySupport.repo_id, {:details => true})
-    assert response['id'] == RepositorySupport.repo_id
-    assert response['importers'].first['importer_type_id'] == 'yum_importer'
+    assert_equal RepositorySupport.repo_id, response['id']
+    assert_equal 'yum_distributor', response['distributors'].first['distributor_type_id']
   end
 
   def test_create_with_importer_and_distributors_objects
@@ -112,11 +110,11 @@ class TestExtensionsRepositoryCreate < MiniTest::Unit::TestCase
             '/path', true, true, :id => '123')]
     importer = Runcible::Extensions::YumImporter.new()
     response = @extension.create_with_importer_and_distributors(RepositorySupport.repo_id, importer, distributors)
-    assert response.code == 201
+    assert_equal 201, response.code
 
     response = @extension.retrieve(RepositorySupport.repo_id, {:details => true})
-    assert response['id'] == RepositorySupport.repo_id
-    assert response['importers'].first['importer_type_id'] == 'yum_importer'
+    assert_equal RepositorySupport.repo_id, response['id']
+    assert_equal "yum_importer", response['importers'].first['importer_type_id']
   end
 
 
@@ -137,16 +135,17 @@ class TestExtensionsRepositoryMisc < MiniTest::Unit::TestCase
 
   def test_search_by_repository_ids
     response = @extension.search_by_repository_ids([RepositorySupport.repo_id])
-    assert response.code == 200
 
-    assert response.collect{ |repo| repo["display_name"] == RepositorySupport.repo_id }.length > 0
+    assert_equal 200, response.code
+    refute_empty response.collect{ |repo| repo["display_name"] == RepositorySupport.repo_id }
   end
 
   def test_create_or_update_schedule
     response = @extension.create_or_update_schedule(RepositorySupport.repo_id, 'yum_importer', "2012-09-25T20:44:00Z/P7D")
-    assert response.code == 201
+    assert_equal 201, response.code
+
     response = @extension.create_or_update_schedule(RepositorySupport.repo_id, 'yum_importer', "2011-09-25T20:44:00Z/P7D")
-    assert response.code == 200
+    assert_equal 200, response.code
   end
 
   def test_remove_schedules
@@ -161,19 +160,21 @@ class TestExtensionsRepositoryMisc < MiniTest::Unit::TestCase
   def test_retrieve_with_details
     response = @extension.retrieve_with_details(RepositorySupport.repo_id)
   
-    assert response.code == 200
-    assert response.key?('distributors')
+    assert_equal    200, response.code
+    assert_includes response, 'distributors'
   end
   
   def test_publish_all
     response = @extension.publish_all(RepositorySupport.repo_id)
     RepositorySupport.wait_on_tasks(response)
-    assert response.first['call_request_tags'].include?('pulp:action:publish')
+
+    assert_includes response.first['call_request_tags'], 'pulp:action:publish'
   end
 
   def test_sync_status
     response = @extension.sync_status(RepositorySupport.repo_id)
-    assert_equal response.code, 200
+
+    assert_equal 200, response.code
   end
 
 end
@@ -196,14 +197,16 @@ class TestExtensionsRepositoryUnitList < MiniTest::Unit::TestCase
 
   def test_rpm_ids
     response = @@extension.rpm_ids(RepositorySupport.repo_id)
-    assert !response.empty?
-    assert response.first.is_a?(String)
+
+    refute_empty    response
+    assert_kind_of  String, response.first
   end
 
   def test_rpms
     response = @@extension.rpms(RepositorySupport.repo_id)
-    assert !response.empty?
-    assert response.first.is_a?(Hash)
+
+    refute_empty    response
+    assert_kind_of  Hash, response.first
   end
 
   def test_errata_ids
@@ -214,24 +217,28 @@ class TestExtensionsRepositoryUnitList < MiniTest::Unit::TestCase
 
   def test_distributions
     response = @@extension.distributions(RepositorySupport.repo_id)
-    assert !response.empty?
+
+    refute_empty response
   end
 
   def test_package_groups
     response = @@extension.package_groups(RepositorySupport.repo_id)
-    assert !response.empty?
+
+    refute_empty response
   end
 
   def test_package_categories
-      response = @@extension.package_categories(RepositorySupport.repo_id)
-      assert !response.empty?
+    response = @@extension.package_categories(RepositorySupport.repo_id)
+
+    refute_empty response
   end
 
   def test_packages_by_name
     list = @@extension.rpms(RepositorySupport.repo_id)
     rpm = list.first
     response = @@extension.packages_by_nvre(RepositorySupport.repo_id, rpm['name'])
-    assert !response.empty?
+
+    refute_empty response
   end
 
   def test_packages_by_nvre
@@ -239,7 +246,8 @@ class TestExtensionsRepositoryUnitList < MiniTest::Unit::TestCase
     rpm = list.first
     response = @@extension.packages_by_nvre(RepositorySupport.repo_id, rpm['name'], rpm['version'],
                                             rpm['release'], rpm['epoch'])
-    assert !response.empty?
+
+    refute_empty response
   end
 
 end
@@ -267,22 +275,25 @@ class TestExtensionsRepositoryCopy < MiniTest::Unit::TestCase
   def test_rpm_copy
     response = @@extension.rpm_copy(RepositorySupport.repo_id, @@clone_name)
     RepositorySupport.task = response
-    assert response.code == 202
-    assert response['call_request_tags'].include?('pulp:action:associate')
+
+    assert_equal    202, response.code
+    assert_includes response['call_request_tags'], 'pulp:action:associate'
   end
 
   def test_errata_copy
-     response = @@extension.errata_copy(RepositorySupport.repo_id, @@clone_name)
-     RepositorySupport.task = response
-     assert response.code == 202
-     assert response['call_request_tags'].include?('pulp:action:associate')
+    response = @@extension.errata_copy(RepositorySupport.repo_id, @@clone_name)
+    RepositorySupport.task = response
+
+    assert_equal    202, response.code
+    assert_includes response['call_request_tags'], 'pulp:action:associate'
   end
 
   def test_distribution_copy
-     response = @@extension.distribution_copy(RepositorySupport.repo_id, @@clone_name)
-     RepositorySupport.task = response
-     assert response.code == 202
-     assert response['call_request_tags'].include?('pulp:action:associate')
+    response = @@extension.distribution_copy(RepositorySupport.repo_id, @@clone_name)
+    RepositorySupport.task = response
+
+    assert_equal    202, response.code
+    assert_includes response['call_request_tags'], 'pulp:action:associate'
   end
 end
 
@@ -308,10 +319,11 @@ class TestExtensionsRepositoryUnassociate < MiniTest::Unit::TestCase
 
   def test_rpm_remove
     pkg_ids = RepositorySupport.rpm_ids
-    assert !pkg_ids.empty?
+    refute_empty pkg_ids
+
     task = @@extension.rpm_remove(@@clone_name, [pkg_ids.first])
     RepositorySupport.wait_on_task(task)
-    assert_equal((pkg_ids.length - 1), @@extension.rpm_ids(@@clone_name).length)
+    assert_equal (pkg_ids.length - 1), @@extension.rpm_ids(@@clone_name).length
   end
 
   def test_errata_remove
@@ -320,15 +332,16 @@ class TestExtensionsRepositoryUnassociate < MiniTest::Unit::TestCase
 
     task = @@extension.errata_remove(@@clone_name, [errata_ids.first])
     RepositorySupport.wait_on_task(task)
-    assert_equal((errata_ids.length - 1), @@extension.errata_ids(@@clone_name).length)
+    assert_equal (errata_ids.length - 1), @@extension.errata_ids(@@clone_name).length
   end
 
   def test_distribution_remove
     dist_ids = @@extension.distributions(RepositorySupport.repo_id).collect{|d| d['id']}
-    assert dist_ids.first
+    refute_empty dist_ids
+
     task = @@extension.distribution_remove(@@clone_name, dist_ids.first)
     RepositorySupport.wait_on_task(task)
-    assert_equal((dist_ids.length - 1), @@extension.distributions(@@clone_name).length)
+    assert_equal (dist_ids.length - 1), @@extension.distributions(@@clone_name).length
   end
 
 end

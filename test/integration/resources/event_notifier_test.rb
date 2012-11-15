@@ -46,12 +46,15 @@ class TestEventNotifier < MiniTest::Unit::TestCase
     response = @resource.create(@resource::NotifierTypes::REST_API, {:url=>'http://foo.com/foo/'},
             [@resource::EventTypes::REPO_PUBLISH_COMPLETE])
     @@notifier_id = response['id']
-    assert response.code == 201
+
+    assert_equal 201, response.code
   end
 
   def test_list
     response = @resource.list()
-    assert response.code == 200
+
+    assert_equal 200, response.code
+    refute_empty response
   end
 
 end
@@ -75,12 +78,8 @@ class TestEventNotifierDelete < MiniTest::Unit::TestCase
 
   def test_remove
     response = @resource.delete(@@notifier_id)
-    assert response.code == 200
-    assert ! @resource.list.collect{|i| i[:id]}.include?(@@notifier_id)
+
+    assert_equal    200, response.code
   end
 
-
-
 end
-
-

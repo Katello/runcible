@@ -57,12 +57,14 @@ class TestResourcesTask < MiniTest::Unit::TestCase
 
   def test_path
     path = @resource.path
-    assert_match("tasks/", path)
+
+    assert_match "tasks/", path
   end
 
   def test_path_with_task_id
     path = @resource.path(@@task['task_id'])
-    assert_match("tasks/#{@@task['task_id']}/", path)
+
+    assert_match "tasks/#{@@task['task_id']}/", path
   end
 
   def test_poll
