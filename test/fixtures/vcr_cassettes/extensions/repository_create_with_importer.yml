@@ -1,19 +1,19 @@
 --- 
-recorded_with: VCR 2.2.5
+recorded_with: VCR 2.3.0
 http_interactions: 
 - request: 
     method: post
     uri: https://admin:admin@localhost/pulp/api/v2/repositories/
     body: 
-      string: "{\"distributors\":[{\"distributor_id\":\"123\",\"distributor_config\":{\"http\":true,\"relative_url\":\"/path\",\"https\":true},\"auto_publish\":true,\"distributor_type\":\"yum_distributor\"}],\"id\":\"integration_test_id\"}"
+      string: "{\"id\":\"integration_test_id\",\"distributors\":[{\"distributor_config\":{\"https\":true,\"http\":true,\"relative_url\":\"/path\"},\"distributor_type\":\"yum_distributor\",\"auto_publish\":true,\"distributor_id\":\"123\"}]}"
     headers: 
-      Content-Length: 
-      - "198"
       Accept-Encoding: 
       - gzip, deflate
-      Accept: 
-      - application/json
+      Content-Length: 
+      - "198"
       Content-Type: 
+      - application/json
+      Accept: 
       - application/json
   response: 
     status: 
@@ -24,13 +24,13 @@ http_interactions:
       - "265"
       Server: 
       - Apache/2.2.22 (Fedora)
-      Location: 
-      - integration_test_id
       Date: 
-      - Thu, 15 Nov 2012 20:52:37 GMT
+      - Thu, 15 Nov 2012 22:38:12 GMT
       Content-Type: 
       - application/json
+      Location: 
+      - integration_test_id
     body: 
-      string: "{\"scratchpad\": {}, \"display_name\": \"integration_test_id\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_count\": 0, \"_id\": {\"$oid\": \"50a556159c60ed49e6001a52\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\"}"
+      string: "{\"scratchpad\": {}, \"display_name\": \"integration_test_id\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_count\": 0, \"_id\": {\"$oid\": \"50a56ed59c60ed49e6002e94\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\"}"
     http_version: 
-  recorded_at: Thu, 15 Nov 2012 20:52:37 GMT
+  recorded_at: Thu, 15 Nov 2012 22:38:13 GMT
