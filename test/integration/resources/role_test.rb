@@ -51,24 +51,28 @@ class TestResourcesRoles < MiniTest::Unit::TestCase
 
   def test_path_without_role_name
     path = @resource.path
-    assert_match("roles/", path)
+
+    assert_match "roles/", path
   end
 
   def test_path_with_role_name
     path = @resource.path(@role_name)
-    assert_match("roles/#{@role_name}", path)
+
+    assert_match "roles/#{@role_name}", path
   end
 
   def test_add
     response = @resource.add(@role_name, @username)
-    assert response.code == 200
+
+    assert_equal 200, response.code
     @resource.remove(@role_name, @username)
   end
 
   def test_remove
     @resource.add(@role_name, @username)
     response = @resource.remove(@role_name, @username)
-    assert response.code == 200
+
+    assert_equal 200, response.code
   end
 
 end

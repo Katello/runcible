@@ -41,8 +41,9 @@ class TestResourcesRepositoryCreate < MiniTest::Unit::TestCase
 
   def test_create
     response = RepositorySupport.create_repo
-    assert response.code == 201
-    assert response['id'] == RepositorySupport.repo_id
+
+    assert_equal 201, response.code
+    assert_equal RepositorySupport.repo_id, response['id']
   end
 end
 
@@ -78,56 +79,63 @@ class TestResourcesRepository < MiniTest::Unit::TestCase
 
   def test_path
     path = @resource.path
-    assert_match("repositories/", path)
+
+    assert_match "repositories/", path
   end
 
   def test_repository_path_with_id
     path = @resource.path(RepositorySupport.repo_id)
-    assert_match("repositories/#{RepositorySupport.repo_id}", path)
+
+    assert_match "repositories/#{RepositorySupport.repo_id}", path
   end
 
   def test_update
     response = @resource.update(RepositorySupport.repo_id, { :description => "updated_description_" + RepositorySupport.repo_id })
-    assert response.code == 200
-    assert response["description"] == "updated_description_" + RepositorySupport.repo_id
+
+    assert_equal 200, response.code
+    assert_equal "updated_description_" + RepositorySupport.repo_id, response["description"]
   end
 
   def test_retrieve
     response = @resource.retrieve(RepositorySupport.repo_id)
-    assert response.code == 200
-    assert response["display_name"] == RepositorySupport.repo_id
+
+    assert_equal 200, response.code
+    assert_equal RepositorySupport.repo_id, response["display_name"]
   end
 
   def test_retrieve_all
     response = @resource.retrieve_all()
-    assert response.code == 200
-    assert response.collect{ |repo| repo["display_name"] == RepositorySupport.repo_id }.length > 0
+
+    assert_equal 200, response.code
+    refute_empty response
   end
 
   def test_search
     response = @resource.search({})
-    assert response.code == 200
-    assert response.collect{ |repo| repo["display_name"] == RepositorySupport.repo_id }.length > 0
+
+    assert_equal 200, response.code
+    refute_empty response
   end
 
   def test_associate_importer
     response = @resource.associate_importer(RepositorySupport.repo_id, "yum_importer", {})
-    assert response.code == 201
-    assert response['importer_type_id'] == "yum_importer"
+
+    assert_equal 201, response.code
+    assert_equal "yum_importer", response['importer_type_id']
   end
 
   def test_associate_distributor
     distributor_config = {"relative_url" => "/", "http" => true, "https" => true}
-
     response = @resource.associate_distributor(RepositorySupport.repo_id, "yum_distributor", distributor_config)
-    assert response.code == 201
-    assert response['distributor_type_id'] == "yum_distributor"
+
+    assert_equal 201, response.code
+    assert_equal "yum_distributor", response['distributor_type_id']
   end
 
   def test_delete_distributor
     distributor_config = {"relative_url" => "/", "http" => true, "https" => true}
-    response = @resource.associate_distributor(RepositorySupport.repo_id, "yum_distributor",
-                distributor_config, {:distributor_id => "dist_1"})
+    @resource.associate_distributor(RepositorySupport.repo_id, "yum_distributor",
+                                    distributor_config, {:distributor_id => "dist_1"})
 
     response = @resource.delete_distributor(RepositorySupport.repo_id, "dist_1")
     RepositorySupport.wait_on_tasks(response)
@@ -157,9 +165,9 @@ class TestResourcesRepositorySync < MiniTest::Unit::TestCase
     response = @resource.sync(RepositorySupport.repo_id)
     RepositorySupport.task = response[0]
 
-    assert response.code == 202
-    assert response.length == 1
-    assert response[0]["call_request_tags"].include?('pulp:action:sync')
+    assert_equal    202, response.code
+    refute_empty    response
+    assert_includes response.first["call_request_tags"], 'pulp:action:sync'
   end
 
   def test_sync_repo_with_yum_importer
@@ -167,9 +175,9 @@ class TestResourcesRepositorySync < MiniTest::Unit::TestCase
     response = @resource.sync(RepositorySupport.repo_id)
     RepositorySupport.task = response.first
 
-    assert response.code == 202
-    assert response.length == 1
-    assert response.first["call_request_tags"].include?('pulp:action:sync')
+    assert_equal    202, response.code
+    refute_empty    response
+    assert_includes response.first["call_request_tags"], 'pulp:action:sync'
   end
 end
 
@@ -190,8 +198,9 @@ class TestResourcesRepositoryRequiresSync < MiniTest::Unit::TestCase
   def test_publish
     response = @resource.publish(RepositorySupport.repo_id, RepositorySupport.distributor)
     RepositorySupport.wait_on_task(response)
-    assert response.code == 202
-    assert response['call_request_tags'].include?('pulp:action:publish')
+
+    assert_equal    202, response.code
+    assert_includes response['call_request_tags'], 'pulp:action:publish'
   end
 
   def test_unassociate_units
@@ -237,8 +246,9 @@ class TestResourcesRepositoryClone < MiniTest::Unit::TestCase
   def test_unit_copy
     response = @resource.unit_copy(@clone_name, RepositorySupport.repo_id)
     RepositorySupport.task = response
-    assert response.code == 202
-    assert response['call_request_tags'].include?('pulp:action:associate')
+
+    assert_equal    202, response.code
+    assert_includes response['call_request_tags'], 'pulp:action:associate'
   end
 
 end

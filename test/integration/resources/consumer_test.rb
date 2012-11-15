@@ -85,8 +85,9 @@ class TestConsumerCreate < MiniTest::Unit::TestCase
 
   def test_create
     response = create_consumer
+
     assert response.kind_of? Hash
-    assert response['id'] == @consumer_id
+    assert_equal @consumer_id, response['id']
   end
 
 end
@@ -101,7 +102,8 @@ class TestConsumerDestroy < MiniTest::Unit::TestCase
 
   def test_destroy
     response = destroy_consumer
-    assert response.code == 200
+
+    assert_equal 200, response.code
   end
 
 end
@@ -122,25 +124,29 @@ class TestGeneralMethods < MiniTest::Unit::TestCase
 
   def test_path
     path = @resource.path
-    assert_match('consumers/', path)
+
+    assert_match 'consumers/', path
   end
 
   def test_consumer_path_with_id
     path = @resource.path(@consumer_id)
-    assert_match("consumers/#{@consumer_id}/", path)
+
+    assert_match "consumers/#{@consumer_id}/", path
   end
 
   def test_retrieve
     response = @resource.retrieve(@consumer_id)
-    assert response.length > 0
-    assert response['id'] == @consumer_id
+
+    refute_empty response
+    assert_equal @consumer_id, response['id']
   end
 
   def test_update
     description = "Test description"
     response = @resource.update(@consumer_id, :description => description)
-    assert response.code == 200
-    assert_equal(description, response['description'])
+
+    assert_equal 200, response.code
+    assert_equal description, response['description']
   end
 
 end
@@ -163,20 +169,20 @@ class TestProfiles < MiniTest::Unit::TestCase
     packages = [{"vendor" => "FedoraHosted", "name" => "elephant",
                  "version" => "0.3", "release" => "0.8",
                  "arch" => "noarch"}]
-
     response = @resource.upload_profile(@consumer_id, 'rpm', packages)
-    assert_equal(packages, response['profile'])
+
+    assert_equal packages, response['profile']
   end
 
   def test_retrieve_profile
     packages = [{"vendor" => "FedoraHosted", "name" => "elephant",
                  "version" => "0.3", "release" => "0.8",
                  "arch" => "noarch"}]
-
     @resource.upload_profile(@consumer_id, 'rpm', packages)
     response = @resource.retrieve_profile(@consumer_id, 'rpm')
-    assert_equal(@consumer_id, response["consumer_id"])
-    assert_equal(packages, response["profile"])
+
+    assert_equal @consumer_id, response["consumer_id"]
+    assert_equal packages, response["profile"]
   end
 
 end

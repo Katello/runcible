@@ -63,17 +63,20 @@ class TestResourcesRepositoryCreateSchedule < MiniTest::Unit::TestCase
 
   def test_repository_schedules_path
     path = @resource.path('foo', 'some_importer')
-    assert_match("repositories/foo/importers/some_importer/schedules/sync/", path)
+
+    assert_match "repositories/foo/importers/some_importer/schedules/sync/", path
   end
 
   def test_schedule_create
     response = @resource.create(RepositorySupport.repo_id, 'yum_importer', "2012-09-25T20:44:00Z/P7D")
-    assert response.code == 201
+
+    assert_equal 201, response.code
   end
 
   def test_list_schedules
     list = @resource.list(RepositorySupport.repo_id, 'yum_importer')
-    assert_match(list.first[:schedule], RepositorySupport.schedule_time)
+
+    assert_match list.first[:schedule], RepositorySupport.schedule_time
   end
 
 end
@@ -96,7 +99,8 @@ class TestResourcesScheduleUpdate < MiniTest::Unit::TestCase
   def test_update_schedule
     id = @resource.list(RepositorySupport.repo_id, 'yum_importer').first['_id']
     response = @resource.update(RepositorySupport.repo_id, 'yum_importer', id, {:schedule=>'P1DT'})
-    assert response.code == 200
+
+    assert_equal 200, response.code
   end
 end
 
@@ -119,7 +123,8 @@ class TestResourcesScheduleDelete < MiniTest::Unit::TestCase
   def test_delete_schedules
     id = @resource.list(RepositorySupport.repo_id, 'yum_importer').first['_id']
     response = @resource.delete(RepositorySupport.repo_id, 'yum_importer', id)
-    assert response.code == 200
+
+    assert_equal 200, response.code
   end
 
 end
