@@ -53,13 +53,13 @@ class TestExtensionsErrata < MiniTest::Unit::TestCase
     response = @@extension.find(id)
     
     refute_empty response
-    assert_equal id, response.first['_id']
+    assert_equal id, response['id']
   end
 
   def test_find_unknown
     response = @@extension.find_all(['f'])
     
-    refute_empty response
+    assert_empty response
   end
 
   def test_find_all_by_unit_ids

@@ -28,7 +28,7 @@ require './lib/runcible'
 require './test/support/repository_support'
 
 
-class TestExtensionsErrata < MiniTest::Unit::TestCase
+class TestExtensionsDistribution < MiniTest::Unit::TestCase
 
   def self.before_suite
     @@extension = Runcible::Extensions::Distribution
