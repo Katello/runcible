@@ -148,8 +148,14 @@ module RepositorySupport
     VCR.use_cassette('support/task') do
       while !(['finished', 'error', 'timed_out', 'canceled', 'reset'].include?(task['state'])) do
         task = @task_resource.poll(task["task_id"])
-        sleep 0.1 # do not overload backend engines
+        self.sleep_if_needed
       end
+    end
+  end
+
+  def self.sleep_if_needed
+    if VCR.configuration.default_cassette_options[:record] != :none
+      sleep 0.5 # do not overload backend engines
     end
   end
 
@@ -164,11 +170,7 @@ module RepositorySupport
   def self.destroy_repo(id=@repo_id)
     VCR.use_cassette('support/repository') do
       if @task
-        while !(['finished', 'error', 'timed_out', 'canceled', 'reset'].include?(@task['state'])) do
-          @task = @task_resource.poll(@task["task_id"])
-          sleep 0.1 # do not overload backend engines
-        end
-
+        wait_on_task(@task)
         @task = nil
       end
 
