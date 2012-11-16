@@ -155,7 +155,7 @@ module RepositorySupport
 
   def self.sleep_if_needed
     if VCR.configuration.default_cassette_options[:record] != :none
-      sleep 0.1 # do not overload backend engines
+      sleep 0.5 # do not overload backend engines
     end
   end
 
