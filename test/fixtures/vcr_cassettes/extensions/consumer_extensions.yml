@@ -3,379 +3,379 @@ recorded_with: VCR 2.3.0
 http_interactions: 
 - request: 
     method: post
-    uri: https://admin:admin@localhost/pulp/api/v2/consumers/integration_test_consumer_extensions11000/actions/content/install//
+    uri: https://admin:admin@localhost/pulp/api/v2/consumers/integration_test_consumer_extensions11000/actions/content/update//
     body: 
-      string: "{\"units\":[{\"unit_key\":{\"name\":\"zsh\"},\"type_id\":\"rpm\"},{\"unit_key\":{\"name\":\"foo\"},\"type_id\":\"rpm\"}],\"options\":{}}"
+      string: "{\"options\":{},\"units\":[{\"type_id\":\"rpm\",\"unit_key\":{\"name\":\"zsh\"}},{\"type_id\":\"rpm\",\"unit_key\":{\"name\":\"foo\"}}]}"
     headers: 
-      Accept-Encoding: 
-      - gzip, deflate
+      Content-Type: 
+      - application/json
       Content-Length: 
       - "112"
-      Content-Type: 
-      - application/json
       Accept: 
       - application/json
+      Accept-Encoding: 
+      - gzip, deflate
   response: 
     status: 
       code: 202
       message: Accepted
     headers: 
-      Content-Length: 
-      - "686"
-      Server: 
-      - Apache/2.2.22 (Fedora)
+      Content-Type: 
+      - application/json
       Content-Encoding: 
       - utf-8
-      Date: 
-      - Thu, 15 Nov 2012 22:35:49 GMT
-      Content-Type: 
-      - application/json
-    body: 
-      string: "{\"task_group_id\": null, \"exception\": null, \"traceback\": null, \"_href\": \"/pulp/api/v2/tasks/6ba1d69e-d15c-4bb4-8c06-a60a9d285516/\", \"task_id\": \"6ba1d69e-d15c-4bb4-8c06-a60a9d285516\", \"call_request_tags\": [\"pulp:consumer:integration_test_consumer_extensions11000\", \"pulp:action:unit_install\"], \"reasons\": [], \"start_time\": null, \"tags\": [\"pulp:consumer:integration_test_consumer_extensions11000\", \"pulp:action:unit_install\"], \"state\": \"waiting\", \"finish_time\": null, \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": null, \"call_request_id\": \"6ba1d69e-d15c-4bb4-8c06-a60a9d285516\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}"
-    http_version: 
-  recorded_at: Thu, 15 Nov 2012 22:35:49 GMT
-- request: 
-    method: post
-    uri: https://admin:admin@localhost/pulp/api/v2/consumers/integration_test_consumer_extensions11000/actions/content/uninstall//
-    body: 
-      string: "{\"units\":[{\"unit_key\":{\"name\":\"zsh\"},\"type_id\":\"rpm\"},{\"unit_key\":{\"name\":\"foo\"},\"type_id\":\"rpm\"}],\"options\":{}}"
-    headers: 
-      Accept-Encoding: 
-      - gzip, deflate
       Content-Length: 
-      - "112"
-      Content-Type: 
-      - application/json
-      Accept: 
-      - application/json
-  response: 
-    status: 
-      code: 202
-      message: Accepted
-    headers: 
-      Content-Length: 
-      - "690"
-      Server: 
-      - Apache/2.2.22 (Fedora)
-      Content-Encoding: 
-      - utf-8
-      Date: 
-      - Thu, 15 Nov 2012 22:36:09 GMT
-      Content-Type: 
-      - application/json
-    body: 
-      string: "{\"task_group_id\": null, \"exception\": null, \"traceback\": null, \"_href\": \"/pulp/api/v2/tasks/bd742884-dee9-4c2a-8d35-46fb91282b88/\", \"task_id\": \"bd742884-dee9-4c2a-8d35-46fb91282b88\", \"call_request_tags\": [\"pulp:consumer:integration_test_consumer_extensions11000\", \"pulp:action:unit_uninstall\"], \"reasons\": [], \"start_time\": null, \"tags\": [\"pulp:consumer:integration_test_consumer_extensions11000\", \"pulp:action:unit_uninstall\"], \"state\": \"waiting\", \"finish_time\": null, \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": null, \"call_request_id\": \"bd742884-dee9-4c2a-8d35-46fb91282b88\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}"
-    http_version: 
-  recorded_at: Thu, 15 Nov 2012 22:36:09 GMT
-- request: 
-    method: get
-    uri: https://admin:admin@localhost/pulp/api/v2/repositories/integration_test_id/?details=true
-    body: 
-      string: ""
-    headers: 
-      Accept-Encoding: 
-      - gzip, deflate
-      Content-Type: 
-      - application/json
-      Accept: 
-      - application/json
-  response: 
-    status: 
-      code: 200
-      message: OK
-    headers: 
-      Content-Length: 
-      - "1018"
+      - "684"
       Server: 
       - Apache/2.2.22 (Fedora)
       Date: 
-      - Thu, 15 Nov 2012 22:36:21 GMT
-      Content-Type: 
-      - application/json
+      - Fri, 16 Nov 2012 00:19:16 GMT
     body: 
-      string: "{\"scratchpad\": {\"checksum_type\": \"sha256\", \"repodata\": {}}, \"display_name\": \"integration_test_id\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_count\": 14, \"_id\": {\"$oid\": \"50a56e349c60ed49e6002738\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\", \"importers\": [{\"repo_id\": \"integration_test_id\", \"_ns\": \"repo_importers\", \"importer_type_id\": \"yum_importer\", \"last_sync\": \"2012-11-15T17:35:33-05:00\", \"scheduled_syncs\": [], \"scratchpad\": null, \"_id\": {\"$oid\": \"50a56e349c60ed49e6002739\"}, \"config\": {\"feed_url\": \"file:///home/jlsherri/runcible/test/fixtures/repositories/zoo5\"}, \"id\": \"yum_importer\"}], \"distributors\": [{\"repo_id\": \"integration_test_id\", \"_ns\": \"repo_distributors\", \"last_publish\": null, \"auto_publish\": false, \"scheduled_publishes\": [], \"distributor_type_id\": \"yum_distributor\", \"scratchpad\": null, \"_id\": {\"$oid\": \"50a56e349c60ed49e600273a\"}, \"config\": {\"http\": true, \"https\": true, \"relative_url\": \"/path\"}, \"id\": \"e8cbe37621395f85a496\"}]}"
+      string: "{\"task_group_id\": null, \"exception\": null, \"traceback\": null, \"_href\": \"/pulp/api/v2/tasks/2b8a95f4-47cd-49bc-b97c-bed95b2efc4c/\", \"task_id\": \"2b8a95f4-47cd-49bc-b97c-bed95b2efc4c\", \"call_request_tags\": [\"pulp:consumer:integration_test_consumer_extensions11000\", \"pulp:action:unit_update\"], \"reasons\": [], \"start_time\": null, \"tags\": [\"pulp:consumer:integration_test_consumer_extensions11000\", \"pulp:action:unit_update\"], \"state\": \"waiting\", \"finish_time\": null, \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": null, \"call_request_id\": \"2b8a95f4-47cd-49bc-b97c-bed95b2efc4c\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}"
     http_version: 
-  recorded_at: Thu, 15 Nov 2012 22:36:21 GMT
-- request: 
-    method: post
-    uri: https://admin:admin@localhost/pulp/api/v2/consumers/integration_test_consumer_extensions11000/bindings//
-    body: 
-      string: "{\"repo_id\":\"integration_test_id\",\"distributor_id\":\"e8cbe37621395f85a496\"}"
-    headers: 
-      Accept-Encoding: 
-      - gzip, deflate
-      Content-Length: 
-      - "73"
-      Content-Type: 
-      - application/json
-      Accept: 
-      - application/json
-  response: 
-    status: 
-      code: 202
-      message: Accepted
-    headers: 
-      Content-Length: 
-      - "1184"
-      Server: 
-      - Apache/2.2.22 (Fedora)
-      Content-Encoding: 
-      - utf-8
-      Date: 
-      - Thu, 15 Nov 2012 22:36:21 GMT
-      Content-Type: 
-      - application/json
-    body: 
-      string: "[{\"task_group_id\": \"968c76ff-a20d-4fd4-ae42-7a6752ca429e\", \"exception\": null, \"traceback\": null, \"_href\": \"/pulp/api/v2/task_groups/968c76ff-a20d-4fd4-ae42-7a6752ca429e/\", \"task_id\": \"fd3c2b36-0db4-41a5-93bc-4799a5e4d626\", \"call_request_tags\": [], \"reasons\": [], \"start_time\": null, \"tags\": [], \"state\": \"waiting\", \"finish_time\": null, \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": \"968c76ff-a20d-4fd4-ae42-7a6752ca429e\", \"call_request_id\": \"fd3c2b36-0db4-41a5-93bc-4799a5e4d626\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}, {\"task_group_id\": \"968c76ff-a20d-4fd4-ae42-7a6752ca429e\", \"exception\": null, \"traceback\": null, \"_href\": \"/pulp/api/v2/task_groups/968c76ff-a20d-4fd4-ae42-7a6752ca429e/\", \"task_id\": \"e8aed1a9-cfb9-40e0-9964-67e1fa1a861e\", \"call_request_tags\": [], \"reasons\": [], \"start_time\": null, \"tags\": [], \"state\": \"waiting\", \"finish_time\": null, \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": \"968c76ff-a20d-4fd4-ae42-7a6752ca429e\", \"call_request_id\": \"e8aed1a9-cfb9-40e0-9964-67e1fa1a861e\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}]"
-    http_version: 
-  recorded_at: Thu, 15 Nov 2012 22:36:21 GMT
-- request: 
-    method: get
-    uri: https://admin:admin@localhost/pulp/api/v2/repositories/integration_test_id/?details=true
-    body: 
-      string: ""
-    headers: 
-      Accept-Encoding: 
-      - gzip, deflate
-      Content-Type: 
-      - application/json
-      Accept: 
-      - application/json
-  response: 
-    status: 
-      code: 200
-      message: OK
-    headers: 
-      Content-Length: 
-      - "1018"
-      Server: 
-      - Apache/2.2.22 (Fedora)
-      Date: 
-      - Thu, 15 Nov 2012 22:36:24 GMT
-      Content-Type: 
-      - application/json
-    body: 
-      string: "{\"scratchpad\": {\"checksum_type\": \"sha256\", \"repodata\": {}}, \"display_name\": \"integration_test_id\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_count\": 14, \"_id\": {\"$oid\": \"50a56e349c60ed49e6002738\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\", \"importers\": [{\"repo_id\": \"integration_test_id\", \"_ns\": \"repo_importers\", \"importer_type_id\": \"yum_importer\", \"last_sync\": \"2012-11-15T17:35:33-05:00\", \"scheduled_syncs\": [], \"scratchpad\": null, \"_id\": {\"$oid\": \"50a56e349c60ed49e6002739\"}, \"config\": {\"feed_url\": \"file:///home/jlsherri/runcible/test/fixtures/repositories/zoo5\"}, \"id\": \"yum_importer\"}], \"distributors\": [{\"repo_id\": \"integration_test_id\", \"_ns\": \"repo_distributors\", \"last_publish\": null, \"auto_publish\": false, \"scheduled_publishes\": [], \"distributor_type_id\": \"yum_distributor\", \"scratchpad\": null, \"_id\": {\"$oid\": \"50a56e349c60ed49e600273a\"}, \"config\": {\"http\": true, \"https\": true, \"relative_url\": \"/path\"}, \"id\": \"e8cbe37621395f85a496\"}]}"
-    http_version: 
-  recorded_at: Thu, 15 Nov 2012 22:36:24 GMT
+  recorded_at: Fri, 16 Nov 2012 00:19:17 GMT
 - request: 
     method: delete
-    uri: https://admin:admin@localhost/pulp/api/v2/consumers/integration_test_consumer_extensions11000/bindings/integration_test_id/e8cbe37621395f85a496/
+    uri: https://admin:admin@localhost/pulp/api/v2/consumers/integration_test_consumer_extensions11000/bindings/integration_test_id/5e092f30ae50cfb15c04/
     body: 
       string: ""
     headers: 
-      Accept-Encoding: 
-      - gzip, deflate
       Content-Type: 
       - application/json
       Accept: 
       - application/json
+      Accept-Encoding: 
+      - gzip, deflate
   response: 
     status: 
       code: 202
       message: Accepted
     headers: 
+      Content-Type: 
+      - application/json
+      Content-Encoding: 
+      - utf-8
       Content-Length: 
       - "2456"
       Server: 
       - Apache/2.2.22 (Fedora)
-      Content-Encoding: 
-      - utf-8
       Date: 
-      - Thu, 15 Nov 2012 22:36:24 GMT
+      - Fri, 16 Nov 2012 00:19:40 GMT
+    body: 
+      string: "[{\"task_group_id\": \"c83ea205-ca2c-4ada-b714-4fb02c2780c5\", \"exception\": null, \"traceback\": null, \"_href\": \"/pulp/api/v2/task_groups/c83ea205-ca2c-4ada-b714-4fb02c2780c5/\", \"task_id\": \"1a58b405-fca0-4a4a-9e42-fdbfbe213d39\", \"call_request_tags\": [\"pulp:consumer:integration_test_consumer_extensions11000\", \"pulp:repository:integration_test_id\", \"pulp:repository_distributor:5e092f30ae50cfb15c04\", \"pulp:action:unbind\"], \"reasons\": [], \"start_time\": null, \"tags\": [\"pulp:consumer:integration_test_consumer_extensions11000\", \"pulp:repository:integration_test_id\", \"pulp:repository_distributor:5e092f30ae50cfb15c04\", \"pulp:action:unbind\"], \"state\": \"waiting\", \"finish_time\": null, \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": \"c83ea205-ca2c-4ada-b714-4fb02c2780c5\", \"call_request_id\": \"1a58b405-fca0-4a4a-9e42-fdbfbe213d39\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}, {\"task_group_id\": \"c83ea205-ca2c-4ada-b714-4fb02c2780c5\", \"exception\": null, \"traceback\": null, \"_href\": \"/pulp/api/v2/task_groups/c83ea205-ca2c-4ada-b714-4fb02c2780c5/\", \"task_id\": \"3dfb01ea-c765-4ad0-8012-853a5d5ff254\", \"call_request_tags\": [], \"reasons\": [], \"start_time\": null, \"tags\": [], \"state\": \"waiting\", \"finish_time\": null, \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": \"c83ea205-ca2c-4ada-b714-4fb02c2780c5\", \"call_request_id\": \"3dfb01ea-c765-4ad0-8012-853a5d5ff254\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}, {\"task_group_id\": \"c83ea205-ca2c-4ada-b714-4fb02c2780c5\", \"exception\": null, \"traceback\": null, \"_href\": \"/pulp/api/v2/task_groups/c83ea205-ca2c-4ada-b714-4fb02c2780c5/\", \"task_id\": \"84504a45-9229-4829-88e7-31e889494680\", \"call_request_tags\": [\"pulp:consumer:integration_test_consumer_extensions11000\", \"pulp:repository:integration_test_id\", \"pulp:repository_distributor:5e092f30ae50cfb15c04\", \"pulp:action:delete\"], \"reasons\": [], \"start_time\": null, \"tags\": [\"pulp:consumer:integration_test_consumer_extensions11000\", \"pulp:repository:integration_test_id\", \"pulp:repository_distributor:5e092f30ae50cfb15c04\", \"pulp:action:delete\"], \"state\": \"waiting\", \"finish_time\": null, \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": \"c83ea205-ca2c-4ada-b714-4fb02c2780c5\", \"call_request_id\": \"84504a45-9229-4829-88e7-31e889494680\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}]"
+    http_version: 
+  recorded_at: Fri, 16 Nov 2012 00:19:40 GMT
+- request: 
+    method: get
+    uri: https://admin:admin@localhost/pulp/api/v2/repositories/integration_test_id/?details=true
+    body: 
+      string: ""
+    headers: 
       Content-Type: 
       - application/json
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "1018"
+      Server: 
+      - Apache/2.2.22 (Fedora)
+      Date: 
+      - Fri, 16 Nov 2012 00:19:49 GMT
     body: 
-      string: "[{\"task_group_id\": \"40286173-b40f-4330-93ca-49fcfc043674\", \"exception\": null, \"traceback\": null, \"_href\": \"/pulp/api/v2/task_groups/40286173-b40f-4330-93ca-49fcfc043674/\", \"task_id\": \"b8ede215-508e-4035-8968-aee7a9fd2db7\", \"call_request_tags\": [\"pulp:consumer:integration_test_consumer_extensions11000\", \"pulp:repository:integration_test_id\", \"pulp:repository_distributor:e8cbe37621395f85a496\", \"pulp:action:unbind\"], \"reasons\": [], \"start_time\": null, \"tags\": [\"pulp:consumer:integration_test_consumer_extensions11000\", \"pulp:repository:integration_test_id\", \"pulp:repository_distributor:e8cbe37621395f85a496\", \"pulp:action:unbind\"], \"state\": \"waiting\", \"finish_time\": null, \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": \"40286173-b40f-4330-93ca-49fcfc043674\", \"call_request_id\": \"b8ede215-508e-4035-8968-aee7a9fd2db7\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}, {\"task_group_id\": \"40286173-b40f-4330-93ca-49fcfc043674\", \"exception\": null, \"traceback\": null, \"_href\": \"/pulp/api/v2/task_groups/40286173-b40f-4330-93ca-49fcfc043674/\", \"task_id\": \"dae681a4-6a06-4797-bfae-3364e90be969\", \"call_request_tags\": [], \"reasons\": [], \"start_time\": null, \"tags\": [], \"state\": \"waiting\", \"finish_time\": null, \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": \"40286173-b40f-4330-93ca-49fcfc043674\", \"call_request_id\": \"dae681a4-6a06-4797-bfae-3364e90be969\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}, {\"task_group_id\": \"40286173-b40f-4330-93ca-49fcfc043674\", \"exception\": null, \"traceback\": null, \"_href\": \"/pulp/api/v2/task_groups/40286173-b40f-4330-93ca-49fcfc043674/\", \"task_id\": \"df5ce940-783f-4f59-8532-51bd6491cc3b\", \"call_request_tags\": [\"pulp:consumer:integration_test_consumer_extensions11000\", \"pulp:repository:integration_test_id\", \"pulp:repository_distributor:e8cbe37621395f85a496\", \"pulp:action:delete\"], \"reasons\": [], \"start_time\": null, \"tags\": [\"pulp:consumer:integration_test_consumer_extensions11000\", \"pulp:repository:integration_test_id\", \"pulp:repository_distributor:e8cbe37621395f85a496\", \"pulp:action:delete\"], \"state\": \"waiting\", \"finish_time\": null, \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": \"40286173-b40f-4330-93ca-49fcfc043674\", \"call_request_id\": \"df5ce940-783f-4f59-8532-51bd6491cc3b\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}]"
+      string: "{\"scratchpad\": {\"checksum_type\": \"sha256\", \"repodata\": {}}, \"display_name\": \"integration_test_id\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_count\": 14, \"_id\": {\"$oid\": \"50a5867e9c60ed4335000190\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\", \"importers\": [{\"repo_id\": \"integration_test_id\", \"_ns\": \"repo_importers\", \"importer_type_id\": \"yum_importer\", \"last_sync\": \"2012-11-15T19:19:11-05:00\", \"scheduled_syncs\": [], \"scratchpad\": null, \"_id\": {\"$oid\": \"50a5867e9c60ed4335000191\"}, \"config\": {\"feed_url\": \"file:///home/jlsherri/runcible/test/fixtures/repositories/zoo5\"}, \"id\": \"yum_importer\"}], \"distributors\": [{\"repo_id\": \"integration_test_id\", \"_ns\": \"repo_distributors\", \"last_publish\": null, \"auto_publish\": false, \"scheduled_publishes\": [], \"distributor_type_id\": \"yum_distributor\", \"scratchpad\": null, \"_id\": {\"$oid\": \"50a5867e9c60ed4335000192\"}, \"config\": {\"http\": true, \"https\": true, \"relative_url\": \"/path\"}, \"id\": \"5e092f30ae50cfb15c04\"}]}"
     http_version: 
-  recorded_at: Thu, 15 Nov 2012 22:36:24 GMT
+  recorded_at: Fri, 16 Nov 2012 00:19:49 GMT
+- request: 
+    method: get
+    uri: https://admin:admin@localhost/pulp/api/v2/repositories/integration_test_id/?details=true
+    body: 
+      string: ""
+    headers: 
+      Content-Type: 
+      - application/json
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "1018"
+      Server: 
+      - Apache/2.2.22 (Fedora)
+      Date: 
+      - Fri, 16 Nov 2012 00:19:53 GMT
+    body: 
+      string: "{\"scratchpad\": {\"checksum_type\": \"sha256\", \"repodata\": {}}, \"display_name\": \"integration_test_id\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_count\": 14, \"_id\": {\"$oid\": \"50a5867e9c60ed4335000190\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\", \"importers\": [{\"repo_id\": \"integration_test_id\", \"_ns\": \"repo_importers\", \"importer_type_id\": \"yum_importer\", \"last_sync\": \"2012-11-15T19:19:11-05:00\", \"scheduled_syncs\": [], \"scratchpad\": null, \"_id\": {\"$oid\": \"50a5867e9c60ed4335000191\"}, \"config\": {\"feed_url\": \"file:///home/jlsherri/runcible/test/fixtures/repositories/zoo5\"}, \"id\": \"yum_importer\"}], \"distributors\": [{\"repo_id\": \"integration_test_id\", \"_ns\": \"repo_distributors\", \"last_publish\": null, \"auto_publish\": false, \"scheduled_publishes\": [], \"distributor_type_id\": \"yum_distributor\", \"scratchpad\": null, \"_id\": {\"$oid\": \"50a5867e9c60ed4335000192\"}, \"config\": {\"http\": true, \"https\": true, \"relative_url\": \"/path\"}, \"id\": \"5e092f30ae50cfb15c04\"}]}"
+    http_version: 
+  recorded_at: Fri, 16 Nov 2012 00:19:53 GMT
+- request: 
+    method: post
+    uri: https://admin:admin@localhost/pulp/api/v2/consumers/integration_test_consumer_extensions11000/bindings//
+    body: 
+      string: "{\"repo_id\":\"integration_test_id\",\"distributor_id\":\"5e092f30ae50cfb15c04\"}"
+    headers: 
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "73"
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+  response: 
+    status: 
+      code: 202
+      message: Accepted
+    headers: 
+      Content-Type: 
+      - application/json
+      Content-Encoding: 
+      - utf-8
+      Content-Length: 
+      - "1184"
+      Server: 
+      - Apache/2.2.22 (Fedora)
+      Date: 
+      - Fri, 16 Nov 2012 00:19:53 GMT
+    body: 
+      string: "[{\"task_group_id\": \"88ab3b42-9f6b-46ed-8854-c3293a33fb72\", \"exception\": null, \"traceback\": null, \"_href\": \"/pulp/api/v2/task_groups/88ab3b42-9f6b-46ed-8854-c3293a33fb72/\", \"task_id\": \"4fe05e6e-9e22-464f-8b35-4912a4a28737\", \"call_request_tags\": [], \"reasons\": [], \"start_time\": null, \"tags\": [], \"state\": \"waiting\", \"finish_time\": null, \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": \"88ab3b42-9f6b-46ed-8854-c3293a33fb72\", \"call_request_id\": \"4fe05e6e-9e22-464f-8b35-4912a4a28737\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}, {\"task_group_id\": \"88ab3b42-9f6b-46ed-8854-c3293a33fb72\", \"exception\": null, \"traceback\": null, \"_href\": \"/pulp/api/v2/task_groups/88ab3b42-9f6b-46ed-8854-c3293a33fb72/\", \"task_id\": \"ae1048bf-4d87-4a2b-9117-af2d0494b77b\", \"call_request_tags\": [], \"reasons\": [], \"start_time\": null, \"tags\": [], \"state\": \"waiting\", \"finish_time\": null, \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": \"88ab3b42-9f6b-46ed-8854-c3293a33fb72\", \"call_request_id\": \"ae1048bf-4d87-4a2b-9117-af2d0494b77b\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}]"
+    http_version: 
+  recorded_at: Fri, 16 Nov 2012 00:19:53 GMT
+- request: 
+    method: post
+    uri: https://admin:admin@localhost/pulp/api/v2/consumers/integration_test_consumer_extensions11000/actions/content/uninstall//
+    body: 
+      string: "{\"options\":{},\"units\":[{\"type_id\":\"rpm\",\"unit_key\":{\"name\":\"zsh\"}},{\"type_id\":\"rpm\",\"unit_key\":{\"name\":\"foo\"}}]}"
+    headers: 
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "112"
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+  response: 
+    status: 
+      code: 202
+      message: Accepted
+    headers: 
+      Content-Type: 
+      - application/json
+      Content-Encoding: 
+      - utf-8
+      Content-Length: 
+      - "690"
+      Server: 
+      - Apache/2.2.22 (Fedora)
+      Date: 
+      - Fri, 16 Nov 2012 00:19:56 GMT
+    body: 
+      string: "{\"task_group_id\": null, \"exception\": null, \"traceback\": null, \"_href\": \"/pulp/api/v2/tasks/f2378941-8566-40d3-99f4-650e31546cae/\", \"task_id\": \"f2378941-8566-40d3-99f4-650e31546cae\", \"call_request_tags\": [\"pulp:consumer:integration_test_consumer_extensions11000\", \"pulp:action:unit_uninstall\"], \"reasons\": [], \"start_time\": null, \"tags\": [\"pulp:consumer:integration_test_consumer_extensions11000\", \"pulp:action:unit_uninstall\"], \"state\": \"waiting\", \"finish_time\": null, \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": null, \"call_request_id\": \"f2378941-8566-40d3-99f4-650e31546cae\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}"
+    http_version: 
+  recorded_at: Fri, 16 Nov 2012 00:19:56 GMT
 - request: 
     method: delete
     uri: https://admin:admin@localhost/pulp/api/v2/consumers/integration_test_consumer_extensions11000/
     body: 
       string: ""
     headers: 
-      Accept-Encoding: 
-      - gzip, deflate
       Content-Type: 
       - application/json
       Accept: 
       - application/json
+      Accept-Encoding: 
+      - gzip, deflate
   response: 
     status: 
-      code: 404
-      message: Not Found
+      code: 409
+      message: Conflict
     headers: 
-      Content-Length: 
-      - "333"
-      Server: 
-      - Apache/2.2.22 (Fedora)
-      Content-Encoding: 
-      - utf-8
-      Date: 
-      - Thu, 15 Nov 2012 22:36:28 GMT
       Content-Type: 
       - application/json
+      Content-Encoding: 
+      - utf-8
+      Content-Length: 
+      - "467"
+      Server: 
+      - Apache/2.2.22 (Fedora)
+      Date: 
+      - Fri, 16 Nov 2012 00:19:57 GMT
     body: 
-      string: "{\"http_request_method\": \"DELETE\", \"exception\": null, \"error_message\": \"Missing resource(s): consumer=integration_test_consumer_extensions11000\", \"_href\": \"/pulp/api/v2/consumers/integration_test_consumer_extensions11000/\", \"http_status\": 404, \"traceback\": null, \"resources\": {\"consumer\": \"integration_test_consumer_extensions11000\"}}"
+      string: "{\"http_request_method\": \"DELETE\", \"exception\": null, \"error_message\": \"Conflicting operation reasons: [{'operation': u'delete', u'resource_type': u'consumer', u'resource_id': u'integration_test_consumer_extensions11000'}]\", \"_href\": \"/pulp/api/v2/consumers/integration_test_consumer_extensions11000/\", \"http_status\": 409, \"reasons\": [{\"operation\": \"delete\", \"resource_type\": \"consumer\", \"resource_id\": \"integration_test_consumer_extensions11000\"}], \"traceback\": null}"
     http_version: 
-  recorded_at: Thu, 15 Nov 2012 22:36:28 GMT
+  recorded_at: Fri, 16 Nov 2012 00:19:57 GMT
 - request: 
     method: post
     uri: https://admin:admin@localhost/pulp/api/v2/consumers/
     body: 
-      string: "{\"name\":\"boo\",\"id\":\"integration_test_consumer_extensions11000\"}"
+      string: "{\"id\":\"integration_test_consumer_extensions11000\",\"name\":\"boo\"}"
     headers: 
-      Accept-Encoding: 
-      - gzip, deflate
-      Content-Length: 
-      - "63"
       Content-Type: 
       - application/json
+      Content-Length: 
+      - "63"
       Accept: 
       - application/json
+      Accept-Encoding: 
+      - gzip, deflate
   response: 
     status: 
       code: 201
       message: Created
     headers: 
+      Content-Type: 
+      - application/json
+      Location: 
+      - integration_test_consumer_extensions11000
       Content-Length: 
       - "2148"
       Server: 
       - Apache/2.2.22 (Fedora)
       Date: 
-      - Thu, 15 Nov 2012 22:36:28 GMT
-      Content-Type: 
-      - application/json
-      Location: 
-      - integration_test_consumer_extensions11000
+      - Fri, 16 Nov 2012 00:19:57 GMT
     body: 
-      string: "{\"display_name\": \"integration_test_consumer_extensions11000\", \"description\": null, \"certificate\": \"-----BEGIN RSA PRIVATE KEY-----\\nMIICXAIBAAKBgQC3QMSaMbfdkuvn8TNyEmDN1dGgjcbXceALDwTGttY8/y63p52e\\nOpZWFcFHqlMl02fE10Gfx2KxicvbGo74XGZJqhw7aisflEIP8Vkq14uJoWkjwdEm\\nFExyMP8eEb5nO0emAqv05A6MgCExbIMZHIG2b9mtrmxpHp1jPnTdHquFJwIDAQAB\\nAoGAJy4V2tHeeeU7wu9zDGSZhei9VRJ6/P0/5Z1kbAgTbh8xIdsYfAgStH0aQfRM\\nqr20ZgWP5lV+6G6Jw2K+RqOayrBBn0hlM2OltS+OYcxPdk1/QtNxi+Al2D9n57LO\\nFoWfDhJGn7VPVtEljkvIK37qM5pTq/BnMAHqVLy3Dww4gmECQQDrLFxmlTEIphOH\\n4qYMyeexGI1NmIugDETbC+6O2lSzbrBUGZVatg/q8ahqc3eEfbV+3HYC4PUv8Nhp\\nS1KHnPUFAkEAx3tRDixobXrwQe849WmF7nWPdkKzaqVQGV0YXlFzAHlgWs8jwhLE\\nC9x0AnRZVY4BluT8i/1zU9jtN1APGQBpOwJBALSfUqybQ5jP7Uo9oqlJ3YCgSc7i\\nLcMUCUJv7J6dQ9a4WgeNyq9sC9e4GVEBNDd3UZGJA758RvS2N5DPgCiWPX0CQHTk\\n6oantzoQhKHekT4ebAFkmoDubTzdSqbSSulaSU3J0pDkOUwMux1IPiMCEydzY7MM\\n1IEkMGS+BaQYIgDAoOkCQHrwRUzmg1IUu3Nv2ToDy6PiodgFWm4fNaxAiwF8i/Xu\\n7IkVITbwx6XqUhQ+bb/4rFiLd+0MHfCYu4wLKUya0rc=\\n-----END RSA PRIVATE KEY-----\\n-----BEGIN CERTIFICATE-----\\nMIICpzCCAY8CAgCSMA0GCSqGSIb3DQEBBQUAMIGBMQswCQYDVQQGEwJVUzEXMBUG\\nA1UECBMOTm9ydGggQ2Fyb2xpbmExEDAOBgNVBAcTB1JhbGVpZ2gxEDAOBgNVBAoT\\nB1JlZCBIYXQxETAPBgNVBAsTCENsb3VkIEJVMSIwIAYDVQQDExlkaGNwMjMxLTE2\\nLnJkdS5yZWRoYXQuY29tMB4XDTEyMTExNTIyMzYyOVoXDTIyMTExMzIyMzYyOVow\\nNDEyMDAGA1UEAxQpaW50ZWdyYXRpb25fdGVzdF9jb25zdW1lcl9leHRlbnNpb25z\\nMTEwMDAwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBALdAxJoxt92S6+fxM3IS\\nYM3V0aCNxtdx4AsPBMa21jz/LrennZ46llYVwUeqUyXTZ8TXQZ/HYrGJy9sajvhc\\nZkmqHDtqKx+UQg/xWSrXi4mhaSPB0SYUTHIw/x4Rvmc7R6YCq/TkDoyAITFsgxkc\\ngbZv2a2ubGkenWM+dN0eq4UnAgMBAAEwDQYJKoZIhvcNAQEFBQADggEBAIpJOMpC\\nauk1XxMeDSkJBYMBw9X8duXMzZxMoz+B6labYlTqNiQlZxWvRT3S4ekrNDf+2Nln\\naGAGMvtXRLot070U2xZoOQGbR/Rp40bxzDLDB4WOdvw9bmadvVs3KS7AIF4oPfo3\\nL5uNMOnxD3glMxKxQb0YbMpAY49WMBwXADBfA7gE8rmpovIJTQG78INuZr0+6U5I\\nhd6o3Dm4qnxr9FACk9qi7CkQZ/FhnBloi0ktaCwT1qA2+DryPCuX2eDbu189NcZF\\n42dtbvd8YC1WKZf89/doTfdnC8TLZSw8zBCY294EZYpn0eNz1ovFixMPxl7T8IEU\\nrR66q7VLUwtdluo=\\n-----END CERTIFICATE-----\", \"_ns\": \"consumers\", \"notes\": {}, \"capabilities\": {}, \"_id\": {\"$oid\": \"50a56e6d9c60ed49e60028dd\"}, \"id\": \"integration_test_consumer_extensions11000\"}"
+      string: "{\"display_name\": \"integration_test_consumer_extensions11000\", \"description\": null, \"certificate\": \"-----BEGIN RSA PRIVATE KEY-----\\nMIICWwIBAAKBgQDDRNdoq+oMMge/eYiYZUB8Dn8HZcl8xHj0OMXIfJQh8Tfj3kCQ\\nIA5gKNoE/64cYDbBxAKCYERZWR1q8v7DSmpowa+iy8f7V2Q716dGC+fxRxr3QnCy\\nJsFzed6hDOQWHeR+G57b+wBxJHXJ31o8j0TN2uTUIi1jIxF5Cz1LtGCVlwIDAQAB\\nAoGALWVfvtHYw6UN8BHNE8DWUQD9vzaGtR7oD77zHDz6Izn1CGCvGdKaBPj6Vpcq\\nXyZvFHUBMFY5DZyOHkMHv1cZjYDPIPbotyyDwvn9Voy8iiNnGRUOMnKPx05ifv3/\\nqVjpyDgUHvv7pOUm/5mGT/1nXRv2MBFRLrjmq8fQh541l0ECQQDyPD30KphNBFoZ\\njwC7PT1qoTUkv9tuAX2if1wYoWZA64GOo5QJ/iEja7P3+jxW3NbB1r9SJGWpH3OO\\nVlqbdCpvAkEAzl1i/kyQ/bCb0MYQlpRodBQya4f74CoNZTh3a4Mm0FoVuRCrV5fn\\n0PyQWapxeQFLY7x9ITPvqdeYxM+QAE37WQJAUwXuvgbzWEJLl0L6HzKoICnMiyHu\\n1U9RfiZkrFR1NX8CUp8iGCKvvPInJrDviV37hUhTHpY2+bY75ucV+v3fpQJAMc+y\\n1GUQ3lth0OvuFxqtd89kODZzorEj2JnfoXDfzozgD3KpmRQOnZBJG4ubpjScyO83\\nWOtbXyiuNFtRi/FGyQJAFuWqDkLaBuY/DROdliqXe3IBayS88qCHj3qh9ctawtqL\\n3GcDSD6qSJTRc4eSX/ywLaam9Tnw6puTHWzgIUpxkw==\\n-----END RSA PRIVATE KEY-----\\n-----BEGIN CERTIFICATE-----\\nMIICpzCCAY8CAgD0MA0GCSqGSIb3DQEBBQUAMIGBMQswCQYDVQQGEwJVUzEXMBUG\\nA1UECBMOTm9ydGggQ2Fyb2xpbmExEDAOBgNVBAcTB1JhbGVpZ2gxEDAOBgNVBAoT\\nB1JlZCBIYXQxETAPBgNVBAsTCENsb3VkIEJVMSIwIAYDVQQDExlkaGNwMjMxLTE2\\nLnJkdS5yZWRoYXQuY29tMB4XDTEyMTExNjAwMjAwOFoXDTIyMTExNDAwMjAwOFow\\nNDEyMDAGA1UEAxQpaW50ZWdyYXRpb25fdGVzdF9jb25zdW1lcl9leHRlbnNpb25z\\nMTEwMDAwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAMNE12ir6gwyB795iJhl\\nQHwOfwdlyXzEePQ4xch8lCHxN+PeQJAgDmAo2gT/rhxgNsHEAoJgRFlZHWry/sNK\\namjBr6LLx/tXZDvXp0YL5/FHGvdCcLImwXN53qEM5BYd5H4bntv7AHEkdcnfWjyP\\nRM3a5NQiLWMjEXkLPUu0YJWXAgMBAAEwDQYJKoZIhvcNAQEFBQADggEBAD7NJdxl\\nTj7OIEyFPuuIwgp3juO5d4fYFqwbIVKaEVz8s15dMlG+5sBTwf1YbEYpz0yYEWam\\na/nxjCn8ElaedJquxGBkGsNa/tcwfDCFsMswnV6IMdDGgKdo1wjTNMDux/Aw7SCl\\nd8z9Jr0geoe9Gb6uymA+Q/hnTXYZGSdsh6ztyhymzuU7wIrdUD/3bJ4UBKZQefko\\nIrM7J5HFgijmdePoBKM68pDwL1qeHmRjcTqJY5r/pWcRaT/ido9cIQjVqNfIQbif\\nBQg9XL6SeUE6Gxy7nqXHDqXtLMpG9tU5L1R0hIwWZDMF33UbVeHpbuxii7Mmw19r\\nnP9igk2uYRS66KY=\\n-----END CERTIFICATE-----\", \"_ns\": \"consumers\", \"notes\": {}, \"capabilities\": {}, \"_id\": {\"$oid\": \"50a586b89c60ed433500031d\"}, \"id\": \"integration_test_consumer_extensions11000\"}"
     http_version: 
-  recorded_at: Thu, 15 Nov 2012 22:36:29 GMT
+  recorded_at: Fri, 16 Nov 2012 00:20:08 GMT
 - request: 
     method: get
     uri: https://admin:admin@localhost/pulp/api/v2/repositories/integration_test_id/?details=true
     body: 
       string: ""
     headers: 
-      Accept-Encoding: 
-      - gzip, deflate
       Content-Type: 
       - application/json
       Accept: 
       - application/json
+      Accept-Encoding: 
+      - gzip, deflate
   response: 
     status: 
       code: 200
       message: OK
     headers: 
+      Content-Type: 
+      - application/json
       Content-Length: 
       - "1018"
       Server: 
       - Apache/2.2.22 (Fedora)
       Date: 
-      - Thu, 15 Nov 2012 22:36:29 GMT
-      Content-Type: 
-      - application/json
+      - Fri, 16 Nov 2012 00:20:08 GMT
     body: 
-      string: "{\"scratchpad\": {\"checksum_type\": \"sha256\", \"repodata\": {}}, \"display_name\": \"integration_test_id\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_count\": 14, \"_id\": {\"$oid\": \"50a56e349c60ed49e6002738\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\", \"importers\": [{\"repo_id\": \"integration_test_id\", \"_ns\": \"repo_importers\", \"importer_type_id\": \"yum_importer\", \"last_sync\": \"2012-11-15T17:35:33-05:00\", \"scheduled_syncs\": [], \"scratchpad\": null, \"_id\": {\"$oid\": \"50a56e349c60ed49e6002739\"}, \"config\": {\"feed_url\": \"file:///home/jlsherri/runcible/test/fixtures/repositories/zoo5\"}, \"id\": \"yum_importer\"}], \"distributors\": [{\"repo_id\": \"integration_test_id\", \"_ns\": \"repo_distributors\", \"last_publish\": null, \"auto_publish\": false, \"scheduled_publishes\": [], \"distributor_type_id\": \"yum_distributor\", \"scratchpad\": null, \"_id\": {\"$oid\": \"50a56e349c60ed49e600273a\"}, \"config\": {\"http\": true, \"https\": true, \"relative_url\": \"/path\"}, \"id\": \"e8cbe37621395f85a496\"}]}"
+      string: "{\"scratchpad\": {\"checksum_type\": \"sha256\", \"repodata\": {}}, \"display_name\": \"integration_test_id\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_count\": 14, \"_id\": {\"$oid\": \"50a5867e9c60ed4335000190\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\", \"importers\": [{\"repo_id\": \"integration_test_id\", \"_ns\": \"repo_importers\", \"importer_type_id\": \"yum_importer\", \"last_sync\": \"2012-11-15T19:19:11-05:00\", \"scheduled_syncs\": [], \"scratchpad\": null, \"_id\": {\"$oid\": \"50a5867e9c60ed4335000191\"}, \"config\": {\"feed_url\": \"file:///home/jlsherri/runcible/test/fixtures/repositories/zoo5\"}, \"id\": \"yum_importer\"}], \"distributors\": [{\"repo_id\": \"integration_test_id\", \"_ns\": \"repo_distributors\", \"last_publish\": null, \"auto_publish\": false, \"scheduled_publishes\": [], \"distributor_type_id\": \"yum_distributor\", \"scratchpad\": null, \"_id\": {\"$oid\": \"50a5867e9c60ed4335000192\"}, \"config\": {\"http\": true, \"https\": true, \"relative_url\": \"/path\"}, \"id\": \"5e092f30ae50cfb15c04\"}]}"
     http_version: 
-  recorded_at: Thu, 15 Nov 2012 22:36:29 GMT
+  recorded_at: Fri, 16 Nov 2012 00:20:08 GMT
 - request: 
     method: post
     uri: https://admin:admin@localhost/pulp/api/v2/consumers/integration_test_consumer_extensions11000/bindings//
     body: 
-      string: "{\"repo_id\":\"integration_test_id\",\"distributor_id\":\"e8cbe37621395f85a496\"}"
+      string: "{\"repo_id\":\"integration_test_id\",\"distributor_id\":\"5e092f30ae50cfb15c04\"}"
     headers: 
-      Accept-Encoding: 
-      - gzip, deflate
-      Content-Length: 
-      - "73"
       Content-Type: 
       - application/json
+      Content-Length: 
+      - "73"
       Accept: 
       - application/json
+      Accept-Encoding: 
+      - gzip, deflate
   response: 
     status: 
       code: 202
       message: Accepted
     headers: 
+      Content-Type: 
+      - application/json
+      Content-Encoding: 
+      - utf-8
       Content-Length: 
       - "1184"
       Server: 
       - Apache/2.2.22 (Fedora)
-      Content-Encoding: 
-      - utf-8
       Date: 
-      - Thu, 15 Nov 2012 22:36:29 GMT
-      Content-Type: 
-      - application/json
+      - Fri, 16 Nov 2012 00:20:08 GMT
     body: 
-      string: "[{\"task_group_id\": \"2da5b094-5060-4bff-b579-a807651620f7\", \"exception\": null, \"traceback\": null, \"_href\": \"/pulp/api/v2/task_groups/2da5b094-5060-4bff-b579-a807651620f7/\", \"task_id\": \"949d3b02-2160-459f-8b00-7be7adb65d8f\", \"call_request_tags\": [], \"reasons\": [], \"start_time\": null, \"tags\": [], \"state\": \"waiting\", \"finish_time\": null, \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": \"2da5b094-5060-4bff-b579-a807651620f7\", \"call_request_id\": \"949d3b02-2160-459f-8b00-7be7adb65d8f\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}, {\"task_group_id\": \"2da5b094-5060-4bff-b579-a807651620f7\", \"exception\": null, \"traceback\": null, \"_href\": \"/pulp/api/v2/task_groups/2da5b094-5060-4bff-b579-a807651620f7/\", \"task_id\": \"f644b130-56a3-48be-880b-0fff17f8866b\", \"call_request_tags\": [], \"reasons\": [], \"start_time\": null, \"tags\": [], \"state\": \"waiting\", \"finish_time\": null, \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": \"2da5b094-5060-4bff-b579-a807651620f7\", \"call_request_id\": \"f644b130-56a3-48be-880b-0fff17f8866b\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}]"
+      string: "[{\"task_group_id\": \"0628407d-3000-47b9-abc2-b0ea28808bc3\", \"exception\": null, \"traceback\": null, \"_href\": \"/pulp/api/v2/task_groups/0628407d-3000-47b9-abc2-b0ea28808bc3/\", \"task_id\": \"cb7821f8-30de-4276-b5fb-f658f8ab3aa4\", \"call_request_tags\": [], \"reasons\": [], \"start_time\": null, \"tags\": [], \"state\": \"waiting\", \"finish_time\": null, \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": \"0628407d-3000-47b9-abc2-b0ea28808bc3\", \"call_request_id\": \"cb7821f8-30de-4276-b5fb-f658f8ab3aa4\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}, {\"task_group_id\": \"0628407d-3000-47b9-abc2-b0ea28808bc3\", \"exception\": null, \"traceback\": null, \"_href\": \"/pulp/api/v2/task_groups/0628407d-3000-47b9-abc2-b0ea28808bc3/\", \"task_id\": \"1055e31f-3ce6-4c2c-9697-75036b2509c8\", \"call_request_tags\": [], \"reasons\": [], \"start_time\": null, \"tags\": [], \"state\": \"waiting\", \"finish_time\": null, \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": \"0628407d-3000-47b9-abc2-b0ea28808bc3\", \"call_request_id\": \"1055e31f-3ce6-4c2c-9697-75036b2509c8\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}]"
     http_version: 
-  recorded_at: Thu, 15 Nov 2012 22:36:29 GMT
+  recorded_at: Fri, 16 Nov 2012 00:20:09 GMT
 - request: 
     method: post
-    uri: https://admin:admin@localhost/pulp/api/v2/consumers/integration_test_consumer_extensions11000/actions/content/update//
+    uri: https://admin:admin@localhost/pulp/api/v2/consumers/integration_test_consumer_extensions11000/actions/content/install//
     body: 
-      string: "{\"units\":[{\"unit_key\":{\"name\":\"zsh\"},\"type_id\":\"rpm\"},{\"unit_key\":{\"name\":\"foo\"},\"type_id\":\"rpm\"}],\"options\":{}}"
+      string: "{\"options\":{},\"units\":[{\"type_id\":\"rpm\",\"unit_key\":{\"name\":\"zsh\"}},{\"type_id\":\"rpm\",\"unit_key\":{\"name\":\"foo\"}}]}"
     headers: 
-      Accept-Encoding: 
-      - gzip, deflate
-      Content-Length: 
-      - "112"
       Content-Type: 
       - application/json
+      Content-Length: 
+      - "112"
       Accept: 
       - application/json
+      Accept-Encoding: 
+      - gzip, deflate
   response: 
     status: 
       code: 202
       message: Accepted
     headers: 
-      Content-Length: 
-      - "684"
-      Server: 
-      - Apache/2.2.22 (Fedora)
-      Content-Encoding: 
-      - utf-8
-      Date: 
-      - Thu, 15 Nov 2012 22:36:33 GMT
       Content-Type: 
       - application/json
+      Content-Encoding: 
+      - utf-8
+      Content-Length: 
+      - "686"
+      Server: 
+      - Apache/2.2.22 (Fedora)
+      Date: 
+      - Fri, 16 Nov 2012 00:20:11 GMT
     body: 
-      string: "{\"task_group_id\": null, \"exception\": null, \"traceback\": null, \"_href\": \"/pulp/api/v2/tasks/b14d3746-d716-4a1c-8084-7387c2145e4c/\", \"task_id\": \"b14d3746-d716-4a1c-8084-7387c2145e4c\", \"call_request_tags\": [\"pulp:consumer:integration_test_consumer_extensions11000\", \"pulp:action:unit_update\"], \"reasons\": [], \"start_time\": null, \"tags\": [\"pulp:consumer:integration_test_consumer_extensions11000\", \"pulp:action:unit_update\"], \"state\": \"waiting\", \"finish_time\": null, \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": null, \"call_request_id\": \"b14d3746-d716-4a1c-8084-7387c2145e4c\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}"
+      string: "{\"task_group_id\": null, \"exception\": null, \"traceback\": null, \"_href\": \"/pulp/api/v2/tasks/bc6ed412-f434-4587-aa4b-4f3999095cf3/\", \"task_id\": \"bc6ed412-f434-4587-aa4b-4f3999095cf3\", \"call_request_tags\": [\"pulp:consumer:integration_test_consumer_extensions11000\", \"pulp:action:unit_install\"], \"reasons\": [], \"start_time\": null, \"tags\": [\"pulp:consumer:integration_test_consumer_extensions11000\", \"pulp:action:unit_install\"], \"state\": \"waiting\", \"finish_time\": null, \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": null, \"call_request_id\": \"bc6ed412-f434-4587-aa4b-4f3999095cf3\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}"
     http_version: 
-  recorded_at: Thu, 15 Nov 2012 22:36:33 GMT
+  recorded_at: Fri, 16 Nov 2012 00:20:12 GMT
 - request: 
     method: delete
     uri: https://admin:admin@localhost/pulp/api/v2/consumers/integration_test_consumer_extensions11000/
     body: 
       string: ""
     headers: 
-      Accept-Encoding: 
-      - gzip, deflate
       Content-Type: 
       - application/json
       Accept: 
       - application/json
+      Accept-Encoding: 
+      - gzip, deflate
   response: 
     status: 
       code: 202
       message: Accepted
     headers: 
+      Content-Type: 
+      - application/json
+      Content-Encoding: 
+      - utf-8
       Content-Length: 
       - "785"
       Server: 
       - Apache/2.2.22 (Fedora)
-      Content-Encoding: 
-      - utf-8
       Date: 
-      - Thu, 15 Nov 2012 22:36:33 GMT
-      Content-Type: 
-      - application/json
+      - Fri, 16 Nov 2012 00:20:12 GMT
     body: 
-      string: "{\"task_group_id\": null, \"exception\": null, \"traceback\": null, \"_href\": \"/pulp/api/v2/tasks/1eaaccb5-c73b-402d-94ff-8d9ab4fc0b6b/\", \"task_id\": \"1eaaccb5-c73b-402d-94ff-8d9ab4fc0b6b\", \"call_request_tags\": [\"pulp:consumer:integration_test_consumer_extensions11000\", \"pulp:action:delete\"], \"reasons\": [{\"operation\": \"read\", \"resource_type\": \"consumer\", \"resource_id\": \"integration_test_consumer_extensions11000\"}], \"start_time\": null, \"tags\": [\"pulp:consumer:integration_test_consumer_extensions11000\", \"pulp:action:delete\"], \"state\": \"waiting\", \"finish_time\": null, \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": null, \"call_request_id\": \"1eaaccb5-c73b-402d-94ff-8d9ab4fc0b6b\", \"principal_login\": \"admin\", \"response\": \"postponed\", \"result\": null}"
+      string: "{\"task_group_id\": null, \"exception\": null, \"traceback\": null, \"_href\": \"/pulp/api/v2/tasks/9dd1c136-633e-4bbf-9e3f-7e7f83749d4e/\", \"task_id\": \"9dd1c136-633e-4bbf-9e3f-7e7f83749d4e\", \"call_request_tags\": [\"pulp:consumer:integration_test_consumer_extensions11000\", \"pulp:action:delete\"], \"reasons\": [{\"operation\": \"read\", \"resource_type\": \"consumer\", \"resource_id\": \"integration_test_consumer_extensions11000\"}], \"start_time\": null, \"tags\": [\"pulp:consumer:integration_test_consumer_extensions11000\", \"pulp:action:delete\"], \"state\": \"waiting\", \"finish_time\": null, \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": null, \"call_request_id\": \"9dd1c136-633e-4bbf-9e3f-7e7f83749d4e\", \"principal_login\": \"admin\", \"response\": \"postponed\", \"result\": null}"
     http_version: 
-  recorded_at: Thu, 15 Nov 2012 22:36:33 GMT
+  recorded_at: Fri, 16 Nov 2012 00:20:12 GMT
