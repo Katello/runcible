@@ -97,14 +97,14 @@ module Runcible
       #  errata_ids
       def self.errata_copy(source_repo_id, destination_repo_id, optional={})
         criteria = {:type_ids => ['erratum'], :filters => {}}
-        criteria[:filters][:unit] = { :id=>{ '$in' => optional[:errata_ids] } } if optional[:errata_ids]
+        criteria[:filters]['association'] = {'unit_id' => {'$in' => optional[:errata_ids]}} if optional[:errata_ids]
         payload = {:criteria => criteria}
         unit_copy(destination_repo_id, source_repo_id, payload)
       end
 
       def self.errata_remove(repo_id, errata_ids)
         criteria = {:type_ids => ['erratum'], :filters => {}}
-        criteria[:filters][:unit] = { :id=>{ '$in' => errata_ids } }
+        criteria[:filters]['association'] = {'unit_id' => {'$in' => errata_ids}}
         self.unassociate_units(repo_id, criteria)
       end
 
@@ -155,7 +155,12 @@ module Runcible
       def self.errata_ids(id, filter = {})
          criteria = {:type_ids=>['erratum']}
 
-         self.unit_search(id, criteria).collect{|i| i['metadata']['id']}
+         self.unit_search(id, criteria).collect{|i| i['unit_id']}
+      end
+
+      def self.errata(id, filter = {})
+         criteria = {:type_ids=>['erratum']}
+         self.unit_search(id, criteria).collect{|i| i['metadata'].with_indifferent_access}
       end
 
       def self.distributions(id)

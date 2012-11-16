@@ -211,7 +211,11 @@ class TestExtensionsRepositoryUnitList < MiniTest::Unit::TestCase
 
   def test_errata_ids
     response = @@extension.errata_ids(RepositorySupport.repo_id)
-    
+    refute_empty response
+  end
+
+  def test_errata
+    response = @@extension.errata(RepositorySupport.repo_id)
     refute_empty response
   end
 
@@ -329,7 +333,6 @@ class TestExtensionsRepositoryUnassociate < MiniTest::Unit::TestCase
   def test_errata_remove
     errata_ids = @@extension.errata_ids(RepositorySupport.repo_id)
     refute_empty errata_ids
-
     task = @@extension.errata_remove(@@clone_name, [errata_ids.first])
     RepositorySupport.wait_on_task(task)
     assert_equal (errata_ids.length - 1), @@extension.errata_ids(@@clone_name).length

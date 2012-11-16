@@ -1,135 +1,39 @@
 --- 
+recorded_with: VCR 2.3.0
 http_interactions: 
-- request: 
-    method: post
-    uri: https://admin:admin@localhost/pulp/api/v2/consumer_groups/integration_test_consumer_group_support/actions/unassociate/
-    body: 
-      string: "{\"criteria\":{\"filters\":{\"id\":{\"$in\":[\"integration_test_consumer_support\"]}}}}"
-    headers: 
-      Content-Type: 
-      - application/json
-      Accept-Encoding: 
-      - gzip, deflate
-      Accept: 
-      - application/json
-      Content-Length: 
-      - "77"
-  response: 
-    status: 
-      code: 200
-      message: OK
-    headers: 
-      Date: 
-      - Wed, 14 Nov 2012 14:44:30 GMT
-      Server: 
-      - Apache/2.2.22 (Fedora)
-      Content-Type: 
-      - application/json
-      Content-Length: 
-      - "37"
-    body: 
-      string: "[\"integration_test_consumer_support\"]"
-    http_version: 
-  recorded_at: Wed, 14 Nov 2012 14:44:31 GMT
 - request: 
     method: post
     uri: https://admin:admin@localhost/pulp/api/v2/consumer_groups/integration_test_consumer_group_extensions/actions/content/install//
     body: 
-      string: "{\"units\":[{\"unit_key\":{\"name\":\"zsh\"},\"type_id\":\"rpm\"},{\"unit_key\":{\"name\":\"foo\"},\"type_id\":\"rpm\"}],\"options\":{}}"
+      string: "{\"options\":{},\"units\":[{\"type_id\":\"rpm\",\"unit_key\":{\"name\":\"zsh\"}},{\"type_id\":\"rpm\",\"unit_key\":{\"name\":\"foo\"}}]}"
     headers: 
       Content-Type: 
       - application/json
-      Accept-Encoding: 
-      - gzip, deflate
-      Accept: 
-      - application/json
       Content-Length: 
       - "112"
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
   response: 
     status: 
       code: 202
       message: Accepted
     headers: 
-      Date: 
-      - Wed, 14 Nov 2012 14:44:32 GMT
-      Server: 
-      - Apache/2.2.22 (Fedora)
       Content-Type: 
       - application/json
       Content-Encoding: 
       - utf-8
       Content-Length: 
       - "516"
-    body: 
-      string: "{\"task_group_id\": null, \"exception\": null, \"traceback\": null, \"_href\": \"/pulp/api/v2/tasks/14c9caa6-28ae-4a59-a559-6e3ad57392b3/\", \"task_id\": \"14c9caa6-28ae-4a59-a559-6e3ad57392b3\", \"call_request_tags\": [], \"reasons\": [], \"start_time\": null, \"tags\": [], \"state\": \"waiting\", \"finish_time\": null, \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": null, \"call_request_id\": \"14c9caa6-28ae-4a59-a559-6e3ad57392b3\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}"
-    http_version: 
-  recorded_at: Wed, 14 Nov 2012 14:44:32 GMT
-- request: 
-    method: post
-    uri: https://admin:admin@localhost/pulp/api/v2/consumer_groups/integration_test_consumer_group_extensions/actions/content/uninstall//
-    body: 
-      string: "{\"units\":[{\"unit_key\":{\"name\":\"zsh\"},\"type_id\":\"rpm\"},{\"unit_key\":{\"name\":\"foo\"},\"type_id\":\"rpm\"}],\"options\":{}}"
-    headers: 
-      Content-Type: 
-      - application/json
-      Accept-Encoding: 
-      - gzip, deflate
-      Accept: 
-      - application/json
-      Content-Length: 
-      - "112"
-  response: 
-    status: 
-      code: 202
-      message: Accepted
-    headers: 
-      Date: 
-      - Wed, 14 Nov 2012 14:44:37 GMT
       Server: 
       - Apache/2.2.22 (Fedora)
-      Content-Type: 
-      - application/json
-      Content-Encoding: 
-      - utf-8
-      Content-Length: 
-      - "516"
-    body: 
-      string: "{\"task_group_id\": null, \"exception\": null, \"traceback\": null, \"_href\": \"/pulp/api/v2/tasks/124c6882-d0f4-4d4a-86d5-7e0a33870dd4/\", \"task_id\": \"124c6882-d0f4-4d4a-86d5-7e0a33870dd4\", \"call_request_tags\": [], \"reasons\": [], \"start_time\": null, \"tags\": [], \"state\": \"waiting\", \"finish_time\": null, \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": null, \"call_request_id\": \"124c6882-d0f4-4d4a-86d5-7e0a33870dd4\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}"
-    http_version: 
-  recorded_at: Wed, 14 Nov 2012 14:44:37 GMT
-- request: 
-    method: post
-    uri: https://admin:admin@localhost/pulp/api/v2/consumer_groups/integration_test_consumer_group_extensions/actions/content/update//
-    body: 
-      string: "{\"units\":[{\"unit_key\":{\"name\":\"zsh\"},\"type_id\":\"rpm\"},{\"unit_key\":{\"name\":\"foo\"},\"type_id\":\"rpm\"}],\"options\":{}}"
-    headers: 
-      Content-Type: 
-      - application/json
-      Accept-Encoding: 
-      - gzip, deflate
-      Accept: 
-      - application/json
-      Content-Length: 
-      - "112"
-  response: 
-    status: 
-      code: 202
-      message: Accepted
-    headers: 
       Date: 
-      - Wed, 14 Nov 2012 14:44:39 GMT
-      Server: 
-      - Apache/2.2.22 (Fedora)
-      Content-Type: 
-      - application/json
-      Content-Encoding: 
-      - utf-8
-      Content-Length: 
-      - "516"
+      - Fri, 16 Nov 2012 00:20:21 GMT
     body: 
-      string: "{\"task_group_id\": null, \"exception\": null, \"traceback\": null, \"_href\": \"/pulp/api/v2/tasks/7ce65346-7de9-41eb-9fae-b062203f7b15/\", \"task_id\": \"7ce65346-7de9-41eb-9fae-b062203f7b15\", \"call_request_tags\": [], \"reasons\": [], \"start_time\": null, \"tags\": [], \"state\": \"waiting\", \"finish_time\": null, \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": null, \"call_request_id\": \"7ce65346-7de9-41eb-9fae-b062203f7b15\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}"
+      string: "{\"task_group_id\": null, \"exception\": null, \"traceback\": null, \"_href\": \"/pulp/api/v2/tasks/684ea62e-498e-445e-a7f6-9249eecbae53/\", \"task_id\": \"684ea62e-498e-445e-a7f6-9249eecbae53\", \"call_request_tags\": [], \"reasons\": [], \"start_time\": null, \"tags\": [], \"state\": \"waiting\", \"finish_time\": null, \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": null, \"call_request_id\": \"684ea62e-498e-445e-a7f6-9249eecbae53\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}"
     http_version: 
-  recorded_at: Wed, 14 Nov 2012 14:44:39 GMT
+  recorded_at: Fri, 16 Nov 2012 00:20:21 GMT
 - request: 
     method: post
     uri: https://admin:admin@localhost/pulp/api/v2/consumer_groups/integration_test_consumer_group_support/actions/associate/
@@ -138,27 +42,123 @@ http_interactions:
     headers: 
       Content-Type: 
       - application/json
-      Accept-Encoding: 
-      - gzip, deflate
-      Accept: 
-      - application/json
       Content-Length: 
       - "77"
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
   response: 
     status: 
       code: 200
       message: OK
     headers: 
-      Date: 
-      - Wed, 14 Nov 2012 14:44:40 GMT
-      Server: 
-      - Apache/2.2.22 (Fedora)
       Content-Type: 
       - application/json
       Content-Length: 
       - "37"
+      Server: 
+      - Apache/2.2.22 (Fedora)
+      Date: 
+      - Fri, 16 Nov 2012 00:20:27 GMT
     body: 
       string: "[\"integration_test_consumer_support\"]"
     http_version: 
-  recorded_at: Wed, 14 Nov 2012 14:44:41 GMT
-recorded_with: VCR 2.3.0
+  recorded_at: Fri, 16 Nov 2012 00:20:27 GMT
+- request: 
+    method: post
+    uri: https://admin:admin@localhost/pulp/api/v2/consumer_groups/integration_test_consumer_group_extensions/actions/content/update//
+    body: 
+      string: "{\"options\":{},\"units\":[{\"type_id\":\"rpm\",\"unit_key\":{\"name\":\"zsh\"}},{\"type_id\":\"rpm\",\"unit_key\":{\"name\":\"foo\"}}]}"
+    headers: 
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "112"
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+  response: 
+    status: 
+      code: 202
+      message: Accepted
+    headers: 
+      Content-Type: 
+      - application/json
+      Content-Encoding: 
+      - utf-8
+      Content-Length: 
+      - "516"
+      Server: 
+      - Apache/2.2.22 (Fedora)
+      Date: 
+      - Fri, 16 Nov 2012 00:20:29 GMT
+    body: 
+      string: "{\"task_group_id\": null, \"exception\": null, \"traceback\": null, \"_href\": \"/pulp/api/v2/tasks/171e45c5-b0c3-4d27-a712-8a2bb5e4558e/\", \"task_id\": \"171e45c5-b0c3-4d27-a712-8a2bb5e4558e\", \"call_request_tags\": [], \"reasons\": [], \"start_time\": null, \"tags\": [], \"state\": \"waiting\", \"finish_time\": null, \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": null, \"call_request_id\": \"171e45c5-b0c3-4d27-a712-8a2bb5e4558e\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}"
+    http_version: 
+  recorded_at: Fri, 16 Nov 2012 00:20:29 GMT
+- request: 
+    method: post
+    uri: https://admin:admin@localhost/pulp/api/v2/consumer_groups/integration_test_consumer_group_extensions/actions/content/uninstall//
+    body: 
+      string: "{\"options\":{},\"units\":[{\"type_id\":\"rpm\",\"unit_key\":{\"name\":\"zsh\"}},{\"type_id\":\"rpm\",\"unit_key\":{\"name\":\"foo\"}}]}"
+    headers: 
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "112"
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+  response: 
+    status: 
+      code: 202
+      message: Accepted
+    headers: 
+      Content-Type: 
+      - application/json
+      Content-Encoding: 
+      - utf-8
+      Content-Length: 
+      - "516"
+      Server: 
+      - Apache/2.2.22 (Fedora)
+      Date: 
+      - Fri, 16 Nov 2012 00:20:31 GMT
+    body: 
+      string: "{\"task_group_id\": null, \"exception\": null, \"traceback\": null, \"_href\": \"/pulp/api/v2/tasks/f6e7b107-d9f7-43db-ace5-c45aa6a605de/\", \"task_id\": \"f6e7b107-d9f7-43db-ace5-c45aa6a605de\", \"call_request_tags\": [], \"reasons\": [], \"start_time\": null, \"tags\": [], \"state\": \"waiting\", \"finish_time\": null, \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": null, \"call_request_id\": \"f6e7b107-d9f7-43db-ace5-c45aa6a605de\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}"
+    http_version: 
+  recorded_at: Fri, 16 Nov 2012 00:20:31 GMT
+- request: 
+    method: post
+    uri: https://admin:admin@localhost/pulp/api/v2/consumer_groups/integration_test_consumer_group_support/actions/unassociate/
+    body: 
+      string: "{\"criteria\":{\"filters\":{\"id\":{\"$in\":[\"integration_test_consumer_support\"]}}}}"
+    headers: 
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "77"
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "37"
+      Server: 
+      - Apache/2.2.22 (Fedora)
+      Date: 
+      - Fri, 16 Nov 2012 00:20:33 GMT
+    body: 
+      string: "[\"integration_test_consumer_support\"]"
+    http_version: 
+  recorded_at: Fri, 16 Nov 2012 00:20:33 GMT

@@ -36,11 +36,11 @@ module Runcible
        end
 
       def self.find_all(ids)
-        search(TYPE, {:filters=>{:id=> {'$in'=> ids}}}, {:include_repos => true})
+        search(TYPE, {:filters=> {:_id=> {'$in'=> ids}}}, {:include_repos=>true})
       end
 
-      def self.find_all_by_unit_ids(ids)
-        search(TYPE, {:filters=> {:_id=> {'$in'=> ids}}}, {:include_repos=>true})
+      def self.find_all_by_errata_ids(ids)
+        search(TYPE, {:filters=>{:id=> {'$in'=> ids}}}, {:include_repos => true})
       end
 
     end
