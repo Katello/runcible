@@ -47,7 +47,7 @@ Name:           rubygem-%{gem_name}
 Summary:        A gem exposing Pulp's juiciest parts
 Group:          Applications/System
 License:        MIT
-Version:        0.1.3
+Version:        0.2.0
 Release:        1%{?dist}
 URL:            https://github.com/Katello/runcible
 Source0:        %{name}-%{version}.tar.gz
@@ -86,7 +86,7 @@ gem install \
 rm -rf %{buildroot}%{gem_instdir}/.yardoc
 
 %files
-%{gem_instdir}/
+%dir %{gem_instdir}
 %{gem_instdir}/lib
 %exclude %{gem_cache}
 %{gem_spec}
@@ -105,6 +105,48 @@ This package contains documentation for rubygem-%{gem_name}
 %doc %{gem_docdir}
 
 %changelog
+* Mon Nov 19 2012 Eric D Helms <ehelms@redhat.com> 0.2.0-1
+- Version bump. (ehelms@redhat.com)
+- cassette updates (jsherril@redhat.com)
+- sleep longer for fewer waiting tasks (jsherril@redhat.com)
+- fixing errata copy by unit id (jsherril@redhat.com)
+- cassette updates (jsherril@redhat.com)
+- fixing typo in rakefile (jsherril@redhat.com)
+- adding errata test (jsherril@redhat.com)
+- cassette updates (jsherril@redhat.com)
+- do not sleep if were running as none (jsherril@redhat.com)
+- switching to primarily use unit ids for errata (jsherril@redhat.com)
+- Assert - Cleans up copy/paste fail on a test name and associated tests.
+  (ehelms@redhat.com)
+- Asserts - Cleans up the asserts in extensions. (ehelms@redhat.com)
+- Asserts - Cleans up the asserts to use more minitest asserts in resources to
+  provide more friendly output. (ehelms@redhat.com)
+- Updates readme with link to github pages. (ehelms@redhat.com)
+- Doc - Adds references to the latest Pulp doc location for each entity.
+  (ehelms@redhat.com)
+- Fixes broken reference. (ehelms@redhat.com)
+- DOC - Adds documentation for all resources. (ehelms@redhat.com)
+- Fixes for none mode test runs. (ehelms@redhat.com)
+- Pulp Beta - Updates to handle Repository deletion and consumer unbind as
+  tasks to remove chance for race condition. (ehelms@redhat.com)
+- Pulp Beta - Adds missing cassettes and updates test data. (ehelms@redhat.com)
+- Updates to the latest pulp beta and fixes all associated tests.
+  (ehelms@redhat.com)
+- Docs - Adds yard doc for repository. (ehelms@redhat.com)
+- Updates to fix missing cassette and switches each content type to extend Unit
+  resource. (ehelms@redhat.com)
+- Version bump. (ehelms@redhat.com)
+- Merge branch 'master' of github.com:Katello/runcible (ehelms@redhat.com)
+- Updates test data to reflect added tests. (ehelms@redhat.com)
+- Adds and cleans-up functions that having missing or mis-named tests.
+  (ehelms@redhat.com)
+- Updates Travis to fail if there are untested functions. (ehelms@redhat.com)
+- Adds rake task to find functions without corresponding test functions.
+  (ehelms@redhat.com)
+- cassette update (jsherril@redhat.com)
+- do not use sorting for unit search, as mongo may fail (jsherril@redhat.com)
+- Updating pulp version (paji@redhat.com)
+
 * Fri Nov 02 2012 Eric D. Helms <ehelms@redhat.com> 0.1.3-1
 - Version bump. (ehelms@redhat.com)
 - Cassette updates for tests. (ehelms@redhat.com)
