@@ -1,18 +1,17 @@
 --- 
-recorded_with: VCR 2.3.0
 http_interactions: 
 - request: 
     method: post
     uri: https://admin:admin@localhost/pulp/api/v2/repositories/
     body: 
-      string: "{\"importer_config\":{},\"id\":\"integration_test_id\",\"importer_type_id\":\"yum_importer\",\"distributors\":[{\"distributor_type\":\"yum_distributor\",\"distributor_id\":\"123\",\"distributor_config\":{\"relative_url\":\"/path\",\"https\":true,\"http\":true},\"auto_publish\":false}]}"
+      string: "{\"id\":\"integration_test_id\",\"distributors\":[{\"auto_publish\":false,\"distributor_id\":\"123\",\"distributor_config\":{\"relative_url\":\"/path\",\"https\":true,\"http\":true},\"distributor_type\":\"yum_distributor\"}],\"importer_config\":{},\"importer_type_id\":\"yum_importer\"}"
     headers: 
+      Content-Type: 
+      - application/json
       Accept: 
       - application/json
       Accept-Encoding: 
       - gzip, deflate
-      Content-Type: 
-      - application/json
       Content-Length: 
       - "254"
   response: 
@@ -20,8 +19,6 @@ http_interactions:
       code: 201
       message: Created
     headers: 
-      Date: 
-      - Wed, 28 Nov 2012 15:42:14 GMT
       Server: 
       - Apache/2.2.22 (Fedora)
       Content-Type: 
@@ -30,55 +27,24 @@ http_interactions:
       - integration_test_id
       Content-Length: 
       - "265"
-    body: 
-      string: "{\"scratchpad\": {}, \"display_name\": \"integration_test_id\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_count\": 0, \"_id\": {\"$oid\": \"50b630d69c60ed6138001a93\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\"}"
-    http_version: 
-  recorded_at: Wed, 28 Nov 2012 15:42:14 GMT
-- request: 
-    method: post
-    uri: https://admin:admin@localhost/pulp/api/v2/repositories/
-    body: 
-      string: "{\"importer_config\":{},\"id\":\"integration_test_id\",\"importer_type_id\":\"yum_importer\"}"
-    headers: 
-      Accept: 
-      - application/json
-      Accept-Encoding: 
-      - gzip, deflate
-      Content-Type: 
-      - application/json
-      Content-Length: 
-      - "83"
-  response: 
-    status: 
-      code: 201
-      message: Created
-    headers: 
       Date: 
-      - Wed, 28 Nov 2012 15:42:16 GMT
-      Server: 
-      - Apache/2.2.22 (Fedora)
-      Content-Type: 
-      - application/json
-      Location: 
-      - integration_test_id
-      Content-Length: 
-      - "265"
+      - Wed, 28 Nov 2012 18:45:26 GMT
     body: 
-      string: "{\"scratchpad\": {}, \"display_name\": \"integration_test_id\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_count\": 0, \"_id\": {\"$oid\": \"50b630d89c60ed6138001aa8\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\"}"
+      string: "{\"scratchpad\": {}, \"display_name\": \"integration_test_id\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_count\": 0, \"_id\": {\"$oid\": \"50b65bc69c60ed40db000887\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\"}"
     http_version: 
-  recorded_at: Wed, 28 Nov 2012 15:42:16 GMT
+  recorded_at: Wed, 28 Nov 2012 18:45:26 GMT
 - request: 
     method: post
     uri: https://admin:admin@localhost/pulp/api/v2/repositories/
     body: 
-      string: "{\"id\":\"integration_test_id_distro\",\"distributors\":[{\"distributor_type\":\"yum_distributor\",\"distributor_id\":\"123\",\"distributor_config\":{\"relative_url\":\"/path\",\"https\":true,\"http\":true},\"auto_publish\":false}]}"
+      string: "{\"id\":\"integration_test_id_distro\",\"distributors\":[{\"auto_publish\":false,\"distributor_id\":\"123\",\"distributor_config\":{\"relative_url\":\"/path\",\"https\":true,\"http\":true},\"distributor_type\":\"yum_distributor\"}]}"
     headers: 
+      Content-Type: 
+      - application/json
       Accept: 
       - application/json
       Accept-Encoding: 
       - gzip, deflate
-      Content-Type: 
-      - application/json
       Content-Length: 
       - "206"
   response: 
@@ -86,8 +52,6 @@ http_interactions:
       code: 201
       message: Created
     headers: 
-      Date: 
-      - Wed, 28 Nov 2012 15:42:17 GMT
       Server: 
       - Apache/2.2.22 (Fedora)
       Content-Type: 
@@ -96,60 +60,60 @@ http_interactions:
       - integration_test_id_distro
       Content-Length: 
       - "286"
+      Date: 
+      - Wed, 28 Nov 2012 18:45:28 GMT
     body: 
-      string: "{\"scratchpad\": {}, \"display_name\": \"integration_test_id_distro\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_count\": 0, \"_id\": {\"$oid\": \"50b630da9c60ed6138001abc\"}, \"id\": \"integration_test_id_distro\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id_distro/\"}"
+      string: "{\"scratchpad\": {}, \"display_name\": \"integration_test_id_distro\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_count\": 0, \"_id\": {\"$oid\": \"50b65bc89c60ed40db00089c\"}, \"id\": \"integration_test_id_distro\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id_distro/\"}"
     http_version: 
-  recorded_at: Wed, 28 Nov 2012 15:42:18 GMT
+  recorded_at: Wed, 28 Nov 2012 18:45:29 GMT
 - request: 
     method: get
     uri: https://admin:admin@localhost/pulp/api/v2/repositories/integration_test_id_distro/?details=true
     body: 
       string: ""
     headers: 
+      Content-Type: 
+      - application/json
       Accept: 
       - application/json
       Accept-Encoding: 
       - gzip, deflate
-      Content-Type: 
-      - application/json
   response: 
     status: 
       code: 200
       message: OK
     headers: 
-      Date: 
-      - Wed, 28 Nov 2012 15:42:18 GMT
       Server: 
       - Apache/2.2.22 (Fedora)
       Content-Type: 
       - application/json
       Content-Length: 
       - "650"
+      Date: 
+      - Wed, 28 Nov 2012 18:45:29 GMT
     body: 
-      string: "{\"scratchpad\": {}, \"display_name\": \"integration_test_id_distro\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_count\": 0, \"_id\": {\"$oid\": \"50b630da9c60ed6138001abc\"}, \"id\": \"integration_test_id_distro\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id_distro/\", \"importers\": [], \"distributors\": [{\"repo_id\": \"integration_test_id_distro\", \"_ns\": \"repo_distributors\", \"last_publish\": null, \"auto_publish\": false, \"scheduled_publishes\": [], \"distributor_type_id\": \"yum_distributor\", \"scratchpad\": null, \"_id\": {\"$oid\": \"50b630da9c60ed6138001abd\"}, \"config\": {\"http\": true, \"relative_url\": \"/path\", \"https\": true}, \"id\": \"123\"}]}"
+      string: "{\"scratchpad\": {}, \"display_name\": \"integration_test_id_distro\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_count\": 0, \"_id\": {\"$oid\": \"50b65bc89c60ed40db00089c\"}, \"id\": \"integration_test_id_distro\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id_distro/\", \"importers\": [], \"distributors\": [{\"repo_id\": \"integration_test_id_distro\", \"_ns\": \"repo_distributors\", \"last_publish\": null, \"auto_publish\": false, \"scheduled_publishes\": [], \"distributor_type_id\": \"yum_distributor\", \"scratchpad\": null, \"_id\": {\"$oid\": \"50b65bc89c60ed40db00089d\"}, \"config\": {\"http\": true, \"relative_url\": \"/path\", \"https\": true}, \"id\": \"123\"}]}"
     http_version: 
-  recorded_at: Wed, 28 Nov 2012 15:42:18 GMT
+  recorded_at: Wed, 28 Nov 2012 18:45:29 GMT
 - request: 
     method: post
     uri: https://admin:admin@localhost/pulp/api/v2/repositories/
     body: 
-      string: "{\"importer_config\":{},\"id\":\"integration_test_id\",\"importer_type_id\":\"yum_importer\",\"distributors\":[{\"distributor_type\":\"yum_distributor\",\"distributor_id\":\"123\",\"distributor_config\":{\"relative_url\":\"/\",\"https\":true,\"http\":true},\"auto_publish\":true}]}"
+      string: "{\"id\":\"integration_test_id\",\"importer_config\":{},\"importer_type_id\":\"yum_importer\"}"
     headers: 
+      Content-Type: 
+      - application/json
       Accept: 
       - application/json
       Accept-Encoding: 
       - gzip, deflate
-      Content-Type: 
-      - application/json
       Content-Length: 
-      - "249"
+      - "83"
   response: 
     status: 
       code: 201
       message: Created
     headers: 
-      Date: 
-      - Wed, 28 Nov 2012 15:42:19 GMT
       Server: 
       - Apache/2.2.22 (Fedora)
       Content-Type: 
@@ -158,22 +122,57 @@ http_interactions:
       - integration_test_id
       Content-Length: 
       - "265"
+      Date: 
+      - Wed, 28 Nov 2012 18:45:33 GMT
     body: 
-      string: "{\"scratchpad\": {}, \"display_name\": \"integration_test_id\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_count\": 0, \"_id\": {\"$oid\": \"50b630dc9c60ed6138001ad0\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\"}"
+      string: "{\"scratchpad\": {}, \"display_name\": \"integration_test_id\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_count\": 0, \"_id\": {\"$oid\": \"50b65bcd9c60ed40db0008c4\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\"}"
     http_version: 
-  recorded_at: Wed, 28 Nov 2012 15:42:20 GMT
+  recorded_at: Wed, 28 Nov 2012 18:45:33 GMT
+- request: 
+    method: post
+    uri: https://admin:admin@localhost/pulp/api/v2/repositories/
+    body: 
+      string: "{\"id\":\"integration_test_id\",\"distributors\":[{\"auto_publish\":true,\"distributor_id\":\"123\",\"distributor_config\":{\"relative_url\":\"/\",\"https\":true,\"http\":true},\"distributor_type\":\"yum_distributor\"}],\"importer_config\":{},\"importer_type_id\":\"yum_importer\"}"
+    headers: 
+      Content-Type: 
+      - application/json
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Length: 
+      - "249"
+  response: 
+    status: 
+      code: 201
+      message: Created
+    headers: 
+      Server: 
+      - Apache/2.2.22 (Fedora)
+      Content-Type: 
+      - application/json
+      Location: 
+      - integration_test_id
+      Content-Length: 
+      - "265"
+      Date: 
+      - Wed, 28 Nov 2012 18:45:37 GMT
+    body: 
+      string: "{\"scratchpad\": {}, \"display_name\": \"integration_test_id\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_count\": 0, \"_id\": {\"$oid\": \"50b65bd19c60ed40db0008eb\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\"}"
+    http_version: 
+  recorded_at: Wed, 28 Nov 2012 18:45:37 GMT
 - request: 
     method: post
     uri: https://admin:admin@localhost/pulp/api/v2/repositories/search/
     body: 
       string: "{\"criteria\":{\"filters\":{\"id\":{\"$in\":[\"integration_test_id\"]}}}}"
     headers: 
+      Content-Type: 
+      - application/json
       Accept: 
       - application/json
       Accept-Encoding: 
       - gzip, deflate
-      Content-Type: 
-      - application/json
       Content-Length: 
       - "63"
   response: 
@@ -181,181 +180,30 @@ http_interactions:
       code: 200
       message: OK
     headers: 
-      Date: 
-      - Wed, 28 Nov 2012 15:42:32 GMT
       Server: 
       - Apache/2.2.22 (Fedora)
       Content-Type: 
       - application/json
       Content-Length: 
       - "309"
-    body: 
-      string: "[{\"scratchpad\": {\"checksum_type\": \"sha256\", \"repodata\": {}}, \"display_name\": \"integration_test_id\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_count\": 14, \"_id\": {\"$oid\": \"50b630e59c60ed6138001b36\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\"}]"
-    http_version: 
-  recorded_at: Wed, 28 Nov 2012 15:42:32 GMT
-- request: 
-    method: get
-    uri: https://admin:admin@localhost/pulp/api/v2/repositories/integration_test_id/importers/yum_importer/schedules/sync/
-    body: 
-      string: ""
-    headers: 
-      Accept: 
-      - application/json
-      Accept-Encoding: 
-      - gzip, deflate
-      Content-Type: 
-      - application/json
-  response: 
-    status: 
-      code: 200
-      message: OK
-    headers: 
       Date: 
-      - Wed, 28 Nov 2012 15:42:46 GMT
-      Server: 
-      - Apache/2.2.22 (Fedora)
-      Content-Type: 
-      - application/json
-      Content-Length: 
-      - "2"
+      - Wed, 28 Nov 2012 18:45:43 GMT
     body: 
-      string: "[]"
+      string: "[{\"scratchpad\": {\"checksum_type\": \"sha256\", \"repodata\": {}}, \"display_name\": \"integration_test_id\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_count\": 14, \"_id\": {\"$oid\": \"50b65bd49c60ed40db000900\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\"}]"
     http_version: 
-  recorded_at: Wed, 28 Nov 2012 15:42:46 GMT
-- request: 
-    method: post
-    uri: https://admin:admin@localhost/pulp/api/v2/repositories/integration_test_id/importers/yum_importer/schedules/sync/
-    body: 
-      string: "{\"schedule\":\"2012-09-25T20:44:00Z/P7D\"}"
-    headers: 
-      Accept: 
-      - application/json
-      Accept-Encoding: 
-      - gzip, deflate
-      Content-Type: 
-      - application/json
-      Content-Length: 
-      - "39"
-  response: 
-    status: 
-      code: 201
-      message: Created
-    headers: 
-      Date: 
-      - Wed, 28 Nov 2012 15:42:46 GMT
-      Server: 
-      - Apache/2.2.22 (Fedora)
-      Content-Type: 
-      - application/json
-      Location: 
-      - /pulp/api/v2/repositories/integration_test_id/importers/yum_importer/schedules/sync/50b630f69c60ed6138001bde/
-      Content-Length: 
-      - "406"
-    body: 
-      string: "{\"next_run\": \"2012-12-04T20:44:00Z\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/importers/yum_importer/schedules/sync/50b630f69c60ed6138001bde/\", \"schedule\": \"2012-09-25T20:44:00Z/P7D\", \"override_config\": {}, \"remaining_runs\": null, \"first_run\": \"2012-12-04T20:44:00Z\", \"enabled\": true, \"last_run\": null, \"failure_threshold\": null, \"_id\": \"50b630f69c60ed6138001bde\", \"consecutive_failures\": 0}"
-    http_version: 
-  recorded_at: Wed, 28 Nov 2012 15:42:46 GMT
-- request: 
-    method: get
-    uri: https://admin:admin@localhost/pulp/api/v2/repositories/integration_test_id/importers/yum_importer/schedules/sync/
-    body: 
-      string: ""
-    headers: 
-      Accept: 
-      - application/json
-      Accept-Encoding: 
-      - gzip, deflate
-      Content-Type: 
-      - application/json
-  response: 
-    status: 
-      code: 200
-      message: OK
-    headers: 
-      Date: 
-      - Wed, 28 Nov 2012 15:42:46 GMT
-      Server: 
-      - Apache/2.2.22 (Fedora)
-      Content-Type: 
-      - application/json
-      Content-Length: 
-      - "408"
-    body: 
-      string: "[{\"next_run\": \"2012-12-04T20:44:00Z\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/importers/yum_importer/schedules/sync/50b630f69c60ed6138001bde/\", \"schedule\": \"2012-09-25T20:44:00Z/P7D\", \"override_config\": {}, \"remaining_runs\": null, \"first_run\": \"2012-12-04T20:44:00Z\", \"enabled\": true, \"last_run\": null, \"failure_threshold\": null, \"_id\": \"50b630f69c60ed6138001bde\", \"consecutive_failures\": 0}]"
-    http_version: 
-  recorded_at: Wed, 28 Nov 2012 15:42:46 GMT
-- request: 
-    method: put
-    uri: https://admin:admin@localhost/pulp/api/v2/repositories/integration_test_id/importers/yum_importer/schedules/sync/50b630f69c60ed6138001bde/
-    body: 
-      string: "{\"schedule\":\"2011-09-25T20:44:00Z/P7D\"}"
-    headers: 
-      Accept: 
-      - application/json
-      Accept-Encoding: 
-      - gzip, deflate
-      Content-Type: 
-      - application/json
-      Content-Length: 
-      - "39"
-  response: 
-    status: 
-      code: 200
-      message: OK
-    headers: 
-      Date: 
-      - Wed, 28 Nov 2012 15:42:46 GMT
-      Server: 
-      - Apache/2.2.22 (Fedora)
-      Content-Type: 
-      - application/json
-      Content-Length: 
-      - "406"
-    body: 
-      string: "{\"next_run\": \"2012-12-04T20:44:00Z\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/importers/yum_importer/schedules/sync/50b630f69c60ed6138001bde/\", \"schedule\": \"2011-09-25T20:44:00Z/P7D\", \"override_config\": {}, \"remaining_runs\": null, \"first_run\": \"2012-12-04T20:44:00Z\", \"enabled\": true, \"last_run\": null, \"failure_threshold\": null, \"_id\": \"50b630f69c60ed6138001bde\", \"consecutive_failures\": 0}"
-    http_version: 
-  recorded_at: Wed, 28 Nov 2012 15:42:46 GMT
-- request: 
-    method: get
-    uri: https://admin:admin@localhost/pulp/api/v2/repositories/integration_test_id/?details=true
-    body: 
-      string: ""
-    headers: 
-      Accept: 
-      - application/json
-      Accept-Encoding: 
-      - gzip, deflate
-      Content-Type: 
-      - application/json
-  response: 
-    status: 
-      code: 200
-      message: OK
-    headers: 
-      Date: 
-      - Wed, 28 Nov 2012 15:42:53 GMT
-      Server: 
-      - Apache/2.2.22 (Fedora)
-      Content-Type: 
-      - application/json
-      Content-Length: 
-      - "1025"
-    body: 
-      string: "{\"scratchpad\": {\"checksum_type\": \"sha256\", \"repodata\": {}}, \"display_name\": \"integration_test_id\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_count\": 14, \"_id\": {\"$oid\": \"50b630fa9c60ed6138001bfe\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\", \"importers\": [{\"repo_id\": \"integration_test_id\", \"_ns\": \"repo_importers\", \"importer_type_id\": \"yum_importer\", \"last_sync\": \"2012-11-28T10:42:51-05:00\", \"scheduled_syncs\": [], \"scratchpad\": null, \"_id\": {\"$oid\": \"50b630fa9c60ed6138001bff\"}, \"config\": {\"feed_url\": \"file:///home/jlsherri/github/runcible/test/fixtures/repositories/zoo5\"}, \"id\": \"yum_importer\"}], \"distributors\": [{\"repo_id\": \"integration_test_id\", \"_ns\": \"repo_distributors\", \"last_publish\": null, \"auto_publish\": false, \"scheduled_publishes\": [], \"distributor_type_id\": \"yum_distributor\", \"scratchpad\": null, \"_id\": {\"$oid\": \"50b630fa9c60ed6138001c00\"}, \"config\": {\"http\": true, \"relative_url\": \"/path\", \"https\": true}, \"id\": \"217d47b1ce2e5adb96cf\"}]}"
-    http_version: 
-  recorded_at: Wed, 28 Nov 2012 15:42:53 GMT
+  recorded_at: Wed, 28 Nov 2012 18:45:44 GMT
 - request: 
     method: post
     uri: https://admin:admin@localhost/pulp/api/v2/repositories/integration_test_id/actions/publish/
     body: 
-      string: "{\"id\":\"217d47b1ce2e5adb96cf\"}"
+      string: "{\"id\":\"77ec18d77232f7343113\"}"
     headers: 
+      Content-Type: 
+      - application/json
       Accept: 
       - application/json
       Accept-Encoding: 
       - gzip, deflate
-      Content-Type: 
-      - application/json
       Content-Length: 
       - "29"
   response: 
@@ -363,46 +211,198 @@ http_interactions:
       code: 202
       message: Accepted
     headers: 
-      Date: 
-      - Wed, 28 Nov 2012 15:42:53 GMT
       Server: 
       - Apache/2.2.22 (Fedora)
-      Content-Encoding: 
-      - utf-8
       Content-Type: 
       - application/json
       Content-Length: 
       - "636"
+      Date: 
+      - Wed, 28 Nov 2012 18:45:52 GMT
+      Content-Encoding: 
+      - utf-8
     body: 
-      string: "{\"task_group_id\": null, \"exception\": null, \"traceback\": null, \"_href\": \"/pulp/api/v2/tasks/b4a58c46-7aa9-4a96-b68a-b12a068e09ba/\", \"task_id\": \"b4a58c46-7aa9-4a96-b68a-b12a068e09ba\", \"call_request_tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:publish\"], \"reasons\": [], \"start_time\": null, \"tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:publish\"], \"state\": \"waiting\", \"finish_time\": null, \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": null, \"call_request_id\": \"b4a58c46-7aa9-4a96-b68a-b12a068e09ba\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}"
+      string: "{\"task_group_id\": null, \"exception\": null, \"traceback\": null, \"_href\": \"/pulp/api/v2/tasks/01442ce1-2723-4af8-95da-51fae9cd2d80/\", \"task_id\": \"01442ce1-2723-4af8-95da-51fae9cd2d80\", \"call_request_tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:publish\"], \"reasons\": [], \"start_time\": null, \"tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:publish\"], \"state\": \"waiting\", \"finish_time\": null, \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": null, \"call_request_id\": \"01442ce1-2723-4af8-95da-51fae9cd2d80\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}"
     http_version: 
-  recorded_at: Wed, 28 Nov 2012 15:42:53 GMT
+  recorded_at: Wed, 28 Nov 2012 18:45:52 GMT
+- request: 
+    method: get
+    uri: https://admin:admin@localhost/pulp/api/v2/repositories/integration_test_id/importers/yum_importer/schedules/sync/
+    body: 
+      string: ""
+    headers: 
+      Content-Type: 
+      - application/json
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Server: 
+      - Apache/2.2.22 (Fedora)
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "2"
+      Date: 
+      - Wed, 28 Nov 2012 18:46:03 GMT
+    body: 
+      string: "[]"
+    http_version: 
+  recorded_at: Wed, 28 Nov 2012 18:46:04 GMT
+- request: 
+    method: post
+    uri: https://admin:admin@localhost/pulp/api/v2/repositories/integration_test_id/importers/yum_importer/schedules/sync/
+    body: 
+      string: "{\"schedule\":\"2012-09-25T20:44:00Z/P7D\"}"
+    headers: 
+      Content-Type: 
+      - application/json
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Length: 
+      - "39"
+  response: 
+    status: 
+      code: 201
+      message: Created
+    headers: 
+      Server: 
+      - Apache/2.2.22 (Fedora)
+      Content-Type: 
+      - application/json
+      Location: 
+      - /pulp/api/v2/repositories/integration_test_id/importers/yum_importer/schedules/sync/50b65bec9c60ed40db0009be/
+      Content-Length: 
+      - "406"
+      Date: 
+      - Wed, 28 Nov 2012 18:46:04 GMT
+    body: 
+      string: "{\"next_run\": \"2012-12-04T20:44:00Z\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/importers/yum_importer/schedules/sync/50b65bec9c60ed40db0009be/\", \"schedule\": \"2012-09-25T20:44:00Z/P7D\", \"override_config\": {}, \"remaining_runs\": null, \"first_run\": \"2012-12-04T20:44:00Z\", \"enabled\": true, \"last_run\": null, \"failure_threshold\": null, \"_id\": \"50b65bec9c60ed40db0009be\", \"consecutive_failures\": 0}"
+    http_version: 
+  recorded_at: Wed, 28 Nov 2012 18:46:04 GMT
+- request: 
+    method: get
+    uri: https://admin:admin@localhost/pulp/api/v2/repositories/integration_test_id/importers/yum_importer/schedules/sync/
+    body: 
+      string: ""
+    headers: 
+      Content-Type: 
+      - application/json
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Server: 
+      - Apache/2.2.22 (Fedora)
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "408"
+      Date: 
+      - Wed, 28 Nov 2012 18:46:04 GMT
+    body: 
+      string: "[{\"next_run\": \"2012-12-04T20:44:00Z\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/importers/yum_importer/schedules/sync/50b65bec9c60ed40db0009be/\", \"schedule\": \"2012-09-25T20:44:00Z/P7D\", \"override_config\": {}, \"remaining_runs\": null, \"first_run\": \"2012-12-04T20:44:00Z\", \"enabled\": true, \"last_run\": null, \"failure_threshold\": null, \"_id\": \"50b65bec9c60ed40db0009be\", \"consecutive_failures\": 0}]"
+    http_version: 
+  recorded_at: Wed, 28 Nov 2012 18:46:04 GMT
+- request: 
+    method: put
+    uri: https://admin:admin@localhost/pulp/api/v2/repositories/integration_test_id/importers/yum_importer/schedules/sync/50b65bec9c60ed40db0009be/
+    body: 
+      string: "{\"schedule\":\"2011-09-25T20:44:00Z/P7D\"}"
+    headers: 
+      Content-Type: 
+      - application/json
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Length: 
+      - "39"
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Server: 
+      - Apache/2.2.22 (Fedora)
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "406"
+      Date: 
+      - Wed, 28 Nov 2012 18:46:04 GMT
+    body: 
+      string: "{\"next_run\": \"2012-12-04T20:44:00Z\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/importers/yum_importer/schedules/sync/50b65bec9c60ed40db0009be/\", \"schedule\": \"2011-09-25T20:44:00Z/P7D\", \"override_config\": {}, \"remaining_runs\": null, \"first_run\": \"2012-12-04T20:44:00Z\", \"enabled\": true, \"last_run\": null, \"failure_threshold\": null, \"_id\": \"50b65bec9c60ed40db0009be\", \"consecutive_failures\": 0}"
+    http_version: 
+  recorded_at: Wed, 28 Nov 2012 18:46:04 GMT
+- request: 
+    method: get
+    uri: https://admin:admin@localhost/pulp/api/v2/repositories/integration_test_id/?details=true
+    body: 
+      string: ""
+    headers: 
+      Content-Type: 
+      - application/json
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Server: 
+      - Apache/2.2.22 (Fedora)
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "1025"
+      Date: 
+      - Wed, 28 Nov 2012 18:46:21 GMT
+    body: 
+      string: "{\"scratchpad\": {\"checksum_type\": \"sha256\", \"repodata\": {}}, \"display_name\": \"integration_test_id\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_count\": 14, \"_id\": {\"$oid\": \"50b65bf99c60ed40db000a2f\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\", \"importers\": [{\"repo_id\": \"integration_test_id\", \"_ns\": \"repo_importers\", \"importer_type_id\": \"yum_importer\", \"last_sync\": \"2012-11-28T13:46:19-05:00\", \"scheduled_syncs\": [], \"scratchpad\": null, \"_id\": {\"$oid\": \"50b65bf99c60ed40db000a30\"}, \"config\": {\"feed_url\": \"file:///home/jlsherri/github/runcible/test/fixtures/repositories/zoo5\"}, \"id\": \"yum_importer\"}], \"distributors\": [{\"repo_id\": \"integration_test_id\", \"_ns\": \"repo_distributors\", \"last_publish\": null, \"auto_publish\": false, \"scheduled_publishes\": [], \"distributor_type_id\": \"yum_distributor\", \"scratchpad\": null, \"_id\": {\"$oid\": \"50b65bf99c60ed40db000a31\"}, \"config\": {\"http\": true, \"relative_url\": \"/path\", \"https\": true}, \"id\": \"77ec18d77232f7343113\"}]}"
+    http_version: 
+  recorded_at: Wed, 28 Nov 2012 18:46:21 GMT
 - request: 
     method: get
     uri: https://admin:admin@localhost/pulp/api/v2/tasks/?tag=pulp:action:sync
     body: 
       string: ""
     headers: 
+      Content-Type: 
+      - application/json
       Accept: 
       - application/json
       Accept-Encoding: 
       - gzip, deflate
-      Content-Type: 
-      - application/json
   response: 
     status: 
       code: 200
       message: OK
     headers: 
-      Date: 
-      - Wed, 28 Nov 2012 15:43:05 GMT
       Server: 
       - Apache/2.2.22 (Fedora)
       Content-Type: 
       - application/json
       Content-Length: 
-      - "2876"
+      - "4314"
+      Date: 
+      - Wed, 28 Nov 2012 18:46:29 GMT
     body: 
-      string: "[{\"task_group_id\": \"f48096cb-c373-4c03-b5b8-31f1904fb8db\", \"exception\": null, \"traceback\": null, \"task_id\": \"0ee8d48b-460f-4b84-bad2-9e608d3cd9b4\", \"call_request_tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:sync\"], \"reasons\": [], \"start_time\": \"2012-11-28T15:42:50Z\", \"tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:sync\"], \"state\": \"finished\", \"finish_time\": \"2012-11-28T15:42:51Z\", \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {\"yum_importer\": {\"content\": {\"num_success\": 11, \"size_total\": 17872, \"items_left\": 0, \"items_total\": 11, \"state\": \"FINISHED\", \"size_left\": 0, \"details\": {\"tree_file\": {\"num_success\": 3, \"size_total\": 0, \"items_left\": 0, \"items_total\": 3, \"size_left\": 0, \"num_error\": 0}, \"rpm\": {\"num_success\": 8, \"size_total\": 17872, \"items_left\": 0, \"items_total\": 8, \"size_left\": 0, \"num_error\": 0}, \"delta_rpm\": {\"num_success\": 0, \"size_total\": 0, \"items_left\": 0, \"items_total\": 0, \"size_left\": 0, \"num_error\": 0}, \"file\": {\"num_success\": 0, \"size_total\": 0, \"items_left\": 0, \"items_total\": 0, \"size_left\": 0, \"num_error\": 0}}, \"error_details\": [], \"num_error\": 0}, \"comps\": {\"state\": \"FINISHED\"}, \"errata\": {\"state\": \"FINISHED\", \"num_errata\": 2}, \"metadata\": {\"state\": \"FINISHED\"}}}, \"call_request_group_id\": \"f48096cb-c373-4c03-b5b8-31f1904fb8db\", \"call_request_id\": \"0ee8d48b-460f-4b84-bad2-9e608d3cd9b4\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}, {\"task_group_id\": \"c23e291a-efb7-401f-92b3-fa23b7e41bda\", \"exception\": null, \"traceback\": null, \"task_id\": \"76dcb552-307e-4e0f-8013-2fd59a504e8e\", \"call_request_tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:sync\"], \"reasons\": [], \"start_time\": \"2012-11-28T15:43:02Z\", \"tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:sync\"], \"state\": \"finished\", \"finish_time\": \"2012-11-28T15:43:03Z\", \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {\"yum_importer\": {\"content\": {\"num_success\": 11, \"size_total\": 17872, \"items_left\": 0, \"items_total\": 11, \"state\": \"FINISHED\", \"size_left\": 0, \"details\": {\"tree_file\": {\"num_success\": 3, \"size_total\": 0, \"items_left\": 0, \"items_total\": 3, \"size_left\": 0, \"num_error\": 0}, \"rpm\": {\"num_success\": 8, \"size_total\": 17872, \"items_left\": 0, \"items_total\": 8, \"size_left\": 0, \"num_error\": 0}, \"delta_rpm\": {\"num_success\": 0, \"size_total\": 0, \"items_left\": 0, \"items_total\": 0, \"size_left\": 0, \"num_error\": 0}, \"file\": {\"num_success\": 0, \"size_total\": 0, \"items_left\": 0, \"items_total\": 0, \"size_left\": 0, \"num_error\": 0}}, \"error_details\": [], \"num_error\": 0}, \"comps\": {\"state\": \"FINISHED\"}, \"errata\": {\"state\": \"FINISHED\", \"num_errata\": 2}, \"metadata\": {\"state\": \"FINISHED\"}}}, \"call_request_group_id\": \"c23e291a-efb7-401f-92b3-fa23b7e41bda\", \"call_request_id\": \"76dcb552-307e-4e0f-8013-2fd59a504e8e\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}]"
+      string: "[{\"task_group_id\": \"657b8456-a11b-4ccf-b8fa-deb9a99ee0cb\", \"exception\": null, \"traceback\": null, \"task_id\": \"fc7e6ee1-1636-4248-842d-f19e1520001c\", \"call_request_tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:sync\"], \"reasons\": [], \"start_time\": \"2012-11-28T18:46:09Z\", \"tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:sync\"], \"state\": \"finished\", \"finish_time\": \"2012-11-28T18:46:10Z\", \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {\"yum_importer\": {\"content\": {\"num_success\": 11, \"size_total\": 17872, \"items_left\": 0, \"items_total\": 11, \"state\": \"FINISHED\", \"size_left\": 0, \"details\": {\"tree_file\": {\"num_success\": 3, \"size_total\": 0, \"items_left\": 0, \"items_total\": 3, \"size_left\": 0, \"num_error\": 0}, \"rpm\": {\"num_success\": 8, \"size_total\": 17872, \"items_left\": 0, \"items_total\": 8, \"size_left\": 0, \"num_error\": 0}, \"delta_rpm\": {\"num_success\": 0, \"size_total\": 0, \"items_left\": 0, \"items_total\": 0, \"size_left\": 0, \"num_error\": 0}, \"file\": {\"num_success\": 0, \"size_total\": 0, \"items_left\": 0, \"items_total\": 0, \"size_left\": 0, \"num_error\": 0}}, \"error_details\": [], \"num_error\": 0}, \"comps\": {\"state\": \"FINISHED\"}, \"errata\": {\"state\": \"FINISHED\", \"num_errata\": 2}, \"metadata\": {\"state\": \"FINISHED\"}}}, \"call_request_group_id\": \"657b8456-a11b-4ccf-b8fa-deb9a99ee0cb\", \"call_request_id\": \"fc7e6ee1-1636-4248-842d-f19e1520001c\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}, {\"task_group_id\": \"f306ef20-8c41-462f-be82-7629d61fced4\", \"exception\": null, \"traceback\": null, \"task_id\": \"54f08aa2-9a26-452e-9efc-64e38ad8bf5e\", \"call_request_tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:sync\"], \"reasons\": [], \"start_time\": \"2012-11-28T18:46:18Z\", \"tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:sync\"], \"state\": \"finished\", \"finish_time\": \"2012-11-28T18:46:19Z\", \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {\"yum_importer\": {\"content\": {\"num_success\": 11, \"size_total\": 17872, \"items_left\": 0, \"items_total\": 11, \"state\": \"FINISHED\", \"size_left\": 0, \"details\": {\"tree_file\": {\"num_success\": 3, \"size_total\": 0, \"items_left\": 0, \"items_total\": 3, \"size_left\": 0, \"num_error\": 0}, \"rpm\": {\"num_success\": 8, \"size_total\": 17872, \"items_left\": 0, \"items_total\": 8, \"size_left\": 0, \"num_error\": 0}, \"delta_rpm\": {\"num_success\": 0, \"size_total\": 0, \"items_left\": 0, \"items_total\": 0, \"size_left\": 0, \"num_error\": 0}, \"file\": {\"num_success\": 0, \"size_total\": 0, \"items_left\": 0, \"items_total\": 0, \"size_left\": 0, \"num_error\": 0}}, \"error_details\": [], \"num_error\": 0}, \"comps\": {\"state\": \"FINISHED\"}, \"errata\": {\"state\": \"FINISHED\", \"num_errata\": 2}, \"metadata\": {\"state\": \"FINISHED\"}}}, \"call_request_group_id\": \"f306ef20-8c41-462f-be82-7629d61fced4\", \"call_request_id\": \"54f08aa2-9a26-452e-9efc-64e38ad8bf5e\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}, {\"task_group_id\": \"64952c35-e111-43ce-969d-7fc8a3470427\", \"exception\": null, \"traceback\": null, \"task_id\": \"9bae581c-b743-409d-b98c-bc8ed82560ee\", \"call_request_tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:sync\"], \"reasons\": [], \"start_time\": \"2012-11-28T18:46:26Z\", \"tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:sync\"], \"state\": \"finished\", \"finish_time\": \"2012-11-28T18:46:27Z\", \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {\"yum_importer\": {\"content\": {\"num_success\": 11, \"size_total\": 17872, \"items_left\": 0, \"items_total\": 11, \"state\": \"FINISHED\", \"size_left\": 0, \"details\": {\"tree_file\": {\"num_success\": 3, \"size_total\": 0, \"items_left\": 0, \"items_total\": 3, \"size_left\": 0, \"num_error\": 0}, \"rpm\": {\"num_success\": 8, \"size_total\": 17872, \"items_left\": 0, \"items_total\": 8, \"size_left\": 0, \"num_error\": 0}, \"delta_rpm\": {\"num_success\": 0, \"size_total\": 0, \"items_left\": 0, \"items_total\": 0, \"size_left\": 0, \"num_error\": 0}, \"file\": {\"num_success\": 0, \"size_total\": 0, \"items_left\": 0, \"items_total\": 0, \"size_left\": 0, \"num_error\": 0}}, \"error_details\": [], \"num_error\": 0}, \"comps\": {\"state\": \"FINISHED\"}, \"errata\": {\"state\": \"FINISHED\", \"num_errata\": 2}, \"metadata\": {\"state\": \"FINISHED\"}}}, \"call_request_group_id\": \"64952c35-e111-43ce-969d-7fc8a3470427\", \"call_request_id\": \"9bae581c-b743-409d-b98c-bc8ed82560ee\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}]"
     http_version: 
-  recorded_at: Wed, 28 Nov 2012 15:43:05 GMT
+  recorded_at: Wed, 28 Nov 2012 18:46:30 GMT
+recorded_with: VCR 2.3.0
