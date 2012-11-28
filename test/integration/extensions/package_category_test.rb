@@ -5,7 +5,7 @@ require './lib/runcible'
 require './test/support/repository_support'
 
 
-class TestExtenionsPackageGroup < MiniTest::Unit::TestCase
+class TestExtenionsPackageCategory < MiniTest::Unit::TestCase
 
   def self.before_suite
     @@extension = Runcible::Extensions::PackageCategory
@@ -30,7 +30,7 @@ class TestExtenionsPackageGroup < MiniTest::Unit::TestCase
     response = @@extension.find(id)
 
     refute_empty response
-    assert_equal id, response.first['_id']
+    assert_equal id, response['id']
   end
 
   def test_find_unknown
