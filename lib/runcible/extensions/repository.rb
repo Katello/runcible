@@ -117,6 +117,13 @@ module Runcible
         unit_copy(destination_repo_id, source_repo_id, payload)
       end
 
+      def self.package_group_copy(source_repo_id, destination_repo_id, optional={})
+        criteria = {:type_ids => [Runcible::Extensions::PackageGroup::TYPE], :filters => {}}
+        criteria[:filters][:unit] = { :id=>{ '$in' => optional[:package_group_ids] } } if optional[:package_group_ids]
+        payload = {:criteria => criteria}
+        unit_copy(destination_repo_id, source_repo_id, payload)
+      end
+
       def self.distribution_remove(repo_id, distribution_id)
         criteria = {:type_ids => ['distribution'], :filters => {}}
         criteria[:filters][:unit] = { :id=>{ '$in' => [distribution_id] } }

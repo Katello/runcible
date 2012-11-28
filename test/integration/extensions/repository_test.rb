@@ -292,6 +292,14 @@ class TestExtensionsRepositoryCopy < MiniTest::Unit::TestCase
     assert_includes response['call_request_tags'], 'pulp:action:associate'
   end
 
+  def test_package_group_copy
+    response = @@extension.package_group_copy(RepositorySupport.repo_id, @@clone_name)
+    RepositorySupport.task = response
+
+    assert_equal    202, response.code
+    assert_includes response['call_request_tags'], 'pulp:action:associate'
+  end
+
   def test_distribution_copy
     response = @@extension.distribution_copy(RepositorySupport.repo_id, @@clone_name)
     RepositorySupport.task = response
