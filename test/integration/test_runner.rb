@@ -85,14 +85,14 @@ end
 class PulpMiniTestRunner
 
   def run_tests(options={})
-    mode      = options[:mode] || "recorded" 
+    mode      = options[:mode] || "none"
     test_name = options[:test_name] || nil
     auth_type = options[:auth_type] || "http"
     logging   = options[:logging] || false
 
     MiniTest::Unit.runner = CustomMiniTestRunner::Unit.new
 
-    if mode == "live"
+    if mode == "all"
       set_runcible_config({ :auth_type => auth_type, :logging => logging })
     else
       set_runcible_config({ :logging => logging })
@@ -154,14 +154,14 @@ class PulpMiniTestRunner
   end
 
   def set_vcr_config(mode)
-    if mode == "live"
+    if mode == "all"
       configure_vcr(:all)
-    elsif mode == "none"
-      configure_vcr(:none)
+    elsif mode == "new_episodes"
+      configure_vcr(:new_episodes)
     elsif mode == "once"
       configure_vcr(:once)
     else
-      configure_vcr(:new_episodes)
+      configure_vcr(:none)
     end
   end
 end
