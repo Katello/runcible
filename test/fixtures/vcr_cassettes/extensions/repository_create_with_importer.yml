@@ -1,36 +1,42 @@
 --- 
-recorded_with: VCR 2.3.0
 http_interactions: 
 - request: 
     method: post
     uri: https://admin:admin@localhost/pulp/api/v2/repositories/
     body: 
-      string: "{\"id\":\"integration_test_id\",\"distributors\":[{\"distributor_config\":{\"https\":true,\"relative_url\":\"/path\",\"http\":true},\"distributor_type\":\"yum_distributor\",\"distributor_id\":\"123\",\"auto_publish\":true}]}"
+      encoding: US-ASCII
+      string: "{\"id\":\"integration_test_id\",\"distributors\":[{\"distributor_type\":\"yum_distributor\",\"distributor_config\":{\"relative_url\":\"/path\",\"http\":true,\"https\":true},\"auto_publish\":true,\"distributor_id\":\"123\"}]}"
     headers: 
-      Content-Length: 
-      - "198"
-      Content-Type: 
-      - application/json
       Accept: 
       - application/json
       Accept-Encoding: 
       - gzip, deflate
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "198"
+      User-Agent: 
+      - Ruby
   response: 
     status: 
       code: 201
       message: Created
     headers: 
-      Content-Length: 
-      - "265"
-      Location: 
-      - integration_test_id
-      Content-Type: 
-      - application/json
+      Date: 
+      - Sun, 06 Jan 2013 11:51:03 GMT
       Server: 
       - Apache/2.2.22 (Fedora)
-      Date: 
-      - Wed, 28 Nov 2012 20:35:23 GMT
+      Location: 
+      - integration_test_id
+      Content-Length: 
+      - "265"
+      Connection: 
+      - close
+      Content-Type: 
+      - application/json
     body: 
-      string: "{\"scratchpad\": {}, \"display_name\": \"integration_test_id\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_count\": 0, \"_id\": {\"$oid\": \"50b6758b9c60ed40db003a17\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\"}"
+      encoding: US-ASCII
+      string: "{\"scratchpad\": {}, \"display_name\": \"integration_test_id\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_count\": 0, \"_id\": {\"$oid\": \"50e96527dc79213ace00091f\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\"}"
     http_version: 
-  recorded_at: Wed, 28 Nov 2012 20:35:23 GMT
+  recorded_at: Sun, 06 Jan 2013 11:51:03 GMT
+recorded_with: VCR 2.2.5
