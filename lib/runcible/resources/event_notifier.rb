@@ -28,14 +28,14 @@ module Runcible
     class EventNotifier < Runcible::Base
 
       class EventTypes
-        REPO_SYNC_COMPLETE = 'repo.sync.finish'
-        REPO_SYNC_START = 'repo.sync.start'
+        REPO_SYNC_COMPLETE    = 'repo.sync.finish'
+        REPO_SYNC_START       = 'repo.sync.start'
         REPO_PUBLISH_COMPLETE = 'repo.publish.finish'
-        REPO_PUBLISH_START = 'repo.publish.start'
+        REPO_PUBLISH_START    = 'repo.publish.start'
       end
 
       class NotifierTypes
-        REST_API = 'rest-api'
+        REST_API = 'http'
       end
 
       # Generates the API path for Event Notifiers

@@ -17,7 +17,7 @@ namespace :test do
     options[:auth_type] = ENV['auth_type']
     options[:logging]   = ENV['logging']
 
-    if !['new_episodes', 'live', 'none', 'once'].include?(options[:mode])
+    if !['new_episodes', 'all', 'none', 'once'].include?(options[:mode])
       puts "Invalid test mode"
     else
       require "./test/integration/test_runner"
@@ -33,7 +33,7 @@ namespace :test do
       end
 
       test_runner.run_tests(options)
-      Rake::Task[:update_test_version].invoke if options[:mode] == "live"
+      Rake::Task[:update_test_version].invoke if options[:mode] == "all"
     end
   end
 end

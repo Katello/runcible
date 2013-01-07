@@ -4,7 +4,7 @@
 
 Exposing Pulp's juiciest parts. http://www.pulpproject.org/
 
-Latest Live Tested Version: **pulp-server-2.0.6-0.9.beta.noarch**
+Latest Live Tested Version: **pulp-server-2.0.6-1.noarch**
 
 For in-depth class and method documentation: http://katello.github.com/runcible/
 
