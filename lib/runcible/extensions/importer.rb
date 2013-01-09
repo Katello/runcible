@@ -1,4 +1,4 @@
-# Copyright (c) 2012 Justin Sherrill
+# Copyright (c) 2012
 #
 # MIT License
 #
@@ -27,7 +27,9 @@ require 'active_support/json'
 
 module Runcible
   module Extensions
-    #Importers should supply  id & config methods
+
+    # Generic class to represent Pulp Importers 
+    # Child classes should supply id & config methods
     class Importer
       def initialize(params={})
         params.each{|k,v| self.send("#{k.to_s}=",v)}
