@@ -24,9 +24,11 @@
 
 module Runcible
   module Extensions
-    class Distribution < Runcible::Resources::Unit
+    class Distribution < Runcible::Extensions::Unit
 
-      TYPE = 'distribution'
+      def self.content_type
+        'distribution'
+      end
 
     end
   end

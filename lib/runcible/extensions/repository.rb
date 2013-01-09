@@ -194,7 +194,7 @@ module Runcible
       # @param  [Hash]                  optional            container for all optional parameters
       # @return [RestClient::Response]                      a task representing the unit copy operation
       def self.package_group_copy(source_repo_id, destination_repo_id, optional={})
-        criteria = {:type_ids => [Runcible::Extensions::PackageGroup::TYPE], :filters => {}}
+        criteria = {:type_ids => [Runcible::Extensions::PackageGroup.content_type], :filters => {}}
         criteria[:filters][:unit] = { :id=>{ '$in' => optional[:package_group_ids] } } if optional[:package_group_ids]
         payload = {:criteria => criteria}
         unit_copy(destination_repo_id, source_repo_id, payload)
@@ -279,7 +279,7 @@ module Runcible
       # @param  [String]                id the ID of the repository
       # @return [RestClient::Response]     the set of repository package groups
       def self.package_groups(id)
-        criteria = {:type_ids=>[Runcible::Extensions::PackageGroup::TYPE]}
+        criteria = {:type_ids=>[Runcible::Extensions::PackageGroup.content_type]}
 
         self.unit_search(id, criteria).collect{|i| i['metadata'].with_indifferent_access}
       end
@@ -289,7 +289,7 @@ module Runcible
       # @param  [String]                id the ID of the repository
       # @return [RestClient::Response]     the set of repository package group categories
       def self.package_categories(id)
-        criteria = {:type_ids=>[Runcible::Extensions::PackageCategory::TYPE]}
+        criteria = {:type_ids=>[Runcible::Extensions::PackageCategory.content_type]}
         self.unit_search(id, criteria).collect{|i| i['metadata'].with_indifferent_access}
       end
 

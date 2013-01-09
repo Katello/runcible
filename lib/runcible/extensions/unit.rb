@@ -27,13 +27,15 @@ module Runcible
     class Unit < Runcible::Resources::Unit
       
       # The content type (e.g. rpm, errata)
-      TYPE = ''
+      def self.content_type
+        ''
+      end
 
-      # Retrieves all content of a certain TYPE
+      # Retrieves all content of a certain @@type
       #
       # @return [RestClient::Response]  list of all content for the given type
       def self.all
-        self.search(TYPE, {})
+        self.search(content_type, {})
       end
 
       # Retrieves a single content by it's content ID
@@ -51,7 +53,7 @@ module Runcible
       # @return [RestClient::Response]      list of content
       def self.find_all(ids, optional={})
         optional ||= { :include_repos => true }
-        self.search(TYPE, :filters => {'id'=> {'$in'=> ids}}, optional)
+        self.search(content_type, { :filters => {'id'=> {'$in'=> ids}} }, optional)
       end
 
       # Retrieves a single content by it's unit ID
@@ -69,7 +71,7 @@ module Runcible
       # @return [RestClient::Response]      list of content
       def self.find_all_by_unit_ids(ids, optional={})
         optional ||= { :include_repos => true }
-        self.search(TYPE, :filters => {:_id=> {'$in'=> ids}}, optional)
+        self.search(content_type, { :filters => {:_id=> {'$in'=> ids}} }, optional)
       end
 
     end

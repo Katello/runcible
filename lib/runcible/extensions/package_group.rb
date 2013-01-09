@@ -24,9 +24,11 @@
 
 module Runcible
   module Extensions
-    class PackageGroup < Runcible::Base
+    class PackageGroup < Runcible::Extensions::Unit
 
-      TYPE = 'package_group'
+      def self.content_type
+        'package_group'
+      end
 
     end
   end

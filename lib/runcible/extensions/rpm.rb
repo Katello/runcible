@@ -26,7 +26,9 @@ module Runcible
   module Extensions
     class Rpm < Runcible::Extensions::Unit
 
-      TYPE = 'rpm'
+      def self.content_type
+        'rpm'
+      end
 
       # This function is not implemented for RPMs since they do not have content IDs
       def self.find

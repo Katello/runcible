@@ -26,7 +26,9 @@ module Runcible
   module Extensions
     class Errata < Runcible::Extensions::Unit
 
-      TYPE = 'erratum'
+      def self.content_type
+        'erratum'
+      end
 
     end
   end
