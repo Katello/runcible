@@ -18,6 +18,10 @@ class TestExtenionsPackageCategory < MiniTest::Unit::TestCase
     VCR.eject_cassette
   end
 
+  def test_content_type
+    assert_equal 'package_category', @@extension.content_type
+  end
+
   def test_all
     response = @@extension.all
 

@@ -18,6 +18,10 @@ class TestExtenionsRpm < MiniTest::Unit::TestCase
     VCR.eject_cassette
   end
 
+  def test_content_type
+    assert_equal 'rpm', @@extension.content_type
+  end
+
   def test_all
     response = @@extension.all
 
