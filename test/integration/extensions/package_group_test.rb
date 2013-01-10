@@ -18,6 +18,10 @@ class TestExtenionsPackageGroup < MiniTest::Unit::TestCase
     VCR.eject_cassette
   end
 
+  def test_content_type
+    assert_equal 'package_group', @@extension.content_type
+  end
+
   def test_all
     response = @@extension.all
 
@@ -31,6 +35,14 @@ class TestExtenionsPackageGroup < MiniTest::Unit::TestCase
 
     refute_empty response
     assert_equal id, response['id']
+  end
+
+  def test_find_by_unit_id
+    id = @@extension.all.sort_by{|p| p['id']}.first['_id']
+    response = @@extension.find_by_unit_id(id)
+
+    refute_empty response
+    assert_equal id, response['_id']
   end
 
   def test_find_unknown

@@ -18,6 +18,10 @@ class TestExtenionsRpm < MiniTest::Unit::TestCase
     VCR.eject_cassette
   end
 
+  def test_content_type
+    assert_equal 'rpm', @@extension.content_type
+  end
+
   def test_all
     response = @@extension.all
 
@@ -26,23 +30,31 @@ class TestExtenionsRpm < MiniTest::Unit::TestCase
   end
 
   def test_find
+    assert_raises(NotImplementedError) { response = @@extension.find }
+  end
+
+  def test_find_all
+    assert_raises(NotImplementedError) { response = @@extension.find_all }
+  end
+
+  def test_find_by_unit_id
     id = @@extension.all.sort_by{|p| p['_id']}.first['_id']
-    response = @@extension.find(id)
+    response = @@extension.find_by_unit_id(id)
 
     refute_empty response
     assert_equal id, response['_id']
   end
 
   def test_find_unknown
-    response = @@extension.find_all(['f'])
+    response = @@extension.find_all_by_unit_ids(['f'])
 
     assert_empty response
   end
 
-  def test_find_all
+  def test_find_all_by_unit_ids
     pkgs = @@extension.all.sort_by{|p| p['_id']}
     ids = pkgs[0..2].collect{|p| p['_id']}
-    response = @@extension.find_all(ids)
+    response = @@extension.find_all_by_unit_ids(ids)
 
     assert_equal 200, response.code
     assert_equal ids.length, response.length

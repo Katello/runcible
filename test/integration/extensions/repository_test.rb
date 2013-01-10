@@ -237,18 +237,18 @@ class TestExtensionsRepositoryUnitList < MiniTest::Unit::TestCase
     refute_empty response
   end
 
-  def test_packages_by_name
+  def test_rpms_by_name
     list = @@extension.rpms(RepositorySupport.repo_id)
     rpm = list.first
-    response = @@extension.packages_by_nvre(RepositorySupport.repo_id, rpm['name'])
+    response = @@extension.rpms_by_nvre(RepositorySupport.repo_id, rpm['name'])
 
     refute_empty response
   end
 
-  def test_packages_by_nvre
+  def test_rpms_by_nvre
     list = @@extension.rpms(RepositorySupport.repo_id)
     rpm = list.first
-    response = @@extension.packages_by_nvre(RepositorySupport.repo_id, rpm['name'], rpm['version'],
+    response = @@extension.rpms_by_nvre(RepositorySupport.repo_id, rpm['name'], rpm['version'],
                                             rpm['release'], rpm['epoch'])
 
     refute_empty response
