@@ -105,6 +105,23 @@ This package contains documentation for rubygem-%{gem_name}
 %doc %{gem_docdir}
 
 %changelog
+* Fri Jan 11 2013 Eric D Helms <ehelms@redhat.com> 0.3.0-1
+- Version bump. (ehelms@redhat.com)
+- Adds tests for content_type. (ehelms@redhat.com)
+- Updates to how the content type is declared for extensions. Test updates.
+  (ehelms@redhat.com)
+- Series of documentation updates for extensions that include the addition of a
+  base Unit extension that all content types inherit from. (ehelms@redhat.com)
+- Updating to first Pulp V2.0 stable build. (ehelms@redhat.com)
+- minor version bump (jsherril@redhat.com)
+- cassette update (jsherril@redhat.com)
+- fixing package category test
+- adding package group copy (jsherril@redhat.com)
+- Automatic commit of package [rubygem-runcible] release [0.2.0-1].
+  (ehelms@redhat.com)
+- Spec file updates to remove redundant directory declarations.
+  (ehelms@redhat.com)
+
 * Mon Nov 19 2012 Eric D Helms <ehelms@redhat.com> 0.2.0-1
 - Spec file updates to remove redundant directory declarations.
   (ehelms@redhat.com)
