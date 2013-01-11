@@ -29,6 +29,7 @@ resources += Dir[File.dirname(__FILE__) + '/runcible/base.rb']
 resources += Dir[File.dirname(__FILE__) + '/runcible/resources/*.rb']
 resources += Dir[File.dirname(__FILE__) + '/runcible/extensions/importer.rb']
 resources += Dir[File.dirname(__FILE__) + '/runcible/extensions/distributor.rb']
+resources += Dir[File.dirname(__FILE__) + '/runcible/extensions/unit.rb']
 resources += Dir[File.dirname(__FILE__) + '/runcible/extensions/*.rb']
 
-resources.each{ |f| require f }
+resources.uniq.each{ |f| require f }

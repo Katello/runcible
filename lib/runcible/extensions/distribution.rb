@@ -24,23 +24,10 @@
 
 module Runcible
   module Extensions
-    class Distribution < Runcible::Resources::Unit
-      TYPE = 'distribution'
+    class Distribution < Runcible::Extensions::Unit
 
-      def self.all()
-        search(TYPE, {})
-      end
-
-      def self.find(id)
-         find_all([id]).first
-       end
-
-      def self.find_all(ids)
-        search(TYPE, :filters=> {:id=> {'$in'=> ids}})
-      end
-
-      def self.find_all_by_unit_ids(ids)
-        search(TYPE, :filters=> {:_id=> {'$in'=> ids}})
+      def self.content_type
+        'distribution'
       end
 
     end

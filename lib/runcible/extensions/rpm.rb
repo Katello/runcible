@@ -24,20 +24,22 @@
 
 module Runcible
   module Extensions
-    class Rpm < Runcible::Resources::Unit
-      TYPE = 'rpm'
+    class Rpm < Runcible::Extensions::Unit
 
-      def self.all
-        search(TYPE, {})
+      def self.content_type
+        'rpm'
       end
 
-      def self.find(id)
-        find_all([id]).first
+      # This function is not implemented for RPMs since they do not have content IDs
+      def self.find
+        raise NotImplementedError
       end
 
-      def self.find_all(ids)
-        search(TYPE, {:filters => {'_id'=> {'$in'=> ids}}}, {:include_repos=>true})
+      # This function is not implemented for RPMs since they do not have content IDs
+      def self.find_all
+        raise NotImplementedError
       end
+
     end
   end
 end
