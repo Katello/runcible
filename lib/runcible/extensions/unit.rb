@@ -43,7 +43,7 @@ module Runcible
       # @param  [Array]                id   the content ID of the content to retrieve
       # @return [RestClient::Response]      the requested content
       def self.find(id, optional={})
-        optional ||= { :include_repos => true }
+        optional[:include_repos] = true if optional.empty?
         find_all([id], optional).first
       end
 
@@ -52,7 +52,7 @@ module Runcible
       # @param  [Array]                ids  list of content IDs to retrieve
       # @return [RestClient::Response]      list of content
       def self.find_all(ids, optional={})
-        optional ||= { :include_repos => true }
+        optional[:include_repos] = true if optional.empty?
         self.search(content_type, { :filters => {'id'=> {'$in'=> ids}} }, optional)
       end
 
@@ -61,7 +61,7 @@ module Runcible
       # @param  [Array]                id   the unit ID of the content to retrieve
       # @return [RestClient::Response]      the requested content
       def self.find_by_unit_id(id, optional={})
-        optional ||= { :include_repos => true }
+        optional[:include_repos] = true if optional.empty?
         find_all_by_unit_ids([id], optional).first
       end
 
@@ -70,7 +70,7 @@ module Runcible
       # @param  [Array]                ids  list of content unit IDs to retrieve
       # @return [RestClient::Response]      list of content
       def self.find_all_by_unit_ids(ids, optional={})
-        optional ||= { :include_repos => true }
+        optional[:include_repos] = true if optional.empty?
         self.search(content_type, { :filters => {:_id=> {'$in'=> ids}} }, optional)
       end
 
