@@ -25,6 +25,7 @@ require 'rubygems'
 require 'minitest/autorun'
 
 require './lib/runcible'
+require './test/unit/unit_base'
 require './test/support/repository_support'
 
 
@@ -91,4 +92,20 @@ class TestExtensionsDistribution < MiniTest::Unit::TestCase
     assert_equal ids.length, response.length
   end
 
+end
+
+class TestExtensionsDistributionCopy < UnitCopyBase
+  def self.extension_class
+    Runcible::Extensions::Distribution
+  end
+end
+
+class TestExtensionsDistributionUnassociate < UnitUnassociateBase
+  def self.extension_class
+    Runcible::Extensions::Distribution
+  end
+  def content_ids(repo)
+    distros = Runcible::Extensions::Repository.distributions(repo)
+    distros.collect{|i| i['id']}
+  end
 end

@@ -1,0 +1,164 @@
+--- 
+http_interactions: 
+- request: 
+    method: post
+    uri: https://admin:admin@localhost/pulp/api/v2/repositories/
+    body: 
+      string: "{\"importer_type_id\":\"yum_importer\",\"id\":\"integration_test_id_clone\",\"importer_config\":{}}"
+    headers: 
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Length: 
+      - "89"
+      Accept: 
+      - application/json
+      Content-Type: 
+      - application/json
+  response: 
+    status: 
+      code: 201
+      message: Created
+    headers: 
+      Server: 
+      - Apache/2.2.22 (Fedora)
+      Content-Length: 
+      - "283"
+      Date: 
+      - Thu, 17 Jan 2013 21:23:15 GMT
+      Location: 
+      - integration_test_id_clone
+      Content-Type: 
+      - application/json
+    body: 
+      string: "{\"scratchpad\": {}, \"display_name\": \"integration_test_id_clone\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_count\": 0, \"_id\": {\"$oid\": \"50f86bc3196cbe74d300097f\"}, \"id\": \"integration_test_id_clone\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id_clone/\"}"
+    http_version: 
+  recorded_at: Thu, 17 Jan 2013 21:23:16 GMT
+- request: 
+    method: post
+    uri: https://admin:admin@localhost/pulp/api/v2/repositories/integration_test_id_clone/actions/associate/
+    body: 
+      string: "{\"source_repo_id\":\"integration_test_id\"}"
+    headers: 
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Length: 
+      - "40"
+      Accept: 
+      - application/json
+      Content-Type: 
+      - application/json
+  response: 
+    status: 
+      code: 202
+      message: Accepted
+    headers: 
+      Content-Encoding: 
+      - utf-8
+      Server: 
+      - Apache/2.2.22 (Fedora)
+      Content-Length: 
+      - "730"
+      Date: 
+      - Thu, 17 Jan 2013 21:23:16 GMT
+      Content-Type: 
+      - application/json
+    body: 
+      string: "{\"task_group_id\": null, \"exception\": null, \"traceback\": null, \"_href\": \"/pulp/api/v2/tasks/3466ba56-9720-412a-bb85-64a442c89dff/\", \"task_id\": \"3466ba56-9720-412a-bb85-64a442c89dff\", \"call_request_tags\": [\"pulp:repository:integration_test_id_clone\", \"pulp:repository:integration_test_id\", \"pulp:action:associate\"], \"reasons\": [], \"start_time\": null, \"tags\": [\"pulp:repository:integration_test_id_clone\", \"pulp:repository:integration_test_id\", \"pulp:action:associate\"], \"state\": \"waiting\", \"finish_time\": null, \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": null, \"call_request_id\": \"3466ba56-9720-412a-bb85-64a442c89dff\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}"
+    http_version: 
+  recorded_at: Thu, 17 Jan 2013 21:23:16 GMT
+- request: 
+    method: post
+    uri: https://admin:admin@localhost/pulp/api/v2/repositories/integration_test_id/search/units/
+    body: 
+      string: "{\"criteria\":{\"type_ids\":[\"erratum\"]}}"
+    headers: 
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Length: 
+      - "37"
+      Accept: 
+      - application/json
+      Content-Type: 
+      - application/json
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Server: 
+      - Apache/2.2.22 (Fedora)
+      Content-Length: 
+      - "1939"
+      Date: 
+      - Thu, 17 Jan 2013 21:23:18 GMT
+      Content-Type: 
+      - application/json
+    body: 
+      string: "[{\"updated\": \"2013-01-18T02:23:13Z\", \"repo_id\": \"integration_test_id\", \"created\": \"2013-01-18T02:23:13Z\", \"_ns\": \"repo_content_units\", \"unit_id\": \"d182d22f-f50a-409b-ba1a-97eede216543\", \"unit_type_id\": \"erratum\", \"owner_type\": \"importer\", \"_id\": {\"$oid\": \"50f86bc1196cbe74d300096c\"}, \"id\": \"50f86bc1196cbe74d300096c\", \"owner_id\": \"yum_importer\", \"metadata\": {\"issued\": \"2010-01-01 01:01:01\", \"references\": [], \"_content_type_id\": \"erratum\", \"id\": \"RHEA-2010:0001\", \"severity\": \"\", \"title\": \"Empty errata\", \"_ns\": \"units_erratum\", \"version\": \"1\", \"reboot_suggested\": false, \"type\": \"security\", \"pkglist\": [], \"status\": \"stable\", \"updated\": \"\", \"description\": \"Empty errata\", \"pushcount\": 1, \"from_str\": \"lzap+pub@redhat.com\", \"_storage_path\": null, \"rights\": \"\", \"solution\": \"\", \"summary\": \"\", \"release\": \"1\", \"_id\": \"d182d22f-f50a-409b-ba1a-97eede216543\"}}, {\"updated\": \"2013-01-18T02:23:13Z\", \"repo_id\": \"integration_test_id\", \"created\": \"2013-01-18T02:23:13Z\", \"_ns\": \"repo_content_units\", \"unit_id\": \"25ae71c8-1297-4213-bb33-40a8126ba883\", \"unit_type_id\": \"erratum\", \"owner_type\": \"importer\", \"_id\": {\"$oid\": \"50f86bc1196cbe74d300096e\"}, \"id\": \"50f86bc1196cbe74d300096e\", \"owner_id\": \"yum_importer\", \"metadata\": {\"issued\": \"2010-01-01 01:01:01\", \"references\": [], \"_content_type_id\": \"erratum\", \"id\": \"RHEA-2010:0002\", \"severity\": \"\", \"title\": \"One package errata\", \"_ns\": \"units_erratum\", \"version\": \"1\", \"reboot_suggested\": false, \"type\": \"security\", \"pkglist\": [{\"packages\": [{\"src\": \"http://www.fedoraproject.org\", \"name\": \"elephant\", \"filename\": \"elephant-0.3-0.8.noarch.rpm\", \"epoch\": null, \"version\": \"0.3\", \"release\": \"0.8\", \"arch\": \"noarch\"}], \"name\": \"1\", \"short\": \"\"}], \"status\": \"stable\", \"updated\": \"\", \"description\": \"One package errata\", \"pushcount\": 1, \"from_str\": \"lzap+pub@redhat.com\", \"_storage_path\": null, \"rights\": \"\", \"solution\": \"\", \"summary\": \"\", \"release\": \"1\", \"_id\": \"25ae71c8-1297-4213-bb33-40a8126ba883\"}}]"
+    http_version: 
+  recorded_at: Thu, 17 Jan 2013 21:23:18 GMT
+- request: 
+    method: post
+    uri: https://admin:admin@localhost/pulp/api/v2/repositories/integration_test_id_clone/actions/unassociate/
+    body: 
+      string: "{\"criteria\":{\"type_ids\":[\"erratum\"],\"filters\":{\"association\":{\"unit_id\":{\"$in\":[\"d182d22f-f50a-409b-ba1a-97eede216543\"]}}}}}"
+    headers: 
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Length: 
+      - "124"
+      Accept: 
+      - application/json
+      Content-Type: 
+      - application/json
+  response: 
+    status: 
+      code: 202
+      message: Accepted
+    headers: 
+      Content-Encoding: 
+      - utf-8
+      Server: 
+      - Apache/2.2.22 (Fedora)
+      Content-Length: 
+      - "656"
+      Date: 
+      - Thu, 17 Jan 2013 21:23:18 GMT
+      Content-Type: 
+      - application/json
+    body: 
+      string: "{\"task_group_id\": null, \"exception\": null, \"traceback\": null, \"_href\": \"/pulp/api/v2/tasks/d58774f3-ff70-45a1-b0da-194716fe8155/\", \"task_id\": \"d58774f3-ff70-45a1-b0da-194716fe8155\", \"call_request_tags\": [\"pulp:repository:integration_test_id_clone\", \"pulp:action:unassociate\"], \"reasons\": [], \"start_time\": null, \"tags\": [\"pulp:repository:integration_test_id_clone\", \"pulp:action:unassociate\"], \"state\": \"waiting\", \"finish_time\": null, \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": null, \"call_request_id\": \"d58774f3-ff70-45a1-b0da-194716fe8155\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}"
+    http_version: 
+  recorded_at: Thu, 17 Jan 2013 21:23:18 GMT
+- request: 
+    method: post
+    uri: https://admin:admin@localhost/pulp/api/v2/repositories/integration_test_id_clone/search/units/
+    body: 
+      string: "{\"criteria\":{\"type_ids\":[\"erratum\"]}}"
+    headers: 
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Length: 
+      - "37"
+      Accept: 
+      - application/json
+      Content-Type: 
+      - application/json
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Server: 
+      - Apache/2.2.22 (Fedora)
+      Content-Length: 
+      - "1077"
+      Date: 
+      - Thu, 17 Jan 2013 21:23:20 GMT
+      Content-Type: 
+      - application/json
+    body: 
+      string: "[{\"updated\": \"2013-01-18T02:23:16Z\", \"repo_id\": \"integration_test_id_clone\", \"created\": \"2013-01-18T02:23:16Z\", \"_ns\": \"repo_content_units\", \"unit_id\": \"25ae71c8-1297-4213-bb33-40a8126ba883\", \"unit_type_id\": \"erratum\", \"owner_type\": \"user\", \"_id\": {\"$oid\": \"50f86bc4196cbe74d3000991\"}, \"id\": \"50f86bc4196cbe74d3000991\", \"owner_id\": \"admin\", \"metadata\": {\"issued\": \"2010-01-01 01:01:01\", \"references\": [], \"_content_type_id\": \"erratum\", \"id\": \"RHEA-2010:0002\", \"severity\": \"\", \"title\": \"One package errata\", \"_ns\": \"units_erratum\", \"version\": \"1\", \"reboot_suggested\": false, \"type\": \"security\", \"pkglist\": [{\"packages\": [{\"src\": \"http://www.fedoraproject.org\", \"name\": \"elephant\", \"filename\": \"elephant-0.3-0.8.noarch.rpm\", \"epoch\": null, \"version\": \"0.3\", \"release\": \"0.8\", \"arch\": \"noarch\"}], \"name\": \"1\", \"short\": \"\"}], \"status\": \"stable\", \"updated\": \"\", \"description\": \"One package errata\", \"pushcount\": 1, \"from_str\": \"lzap+pub@redhat.com\", \"_storage_path\": null, \"rights\": \"\", \"solution\": \"\", \"summary\": \"\", \"release\": \"1\", \"_id\": \"25ae71c8-1297-4213-bb33-40a8126ba883\"}}]"
+    http_version: 
+  recorded_at: Thu, 17 Jan 2013 21:23:20 GMT
+recorded_with: VCR 2.4.0

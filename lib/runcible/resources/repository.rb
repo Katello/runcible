@@ -27,7 +27,6 @@ module Runcible
   module Resources
     # @see https://pulp-dev-guide.readthedocs.org/en/latest/rest-api/repo/index.html
     class Repository < Runcible::Base
-
       # Generates the API path for Repositories
       #
       # @param  [String]  id  the id of the repository
@@ -161,6 +160,7 @@ module Runcible
       def self.unit_search(id, criteria={})
         call(:post, "#{path(id)}search/units/", :payload=>{:required=>{:criteria=>criteria}})
       end
+
 
       # Publishes a repository using the specified distributor
       #

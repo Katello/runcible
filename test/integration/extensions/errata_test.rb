@@ -25,6 +25,7 @@ require 'rubygems'
 require 'minitest/autorun'
 
 require './lib/runcible'
+require './test/unit/unit_base'
 require './test/support/repository_support'
 
 
@@ -87,4 +88,19 @@ class TestExtensionsErrata < MiniTest::Unit::TestCase
     assert_equal ids.length, response.length
   end
 
+end
+
+class TestExtensionsErrataCopy < UnitCopyBase
+  def self.extension_class
+    Runcible::Extensions::Errata
+  end
+end
+
+class TestExtensionsErrataUnassociate < UnitUnassociateBase
+  def self.extension_class
+    Runcible::Extensions::Errata
+  end
+  def content_ids(repo)
+    Runcible::Extensions::Repository.errata_ids(repo)
+  end
 end

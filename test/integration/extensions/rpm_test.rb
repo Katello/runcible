@@ -2,10 +2,11 @@ require 'rubygems'
 require 'minitest/autorun'
 
 require './lib/runcible'
+require './test/unit/unit_base'
 require './test/support/repository_support'
 
 
-class TestExtenionsRpm < MiniTest::Unit::TestCase
+class TestExtensionsRpm < MiniTest::Unit::TestCase
 
   def self.before_suite
     @@extension = Runcible::Extensions::Rpm
@@ -60,4 +61,18 @@ class TestExtenionsRpm < MiniTest::Unit::TestCase
     assert_equal ids.length, response.length
   end
 
+end
+class TestExtensionsRpmCopy < UnitCopyBase
+  def self.extension_class
+    Runcible::Extensions::Rpm
+  end
+end
+
+class TestExtensionsRpmUnassociate < UnitUnassociateBase
+  def self.extension_class
+    Runcible::Extensions::Rpm
+  end
+  def content_ids(repo)
+    Runcible::Extensions::Repository.rpm_ids(repo)
+  end
 end

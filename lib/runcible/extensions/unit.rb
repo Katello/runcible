@@ -74,6 +74,40 @@ module Runcible
         self.search(content_type, { :filters => {:_id=> {'$in'=> ids}} }, optional)
       end
 
+      # unassociates content units from a repository
+      #
+      # @param  [String]                repo_id the repository ID to remove units from
+      # @param  Hash                    filters the filters to find the units  this content type to remove
+      # @return [RestClient::Response]          a task representing the unit unassociate operation
+      def self.unassociate_from_repo(repo_id, filters)
+        criteria = {:type_ids => [content_type]}
+        criteria[:filters] = filters
+        Runcible::Extensions::Repository.unassociate_units(repo_id, criteria)
+      end
+
+      # unassociates content units from a repository
+      #
+      # @param  [String]                repo_id the repository ID to remove units from
+      # @param  ids                    ids of the content unit of this content type to remove
+      # @return [RestClient::Response]          a task representing the unit unassociate operation
+      def self.unassociate_ids_from_repo(repo_id, ids)
+        unassociate_from_repo(repo_id, :association => {'unit_id' => {'$in' => ids}})
+      end
+
+
+      #copy contents from source repo to the destination repo
+      #
+      # @param  [String]                source_repo_id      the source repository ID
+      # @param  [String]                destination_repo_id the destination repository ID
+      # @param  [Hash]                  optional            container for all optional parameters
+      # @return [RestClient::Response]                      a task representing the unit copy operation
+      def self.copy(source_repo_id, destination_repo_id, optional={})
+        criteria = {:type_ids => [content_type], :filters => {}}
+        criteria[:filters]['association'] = {'unit_id' => {'$in' => optional[:ids]}} if optional[:ids]
+        payload = {:criteria => criteria}
+        Runcible::Extensions::Repository.unit_copy(destination_repo_id, source_repo_id, payload)
+      end
+
     end
   end
 end
