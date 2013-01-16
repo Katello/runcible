@@ -47,7 +47,7 @@ Name:           rubygem-%{gem_name}
 Summary:        A gem exposing Pulp's juiciest parts
 Group:          Applications/System
 License:        MIT
-Version:        0.3.0
+Version:        0.3.1
 Release:        1%{?dist}
 URL:            https://github.com/Katello/runcible
 Source0:        %{name}-%{version}.tar.gz
@@ -105,6 +105,11 @@ This package contains documentation for rubygem-%{gem_name}
 %doc %{gem_docdir}
 
 %changelog
+* Wed Jan 16 2013 Justin Sherrill <jsherril@redhat.com> 0.3.1-1
+- version bump to 0.3.1 (jsherril@redhat.com)
+- fixes #35 - correctly default to include repos info in unit finds
+  (jsherril@redhat.com)
+
 * Fri Jan 11 2013 Eric D Helms <ehelms@redhat.com> 0.3.0-1
 - Version bump. (ehelms@redhat.com)
 - Adds tests for content_type. (ehelms@redhat.com)
