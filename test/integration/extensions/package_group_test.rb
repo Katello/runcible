@@ -75,10 +75,27 @@ class TestExtensionsPackageGroupCopy < UnitCopyBase
   def self.extension_class
     Runcible::Extensions::PackageGroup
   end
+
+  def test_copy
+    execute_copy_test
+  end
 end
 
 class TestExtensionsPackageGroupUnassociate < UnitUnassociateBase
   def self.extension_class
     Runcible::Extensions::PackageGroup
   end
+
+  def test_unassociate_ids_from_repo
+    execute_unassociate_by_id
+  end
+
+  def test_unassociate_unit_ids_from_repo
+    execute_unassociate_by_unit_id
+  end
+
+  def test_unassociate_from_repo
+    execute_unassociate_from_repo
+  end
+
 end

@@ -2,227 +2,37 @@
 http_interactions: 
 - request: 
     method: post
-    uri: https://admin:admin@localhost/pulp/api/v2/repositories/integration_test_id/search/units/
-    body: 
-      string: "{\"criteria\":{\"type_ids\":[\"package_group\"]}}"
-    headers: 
-      Accept: 
-      - application/json
-      Accept-Encoding: 
-      - gzip, deflate
-      Content-Length: 
-      - "43"
-      Content-Type: 
-      - application/json
-  response: 
-    status: 
-      code: 200
-      message: OK
-    headers: 
-      Date: 
-      - Mon, 21 Jan 2013 21:47:40 GMT
-      Content-Length: 
-      - "1770"
-      Server: 
-      - Apache/2.2.22 (Fedora)
-      Content-Type: 
-      - application/json
-    body: 
-      string: "[{\"updated\": \"2013-01-22T02:47:36Z\", \"repo_id\": \"integration_test_id\", \"created\": \"2013-01-22T02:47:36Z\", \"_ns\": \"repo_content_units\", \"unit_id\": \"ed25648e-22c3-452e-b9b2-b2f9e28636e0\", \"unit_type_id\": \"package_group\", \"owner_type\": \"importer\", \"_id\": {\"$oid\": \"50fdb778196cbe3e59000a6b\"}, \"id\": \"50fdb778196cbe3e59000a6b\", \"owner_id\": \"yum_importer\", \"metadata\": {\"_storage_path\": null, \"mandatory_package_names\": [\"penguin\"], \"repo_id\": \"integration_test_id\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"_ns\": \"units_package_group\", \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"ed25648e-22c3-452e-b9b2-b2f9e28636e0\", \"id\": \"bird\", \"name\": \"bird\"}}, {\"updated\": \"2013-01-22T02:47:36Z\", \"repo_id\": \"integration_test_id\", \"created\": \"2013-01-22T02:47:36Z\", \"_ns\": \"repo_content_units\", \"unit_id\": \"680bfc59-3462-4965-9f69-9a8f99e4ae88\", \"unit_type_id\": \"package_group\", \"owner_type\": \"importer\", \"_id\": {\"$oid\": \"50fdb778196cbe3e59000a6a\"}, \"id\": \"50fdb778196cbe3e59000a6a\", \"owner_id\": \"yum_importer\", \"metadata\": {\"_storage_path\": null, \"mandatory_package_names\": [\"elephant,giraffe,cheetah,lion,monkey,penguin,squirrel,walrus\", \"penguin\"], \"repo_id\": \"integration_test_id\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"_ns\": \"units_package_group\", \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"680bfc59-3462-4965-9f69-9a8f99e4ae88\", \"id\": \"mammal\", \"name\": \"mammal\"}}]"
-    http_version: 
-  recorded_at: Mon, 21 Jan 2013 21:47:40 GMT
-- request: 
-    method: post
-    uri: https://admin:admin@localhost/pulp/api/v2/repositories/integration_test_id_clone/actions/unassociate/
-    body: 
-      string: "{\"criteria\":{\"type_ids\":[\"package_group\"],\"filters\":{\"unit\":{\"id\":{\"$in\":[\"bird\"]}}}}}"
-    headers: 
-      Accept: 
-      - application/json
-      Accept-Encoding: 
-      - gzip, deflate
-      Content-Length: 
-      - "86"
-      Content-Type: 
-      - application/json
-  response: 
-    status: 
-      code: 202
-      message: Accepted
-    headers: 
-      Date: 
-      - Mon, 21 Jan 2013 21:47:40 GMT
-      Content-Encoding: 
-      - utf-8
-      Content-Length: 
-      - "656"
-      Server: 
-      - Apache/2.2.22 (Fedora)
-      Content-Type: 
-      - application/json
-    body: 
-      string: "{\"task_group_id\": null, \"exception\": null, \"traceback\": null, \"_href\": \"/pulp/api/v2/tasks/aa99d2b4-d234-407a-bbc0-b405bae5e0b7/\", \"task_id\": \"aa99d2b4-d234-407a-bbc0-b405bae5e0b7\", \"call_request_tags\": [\"pulp:repository:integration_test_id_clone\", \"pulp:action:unassociate\"], \"reasons\": [], \"start_time\": null, \"tags\": [\"pulp:repository:integration_test_id_clone\", \"pulp:action:unassociate\"], \"state\": \"waiting\", \"finish_time\": null, \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": null, \"call_request_id\": \"aa99d2b4-d234-407a-bbc0-b405bae5e0b7\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}"
-    http_version: 
-  recorded_at: Mon, 21 Jan 2013 21:47:41 GMT
-- request: 
-    method: post
-    uri: https://admin:admin@localhost/pulp/api/v2/repositories/integration_test_id_clone/search/units/
-    body: 
-      string: "{\"criteria\":{\"type_ids\":[\"package_group\"]}}"
-    headers: 
-      Accept: 
-      - application/json
-      Accept-Encoding: 
-      - gzip, deflate
-      Content-Length: 
-      - "43"
-      Content-Type: 
-      - application/json
-  response: 
-    status: 
-      code: 200
-      message: OK
-    headers: 
-      Date: 
-      - Mon, 21 Jan 2013 21:47:42 GMT
-      Content-Length: 
-      - "914"
-      Server: 
-      - Apache/2.2.22 (Fedora)
-      Content-Type: 
-      - application/json
-    body: 
-      string: "[{\"updated\": \"2013-01-22T02:47:38Z\", \"repo_id\": \"integration_test_id_clone\", \"created\": \"2013-01-22T02:47:38Z\", \"_ns\": \"repo_content_units\", \"unit_id\": \"680bfc59-3462-4965-9f69-9a8f99e4ae88\", \"unit_type_id\": \"package_group\", \"owner_type\": \"user\", \"_id\": {\"$oid\": \"50fdb77a196cbe3e59000a8c\"}, \"id\": \"50fdb77a196cbe3e59000a8c\", \"owner_id\": \"admin\", \"metadata\": {\"_storage_path\": null, \"mandatory_package_names\": [\"elephant,giraffe,cheetah,lion,monkey,penguin,squirrel,walrus\", \"penguin\"], \"repo_id\": \"integration_test_id\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"_ns\": \"units_package_group\", \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"680bfc59-3462-4965-9f69-9a8f99e4ae88\", \"id\": \"mammal\", \"name\": \"mammal\"}}]"
-    http_version: 
-  recorded_at: Mon, 21 Jan 2013 21:47:42 GMT
-- request: 
-    method: post
-    uri: https://admin:admin@localhost/pulp/api/v2/repositories/integration_test_id/search/units/
-    body: 
-      string: "{\"criteria\":{\"type_ids\":[\"package_group\"]}}"
-    headers: 
-      Accept: 
-      - application/json
-      Accept-Encoding: 
-      - gzip, deflate
-      Content-Length: 
-      - "43"
-      Content-Type: 
-      - application/json
-  response: 
-    status: 
-      code: 200
-      message: OK
-    headers: 
-      Date: 
-      - Mon, 21 Jan 2013 21:47:42 GMT
-      Content-Length: 
-      - "1770"
-      Server: 
-      - Apache/2.2.22 (Fedora)
-      Content-Type: 
-      - application/json
-    body: 
-      string: "[{\"updated\": \"2013-01-22T02:47:36Z\", \"repo_id\": \"integration_test_id\", \"created\": \"2013-01-22T02:47:36Z\", \"_ns\": \"repo_content_units\", \"unit_id\": \"ed25648e-22c3-452e-b9b2-b2f9e28636e0\", \"unit_type_id\": \"package_group\", \"owner_type\": \"importer\", \"_id\": {\"$oid\": \"50fdb778196cbe3e59000a6b\"}, \"id\": \"50fdb778196cbe3e59000a6b\", \"owner_id\": \"yum_importer\", \"metadata\": {\"_storage_path\": null, \"mandatory_package_names\": [\"penguin\"], \"repo_id\": \"integration_test_id\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"_ns\": \"units_package_group\", \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"ed25648e-22c3-452e-b9b2-b2f9e28636e0\", \"id\": \"bird\", \"name\": \"bird\"}}, {\"updated\": \"2013-01-22T02:47:36Z\", \"repo_id\": \"integration_test_id\", \"created\": \"2013-01-22T02:47:36Z\", \"_ns\": \"repo_content_units\", \"unit_id\": \"680bfc59-3462-4965-9f69-9a8f99e4ae88\", \"unit_type_id\": \"package_group\", \"owner_type\": \"importer\", \"_id\": {\"$oid\": \"50fdb778196cbe3e59000a6a\"}, \"id\": \"50fdb778196cbe3e59000a6a\", \"owner_id\": \"yum_importer\", \"metadata\": {\"_storage_path\": null, \"mandatory_package_names\": [\"elephant,giraffe,cheetah,lion,monkey,penguin,squirrel,walrus\", \"penguin\"], \"repo_id\": \"integration_test_id\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"_ns\": \"units_package_group\", \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"680bfc59-3462-4965-9f69-9a8f99e4ae88\", \"id\": \"mammal\", \"name\": \"mammal\"}}]"
-    http_version: 
-  recorded_at: Mon, 21 Jan 2013 21:47:42 GMT
-- request: 
-    method: post
-    uri: https://admin:admin@localhost/pulp/api/v2/repositories/integration_test_id_clone/actions/unassociate/
-    body: 
-      string: "{\"criteria\":{\"type_ids\":[\"package_group\"],\"filters\":{\"association\":{\"unit_id\":{\"$in\":[\"ed25648e-22c3-452e-b9b2-b2f9e28636e0\"]}}}}}"
-    headers: 
-      Accept: 
-      - application/json
-      Accept-Encoding: 
-      - gzip, deflate
-      Content-Length: 
-      - "130"
-      Content-Type: 
-      - application/json
-  response: 
-    status: 
-      code: 202
-      message: Accepted
-    headers: 
-      Date: 
-      - Mon, 21 Jan 2013 21:47:43 GMT
-      Content-Encoding: 
-      - utf-8
-      Content-Length: 
-      - "656"
-      Server: 
-      - Apache/2.2.22 (Fedora)
-      Content-Type: 
-      - application/json
-    body: 
-      string: "{\"task_group_id\": null, \"exception\": null, \"traceback\": null, \"_href\": \"/pulp/api/v2/tasks/cf2dd8a6-bfc2-4fab-9c1f-34419ae46d12/\", \"task_id\": \"cf2dd8a6-bfc2-4fab-9c1f-34419ae46d12\", \"call_request_tags\": [\"pulp:repository:integration_test_id_clone\", \"pulp:action:unassociate\"], \"reasons\": [], \"start_time\": null, \"tags\": [\"pulp:repository:integration_test_id_clone\", \"pulp:action:unassociate\"], \"state\": \"waiting\", \"finish_time\": null, \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": null, \"call_request_id\": \"cf2dd8a6-bfc2-4fab-9c1f-34419ae46d12\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}"
-    http_version: 
-  recorded_at: Mon, 21 Jan 2013 21:47:43 GMT
-- request: 
-    method: post
-    uri: https://admin:admin@localhost/pulp/api/v2/repositories/integration_test_id_clone/search/units/
-    body: 
-      string: "{\"criteria\":{\"type_ids\":[\"package_group\"]}}"
-    headers: 
-      Accept: 
-      - application/json
-      Accept-Encoding: 
-      - gzip, deflate
-      Content-Length: 
-      - "43"
-      Content-Type: 
-      - application/json
-  response: 
-    status: 
-      code: 200
-      message: OK
-    headers: 
-      Date: 
-      - Mon, 21 Jan 2013 21:47:44 GMT
-      Content-Length: 
-      - "914"
-      Server: 
-      - Apache/2.2.22 (Fedora)
-      Content-Type: 
-      - application/json
-    body: 
-      string: "[{\"updated\": \"2013-01-22T02:47:38Z\", \"repo_id\": \"integration_test_id_clone\", \"created\": \"2013-01-22T02:47:38Z\", \"_ns\": \"repo_content_units\", \"unit_id\": \"680bfc59-3462-4965-9f69-9a8f99e4ae88\", \"unit_type_id\": \"package_group\", \"owner_type\": \"user\", \"_id\": {\"$oid\": \"50fdb77a196cbe3e59000a8c\"}, \"id\": \"50fdb77a196cbe3e59000a8c\", \"owner_id\": \"admin\", \"metadata\": {\"_storage_path\": null, \"mandatory_package_names\": [\"elephant,giraffe,cheetah,lion,monkey,penguin,squirrel,walrus\", \"penguin\"], \"repo_id\": \"integration_test_id\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"_ns\": \"units_package_group\", \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"680bfc59-3462-4965-9f69-9a8f99e4ae88\", \"id\": \"mammal\", \"name\": \"mammal\"}}]"
-    http_version: 
-  recorded_at: Mon, 21 Jan 2013 21:47:45 GMT
-- request: 
-    method: post
     uri: https://admin:admin@localhost/pulp/api/v2/repositories/
     body: 
-      string: "{\"importer_type_id\":\"yum_importer\",\"importer_config\":{},\"id\":\"integration_test_id_clone\"}"
+      string: "{\"importer_config\":{},\"id\":\"integration_test_id_clone\",\"importer_type_id\":\"yum_importer\"}"
     headers: 
       Accept: 
       - application/json
       Accept-Encoding: 
       - gzip, deflate
-      Content-Length: 
-      - "89"
       Content-Type: 
       - application/json
+      Content-Length: 
+      - "89"
   response: 
     status: 
       code: 201
       message: Created
     headers: 
-      Date: 
-      - Mon, 21 Jan 2013 21:59:39 GMT
-      Server: 
-      - Apache/2.2.22 (Fedora)
-      Content-Length: 
-      - "283"
-      Content-Type: 
-      - application/json
       Location: 
       - integration_test_id_clone
+      Date: 
+      - Mon, 21 Jan 2013 23:14:13 GMT
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "283"
+      Server: 
+      - Apache/2.2.22 (Fedora)
     body: 
-      string: "{\"scratchpad\": {}, \"display_name\": \"integration_test_id_clone\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_count\": 0, \"_id\": {\"$oid\": \"50fdba4b196cbe3e59001d1f\"}, \"id\": \"integration_test_id_clone\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id_clone/\"}"
+      string: "{\"scratchpad\": {}, \"display_name\": \"integration_test_id_clone\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_count\": 0, \"_id\": {\"$oid\": \"50fdcbc5196cbe5178000a86\"}, \"id\": \"integration_test_id_clone\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id_clone/\"}"
     http_version: 
-  recorded_at: Mon, 21 Jan 2013 21:59:39 GMT
+  recorded_at: Mon, 21 Jan 2013 23:14:13 GMT
 - request: 
     method: post
     uri: https://admin:admin@localhost/pulp/api/v2/repositories/integration_test_id_clone/actions/associate/
@@ -233,27 +43,312 @@ http_interactions:
       - application/json
       Accept-Encoding: 
       - gzip, deflate
-      Content-Length: 
-      - "40"
       Content-Type: 
       - application/json
+      Content-Length: 
+      - "40"
   response: 
     status: 
       code: 202
       message: Accepted
     headers: 
       Date: 
-      - Mon, 21 Jan 2013 21:59:39 GMT
-      Content-Encoding: 
-      - utf-8
-      Server: 
-      - Apache/2.2.22 (Fedora)
-      Content-Length: 
-      - "730"
+      - Mon, 21 Jan 2013 23:14:13 GMT
       Content-Type: 
       - application/json
+      Content-Length: 
+      - "730"
+      Server: 
+      - Apache/2.2.22 (Fedora)
+      Content-Encoding: 
+      - utf-8
     body: 
-      string: "{\"task_group_id\": null, \"exception\": null, \"traceback\": null, \"_href\": \"/pulp/api/v2/tasks/f9057a2d-5cd7-4eae-80ea-c655f3e5d6bf/\", \"task_id\": \"f9057a2d-5cd7-4eae-80ea-c655f3e5d6bf\", \"call_request_tags\": [\"pulp:repository:integration_test_id_clone\", \"pulp:repository:integration_test_id\", \"pulp:action:associate\"], \"reasons\": [], \"start_time\": null, \"tags\": [\"pulp:repository:integration_test_id_clone\", \"pulp:repository:integration_test_id\", \"pulp:action:associate\"], \"state\": \"waiting\", \"finish_time\": null, \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": null, \"call_request_id\": \"f9057a2d-5cd7-4eae-80ea-c655f3e5d6bf\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}"
+      string: "{\"task_group_id\": null, \"exception\": null, \"traceback\": null, \"_href\": \"/pulp/api/v2/tasks/4b421d73-8646-431d-86da-7f934635de21/\", \"task_id\": \"4b421d73-8646-431d-86da-7f934635de21\", \"call_request_tags\": [\"pulp:repository:integration_test_id_clone\", \"pulp:repository:integration_test_id\", \"pulp:action:associate\"], \"reasons\": [], \"start_time\": null, \"tags\": [\"pulp:repository:integration_test_id_clone\", \"pulp:repository:integration_test_id\", \"pulp:action:associate\"], \"state\": \"waiting\", \"finish_time\": null, \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": null, \"call_request_id\": \"4b421d73-8646-431d-86da-7f934635de21\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}"
     http_version: 
-  recorded_at: Mon, 21 Jan 2013 21:59:39 GMT
+  recorded_at: Mon, 21 Jan 2013 23:14:13 GMT
+- request: 
+    method: post
+    uri: https://admin:admin@localhost/pulp/api/v2/repositories/integration_test_id/search/units/
+    body: 
+      string: "{\"criteria\":{\"type_ids\":[\"package_group\"]}}"
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "43"
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Date: 
+      - Mon, 21 Jan 2013 23:14:15 GMT
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "1770"
+      Server: 
+      - Apache/2.2.22 (Fedora)
+    body: 
+      string: "[{\"updated\": \"2013-01-22T04:14:11Z\", \"repo_id\": \"integration_test_id\", \"created\": \"2013-01-22T04:14:11Z\", \"_ns\": \"repo_content_units\", \"unit_id\": \"fe76ab9b-4fa7-46d2-9da5-91da093534f7\", \"unit_type_id\": \"package_group\", \"owner_type\": \"importer\", \"_id\": {\"$oid\": \"50fdcbc3196cbe5178000a7a\"}, \"id\": \"50fdcbc3196cbe5178000a7a\", \"owner_id\": \"yum_importer\", \"metadata\": {\"_storage_path\": null, \"mandatory_package_names\": [\"penguin\"], \"repo_id\": \"integration_test_id\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"_ns\": \"units_package_group\", \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"fe76ab9b-4fa7-46d2-9da5-91da093534f7\", \"id\": \"bird\", \"name\": \"bird\"}}, {\"updated\": \"2013-01-22T04:14:11Z\", \"repo_id\": \"integration_test_id\", \"created\": \"2013-01-22T04:14:11Z\", \"_ns\": \"repo_content_units\", \"unit_id\": \"299f1ffa-cddf-4ba2-a2ce-834197769f8e\", \"unit_type_id\": \"package_group\", \"owner_type\": \"importer\", \"_id\": {\"$oid\": \"50fdcbc3196cbe5178000a79\"}, \"id\": \"50fdcbc3196cbe5178000a79\", \"owner_id\": \"yum_importer\", \"metadata\": {\"_storage_path\": null, \"mandatory_package_names\": [\"elephant,giraffe,cheetah,lion,monkey,penguin,squirrel,walrus\", \"penguin\"], \"repo_id\": \"integration_test_id\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"_ns\": \"units_package_group\", \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"299f1ffa-cddf-4ba2-a2ce-834197769f8e\", \"id\": \"mammal\", \"name\": \"mammal\"}}]"
+    http_version: 
+  recorded_at: Mon, 21 Jan 2013 23:14:15 GMT
+- request: 
+    method: post
+    uri: https://admin:admin@localhost/pulp/api/v2/repositories/integration_test_id_clone/actions/unassociate/
+    body: 
+      string: "{\"criteria\":{\"filters\":{\"association\":{\"unit_id\":{\"$in\":[\"fe76ab9b-4fa7-46d2-9da5-91da093534f7\"]}}},\"type_ids\":[\"package_group\"]}}"
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "130"
+  response: 
+    status: 
+      code: 202
+      message: Accepted
+    headers: 
+      Date: 
+      - Mon, 21 Jan 2013 23:14:15 GMT
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "656"
+      Server: 
+      - Apache/2.2.22 (Fedora)
+      Content-Encoding: 
+      - utf-8
+    body: 
+      string: "{\"task_group_id\": null, \"exception\": null, \"traceback\": null, \"_href\": \"/pulp/api/v2/tasks/55e64356-8b74-4ebd-8706-5cba78d656a0/\", \"task_id\": \"55e64356-8b74-4ebd-8706-5cba78d656a0\", \"call_request_tags\": [\"pulp:repository:integration_test_id_clone\", \"pulp:action:unassociate\"], \"reasons\": [], \"start_time\": null, \"tags\": [\"pulp:repository:integration_test_id_clone\", \"pulp:action:unassociate\"], \"state\": \"waiting\", \"finish_time\": null, \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": null, \"call_request_id\": \"55e64356-8b74-4ebd-8706-5cba78d656a0\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}"
+    http_version: 
+  recorded_at: Mon, 21 Jan 2013 23:14:15 GMT
+- request: 
+    method: post
+    uri: https://admin:admin@localhost/pulp/api/v2/repositories/integration_test_id_clone/search/units/
+    body: 
+      string: "{\"criteria\":{\"type_ids\":[\"package_group\"]}}"
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "43"
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Date: 
+      - Mon, 21 Jan 2013 23:14:17 GMT
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "914"
+      Server: 
+      - Apache/2.2.22 (Fedora)
+    body: 
+      string: "[{\"updated\": \"2013-01-22T04:14:13Z\", \"repo_id\": \"integration_test_id_clone\", \"created\": \"2013-01-22T04:14:13Z\", \"_ns\": \"repo_content_units\", \"unit_id\": \"299f1ffa-cddf-4ba2-a2ce-834197769f8e\", \"unit_type_id\": \"package_group\", \"owner_type\": \"user\", \"_id\": {\"$oid\": \"50fdcbc5196cbe5178000a9a\"}, \"id\": \"50fdcbc5196cbe5178000a9a\", \"owner_id\": \"admin\", \"metadata\": {\"_storage_path\": null, \"mandatory_package_names\": [\"elephant,giraffe,cheetah,lion,monkey,penguin,squirrel,walrus\", \"penguin\"], \"repo_id\": \"integration_test_id\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"_ns\": \"units_package_group\", \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"299f1ffa-cddf-4ba2-a2ce-834197769f8e\", \"id\": \"mammal\", \"name\": \"mammal\"}}]"
+    http_version: 
+  recorded_at: Mon, 21 Jan 2013 23:14:17 GMT
+- request: 
+    method: post
+    uri: https://admin:admin@localhost/pulp/api/v2/repositories/integration_test_id/search/units/
+    body: 
+      string: "{\"criteria\":{\"type_ids\":[\"package_group\"]}}"
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "43"
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Date: 
+      - Mon, 21 Jan 2013 23:14:17 GMT
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "1770"
+      Server: 
+      - Apache/2.2.22 (Fedora)
+    body: 
+      string: "[{\"updated\": \"2013-01-22T04:14:11Z\", \"repo_id\": \"integration_test_id\", \"created\": \"2013-01-22T04:14:11Z\", \"_ns\": \"repo_content_units\", \"unit_id\": \"fe76ab9b-4fa7-46d2-9da5-91da093534f7\", \"unit_type_id\": \"package_group\", \"owner_type\": \"importer\", \"_id\": {\"$oid\": \"50fdcbc3196cbe5178000a7a\"}, \"id\": \"50fdcbc3196cbe5178000a7a\", \"owner_id\": \"yum_importer\", \"metadata\": {\"_storage_path\": null, \"mandatory_package_names\": [\"penguin\"], \"repo_id\": \"integration_test_id\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"_ns\": \"units_package_group\", \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"fe76ab9b-4fa7-46d2-9da5-91da093534f7\", \"id\": \"bird\", \"name\": \"bird\"}}, {\"updated\": \"2013-01-22T04:14:11Z\", \"repo_id\": \"integration_test_id\", \"created\": \"2013-01-22T04:14:11Z\", \"_ns\": \"repo_content_units\", \"unit_id\": \"299f1ffa-cddf-4ba2-a2ce-834197769f8e\", \"unit_type_id\": \"package_group\", \"owner_type\": \"importer\", \"_id\": {\"$oid\": \"50fdcbc3196cbe5178000a79\"}, \"id\": \"50fdcbc3196cbe5178000a79\", \"owner_id\": \"yum_importer\", \"metadata\": {\"_storage_path\": null, \"mandatory_package_names\": [\"elephant,giraffe,cheetah,lion,monkey,penguin,squirrel,walrus\", \"penguin\"], \"repo_id\": \"integration_test_id\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"_ns\": \"units_package_group\", \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"299f1ffa-cddf-4ba2-a2ce-834197769f8e\", \"id\": \"mammal\", \"name\": \"mammal\"}}]"
+    http_version: 
+  recorded_at: Mon, 21 Jan 2013 23:14:17 GMT
+- request: 
+    method: post
+    uri: https://admin:admin@localhost/pulp/api/v2/repositories/integration_test_id_clone/actions/unassociate/
+    body: 
+      string: "{\"criteria\":{\"filters\":{\"unit\":{\"id\":{\"$in\":[\"bird\"]}}},\"type_ids\":[\"package_group\"]}}"
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "86"
+  response: 
+    status: 
+      code: 202
+      message: Accepted
+    headers: 
+      Date: 
+      - Mon, 21 Jan 2013 23:14:17 GMT
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "656"
+      Server: 
+      - Apache/2.2.22 (Fedora)
+      Content-Encoding: 
+      - utf-8
+    body: 
+      string: "{\"task_group_id\": null, \"exception\": null, \"traceback\": null, \"_href\": \"/pulp/api/v2/tasks/976eaf97-ffa1-46ac-be48-c1cdc4cea7cc/\", \"task_id\": \"976eaf97-ffa1-46ac-be48-c1cdc4cea7cc\", \"call_request_tags\": [\"pulp:repository:integration_test_id_clone\", \"pulp:action:unassociate\"], \"reasons\": [], \"start_time\": null, \"tags\": [\"pulp:repository:integration_test_id_clone\", \"pulp:action:unassociate\"], \"state\": \"waiting\", \"finish_time\": null, \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": null, \"call_request_id\": \"976eaf97-ffa1-46ac-be48-c1cdc4cea7cc\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}"
+    http_version: 
+  recorded_at: Mon, 21 Jan 2013 23:14:17 GMT
+- request: 
+    method: post
+    uri: https://admin:admin@localhost/pulp/api/v2/repositories/integration_test_id_clone/search/units/
+    body: 
+      string: "{\"criteria\":{\"type_ids\":[\"package_group\"]}}"
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "43"
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Date: 
+      - Mon, 21 Jan 2013 23:14:19 GMT
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "914"
+      Server: 
+      - Apache/2.2.22 (Fedora)
+    body: 
+      string: "[{\"updated\": \"2013-01-22T04:14:13Z\", \"repo_id\": \"integration_test_id_clone\", \"created\": \"2013-01-22T04:14:13Z\", \"_ns\": \"repo_content_units\", \"unit_id\": \"299f1ffa-cddf-4ba2-a2ce-834197769f8e\", \"unit_type_id\": \"package_group\", \"owner_type\": \"user\", \"_id\": {\"$oid\": \"50fdcbc5196cbe5178000a9a\"}, \"id\": \"50fdcbc5196cbe5178000a9a\", \"owner_id\": \"admin\", \"metadata\": {\"_storage_path\": null, \"mandatory_package_names\": [\"elephant,giraffe,cheetah,lion,monkey,penguin,squirrel,walrus\", \"penguin\"], \"repo_id\": \"integration_test_id\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"_ns\": \"units_package_group\", \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"299f1ffa-cddf-4ba2-a2ce-834197769f8e\", \"id\": \"mammal\", \"name\": \"mammal\"}}]"
+    http_version: 
+  recorded_at: Mon, 21 Jan 2013 23:14:19 GMT
+- request: 
+    method: post
+    uri: https://admin:admin@localhost/pulp/api/v2/repositories/integration_test_id/search/units/
+    body: 
+      string: "{\"criteria\":{\"type_ids\":[\"package_group\"]}}"
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "43"
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Date: 
+      - Mon, 21 Jan 2013 23:14:19 GMT
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "1770"
+      Server: 
+      - Apache/2.2.22 (Fedora)
+    body: 
+      string: "[{\"updated\": \"2013-01-22T04:14:11Z\", \"repo_id\": \"integration_test_id\", \"created\": \"2013-01-22T04:14:11Z\", \"_ns\": \"repo_content_units\", \"unit_id\": \"fe76ab9b-4fa7-46d2-9da5-91da093534f7\", \"unit_type_id\": \"package_group\", \"owner_type\": \"importer\", \"_id\": {\"$oid\": \"50fdcbc3196cbe5178000a7a\"}, \"id\": \"50fdcbc3196cbe5178000a7a\", \"owner_id\": \"yum_importer\", \"metadata\": {\"_storage_path\": null, \"mandatory_package_names\": [\"penguin\"], \"repo_id\": \"integration_test_id\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"_ns\": \"units_package_group\", \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"fe76ab9b-4fa7-46d2-9da5-91da093534f7\", \"id\": \"bird\", \"name\": \"bird\"}}, {\"updated\": \"2013-01-22T04:14:11Z\", \"repo_id\": \"integration_test_id\", \"created\": \"2013-01-22T04:14:11Z\", \"_ns\": \"repo_content_units\", \"unit_id\": \"299f1ffa-cddf-4ba2-a2ce-834197769f8e\", \"unit_type_id\": \"package_group\", \"owner_type\": \"importer\", \"_id\": {\"$oid\": \"50fdcbc3196cbe5178000a79\"}, \"id\": \"50fdcbc3196cbe5178000a79\", \"owner_id\": \"yum_importer\", \"metadata\": {\"_storage_path\": null, \"mandatory_package_names\": [\"elephant,giraffe,cheetah,lion,monkey,penguin,squirrel,walrus\", \"penguin\"], \"repo_id\": \"integration_test_id\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"_ns\": \"units_package_group\", \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"299f1ffa-cddf-4ba2-a2ce-834197769f8e\", \"id\": \"mammal\", \"name\": \"mammal\"}}]"
+    http_version: 
+  recorded_at: Mon, 21 Jan 2013 23:14:19 GMT
+- request: 
+    method: post
+    uri: https://admin:admin@localhost/pulp/api/v2/repositories/integration_test_id_clone/actions/unassociate/
+    body: 
+      string: "{\"criteria\":{\"filters\":{\"association\":{\"unit_id\":{\"$in\":[\"fe76ab9b-4fa7-46d2-9da5-91da093534f7\",\"299f1ffa-cddf-4ba2-a2ce-834197769f8e\"]}}},\"type_ids\":[\"package_group\"]}}"
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "169"
+  response: 
+    status: 
+      code: 202
+      message: Accepted
+    headers: 
+      Date: 
+      - Mon, 21 Jan 2013 23:14:19 GMT
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "656"
+      Server: 
+      - Apache/2.2.22 (Fedora)
+      Content-Encoding: 
+      - utf-8
+    body: 
+      string: "{\"task_group_id\": null, \"exception\": null, \"traceback\": null, \"_href\": \"/pulp/api/v2/tasks/7c6a5a34-3986-4d33-b27d-109d04896c35/\", \"task_id\": \"7c6a5a34-3986-4d33-b27d-109d04896c35\", \"call_request_tags\": [\"pulp:repository:integration_test_id_clone\", \"pulp:action:unassociate\"], \"reasons\": [], \"start_time\": null, \"tags\": [\"pulp:repository:integration_test_id_clone\", \"pulp:action:unassociate\"], \"state\": \"waiting\", \"finish_time\": null, \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": null, \"call_request_id\": \"7c6a5a34-3986-4d33-b27d-109d04896c35\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}"
+    http_version: 
+  recorded_at: Mon, 21 Jan 2013 23:14:20 GMT
+- request: 
+    method: post
+    uri: https://admin:admin@localhost/pulp/api/v2/repositories/integration_test_id_clone/search/units/
+    body: 
+      string: "{\"criteria\":{\"type_ids\":[\"package_group\"]}}"
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "43"
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Date: 
+      - Mon, 21 Jan 2013 23:14:21 GMT
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "2"
+      Server: 
+      - Apache/2.2.22 (Fedora)
+    body: 
+      string: "[]"
+    http_version: 
+  recorded_at: Mon, 21 Jan 2013 23:14:21 GMT
 recorded_with: VCR 2.4.0
