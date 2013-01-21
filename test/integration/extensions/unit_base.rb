@@ -115,7 +115,7 @@ class UnitUnassociateBase < MiniTest::Unit::TestCase
   end
 
 
-  def
+  def execute_unassociate_from_repo
     ids = unit_ids(RepositorySupport.repo_id)
     refute_empty ids
     task = self.class.extension_class.unassociate_from_repo(self.class.clone_name,
