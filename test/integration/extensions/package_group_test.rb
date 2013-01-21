@@ -2,7 +2,7 @@ require 'rubygems'
 require 'minitest/autorun'
 
 require './lib/runcible'
-require './test/unit/unit_base'
+require './test/integration/extensions/unit_base'
 require './test/support/repository_support'
 
 
@@ -80,9 +80,5 @@ end
 class TestExtensionsPackageGroupUnassociate < UnitUnassociateBase
   def self.extension_class
     Runcible::Extensions::PackageGroup
-  end
-  def content_ids(repo)
-    groups = Runcible::Extensions::Repository.package_groups(repo)
-    groups.collect{|i| i['id']}
   end
 end

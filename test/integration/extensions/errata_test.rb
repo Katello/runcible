@@ -25,7 +25,7 @@ require 'rubygems'
 require 'minitest/autorun'
 
 require './lib/runcible'
-require './test/unit/unit_base'
+require './test/integration/extensions/unit_base'
 require './test/support/repository_support'
 
 
@@ -99,8 +99,5 @@ end
 class TestExtensionsErrataUnassociate < UnitUnassociateBase
   def self.extension_class
     Runcible::Extensions::Errata
-  end
-  def content_ids(repo)
-    Runcible::Extensions::Repository.errata_ids(repo)
   end
 end

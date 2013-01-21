@@ -29,17 +29,6 @@ module Runcible
       def self.content_type
         'package_group'
       end
-
-      # unassociates content units from a repository
-      #
-      # @param  [String]                repo_id the repository ID to remove units from
-      # @param  ids                    ids of the content unit of this content type to remove
-      # @return [RestClient::Response]          a task representing the unit unassociate operation
-      def self.unassociate_ids_from_repo(repo_id, ids)
-        unassociate_from_repo(repo_id, :unit => {'id' => {'$in' => ids}})
-      end
-
-
     end
   end
 end

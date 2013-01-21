@@ -2,7 +2,7 @@ require 'rubygems'
 require 'minitest/autorun'
 
 require './lib/runcible'
-require './test/unit/unit_base'
+require './test/integration/extensions/unit_base'
 require './test/support/repository_support'
 
 
@@ -72,7 +72,8 @@ class TestExtensionsRpmUnassociate < UnitUnassociateBase
   def self.extension_class
     Runcible::Extensions::Rpm
   end
-  def content_ids(repo)
-    Runcible::Extensions::Repository.rpm_ids(repo)
+  def test_unassociate_by_id
+    #no op
   end
+
 end

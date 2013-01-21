@@ -85,8 +85,22 @@ class UnitUnassociateBase < MiniTest::Unit::TestCase
     end
   end
 
-  def test_remove
-    if self.class.respond_to?(:extension_class)
+  def content_ids(repo)
+    groups = units(repo)
+    groups.collect{|i| i['metadata']['id']}
+  end
+
+  def units(repo)
+    Runcible::Extensions::Repository.unit_search(repo,
+    :type_ids=>[self.class.extension_class.content_type])
+  end
+
+  def unit_ids(repo)
+    units(repo).collect {|i| i['unit_id']}
+  end
+
+  def test_unassociate_by_id
+    if respond_to?(:extension_class)
       ids = content_ids(RepositorySupport.repo_id)
       refute_empty ids
       task = self.class.extension_class.unassociate_ids_from_repo(self.class.clone_name, [ids.first])
@@ -95,5 +109,14 @@ class UnitUnassociateBase < MiniTest::Unit::TestCase
     end
   end
 
+  def test_unassociate_by_unit_id
+    if respond_to?(:extension_class)
+      ids = unit_ids(RepositorySupport.repo_id)
+      refute_empty ids
+      task = self.class.extension_class.unassociate_unit_ids_from_repo(self.class.clone_name, [ids.first])
+      RepositorySupport.wait_on_task(task)
+      assert_equal (ids.length - 1), unit_ids(self.class.clone_name).length
+    end
+  end
 
 end
