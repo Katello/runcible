@@ -161,7 +161,6 @@ module Runcible
         call(:post, "#{path(id)}search/units/", :payload=>{:required=>{:criteria=>criteria}})
       end
 
-
       # Publishes a repository using the specified distributor
       #
       # @param  [String]                id              the id of the repository
