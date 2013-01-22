@@ -82,7 +82,7 @@ class TestExtensionsRpmUnassociate < UnitUnassociateBase
     Runcible::Extensions::Rpm
   end
 
-  def test_unassociate_by_id
+  def test_unassociate_ids_from_repo
     ids = content_ids(RepositorySupport.repo_id)
     refute_empty ids
     assert_raises(NotImplementedError) do
@@ -90,7 +90,7 @@ class TestExtensionsRpmUnassociate < UnitUnassociateBase
     end
   end
 
-  def test_unassociate_by_unit_id
+  def test_unassociate_unit_ids_from_repo
     ids = unit_ids(RepositorySupport.repo_id)
     refute_empty ids
     task = Runcible::Extensions::Rpm.unassociate_unit_ids_from_repo(self.class.clone_name, [ids.first])

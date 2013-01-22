@@ -91,7 +91,7 @@ class TestExtensionsPackageGroupUnassociate < UnitUnassociateBase
   end
 
 
-  def test_unassociate_by_id
+  def test_unassociate_ids_from_repo
     ids = content_ids(RepositorySupport.repo_id)
     refute_empty ids
     task = Runcible::Extensions::PackageGroup.unassociate_ids_from_repo(self.class.clone_name, [ids.first])
@@ -99,7 +99,7 @@ class TestExtensionsPackageGroupUnassociate < UnitUnassociateBase
     assert_equal (ids.length - 1), content_ids(self.class.clone_name).length
   end
 
-  def test_unassociate_by_unit_id
+  def test_unassociate_unit_ids_from_repo
     ids = unit_ids(RepositorySupport.repo_id)
     refute_empty ids
     task = Runcible::Extensions::PackageGroup.unassociate_unit_ids_from_repo(self.class.clone_name, [ids.first])
