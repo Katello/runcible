@@ -40,6 +40,10 @@ module Runcible
         raise NotImplementedError
       end
 
+      # This function is not implemented for RPMs since they do not have content IDs
+      def self.unassociate_ids_from_repo(repo_id, ids)
+        raise NotImplementedError
+      end
     end
   end
 end

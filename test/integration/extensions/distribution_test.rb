@@ -25,6 +25,7 @@ require 'rubygems'
 require 'minitest/autorun'
 
 require './lib/runcible'
+require './test/integration/extensions/unit_base'
 require './test/support/repository_support'
 
 
@@ -89,6 +90,54 @@ class TestExtensionsDistribution < MiniTest::Unit::TestCase
 
     assert_equal 200, response.code
     assert_equal ids.length, response.length
+  end
+
+end
+
+class TestExtensionsDistributionCopy < UnitCopyBase
+  def self.extension_class
+    Runcible::Extensions::Distribution
+  end
+
+
+  def test_copy
+    response = Runcible::Extensions::Distribution.copy(RepositorySupport.repo_id, self.class.clone_name)
+    RepositorySupport.task = response
+    assert_equal    202, response.code
+    assert_includes response['call_request_tags'], 'pulp:action:associate'
+  end
+
+end
+
+class TestExtensionsDistributionUnassociate < UnitUnassociateBase
+  def self.extension_class
+    Runcible::Extensions::Distribution
+  end
+
+  def test_unassociate_ids_from_repo
+    ids = content_ids(RepositorySupport.repo_id)
+    refute_empty ids
+    task = Runcible::Extensions::Distribution.unassociate_ids_from_repo(self.class.clone_name, [ids.first])
+    RepositorySupport.wait_on_task(task)
+    assert_equal (ids.length - 1), content_ids(self.class.clone_name).length
+  end
+
+  def test_unassociate_unit_ids_from_repo
+    ids = unit_ids(RepositorySupport.repo_id)
+    refute_empty ids
+    task = Runcible::Extensions::Distribution.unassociate_unit_ids_from_repo(self.class.clone_name, [ids.first])
+    RepositorySupport.wait_on_task(task)
+    assert_equal (ids.length - 1), unit_ids(self.class.clone_name).length
+  end
+
+
+  def test_unassociate_from_repo
+    ids = unit_ids(RepositorySupport.repo_id)
+    refute_empty ids
+    task = Runcible::Extensions::Distribution.unassociate_from_repo(self.class.clone_name,
+                                                              :association => {'unit_id' => {'$in' => [ids.first]}})
+    RepositorySupport.wait_on_task(task)
+    assert_equal (ids.length - 1), unit_ids(self.class.clone_name).length
   end
 
 end

@@ -29,7 +29,6 @@ module Runcible
       def self.content_type
         'package_group'
       end
-
     end
   end
 end

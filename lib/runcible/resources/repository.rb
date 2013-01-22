@@ -27,7 +27,6 @@ module Runcible
   module Resources
     # @see https://pulp-dev-guide.readthedocs.org/en/latest/rest-api/repo/index.html
     class Repository < Runcible::Base
-
       # Generates the API path for Repositories
       #
       # @param  [String]  id  the id of the repository

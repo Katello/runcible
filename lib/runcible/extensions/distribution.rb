@@ -29,7 +29,6 @@ module Runcible
       def self.content_type
         'distribution'
       end
-
     end
   end
 end

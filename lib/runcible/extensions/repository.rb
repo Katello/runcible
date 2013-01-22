@@ -98,114 +98,13 @@ module Runcible
         search(criteria)
       end
 
-      # Copies RPMs from one repository to another
-      #
-      # optional
-      #   :package_ids
-      #   :name_blacklist
-      #
-      # @param  [String]                source_repo_id      the source repository ID
-      # @param  [String]                destination_repo_id the destination repository ID
-      # @param  [Hash]                  optional            container for all optional parameters
-      # @return [RestClient::Response]                      a task representing the unit copy operation
-      def self.rpm_copy(source_repo_id, destination_repo_id, optional={})
-
-        criteria = {:type_ids => ['rpm'], :filters => {}}
-        criteria[:filters]['association'] = {'unit_id' => {'$in' => optional[:package_ids]}} if optional[:package_ids]
-        criteria[:filters]['unit'] = { 'name' => {'$not' => {'$in' => optional[:name_blacklist]}}} if optional[:name_blacklist]
-
-        payload = {:criteria=>criteria}
-        payload[:override_config] = optional[:override_config] if optional[:override_config]
-        unit_copy(destination_repo_id, source_repo_id, payload)
-      end
-
-      # Removes RPMs from a repository
-      #
-      # @param  [String]                repo_id the repository ID to remove RPMs from
-      # @param  [Array]                 rpm_ids array of RPM IDs to remove
-      # @return [RestClient::Response]          a task representing the unit unassociate operation
-      def self.rpm_remove(repo_id, rpm_ids)
-        criteria = {:type_ids => ['rpm'], :filters => {}}
-        criteria[:filters]['association'] = {'unit_id' => {'$in' => rpm_ids}}
-        self.unassociate_units(repo_id, criteria)
-      end
-
-      # Copies errata from one repository to another
-      #
-      # optional
-      #   :errata_ids
-      #
-      # @param  [String]                source_repo_id      the source repository ID
-      # @param  [String]                destination_repo_id the destination repository ID
-      # @param  [Hash]                  optional            container for all optional parameters
-      # @return [RestClient::Response]                      a task representing the unit copy operation
-      def self.errata_copy(source_repo_id, destination_repo_id, optional={})
-        criteria = {:type_ids => ['erratum'], :filters => {}}
-        criteria[:filters]['association'] = {'unit_id' => {'$in' => optional[:errata_ids]}} if optional[:errata_ids]
-        payload = {:criteria => criteria}
-        unit_copy(destination_repo_id, source_repo_id, payload)
-      end
-
-      # Removes errata from a repository
-      #
-      # @param  [String]                repo_id     the repository ID to remove errata from
-      # @param  [Array]                 errata_ids  array of errata IDs to remove
-      # @return [RestClient::Response]              a task representing the unit unassociate operation
-      def self.errata_remove(repo_id, errata_ids)
-        criteria = {:type_ids => ['erratum'], :filters => {}}
-        criteria[:filters]['association'] = {'unit_id' => {'$in' => errata_ids}}
-        self.unassociate_units(repo_id, criteria)
-      end
-
-      # Copies distributions from one repository to another
-      #
-      # optoinal
-      #   :distribution_ids
-      #
-      # @param  [String]                source_repo_id      the source repository ID
-      # @param  [String]                destination_repo_id the destination repository ID
-      # @param  [Hash]                  optional            container for all optional parameters
-      # @return [RestClient::Response]                      a task representing the unit copy operation
-      def self.distribution_copy(source_repo_id, destination_repo_id, optional={})
-        criteria = {:type_ids => ['distribution'], :filters => {}}
-        criteria[:filters][:unit] = { :id=>{ '$in' => optional[:distribution_ids] } } if optional[:distribution_ids]
-        payload = {:criteria => criteria}
-        unit_copy(destination_repo_id, source_repo_id, payload)
-      end
-
-      # Removes a distribution from a repository
-      #
-      # @param  [String]                repo_id         the repository ID to remove the distribution from
-      # @param  [String]                distribution_id the distribution ID to remove
-      # @return [RestClient::Response]                  a task representing the unit unassociate operation
-      def self.distribution_remove(repo_id, distribution_id)
-        criteria = {:type_ids => ['distribution'], :filters => {}}
-        criteria[:filters][:unit] = { :id=>{ '$in' => [distribution_id] } }
-        self.unassociate_units(repo_id, criteria)
-      end
-
-      # Copies package groups from one repository to another
-      #
-      # optoinal
-      #   :package_group_ids
-      #
-      # @param  [String]                source_repo_id      the source repository ID
-      # @param  [String]                destination_repo_id the destination repository ID
-      # @param  [Hash]                  optional            container for all optional parameters
-      # @return [RestClient::Response]                      a task representing the unit copy operation
-      def self.package_group_copy(source_repo_id, destination_repo_id, optional={})
-        criteria = {:type_ids => [Runcible::Extensions::PackageGroup.content_type], :filters => {}}
-        criteria[:filters][:unit] = { :id=>{ '$in' => optional[:package_group_ids] } } if optional[:package_group_ids]
-        payload = {:criteria => criteria}
-        unit_copy(destination_repo_id, source_repo_id, payload)
-      end
 
       # Retrieves the RPM IDs for a single repository
       #
       # @param [String]                 id the ID of the repository
       # @return [RestClient::Response]     the set of repository RPM IDs
       def self.rpm_ids(id)
-        criteria = {:type_ids=>['rpm']}
+        criteria = {:type_ids=>[Runcible::Extensions::Rpm.content_type]}
         self.unit_search(id, criteria).collect{|i| i['unit_id']}
       end
 
@@ -214,7 +113,7 @@ module Runcible
       # @param  [String]                id the ID of the repository
       # @return [RestClient::Response]     the set of repository RPMs
       def self.rpms(id)
-        criteria = {:type_ids=>['rpm']}
+        criteria = {:type_ids=>[Runcible::Extensions::Rpm.content_type]}
         self.unit_search(id, criteria).collect{|i| i['metadata'].with_indifferent_access}
       end
 
@@ -233,7 +132,7 @@ module Runcible
         and_condition << {:release=>release} if release
         and_condition << {:epoch=>epoch} if epoch
 
-        criteria = {:type_ids=>['rpm'],
+        criteria = {:type_ids=>[Runcible::Extensions::Rpm.content_type],
                 :filters => {
                     :unit => {
                       "$and" => and_condition
@@ -250,7 +149,7 @@ module Runcible
       # @param  [String]                id the ID of the repository
       # @return [RestClient::Response]     the set of repository errata IDs
       def self.errata_ids(id)
-         criteria = {:type_ids=>['erratum']}
+         criteria = {:type_ids=>[Runcible::Extensions::Errata.content_type]}
 
          self.unit_search(id, criteria).collect{|i| i['unit_id']}
       end
@@ -260,7 +159,7 @@ module Runcible
       # @param  [String]                id the ID of the repository
       # @return [RestClient::Response]     the set of repository errata
       def self.errata(id)
-         criteria = {:type_ids=>['erratum']}
+         criteria = {:type_ids=>[Runcible::Extensions::Errata.content_type]}
          self.unit_search(id, criteria).collect{|i| i['metadata'].with_indifferent_access}
       end
 
@@ -269,7 +168,7 @@ module Runcible
       # @param  [String]                id the ID of the repository
       # @return [RestClient::Response]     the set of repository distributions
       def self.distributions(id)
-        criteria = {:type_ids=>['distribution']}
+        criteria = {:type_ids=>[Runcible::Extensions::Distribution.content_type]}
 
         self.unit_search(id, criteria).collect{|i| i['metadata'].with_indifferent_access}
       end
