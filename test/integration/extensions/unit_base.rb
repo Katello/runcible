@@ -119,7 +119,7 @@ class UnitUnassociateBase < MiniTest::Unit::TestCase
     ids = unit_ids(RepositorySupport.repo_id)
     refute_empty ids
     task = self.class.extension_class.unassociate_from_repo(self.class.clone_name,
-                                                  :association => {'unit_id' => {'$in' => ids}})
+                                                  :association => {'unit_id' => {'$in' => [ids.first]}})
      RepositorySupport.wait_on_task(task)
     assert_equal (ids.length - 1), unit_ids(self.class.clone_name).length
   end
