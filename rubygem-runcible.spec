@@ -105,6 +105,10 @@ This package contains documentation for rubygem-%{gem_name}
 %doc %{gem_docdir}
 
 %changelog
+* Tue Jan 29 2013 Justin Sherrill <jsherril@redhat.com> 0.3.1-2
+- being less restrictive on activesupport version in Gemfile
+- being less restrictive on activesupport version
+
 * Wed Jan 16 2013 Justin Sherrill <jsherril@redhat.com> 0.3.1-1
 - version bump to 0.3.1 (jsherril@redhat.com)
 - fixes #35 - correctly default to include repos info in unit finds
