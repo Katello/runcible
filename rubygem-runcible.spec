@@ -57,7 +57,7 @@ Requires:       ruby(rubygems)
 Requires:       rubygem(json) 
 Requires:       rubygem(rest-client) >= 1.6.1
 Requires:       rubygem(oauth) 
-Requires:       rubygem(activesupport) = 3.0.10
+Requires:       rubygem(activesupport) >= 3.0.10
 Requires:       rubygem(i18n) >= 0.5.0
 BuildRequires:  ruby(abi) = %{rubyabi}
 BuildRequires:  ruby(rubygems) 
