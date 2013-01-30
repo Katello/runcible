@@ -100,6 +100,53 @@ To see RestClient logs while testing:
   
     logging=true
 
+
+## Building and Releasing
+
+### Gem
+
+While anyone can grab the source and build a new version of the gem, only those with Rubygems.org permissions on the project can release an official version.
+
+To build a new version of Runcible, first bump the version depending on the type of release.
+
+    cd runcible/
+    vim lib/runcible/version.rb
+
+Now update the version to the new version, and commit the changes.
+
+    git commit -a -m 'Version bump'
+
+Now build:
+    
+    gem build runcible.gemspec
+
+
+#### Official Release
+  
+For an official release, again assuming you have the right permssions:
+
+    gem push runcible-<version>.gem
+
+### RPM Release
+
+If you are wanting to generate a new RPM build, please make sure you have followed the steps above if the build is going to include new code.  All builds should first go in gem form to Rubygems.  You'll need to make sure tito is installed:
+
+    yum install tito
+
+Now tag, making sure the tag version matches the gem version:
+
+    tito tag
+
+Assuming you have the right dependencies available, you can do a local test build with tito (although we recommend using mock):
+
+    tito build --test --rpm
+
+With mock:
+
+    tito build --test --rpm --builder=mock --builder-arg mock=<name_of_mock_config>
+
+From here there are a variety of options to build and release an RPM pakaged version of Runcible (e.g. you can build an SRPM to feed to Koji, or use mock locally)
+
 ## Contributing
 
 1. Fork it
