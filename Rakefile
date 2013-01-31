@@ -33,7 +33,7 @@ namespace :test do
       end
 
       test_runner.run_tests(options)
-      Rake::Task[:update_test_version].invoke if options[:mode] == "all"
+      Rake::Task[:update_test_version].invoke if options[:mode] == "all" && ENV['record'] != false
     end
   end
 end

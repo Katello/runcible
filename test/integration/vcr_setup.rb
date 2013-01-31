@@ -25,12 +25,23 @@ require 'rubygems'
 require 'vcr'
 
 
-def configure_vcr(record_mode=:none)
+def configure_vcr(mode=:none)
+
+  if ENV['record'] == "false" && mode == :none
+    raise "Record flag is not applicable for mode 'none', please use with 'mode=all'"
+  end
+
   VCR.configure do |c|
     c.cassette_library_dir = 'test/fixtures/vcr_cassettes'
     c.hook_into :webmock
+
+    if ENV['record'] == "false" && mode != :none
+      uri = URI.parse(Runcible::Base.config[:url])
+      c.ignore_hosts uri.host
+    end
+
     c.default_cassette_options = {
-      :record => record_mode,
+      :record => mode,
       :match_requests_on => [:method, :path, :params],
       :serialize_with => :syck
     }
