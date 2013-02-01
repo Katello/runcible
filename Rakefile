@@ -8,32 +8,34 @@ namespace :test do
     t.pattern = 'test/unit/test_*.rb'
   end
 
-  desc "Runs the resources and extensions integration tests"
-  task :integration do
-    options = {}
+  [:resources, :extensions].each do |task_name|
+    desc "Runs the #{task_name} tests"
+    task task_name do
+      options = {}
 
-    options[:mode]      = ENV['mode'] || 'none'
-    options[:test_name] = ENV['test']
-    options[:auth_type] = ENV['auth_type']
-    options[:logging]   = ENV['logging']
+      options[:mode]      = ENV['mode'] || 'none'
+      options[:test_name] = ENV['test']
+      options[:auth_type] = ENV['auth_type']
+      options[:logging]   = ENV['logging']
 
-    if !['new_episodes', 'all', 'none', 'once'].include?(options[:mode])
-      puts "Invalid test mode"
-    else
-      require "./test/integration/test_runner"
-
-      test_runner = PulpMiniTestRunner.new
-
-      if options[:test_name]
-        puts "Running tests for: #{options[:test_name]}"
-        puts "Using #{options[:mode]} Pulp."
+      if !['new_episodes', 'all', 'none', 'once'].include?(options[:mode])
+        puts "Invalid test mode"
       else
-        puts "Running full test suite."
-        puts "Using #{options[:mode]} data."
-      end
+        require "./test/test_runner"
 
-      test_runner.run_tests(options)
-      Rake::Task[:update_test_version].invoke if options[:mode] == "all" && ENV['record'] != false
+        test_runner = PulpMiniTestRunner.new
+
+        if options[:test_name]
+          puts "Running tests for: #{options[:test_name]}"
+          puts "Using #{options[:mode]} Pulp."
+        else
+          puts "Running full test suite."
+          puts "Using #{options[:mode]} data."
+        end
+
+        test_runner.run_tests(task_name, options)
+        Rake::Task[:update_test_version].invoke if options[:mode] == "all" && ENV['record'] != false
+      end
     end
   end
 end
@@ -76,5 +78,6 @@ end
 
 desc "Runs all tests"
 task :test do
-  Rake::Task['test:integration'].invoke
+  Rake::Task['test:resources'].invoke
+  Rake::Task['test:extensions'].invoke
 end

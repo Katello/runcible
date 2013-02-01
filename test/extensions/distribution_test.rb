@@ -25,7 +25,7 @@ require 'rubygems'
 require 'minitest/autorun'
 
 require './lib/runcible'
-require './test/integration/extensions/unit_base'
+require './test/extensions/unit_base'
 require './test/support/repository_support'
 
 
