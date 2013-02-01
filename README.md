@@ -92,6 +92,10 @@ To run a single test using recorded data, run:
    
     rake test:integration mode=none test=extensions/respository
 
+To run tests against your live Pulp without recording a new cassette set record flag to false (does not apply to mode=none):
+
+    record=false
+
 To run with  oauth, simply append the following to any commend:
    
     auth_type=oauth
