@@ -25,7 +25,7 @@ require 'rubygems'
 require 'minitest/unit'
 require 'minitest/autorun'
 
-require './test/integration/vcr_setup'
+require './test/vcr_setup'
 require './lib/runcible/base'
 
 
@@ -68,11 +68,8 @@ class CustomMiniTestRunner
         if logging?
           puts "Completed Running Suite #{suite.inspect} - #{type.inspect} "
         end
-
-
       end
     end
-
 
     def logging?
       ENV['logging']
@@ -84,7 +81,7 @@ end
 
 class PulpMiniTestRunner
 
-  def run_tests(options={})
+  def run_tests(suite, options={})
     mode      = options[:mode] || "none"
     test_name = options[:test_name] || nil
     auth_type = options[:auth_type] || "http"
@@ -101,10 +98,9 @@ class PulpMiniTestRunner
     set_vcr_config(mode)
 
     if test_name
-      require "./test/integration/#{test_name}_test.rb"
+      require "./test/#{test_name}_test.rb"
     else
-      Dir["./test/integration/resources/*_test.rb"].each {|file| require file }
-      Dir["./test/integration/extensions/*_test.rb"].each {|file| require file }
+      Dir["./test/#{suite}/*_test.rb"].each {|file| require file }
     end
   end
 
