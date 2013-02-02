@@ -44,7 +44,8 @@ module Runcible
         :user       => '',
         :http_auth  => {:password => {} },
         :headers    => {:content_type => 'application/json',
-                        :accept       => 'application/json'}
+                        :accept       => 'application/json'},
+        :logging    => {}
       }.merge(conf)
     end
     
@@ -57,13 +58,15 @@ module Runcible
       #on occation path will already have prefix (sync cancel)
       path = clone_config[:api_path] + path if !path.start_with?(clone_config[:api_path])
 
-      RestClient.log = clone_config[:logger] if clone_config[:logger]
+      RestClient.log    = []
+      logger            = clone_config[:logging][:logger]
+      debug_logging     = clone_config[:logging][:debug]
+      exception_logging = clone_config[:logging][:exception]
 
       headers = clone_config[:headers].clone
 
       get_params = options[:params] if options[:params]
       path = combine_get_params(path, get_params) if get_params
-
 
       if clone_config[:oauth]
         headers = add_oauth_header(method, path, headers) if clone_config[:oauth]
@@ -77,7 +80,19 @@ module Runcible
       args << generate_payload(options) if [:post, :put].include?(method)
       args << headers 
 
-      process_response(client[path].send(*args))
+      response = get_response(client, path, *args)
+      process_response(response)
+
+    rescue => e
+      log_exception
+      raise e
+    end
+
+    def self.get_response(client, path, *args)
+      client[path].send(*args) do |response, request, result, &block|
+        log_debug
+        response.return!(request, result)
+      end
     end
 
     def self.combine_get_params(path, params)
@@ -172,6 +187,24 @@ module Runcible
 
       headers['Authorization'] = http_request['Authorization']
       return headers
+    end
+
+    def self.log_debug
+      if self.config[:logging][:debug]
+        log_message = generate_log_message                  
+        self.config[:logging][:logger].debug(log_message)
+      end
+    end
+
+    def self.log_exception
+      if self.config[:logging][:exception]
+        log_message = generate_log_message
+        self.config[:logging][:logger].error(log_message)
+      end
+    end
+
+    def self.generate_log_message
+      RestClient.log.join('\n')
     end
 
   end 

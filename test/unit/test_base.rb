@@ -25,37 +25,71 @@ require 'rubygems'
 require 'minitest/autorun'
 require 'minitest/mock'
 require './lib/runcible/base'
+require './test/support/logger_support'
 
 
 class TestBase < MiniTest::Unit::TestCase
+
   def setup
+    @logger = ::Logger.new
+
     Runcible::Base.config = {
       :base_url => "http://localhost/",
       :user     => "test_user",
       :password => "test_password",
-      :oauth    => "test_oauth",
       :headers  => { :content_type => 'application/json',
-                     :accept       => 'application/json' }
+                     :accept       => 'application/json' },
+      :logging  => { :logger => @logger }
     }
 
-    @base = Runcible::Base.new
+    @base = Runcible::Base
   end
 
   def test_config
-    assert !Runcible::Base.config.nil?
+    refute_nil Runcible::Base.config
   end
 
   def test_process_response_returns_hash
     json = { :a => "test", :b => "data" }.to_json
-    data = @base.process_response(json)
+    response = OpenStruct.new(:body => json)
+    data = @base.process_response(response)
 
-    assert data["a"] = "test"
+    assert_equal "test", data.body["a"]
   end
 
   def test_process_response_returns_string
-    string = "true"
-    data = @base.process_response(string)
+    response = OpenStruct.new(:body => "true")
+    data = @base.process_response(response)
 
-    assert data = "true"
+    assert_equal "true", data.body
   end
+
+  def test_verbose_logger
+    @base.config[:logging][:debug] = true
+
+    assert_raises RestClient::ResourceNotFound do
+      @base.call(:get, '/fake/path/')
+    end
+    refute_nil @logger.message
+  end
+
+  def test_exception_logger
+    @base.config[:logging][:exception]  = true
+
+    assert_raises RestClient::ResourceNotFound do
+      @base.call(:get, '/fake/path/')
+    end
+    refute_nil @logger.message
+  end 
+
+  def test_exception_and_verbose_logger
+    @base.config[:logging][:debug]      = true
+    @base.config[:logging][:exception]  = true
+
+    assert_raises RestClient::ResourceNotFound do
+      @base.call(:get, '/fake/path/')
+    end
+    refute_nil @logger.message
+  end 
+
 end
