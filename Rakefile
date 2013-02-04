@@ -27,10 +27,8 @@ namespace :test do
 
         if options[:test_name]
           puts "Running tests for: #{options[:test_name]}"
-          puts "Using #{options[:mode]} Pulp."
         else
-          puts "Running full test suite."
-          puts "Using #{options[:mode]} data."
+          puts "Running tests for: #{task_name}"
         end
 
         test_runner.run_tests(task_name, options)
@@ -78,6 +76,7 @@ end
 
 desc "Runs all tests"
 task :test do
+  Rake::Task['test:unit'].invoke
   Rake::Task['test:resources'].invoke
   Rake::Task['test:extensions'].invoke
 end
