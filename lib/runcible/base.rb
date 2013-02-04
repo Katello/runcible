@@ -90,8 +90,9 @@ module Runcible
 
     def self.get_response(client, path, *args)
       client[path].send(*args) do |response, request, result, &block|
+        resp = response.return!(request, result)
         log_debug
-        response.return!(request, result)
+        return resp
       end
     end
 
