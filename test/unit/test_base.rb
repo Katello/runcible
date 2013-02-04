@@ -43,6 +43,8 @@ class TestBase < MiniTest::Unit::TestCase
     }
 
     @base = Runcible::Base
+    @log_message = 'Fake log message.'
+    RestClient.log = [@log_message]
   end
 
   def test_config
@@ -66,30 +68,16 @@ class TestBase < MiniTest::Unit::TestCase
 
   def test_verbose_logger
     @base.config[:logging][:debug] = true
+    @base.log_debug
 
-    assert_raises RestClient::ResourceNotFound do
-      @base.call(:get, '/fake/path/')
-    end
-    refute_nil @logger.message
+    assert_equal @log_message, @logger.message
   end
 
   def test_exception_logger
     @base.config[:logging][:exception]  = true
+    @base.log_exception
 
-    assert_raises RestClient::ResourceNotFound do
-      @base.call(:get, '/fake/path/')
-    end
-    refute_nil @logger.message
-  end 
-
-  def test_exception_and_verbose_logger
-    @base.config[:logging][:debug]      = true
-    @base.config[:logging][:exception]  = true
-
-    assert_raises RestClient::ResourceNotFound do
-      @base.call(:get, '/fake/path/')
-    end
-    refute_nil @logger.message
+    assert_equal @log_message, @logger.message
   end 
 
 end
