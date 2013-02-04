@@ -47,7 +47,7 @@ Name:           rubygem-%{gem_name}
 Summary:        A gem exposing Pulp's juiciest parts
 Group:          Applications/System
 License:        MIT
-Version:        0.3.1
+Version:        0.3.2
 Release:        1%{?dist}
 URL:            https://github.com/Katello/runcible
 Source0:        %{name}-%{version}.tar.gz
@@ -105,6 +105,38 @@ This package contains documentation for rubygem-%{gem_name}
 %doc %{gem_docdir}
 
 %changelog
+* Mon Feb 04 2013 Justin Sherrill <jsherril@redhat.com> 0.3.2-1
+- Logging - Test update. (ehelms@redhat.com)
+- Logging - Updates to prevent logging twice in the event an exception is
+  thrown when the log level is at debug. (ehelms@redhat.com)
+- Gemspec cleanup by moving dependencies into the gemspec file.
+  (ehelms@redhat.com)
+- Updates logging code to allow logging of all requests (debug mode) and a
+  special exceptions mode for only logging to a provided logger calls that
+  generate exceptions. (ehelms@redhat.com)
+- Updates readme to include new test option. (ehelms@redhat.com)
+- Moves primary tests into top level test directory and re-factors the test
+  commands to account for the changes. Resources and extension suites may now
+  be run separately now. (ehelms@redhat.com)
+- Adds environment variable to allow running full test suite against a live
+  Pulp without recording new cassettes. (ehelms@redhat.com)
+- Updates README to include a section on building and releasin gem or RPM.
+  (ehelms@redhat.com)
+- being less restrictive on activesupport version in Gemfile
+  (jsherril@redhat.com)
+- being less restrictive on activesupport version (jsherril@redhat.com)
+- Renamed test methods to quiten travis (paji@redhat.com)
+- Redid the tests to make em more explicit (paji@redhat.com)
+- Fixed a test (paji@redhat.com)
+- Accidental blooper where I missed a method name (paji@redhat.com)
+- Added some cosmetic changes for clarity (paji@redhat.com)
+- Updated unit tests to make travis happy (paji@redhat.com)
+- Removed accidental space (paji@redhat.com)
+- Updated content unassociate calls to be based of unit_id or content_id
+  (paji@redhat.com)
+- Moved the copy and unassociate logic to a more centralized location
+  (paji@redhat.com)
+
 * Wed Jan 16 2013 Justin Sherrill <jsherril@redhat.com> 0.3.1-1
 - version bump to 0.3.1 (jsherril@redhat.com)
 - fixes #35 - correctly default to include repos info in unit finds
