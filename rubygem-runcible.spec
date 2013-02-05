@@ -47,7 +47,7 @@ Name:           rubygem-%{gem_name}
 Summary:        A gem exposing Pulp's juiciest parts
 Group:          Applications/System
 License:        MIT
-Version:        0.3.2
+Version:        0.3.3
 Release:        1%{?dist}
 URL:            https://github.com/Katello/runcible
 Source0:        %{name}-%{version}.tar.gz
@@ -105,6 +105,11 @@ This package contains documentation for rubygem-%{gem_name}
 %doc %{gem_docdir}
 
 %changelog
+* Tue Feb 05 2013 Justin Sherrill <jsherril@redhat.com> 0.3.3-1
+- dropping version requirement for runcible (jsherril@redhat.com)
+- Changes license reference from Eric to Red Hat for consistency.
+  (ehelms@redhat.com)
+
 * Mon Feb 04 2013 Justin Sherrill <jsherril@redhat.com> 0.3.2-1
 - Logging - Test update. (ehelms@redhat.com)
 - Logging - Updates to prevent logging twice in the event an exception is
