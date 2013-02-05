@@ -14,7 +14,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = Runcible::VERSION
 
-  gem.add_dependency('json', '1.7.5')
+  gem.add_dependency('json')
   gem.add_dependency('rest-client', '>= 1.6.1')
   gem.add_dependency('oauth')
   gem.add_dependency('activesupport', '>= 3.0.10')
