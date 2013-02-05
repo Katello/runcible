@@ -54,7 +54,7 @@ Source0:        %{name}-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{gem_name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Requires:       ruby(abi) = %{rubyabi}
 Requires:       ruby(rubygems) 
-Requires:       rubygem(json) 
+Requires:       rubygem(json) = 1.7.5
 Requires:       rubygem(rest-client) >= 1.6.1
 Requires:       rubygem(oauth) 
 Requires:       rubygem(activesupport) >= 3.0.10
