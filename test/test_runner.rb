@@ -97,7 +97,9 @@ class PulpMiniTestRunner
 
     set_vcr_config(mode)
 
-    if test_name
+    if test_name && File.exists?(test_name)
+      require test_name
+    elsif test_name
       require "./test/#{test_name}_test.rb"
     else
       Dir["./test/#{suite}/*_test.rb"].each {|file| require file }
