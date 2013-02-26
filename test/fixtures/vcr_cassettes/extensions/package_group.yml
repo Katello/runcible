@@ -1,237 +1,19 @@
 --- 
-recorded_with: VCR 2.4.0
 http_interactions: 
 - request: 
     method: post
     uri: https://admin:admin@localhost/pulp/api/v2/content/units/package_group/search/
     body: 
-      string: "{\"criteria\":{}}"
-    headers: 
-      Content-Length: 
-      - "15"
-      Accept-Encoding: 
-      - gzip, deflate
-      Accept: 
-      - application/json
-      Content-Type: 
-      - application/json
-  response: 
-    status: 
-      code: 200
-      message: OK
-    headers: 
-      Content-Length: 
-      - "1196"
-      Server: 
-      - Apache/2.2.22 (Fedora)
-      Date: 
-      - Tue, 22 Jan 2013 19:43:49 GMT
-      Content-Type: 
-      - application/json
-    body: 
-      string: "[{\"_storage_path\": null, \"mandatory_package_names\": [\"elephant,giraffe,cheetah,lion,monkey,penguin,squirrel,walrus\", \"penguin\"], \"repo_id\": \"integration_test_id\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"27b19411-2cf2-45e4-9832-f87b93985ab4\", \"id\": \"mammal\", \"name\": \"mammal\", \"_href\": \"/pulp/api/v2/content/units/package_group/27b19411-2cf2-45e4-9832-f87b93985ab4/\", \"children\": {}}, {\"_storage_path\": null, \"mandatory_package_names\": [\"penguin\"], \"repo_id\": \"integration_test_id\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"8a2f4314-ad13-4815-9bb0-6c63d4c93794\", \"id\": \"bird\", \"name\": \"bird\", \"_href\": \"/pulp/api/v2/content/units/package_group/8a2f4314-ad13-4815-9bb0-6c63d4c93794/\", \"children\": {}}]"
-    http_version: 
-  recorded_at: Tue, 22 Jan 2013 19:43:49 GMT
-- request: 
-    method: post
-    uri: https://admin:admin@localhost/pulp/api/v2/content/units/package_group/search/
-    body: 
-      string: "{\"include_repos\":true,\"criteria\":{\"filters\":{\"id\":{\"$in\":[\"bird\",\"mammal\"]}}}}"
-    headers: 
-      Content-Length: 
-      - "78"
-      Accept-Encoding: 
-      - gzip, deflate
-      Accept: 
-      - application/json
-      Content-Type: 
-      - application/json
-  response: 
-    status: 
-      code: 200
-      message: OK
-    headers: 
-      Content-Length: 
-      - "1298"
-      Server: 
-      - Apache/2.2.22 (Fedora)
-      Date: 
-      - Tue, 22 Jan 2013 19:43:49 GMT
-      Content-Type: 
-      - application/json
-    body: 
-      string: "[{\"_storage_path\": null, \"mandatory_package_names\": [\"penguin\"], \"repo_id\": \"integration_test_id\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"8a2f4314-ad13-4815-9bb0-6c63d4c93794\", \"id\": \"bird\", \"name\": \"bird\", \"_href\": \"/pulp/api/v2/content/units/package_group/8a2f4314-ad13-4815-9bb0-6c63d4c93794/\", \"children\": {}, \"repository_memberships\": [\"integration_test_id\"]}, {\"_storage_path\": null, \"mandatory_package_names\": [\"elephant,giraffe,cheetah,lion,monkey,penguin,squirrel,walrus\", \"penguin\"], \"repo_id\": \"integration_test_id\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"27b19411-2cf2-45e4-9832-f87b93985ab4\", \"id\": \"mammal\", \"name\": \"mammal\", \"_href\": \"/pulp/api/v2/content/units/package_group/27b19411-2cf2-45e4-9832-f87b93985ab4/\", \"children\": {}, \"repository_memberships\": [\"integration_test_id\"]}]"
-    http_version: 
-  recorded_at: Tue, 22 Jan 2013 19:43:49 GMT
-- request: 
-    method: post
-    uri: https://admin:admin@localhost/pulp/api/v2/content/units/package_group/search/
-    body: 
-      string: "{\"criteria\":{}}"
-    headers: 
-      Content-Length: 
-      - "15"
-      Accept-Encoding: 
-      - gzip, deflate
-      Accept: 
-      - application/json
-      Content-Type: 
-      - application/json
-  response: 
-    status: 
-      code: 200
-      message: OK
-    headers: 
-      Content-Length: 
-      - "1196"
-      Server: 
-      - Apache/2.2.22 (Fedora)
-      Date: 
-      - Tue, 22 Jan 2013 19:43:49 GMT
-      Content-Type: 
-      - application/json
-    body: 
-      string: "[{\"_storage_path\": null, \"mandatory_package_names\": [\"elephant,giraffe,cheetah,lion,monkey,penguin,squirrel,walrus\", \"penguin\"], \"repo_id\": \"integration_test_id\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"27b19411-2cf2-45e4-9832-f87b93985ab4\", \"id\": \"mammal\", \"name\": \"mammal\", \"_href\": \"/pulp/api/v2/content/units/package_group/27b19411-2cf2-45e4-9832-f87b93985ab4/\", \"children\": {}}, {\"_storage_path\": null, \"mandatory_package_names\": [\"penguin\"], \"repo_id\": \"integration_test_id\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"8a2f4314-ad13-4815-9bb0-6c63d4c93794\", \"id\": \"bird\", \"name\": \"bird\", \"_href\": \"/pulp/api/v2/content/units/package_group/8a2f4314-ad13-4815-9bb0-6c63d4c93794/\", \"children\": {}}]"
-    http_version: 
-  recorded_at: Tue, 22 Jan 2013 19:43:49 GMT
-- request: 
-    method: post
-    uri: https://admin:admin@localhost/pulp/api/v2/content/units/package_group/search/
-    body: 
-      string: "{\"include_repos\":true,\"criteria\":{\"filters\":{\"_id\":{\"$in\":[\"8a2f4314-ad13-4815-9bb0-6c63d4c93794\"]}}}}"
-    headers: 
-      Content-Length: 
-      - "102"
-      Accept-Encoding: 
-      - gzip, deflate
-      Accept: 
-      - application/json
-      Content-Type: 
-      - application/json
-  response: 
-    status: 
-      code: 200
-      message: OK
-    headers: 
-      Content-Length: 
-      - "615"
-      Server: 
-      - Apache/2.2.22 (Fedora)
-      Date: 
-      - Tue, 22 Jan 2013 19:43:49 GMT
-      Content-Type: 
-      - application/json
-    body: 
-      string: "[{\"_storage_path\": null, \"mandatory_package_names\": [\"penguin\"], \"repo_id\": \"integration_test_id\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"8a2f4314-ad13-4815-9bb0-6c63d4c93794\", \"id\": \"bird\", \"name\": \"bird\", \"_href\": \"/pulp/api/v2/content/units/package_group/8a2f4314-ad13-4815-9bb0-6c63d4c93794/\", \"children\": {}, \"repository_memberships\": [\"integration_test_id\"]}]"
-    http_version: 
-  recorded_at: Tue, 22 Jan 2013 19:43:49 GMT
-- request: 
-    method: post
-    uri: https://admin:admin@localhost/pulp/api/v2/content/units/package_group/search/
-    body: 
-      string: "{\"criteria\":{}}"
-    headers: 
-      Content-Length: 
-      - "15"
-      Accept-Encoding: 
-      - gzip, deflate
-      Accept: 
-      - application/json
-      Content-Type: 
-      - application/json
-  response: 
-    status: 
-      code: 200
-      message: OK
-    headers: 
-      Content-Length: 
-      - "1196"
-      Server: 
-      - Apache/2.2.22 (Fedora)
-      Date: 
-      - Tue, 22 Jan 2013 19:43:49 GMT
-      Content-Type: 
-      - application/json
-    body: 
-      string: "[{\"_storage_path\": null, \"mandatory_package_names\": [\"elephant,giraffe,cheetah,lion,monkey,penguin,squirrel,walrus\", \"penguin\"], \"repo_id\": \"integration_test_id\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"27b19411-2cf2-45e4-9832-f87b93985ab4\", \"id\": \"mammal\", \"name\": \"mammal\", \"_href\": \"/pulp/api/v2/content/units/package_group/27b19411-2cf2-45e4-9832-f87b93985ab4/\", \"children\": {}}, {\"_storage_path\": null, \"mandatory_package_names\": [\"penguin\"], \"repo_id\": \"integration_test_id\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"8a2f4314-ad13-4815-9bb0-6c63d4c93794\", \"id\": \"bird\", \"name\": \"bird\", \"_href\": \"/pulp/api/v2/content/units/package_group/8a2f4314-ad13-4815-9bb0-6c63d4c93794/\", \"children\": {}}]"
-    http_version: 
-  recorded_at: Tue, 22 Jan 2013 19:43:49 GMT
-- request: 
-    method: post
-    uri: https://admin:admin@localhost/pulp/api/v2/content/units/package_group/search/
-    body: 
-      string: "{\"include_repos\":true,\"criteria\":{\"filters\":{\"id\":{\"$in\":[\"bird\"]}}}}"
-    headers: 
-      Content-Length: 
-      - "69"
-      Accept-Encoding: 
-      - gzip, deflate
-      Accept: 
-      - application/json
-      Content-Type: 
-      - application/json
-  response: 
-    status: 
-      code: 200
-      message: OK
-    headers: 
-      Content-Length: 
-      - "615"
-      Server: 
-      - Apache/2.2.22 (Fedora)
-      Date: 
-      - Tue, 22 Jan 2013 19:43:49 GMT
-      Content-Type: 
-      - application/json
-    body: 
-      string: "[{\"_storage_path\": null, \"mandatory_package_names\": [\"penguin\"], \"repo_id\": \"integration_test_id\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"8a2f4314-ad13-4815-9bb0-6c63d4c93794\", \"id\": \"bird\", \"name\": \"bird\", \"_href\": \"/pulp/api/v2/content/units/package_group/8a2f4314-ad13-4815-9bb0-6c63d4c93794/\", \"children\": {}, \"repository_memberships\": [\"integration_test_id\"]}]"
-    http_version: 
-  recorded_at: Tue, 22 Jan 2013 19:43:50 GMT
-- request: 
-    method: post
-    uri: https://admin:admin@localhost/pulp/api/v2/content/units/package_group/search/
-    body: 
-      string: "{\"criteria\":{}}"
-    headers: 
-      Content-Length: 
-      - "15"
-      Accept-Encoding: 
-      - gzip, deflate
-      Accept: 
-      - application/json
-      Content-Type: 
-      - application/json
-  response: 
-    status: 
-      code: 200
-      message: OK
-    headers: 
-      Content-Length: 
-      - "1196"
-      Server: 
-      - Apache/2.2.22 (Fedora)
-      Date: 
-      - Tue, 22 Jan 2013 19:43:50 GMT
-      Content-Type: 
-      - application/json
-    body: 
-      string: "[{\"_storage_path\": null, \"mandatory_package_names\": [\"elephant,giraffe,cheetah,lion,monkey,penguin,squirrel,walrus\", \"penguin\"], \"repo_id\": \"integration_test_id\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"27b19411-2cf2-45e4-9832-f87b93985ab4\", \"id\": \"mammal\", \"name\": \"mammal\", \"_href\": \"/pulp/api/v2/content/units/package_group/27b19411-2cf2-45e4-9832-f87b93985ab4/\", \"children\": {}}, {\"_storage_path\": null, \"mandatory_package_names\": [\"penguin\"], \"repo_id\": \"integration_test_id\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"8a2f4314-ad13-4815-9bb0-6c63d4c93794\", \"id\": \"bird\", \"name\": \"bird\", \"_href\": \"/pulp/api/v2/content/units/package_group/8a2f4314-ad13-4815-9bb0-6c63d4c93794/\", \"children\": {}}]"
-    http_version: 
-  recorded_at: Tue, 22 Jan 2013 19:43:50 GMT
-- request: 
-    method: post
-    uri: https://admin:admin@localhost/pulp/api/v2/content/units/package_group/search/
-    body: 
-      string: "{\"include_repos\":true,\"criteria\":{\"filters\":{\"id\":{\"$in\":[\"f\"]}}}}"
+      string: "{\"criteria\":{\"filters\":{\"id\":{\"$in\":[\"f\"]}}},\"include_repos\":true}"
     headers: 
       Content-Length: 
       - "66"
-      Accept-Encoding: 
-      - gzip, deflate
-      Accept: 
-      - application/json
       Content-Type: 
       - application/json
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
   response: 
     status: 
       code: 200
@@ -239,16 +21,16 @@ http_interactions:
     headers: 
       Content-Length: 
       - "2"
-      Server: 
-      - Apache/2.2.22 (Fedora)
       Date: 
-      - Tue, 22 Jan 2013 19:43:50 GMT
+      - Tue, 26 Feb 2013 00:54:25 GMT
       Content-Type: 
       - application/json
+      Server: 
+      - Apache/2.2.22 (Fedora)
     body: 
       string: "[]"
     http_version: 
-  recorded_at: Tue, 22 Jan 2013 19:43:50 GMT
+  recorded_at: Tue, 26 Feb 2013 00:54:26 GMT
 - request: 
     method: post
     uri: https://admin:admin@localhost/pulp/api/v2/content/units/package_group/search/
@@ -257,43 +39,105 @@ http_interactions:
     headers: 
       Content-Length: 
       - "15"
-      Accept-Encoding: 
-      - gzip, deflate
-      Accept: 
-      - application/json
       Content-Type: 
       - application/json
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
   response: 
     status: 
       code: 200
       message: OK
     headers: 
       Content-Length: 
-      - "1196"
-      Server: 
-      - Apache/2.2.22 (Fedora)
+      - "4056"
       Date: 
-      - Tue, 22 Jan 2013 19:43:50 GMT
+      - Tue, 26 Feb 2013 00:54:26 GMT
       Content-Type: 
       - application/json
+      Server: 
+      - Apache/2.2.22 (Fedora)
     body: 
-      string: "[{\"_storage_path\": null, \"mandatory_package_names\": [\"elephant,giraffe,cheetah,lion,monkey,penguin,squirrel,walrus\", \"penguin\"], \"repo_id\": \"integration_test_id\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"27b19411-2cf2-45e4-9832-f87b93985ab4\", \"id\": \"mammal\", \"name\": \"mammal\", \"_href\": \"/pulp/api/v2/content/units/package_group/27b19411-2cf2-45e4-9832-f87b93985ab4/\", \"children\": {}}, {\"_storage_path\": null, \"mandatory_package_names\": [\"penguin\"], \"repo_id\": \"integration_test_id\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"8a2f4314-ad13-4815-9bb0-6c63d4c93794\", \"id\": \"bird\", \"name\": \"bird\", \"_href\": \"/pulp/api/v2/content/units/package_group/8a2f4314-ad13-4815-9bb0-6c63d4c93794/\", \"children\": {}}]"
+      string: "[{\"_storage_path\": null, \"mandatory_package_names\": [\"camel\", \"dolphin\", \"lion\", \"zebra\", \"mouse\", \"horse\", \"fox\", \"elephant\", \"cheetah\", \"squirrel\", \"kangaroo\", \"chimpanzee\", \"tiger\", \"giraffe\", \"bear\", \"whale\", \"cow\", \"dog\", \"cat\", \"gorilla\", \"wolf\", \"walrus\"], \"repo_id\": \"org_manifest_VcPxhQqx7tri-Zoo_Enterprise-Zoo_Enterprise_x86_64_16\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"1a4477a1-5e28-4e3c-a328-dc5f69d6240c\", \"id\": \"mammals\", \"name\": \"mammals\", \"_href\": \"/pulp/api/v2/content/units/package_group/1a4477a1-5e28-4e3c-a328-dc5f69d6240c/\", \"children\": {}}, {\"_storage_path\": null, \"mandatory_package_names\": [\"stork\", \"cockateel\", \"penguin\", \"duck\"], \"repo_id\": \"org_manifest_VcPxhQqx7tri-Zoo_Enterprise-Zoo_Enterprise_x86_64_16\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"d91d012c-909b-4826-b0a2-9d00036b91c3\", \"id\": \"birds\", \"name\": \"birds\", \"_href\": \"/pulp/api/v2/content/units/package_group/d91d012c-909b-4826-b0a2-9d00036b91c3/\", \"children\": {}}, {\"_storage_path\": null, \"mandatory_package_names\": [\"camel\", \"dolphin\", \"lion\", \"zebra\", \"mouse\", \"horse\", \"fox\", \"elephant\", \"cheetah\", \"squirrel\", \"kangaroo\", \"chimpanzee\", \"tiger\", \"giraffe\", \"bear\", \"whale\", \"cow\", \"dog\", \"cat\", \"gorilla\", \"wolf\", \"walrus\"], \"repo_id\": \"ACME_Corporation-TestProduct2-TestRepo\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"2572404d-51d2-4802-8b4e-e4601493bb9d\", \"id\": \"mammals\", \"name\": \"mammals\", \"_href\": \"/pulp/api/v2/content/units/package_group/2572404d-51d2-4802-8b4e-e4601493bb9d/\", \"children\": {}}, {\"_storage_path\": null, \"mandatory_package_names\": [\"stork\", \"cockateel\", \"penguin\", \"duck\"], \"repo_id\": \"ACME_Corporation-TestProduct2-TestRepo\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"a569a82e-723a-43c9-8824-de38328b2e01\", \"id\": \"birds\", \"name\": \"birds\", \"_href\": \"/pulp/api/v2/content/units/package_group/a569a82e-723a-43c9-8824-de38328b2e01/\", \"children\": {}}, {\"_storage_path\": null, \"mandatory_package_names\": [\"elephant,giraffe,cheetah,lion,monkey,penguin,squirrel,walrus\", \"penguin\"], \"repo_id\": \"integration_test_id\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"85ab2c08-9ca7-4a11-b37c-caa43ff94c38\", \"id\": \"mammal\", \"name\": \"mammal\", \"_href\": \"/pulp/api/v2/content/units/package_group/85ab2c08-9ca7-4a11-b37c-caa43ff94c38/\", \"children\": {}}, {\"_storage_path\": null, \"mandatory_package_names\": [\"penguin\"], \"repo_id\": \"integration_test_id\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"2d295788-a0ec-4017-8e9c-d3bed7effa04\", \"id\": \"bird\", \"name\": \"bird\", \"_href\": \"/pulp/api/v2/content/units/package_group/2d295788-a0ec-4017-8e9c-d3bed7effa04/\", \"children\": {}}]"
     http_version: 
-  recorded_at: Tue, 22 Jan 2013 19:43:50 GMT
+  recorded_at: Tue, 26 Feb 2013 00:54:26 GMT
 - request: 
     method: post
     uri: https://admin:admin@localhost/pulp/api/v2/content/units/package_group/search/
     body: 
-      string: "{\"include_repos\":true,\"criteria\":{\"filters\":{\"_id\":{\"$in\":[\"8a2f4314-ad13-4815-9bb0-6c63d4c93794\"]}}}}"
+      string: "{\"criteria\":{\"filters\":{\"id\":{\"$in\":[\"bird\",\"birds\",\"birds\"]}}},\"include_repos\":true}"
+    headers: 
+      Content-Length: 
+      - "85"
+      Content-Type: 
+      - application/json
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Content-Length: 
+      - "1972"
+      Date: 
+      - Tue, 26 Feb 2013 00:54:26 GMT
+      Content-Type: 
+      - application/json
+      Server: 
+      - Apache/2.2.22 (Fedora)
+    body: 
+      string: "[{\"_storage_path\": null, \"mandatory_package_names\": [\"penguin\"], \"repo_id\": \"integration_test_id\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"2d295788-a0ec-4017-8e9c-d3bed7effa04\", \"id\": \"bird\", \"name\": \"bird\", \"_href\": \"/pulp/api/v2/content/units/package_group/2d295788-a0ec-4017-8e9c-d3bed7effa04/\", \"children\": {}, \"repository_memberships\": [\"integration_test_id\"]}, {\"_storage_path\": null, \"mandatory_package_names\": [\"stork\", \"cockateel\", \"penguin\", \"duck\"], \"repo_id\": \"ACME_Corporation-TestProduct2-TestRepo\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"a569a82e-723a-43c9-8824-de38328b2e01\", \"id\": \"birds\", \"name\": \"birds\", \"_href\": \"/pulp/api/v2/content/units/package_group/a569a82e-723a-43c9-8824-de38328b2e01/\", \"children\": {}, \"repository_memberships\": [\"ACME_Corporation-TestProduct2-TestRepo\"]}, {\"_storage_path\": null, \"mandatory_package_names\": [\"stork\", \"cockateel\", \"penguin\", \"duck\"], \"repo_id\": \"org_manifest_VcPxhQqx7tri-Zoo_Enterprise-Zoo_Enterprise_x86_64_16\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"d91d012c-909b-4826-b0a2-9d00036b91c3\", \"id\": \"birds\", \"name\": \"birds\", \"_href\": \"/pulp/api/v2/content/units/package_group/d91d012c-909b-4826-b0a2-9d00036b91c3/\", \"children\": {}, \"repository_memberships\": []}]"
+    http_version: 
+  recorded_at: Tue, 26 Feb 2013 00:54:26 GMT
+- request: 
+    method: post
+    uri: https://admin:admin@localhost/pulp/api/v2/content/units/package_group/search/
+    body: 
+      string: "{\"criteria\":{}}"
+    headers: 
+      Content-Length: 
+      - "15"
+      Content-Type: 
+      - application/json
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Content-Length: 
+      - "4056"
+      Date: 
+      - Tue, 26 Feb 2013 00:54:26 GMT
+      Content-Type: 
+      - application/json
+      Server: 
+      - Apache/2.2.22 (Fedora)
+    body: 
+      string: "[{\"_storage_path\": null, \"mandatory_package_names\": [\"camel\", \"dolphin\", \"lion\", \"zebra\", \"mouse\", \"horse\", \"fox\", \"elephant\", \"cheetah\", \"squirrel\", \"kangaroo\", \"chimpanzee\", \"tiger\", \"giraffe\", \"bear\", \"whale\", \"cow\", \"dog\", \"cat\", \"gorilla\", \"wolf\", \"walrus\"], \"repo_id\": \"org_manifest_VcPxhQqx7tri-Zoo_Enterprise-Zoo_Enterprise_x86_64_16\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"1a4477a1-5e28-4e3c-a328-dc5f69d6240c\", \"id\": \"mammals\", \"name\": \"mammals\", \"_href\": \"/pulp/api/v2/content/units/package_group/1a4477a1-5e28-4e3c-a328-dc5f69d6240c/\", \"children\": {}}, {\"_storage_path\": null, \"mandatory_package_names\": [\"stork\", \"cockateel\", \"penguin\", \"duck\"], \"repo_id\": \"org_manifest_VcPxhQqx7tri-Zoo_Enterprise-Zoo_Enterprise_x86_64_16\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"d91d012c-909b-4826-b0a2-9d00036b91c3\", \"id\": \"birds\", \"name\": \"birds\", \"_href\": \"/pulp/api/v2/content/units/package_group/d91d012c-909b-4826-b0a2-9d00036b91c3/\", \"children\": {}}, {\"_storage_path\": null, \"mandatory_package_names\": [\"camel\", \"dolphin\", \"lion\", \"zebra\", \"mouse\", \"horse\", \"fox\", \"elephant\", \"cheetah\", \"squirrel\", \"kangaroo\", \"chimpanzee\", \"tiger\", \"giraffe\", \"bear\", \"whale\", \"cow\", \"dog\", \"cat\", \"gorilla\", \"wolf\", \"walrus\"], \"repo_id\": \"ACME_Corporation-TestProduct2-TestRepo\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"2572404d-51d2-4802-8b4e-e4601493bb9d\", \"id\": \"mammals\", \"name\": \"mammals\", \"_href\": \"/pulp/api/v2/content/units/package_group/2572404d-51d2-4802-8b4e-e4601493bb9d/\", \"children\": {}}, {\"_storage_path\": null, \"mandatory_package_names\": [\"stork\", \"cockateel\", \"penguin\", \"duck\"], \"repo_id\": \"ACME_Corporation-TestProduct2-TestRepo\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"a569a82e-723a-43c9-8824-de38328b2e01\", \"id\": \"birds\", \"name\": \"birds\", \"_href\": \"/pulp/api/v2/content/units/package_group/a569a82e-723a-43c9-8824-de38328b2e01/\", \"children\": {}}, {\"_storage_path\": null, \"mandatory_package_names\": [\"elephant,giraffe,cheetah,lion,monkey,penguin,squirrel,walrus\", \"penguin\"], \"repo_id\": \"integration_test_id\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"85ab2c08-9ca7-4a11-b37c-caa43ff94c38\", \"id\": \"mammal\", \"name\": \"mammal\", \"_href\": \"/pulp/api/v2/content/units/package_group/85ab2c08-9ca7-4a11-b37c-caa43ff94c38/\", \"children\": {}}, {\"_storage_path\": null, \"mandatory_package_names\": [\"penguin\"], \"repo_id\": \"integration_test_id\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"2d295788-a0ec-4017-8e9c-d3bed7effa04\", \"id\": \"bird\", \"name\": \"bird\", \"_href\": \"/pulp/api/v2/content/units/package_group/2d295788-a0ec-4017-8e9c-d3bed7effa04/\", \"children\": {}}]"
+    http_version: 
+  recorded_at: Tue, 26 Feb 2013 00:54:26 GMT
+- request: 
+    method: post
+    uri: https://admin:admin@localhost/pulp/api/v2/content/units/package_group/search/
+    body: 
+      string: "{\"criteria\":{\"filters\":{\"_id\":{\"$in\":[\"2d295788-a0ec-4017-8e9c-d3bed7effa04\"]}}},\"include_repos\":true}"
     headers: 
       Content-Length: 
       - "102"
-      Accept-Encoding: 
-      - gzip, deflate
-      Accept: 
-      - application/json
       Content-Type: 
       - application/json
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
   response: 
     status: 
       code: 200
@@ -301,13 +145,169 @@ http_interactions:
     headers: 
       Content-Length: 
       - "615"
-      Server: 
-      - Apache/2.2.22 (Fedora)
       Date: 
-      - Tue, 22 Jan 2013 19:43:50 GMT
+      - Tue, 26 Feb 2013 00:54:26 GMT
       Content-Type: 
       - application/json
+      Server: 
+      - Apache/2.2.22 (Fedora)
     body: 
-      string: "[{\"_storage_path\": null, \"mandatory_package_names\": [\"penguin\"], \"repo_id\": \"integration_test_id\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"8a2f4314-ad13-4815-9bb0-6c63d4c93794\", \"id\": \"bird\", \"name\": \"bird\", \"_href\": \"/pulp/api/v2/content/units/package_group/8a2f4314-ad13-4815-9bb0-6c63d4c93794/\", \"children\": {}, \"repository_memberships\": [\"integration_test_id\"]}]"
+      string: "[{\"_storage_path\": null, \"mandatory_package_names\": [\"penguin\"], \"repo_id\": \"integration_test_id\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"2d295788-a0ec-4017-8e9c-d3bed7effa04\", \"id\": \"bird\", \"name\": \"bird\", \"_href\": \"/pulp/api/v2/content/units/package_group/2d295788-a0ec-4017-8e9c-d3bed7effa04/\", \"children\": {}, \"repository_memberships\": [\"integration_test_id\"]}]"
     http_version: 
-  recorded_at: Tue, 22 Jan 2013 19:43:50 GMT
+  recorded_at: Tue, 26 Feb 2013 00:54:26 GMT
+- request: 
+    method: post
+    uri: https://admin:admin@localhost/pulp/api/v2/content/units/package_group/search/
+    body: 
+      string: "{\"criteria\":{}}"
+    headers: 
+      Content-Length: 
+      - "15"
+      Content-Type: 
+      - application/json
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Content-Length: 
+      - "4056"
+      Date: 
+      - Tue, 26 Feb 2013 00:54:27 GMT
+      Content-Type: 
+      - application/json
+      Server: 
+      - Apache/2.2.22 (Fedora)
+    body: 
+      string: "[{\"_storage_path\": null, \"mandatory_package_names\": [\"camel\", \"dolphin\", \"lion\", \"zebra\", \"mouse\", \"horse\", \"fox\", \"elephant\", \"cheetah\", \"squirrel\", \"kangaroo\", \"chimpanzee\", \"tiger\", \"giraffe\", \"bear\", \"whale\", \"cow\", \"dog\", \"cat\", \"gorilla\", \"wolf\", \"walrus\"], \"repo_id\": \"org_manifest_VcPxhQqx7tri-Zoo_Enterprise-Zoo_Enterprise_x86_64_16\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"1a4477a1-5e28-4e3c-a328-dc5f69d6240c\", \"id\": \"mammals\", \"name\": \"mammals\", \"_href\": \"/pulp/api/v2/content/units/package_group/1a4477a1-5e28-4e3c-a328-dc5f69d6240c/\", \"children\": {}}, {\"_storage_path\": null, \"mandatory_package_names\": [\"stork\", \"cockateel\", \"penguin\", \"duck\"], \"repo_id\": \"org_manifest_VcPxhQqx7tri-Zoo_Enterprise-Zoo_Enterprise_x86_64_16\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"d91d012c-909b-4826-b0a2-9d00036b91c3\", \"id\": \"birds\", \"name\": \"birds\", \"_href\": \"/pulp/api/v2/content/units/package_group/d91d012c-909b-4826-b0a2-9d00036b91c3/\", \"children\": {}}, {\"_storage_path\": null, \"mandatory_package_names\": [\"camel\", \"dolphin\", \"lion\", \"zebra\", \"mouse\", \"horse\", \"fox\", \"elephant\", \"cheetah\", \"squirrel\", \"kangaroo\", \"chimpanzee\", \"tiger\", \"giraffe\", \"bear\", \"whale\", \"cow\", \"dog\", \"cat\", \"gorilla\", \"wolf\", \"walrus\"], \"repo_id\": \"ACME_Corporation-TestProduct2-TestRepo\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"2572404d-51d2-4802-8b4e-e4601493bb9d\", \"id\": \"mammals\", \"name\": \"mammals\", \"_href\": \"/pulp/api/v2/content/units/package_group/2572404d-51d2-4802-8b4e-e4601493bb9d/\", \"children\": {}}, {\"_storage_path\": null, \"mandatory_package_names\": [\"stork\", \"cockateel\", \"penguin\", \"duck\"], \"repo_id\": \"ACME_Corporation-TestProduct2-TestRepo\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"a569a82e-723a-43c9-8824-de38328b2e01\", \"id\": \"birds\", \"name\": \"birds\", \"_href\": \"/pulp/api/v2/content/units/package_group/a569a82e-723a-43c9-8824-de38328b2e01/\", \"children\": {}}, {\"_storage_path\": null, \"mandatory_package_names\": [\"elephant,giraffe,cheetah,lion,monkey,penguin,squirrel,walrus\", \"penguin\"], \"repo_id\": \"integration_test_id\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"85ab2c08-9ca7-4a11-b37c-caa43ff94c38\", \"id\": \"mammal\", \"name\": \"mammal\", \"_href\": \"/pulp/api/v2/content/units/package_group/85ab2c08-9ca7-4a11-b37c-caa43ff94c38/\", \"children\": {}}, {\"_storage_path\": null, \"mandatory_package_names\": [\"penguin\"], \"repo_id\": \"integration_test_id\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"2d295788-a0ec-4017-8e9c-d3bed7effa04\", \"id\": \"bird\", \"name\": \"bird\", \"_href\": \"/pulp/api/v2/content/units/package_group/2d295788-a0ec-4017-8e9c-d3bed7effa04/\", \"children\": {}}]"
+    http_version: 
+  recorded_at: Tue, 26 Feb 2013 00:54:27 GMT
+- request: 
+    method: post
+    uri: https://admin:admin@localhost/pulp/api/v2/content/units/package_group/search/
+    body: 
+      string: "{\"criteria\":{\"filters\":{\"id\":{\"$in\":[\"bird\"]}}},\"include_repos\":true}"
+    headers: 
+      Content-Length: 
+      - "69"
+      Content-Type: 
+      - application/json
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Content-Length: 
+      - "615"
+      Date: 
+      - Tue, 26 Feb 2013 00:54:27 GMT
+      Content-Type: 
+      - application/json
+      Server: 
+      - Apache/2.2.22 (Fedora)
+    body: 
+      string: "[{\"_storage_path\": null, \"mandatory_package_names\": [\"penguin\"], \"repo_id\": \"integration_test_id\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"2d295788-a0ec-4017-8e9c-d3bed7effa04\", \"id\": \"bird\", \"name\": \"bird\", \"_href\": \"/pulp/api/v2/content/units/package_group/2d295788-a0ec-4017-8e9c-d3bed7effa04/\", \"children\": {}, \"repository_memberships\": [\"integration_test_id\"]}]"
+    http_version: 
+  recorded_at: Tue, 26 Feb 2013 00:54:27 GMT
+- request: 
+    method: post
+    uri: https://admin:admin@localhost/pulp/api/v2/content/units/package_group/search/
+    body: 
+      string: "{\"criteria\":{}}"
+    headers: 
+      Content-Length: 
+      - "15"
+      Content-Type: 
+      - application/json
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Content-Length: 
+      - "4056"
+      Date: 
+      - Tue, 26 Feb 2013 00:54:27 GMT
+      Content-Type: 
+      - application/json
+      Server: 
+      - Apache/2.2.22 (Fedora)
+    body: 
+      string: "[{\"_storage_path\": null, \"mandatory_package_names\": [\"camel\", \"dolphin\", \"lion\", \"zebra\", \"mouse\", \"horse\", \"fox\", \"elephant\", \"cheetah\", \"squirrel\", \"kangaroo\", \"chimpanzee\", \"tiger\", \"giraffe\", \"bear\", \"whale\", \"cow\", \"dog\", \"cat\", \"gorilla\", \"wolf\", \"walrus\"], \"repo_id\": \"org_manifest_VcPxhQqx7tri-Zoo_Enterprise-Zoo_Enterprise_x86_64_16\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"1a4477a1-5e28-4e3c-a328-dc5f69d6240c\", \"id\": \"mammals\", \"name\": \"mammals\", \"_href\": \"/pulp/api/v2/content/units/package_group/1a4477a1-5e28-4e3c-a328-dc5f69d6240c/\", \"children\": {}}, {\"_storage_path\": null, \"mandatory_package_names\": [\"stork\", \"cockateel\", \"penguin\", \"duck\"], \"repo_id\": \"org_manifest_VcPxhQqx7tri-Zoo_Enterprise-Zoo_Enterprise_x86_64_16\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"d91d012c-909b-4826-b0a2-9d00036b91c3\", \"id\": \"birds\", \"name\": \"birds\", \"_href\": \"/pulp/api/v2/content/units/package_group/d91d012c-909b-4826-b0a2-9d00036b91c3/\", \"children\": {}}, {\"_storage_path\": null, \"mandatory_package_names\": [\"camel\", \"dolphin\", \"lion\", \"zebra\", \"mouse\", \"horse\", \"fox\", \"elephant\", \"cheetah\", \"squirrel\", \"kangaroo\", \"chimpanzee\", \"tiger\", \"giraffe\", \"bear\", \"whale\", \"cow\", \"dog\", \"cat\", \"gorilla\", \"wolf\", \"walrus\"], \"repo_id\": \"ACME_Corporation-TestProduct2-TestRepo\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"2572404d-51d2-4802-8b4e-e4601493bb9d\", \"id\": \"mammals\", \"name\": \"mammals\", \"_href\": \"/pulp/api/v2/content/units/package_group/2572404d-51d2-4802-8b4e-e4601493bb9d/\", \"children\": {}}, {\"_storage_path\": null, \"mandatory_package_names\": [\"stork\", \"cockateel\", \"penguin\", \"duck\"], \"repo_id\": \"ACME_Corporation-TestProduct2-TestRepo\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"a569a82e-723a-43c9-8824-de38328b2e01\", \"id\": \"birds\", \"name\": \"birds\", \"_href\": \"/pulp/api/v2/content/units/package_group/a569a82e-723a-43c9-8824-de38328b2e01/\", \"children\": {}}, {\"_storage_path\": null, \"mandatory_package_names\": [\"elephant,giraffe,cheetah,lion,monkey,penguin,squirrel,walrus\", \"penguin\"], \"repo_id\": \"integration_test_id\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"85ab2c08-9ca7-4a11-b37c-caa43ff94c38\", \"id\": \"mammal\", \"name\": \"mammal\", \"_href\": \"/pulp/api/v2/content/units/package_group/85ab2c08-9ca7-4a11-b37c-caa43ff94c38/\", \"children\": {}}, {\"_storage_path\": null, \"mandatory_package_names\": [\"penguin\"], \"repo_id\": \"integration_test_id\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"2d295788-a0ec-4017-8e9c-d3bed7effa04\", \"id\": \"bird\", \"name\": \"bird\", \"_href\": \"/pulp/api/v2/content/units/package_group/2d295788-a0ec-4017-8e9c-d3bed7effa04/\", \"children\": {}}]"
+    http_version: 
+  recorded_at: Tue, 26 Feb 2013 00:54:27 GMT
+- request: 
+    method: post
+    uri: https://admin:admin@localhost/pulp/api/v2/content/units/package_group/search/
+    body: 
+      string: "{\"criteria\":{\"filters\":{\"_id\":{\"$in\":[\"2d295788-a0ec-4017-8e9c-d3bed7effa04\"]}}},\"include_repos\":true}"
+    headers: 
+      Content-Length: 
+      - "102"
+      Content-Type: 
+      - application/json
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Content-Length: 
+      - "615"
+      Date: 
+      - Tue, 26 Feb 2013 00:54:27 GMT
+      Content-Type: 
+      - application/json
+      Server: 
+      - Apache/2.2.22 (Fedora)
+    body: 
+      string: "[{\"_storage_path\": null, \"mandatory_package_names\": [\"penguin\"], \"repo_id\": \"integration_test_id\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"2d295788-a0ec-4017-8e9c-d3bed7effa04\", \"id\": \"bird\", \"name\": \"bird\", \"_href\": \"/pulp/api/v2/content/units/package_group/2d295788-a0ec-4017-8e9c-d3bed7effa04/\", \"children\": {}, \"repository_memberships\": [\"integration_test_id\"]}]"
+    http_version: 
+  recorded_at: Tue, 26 Feb 2013 00:54:27 GMT
+- request: 
+    method: post
+    uri: https://admin:admin@localhost/pulp/api/v2/content/units/package_group/search/
+    body: 
+      string: "{\"criteria\":{}}"
+    headers: 
+      Content-Length: 
+      - "15"
+      Content-Type: 
+      - application/json
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Content-Length: 
+      - "4056"
+      Date: 
+      - Tue, 26 Feb 2013 00:54:27 GMT
+      Content-Type: 
+      - application/json
+      Server: 
+      - Apache/2.2.22 (Fedora)
+    body: 
+      string: "[{\"_storage_path\": null, \"mandatory_package_names\": [\"camel\", \"dolphin\", \"lion\", \"zebra\", \"mouse\", \"horse\", \"fox\", \"elephant\", \"cheetah\", \"squirrel\", \"kangaroo\", \"chimpanzee\", \"tiger\", \"giraffe\", \"bear\", \"whale\", \"cow\", \"dog\", \"cat\", \"gorilla\", \"wolf\", \"walrus\"], \"repo_id\": \"org_manifest_VcPxhQqx7tri-Zoo_Enterprise-Zoo_Enterprise_x86_64_16\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"1a4477a1-5e28-4e3c-a328-dc5f69d6240c\", \"id\": \"mammals\", \"name\": \"mammals\", \"_href\": \"/pulp/api/v2/content/units/package_group/1a4477a1-5e28-4e3c-a328-dc5f69d6240c/\", \"children\": {}}, {\"_storage_path\": null, \"mandatory_package_names\": [\"stork\", \"cockateel\", \"penguin\", \"duck\"], \"repo_id\": \"org_manifest_VcPxhQqx7tri-Zoo_Enterprise-Zoo_Enterprise_x86_64_16\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"d91d012c-909b-4826-b0a2-9d00036b91c3\", \"id\": \"birds\", \"name\": \"birds\", \"_href\": \"/pulp/api/v2/content/units/package_group/d91d012c-909b-4826-b0a2-9d00036b91c3/\", \"children\": {}}, {\"_storage_path\": null, \"mandatory_package_names\": [\"camel\", \"dolphin\", \"lion\", \"zebra\", \"mouse\", \"horse\", \"fox\", \"elephant\", \"cheetah\", \"squirrel\", \"kangaroo\", \"chimpanzee\", \"tiger\", \"giraffe\", \"bear\", \"whale\", \"cow\", \"dog\", \"cat\", \"gorilla\", \"wolf\", \"walrus\"], \"repo_id\": \"ACME_Corporation-TestProduct2-TestRepo\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"2572404d-51d2-4802-8b4e-e4601493bb9d\", \"id\": \"mammals\", \"name\": \"mammals\", \"_href\": \"/pulp/api/v2/content/units/package_group/2572404d-51d2-4802-8b4e-e4601493bb9d/\", \"children\": {}}, {\"_storage_path\": null, \"mandatory_package_names\": [\"stork\", \"cockateel\", \"penguin\", \"duck\"], \"repo_id\": \"ACME_Corporation-TestProduct2-TestRepo\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"a569a82e-723a-43c9-8824-de38328b2e01\", \"id\": \"birds\", \"name\": \"birds\", \"_href\": \"/pulp/api/v2/content/units/package_group/a569a82e-723a-43c9-8824-de38328b2e01/\", \"children\": {}}, {\"_storage_path\": null, \"mandatory_package_names\": [\"elephant,giraffe,cheetah,lion,monkey,penguin,squirrel,walrus\", \"penguin\"], \"repo_id\": \"integration_test_id\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"85ab2c08-9ca7-4a11-b37c-caa43ff94c38\", \"id\": \"mammal\", \"name\": \"mammal\", \"_href\": \"/pulp/api/v2/content/units/package_group/85ab2c08-9ca7-4a11-b37c-caa43ff94c38/\", \"children\": {}}, {\"_storage_path\": null, \"mandatory_package_names\": [\"penguin\"], \"repo_id\": \"integration_test_id\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"2d295788-a0ec-4017-8e9c-d3bed7effa04\", \"id\": \"bird\", \"name\": \"bird\", \"_href\": \"/pulp/api/v2/content/units/package_group/2d295788-a0ec-4017-8e9c-d3bed7effa04/\", \"children\": {}}]"
+    http_version: 
+  recorded_at: Tue, 26 Feb 2013 00:54:27 GMT
+recorded_with: VCR 2.3.0
