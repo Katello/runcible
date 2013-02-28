@@ -39,7 +39,7 @@ License:        MIT
 Version:        0.3.3
 Release:        2%{?dist}
 URL:            https://github.com/Katello/runcible
-Source0:        %{pkg_name}-%{version}.tar.gz
+Source0:        %{?scl_prefix}%{pkg_name}-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{gem_name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Requires:       %{?scl_prefix}ruby(abi) = %{rubyabi}
 Requires:       %{?scl_prefix}ruby(rubygems) 
