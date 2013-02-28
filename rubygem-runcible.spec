@@ -58,7 +58,7 @@ A gem to expose Pulp's juiciest parts.
 
 
 %prep
-%setup -n %{pkg_name}-%{version} -q
+%setup -n %{?scl_prefix}%{pkg_name}-%{version} -q
 
 %build
 %{?scl:scl enable %{scl} "}
