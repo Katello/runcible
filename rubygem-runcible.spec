@@ -37,7 +37,7 @@ Summary:        A gem exposing Pulp's juiciest parts
 Group:          Applications/System
 License:        MIT
 Version:        0.3.3
-Release:        3%{?dist}
+Release:        4%{?dist}
 URL:            https://github.com/Katello/runcible
 Source0:        %{?scl_prefix}%{pkg_name}-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{gem_name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -98,6 +98,10 @@ This package contains documentation for rubygem-%{gem_name}
 %doc %{gem_docdir}
 
 %changelog
+* Thu Feb 28 2013 Miroslav Suchý <msuchy@redhat.com> 0.3.3-4
+- use scl_prefix for setup macro (msuchy@redhat.com)
+- use upstream builder (msuchy@redhat.com)
+
 * Thu Feb 28 2013 Miroslav Suchý <msuchy@redhat.com> 0.3.3-3
 - tar.gz is created form package name, address this for SC (msuchy@redhat.com)
 
