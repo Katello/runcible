@@ -37,7 +37,7 @@ Summary:        A gem exposing Pulp's juiciest parts
 Group:          Applications/System
 License:        MIT
 Version:        0.3.3
-Release:        1%{?dist}
+Release:        2%{?dist}
 URL:            https://github.com/Katello/runcible
 Source0:        %{pkg_name}-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{gem_name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -98,6 +98,9 @@ This package contains documentation for rubygem-%{gem_name}
 %doc %{gem_docdir}
 
 %changelog
+* Thu Feb 28 2013 Miroslav Suchý <msuchy@redhat.com> 0.3.3-2
+- convert spec file using spec2scl to support SC (msuchy@redhat.com)
+
 * Tue Feb 05 2013 Justin Sherrill <jsherril@redhat.com> 0.3.3-1
 - dropping version requirement for runcible (jsherril@redhat.com)
 - Changes license reference from Eric to Red Hat for consistency.
