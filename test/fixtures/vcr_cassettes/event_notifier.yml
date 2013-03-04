@@ -1,20 +1,19 @@
 --- 
-recorded_with: VCR 2.4.0
 http_interactions: 
 - request: 
     method: post
     uri: https://admin:admin@localhost/pulp/api/v2/events/
     body: 
-      string: "{\"event_types\":[\"repo.publish.finish\"],\"notifier_type_id\":\"http\",\"notifier_config\":{\"url\":\"http://foo.com/foo/\"}}"
+      string: "{\"notifier_config\":{\"url\":\"http://foo.com/foo/\"},\"event_types\":[\"repo.publish.finish\"],\"notifier_type_id\":\"http\"}"
     headers: 
       Content-Length: 
       - "113"
-      Accept-Encoding: 
-      - gzip, deflate
-      Accept: 
-      - application/json
       Content-Type: 
       - application/json
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
   response: 
     status: 
       code: 201
@@ -22,30 +21,30 @@ http_interactions:
     headers: 
       Content-Length: 
       - "282"
-      Server: 
-      - Apache/2.2.22 (Fedora)
-      Location: 
-      - /pulp/api/v2/events/50feebe8196cbe0dcc0006ca/
       Date: 
-      - Tue, 22 Jan 2013 19:43:36 GMT
+      - Tue, 26 Feb 2013 00:54:12 GMT
       Content-Type: 
       - application/json
+      Location: 
+      - /pulp/api/v2/events/512c07b59c60ed7441002c2b/
+      Server: 
+      - Apache/2.2.22 (Fedora)
     body: 
-      string: "{\"notifier_config\": {\"url\": \"http://foo.com/foo/\"}, \"_ns\": \"event_listeners\", \"event_types\": [\"repo.publish.finish\"], \"_id\": {\"$oid\": \"50feebe8196cbe0dcc0006ca\"}, \"id\": \"50feebe8196cbe0dcc0006ca\", \"notifier_type_id\": \"http\", \"_href\": \"/pulp/api/v2/events/50feebe8196cbe0dcc0006ca/\"}"
+      string: "{\"notifier_config\": {\"url\": \"http://foo.com/foo/\"}, \"_ns\": \"event_listeners\", \"event_types\": [\"repo.publish.finish\"], \"_id\": {\"$oid\": \"512c07b59c60ed7441002c2b\"}, \"id\": \"512c07b59c60ed7441002c2b\", \"notifier_type_id\": \"http\", \"_href\": \"/pulp/api/v2/events/512c07b59c60ed7441002c2b/\"}"
     http_version: 
-  recorded_at: Tue, 22 Jan 2013 19:43:36 GMT
+  recorded_at: Tue, 26 Feb 2013 00:54:13 GMT
 - request: 
     method: delete
-    uri: https://admin:admin@localhost/pulp/api/v2/events/50feebe8196cbe0dcc0006ca/
+    uri: https://admin:admin@localhost/pulp/api/v2/events/512c07b59c60ed7441002c2b/
     body: 
       string: ""
     headers: 
-      Accept-Encoding: 
-      - gzip, deflate
-      Accept: 
-      - application/json
       Content-Type: 
       - application/json
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
   response: 
     status: 
       code: 200
@@ -53,42 +52,43 @@ http_interactions:
     headers: 
       Content-Length: 
       - "4"
-      Server: 
-      - Apache/2.2.22 (Fedora)
       Date: 
-      - Tue, 22 Jan 2013 19:43:36 GMT
+      - Tue, 26 Feb 2013 00:54:13 GMT
       Content-Type: 
       - application/json
+      Server: 
+      - Apache/2.2.22 (Fedora)
     body: 
       string: "null"
     http_version: 
-  recorded_at: Tue, 22 Jan 2013 19:43:36 GMT
+  recorded_at: Tue, 26 Feb 2013 00:54:13 GMT
 - request: 
     method: get
     uri: https://admin:admin@localhost/pulp/api/v2/events/
     body: 
       string: ""
     headers: 
-      Accept-Encoding: 
-      - gzip, deflate
-      Accept: 
-      - application/json
       Content-Type: 
       - application/json
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
   response: 
     status: 
       code: 200
       message: OK
     headers: 
       Content-Length: 
-      - "239"
-      Server: 
-      - Apache/2.2.22 (Fedora)
+      - "297"
       Date: 
-      - Tue, 22 Jan 2013 19:43:36 GMT
+      - Tue, 26 Feb 2013 00:54:13 GMT
       Content-Type: 
       - application/json
+      Server: 
+      - Apache/2.2.22 (Fedora)
     body: 
-      string: "[{\"notifier_config\": {\"url\": null}, \"_ns\": \"event_listeners\", \"event_types\": [\"repo.sync.finish\"], \"_id\": {\"$oid\": \"50feeb20196cbe0dcc000030\"}, \"id\": \"50feeb20196cbe0dcc000030\", \"notifier_type_id\": \"http\", \"_href\": \"/pulp/api/v2/events/\"}]"
+      string: "[{\"notifier_config\": {\"url\": \"http://localhost:3000/katello/api/repositories/sync_complete\"}, \"_ns\": \"event_listeners\", \"event_types\": [\"repo.sync.finish\"], \"_id\": {\"$oid\": \"512bd3ff9c60ed2e2600002f\"}, \"id\": \"512bd3ff9c60ed2e2600002f\", \"notifier_type_id\": \"http\", \"_href\": \"/pulp/api/v2/events/\"}]"
     http_version: 
-  recorded_at: Tue, 22 Jan 2013 19:43:36 GMT
+  recorded_at: Tue, 26 Feb 2013 00:54:13 GMT
+recorded_with: VCR 2.3.0

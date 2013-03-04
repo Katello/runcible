@@ -1,20 +1,19 @@
 --- 
-recorded_with: VCR 2.4.0
 http_interactions: 
 - request: 
     method: post
     uri: https://admin:admin@localhost/pulp/api/v2/repositories/
     body: 
-      string: "{\"distributors\":[{\"distributor_type\":\"yum_distributor\",\"distributor_config\":{\"relative_url\":\"/path\",\"http\":true,\"https\":true},\"auto_publish\":true,\"distributor_id\":\"123\"}],\"id\":\"integration_test_id\"}"
+      string: "{\"id\":\"integration_test_id\",\"distributors\":[{\"distributor_config\":{\"http\":true,\"https\":true,\"relative_url\":\"/path\"},\"distributor_id\":\"123\",\"distributor_type\":\"yum_distributor\",\"auto_publish\":true}]}"
     headers: 
       Content-Length: 
       - "198"
-      Accept-Encoding: 
-      - gzip, deflate
-      Accept: 
-      - application/json
       Content-Type: 
       - application/json
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
   response: 
     status: 
       code: 201
@@ -22,15 +21,16 @@ http_interactions:
     headers: 
       Content-Length: 
       - "265"
-      Server: 
-      - Apache/2.2.22 (Fedora)
-      Location: 
-      - integration_test_id
       Date: 
-      - Tue, 22 Jan 2013 19:45:48 GMT
+      - Tue, 26 Feb 2013 00:56:20 GMT
       Content-Type: 
       - application/json
+      Location: 
+      - integration_test_id
+      Server: 
+      - Apache/2.2.22 (Fedora)
     body: 
-      string: "{\"scratchpad\": {}, \"display_name\": \"integration_test_id\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_count\": 0, \"_id\": {\"$oid\": \"50feec6c196cbe0dcc000b65\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\"}"
+      string: "{\"scratchpad\": {}, \"display_name\": \"integration_test_id\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_count\": 0, \"_id\": {\"$oid\": \"512c08359c60ed74410030b3\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\"}"
     http_version: 
-  recorded_at: Tue, 22 Jan 2013 19:45:48 GMT
+  recorded_at: Tue, 26 Feb 2013 00:56:21 GMT
+recorded_with: VCR 2.3.0

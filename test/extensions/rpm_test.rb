@@ -91,7 +91,7 @@ class TestExtensionsRpmUnassociate < UnitUnassociateBase
   end
 
   def test_unassociate_unit_ids_from_repo
-    ids = unit_ids(RepositorySupport.repo_id)
+    ids = unit_ids(self.class.clone_name)
     refute_empty ids
     task = Runcible::Extensions::Rpm.unassociate_unit_ids_from_repo(self.class.clone_name, [ids.first])
     RepositorySupport.wait_on_task(task)
@@ -100,7 +100,7 @@ class TestExtensionsRpmUnassociate < UnitUnassociateBase
 
 
   def test_unassociate_from_repo
-    ids = unit_ids(RepositorySupport.repo_id)
+    ids = unit_ids(self.class.clone_name)
     refute_empty ids
     task = Runcible::Extensions::Rpm.unassociate_from_repo(self.class.clone_name,
                                                             :association => {'unit_id' => {'$in' => [ids.first]}})
