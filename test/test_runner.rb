@@ -22,6 +22,7 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 require 'rubygems'
+require 'logger'
 require 'minitest/unit'
 require 'minitest/autorun'
 
@@ -113,7 +114,13 @@ class PulpMiniTestRunner
     }
 
     if options[:logging] == "true"
-      Runcible::Base.config[:logger] = 'stdout'
+      log = ::Logger.new(STDOUT)
+      log.level = Logger::DEBUG
+      Runcible::Base.config[:logging] = {
+        :logger => log,
+        :debug  => true,
+	      :stdout => true
+      }
     end
 
     if options[:auth_type] == "http"
