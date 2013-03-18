@@ -94,6 +94,24 @@ module Runcible
         content
       end
 
+      # Retrieve the set of errata that is applicable to a consumer(s)
+      #
+      # @param  [String, Array]         ids     hash of uninstall options
+      # @return [RestClient::Response]  content applicability hash with details of errata availabel to consumer(s)
+      def self.applicable_errata(ids)
+        ids = [ids] if ids.is_a? String
+        criteria  = {
+          'consumer_criteria' => {
+            'filters' => {'id' => {'$in' => ids}}
+          },
+          'units' => {
+            'erratum' => []
+          }
+        }
+
+        self.applicability(criteria)
+      end
+
     end
   end
 end

@@ -162,6 +162,14 @@ module Runcible
         call(:post, path("#{id}/actions/content/uninstall/"), :payload => { :required => required })
       end
 
+      # Determine if a set of content is applicable to a consumer
+      #
+      # @param  [Hash]                  options hash of uninstall options
+      # @return [RestClient::Response]
+      def self.applicability(options={})
+        call(:post, path("actions/content/applicability/"), :payload => { :required => options })
+      end
+
     end
   end
 end

@@ -40,12 +40,13 @@ module ConsumerSupport
     VCR.use_cassette('support/consumer') do
       consumer = @consumer_resource.create(@consumer_id)
       if package_profile
-        @consumer_resource.upload_package_profile(@consumer_id, [{"name" => "elephant", "version" => "0.2", "release" => "0.7", 
+        @consumer_resource.upload_profile(@consumer_id, 'rpm', [{"name" => "elephant", "version" => "0.2", "release" => "0.7", 
                                                         "epoch" => 0, "arch" => "noarch"}])
       end
     end
     return consumer
-  rescue
+  rescue => e
+    raise e
   end
 
   def self.destroy_consumer

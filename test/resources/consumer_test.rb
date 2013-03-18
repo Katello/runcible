@@ -192,7 +192,7 @@ class ConsumerRequiresRepoTests < MiniTest::Unit::TestCase
   include TestConsumerBase
 
   def self.before_suite
-    ConsumerSupport.create_consumer
+    ConsumerSupport.create_consumer(true)
     RepositorySupport.create_and_sync_repo(:importer_and_distributor => true)
   end
 
@@ -257,6 +257,24 @@ class TestConsumerRequiresRepo < ConsumerRequiresRepoTests
 
     assert_equal 200, response.code
     refute_empty response
+  end
+
+  def test_applicability
+    criteria  = {
+      'consumer_criteria' => {
+        'filters' => {'id' => {'$in' => [ConsumerSupport.consumer_id]}}
+      },
+      'repo_criteria' => {
+        'filters' => {'id'=> {'$in'=> [RepositorySupport.repo_id]}}
+      },
+      'units' => {
+        'erratum' => []
+      }
+    }
+    response  = @resource.applicability(criteria)
+
+    assert_equal 200, response.code
+    refute_empty response[ConsumerSupport.consumer_id]['erratum']
   end
 
   def test_install_units
