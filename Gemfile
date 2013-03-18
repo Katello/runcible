@@ -9,4 +9,5 @@ group :test do
   gem 'webmock'
   gem 'minitest'
   gem 'parseconfig'
+  gem 'debugger'
 end

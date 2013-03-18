@@ -89,7 +89,7 @@ module Runcible
       # @return [RestClient::Response]
       def self.install_units(id, units, options={})
         required = required_params(binding.send(:local_variables), binding, ["id"])
-        call(:post, path("#{id}/actions/content/install/"), :payload => { :required => required })
+        call(:post, path("#{id}/actions/content/install"), :payload => { :required => required })
       end
 
       # Update a set of units on a Consumer Group
@@ -100,7 +100,7 @@ module Runcible
       # @return [RestClient::Response]
       def self.update_units(id, units, options={})
         required = required_params(binding.send(:local_variables), binding, ["id"])
-        call(:post, path("#{id}/actions/content/update/"), :payload => { :required => required })
+        call(:post, path("#{id}/actions/content/update"), :payload => { :required => required })
       end
 
       # Uninstall a set of units from a Consumer Group
@@ -111,7 +111,7 @@ module Runcible
       # @return [RestClient::Response]
       def self.uninstall_units(id, units, options={})
         required = required_params(binding.send(:local_variables), binding, ["id"])
-        call(:post, path("#{id}/actions/content/uninstall/"), :payload => { :required => required })
+        call(:post, path("#{id}/actions/content/uninstall"), :payload => { :required => required })
       end
 
     end

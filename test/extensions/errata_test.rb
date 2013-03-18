@@ -105,8 +105,14 @@ class TestExtensionsErrataCopy < UnitCopyBase
 end
 
 class TestExtensionsErrataUnassociate < UnitUnassociateBase
+
   def self.extension_class
     Runcible::Extensions::Errata
+  end
+
+  def setup
+    task = Runcible::Extensions::Repository.unit_copy(self.class.clone_name, RepositorySupport.repo_id)
+    RepositorySupport.wait_on_task(task)
   end
 
   def test_unassociate_ids_from_repo
