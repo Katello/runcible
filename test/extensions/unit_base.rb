@@ -49,6 +49,16 @@ class UnitCopyBase < MiniTest::Unit::TestCase
       VCR.eject_cassette
     end
   end
+
+  def units(repo)
+    Runcible::Extensions::Repository.unit_search(repo,
+    :type_ids=>[self.class.extension_class.content_type])
+  end
+
+  def unit_ids(repo)
+    units(repo).collect {|i| i['unit_id']}
+  end
+
 end
 
 
@@ -63,8 +73,6 @@ class UnitUnassociateBase < MiniTest::Unit::TestCase
                           :match_requests_on => [:method, :path, :params, :body_json])
       RepositorySupport.create_and_sync_repo(:importer => true)
       Runcible::Extensions::Repository.create_with_importer(clone_name, {:id=>"yum_importer"})
-      task = Runcible::Extensions::Repository.unit_copy(clone_name, RepositorySupport.repo_id)
-      RepositorySupport.wait_on_task(task)
     end
   end
 
@@ -89,4 +97,5 @@ class UnitUnassociateBase < MiniTest::Unit::TestCase
   def unit_ids(repo)
     units(repo).collect {|i| i['unit_id']}
   end
+
 end
