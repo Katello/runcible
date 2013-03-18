@@ -50,48 +50,36 @@ License:        MIT
 Version:        0.3.3
 Release:        1%{?dist}
 URL:            https://github.com/Katello/runcible
+# Can be retrieved by:
+# git clone git://github.com/Katello/runcible.git
+# cd runcible.git
+# tito build --tgz
 Source0:        %{name}-%{version}.tar.gz
+%if 0%{?rhel} == 5
 BuildRoot:      %{_tmppath}/%{gem_name}-%{version}-%{release}-root-%(%{__id_u} -n)
-Requires:       ruby(abi) = %{rubyabi}
+%endif
+%if 0%{?fedora} > 18
+Requires: ruby(release)
+%else
+Requires: ruby(abi) = %{rubyabi}
+%endif
 Requires:       ruby(rubygems) 
 Requires:       rubygem(json) 
 Requires:       rubygem(rest-client) >= 1.6.1
 Requires:       rubygem(oauth) 
 Requires:       rubygem(activesupport) >= 3.0.10
 Requires:       rubygem(i18n) >= 0.5.0
-BuildRequires:  ruby(abi) = %{rubyabi}
+%if 0%{?fedora} > 18
+BuildRequires: ruby(release)
+%else
+BuildRequires: ruby(abi) = %{rubyabi}
+%endif
 BuildRequires:  ruby(rubygems) 
 BuildArch:      noarch
 Provides:       rubygem(%{gem_name}) = %{version}
 
 %description
 A gem to expose Pulp's juiciest parts.
-
-
-%prep
-%setup -q
-
-%build
-gem build %{gem_name}.gemspec
-
-%install
-mkdir -p %{buildroot}%{gem_dir}
-
-gem install \
-    --local \
-    --install-dir %{buildroot}%{gem_dir} \
-    --force \
-    %{gem_name}-%{version}.gem
-
-rm -rf %{buildroot}%{gem_instdir}/.yardoc
-
-%files
-%dir %{gem_instdir}
-%{gem_instdir}/lib
-%exclude %{gem_cache}
-%{gem_spec}
-%doc LICENSE
-
 
 %package doc
 BuildArch:  noarch
@@ -101,8 +89,37 @@ Summary:    Documentation for rubygem-%{gem_name}
 %description doc
 This package contains documentation for rubygem-%{gem_name}
 
+%prep
+%setup -q
+
+%build
+gem build %{gem_name}.gemspec
+%if 0%{?fedora} > 18
+%gem_install
+%else
+mkdir -p .%{gem_dir}
+gem install --local --install-dir .%{gem_dir} \
+            --force %{gem_name}-%{version}.gem
+%endif
+
+%install
+mkdir -p %{buildroot}%{gem_dir}
+cp -a .%{gem_dir}/*  %{buildroot}%{gem_dir}/
+rm -rf %{buildroot}%{gem_instdir}/.yardoc
+cp -a Gemfile Rakefile %{buildroot}%{gem_instdir}/
+
+%files
+%dir %{gem_instdir}
+%{gem_instdir}/lib
+%exclude %{gem_cache}
+%{gem_spec}
+%doc LICENSE
+
 %files doc
 %doc %{gem_docdir}
+%{gem_instdir}/Rakefile
+%{gem_instdir}/Gemfile
+%doc README.md CONTRIBUTING.md
 
 %changelog
 * Tue Feb 05 2013 Justin Sherrill <jsherril@redhat.com> 0.3.3-1
