@@ -62,7 +62,9 @@ class TestExtensionsRpm < MiniTest::Unit::TestCase
   end
 
 end
+
 class TestExtensionsRpmCopy < UnitCopyBase
+
   def self.extension_class
     Runcible::Extensions::Rpm
   end
@@ -78,8 +80,14 @@ class TestExtensionsRpmCopy < UnitCopyBase
 end
 
 class TestExtensionsRpmUnassociate < UnitUnassociateBase
+
   def self.extension_class
     Runcible::Extensions::Rpm
+  end
+
+  def setup
+    task = Runcible::Extensions::Repository.unit_copy(self.class.clone_name, RepositorySupport.repo_id)
+    RepositorySupport.wait_on_task(task)
   end
 
   def test_unassociate_ids_from_repo
@@ -98,7 +106,6 @@ class TestExtensionsRpmUnassociate < UnitUnassociateBase
     assert_equal (ids.length - 1), unit_ids(self.class.clone_name).length
   end
 
-
   def test_unassociate_from_repo
     ids = unit_ids(self.class.clone_name)
     refute_empty ids
@@ -107,6 +114,5 @@ class TestExtensionsRpmUnassociate < UnitUnassociateBase
     RepositorySupport.wait_on_task(task)
     assert_equal (ids.length - 1), unit_ids(self.class.clone_name).length
   end
-
 
 end

@@ -4,66 +4,144 @@ http_interactions:
     method: post
     uri: https://admin:admin@localhost/pulp/api/v2/repositories/
     body: 
-      string: "{\"importer_config\":{},\"id\":\"integration_test_id_clone\",\"importer_type_id\":\"yum_importer\"}"
+      encoding: US-ASCII
+      string: "{\"id\":\"integration_test_id_clone\",\"importer_type_id\":\"yum_importer\",\"importer_config\":{}}"
     headers: 
-      Content-Length: 
-      - "89"
-      Content-Type: 
-      - application/json
       Accept: 
       - application/json
       Accept-Encoding: 
       - gzip, deflate
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "89"
+      User-Agent: 
+      - Ruby
   response: 
     status: 
       code: 201
       message: Created
     headers: 
-      Content-Length: 
-      - "283"
       Date: 
-      - Tue, 26 Feb 2013 00:55:45 GMT
-      Content-Type: 
-      - application/json
+      - Mon, 18 Mar 2013 21:11:02 GMT
+      Server: 
+      - Apache/2.4.3 (Fedora) OpenSSL/1.0.1c-fips mod_wsgi/3.4 Python/2.7.3
       Location: 
       - integration_test_id_clone
-      Server: 
-      - Apache/2.2.22 (Fedora)
+      Content-Length: 
+      - "285"
+      Content-Type: 
+      - application/json
     body: 
-      string: "{\"scratchpad\": {}, \"display_name\": \"integration_test_id_clone\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_count\": 0, \"_id\": {\"$oid\": \"512c08119c60ed7441002f93\"}, \"id\": \"integration_test_id_clone\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id_clone/\"}"
+      encoding: US-ASCII
+      string: "{\"scratchpad\": {}, \"display_name\": \"integration_test_id_clone\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_counts\": {}, \"_id\": {\"$oid\": \"514782e64964c818b8235187\"}, \"id\": \"integration_test_id_clone\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id_clone/\"}"
     http_version: 
-  recorded_at: Tue, 26 Feb 2013 00:55:45 GMT
+  recorded_at: Mon, 18 Mar 2013 21:11:02 GMT
 - request: 
     method: post
     uri: https://admin:admin@localhost/pulp/api/v2/repositories/integration_test_id_clone/actions/associate/
     body: 
-      string: "{\"criteria\":{\"filters\":{},\"type_ids\":[\"package_group\"]},\"source_repo_id\":\"integration_test_id\"}"
+      encoding: US-ASCII
+      string: "{\"source_repo_id\":\"integration_test_id\",\"criteria\":{\"type_ids\":[\"package_group\"],\"filters\":{}}}"
     headers: 
-      Content-Length: 
-      - "95"
-      Content-Type: 
-      - application/json
       Accept: 
       - application/json
       Accept-Encoding: 
       - gzip, deflate
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "95"
+      User-Agent: 
+      - Ruby
   response: 
     status: 
       code: 202
       message: Accepted
     headers: 
-      Content-Length: 
-      - "730"
       Date: 
-      - Tue, 26 Feb 2013 00:55:46 GMT
-      Content-Type: 
-      - application/json
+      - Mon, 18 Mar 2013 21:11:02 GMT
+      Server: 
+      - Apache/2.4.3 (Fedora) OpenSSL/1.0.1c-fips mod_wsgi/3.4 Python/2.7.3
       Content-Encoding: 
       - utf-8
-      Server: 
-      - Apache/2.2.22 (Fedora)
+      Content-Length: 
+      - "730"
+      Content-Type: 
+      - application/json
     body: 
-      string: "{\"task_group_id\": null, \"exception\": null, \"traceback\": null, \"_href\": \"/pulp/api/v2/tasks/42d3add9-6dd6-4e45-b6d7-af4378136451/\", \"task_id\": \"42d3add9-6dd6-4e45-b6d7-af4378136451\", \"call_request_tags\": [\"pulp:repository:integration_test_id_clone\", \"pulp:repository:integration_test_id\", \"pulp:action:associate\"], \"reasons\": [], \"start_time\": null, \"tags\": [\"pulp:repository:integration_test_id_clone\", \"pulp:repository:integration_test_id\", \"pulp:action:associate\"], \"state\": \"waiting\", \"finish_time\": null, \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": null, \"call_request_id\": \"42d3add9-6dd6-4e45-b6d7-af4378136451\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}"
+      encoding: US-ASCII
+      string: "{\"task_group_id\": null, \"exception\": null, \"traceback\": null, \"_href\": \"/pulp/api/v2/tasks/29568ad8-c0af-428f-965d-7067cd5d9922/\", \"task_id\": \"29568ad8-c0af-428f-965d-7067cd5d9922\", \"call_request_tags\": [\"pulp:repository:integration_test_id_clone\", \"pulp:repository:integration_test_id\", \"pulp:action:associate\"], \"reasons\": [], \"start_time\": null, \"tags\": [\"pulp:repository:integration_test_id_clone\", \"pulp:repository:integration_test_id\", \"pulp:action:associate\"], \"state\": \"waiting\", \"finish_time\": null, \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": null, \"call_request_id\": \"29568ad8-c0af-428f-965d-7067cd5d9922\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}"
     http_version: 
-  recorded_at: Tue, 26 Feb 2013 00:55:46 GMT
-recorded_with: VCR 2.3.0
+  recorded_at: Mon, 18 Mar 2013 21:11:02 GMT
+- request: 
+    method: post
+    uri: https://admin:admin@localhost/pulp/api/v2/repositories/integration_test_id_clone/search/units/
+    body: 
+      encoding: US-ASCII
+      string: "{\"criteria\":{\"type_ids\":[\"package_group\"]}}"
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "43"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Date: 
+      - Mon, 18 Mar 2013 21:11:02 GMT
+      Server: 
+      - Apache/2.4.3 (Fedora) OpenSSL/1.0.1c-fips mod_wsgi/3.4 Python/2.7.3
+      Content-Length: 
+      - "1772"
+      Content-Type: 
+      - application/json
+    body: 
+      encoding: US-ASCII
+      string: "[{\"updated\": \"2013-03-19T01:11:02Z\", \"repo_id\": \"integration_test_id_clone\", \"created\": \"2013-03-19T01:11:02Z\", \"_ns\": \"repo_content_units\", \"unit_id\": \"5f2c6883-41da-4fd1-a3f8-3024c729a1a0\", \"unit_type_id\": \"package_group\", \"owner_type\": \"user\", \"_id\": {\"$oid\": \"514782e64964c818b8235195\"}, \"id\": \"514782e64964c818b8235195\", \"owner_id\": \"admin\", \"metadata\": {\"_storage_path\": null, \"mandatory_package_names\": [\"penguin\"], \"repo_id\": \"integration_test_id_clone\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"_ns\": \"units_package_group\", \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"5f2c6883-41da-4fd1-a3f8-3024c729a1a0\", \"id\": \"bird\", \"name\": \"bird\"}}, {\"updated\": \"2013-03-19T01:11:02Z\", \"repo_id\": \"integration_test_id_clone\", \"created\": \"2013-03-19T01:11:02Z\", \"_ns\": \"repo_content_units\", \"unit_id\": \"0a873484-d9ca-4226-aef0-f376a57f70d6\", \"unit_type_id\": \"package_group\", \"owner_type\": \"user\", \"_id\": {\"$oid\": \"514782e64964c818b8235198\"}, \"id\": \"514782e64964c818b8235198\", \"owner_id\": \"admin\", \"metadata\": {\"_storage_path\": null, \"mandatory_package_names\": [\"elephant,giraffe,cheetah,lion,monkey,penguin,squirrel,walrus\", \"penguin\"], \"repo_id\": \"integration_test_id_clone\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"_ns\": \"units_package_group\", \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"0a873484-d9ca-4226-aef0-f376a57f70d6\", \"id\": \"mammal\", \"name\": \"mammal\"}}]"
+    http_version: 
+  recorded_at: Mon, 18 Mar 2013 21:11:02 GMT
+- request: 
+    method: post
+    uri: https://admin:admin@localhost/pulp/api/v2/repositories/integration_test_id/search/units/
+    body: 
+      encoding: US-ASCII
+      string: "{\"criteria\":{\"type_ids\":[\"package_group\"]}}"
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "43"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Date: 
+      - Mon, 18 Mar 2013 21:11:02 GMT
+      Server: 
+      - Apache/2.4.3 (Fedora) OpenSSL/1.0.1c-fips mod_wsgi/3.4 Python/2.7.3
+      Content-Length: 
+      - "1770"
+      Content-Type: 
+      - application/json
+    body: 
+      encoding: US-ASCII
+      string: "[{\"updated\": \"2013-03-19T01:11:00Z\", \"repo_id\": \"integration_test_id\", \"created\": \"2013-03-19T01:11:00Z\", \"_ns\": \"repo_content_units\", \"unit_id\": \"5d6c31b3-e2c5-431f-942b-e3be7b4c5051\", \"unit_type_id\": \"package_group\", \"owner_type\": \"importer\", \"_id\": {\"$oid\": \"514782e44964c818b823517b\"}, \"id\": \"514782e44964c818b823517b\", \"owner_id\": \"yum_importer\", \"metadata\": {\"_storage_path\": null, \"mandatory_package_names\": [\"penguin\"], \"repo_id\": \"integration_test_id\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"_ns\": \"units_package_group\", \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"5d6c31b3-e2c5-431f-942b-e3be7b4c5051\", \"id\": \"bird\", \"name\": \"bird\"}}, {\"updated\": \"2013-03-19T01:11:00Z\", \"repo_id\": \"integration_test_id\", \"created\": \"2013-03-19T01:11:00Z\", \"_ns\": \"repo_content_units\", \"unit_id\": \"e7e7a774-f9d0-45ad-a7d9-06bf3c75ec30\", \"unit_type_id\": \"package_group\", \"owner_type\": \"importer\", \"_id\": {\"$oid\": \"514782e44964c818b823517a\"}, \"id\": \"514782e44964c818b823517a\", \"owner_id\": \"yum_importer\", \"metadata\": {\"_storage_path\": null, \"mandatory_package_names\": [\"elephant,giraffe,cheetah,lion,monkey,penguin,squirrel,walrus\", \"penguin\"], \"repo_id\": \"integration_test_id\", \"description\": \"\", \"user_visible\": true, \"default\": true, \"_ns\": \"units_package_group\", \"display_order\": 1024, \"optional_package_names\": [], \"translated_name\": {}, \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"e7e7a774-f9d0-45ad-a7d9-06bf3c75ec30\", \"id\": \"mammal\", \"name\": \"mammal\"}}]"
+    http_version: 
+  recorded_at: Mon, 18 Mar 2013 21:11:02 GMT
+recorded_with: VCR 2.4.0

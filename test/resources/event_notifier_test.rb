@@ -50,18 +50,10 @@ class TestEventNotifier < MiniTest::Unit::TestCase
     assert_equal 201, response.code
   end
 
-  def test_list
-    response = @resource.list()
-
-    assert_equal 200, response.code
-    refute_empty response
-  end
-
 end
 
 
-
-class TestEventNotifierDelete < MiniTest::Unit::TestCase
+class TestEventNotifier < MiniTest::Unit::TestCase
 
   def setup
     VCR.insert_cassette('event_notifier_remove')
@@ -75,11 +67,17 @@ class TestEventNotifierDelete < MiniTest::Unit::TestCase
     VCR.eject_cassette
   end
 
+  def test_list
+    response = @resource.list()
+
+    assert_equal 200, response.code
+    refute_empty response
+  end
 
   def test_remove
     response = @resource.delete(@@notifier_id)
 
-    assert_equal    200, response.code
+    assert_equal 200, response.code
   end
 
 end

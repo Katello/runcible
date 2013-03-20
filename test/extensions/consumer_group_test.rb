@@ -32,13 +32,33 @@ require './test/support/repository_support'
 
 class TestConsumerGroupExtension < MiniTest::Unit::TestCase
 
+  def self.before_suite
+    RepositorySupport.create_and_sync_repo(:importer_and_distributor => true)
+  end
+
+  def self.after_suite
+    RepositorySupport.destroy_repo
+  end
+
   def setup
     @resource = Runcible::Resources::ConsumerGroup
     @extension = Runcible::Extensions::ConsumerGroup
-    @consumer_group_id = "integration_test_consumer_group_extensions"
     VCR.insert_cassette('extensions/consumer_group_extensions')
+
+    #ConsumerSupport.destroy_consumer
+    #ConsumerGroupSupport.destroy_consumer_group
+
     ConsumerGroupSupport.create_consumer_group
     ConsumerSupport.create_consumer
+
+    criteria = {:criteria =>
+                   {:filters =>
+                     {:id => {"$in" => [ConsumerSupport.consumer_id]}}}}
+    distro_id = RepositorySupport.distributor()['id']
+
+    Runcible::Resources::Consumer.bind(ConsumerSupport.consumer_id, RepositorySupport.repo_id, distro_id)
+    @resource.associate(ConsumerGroupSupport.consumer_group_id, criteria)
+    @consumer_group_id = ConsumerGroupSupport.consumer_group_id
   end
 
   def teardown
@@ -62,8 +82,16 @@ class TestConsumerGroupExtension < MiniTest::Unit::TestCase
     assert_includes response, ConsumerSupport.consumer_id
   end
 
+  def test_make_consumer_criteria
+    criteria = @extension.make_consumer_criteria([ConsumerSupport.consumer_id])
+
+    assert_kind_of  Hash, criteria
+    refute_empty    criteria[:criteria][:filters][:id]["$in"]
+  end
+
   def test_install_content
     response = @extension.install_content(@consumer_group_id, "rpm", ["zsh", "foo"])
+    RepositorySupport.wait_on_task(response)
 
     assert_equal 202, response.code
     assert       response["task_id"]
@@ -71,6 +99,7 @@ class TestConsumerGroupExtension < MiniTest::Unit::TestCase
 
   def test_update_content
     response = @extension.update_content(@consumer_group_id, "rpm", ["zsh", "foo"])
+    RepositorySupport.wait_on_task(response)
 
     assert_equal 202, response.code
     assert       response["task_id"]
@@ -78,6 +107,7 @@ class TestConsumerGroupExtension < MiniTest::Unit::TestCase
 
   def test_uninstall_content
     response = @extension.uninstall_content(@consumer_group_id, "rpm", ["zsh", "foo"])
+    RepositorySupport.wait_on_task(response)
 
     assert_equal 202, response.code
     assert       response["task_id"]
@@ -88,13 +118,6 @@ class TestConsumerGroupExtension < MiniTest::Unit::TestCase
 
     refute_empty content
     refute_empty content.select{ |unit| unit[:type_id] == "rpm" }
-  end
-
-  def test_make_consumer_criteria
-    criteria = @extension.make_consumer_criteria([ConsumerSupport.consumer_id])
-
-    assert_kind_of  Hash, criteria
-    refute_empty    criteria[:criteria][:filters][:id]["$in"]
   end
 
 end
