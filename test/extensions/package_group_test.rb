@@ -99,44 +99,41 @@ class TestExtensionsPackageGroupUnassociate < UnitUnassociateBase
   def setup
     task = Runcible::Extensions::Repository.unit_copy(self.class.clone_name, RepositorySupport.repo_id)
     RepositorySupport.wait_on_task(task)
+
+    @unit_ids     = unit_ids(self.class.clone_name)
+    @content_ids  = content_ids(self.class.clone_name)
   end
 
   def test_unassociate_ids_from_repo
-    ids = content_ids(self.class.clone_name)
-    refute_empty ids
+    VCR.use_cassette('extensions/package_group_unassociate_ids_from_repo', :match_requests_on => [:method, :path, :params, :body_json]) do
+      task = Runcible::Extensions::PackageGroup.unassociate_ids_from_repo(self.class.clone_name, [@content_ids.first])
+      RepositorySupport.wait_on_task(task)
 
-    task = Runcible::Extensions::PackageGroup.unassociate_ids_from_repo(self.class.clone_name, [ids.first])
-    RepositorySupport.wait_on_task(task)
-
-    assert_equal (ids.length - 1), content_ids(self.class.clone_name).length
+      assert_equal (@content_ids.length - 1), content_ids(self.class.clone_name).length
+    end
   end
 
   def test_unassociate_unit_ids_from_repo
-    ids = unit_ids(self.class.clone_name)
-    refute_empty ids
+    VCR.use_cassette('extensions/package_group_unassociate_from_repo', :match_requests_on => [:method, :path, :params, :body_json]) do
+      task = Runcible::Extensions::PackageGroup.unassociate_unit_ids_from_repo(self.class.clone_name, [@unit_ids.first])
+      RepositorySupport.wait_on_task(task)
 
-    task = Runcible::Extensions::PackageGroup.unassociate_unit_ids_from_repo(self.class.clone_name, [ids.first])
-    RepositorySupport.wait_on_task(task)
-
-    assert_equal (ids.length - 1), unit_ids(self.class.clone_name).length
+      assert_equal (@unit_ids.length - 1), unit_ids(self.class.clone_name).length
+    end
   end
 
   def test_unassociate_from_repo
-    ids = unit_ids(self.class.clone_name)
-    refute_empty ids
+    VCR.use_cassette('extensions/package_group_unassociate_from_repo', :match_requests_on => [:method, :path, :params, :body_json]) do
+      task = Runcible::Extensions::PackageGroup.unassociate_from_repo(self.class.clone_name,
+                                                                :association => {'unit_id' => {'$in' => [@unit_ids.first]}})
+      RepositorySupport.wait_on_task(task)
 
-    task = Runcible::Extensions::PackageGroup.unassociate_from_repo(self.class.clone_name,
-                                                              :association => {'unit_id' => {'$in' => [ids.first]}})
-    RepositorySupport.wait_on_task(task)
-
-    assert_equal (ids.length - 1), unit_ids(self.class.clone_name).length
+      assert_equal (@unit_ids.length - 1), unit_ids(self.class.clone_name).length
+    end
   end
 
   def test_copied_package_groups
-    ids = unit_ids(self.class.clone_name)
-    refute_empty ids
-
-    assert_equal 2, ids.length
+    assert_equal 2, @unit_ids.length
   end
 
 end
