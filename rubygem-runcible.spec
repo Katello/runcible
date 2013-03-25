@@ -47,7 +47,7 @@ Name:           rubygem-%{gem_name}
 Summary:        A gem exposing Pulp's juiciest parts
 Group:          Applications/System
 License:        MIT
-Version:        0.4.0
+Version:        0.4.1
 Release:        1%{?dist}
 URL:            https://github.com/Katello/runcible
 # Can be retrieved by:
@@ -122,6 +122,25 @@ cp -a Gemfile Rakefile %{buildroot}%{gem_instdir}/
 %doc README.md CONTRIBUTING.md
 
 %changelog
+* Mon Mar 25 2013 Justin Sherrill <jsherril@redhat.com> 0.4.1-1
+- removing 1.8.7 support (jsherril@redhat.com)
+- adding repo group support (jsherril@redhat.com)
+- Pulp 2.1 - Adding fixes to support the previous errors around package group
+  unit copy.  This commit is against a beta build of 2.1 (ericdhelms@gmail.com)
+- Pulp2.1 - Adding note with link to current stable Runcible branch.
+  (ericdhelms@gmail.com)
+- Pulp 2.1 - Adding two API calls to handle content applicability for
+  consumers. (ericdhelms@gmail.com)
+- Pulp2.1 - Updates to how consumer group content tests are handled to test
+  them properly. (ericdhelms@gmail.com)
+- comply with Fedora Guidelines (msuchy@redhat.com)
+- Fixes logging=true option during testing based off the previous changes to
+  requiring the logger to be based off the Ruby standard logger API.
+  (ericdhelms@gmail.com)
+- only request ids of errata and rpms for errata_id/rpm_id functions
+  (jsherril@redhat.com)
+- allowing running of single test by filename (jsherril@redhat.com)
+
 * Tue Feb 05 2013 Justin Sherrill <jsherril@redhat.com> 0.3.3-1
 - dropping version requirement for runcible (jsherril@redhat.com)
 - Changes license reference from Eric to Red Hat for consistency.
