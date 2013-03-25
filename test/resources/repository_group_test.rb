@@ -69,6 +69,7 @@ class TestRepoGroupCreate < MiniTest::Unit::TestCase
 
 end
 
+
 class TestRepoGroup < MiniTest::Unit::TestCase
   include TestRepoGroupBase
 
@@ -111,7 +112,6 @@ class TestRepoGroupDestroy < MiniTest::Unit::TestCase
 end
 
 
-
 class TestRepoGroupAssociate < MiniTest::Unit::TestCase
   include TestRepoGroupBase
 
@@ -141,8 +141,8 @@ class TestRepoGroupAssociate < MiniTest::Unit::TestCase
     assert_equal    200, response.code
     assert_includes response, @repo_id
   end
-
 end
+
 
 class TestRepoGroupUnassociate < MiniTest::Unit::TestCase
   include TestRepoGroupBase
@@ -175,6 +175,3 @@ class TestRepoGroupUnassociate < MiniTest::Unit::TestCase
     refute_includes response, @repo_id
   end
 end
-
-
-#end
