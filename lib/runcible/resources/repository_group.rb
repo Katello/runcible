@@ -30,8 +30,8 @@ module Runcible
 
       # Generates the API path for Repository Groups
       #
-      # @param  [String]  id  the ID of the consumer group
-      # @return [String]      the consumer group path, may contain the id if passed
+      # @param  [String]  id  the ID of the Repository group
+      # @return [String]      the Repository group path, may contain the id if passed
       def self.path(id=nil)
         groups = "repo_groups/"
         id.nil? ? groups : groups + "#{id}/"
@@ -47,24 +47,24 @@ module Runcible
         call(:post, path, :payload => { :required => required, :optional => optional })
       end
 
-      # Retrieves a Repo Group
+      # Retrieves a Repository Group
       #
-      # @param  [String]                id  the ID of the Repo group
+      # @param  [String]                id  the ID of the Repository group
       # @return [RestClient::Response]
       def self.retrieve(id)
         call(:get, path(id))
       end
 
-      # Retrieves all Repo Group
+      # Retrieves all Repository Group
       #
       # @return [RestClient::Response]
       def self.retrieve_all
         call(:get, path)
       end
 
-      # Deletes a Repo Group
+      # Deletes a Repository Group
       #
-      # @param  [String]                id  the ID of the Repo group
+      # @param  [String]                id  the ID of the Repository group
       # @return [RestClient::Response]
       def self.delete(id)
         call(:delete, path(id))
@@ -72,7 +72,7 @@ module Runcible
 
       # Associates Repositories with a Repository Group
       #
-      # @param  [String]                id        the ID of the consumer group
+      # @param  [String]                id        the ID of the Repository group
       # @param  [Hash]                  criteria  criteria based on Mongo syntax representing repos to associate
       # @return [RestClient::Response]
       def self.associate(id, criteria)
@@ -81,7 +81,7 @@ module Runcible
 
       # Unassociates Repositories with a Repository Group
       #
-      # @param  [String]                id        the ID of the consumer group
+      # @param  [String]                id        the ID of the Repository group
       # @param  [Hash]                  criteria  criteria based on Mongo syntax representing repos ta unassociate
       # @return [RestClient::Response]
       def self.unassociate(id, criteria)
