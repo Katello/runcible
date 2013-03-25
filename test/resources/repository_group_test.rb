@@ -85,7 +85,7 @@ class TestRepoGroup < MiniTest::Unit::TestCase
 
   def test_retrieve
    response = @resource.retrieve(@repo_group_id)
-   response['id'] = @repo_group_id
+   assert_equal @repo_group_id, response['id']
   end
 
   def test_retrieve_all
