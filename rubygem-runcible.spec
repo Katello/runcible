@@ -36,6 +36,7 @@ Name:           %{?scl_prefix}rubygem-%{gem_name}
 Summary:        A gem exposing Pulp's juiciest parts
 Group:          Applications/System
 License:        MIT
+<<<<<<< HEAD
 Version:        0.3.3
 Release:        4%{?dist}
 URL:            https://github.com/Katello/runcible
@@ -50,12 +51,49 @@ Requires:       %{?scl_prefix}rubygem(activesupport) >= 3.0.10
 Requires:       %{?scl_prefix}rubygem(i18n) >= 0.5.0
 BuildRequires:  %{?scl_prefix}ruby(abi) = %{rubyabi}
 BuildRequires:  %{?scl_prefix}ruby(rubygems) 
+=======
+Version:        0.4.1
+Release:        1%{?dist}
+URL:            https://github.com/Katello/runcible
+# Can be retrieved by:
+# git clone git://github.com/Katello/runcible.git
+# cd runcible.git
+# tito build --tgz
+Source0:        %{name}-%{version}.tar.gz
+%if 0%{?rhel} == 5
+BuildRoot:      %{_tmppath}/%{gem_name}-%{version}-%{release}-root-%(%{__id_u} -n)
+%endif
+%if 0%{?fedora} > 18
+Requires: ruby(release)
+%else
+Requires: ruby(abi) = %{rubyabi}
+%endif
+Requires:       ruby(rubygems) 
+Requires:       rubygem(json) 
+Requires:       rubygem(rest-client) >= 1.6.1
+Requires:       rubygem(oauth) 
+Requires:       rubygem(activesupport) >= 3.0.10
+Requires:       rubygem(i18n) >= 0.5.0
+%if 0%{?fedora} > 18
+BuildRequires: ruby(release)
+%else
+BuildRequires: ruby(abi) = %{rubyabi}
+%endif
+BuildRequires:  ruby(rubygems) 
+>>>>>>> 2bb088dde2155c143be7f294a9c4c678a149d64b
 BuildArch:      noarch
 Provides:       %{?scl_prefix}rubygem(%{gem_name}) = %{version}
 
 %description
 A gem to expose Pulp's juiciest parts.
 
+%package doc
+BuildArch:  noarch
+Requires:   %{name} = %{version}-%{release}
+Summary:    Documentation for rubygem-%{gem_name}
+
+%description doc
+This package contains documentation for rubygem-%{gem_name}
 
 %prep
 %setup -n %{?scl_prefix}%{pkg_name}-%{version} -q
@@ -63,6 +101,7 @@ A gem to expose Pulp's juiciest parts.
 %build
 %{?scl:scl enable %{scl} "}
 gem build %{gem_name}.gemspec
+<<<<<<< HEAD
 %{?scl:"}
 
 %install
@@ -76,7 +115,21 @@ gem install \
     %{gem_name}-%{version}.gem
 %{?scl:"}
 
+=======
+%if 0%{?fedora} > 18
+%gem_install
+%else
+mkdir -p .%{gem_dir}
+gem install --local --install-dir .%{gem_dir} \
+            --force %{gem_name}-%{version}.gem
+%endif
+
+%install
+mkdir -p %{buildroot}%{gem_dir}
+cp -a .%{gem_dir}/*  %{buildroot}%{gem_dir}/
+>>>>>>> 2bb088dde2155c143be7f294a9c4c678a149d64b
 rm -rf %{buildroot}%{gem_instdir}/.yardoc
+cp -a Gemfile Rakefile %{buildroot}%{gem_instdir}/
 
 %files
 %dir %{gem_instdir}
@@ -85,6 +138,7 @@ rm -rf %{buildroot}%{gem_instdir}/.yardoc
 %{gem_spec}
 %doc LICENSE
 
+<<<<<<< HEAD
 
 %package doc
 BuildArch:  noarch
@@ -94,10 +148,16 @@ Summary:    Documentation for rubygem-%{gem_name}
 %description doc
 This package contains documentation for rubygem-%{gem_name}
 
+=======
+>>>>>>> 2bb088dde2155c143be7f294a9c4c678a149d64b
 %files doc
 %doc %{gem_docdir}
+%{gem_instdir}/Rakefile
+%{gem_instdir}/Gemfile
+%doc README.md CONTRIBUTING.md
 
 %changelog
+<<<<<<< HEAD
 * Thu Feb 28 2013 Miroslav Suchý <msuchy@redhat.com> 0.3.3-4
 - use scl_prefix for setup macro (msuchy@redhat.com)
 - use upstream builder (msuchy@redhat.com)
@@ -107,6 +167,26 @@ This package contains documentation for rubygem-%{gem_name}
 
 * Thu Feb 28 2013 Miroslav Suchý <msuchy@redhat.com> 0.3.3-2
 - convert spec file using spec2scl to support SC (msuchy@redhat.com)
+=======
+* Mon Mar 25 2013 Justin Sherrill <jsherril@redhat.com> 0.4.1-1
+- removing 1.8.7 support (jsherril@redhat.com)
+- adding repo group support (jsherril@redhat.com)
+- Pulp 2.1 - Adding fixes to support the previous errors around package group
+  unit copy.  This commit is against a beta build of 2.1 (ericdhelms@gmail.com)
+- Pulp2.1 - Adding note with link to current stable Runcible branch.
+  (ericdhelms@gmail.com)
+- Pulp 2.1 - Adding two API calls to handle content applicability for
+  consumers. (ericdhelms@gmail.com)
+- Pulp2.1 - Updates to how consumer group content tests are handled to test
+  them properly. (ericdhelms@gmail.com)
+- comply with Fedora Guidelines (msuchy@redhat.com)
+- Fixes logging=true option during testing based off the previous changes to
+  requiring the logger to be based off the Ruby standard logger API.
+  (ericdhelms@gmail.com)
+- only request ids of errata and rpms for errata_id/rpm_id functions
+  (jsherril@redhat.com)
+- allowing running of single test by filename (jsherril@redhat.com)
+>>>>>>> 2bb088dde2155c143be7f294a9c4c678a149d64b
 
 * Tue Feb 05 2013 Justin Sherrill <jsherril@redhat.com> 0.3.3-1
 - dropping version requirement for runcible (jsherril@redhat.com)

@@ -104,7 +104,8 @@ module Runcible
       # @param [String]                 id the ID of the repository
       # @return [RestClient::Response]     the set of repository RPM IDs
       def self.rpm_ids(id)
-        criteria = {:type_ids=>[Runcible::Extensions::Rpm.content_type]}
+        criteria = {:type_ids=>[Runcible::Extensions::Rpm.content_type],
+                    :fields=>{:unit=>[], :association=>['unit_id']}}
         self.unit_search(id, criteria).collect{|i| i['unit_id']}
       end
 
@@ -149,7 +150,8 @@ module Runcible
       # @param  [String]                id the ID of the repository
       # @return [RestClient::Response]     the set of repository errata IDs
       def self.errata_ids(id)
-         criteria = {:type_ids=>[Runcible::Extensions::Errata.content_type]}
+         criteria = {:type_ids=>[Runcible::Extensions::Errata.content_type],
+                     :fields=>{:unit=>[], :association=>['unit_id']}}
 
          self.unit_search(id, criteria).collect{|i| i['unit_id']}
       end

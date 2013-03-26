@@ -50,6 +50,24 @@ class TestEventNotifier < MiniTest::Unit::TestCase
     assert_equal 201, response.code
   end
 
+end
+
+
+class TestEventNotifierList < MiniTest::Unit::TestCase
+
+  def setup
+    VCR.insert_cassette('event_notifier_list')
+    @resource = Runcible::Resources::EventNotifier
+    response = @resource.create(@resource::NotifierTypes::REST_API, {:url=>'http://foo.com/foo/'},
+            [@resource::EventTypes::REPO_PUBLISH_COMPLETE])
+    @@notifier_id = response['id']
+  end
+
+  def teardown
+    response = @resource.delete(@@notifier_id)
+    VCR.eject_cassette
+  end
+
   def test_list
     response = @resource.list()
 
@@ -58,8 +76,6 @@ class TestEventNotifier < MiniTest::Unit::TestCase
   end
 
 end
-
-
 
 class TestEventNotifierDelete < MiniTest::Unit::TestCase
 
@@ -75,11 +91,10 @@ class TestEventNotifierDelete < MiniTest::Unit::TestCase
     VCR.eject_cassette
   end
 
-
   def test_remove
     response = @resource.delete(@@notifier_id)
 
-    assert_equal    200, response.code
+    assert_equal 200, response.code
   end
 
 end

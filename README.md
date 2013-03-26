@@ -4,7 +4,9 @@
 
 Exposing Pulp's juiciest parts. http://www.pulpproject.org/
 
-Latest Live Tested Version: **pulp-server-2.0.6-1.noarch**
+Latest Live Tested Version: **pulp-server-2.1.0-0.26.beta.noarch**
+
+Current stable Runcible: https://github.com/Katello/runcible/tree/0.3
 
 For in-depth class and method documentation: http://katello.github.com/runcible/
 
@@ -82,15 +84,17 @@ Alternatively, using distributor and importer objects:
 
 To run all tests using recorded data, run:
 
-    rake test:integration mode=none
+    rake test mode=none
 
 To run all tests to record data:
    
-    rake test:integration mode=live
+    rake test mode=live
 
 To run a single test using recorded data, run:
    
-    rake test:integration mode=none test=extensions/respository
+    rake test mode=none test=extensions/respository
+    or (by filename)
+    rake test mode=none test=./test/extensions/respository_test.rb
 
 To run tests against your live Pulp without recording a new cassette set record flag to false (does not apply to mode=none):
 

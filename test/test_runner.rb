@@ -22,6 +22,7 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 require 'rubygems'
+require 'logger'
 require 'minitest/unit'
 require 'minitest/autorun'
 
@@ -97,7 +98,9 @@ class PulpMiniTestRunner
 
     set_vcr_config(mode)
 
-    if test_name
+    if test_name && File.exists?(test_name)
+      require test_name
+    elsif test_name
       require "./test/#{test_name}_test.rb"
     else
       Dir["./test/#{suite}/*_test.rb"].each {|file| require file }
@@ -111,7 +114,13 @@ class PulpMiniTestRunner
     }
 
     if options[:logging] == "true"
-      Runcible::Base.config[:logger] = 'stdout'
+      log = ::Logger.new(STDOUT)
+      log.level = Logger::DEBUG
+      Runcible::Base.config[:logging] = {
+        :logger => log,
+        :debug  => true,
+	      :stdout => true
+      }
     end
 
     if options[:auth_type] == "http"

@@ -43,23 +43,15 @@ class TestConsumerExtension < MiniTest::Unit::TestCase
     @extension = Runcible::Extensions::Consumer
     @consumer_id = "integration_test_consumer_extensions11000"
     VCR.insert_cassette('extensions/consumer_extensions')
-    create_consumer
+    ConsumerSupport.destroy_consumer
+    ConsumerSupport.create_consumer(true)
+    @consumer_id = ConsumerSupport.consumer_id
     bind_repo
   end
 
   def teardown
-    destroy_consumer
+    ConsumerSupport.destroy_consumer
     VCR.eject_cassette
-  end
-
-  def create_consumer
-    destroy_consumer
-    @resource.create(@consumer_id, :name=>"boo")
-  end
-
-  def destroy_consumer
-    @resource.delete(@consumer_id)
-  rescue
   end
 
   def bind_repo
@@ -86,13 +78,15 @@ class TestConsumerExtension < MiniTest::Unit::TestCase
 
   def test_install_content
     response = @extension.install_content(@consumer_id, "rpm", ["zsh", "foo"])
+    RepositorySupport.wait_on_task(response)
 
-    assert_equal(202, response.code)
-    assert(response["task_id"])
+    assert_equal  202, response.code
+    assert        response["task_id"]
   end
 
   def test_update_content
     response = @extension.update_content(@consumer_id, "rpm", ["zsh", "foo"])
+    RepositorySupport.wait_on_task(response)
 
     assert_equal 202, response.code
     assert       response["task_id"]
@@ -100,16 +94,23 @@ class TestConsumerExtension < MiniTest::Unit::TestCase
 
   def test_uninstall_content
     response = @extension.uninstall_content(@consumer_id, "rpm", ["zsh", "foo"])
+    RepositorySupport.wait_on_task(response)
 
     assert_equal 202, response.code
     assert       response["task_id"]
   end
-
   def test_generate_content
     content = @extension.generate_content("rpm", ["unit_1", "unit_2"])
 
     refute_empty content
     refute_empty content.select{ |unit| unit[:type_id] == "rpm" }
+  end
+
+  def test_applicable_errata
+    response  = @extension.applicable_errata(@consumer_id)
+
+    assert_equal 200, response.code
+    refute_empty response[ConsumerSupport.consumer_id]['erratum']
   end
 
 end
