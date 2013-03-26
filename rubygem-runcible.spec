@@ -47,7 +47,7 @@ Name:           rubygem-%{gem_name}
 Summary:        A gem exposing Pulp's juiciest parts
 Group:          Applications/System
 License:        MIT
-Version:        0.3.3
+Version:        0.4.0
 Release:        1%{?dist}
 URL:            https://github.com/Katello/runcible
 # Can be retrieved by:
