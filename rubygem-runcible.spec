@@ -37,7 +37,7 @@ Summary:        A gem exposing Pulp's juiciest parts
 Group:          Applications/System
 License:        MIT
 Version:        0.4.1
-Release:        0%{?dist}
+Release:        1%{?dist}
 URL:            https://github.com/Katello/runcible
 Source0:        %{?scl_prefix}%{pkg_name}-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{gem_name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -95,6 +95,8 @@ cp -a Gemfile Rakefile %{buildroot}%{gem_instdir}/
 %doc README.md CONTRIBUTING.md
 
 %changelog
+* Mon Apr 08 2013 Ivan Necas <necasik@gmail.com> 0.4.1-1
+- Fix conflicts in the scl (necasik@gmail.com)
 
 * Mon Mar 25 2013 Justin Sherrill <jsherril@redhat.com> 0.4.1-1
 - removing 1.8.7 support (jsherril@redhat.com)
