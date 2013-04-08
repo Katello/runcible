@@ -36,9 +36,8 @@ Name:           %{?scl_prefix}rubygem-%{gem_name}
 Summary:        A gem exposing Pulp's juiciest parts
 Group:          Applications/System
 License:        MIT
-<<<<<<< HEAD
-Version:        0.3.3
-Release:        4%{?dist}
+Version:        0.4.1
+Release:        0%{?dist}
 URL:            https://github.com/Katello/runcible
 Source0:        %{?scl_prefix}%{pkg_name}-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{gem_name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -51,36 +50,6 @@ Requires:       %{?scl_prefix}rubygem(activesupport) >= 3.0.10
 Requires:       %{?scl_prefix}rubygem(i18n) >= 0.5.0
 BuildRequires:  %{?scl_prefix}ruby(abi) = %{rubyabi}
 BuildRequires:  %{?scl_prefix}ruby(rubygems) 
-=======
-Version:        0.4.1
-Release:        1%{?dist}
-URL:            https://github.com/Katello/runcible
-# Can be retrieved by:
-# git clone git://github.com/Katello/runcible.git
-# cd runcible.git
-# tito build --tgz
-Source0:        %{name}-%{version}.tar.gz
-%if 0%{?rhel} == 5
-BuildRoot:      %{_tmppath}/%{gem_name}-%{version}-%{release}-root-%(%{__id_u} -n)
-%endif
-%if 0%{?fedora} > 18
-Requires: ruby(release)
-%else
-Requires: ruby(abi) = %{rubyabi}
-%endif
-Requires:       ruby(rubygems) 
-Requires:       rubygem(json) 
-Requires:       rubygem(rest-client) >= 1.6.1
-Requires:       rubygem(oauth) 
-Requires:       rubygem(activesupport) >= 3.0.10
-Requires:       rubygem(i18n) >= 0.5.0
-%if 0%{?fedora} > 18
-BuildRequires: ruby(release)
-%else
-BuildRequires: ruby(abi) = %{rubyabi}
-%endif
-BuildRequires:  ruby(rubygems) 
->>>>>>> 2bb088dde2155c143be7f294a9c4c678a149d64b
 BuildArch:      noarch
 Provides:       %{?scl_prefix}rubygem(%{gem_name}) = %{version}
 
@@ -101,33 +70,14 @@ This package contains documentation for rubygem-%{gem_name}
 %build
 %{?scl:scl enable %{scl} "}
 gem build %{gem_name}.gemspec
-<<<<<<< HEAD
-%{?scl:"}
-
-%install
-mkdir -p %{buildroot}%{gem_dir}
-
-%{?scl:scl enable %{scl} "}
-gem install \
-    --local \
-    --install-dir %{buildroot}%{gem_dir} \
-    --force \
-    %{gem_name}-%{version}.gem
-%{?scl:"}
-
-=======
-%if 0%{?fedora} > 18
-%gem_install
-%else
 mkdir -p .%{gem_dir}
 gem install --local --install-dir .%{gem_dir} \
             --force %{gem_name}-%{version}.gem
-%endif
+%{?scl:"}
 
 %install
 mkdir -p %{buildroot}%{gem_dir}
 cp -a .%{gem_dir}/*  %{buildroot}%{gem_dir}/
->>>>>>> 2bb088dde2155c143be7f294a9c4c678a149d64b
 rm -rf %{buildroot}%{gem_instdir}/.yardoc
 cp -a Gemfile Rakefile %{buildroot}%{gem_instdir}/
 
@@ -138,18 +88,6 @@ cp -a Gemfile Rakefile %{buildroot}%{gem_instdir}/
 %{gem_spec}
 %doc LICENSE
 
-<<<<<<< HEAD
-
-%package doc
-BuildArch:  noarch
-Requires:   %{?scl_prefix}%{pkg_name} = %{version}-%{release}
-Summary:    Documentation for rubygem-%{gem_name}
-
-%description doc
-This package contains documentation for rubygem-%{gem_name}
-
-=======
->>>>>>> 2bb088dde2155c143be7f294a9c4c678a149d64b
 %files doc
 %doc %{gem_docdir}
 %{gem_instdir}/Rakefile
@@ -157,17 +95,7 @@ This package contains documentation for rubygem-%{gem_name}
 %doc README.md CONTRIBUTING.md
 
 %changelog
-<<<<<<< HEAD
-* Thu Feb 28 2013 Miroslav Suchý <msuchy@redhat.com> 0.3.3-4
-- use scl_prefix for setup macro (msuchy@redhat.com)
-- use upstream builder (msuchy@redhat.com)
 
-* Thu Feb 28 2013 Miroslav Suchý <msuchy@redhat.com> 0.3.3-3
-- tar.gz is created form package name, address this for SC (msuchy@redhat.com)
-
-* Thu Feb 28 2013 Miroslav Suchý <msuchy@redhat.com> 0.3.3-2
-- convert spec file using spec2scl to support SC (msuchy@redhat.com)
-=======
 * Mon Mar 25 2013 Justin Sherrill <jsherril@redhat.com> 0.4.1-1
 - removing 1.8.7 support (jsherril@redhat.com)
 - adding repo group support (jsherril@redhat.com)
@@ -186,7 +114,16 @@ This package contains documentation for rubygem-%{gem_name}
 - only request ids of errata and rpms for errata_id/rpm_id functions
   (jsherril@redhat.com)
 - allowing running of single test by filename (jsherril@redhat.com)
->>>>>>> 2bb088dde2155c143be7f294a9c4c678a149d64b
+
+* Thu Feb 28 2013 Miroslav Suchý <msuchy@redhat.com> 0.3.3-4
+- use scl_prefix for setup macro (msuchy@redhat.com)
+- use upstream builder (msuchy@redhat.com)
+
+* Thu Feb 28 2013 Miroslav Suchý <msuchy@redhat.com> 0.3.3-3
+- tar.gz is created form package name, address this for SC (msuchy@redhat.com)
+
+* Thu Feb 28 2013 Miroslav Suchý <msuchy@redhat.com> 0.3.3-2
+- convert spec file using spec2scl to support SC (msuchy@redhat.com)
 
 * Tue Feb 05 2013 Justin Sherrill <jsherril@redhat.com> 0.3.3-1
 - dropping version requirement for runcible (jsherril@redhat.com)
