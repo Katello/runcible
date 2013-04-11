@@ -69,6 +69,7 @@ class TestRepoGroupCreate < MiniTest::Unit::TestCase
 
 end
 
+
 class TestRepoGroup < MiniTest::Unit::TestCase
   include TestRepoGroupBase
 
@@ -84,7 +85,7 @@ class TestRepoGroup < MiniTest::Unit::TestCase
 
   def test_retrieve
    response = @resource.retrieve(@repo_group_id)
-   response['id'] = @repo_group_id
+   assert_equal @repo_group_id, response['id']
   end
 
   def test_retrieve_all
@@ -109,7 +110,6 @@ class TestRepoGroupDestroy < MiniTest::Unit::TestCase
   end
 
 end
-
 
 
 class TestRepoGroupAssociate < MiniTest::Unit::TestCase
@@ -141,8 +141,8 @@ class TestRepoGroupAssociate < MiniTest::Unit::TestCase
     assert_equal    200, response.code
     assert_includes response, @repo_id
   end
-
 end
+
 
 class TestRepoGroupUnassociate < MiniTest::Unit::TestCase
   include TestRepoGroupBase
@@ -175,6 +175,3 @@ class TestRepoGroupUnassociate < MiniTest::Unit::TestCase
     refute_includes response, @repo_id
   end
 end
-
-
-#end
