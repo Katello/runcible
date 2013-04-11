@@ -274,7 +274,7 @@ class TestConsumerRequiresRepo < ConsumerRequiresRepoTests
     response  = @resource.applicability(criteria)
 
     assert_equal 200, response.code
-    refute_empty response[ConsumerSupport.consumer_id]['erratum']
+    refute_empty response['erratum'][ConsumerSupport.consumer_id]
   end
 
   def test_install_units
