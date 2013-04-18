@@ -1,4 +1,4 @@
-# Copyright (c) 2013 Justin Sherrill
+# Copyright (c) 2013 Red Hat Inc.
 #
 # MIT License
 #
@@ -24,18 +24,25 @@
 module Runcible
   module Extensions
     class IsoImporter < Importer
-        ID = 'iso_importer'
+      ID = 'iso_importer'
 
-        attr_accessor 'feed_url', 'ssl_ca_cert', 'ssl_client_cert', 'ssl_client_key',
-                          'proxy_url', 'proxy_port', 'proxy_pass', 'proxy_user',
-                          'remove_missing_units', 'num_threads', 'max_speed'
-        def id
-          IsoImporter::ID
-        end
+      attr_accessor 'feed_url', 'ssl_ca_cert', 'ssl_client_cert', 'ssl_client_key',
+                        'proxy_url', 'proxy_port', 'proxy_pass', 'proxy_user',
+                        'remove_missing_units', 'num_threads', 'max_speed'
 
-        def config
-            self.as_json
-        end
+      # Importer Type id
+      #
+      # @return [string]
+      def id
+        IsoImporter::ID
       end
+
+      # generate the pulp config for the iso importer
+      #
+      # @return [Hash]
+      def config
+          self.as_json
+      end
+    end
   end
 end

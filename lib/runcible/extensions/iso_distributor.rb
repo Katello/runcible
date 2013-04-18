@@ -1,4 +1,4 @@
-# Copyright (c) 2013 Justin Sherrill
+# Copyright (c) 2013 Red Hat Inc.
 #
 # MIT License
 #
@@ -30,16 +30,27 @@ module Runcible
       #required
       attr_accessor "serve_http", "serve_https"
 
-      def initialize(http, https, params={})
+      # Instantiates an iso distributor
+      #
+      # @param  [boolean]         http  serve the contents over http
+      # @param  [boolean]         https serve the contents over https
+      # @return [Runcible::Extensions::IsoDistributor]
+      def initialize(http, https)
         @serve_http = http
         @serve_https = https
-        super(params)
+        super({})
       end
 
+      # Distributor Type id
+      #
+      # @return [string]
       def type_id
         'iso_distributor'
       end
 
+      # generate the pulp config for the iso distributor
+      #
+      # @return [Hash]
       def config
         to_ret = self.as_json
         to_ret.delete('auto_publish')
