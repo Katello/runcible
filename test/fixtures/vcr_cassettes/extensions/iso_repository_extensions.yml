@@ -1,0 +1,143 @@
+--- 
+http_interactions: 
+- request: 
+    method: post
+    uri: https://admin:nuN2FAe%2B2JpPGJRYZmDTeMYpOgC9Dy1h@abed.usersys.redhat.com/pulp/api/v2/repositories/
+    body: 
+      encoding: US-ASCII
+      string: "{\"id\":\"test_repo_iso_fixture\",\"importer_type_id\":\"iso_importer\",\"importer_config\":{\"feed_url\":\"file:///home/jlsherri/git/runcible/test/fixtures/repositories/iso/\"},\"distributors\":[{\"distributor_type\":\"iso_distributor\",\"distributor_config\":{\"serve_http\":true,\"serve_https\":true},\"auto_publish\":false,\"distributor_id\":\"3376a8c75fe1d365c314\"}]}"
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "341"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 201
+      message: Created
+    headers: 
+      Date: 
+      - Wed, 17 Apr 2013 21:30:31 GMT
+      Server: 
+      - Apache/2.2.15 (Red Hat)
+      Location: 
+      - test_repo_iso_fixture
+      Content-Length: 
+      - "273"
+      Content-Type: 
+      - application/json
+    body: 
+      encoding: US-ASCII
+      string: "{\"scratchpad\": {}, \"display_name\": \"test_repo_iso_fixture\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_counts\": {}, \"_id\": {\"$oid\": \"516f14775ca0130282000554\"}, \"id\": \"test_repo_iso_fixture\", \"_href\": \"/pulp/api/v2/repositories/test_repo_iso_fixture/\"}"
+    http_version: 
+  recorded_at: Wed, 17 Apr 2013 21:30:31 GMT
+- request: 
+    method: get
+    uri: https://admin:nuN2FAe%2B2JpPGJRYZmDTeMYpOgC9Dy1h@abed.usersys.redhat.com/pulp/api/v2/repositories/test_repo_iso_fixture/?details=true
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/json
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Date: 
+      - Wed, 17 Apr 2013 21:30:31 GMT
+      Server: 
+      - Apache/2.2.15 (Red Hat)
+      Content-Length: 
+      - "916"
+      Content-Type: 
+      - application/json
+    body: 
+      encoding: US-ASCII
+      string: "{\"scratchpad\": {}, \"display_name\": \"test_repo_iso_fixture\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_counts\": {}, \"_id\": {\"$oid\": \"516f14775ca0130282000554\"}, \"id\": \"test_repo_iso_fixture\", \"_href\": \"/pulp/api/v2/repositories/test_repo_iso_fixture/\", \"importers\": [{\"repo_id\": \"test_repo_iso_fixture\", \"_ns\": \"repo_importers\", \"importer_type_id\": \"iso_importer\", \"last_sync\": null, \"scheduled_syncs\": [], \"_id\": {\"$oid\": \"516f14775ca0130282000555\"}, \"config\": {\"feed_url\": \"file:///home/jlsherri/git/runcible/test/fixtures/repositories/iso/\"}, \"id\": \"iso_importer\"}], \"distributors\": [{\"repo_id\": \"test_repo_iso_fixture\", \"_ns\": \"repo_distributors\", \"last_publish\": null, \"auto_publish\": false, \"scheduled_publishes\": [], \"distributor_type_id\": \"iso_distributor\", \"_id\": {\"$oid\": \"516f14775ca0130282000556\"}, \"config\": {\"serve_https\": true, \"serve_http\": true}, \"id\": \"3376a8c75fe1d365c314\"}]}"
+    http_version: 
+  recorded_at: Wed, 17 Apr 2013 21:30:31 GMT
+- request: 
+    method: post
+    uri: https://admin:nuN2FAe%2B2JpPGJRYZmDTeMYpOgC9Dy1h@abed.usersys.redhat.com/pulp/api/v2/repositories/test_repo_iso_fixture/actions/sync/
+    body: 
+      encoding: US-ASCII
+      string: "{}"
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "2"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 202
+      message: Accepted
+    headers: 
+      Date: 
+      - Wed, 17 Apr 2013 21:30:31 GMT
+      Server: 
+      - Apache/2.2.15 (Red Hat)
+      Content-Encoding: 
+      - utf-8
+      Content-Length: 
+      - "710"
+      Content-Type: 
+      - application/json
+    body: 
+      encoding: US-ASCII
+      string: "[{\"task_group_id\": \"a0ae708c-d310-4a72-b016-ee02a163b8d5\", \"exception\": null, \"traceback\": null, \"_href\": \"/pulp/api/v2/task_groups/a0ae708c-d310-4a72-b016-ee02a163b8d5/\", \"task_id\": \"7cda6773-c7e2-4764-aafe-b35e062708cc\", \"call_request_tags\": [\"pulp:repository:test_repo_iso_fixture\", \"pulp:action:sync\"], \"reasons\": [], \"start_time\": null, \"tags\": [\"pulp:repository:test_repo_iso_fixture\", \"pulp:action:sync\"], \"state\": \"waiting\", \"finish_time\": null, \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": \"a0ae708c-d310-4a72-b016-ee02a163b8d5\", \"call_request_id\": \"7cda6773-c7e2-4764-aafe-b35e062708cc\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}]"
+    http_version: 
+  recorded_at: Wed, 17 Apr 2013 21:30:31 GMT
+- request: 
+    method: get
+    uri: https://admin:nuN2FAe%2B2JpPGJRYZmDTeMYpOgC9Dy1h@abed.usersys.redhat.com/pulp/api/v2/repositories/test_repo_iso_fixture//history/sync/
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/json
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Date: 
+      - Wed, 17 Apr 2013 21:30:33 GMT
+      Server: 
+      - Apache/2.2.15 (Red Hat)
+      Content-Length: 
+      - "544"
+      Content-Type: 
+      - application/json
+    body: 
+      encoding: US-ASCII
+      string: "[{\"importer_type_id\": \"iso_importer\", \"importer_id\": \"iso_importer\", \"exception\": null, \"repo_id\": \"test_repo_iso_fixture\", \"removed_count\": 0, \"started\": \"2013-04-17T17:30:31-04:00\", \"_ns\": \"repo_sync_results\", \"completed\": \"2013-04-17T17:30:31-04:00\", \"traceback\": null, \"summary\": {\"total_execution_time\": 0}, \"added_count\": 0, \"error_message\": null, \"updated_count\": 1, \"details\": {\"finished_count\": 1, \"total_count\": 1, \"error_count\": 0}, \"_id\": {\"$oid\": \"516f14775ca0130282000563\"}, \"id\": \"516f14775ca0130282000563\", \"result\": \"success\"}]"
+    http_version: 
+  recorded_at: Wed, 17 Apr 2013 21:30:33 GMT
+recorded_with: VCR 2.4.0
