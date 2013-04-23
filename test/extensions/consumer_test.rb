@@ -26,6 +26,7 @@ require 'minitest/autorun'
 require './lib/runcible/resources/consumer'
 require './lib/runcible/extensions/consumer'
 require './test/support/repository_support'
+require './test/support/consumer_support'
 
 
 class TestConsumerExtension < MiniTest::Unit::TestCase
