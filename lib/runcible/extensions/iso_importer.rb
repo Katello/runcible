@@ -1,4 +1,4 @@
-# Copyright (c) 2012 Red Hat Inc.
+# Copyright (c) 2013 Red Hat Inc.
 #
 # MIT License
 #
@@ -21,18 +21,27 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-require 'active_support/json'
-require 'securerandom'
-
 module Runcible
   module Extensions
-    class Distributor
-      attr_accessor 'auto_publish', 'id'
+    class IsoImporter < Importer
+      ID = 'iso_importer'
 
-      def initialize(params={})
-        @auto_publish = false
-        self.id = params[:id] || SecureRandom.hex(10)
-        params.each{|k,v| self.send("#{k.to_s}=",v)}
+      attr_accessor 'feed_url', 'ssl_ca_cert', 'ssl_client_cert', 'ssl_client_key',
+                        'proxy_url', 'proxy_port', 'proxy_pass', 'proxy_user',
+                        'remove_missing_units', 'num_threads', 'max_speed'
+
+      # Importer Type id
+      #
+      # @return [string]
+      def id
+        IsoImporter::ID
+      end
+
+      # generate the pulp config for the iso importer
+      #
+      # @return [Hash]
+      def config
+          self.as_json
       end
     end
   end
