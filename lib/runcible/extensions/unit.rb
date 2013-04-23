@@ -62,16 +62,19 @@ module Runcible
       # @return [RestClient::Response]      the requested content
       def self.find_by_unit_id(id, optional={})
         optional[:include_repos] ||= true
-        find_all_by_unit_ids([id], optional).first
+        find_all_by_unit_ids([id], [], optional).first
       end
 
       # Retrieves a set of content by the Pulp unit IDs
       #
-      # @param  [Array]                ids  list of content unit IDs to retrieve
-      # @return [RestClient::Response]      list of content
-      def self.find_all_by_unit_ids(ids, optional={})
+      # @param  [Array]                ids    list of content unit IDs to retrieve
+      # @param  [Array]                fields optional list of to retrieve
+      # @return [RestClient::Response]        list of content
+      def self.find_all_by_unit_ids(ids, fields=[], optional={})
         optional[:include_repos] ||= true
-        self.search(content_type, { :filters => {:_id=> {'$in'=> ids}} }, optional)
+        criteria = { :filters => { :_id => { '$in'=> ids } } }
+        criteria[:fields] = fields unless fields.empty?
+        self.search(content_type, criteria, optional)
       end
 
       # unassociates content units from a repository
@@ -118,7 +121,11 @@ module Runcible
       def self.copy(source_repo_id, destination_repo_id, optional={})
         criteria = {:type_ids => [content_type], :filters => {}}
         criteria[:filters]['association'] = {'unit_id' => {'$in' => optional[:ids]}} if optional[:ids]
+        criteria[:fields] = {:unit => optional[:fields]} if optional[:fields]
+
         payload = {:criteria => criteria}
+        payload[:override_config] = {:copy_children => optional[:copy_children]} if optional.has_key?(:copy_children)
+
         Runcible::Extensions::Repository.unit_copy(destination_repo_id, source_repo_id, payload)
       end
 
