@@ -47,7 +47,7 @@ Name:           rubygem-%{gem_name}
 Summary:        A gem exposing Pulp's juiciest parts
 Group:          Applications/System
 License:        MIT
-Version:        0.4.2
+Version:        0.4.3
 Release:        1%{?dist}
 URL:            https://github.com/Katello/runcible
 # Can be retrieved by:
@@ -122,6 +122,9 @@ cp -a Gemfile Rakefile %{buildroot}%{gem_instdir}/
 %doc README.md CONTRIBUTING.md
 
 %changelog
+* Tue Apr 23 2013 Justin Sherrill <jsherril@redhat.com> 0.4.3-1
+- fixing gem version (jsherril@redhat.com)
+
 * Tue Apr 23 2013 Justin Sherrill <jsherril@redhat.com> 0.4.2-1
 - unit copy - updates for pulp improvements in unit associate/copy
   (bbuckingham@redhat.com)
