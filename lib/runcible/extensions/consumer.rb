@@ -96,19 +96,25 @@ module Runcible
 
       # Retrieve the set of errata that is applicable to a consumer(s)
       #
-      # @param  [String, Array]         ids     hash of uninstall options
-      # @return [RestClient::Response]  content applicability hash with details of errata availabel to consumer(s)
-      def self.applicable_errata(ids)
-        ids = [ids] if ids.is_a? String
-        criteria  = {
-          'consumer_criteria' => {
-            'filters' => {'id' => {'$in' => ids}}
-          },
-          'units' => {
-            'erratum' => []
-          }
-        }
+      # @param  [String, Array]         ids             string containing a single consumer id or an array of ids
+      # @param  [Array]                 repoids         array of repository ids
+      # @param  [Boolean]               consumer_report if true, result will list consumers and their
+      #                                                 applicable errata; otherwise, it will list
+      #                                                 errata and the consumers they are applicable to
+      # @return [RestClient::Response]  content applicability hash with details of errata available to consumer(s)
+      def self.applicable_errata(ids, repoids = [], consumer_report = true)
 
+        ids = [ids] if ids.is_a? String
+        consumer_criteria = { 'filters' => { 'id' => { '$in' => ids } } } unless ids.empty?
+        repo_criteria = { 'filters' => { 'id' => { '$in' => repoids } } } unless repoids.empty?
+        report_style = (consumer_report == true) ? 'by_consumer' : 'by_units'
+
+        criteria  = {
+          'consumer_criteria' => consumer_criteria,
+          'repo_criteria' => repo_criteria,
+          'unit_criteria' => { 'erratum' => { } },
+          'override_config' => { 'report_style' => report_style }
+        }
         self.applicability(criteria)
       end
 

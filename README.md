@@ -4,7 +4,7 @@
 
 Exposing Pulp's juiciest parts. http://www.pulpproject.org/
 
-Latest Live Tested Version: **pulp-server-2.1.0-0.26.beta.noarch**
+Latest Live Tested Version: **pulp-server-2.1.1-0.5.beta.el6.noarch**
 
 Current stable Runcible: https://github.com/Katello/runcible/tree/0.3
 
@@ -88,7 +88,7 @@ To run all tests using recorded data, run:
 
 To run all tests to record data:
    
-    rake test mode=live
+    rake test mode=all
 
 To run a single test using recorded data, run:
    

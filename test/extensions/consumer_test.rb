@@ -26,6 +26,7 @@ require 'minitest/autorun'
 require './lib/runcible/resources/consumer'
 require './lib/runcible/extensions/consumer'
 require './test/support/repository_support'
+require './test/support/consumer_support'
 
 
 class TestConsumerExtension < MiniTest::Unit::TestCase
@@ -110,7 +111,7 @@ class TestConsumerExtension < MiniTest::Unit::TestCase
     response  = @extension.applicable_errata(@consumer_id)
 
     assert_equal 200, response.code
-    refute_empty response[ConsumerSupport.consumer_id]['erratum']
+    refute_empty response['erratum'][ConsumerSupport.consumer_id]
   end
 
 end
