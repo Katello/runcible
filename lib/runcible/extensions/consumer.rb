@@ -85,10 +85,20 @@ module Runcible
       # @return [Array]           array of formatted content units
       def self.generate_content(type_id, units)
         content = []
+
+        case type_id
+          when 'rpm', 'package_group'
+            unit_key = :name
+          when 'erratum'
+            unit_key = :id
+          else
+            unit_key = :id
+        end
+
         units.each do |unit|
           content_unit = {}
           content_unit[:type_id] = type_id
-          content_unit[:unit_key] = { :name => unit }
+          content_unit[:unit_key] = { unit_key => unit }
           content.push(content_unit)
         end
         content
