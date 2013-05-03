@@ -37,7 +37,7 @@ Summary:        A gem exposing Pulp's juiciest parts
 Group:          Applications/System
 License:        MIT
 Version:        0.4.4
-Release:        1%{?dist}
+Release:        2%{?dist}
 URL:            https://github.com/Katello/runcible
 # Can be retrieved by:
 # git clone git://github.com/Katello/runcible.git
@@ -114,6 +114,10 @@ This package contains documentation for rubygem-%{gem_name}
 %doc README.md CONTRIBUTING.md
 
 %changelog
+* Fri May 03 2013 Justin Sherrill <jsherril@redhat.com> 0.4.4-2
+- consumer - specify different unit key based on content type
+  (bbuckingham@redhat.com)
+
 * Fri May 03 2013 Justin Sherrill <jsherril@redhat.com> 0.4.4-1
 - consumer - specify different unit key based on content type
   (bbuckingham@redhat.com)
