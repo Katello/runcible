@@ -28,7 +28,19 @@
 
 %global gem_name runcible
 
+%if "%{?scl}" == "ruby193" || 0%{?rhel} > 6 || 0%{?fedora} > 16
 %define rubyabi 1.9.1
+%else
+%define rubyabi 1.8
+%endif
+
+%if 0%{?rhel} == 6 && "%{?scl}" == ""
+%global gem_dir %(ruby -rubygems -e 'puts Gem::dir' 2>/dev/null)
+%global gem_docdir %{gem_dir}/doc/%{gem_name}-%{version}
+%global gem_cache %{gem_dir}/cache/%{gem_name}-%{version}.gem
+%global gem_spec %{gem_dir}/specifications/%{gem_name}-%{version}.gemspec
+%global gem_instdir %{gem_dir}/gems/%{gem_name}-%{version}
+%endif
 
 BuildRequires: %{?scl_prefix}rubygems-devel
 
@@ -44,7 +56,9 @@ URL:            https://github.com/Katello/runcible
 # cd runcible.git
 # tito build --tgz
 Source0:        %{?scl_prefix}%{pkg_name}-%{version}.tar.gz
+%if 0%{?rhel} == 5
 BuildRoot:      %{_tmppath}/%{gem_name}-%{version}-%{release}-root-%(%{__id_u} -n)
+%endif
 %if 0%{?fedora} > 18
 Requires:       %{?scl_prefix}ruby(release)
 %else
