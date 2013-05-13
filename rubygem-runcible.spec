@@ -55,7 +55,7 @@ URL:            https://github.com/Katello/runcible
 # git clone git://github.com/Katello/runcible.git
 # cd runcible.git
 # tito build --tgz
-Source0:        %{?scl_prefix}%{pkg_name}-%{version}.tar.gz
+Source0:        %{pkg_name}-%{version}.tar.gz
 %if 0%{?rhel} == 5
 BuildRoot:      %{_tmppath}/%{gem_name}-%{version}-%{release}-root-%(%{__id_u} -n)
 %endif
@@ -91,7 +91,7 @@ Summary:    Documentation for rubygem-%{gem_name}
 This package contains documentation for rubygem-%{gem_name}
 
 %prep
-%setup -n %{?scl_prefix}%{pkg_name}-%{version} -q
+%setup -n %{pkg_name}-%{version} -q
 
 %build
 %{?scl:scl enable %{scl} "}
