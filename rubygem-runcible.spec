@@ -68,6 +68,14 @@ Provides:       %{?scl_prefix}rubygem(%{gem_name}) = %{version}
 %description
 A gem to expose Pulp's juiciest parts.
 
+%package doc
+BuildArch:  noarch
+Requires:   %{?scl_prefix}%{pkg_name} = %{version}-%{release}
+Summary:    Documentation for rubygem-%{gem_name}
+
+%description doc
+This package contains documentation for rubygem-%{gem_name}
+
 %prep
 %setup -n %{?scl_prefix}%{pkg_name}-%{version} -q
 
@@ -98,14 +106,6 @@ cp -a Gemfile Rakefile %{buildroot}%{gem_instdir}/
 %exclude %{gem_cache}
 %{gem_spec}
 %doc LICENSE
-
-%package doc
-BuildArch:  noarch
-Requires:   %{?scl_prefix}%{pkg_name} = %{version}-%{release}
-Summary:    Documentation for rubygem-%{gem_name}
-
-%description doc
-This package contains documentation for rubygem-%{gem_name}
 
 %files doc
 %doc %{gem_docdir}
