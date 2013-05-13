@@ -169,6 +169,10 @@ class TestExtensionsRepositoryMisc < MiniTest::Unit::TestCase
     RepositorySupport.wait_on_tasks(response)
 
     assert_includes response.first['call_request_tags'], 'pulp:action:publish'
+    
+    # Check publish status call
+    response = @extension.publish_status(RepositorySupport.repo_id)
+    assert_equal 200, response.code    
   end
 
   def test_sync_status
