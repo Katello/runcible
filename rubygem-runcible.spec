@@ -1,3 +1,6 @@
+%{?scl:%scl_package rubygem-%{gem_name}}
+%{!?scl:%global pkg_name %{name}}
+
 # vim: sw=4:ts=4:et
 #
 # Copyright 2011 Red Hat, Inc.
@@ -25,13 +28,13 @@
 
 %global gem_name runcible
 
-%if 0%{?rhel} == 6 || 0%{?fedora} < 17
-%define rubyabi 1.8
-%else
+%if "%{?scl}" == "ruby193" || 0%{?rhel} > 6 || 0%{?fedora} > 16
 %define rubyabi 1.9.1
+%else
+%define rubyabi 1.8
 %endif
 
-%if 0%{?rhel} == 6
+%if 0%{?rhel} == 6 && "%{?scl}" == ""
 %global gem_dir %(ruby -rubygems -e 'puts Gem::dir' 2>/dev/null)
 %global gem_docdir %{gem_dir}/doc/%{gem_name}-%{version}
 %global gem_cache %{gem_dir}/cache/%{gem_name}-%{version}.gem
@@ -39,68 +42,71 @@
 %global gem_instdir %{gem_dir}/gems/%{gem_name}-%{version}
 %endif
 
-%if 0%{?fedora}
-BuildRequires: rubygems-devel
-%endif
+BuildRequires: %{?scl_prefix}rubygems-devel
 
-Name:           rubygem-%{gem_name}
+Name:           %{?scl_prefix}rubygem-%{gem_name}
 Summary:        A gem exposing Pulp's juiciest parts
 Group:          Applications/System
 License:        MIT
-Version:        0.4.4
+Version:        0.4.5
 Release:        1%{?dist}
 URL:            https://github.com/Katello/runcible
 # Can be retrieved by:
 # git clone git://github.com/Katello/runcible.git
 # cd runcible.git
 # tito build --tgz
-Source0:        %{name}-%{version}.tar.gz
+Source0:        %{pkg_name}-%{version}.tar.gz
 %if 0%{?rhel} == 5
 BuildRoot:      %{_tmppath}/%{gem_name}-%{version}-%{release}-root-%(%{__id_u} -n)
 %endif
 %if 0%{?fedora} > 18
-Requires: ruby(release)
+Requires:       %{?scl_prefix}ruby(release)
 %else
-Requires: ruby(abi) = %{rubyabi}
+Requires:       %{?scl_prefix}ruby(abi) = %{rubyabi}
 %endif
-Requires:       ruby(rubygems) 
-Requires:       rubygem(json) 
-Requires:       rubygem(rest-client) >= 1.6.1
-Requires:       rubygem(oauth) 
-Requires:       rubygem(activesupport) >= 3.0.10
-Requires:       rubygem(i18n) >= 0.5.0
+Requires:       %{?scl_prefix}ruby(rubygems) 
+Requires:       %{?scl_prefix}rubygem(json) 
+Requires:       %{?scl_prefix}rubygem(rest-client) >= 1.6.1
+Requires:       %{?scl_prefix}rubygem(oauth) 
+Requires:       %{?scl_prefix}rubygem(activesupport) >= 3.0.10
+Requires:       %{?scl_prefix}rubygem(i18n) >= 0.5.0
 %if 0%{?fedora} > 18
-BuildRequires: ruby(release)
+BuildRequires:  %{?scl_prefix}ruby(release)
 %else
-BuildRequires: ruby(abi) = %{rubyabi}
+BuildRequires:  %{?scl_prefix}ruby(abi) = %{rubyabi}
 %endif
-BuildRequires:  ruby(rubygems) 
+BuildRequires:  %{?scl_prefix}ruby(rubygems) 
 BuildArch:      noarch
-Provides:       rubygem(%{gem_name}) = %{version}
+Provides:       %{?scl_prefix}rubygem(%{gem_name}) = %{version}
 
 %description
 A gem to expose Pulp's juiciest parts.
 
 %package doc
 BuildArch:  noarch
-Requires:   %{name} = %{version}-%{release}
+Requires:   %{?scl_prefix}%{pkg_name} = %{version}-%{release}
 Summary:    Documentation for rubygem-%{gem_name}
 
 %description doc
 This package contains documentation for rubygem-%{gem_name}
 
 %prep
-%setup -q
+%setup -n %{pkg_name}-%{version} -q
 
 %build
+%{?scl:scl enable %{scl} "}
 gem build %{gem_name}.gemspec
-%if 0%{?fedora} > 18
-%gem_install
-%else
+%{?scl:"}
+
 mkdir -p .%{gem_dir}
-gem install --local --install-dir .%{gem_dir} \
-            --force %{gem_name}-%{version}.gem
-%endif
+
+%{?scl:scl enable %{scl} "}
+gem install \
+    --local \
+    --install-dir .%{gem_dir} \
+    --force \
+    %{gem_name}-%{version}.gem
+%{?scl:"}
 
 %install
 mkdir -p %{buildroot}%{gem_dir}
@@ -122,6 +128,13 @@ cp -a Gemfile Rakefile %{buildroot}%{gem_instdir}/
 %doc README.md CONTRIBUTING.md
 
 %changelog
+* Mon May 13 2013 Miroslav Suchý <msuchy@redhat.com> 0.4.5-1
+- enable SCL builds
+
+* Fri May 03 2013 Justin Sherrill <jsherril@redhat.com> 0.4.4-2
+- consumer - specify different unit key based on content type
+  (bbuckingham@redhat.com)
+
 * Fri May 03 2013 Justin Sherrill <jsherril@redhat.com> 0.4.4-1
 - consumer - specify different unit key based on content type
   (bbuckingham@redhat.com)
@@ -153,6 +166,16 @@ cp -a Gemfile Rakefile %{buildroot}%{gem_instdir}/
 - only request ids of errata and rpms for errata_id/rpm_id functions
   (jsherril@redhat.com)
 - allowing running of single test by filename (jsherril@redhat.com)
+
+* Thu Feb 28 2013 Miroslav Suchý <msuchy@redhat.com> 0.3.3-4
+- use scl_prefix for setup macro (msuchy@redhat.com)
+- use upstream builder (msuchy@redhat.com)
+
+* Thu Feb 28 2013 Miroslav Suchý <msuchy@redhat.com> 0.3.3-3
+- tar.gz is created form package name, address this for SC (msuchy@redhat.com)
+
+* Thu Feb 28 2013 Miroslav Suchý <msuchy@redhat.com> 0.3.3-2
+- convert spec file using spec2scl to support SC (msuchy@redhat.com)
 
 * Tue Feb 05 2013 Justin Sherrill <jsherril@redhat.com> 0.3.3-1
 - dropping version requirement for runcible (jsherril@redhat.com)
