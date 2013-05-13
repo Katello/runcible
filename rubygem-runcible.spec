@@ -48,7 +48,7 @@ Name:           %{?scl_prefix}rubygem-%{gem_name}
 Summary:        A gem exposing Pulp's juiciest parts
 Group:          Applications/System
 License:        MIT
-Version:        0.4.4
+Version:        0.4.5
 Release:        1%{?dist}
 URL:            https://github.com/Katello/runcible
 # Can be retrieved by:
@@ -128,6 +128,9 @@ cp -a Gemfile Rakefile %{buildroot}%{gem_instdir}/
 %doc README.md CONTRIBUTING.md
 
 %changelog
+* Mon May 13 2013 Miroslav Suchý <msuchy@redhat.com> 0.4.5-1
+- enable SCL builds
+
 * Fri May 03 2013 Justin Sherrill <jsherril@redhat.com> 0.4.4-2
 - consumer - specify different unit key based on content type
   (bbuckingham@redhat.com)
