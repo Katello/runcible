@@ -37,7 +37,7 @@ Summary:        A gem exposing Pulp's juiciest parts
 Group:          Applications/System
 License:        MIT
 Version:        0.4.4
-Release:        2%{?dist}
+Release:        1%{?dist}
 URL:            https://github.com/Katello/runcible
 # Can be retrieved by:
 # git clone git://github.com/Katello/runcible.git
