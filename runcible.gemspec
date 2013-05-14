@@ -8,7 +8,7 @@ Gem::Specification.new do |gem|
   gem.summary       = ""
   gem.homepage      = "https://github.com/Katello/runcible"
 
-  gem.files         = Dir['lib/**/*.rb']
+  gem.files         = Dir['lib/**/*.rb'] + ['LICENSE', 'Rakefile', 'Gemfile']
   gem.test_files    = gem.files.grep(%r{^(test)/})
   gem.name          = "runcible"
   gem.require_paths = ["lib"]
