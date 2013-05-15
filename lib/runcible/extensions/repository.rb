@@ -87,6 +87,14 @@ module Runcible
         Runcible::Resources::Task.list(["pulp:repository:#{repo_id}", "pulp:action:sync"])
       end
 
+      # Retrieves the publish status for a repository
+      #
+      # @param  [String]                repo_id the repository ID
+      # @return [RestClient::Response]          a task representing the sync status
+      def self.publish_status(repo_id)
+        Runcible::Resources::Task.list(["pulp:repository:#{repo_id}", "pulp:action:publish"])
+      end
+
       # Retrieves a set of repositories by their IDs
       #
       # @param  [Array]                repository_ids the repository ID
