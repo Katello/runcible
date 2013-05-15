@@ -47,7 +47,6 @@ module Runcible
       # @return [string]
       def type_id
         'export_distributor'
-
       end
 
       # generate the pulp config for the export distributor
