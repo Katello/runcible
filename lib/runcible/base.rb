@@ -48,9 +48,13 @@ module Runcible
         :logging    => {}
       }.merge(conf)
     end
-    
-    def self.config 
-      @@config
+
+    def self.config
+      if defined?(@@config)
+        @@config
+      else
+        raise Runcible::ConfigurationUndefinedError, Runcible::ConfigurationUndefinedError.message
+      end
     end
 
     def self.call(method, path, options={})
@@ -209,4 +213,12 @@ module Runcible
     end
 
   end 
+
+  class ConfigurationUndefinedError < StandardError
+
+    def self.message
+      # override me to change the error message
+      "Configuration not set. Runcible::Base.config= must be called before Runcible::Base.config."
+    end
+  end
 end
