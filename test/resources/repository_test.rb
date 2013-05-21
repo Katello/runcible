@@ -116,13 +116,21 @@ class TestResourcesRepository < MiniTest::Unit::TestCase
     assert_equal 200, response.code
     refute_empty response
   end
+end
 
-  def test_associate_importer
-    response = @resource.associate_importer(RepositorySupport.repo_id, "yum_importer", {})
 
-    assert_equal 201, response.code
-    assert_equal "yum_importer", response['importer_type_id']
+class TestRespositoryDistributor < MiniTest::Unit::TestCase
+  include TestResourcesRepositoryBase
+  def setup
+    super
+    RepositorySupport.create_repo(:importer => false)
   end
+
+  def teardown
+    RepositorySupport.destroy_repo
+    super
+  end
+
 
   def test_associate_distributor
     distributor_config = {"relative_url" => "/", "http" => true, "https" => true}
@@ -143,6 +151,53 @@ class TestResourcesRepository < MiniTest::Unit::TestCase
     assert_equal 202, response.code
   end
 
+  def test_update_distributor
+    distributor_config = {"relative_url" => "/", "http" => true, "https" => true}
+    distributor = @resource.associate_distributor(RepositorySupport.repo_id, "yum_distributor",
+                                    distributor_config, {:distributor_id => "dist_1"})
+
+    response = @resource.update_distributor(RepositorySupport.repo_id, distributor['id'],
+                                         {:relative_url=>"/new_path/"})
+    assert_equal 202, response.code
+  end
+
+end
+
+
+
+class TestRepositoryImporter < MiniTest::Unit::TestCase
+  include TestResourcesRepositoryBase
+
+  def setup
+    super
+    RepositorySupport.create_repo(:importer => false)
+  end
+
+  def teardown
+    RepositorySupport.destroy_repo
+    super
+  end
+
+  def test_associate_importer
+    response = @resource.associate_importer(RepositorySupport.repo_id, "yum_importer", {})
+
+    assert_equal 201, response.code
+    assert_equal "yum_importer", response['importer_type_id']
+  end
+
+  def test_delete_importer
+    @resource.associate_importer(RepositorySupport.repo_id, "yum_importer", {})
+    response = @resource.delete_importer(RepositorySupport.repo_id, "yum_importer")
+
+    assert_equal 200, response.code
+  end
+
+  def test_update_importer
+    @resource.associate_importer(RepositorySupport.repo_id, "yum_importer", {})
+    response = @resource.update_importer(RepositorySupport.repo_id, "yum_importer",
+                                         {:feed_url=>"http://katello.org/repo/"})
+    assert_equal 200, response.code
+  end
 end
 
 

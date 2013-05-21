@@ -179,6 +179,37 @@ module Runcible
         call(:delete, "#{path(id)}/distributors/#{distributor_id}/")
       end
 
+      # Updates the specified distributor from the repository
+      #
+      # @param  [String]                id              the id of the repository
+      # @param  [String]                distributor_id  the id of the distributor
+      # @param  [Hash]                  distributor_config attributes to change
+      # @return [RestClient::Response]
+      def self.update_distributor(id, distributor_id, distributor_config)
+        required = required_params(binding.send(:local_variables), binding, ["id", "distributor_id"])
+        call(:put, path("#{id}/distributors/#{distributor_id}/"), :payload => { :required => required})
+      end
+
+      # Deletes the specified importer from the repository
+      #
+      # @param  [String]                id              the id of the repository
+      # @param  [String]                importer_id  the id of the importer
+      # @return [RestClient::Response]
+      def self.delete_importer(id, importer_id)
+        call(:delete, "#{path(id)}/importers/#{importer_id}/")
+      end
+
+      # Updates the specified distributor from the repository
+      #
+      # @param  [String]                id              the id of the repository
+      # @param  [String]                importer_id  the id of the importer
+      # @param  [Hash]                  importer_config  attributes to change
+      # @return [RestClient::Response]
+      def self.update_importer(id, importer_id, importer_config)
+        required = required_params(binding.send(:local_variables), binding, ["id", "importer_id"])
+        call(:put, path("#{id}/importers/#{importer_id}/"), :payload => { :required => required})
+      end
+
     end
   end
 end
