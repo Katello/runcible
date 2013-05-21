@@ -20,4 +20,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency('oauth')
   gem.add_dependency('activesupport', '>= 3.0.10')
   gem.add_dependency('i18n', '>= 0.5.0')
+
+  gem.add_development_dependency('yard')
+  gem.add_development_dependency('maruku')
 end
