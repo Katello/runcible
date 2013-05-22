@@ -48,7 +48,7 @@ Name:           %{?scl_prefix}rubygem-%{gem_name}
 Summary:        A gem exposing Pulp's juiciest parts
 Group:          Applications/System
 License:        MIT
-Version:        0.4.7
+Version:        0.4.8
 Release:        1%{?dist}
 URL:            https://github.com/Katello/runcible
 # Can be retrieved by:
@@ -122,6 +122,15 @@ mkdir -p %{buildroot}%{gem_docdir}
 %doc %{gem_instdir}/CONTRIBUTING.md
 
 %changelog
+* Wed May 22 2013 Justin Sherrill <jsherril@redhat.com> 0.4.8-1
+- adding additional importer/distributor options (jsherril@redhat.com)
+- requiring older minitest (jsherril@redhat.com)
+- adding readme and contributing to gemspec (jsherril@redhat.com)
+- adding new files to gemfile, and bumping for new release
+  (jsherril@redhat.com)
+- adding method to easily check the status of a publish (mmccune@redhat.com)
+- adding export distributor so we can initiate ISO exports (mmccune@redhat.com)
+
 * Wed May 15 2013 Justin Sherrill <jsherril@redhat.com> 0.4.7-1
 - new package built with tito
 
