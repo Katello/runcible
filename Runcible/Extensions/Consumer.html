@@ -6,13 +6,13 @@
 <title>
   Class: Runcible::Extensions::Consumer
   
-    &mdash; Documentation by YARD 0.8.5.2
+    &mdash; Documentation by YARD 0.8.6.1
   
 </title>
 
-  <link rel="stylesheet" href="../../css/style.css" type="text/css" media="screen" charset="utf-8" />
+  <link rel="stylesheet" href="../../css/style.css" type="text/css" charset="utf-8" />
 
-  <link rel="stylesheet" href="../../css/common.css" type="text/css" media="screen" charset="utf-8" />
+  <link rel="stylesheet" href="../../css/common.css" type="text/css" charset="utf-8" />
 
 <script type="text/javascript" charset="utf-8">
   hasFrames = window.top.frames.main ? true : false;
@@ -121,7 +121,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#applicable_errata-class_method" title="applicable_errata (class method)">+ (RestClient::Response) <strong>applicable_errata</strong>(ids) </a>
+      <a href="#applicable_errata-class_method" title="applicable_errata (class method)">+ (RestClient::Response) <strong>applicable_errata</strong>(ids, repoids = [], consumer_report = true) </a>
     
 
     
@@ -320,7 +320,7 @@
       <div class="method_details first">
   <h3 class="signature first" id="applicable_errata-class_method">
   
-    + (<tt>RestClient::Response</tt>) <strong>applicable_errata</strong>(ids) 
+    + (<tt>RestClient::Response</tt>) <strong>applicable_errata</strong>(ids, repoids = [], consumer_report = true) 
   
 
   
@@ -349,7 +349,44 @@
       
         &mdash;
         <div class='inline'>
-<p>hash of uninstall options</p>
+<p>string containing a single consumer id or an array of ids</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>repoids</span>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[]</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>array of repository ids</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>consumer_report</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>if true, result will list consumers and their applicable errata; otherwise,
+it will list errata and the consumers they are applicable to</p>
 </div>
       
     </li>
@@ -368,7 +405,7 @@
       
         &mdash;
         <div class='inline'>
-<p>content applicability hash with details of errata availabel to consumer(s)</p>
+<p>content applicability hash with details of errata available to consumer(s)</p>
 </div>
       
     </li>
@@ -381,34 +418,38 @@
       <pre class="lines">
 
 
-101
-102
-103
-104
-105
-106
-107
-108
-109
-110
-111
-112
-113</pre>
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/runcible/extensions/consumer.rb', line 101</span>
+      <pre class="code"><span class="info file"># File 'lib/runcible/extensions/consumer.rb', line 115</span>
 
-<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_applicable_errata'>applicable_errata</span><span class='lparen'>(</span><span class='id identifier rubyid_ids'>ids</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_applicable_errata'>applicable_errata</span><span class='lparen'>(</span><span class='id identifier rubyid_ids'>ids</span><span class='comma'>,</span> <span class='id identifier rubyid_repoids'>repoids</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_consumer_report'>consumer_report</span> <span class='op'>=</span> <span class='kw'>true</span><span class='rparen'>)</span>
+
   <span class='id identifier rubyid_ids'>ids</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='id identifier rubyid_ids'>ids</span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_ids'>ids</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>String</span>
-  <span class='id identifier rubyid_criteria'>criteria</span>  <span class='op'>=</span> <span class='lbrace'>{</span>
-    <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>consumer_criteria</span><span class='tstring_end'>'</span></span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span>
-      <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>filters</span><span class='tstring_end'>'</span></span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>id</span><span class='tstring_end'>'</span></span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>$in</span><span class='tstring_end'>'</span></span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_ids'>ids</span><span class='rbrace'>}</span><span class='rbrace'>}</span>
-    <span class='rbrace'>}</span><span class='comma'>,</span>
-    <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>units</span><span class='tstring_end'>'</span></span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span>
-      <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>erratum</span><span class='tstring_end'>'</span></span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
-    <span class='rbrace'>}</span>
-  <span class='rbrace'>}</span>
+  <span class='id identifier rubyid_consumer_criteria'>consumer_criteria</span> <span class='op'>=</span> <span class='lbrace'>{</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>filters</span><span class='tstring_end'>'</span></span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>id</span><span class='tstring_end'>'</span></span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>$in</span><span class='tstring_end'>'</span></span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_ids'>ids</span> <span class='rbrace'>}</span> <span class='rbrace'>}</span> <span class='rbrace'>}</span> <span class='kw'>unless</span> <span class='id identifier rubyid_ids'>ids</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+  <span class='id identifier rubyid_repo_criteria'>repo_criteria</span> <span class='op'>=</span> <span class='lbrace'>{</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>filters</span><span class='tstring_end'>'</span></span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>id</span><span class='tstring_end'>'</span></span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>$in</span><span class='tstring_end'>'</span></span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_repoids'>repoids</span> <span class='rbrace'>}</span> <span class='rbrace'>}</span> <span class='rbrace'>}</span> <span class='kw'>unless</span> <span class='id identifier rubyid_repoids'>repoids</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+  <span class='id identifier rubyid_report_style'>report_style</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_consumer_report'>consumer_report</span> <span class='op'>==</span> <span class='kw'>true</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>by_consumer</span><span class='tstring_end'>'</span></span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>by_units</span><span class='tstring_end'>'</span></span>
 
+  <span class='id identifier rubyid_criteria'>criteria</span>  <span class='op'>=</span> <span class='lbrace'>{</span>
+    <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>consumer_criteria</span><span class='tstring_end'>'</span></span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_consumer_criteria'>consumer_criteria</span><span class='comma'>,</span>
+    <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>repo_criteria</span><span class='tstring_end'>'</span></span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_repo_criteria'>repo_criteria</span><span class='comma'>,</span>
+    <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>unit_criteria</span><span class='tstring_end'>'</span></span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>erratum</span><span class='tstring_end'>'</span></span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span> <span class='rbrace'>}</span> <span class='rbrace'>}</span><span class='comma'>,</span>
+    <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>override_config</span><span class='tstring_end'>'</span></span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>report_style</span><span class='tstring_end'>'</span></span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_report_style'>report_style</span> <span class='rbrace'>}</span>
+  <span class='rbrace'>}</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_applicability'>applicability</span><span class='lparen'>(</span><span class='id identifier rubyid_criteria'>criteria</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -604,17 +645,37 @@
 92
 93
 94
-95</pre>
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/runcible/extensions/consumer.rb', line 86</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_generate_content'>generate_content</span><span class='lparen'>(</span><span class='id identifier rubyid_type_id'>type_id</span><span class='comma'>,</span> <span class='id identifier rubyid_units'>units</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_content'>content</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+
+  <span class='kw'>case</span> <span class='id identifier rubyid_type_id'>type_id</span>
+    <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>rpm</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>package_group</span><span class='tstring_end'>'</span></span>
+      <span class='id identifier rubyid_unit_key'>unit_key</span> <span class='op'>=</span> <span class='symbol'>:name</span>
+    <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>erratum</span><span class='tstring_end'>'</span></span>
+      <span class='id identifier rubyid_unit_key'>unit_key</span> <span class='op'>=</span> <span class='symbol'>:id</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_unit_key'>unit_key</span> <span class='op'>=</span> <span class='symbol'>:id</span>
+  <span class='kw'>end</span>
+
   <span class='id identifier rubyid_units'>units</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_unit'>unit</span><span class='op'>|</span>
     <span class='id identifier rubyid_content_unit'>content_unit</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
     <span class='id identifier rubyid_content_unit'>content_unit</span><span class='lbracket'>[</span><span class='symbol'>:type_id</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_type_id'>type_id</span>
-    <span class='id identifier rubyid_content_unit'>content_unit</span><span class='lbracket'>[</span><span class='symbol'>:unit_key</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='lbrace'>{</span> <span class='symbol'>:name</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_unit'>unit</span> <span class='rbrace'>}</span>
+    <span class='id identifier rubyid_content_unit'>content_unit</span><span class='lbracket'>[</span><span class='symbol'>:unit_key</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_unit_key'>unit_key</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_unit'>unit</span> <span class='rbrace'>}</span>
     <span class='id identifier rubyid_content'>content</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_content_unit'>content_unit</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
   <span class='id identifier rubyid_content'>content</span>
@@ -1061,9 +1122,9 @@
 </div>
 
     <div id="footer">
-  Generated on Fri Mar 22 11:11:04 2013 by
+  Generated on Thu May 23 09:07:03 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.5.2 (ruby-1.9.3).
+  0.8.6.1 (ruby-1.9.3).
 </div>
 
   </body>

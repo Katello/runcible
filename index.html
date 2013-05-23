@@ -6,13 +6,13 @@
 <title>
   File: README
   
-    &mdash; Documentation by YARD 0.8.5.2
+    &mdash; Documentation by YARD 0.8.6.1
   
 </title>
 
-  <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
 
-  <link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
 
 <script type="text/javascript" charset="utf-8">
   hasFrames = window.top.frames.main ? true : false;
@@ -61,38 +61,35 @@
 
     <iframe id="search_frame"></iframe>
 
-    <div id="content"><div id='filecontents'><h1>Runcible</h1>
+    <div id="content"><div id='filecontents'><h1 id='runcible'>Runcible</h1>
 
-<p><a href="http://travis-ci.org/Katello/runcible"><img src="https://secure.travis-ci.org/Katello/runcible.png" alt="Build Status"></a></p>
+<p><a href='http://travis-ci.org/Katello/runcible'><img alt='Build Status' src='https://secure.travis-ci.org/Katello/runcible.png' /></a></p>
 
-<p>Exposing Pulp&#39;s juiciest parts. <a href="http://www.pulpproject.org/">http://www.pulpproject.org/</a></p>
+<p>Exposing Pulp&#8217;s juiciest parts. http://www.pulpproject.org/</p>
 
-<p>Latest Live Tested Version: <strong>pulp-server-2.1.0-0.26.beta.noarch</strong></p>
+<p>Latest Live Tested Version: <strong>pulp-server-2.1.1-0.10.beta.el6.noarch</strong></p>
 
-<p>Current stable Runcible: <a href="https://github.com/Katello/runcible/tree/0.3">https://github.com/Katello/runcible/tree/0.3</a></p>
+<p>Current stable Runcible: https://github.com/Katello/runcible/tree/0.3</p>
 
-<p>For in-depth class and method documentation: <a href="http://katello.github.com/runcible/">http://katello.github.com/runcible/</a></p>
+<p>For in-depth class and method documentation: http://katello.github.com/runcible/</p>
 
-<h2>Installation</h2>
+<h2 id='installation'>Installation</h2>
 
-<p>Add this line to your application&#39;s Gemfile:</p>
+<p>Add this line to your application&#8217;s Gemfile:</p>
 
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_gem'>gem</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>runcible</span><span class='tstring_end'>'</span></span>
-</code></pre>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_gem'>gem</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>runcible</span><span class='tstring_end'>'</span></span></code></pre>
 
 <p>And then execute:</p>
 
-<pre class="code ruby"><code class="ruby">$ bundle
-</code></pre>
+<pre class="code ruby"><code class="ruby">$ bundle</code></pre>
 
 <p>Or install it yourself as:</p>
 
-<pre class="code ruby"><code class="ruby">$ gem install runcible
-</code></pre>
+<pre class="code ruby"><code class="ruby">$ gem install runcible</code></pre>
 
-<h2>Usage</h2>
+<h2 id='usage'>Usage</h2>
 
-<h3>Set Configuration</h3>
+<h3 id='set_configuration'>Set Configuration</h3>
 
 <p>The base configuration allows for the following to be set.</p>
 
@@ -101,159 +98,154 @@
             <span class='symbol'>:api_path</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
             <span class='symbol'>:user</span>     <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
             <span class='symbol'>:logger</span>   <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
-          <span class='rbrace'>}</span>
-</code></pre>
+          <span class='rbrace'>}</span></code></pre>
 
 <p>Required Configuration</p>
 
 <pre class="code ruby"><code class="ruby">:uri      =&gt; The base URI of the Pulp server (default: https://localhost)
 :api_path =&gt; The API path of the Pulp server (default: pulp/api/v2/)
 :user     =&gt; The Pulp username to be used in authentication
-:logger   =&gt; The location to log RestClient calls (e.g. stdout)
-</code></pre>
+:logger   =&gt; The location to log RestClient calls (e.g. stdout)</code></pre>
 
 <p>Authentication Options are either HTTP or Oauth:</p>
 
 <pre class="code ruby"><code class="ruby">:http_auth  =&gt; {:password =&gt; ''}
 
 :oauth      =&gt; {:oauth_secret =&gt; &quot;&quot;,
-                :oauth_key    =&gt; &quot;&quot; }
-</code></pre>
+                :oauth_key    =&gt; &quot;&quot; }</code></pre>
 
-<p>For an example on parsing the Pulp server.conf and using values provided within for the configuration see the <a href="https://github.com/Katello/runcible/blob/master/test/integration/test_runner.rb">test_runner</a></p>
+<p>For an example on parsing the Pulp server.conf and using values provided within for the configuration see the <a href='https://github.com/Katello/runcible/blob/master/test/integration/test_runner.rb'>test_runner</a></p>
 
-<h3>Make a Request</h3>
+<h3 id='make_a_request'>Make a Request</h3>
 
-<p>Runcible provides two represntation&#39;s of Pulp entities to make API calls: <a href="https://github.com/Katello/runcible/tree/master/lib/runcible/resources">resources</a> and <a href="https://github.com/Katello/runcible/tree/master/lib/runcible/extensions">extensions</a></p>
+<p>Runcible provides two represntation&#8217;s of Pulp entities to make API calls: <a href='https://github.com/Katello/runcible/tree/master/lib/runcible/resources'>resources</a> and <a href='https://github.com/Katello/runcible/tree/master/lib/runcible/extensions'>extensions</a></p>
 
-<p>The best examples of how to use either the resources or extensions can be found within the <a href="https://github.com/Katello/runcible/tree/master/test/integration">tests</a></p>
+<p>The best examples of how to use either the resources or extensions can be found within the <a href='https://github.com/Katello/runcible/tree/master/test/integration'>tests</a></p>
 
-<h4>Resources</h4>
+<h4 id='resources'>Resources</h4>
 
-<p>Resources are designed to be one-for-one with the Pulp API calls in terms of required parameters and naming of the calls.  For example, in order to create a repository, associate a Yum importer and a distributor:</p>
+<p>Resources are designed to be one-for-one with the Pulp API calls in terms of required parameters and naming of the calls. For example, in order to create a repository, associate a Yum importer and a distributor:</p>
 
 <pre class="code ruby"><code class="ruby"><span class='const'>Runcible</span><span class='op'>::</span><span class='const'>Resources</span><span class='op'>::</span><span class='const'>Repository</span><span class='period'>.</span><span class='id identifier rubyid_create'>create</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Repository_ID</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
 <span class='const'>Runcible</span><span class='op'>::</span><span class='const'>Resources</span><span class='op'>::</span><span class='const'>Repository</span><span class='period'>.</span><span class='id identifier rubyid_associate_importer'>associate_importer</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Repository_ID</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>yum_importer</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
-<span class='const'>Runcible</span><span class='op'>::</span><span class='const'>Resources</span><span class='op'>::</span><span class='const'>Repository</span><span class='period'>.</span><span class='id identifier rubyid_associate_distributor'>associate_distributor</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Repository_ID</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>yum_distributor</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>relative_url</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>http</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>https</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='kw'>true</span><span class='rbrace'>}</span><span class='rparen'>)</span>
-</code></pre>
+<span class='const'>Runcible</span><span class='op'>::</span><span class='const'>Resources</span><span class='op'>::</span><span class='const'>Repository</span><span class='period'>.</span><span class='id identifier rubyid_associate_distributor'>associate_distributor</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Repository_ID</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>yum_distributor</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>relative_url</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>http</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>https</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='kw'>true</span><span class='rbrace'>}</span><span class='rparen'>)</span></code></pre>
 
-<h4>Extensions</h4>
+<h4 id='extensions'>Extensions</h4>
 
-<p>Extensions are constructs around the Pulp API that make retrieving, accessing or creating certain data types easier.  For example, providing objects that represent the details of a yum importer or distributor, and providing functions to create a Repository with an importer and distributors in a single call.  The same three step process above using extensions is:</p>
+<p>Extensions are constructs around the Pulp API that make retrieving, accessing or creating certain data types easier. For example, providing objects that represent the details of a yum importer or distributor, and providing functions to create a Repository with an importer and distributors in a single call. The same three step process above using extensions is:</p>
 
-<pre class="code ruby"><code class="ruby"><span class='const'>Runcible</span><span class='op'>::</span><span class='const'>Extensions</span><span class='op'>::</span><span class='const'>Repository</span><span class='period'>.</span><span class='id identifier rubyid_create_with_importer_and_distributors'>create_with_importer_and_distributors</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Repository_ID</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='symbol'>:id</span><span class='op'>=&gt;</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>yum_importer</span><span class='tstring_end'>'</span></span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>type_id</span><span class='tstring_end'>'</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>yum_distributor</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>id</span><span class='tstring_end'>'</span></span><span class='op'>=&gt;</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>123</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>auto_publish</span><span class='tstring_end'>'</span></span><span class='op'>=&gt;</span><span class='kw'>true</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>config</span><span class='tstring_end'>'</span></span><span class='op'>=&gt;</span><span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>relative_url</span><span class='tstring_end'>'</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>/</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>http</span><span class='tstring_end'>'</span></span> <span class='op'>=&gt;</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>https</span><span class='tstring_end'>'</span></span> <span class='op'>=&gt;</span> <span class='kw'>true</span><span class='rbrace'>}</span><span class='rbrace'>}</span><span class='rbracket'>]</span><span class='rparen'>)</span>
-</code></pre>
+<pre class="code ruby"><code class="ruby"><span class='const'>Runcible</span><span class='op'>::</span><span class='const'>Extensions</span><span class='op'>::</span><span class='const'>Repository</span><span class='period'>.</span><span class='id identifier rubyid_create_with_importer_and_distributors'>create_with_importer_and_distributors</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Repository_ID</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='symbol'>:id</span><span class='op'>=&gt;</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>yum_importer</span><span class='tstring_end'>'</span></span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>type_id</span><span class='tstring_end'>'</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>yum_distributor</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>id</span><span class='tstring_end'>'</span></span><span class='op'>=&gt;</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>123</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>auto_publish</span><span class='tstring_end'>'</span></span><span class='op'>=&gt;</span><span class='kw'>true</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>config</span><span class='tstring_end'>'</span></span><span class='op'>=&gt;</span><span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>relative_url</span><span class='tstring_end'>'</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>/</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>http</span><span class='tstring_end'>'</span></span> <span class='op'>=&gt;</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>https</span><span class='tstring_end'>'</span></span> <span class='op'>=&gt;</span> <span class='kw'>true</span><span class='rbrace'>}</span><span class='rbrace'>}</span><span class='rbracket'>]</span><span class='rparen'>)</span></code></pre>
 
 <p>Alternatively, using distributor and importer objects:</p>
 
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_distributors'>distributors</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='const'>Runcible</span><span class='op'>::</span><span class='const'>Extensions</span><span class='op'>::</span><span class='const'>YumDistributor</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>/path</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='symbol'>:id</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>123</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span><span class='rbracket'>]</span>
 <span class='id identifier rubyid_importer'>importer</span> <span class='op'>=</span> <span class='const'>Runcible</span><span class='op'>::</span><span class='const'>Extensions</span><span class='op'>::</span><span class='const'>YumImporter</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span>
-<span class='const'>Runcible</span><span class='op'>::</span><span class='const'>Extensions</span><span class='op'>::</span><span class='const'>Repository</span><span class='period'>.</span><span class='id identifier rubyid_create_with_importer_and_distributors'>create_with_importer_and_distributors</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Repository_ID</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_importer'>importer</span><span class='comma'>,</span> <span class='id identifier rubyid_distributors'>distributors</span><span class='rparen'>)</span>
-</code></pre>
+<span class='const'>Runcible</span><span class='op'>::</span><span class='const'>Extensions</span><span class='op'>::</span><span class='const'>Repository</span><span class='period'>.</span><span class='id identifier rubyid_create_with_importer_and_distributors'>create_with_importer_and_distributors</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Repository_ID</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_importer'>importer</span><span class='comma'>,</span> <span class='id identifier rubyid_distributors'>distributors</span><span class='rparen'>)</span></code></pre>
 
-<h2>Testing</h2>
+<h2 id='testing'>Testing</h2>
 
 <p>To run all tests using recorded data, run:</p>
 
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_rake'>rake</span> <span class='id identifier rubyid_test'>test</span> <span class='id identifier rubyid_mode'>mode</span><span class='op'>=</span><span class='id identifier rubyid_none'>none</span>
-</code></pre>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_rake'>rake</span> <span class='id identifier rubyid_test'>test</span> <span class='id identifier rubyid_mode'>mode</span><span class='op'>=</span><span class='id identifier rubyid_none'>none</span></code></pre>
 
 <p>To run all tests to record data:</p>
 
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_rake'>rake</span> <span class='id identifier rubyid_test'>test</span> <span class='id identifier rubyid_mode'>mode</span><span class='op'>=</span><span class='id identifier rubyid_live'>live</span>
-</code></pre>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_rake'>rake</span> <span class='id identifier rubyid_test'>test</span> <span class='id identifier rubyid_mode'>mode</span><span class='op'>=</span><span class='id identifier rubyid_all'>all</span></code></pre>
 
 <p>To run a single test using recorded data, run:</p>
 
 <pre class="code ruby"><code class="ruby">rake test mode=none test=extensions/respository
 or (by filename)
-rake test mode=none test=./test/extensions/respository_test.rb
-</code></pre>
+rake test mode=none test=./test/extensions/respository_test.rb</code></pre>
 
 <p>To run tests against your live Pulp without recording a new cassette set record flag to false (does not apply to mode=none):</p>
 
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_record'>record</span><span class='op'>=</span><span class='kw'>false</span>
-</code></pre>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_record'>record</span><span class='op'>=</span><span class='kw'>false</span></code></pre>
 
-<p>To run with  oauth, simply append the following to any commend:</p>
+<p>To run with oauth, simply append the following to any commend:</p>
 
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_auth_type'>auth_type</span><span class='op'>=</span><span class='id identifier rubyid_oauth'>oauth</span>
-</code></pre>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_auth_type'>auth_type</span><span class='op'>=</span><span class='id identifier rubyid_oauth'>oauth</span></code></pre>
 
 <p>To see RestClient logs while testing:</p>
 
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_logging'>logging</span><span class='op'>=</span><span class='kw'>true</span>
-</code></pre>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_logging'>logging</span><span class='op'>=</span><span class='kw'>true</span></code></pre>
 
-<h2>Building and Releasing</h2>
+<h2 id='updating_documentation'>Updating Documentation</h2>
 
-<h3>Gem</h3>
+<p>The documentation is built with yard and hosted on Github via the gh-pages branch of the repository. To update the documentation on Github:</p>
+
+<pre class="code ruby"><code class="ruby">yard doc
+git checkout gh-pages
+cp -rf doc/* ./
+git add ./
+git commit -a -m 'Updating docs to version X.X'
+git push &lt;upstream&gt; gh-pages</code></pre>
+
+<h2 id='building_and_releasing'>Building and Releasing</h2>
+
+<h3 id='gem'>Gem</h3>
 
 <p>While anyone can grab the source and build a new version of the gem, only those with Rubygems.org permissions on the project can release an official version.</p>
 
 <p>To build a new version of Runcible, first bump the version depending on the type of release.</p>
 
 <pre class="code ruby"><code class="ruby">cd runcible/
-vim lib/runcible/version.rb
-</code></pre>
+vim lib/runcible/version.rb</code></pre>
 
 <p>Now update the version to the new version, and commit the changes.</p>
 
-<pre class="code ruby"><code class="ruby">git commit -a -m 'Version bump'
-</code></pre>
+<pre class="code ruby"><code class="ruby">git commit -a -m 'Version bump'</code></pre>
 
 <p>Now build:</p>
 
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_gem'>gem</span> <span class='id identifier rubyid_build'>build</span> <span class='id identifier rubyid_runcible'>runcible</span><span class='period'>.</span><span class='id identifier rubyid_gemspec'>gemspec</span>
-</code></pre>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_gem'>gem</span> <span class='id identifier rubyid_build'>build</span> <span class='id identifier rubyid_runcible'>runcible</span><span class='period'>.</span><span class='id identifier rubyid_gemspec'>gemspec</span></code></pre>
 
-<h4>Official Release</h4>
+<h4 id='official_release'>Official Release</h4>
 
 <p>For an official release, again assuming you have the right permssions:</p>
 
-<pre class="code ruby"><code class="ruby">gem push runcible-&lt;version&gt;.gem
-</code></pre>
+<pre class="code ruby"><code class="ruby">gem push runcible-&lt;version&gt;.gem</code></pre>
 
-<h3>RPM Release</h3>
+<h3 id='rpm_release'>RPM Release</h3>
 
-<p>If you are wanting to generate a new RPM build, please make sure you have followed the steps above if the build is going to include new code.  All builds should first go in gem form to Rubygems.  You&#39;ll need to make sure tito is installed:</p>
+<p>If you are wanting to generate a new RPM build, please make sure you have followed the steps above if the build is going to include new code. All builds should first go in gem form to Rubygems. You&#8217;ll need to make sure tito is installed:</p>
 
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_yum'>yum</span> <span class='id identifier rubyid_install'>install</span> <span class='id identifier rubyid_tito'>tito</span>
-</code></pre>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_yum'>yum</span> <span class='id identifier rubyid_install'>install</span> <span class='id identifier rubyid_tito'>tito</span></code></pre>
 
 <p>Now tag, making sure the tag version matches the gem version:</p>
 
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_tito'>tito</span> <span class='id identifier rubyid_tag'>tag</span>
-</code></pre>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_tito'>tito</span> <span class='id identifier rubyid_tag'>tag</span></code></pre>
 
 <p>Assuming you have the right dependencies available, you can do a local test build with tito (although we recommend using mock):</p>
 
-<pre class="code ruby"><code class="ruby">tito build --test --rpm
-</code></pre>
+<pre class="code ruby"><code class="ruby">tito build --test --rpm</code></pre>
 
 <p>With mock:</p>
 
-<pre class="code ruby"><code class="ruby">tito build --test --rpm --builder=mock --builder-arg mock=&lt;name_of_mock_config&gt;
-</code></pre>
+<pre class="code ruby"><code class="ruby">tito build --test --rpm --builder=mock --builder-arg mock=&lt;name_of_mock_config&gt;</code></pre>
 
 <p>From here there are a variety of options to build and release an RPM pakaged version of Runcible (e.g. you can build an SRPM to feed to Koji, or use mock locally)</p>
 
-<h2>Contributing</h2>
+<h2 id='contributing'>Contributing</h2>
 
 <ol>
 <li>Fork it</li>
+
 <li>Create your feature branch (<code>git checkout -b my-new-feature</code>)</li>
+
 <li>Commit your changes (<code>git commit -am &#39;Added some feature&#39;</code>)</li>
+
 <li>Ensure all tests are passing</li>
+
 <li>Push to the branch (<code>git push origin my-new-feature</code>)</li>
+
 <li>Create new Pull Request</li>
-</ol>
-</div></div>
+</ol></div></div>
 
     <div id="footer">
-  Generated on Fri Mar 22 11:11:03 2013 by
+  Generated on Thu May 23 09:07:02 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.5.2 (ruby-1.9.3).
+  0.8.6.1 (ruby-1.9.3).
 </div>
 
   </body>
