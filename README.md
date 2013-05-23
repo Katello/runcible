@@ -108,7 +108,17 @@ To see RestClient logs while testing:
   
     logging=true
 
+## Updating Documentation
 
+The documentation is built with yard and hosted on Github via the gh-pages branch of the repository. To update the documentation on Github:
+
+    yard doc
+    git checkout gh-pages
+    cp -rf doc/* ./
+    git add ./
+    git commit -a -m 'Updating docs to version X.X'
+    git push <upstream> gh-pages
+    
 ## Building and Releasing
 
 ### Gem
