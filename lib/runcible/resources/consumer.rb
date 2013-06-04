@@ -113,10 +113,11 @@ module Runcible
       # @param  [String]                id              the ID of the consumer
       # @param  [String]                repo_id         the ID of the repository
       # @param  [String]                distributor_id  the ID of the distributor
+      # @param  [Hash]                  optional optional parameters
       # @return [RestClient::Response]
-      def self.bind(id, repo_id, distributor_id)
+      def self.bind(id, repo_id, distributor_id, optional={})
         required = required_params(binding.send(:local_variables), binding, ["id"])
-        call(:post, path("#{id}/bindings/"), :payload => { :required => required })
+        call(:post, path("#{id}/bindings/"), :payload => { :required => required, :optional=>optional })
       end
 
       # Unbind a consumer to a repository for a given distributor
