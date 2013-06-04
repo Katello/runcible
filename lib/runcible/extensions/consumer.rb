@@ -30,10 +30,11 @@ module Runcible
       #
       # @param  [String]               id       the consumer ID
       # @param  [String]               repo_id  the repo ID to bind to
+      # @param  [Boolean]              notify_agent sends consumer a notification
       # @return [RestClient::Response]          set of tasks representing each bind operation
-      def self.bind_all(id, repo_id)
+      def self.bind_all(id, repo_id, notify_agent=true)
         Runcible::Extensions::Repository.retrieve_with_details(repo_id)['distributors'].collect do |d|
-          self.bind(id, repo_id, d['id'])
+          self.bind(id, repo_id, d['id'], {:notify_agent=>notify_agent})
         end.flatten
       end
 
@@ -53,9 +54,10 @@ module Runcible
       # @param  [String]               id       the consumer ID
       # @param  [String]               type_id  the type of content to install (e.g. rpm, errata)
       # @param  [Array]                units    array of units to install
+      # @param  [Hash]                 options to pass to to content install
       # @return [RestClient::Response]          task representing the install operation
-      def self.install_content(id, type_id, units)
-        self.install_units(id, generate_content(type_id, units))
+      def self.install_content(id, type_id, units, options={})
+        self.install_units(id, generate_content(type_id, units), options)
       end
 
       # Update content on a consumer
@@ -63,9 +65,10 @@ module Runcible
       # @param  [String]               id       the consumer ID
       # @param  [String]               type_id  the type of content to update (e.g. rpm, errata)
       # @param  [Array]                units    array of units to update
+      # @param  [Hash]                 options to pass to to content update
       # @return [RestClient::Response]          task representing the update operation
-      def self.update_content(id, type_id, units)
-        self.update_units(id, generate_content(type_id, units))
+      def self.update_content(id, type_id, units, options={})
+        self.update_units(id, generate_content(type_id, units), options)
       end
 
       # Uninstall content from a consumer
