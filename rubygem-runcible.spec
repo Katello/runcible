@@ -48,7 +48,7 @@ Name:           %{?scl_prefix}rubygem-%{gem_name}
 Summary:        A gem exposing Pulp's juiciest parts
 Group:          Applications/System
 License:        MIT
-Version:        0.4.8
+Version:        0.4.9
 Release:        1%{?dist}
 URL:            https://github.com/Katello/runcible
 # Can be retrieved by:
@@ -122,6 +122,11 @@ mkdir -p %{buildroot}%{gem_docdir}
 %doc %{gem_instdir}/CONTRIBUTING.md
 
 %changelog
+* Tue Jun 04 2013 Justin Sherrill <jsherril@redhat.com> 0.4.9-1
+- adding more options for various actions (jsherril@redhat.com)
+- Docs - Updating how to build and deploy documentation. (ehelms@redhat.com)
+- Showing a better config error message (daviddavis@redhat.com)
+
 * Wed May 22 2013 Justin Sherrill <jsherril@redhat.com> 0.4.8-1
 - adding additional importer/distributor options (jsherril@redhat.com)
 - requiring older minitest (jsherril@redhat.com)
