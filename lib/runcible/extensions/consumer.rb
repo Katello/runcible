@@ -54,7 +54,7 @@ module Runcible
       # @param  [String]               id       the consumer ID
       # @param  [String]               type_id  the type of content to install (e.g. rpm, errata)
       # @param  [Array]                units    array of units to install
-      # @param  [Hash]                 options to pass to to content install
+      # @param  [Hash]                 options to pass to content install
       # @return [RestClient::Response]          task representing the install operation
       def self.install_content(id, type_id, units, options={})
         self.install_units(id, generate_content(type_id, units), options)
@@ -65,7 +65,7 @@ module Runcible
       # @param  [String]               id       the consumer ID
       # @param  [String]               type_id  the type of content to update (e.g. rpm, errata)
       # @param  [Array]                units    array of units to update
-      # @param  [Hash]                 options to pass to to content update
+      # @param  [Hash]                 options to pass to content update
       # @return [RestClient::Response]          task representing the update operation
       def self.update_content(id, type_id, units, options={})
         self.update_units(id, generate_content(type_id, units), options)
