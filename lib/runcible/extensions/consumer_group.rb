@@ -61,9 +61,10 @@ module Runcible
       # @param  [String]               id       the consumer group ID
       # @param  [String]               type_id  the type of content to install (e.g. rpm, errata)
       # @param  [Array]                units    array of units to install
+      # @param  [Hash]                 options  to pass to content install
       # @return [RestClient::Response]          task representing the install operation
-      def self.install_content(id, type_id, units)
-        self.install_units(id, generate_content(type_id, units))
+      def self.install_content(id, type_id, units, options={})
+        self.install_units(id, generate_content(type_id, units), options)
       end
 
       # Update content on a consumer group
@@ -71,9 +72,10 @@ module Runcible
       # @param  [String]               id       the consumer group ID
       # @param  [String]               type_id  the type of content to update (e.g. rpm, errata)
       # @param  [Array]                units    array of units to update
+      # @param  [Hash]                 options  to pass to content update
       # @return [RestClient::Response]          task representing the update operation
-      def self.update_content(id, type_id, units)
-        self.update_units(id, generate_content(type_id, units))
+      def self.update_content(id, type_id, units, options={})
+        self.update_units(id, generate_content(type_id, units), options)
       end
 
       # Uninstall content from a consumer group
@@ -93,10 +95,20 @@ module Runcible
       # @return [Array]           array of formatted content units
       def self.generate_content(type_id, units)
         content = []
+
+        case type_id
+          when 'rpm', 'package_group'
+            unit_key = :name
+          when 'erratum'
+            unit_key = :id
+          else
+            unit_key = :id
+        end
+
         units.each do |unit|
           content_unit = {}
           content_unit[:type_id] = type_id
-          content_unit[:unit_key] = { :name => unit }
+          content_unit[:unit_key] = { unit_key => unit }
           content.push(content_unit)
         end
         content
