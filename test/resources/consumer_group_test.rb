@@ -205,29 +205,32 @@ class TestConsumerGroupRequiresRepo < ConsumerGroupTests
 
   def test_install_units
     response  = @resource.install_units(@consumer_group_id,{"units"=>["unit_key"=>{:name => "zsh"}]})
-    RepositorySupport.wait_on_task(response)
+    task      = response.first
+    RepositorySupport.wait_on_task(task)
 
     assert_equal    202, response.code
-    assert          response["task_id"]
-    assert_includes response["tags"], "pulp:action:unit_install"
+    assert          task["task_id"]
+    assert_includes task["tags"], "pulp:action:unit_install"
   end
 
   def test_update_units
     response  = @resource.update_units(@consumer_group_id,{"units"=>["unit_key"=>{:name => "zsh"}]})
-    RepositorySupport.wait_on_task(response)
+    task      = response.first
+    RepositorySupport.wait_on_task(task)
 
     assert_equal    202, response.code
-    assert          response["task_id"]
-    assert_includes response["tags"], "pulp:action:unit_update"
+    assert          task["task_id"]
+    assert_includes task["tags"], "pulp:action:unit_update"
   end
 
   def test_uninstall_units
     response  = @resource.uninstall_units(@consumer_group_id,{"units"=>["unit_key"=>{:name => "zsh"}]})
-    RepositorySupport.wait_on_task(response)
+    task      = response.first
+    RepositorySupport.wait_on_task(task)
 
     assert_equal    202, response.code
-    assert          response["task_id"]
-    assert_includes response["tags"], "pulp:action:unit_uninstall"
+    assert          task["task_id"]
+    assert_includes task["tags"], "pulp:action:unit_uninstall"
   end
 
 end
