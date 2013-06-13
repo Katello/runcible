@@ -109,12 +109,27 @@ module Runcible
 
       # Retrieves the RPM IDs for a single repository
       #
-      # @param [String]                 id the ID of the repository
-      # @return [RestClient::Response]     the set of repository RPM IDs
+      # @param [String]             id the ID of the repository
+      # @return [Array<String>]     the array of repository RPM IDs
       def self.rpm_ids(id)
-        criteria = {:type_ids=>[Runcible::Extensions::Rpm.content_type],
-                    :fields=>{:unit=>[], :association=>['unit_id']}}
-        self.unit_search(id, criteria).collect{|i| i['unit_id']}
+        # lazy evaluated iterator from zero to infinite
+        pages = Enumerator.new { |y| page = 0; loop { y << page; page += 1 } }
+
+        # TODO this is hotfix, pagination support should be added to Runcible
+        pages.inject([]) do |rpm_ids, page|
+          page_size = 500
+          criteria  = { :type_ids => [Runcible::Extensions::Rpm.content_type],
+                        :fields   => { :unit => [], :association => ['unit_id'] },
+                        :limit    => page_size,
+                        :skip     => 0 + page*page_size }
+          result    = self.unit_search(id, criteria).collect { |i| i['unit_id'] }
+          rpm_ids.concat(result)
+          if result.empty? || result.size < 500
+            break rpm_ids
+          else
+            rpm_ids
+          end
+        end
       end
 
       # Retrieves the RPMs for a single repository
