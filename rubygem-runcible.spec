@@ -48,7 +48,7 @@ Name:           %{?scl_prefix}rubygem-%{gem_name}
 Summary:        A gem exposing Pulp's juiciest parts
 Group:          Applications/System
 License:        MIT
-Version:        0.4.9
+Version:        0.4.10
 Release:        1%{?dist}
 URL:            https://github.com/Katello/runcible
 # Can be retrieved by:
@@ -122,6 +122,17 @@ mkdir -p %{buildroot}%{gem_docdir}
 %doc %{gem_instdir}/CONTRIBUTING.md
 
 %changelog
+* Thu Jun 13 2013 Justin Sherrill <jsherril@redhat.com> 0.4.10-1
+- adding yum_repo_metadata_file unit type (jsherril@redhat.com)
+- adds timeout config values and pass to rest client (jsherril@redhat.com)
+- 969457: Do not timeout on getting all #rpm_ids (git@pitr.ch)
+- 955706 - update vcr_cassettes for pulp-server-2.1.2-0.1.beta
+  (bbuckingham@redhat.com)
+- 955706 - consumer_groups - add passing of additional options
+  (bbuckingham@redhat.com)
+- 955706 - update runcible to support pulp-server-2.1.2-0.1.beta
+  (bbuckingham@redhat.com)
+
 * Tue Jun 04 2013 Justin Sherrill <jsherril@redhat.com> 0.4.9-1
 - adding more options for various actions (jsherril@redhat.com)
 - Docs - Updating how to build and deploy documentation. (ehelms@redhat.com)
