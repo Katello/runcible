@@ -37,6 +37,8 @@ module Runcible
     # :headers  Additional headers e.g. content-type => "application/json"
     # :url      Scheme and hostname for the pulp server e.g. https://localhost/
     # :api_path URL path for the api e.g. pulp/api/v2/
+    # :timeout  timeout in seconds for the connection (defaults to rest client's default)
+    # :open_timeout  timeout in seconds for the connection to open(defaults to rest client's default)
     def self.config=(conf={})
       @@config = {
         :api_path   => '/pulp/api/v2/',
@@ -72,12 +74,18 @@ module Runcible
       get_params = options[:params] if options[:params]
       path = combine_get_params(path, get_params) if get_params
 
+      client_options = {}
+      client_options[:timeout] =  clone_config[:timeout] if clone_config[:timeout]
+      client_options[:open_timeout] =  clone_config[:open_timeout] if clone_config[:open_timeout]
+
       if clone_config[:oauth]
         headers = add_oauth_header(method, path, headers) if clone_config[:oauth]
         headers["pulp-user"] = clone_config[:user]
-        client = RestClient::Resource.new(clone_config[:url])
+        client = RestClient::Resource.new(clone_config[:url], client_options)
       else
-        client = RestClient::Resource.new(clone_config[:url], :user => clone_config[:user], :password => config[:http_auth][:password])
+        client_options[:user] =  clone_config[:user]
+        client_options[:password] = config[:http_auth][:password]
+        client = RestClient::Resource.new(clone_config[:url], client_options)
       end
 
       args = [method]
