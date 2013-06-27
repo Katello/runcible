@@ -100,11 +100,20 @@ class TestConsumerExtension < MiniTest::Unit::TestCase
     assert_equal 202, response.code
     assert       response["task_id"]
   end
+
   def test_generate_content
     content = @extension.generate_content("rpm", ["unit_1", "unit_2"])
 
     refute_empty content
     refute_empty content.select{ |unit| unit[:type_id] == "rpm" }
+  end
+
+  def test_generate_content_all
+    content = @extension.generate_content("rpm", ["unit_1"], {:all => true})
+
+    refute_empty content
+    assert_equal "rpm", content.first[:type_id]
+    assert_empty content.first[:unit_key]
   end
 
   def test_applicable_errata
