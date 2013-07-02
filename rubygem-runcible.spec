@@ -48,7 +48,7 @@ Name:           %{?scl_prefix}rubygem-%{gem_name}
 Summary:        A gem exposing Pulp's juiciest parts
 Group:          Applications/System
 License:        MIT
-Version:        0.4.10
+Version:        0.4.11
 Release:        1%{?dist}
 URL:            https://github.com/Katello/runcible
 # Can be retrieved by:
@@ -122,6 +122,10 @@ mkdir -p %{buildroot}%{gem_docdir}
 %doc %{gem_instdir}/CONTRIBUTING.md
 
 %changelog
+* Tue Jul 02 2013 Brad Buckingham <bbuckingham@redhat.com> 0.4.11-1
+- bumping release to 0.4.11 (bbuckingham@redhat.com)
+- consumer/group - update to allow for update all (bbuckingham@redhat.com)
+
 * Thu Jun 13 2013 Justin Sherrill <jsherril@redhat.com> 0.4.10-1
 - adding yum_repo_metadata_file unit type (jsherril@redhat.com)
 - adds timeout config values and pass to rest client (jsherril@redhat.com)
