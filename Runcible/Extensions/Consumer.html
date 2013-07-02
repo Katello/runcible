@@ -6,7 +6,7 @@
 <title>
   Class: Runcible::Extensions::Consumer
   
-    &mdash; Documentation by YARD 0.8.6.1
+    &mdash; Documentation by YARD 0.8.6.2
   
 </title>
 
@@ -169,7 +169,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#generate_content-class_method" title="generate_content (class method)">+ (Array) <strong>generate_content</strong>(type_id, units) </a>
+      <a href="#generate_content-class_method" title="generate_content (class method)">+ (Array) <strong>generate_content</strong>(type_id, units, options = {}) </a>
     
 
     
@@ -418,24 +418,24 @@ it will list errata and the consumers they are applicable to</p>
       <pre class="lines">
 
 
-118
-119
-120
-121
-122
-123
-124
-125
 126
 127
 128
 129
 130
 131
-132</pre>
+132
+133
+134
+135
+136
+137
+138
+139
+140</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/runcible/extensions/consumer.rb', line 118</span>
+      <pre class="code"><span class="info file"># File 'lib/runcible/extensions/consumer.rb', line 126</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_applicable_errata'>applicable_errata</span><span class='lparen'>(</span><span class='id identifier rubyid_ids'>ids</span><span class='comma'>,</span> <span class='id identifier rubyid_repoids'>repoids</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_consumer_report'>consumer_report</span> <span class='op'>=</span> <span class='kw'>true</span><span class='rparen'>)</span>
 
@@ -577,7 +577,7 @@ it will list errata and the consumers they are applicable to</p>
       <div class="method_details ">
   <h3 class="signature " id="generate_content-class_method">
   
-    + (<tt>Array</tt>) <strong>generate_content</strong>(type_id, units) 
+    + (<tt>Array</tt>) <strong>generate_content</strong>(type_id, units, options = {}) 
   
 
   
@@ -627,6 +627,25 @@ it will list errata and the consumers they are applicable to</p>
       
     </li>
   
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>contains options which may impact the format of the content (e.g :all =&gt;
+true)</p>
+</div>
+      
+    </li>
+  
 </ul>
 
 <p class="tag_title">Returns:</p>
@@ -654,7 +673,6 @@ it will list errata and the consumers they are applicable to</p>
       <pre class="lines">
 
 
-89
 90
 91
 92
@@ -673,12 +691,20 @@ it will list errata and the consumers they are applicable to</p>
 105
 106
 107
-108</pre>
+108
+109
+110
+111
+112
+113
+114
+115
+116</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/runcible/extensions/consumer.rb', line 89</span>
+      <pre class="code"><span class="info file"># File 'lib/runcible/extensions/consumer.rb', line 90</span>
 
-<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_generate_content'>generate_content</span><span class='lparen'>(</span><span class='id identifier rubyid_type_id'>type_id</span><span class='comma'>,</span> <span class='id identifier rubyid_units'>units</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_generate_content'>generate_content</span><span class='lparen'>(</span><span class='id identifier rubyid_type_id'>type_id</span><span class='comma'>,</span> <span class='id identifier rubyid_units'>units</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_content'>content</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
 
   <span class='kw'>case</span> <span class='id identifier rubyid_type_id'>type_id</span>
@@ -690,11 +716,18 @@ it will list errata and the consumers they are applicable to</p>
       <span class='id identifier rubyid_unit_key'>unit_key</span> <span class='op'>=</span> <span class='symbol'>:id</span>
   <span class='kw'>end</span>
 
-  <span class='id identifier rubyid_units'>units</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_unit'>unit</span><span class='op'>|</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:all</span><span class='rbracket'>]</span>
     <span class='id identifier rubyid_content_unit'>content_unit</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
     <span class='id identifier rubyid_content_unit'>content_unit</span><span class='lbracket'>[</span><span class='symbol'>:type_id</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_type_id'>type_id</span>
-    <span class='id identifier rubyid_content_unit'>content_unit</span><span class='lbracket'>[</span><span class='symbol'>:unit_key</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_unit_key'>unit_key</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_unit'>unit</span> <span class='rbrace'>}</span>
+    <span class='id identifier rubyid_content_unit'>content_unit</span><span class='lbracket'>[</span><span class='symbol'>:unit_key</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
     <span class='id identifier rubyid_content'>content</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_content_unit'>content_unit</span><span class='rparen'>)</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_units'>units</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_unit'>unit</span><span class='op'>|</span>
+      <span class='id identifier rubyid_content_unit'>content_unit</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+      <span class='id identifier rubyid_content_unit'>content_unit</span><span class='lbracket'>[</span><span class='symbol'>:type_id</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_type_id'>type_id</span>
+      <span class='id identifier rubyid_content_unit'>content_unit</span><span class='lbracket'>[</span><span class='symbol'>:unit_key</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_unit_key'>unit_key</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_unit'>unit</span> <span class='rbrace'>}</span>
+      <span class='id identifier rubyid_content'>content</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_content_unit'>content_unit</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
   <span class='kw'>end</span>
   <span class='id identifier rubyid_content'>content</span>
 <span class='kw'>end</span></pre>
@@ -1164,7 +1197,7 @@ it will list errata and the consumers they are applicable to</p>
       <pre class="code"><span class="info file"># File 'lib/runcible/extensions/consumer.rb', line 70</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_update_content'>update_content</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_type_id'>type_id</span><span class='comma'>,</span> <span class='id identifier rubyid_units'>units</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
-  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_update_units'>update_units</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_generate_content'>generate_content</span><span class='lparen'>(</span><span class='id identifier rubyid_type_id'>type_id</span><span class='comma'>,</span> <span class='id identifier rubyid_units'>units</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_update_units'>update_units</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_generate_content'>generate_content</span><span class='lparen'>(</span><span class='id identifier rubyid_type_id'>type_id</span><span class='comma'>,</span> <span class='id identifier rubyid_units'>units</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1176,9 +1209,9 @@ it will list errata and the consumers they are applicable to</p>
 </div>
 
     <div id="footer">
-  Generated on Tue Jun  4 14:25:15 2013 by
+  Generated on Tue Jul  2 12:09:53 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.6.1 (ruby-1.9.3).
+  0.8.6.2 (ruby-1.9.3).
 </div>
 
   </body>
