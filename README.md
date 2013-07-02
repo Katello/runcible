@@ -121,6 +121,11 @@ The documentation is built with yard and hosted on Github via the gh-pages branc
     
 ## Building and Releasing
 
+An official release of Runcible should include the release of a gem on rubygems.org and an update to the documentation branch. At a minimum, the following two actions should be performed for each release:
+
+1. [Build and Release Gem](#gem)
+2. [Updating Documentation](#updating-documentation)
+
 ### Gem
 
 While anyone can grab the source and build a new version of the gem, only those with Rubygems.org permissions on the project can release an official version.
