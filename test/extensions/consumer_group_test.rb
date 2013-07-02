@@ -123,4 +123,12 @@ class TestConsumerGroupExtension < MiniTest::Unit::TestCase
     refute_empty content.select{ |unit| unit[:type_id] == "rpm" }
   end
 
+  def test_generate_content_all
+    content = @extension.generate_content("rpm", ["unit_1"], {:all => true})
+
+    refute_empty content
+    assert_equal "rpm", content.first[:type_id]
+    assert_empty content.first[:unit_key]
+  end
+
 end

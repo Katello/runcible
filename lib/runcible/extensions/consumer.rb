@@ -68,7 +68,7 @@ module Runcible
       # @param  [Hash]                 options to pass to content update
       # @return [RestClient::Response]          task representing the update operation
       def self.update_content(id, type_id, units, options={})
-        self.update_units(id, generate_content(type_id, units), options)
+        self.update_units(id, generate_content(type_id, units, options), options)
       end
 
       # Uninstall content from a consumer
@@ -85,8 +85,9 @@ module Runcible
       #
       # @param  [String]  type_id the type of content (e.g. rpm, errata)
       # @param  [Array]   units   array of units
+      # @param  [Hash]    options contains options which may impact the format of the content (e.g :all => true)
       # @return [Array]           array of formatted content units
-      def self.generate_content(type_id, units)
+      def self.generate_content(type_id, units, options={})
         content = []
 
         case type_id
@@ -98,11 +99,18 @@ module Runcible
             unit_key = :id
         end
 
-        units.each do |unit|
+        if options[:all]
           content_unit = {}
           content_unit[:type_id] = type_id
-          content_unit[:unit_key] = { unit_key => unit }
+          content_unit[:unit_key] = {}
           content.push(content_unit)
+        else
+          units.each do |unit|
+            content_unit = {}
+            content_unit[:type_id] = type_id
+            content_unit[:unit_key] = { unit_key => unit }
+            content.push(content_unit)
+          end
         end
         content
       end
