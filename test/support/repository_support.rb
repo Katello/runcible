@@ -101,9 +101,9 @@ module RepositorySupport
 
     VCR.use_cassette('support/repository') do
       if options[:importer]
-        repo = @repo_extension.create_with_importer(@repo_id, {:id=>@importer_type, :feed_url => @repo_url})
+        repo = @repo_extension.create_with_importer(@repo_id, {:id=>@importer_type, :feed => @repo_url})
       elsif options[:importer_and_distributor]
-        repo = @repo_extension.create_with_importer_and_distributors(@repo_id, {:id=>@importer_type, :feed_url => @repo_url}, @distributors)
+        repo = @repo_extension.create_with_importer_and_distributors(@repo_id, {:id=>@importer_type, :feed => @repo_url}, @distributors)
       else
         repo = @repo_resource.create(@repo_id)
       end
@@ -113,9 +113,9 @@ module RepositorySupport
 
     VCR.use_cassette('support/repository') do
       if options[:importer]
-        repo = @repo_extension.create_with_importer(@repo_id, {:id=>@importer_type, :feed_url => @repo_url})
+        repo = @repo_extension.create_with_importer(@repo_id, {:id=>@importer_type, :feed => @repo_url})
       elsif options[:importer_and_distributor]
-        repo = @repo_extension.create_with_importer_and_distributors(@repo_id, {:id=>@importer_type, :feed_url => @repo_url}, @distributors)
+        repo = @repo_extension.create_with_importer_and_distributors(@repo_id, {:id=>@importer_type, :feed => @repo_url}, @distributors)
       else
         repo = @repo_resource.create(@repo_id)
       end
