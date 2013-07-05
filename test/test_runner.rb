@@ -29,6 +29,11 @@ require 'minitest/autorun'
 require './test/vcr_setup'
 require './lib/runcible/base'
 
+begin
+  require 'debugger'
+rescue LoadError
+  puts "Debugging not enabled."
+end
 
 class CustomMiniTestRunner
   class Unit < MiniTest::Unit
