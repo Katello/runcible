@@ -2,6 +2,14 @@
 require "bundler/gem_tasks"
 require "rake/testtask"
 
+def clear_cassettes
+  `rm -rf test/fixtures/vcr_cassettes/*.yml`
+  `rm -rf test/fixtures/vcr_cassettes/extensions/*.yml`
+  `rm -rf test/fixtures/vcr_cassettes/support/*.yml`
+  print "Cassettes cleared\n"
+end
+
+
 namespace :test do
   "Runs the unit tests"
   Rake::TestTask.new :unit do |t|
@@ -31,6 +39,7 @@ namespace :test do
           puts "Running tests for: #{task_name}"
         end
 
+        clear_cassettes if options[:mode] == 'all' && options[:test_name].nil?
         test_runner.run_tests(task_name, options)
         Rake::Task[:update_test_version].invoke if options[:mode] == "all" && ENV['record'] != false
       end
@@ -69,9 +78,7 @@ end
 
 desc "Clears out all cassette files"
 task :clear_cassettes do
-  `rm -rf test/fixtures/vcr_cassettes/*.yml`
-  `rm -rf test/fixtures/vcr_cassettes/extensions/*.yml`
-  `rm -rf test/fixtures/vcr_cassettes/support/*.yml`
+  clear_cassettes
 end
 
 desc "Runs all tests"
