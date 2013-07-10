@@ -83,14 +83,12 @@ module RepositorySupport
   end
 
   def self.create_and_sync_repo(options={})
-    destroy_repo
     create_repo(options)
     sync_repo(options)
   end
 
   def self.create_repo(options={})
     repo = nil
-    
     VCR.use_cassette('support/repository') do
       repo = @repo_resource.retrieve(@repo_id)
     end
@@ -126,7 +124,7 @@ module RepositorySupport
 
   def self.sync_repo(options={})
     VCR.use_cassette('support/repository') do
-      @task = @repo_resource.sync(@repo_name).first
+      @task = @repo_resource.sync(@repo_id).first
 
       if !options[:wait]
         self.wait_on_task(task)
@@ -147,8 +145,8 @@ module RepositorySupport
   def self.wait_on_task task
     VCR.use_cassette('support/task') do
       while !(['finished', 'error', 'timed_out', 'canceled', 'reset'].include?(task['state'])) do
-        task = @task_resource.poll(task["task_id"])
         self.sleep_if_needed
+        task = @task_resource.poll(task["task_id"])
       end
     end
   end

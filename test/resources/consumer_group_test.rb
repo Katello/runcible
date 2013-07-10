@@ -166,13 +166,15 @@ class TestConsumerGroupUnassociate < ConsumerGroupWithConsumerTests
   end
 
   def test_unassociate
-    assert_includes @resource.retrieve(@consumer_group_id)["consumer_ids"], ConsumerSupport.consumer_id
+    VCR.insert_cassette('consumer_group_unassociate') do
+      assert_includes @resource.retrieve(@consumer_group_id)["consumer_ids"], ConsumerSupport.consumer_id
 
-    response = @resource.unassociate(@consumer_group_id, @criteria)
+      response = @resource.unassociate(@consumer_group_id, @criteria)
 
-    assert_equal    200, response.code
-    refute_includes response, ConsumerSupport.consumer_id
-    refute_includes @resource.retrieve(@consumer_group_id)["consumer_ids"], ConsumerSupport.consumer_id
+      assert_equal    200, response.code
+      refute_includes response, ConsumerSupport.consumer_id
+      refute_includes @resource.retrieve(@consumer_group_id)["consumer_ids"], ConsumerSupport.consumer_id
+    end
   end
 end
 

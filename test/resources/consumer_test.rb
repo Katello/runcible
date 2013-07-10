@@ -205,7 +205,8 @@ class ConsumerRequiresRepoTests < MiniTest::Unit::TestCase
     tasks = []
     VCR.use_cassette('support/consumer') do
       distro_id = RepositorySupport.distributor()['id']
-      tasks = Runcible::Resources::Consumer.bind(ConsumerSupport.consumer_id, RepositorySupport.repo_id, distro_id)
+      tasks = Runcible::Resources::Consumer.bind(ConsumerSupport.consumer_id,
+                                   RepositorySupport.repo_id, distro_id, {:notify_agent=>false})
       RepositorySupport.wait_on_tasks(tasks)
     end
     return tasks
