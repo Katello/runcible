@@ -39,9 +39,9 @@ namespace :test do
           puts "Running tests for: #{task_name}"
         end
 
-        clear_cassettes if options[:mode] == 'all' && options[:test_name].nil?
+        clear_cassettes if options[:mode] == 'all' && options[:test_name].nil? && ENV['record'] != 'false'
         test_runner.run_tests(task_name, options)
-        Rake::Task[:update_test_version].invoke if options[:mode] == "all" && ENV['record'] != false
+        Rake::Task[:update_test_version].invoke if options[:mode] == "all" && ENV['record'] != 'false'
       end
     end
   end
