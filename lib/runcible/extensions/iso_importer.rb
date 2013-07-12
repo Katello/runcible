@@ -26,7 +26,7 @@ module Runcible
     class IsoImporter < Importer
       ID = 'iso_importer'
 
-      attr_accessor 'feed_url', 'ssl_ca_cert', 'ssl_client_cert', 'ssl_client_key',
+      attr_accessor 'feed', 'ssl_ca_cert', 'ssl_client_cert', 'ssl_client_key',
                         'proxy_url', 'proxy_port', 'proxy_pass', 'proxy_user',
                         'remove_missing_units', 'num_threads', 'max_speed'
 
