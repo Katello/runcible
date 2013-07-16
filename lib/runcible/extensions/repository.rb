@@ -60,6 +60,11 @@ module Runcible
           optional[:importer_config] = importer
         end if importer
 
+        if optional.has_key?(:importer_type_id)
+          # pulp needs _repo-type in order to determine the type of repo to create.
+          optional[:notes] = { '_repo-type' => importer.repo_type }
+        end
+
         optional[:distributors] = distributors.collect do |d|
           if d.is_a?(Distributor)
             {'distributor_type' => d.type_id,
@@ -214,6 +219,26 @@ module Runcible
       # @return [RestClient::Response]     the set of repository package group categories
       def self.package_categories(id)
         criteria = {:type_ids=>[Runcible::Extensions::PackageCategory.content_type]}
+        self.unit_search(id, criteria).collect{|i| i['metadata'].with_indifferent_access}
+      end
+
+      # Retrieves the puppet module IDs for a single repository
+      #
+      # @param  [String]                id the ID of the repository
+      # @return [RestClient::Response]     the set of repository puppet module IDs
+      def self.puppet_module_ids(id)
+        criteria = {:type_ids=>[Runcible::Extensions::PuppetModule.content_type],
+                    :fields=>{:unit=>[], :association=>['unit_id']}}
+
+        self.unit_search(id, criteria).collect{|i| i['unit_id']}
+      end
+
+      # Retrieves the puppet modules for a single repository
+      #
+      # @param  [String]                id the ID of the repository
+      # @return [RestClient::Response]     the set of repository puppet modules
+      def self.puppet_modules(id)
+        criteria = {:type_ids=>[Runcible::Extensions::PuppetModule.content_type]}
         self.unit_search(id, criteria).collect{|i| i['metadata'].with_indifferent_access}
       end
 
