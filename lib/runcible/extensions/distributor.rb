@@ -34,6 +34,18 @@ module Runcible
         self.id = params[:id] || SecureRandom.hex(10)
         params.each{|k,v| self.send("#{k.to_s}=",v)}
       end
+
+      # Distributor Type id
+      #
+      # @return [string]
+      def type_id
+        self.class.type_id
+      end
+
+      def self.type_id
+        raise NotImplementedError("self.type_id")
+      end
+
     end
   end
 end
