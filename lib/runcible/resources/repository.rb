@@ -165,9 +165,10 @@ module Runcible
       #
       # @param  [String]                id              the id of the repository
       # @param  [String]                distributor_id  the id of the distributor
+      # @param  [Hash]                  optional  optional params
       # @return [RestClient::Response]            
-      def self.publish(id, distributor_id)
-        call(:post, "#{path(id)}actions/publish/", :payload=>{:required=>{:id=>distributor_id}})
+      def self.publish(id, distributor_id, optional={})
+        call(:post, "#{path(id)}actions/publish/", :payload=>{:required=>{:id=>distributor_id}, :optional=>optional})
       end
 
       # Deletes the specified distributor from the repository

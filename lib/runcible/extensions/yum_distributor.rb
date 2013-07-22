@@ -41,7 +41,7 @@ module Runcible
         super(params)
       end
 
-      def type_id
+      def self.type_id
         'yum_distributor'
       end
 
