@@ -41,10 +41,7 @@ module Runcible
         super({})
       end
 
-      # Distributor Type id
-      #
-      # @return [string]
-      def type_id
+      def self.type_id
         'iso_distributor'
       end
 

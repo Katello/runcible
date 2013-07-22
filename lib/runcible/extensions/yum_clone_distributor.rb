@@ -26,29 +26,19 @@ require 'securerandom'
 
 module Runcible
   module Extensions
-    class ExportDistributor < Distributor
-      #required
-      attr_accessor "http", "https"
+    class YumCloneDistributor < Distributor
 
-      # Instantiates a export distributor
-      #
-      # @param  [boolean]         http  serve the contents over http
-      # @param  [boolean]         https serve the contents over https
-      # @return [Runcible::Extensions::ExportDistributor]
-      def initialize(http, https)
-        @http = http
-        @https = https
-        # Pulp seems to expect the ID to be export_distributor, not a random
-        super({:id => self.type_id})
+      #optional
+      attr_accessor "source_repo_id", "source_distributor_id", "destination_distributor_id"
+
+      def initialize(params={})
+        super(params)
       end
 
       def self.type_id
-        'export_distributor'
+        'yum_clone_distributor'
       end
 
-      # generate the pulp config for the export distributor
-      #
-      # @return [Hash]
       def config
         to_ret = self.as_json
         to_ret.delete('auto_publish')
