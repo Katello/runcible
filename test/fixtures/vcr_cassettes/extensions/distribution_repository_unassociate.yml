@@ -1,361 +1,454 @@
---- 
-http_interactions: 
-- request: 
+---
+http_interactions:
+- request:
     method: post
-    uri: https://admin:admin@abed.usersys.redhat.com/pulp/api/v2/repositories/
-    body: 
-      encoding: US-ASCII
-      string: "{\"id\":\"integration_test_id_clone\",\"importer_type_id\":\"yum_importer\",\"importer_config\":{}}"
-    headers: 
-      Accept: 
+    uri: https://admin:admin@kafka.usersys.redhat.com/pulp/api/v2/repositories/
+    body:
+      encoding: UTF-8
+      string: '{"id":"integration_test_id_clone","importer_type_id":"yum_importer","importer_config":{}}'
+    headers:
+      Accept:
       - application/json
-      Accept-Encoding: 
+      Accept-Encoding:
       - gzip, deflate
-      Content-Type: 
+      Content-Type:
       - application/json
-      Content-Length: 
-      - "89"
-      User-Agent: 
+      Content-Length:
+      - '89'
+      User-Agent:
       - Ruby
-  response: 
-    status: 
+  response:
+    status:
       code: 201
       message: Created
-    headers: 
-      Date: 
-      - Wed, 10 Jul 2013 23:05:50 GMT
-      Server: 
-      - Apache/2.2.15 (Red Hat)
-      Location: 
+    headers:
+      Date:
+      - Tue, 30 Jul 2013 18:32:36 GMT
+      Server:
+      - Apache/2.4.4 (Fedora) OpenSSL/1.0.1e-fips mod_wsgi/3.4 Python/2.7.3
+      Location:
       - integration_test_id_clone
-      Content-Length: 
-      - "285"
-      Content-Type: 
+      Content-Length:
+      - '285'
+      Content-Type:
       - application/json
-    body: 
-      encoding: US-ASCII
-      string: "{\"scratchpad\": {}, \"display_name\": \"integration_test_id_clone\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_counts\": {}, \"_id\": {\"$oid\": \"51dde8ce5ca0135f30479c01\"}, \"id\": \"integration_test_id_clone\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id_clone/\"}"
+    body:
+      encoding: UTF-8
+      string: '{"scratchpad": {}, "display_name": "integration_test_id_clone", "description":
+        null, "_ns": "repos", "notes": {}, "content_unit_counts": {}, "_id": {"$oid":
+        "51f806c5196cbe402b59815d"}, "id": "integration_test_id_clone", "_href": "/pulp/api/v2/repositories/integration_test_id_clone/"}'
     http_version: 
-  recorded_at: Wed, 10 Jul 2013 23:05:50 GMT
-- request: 
+  recorded_at: Tue, 30 Jul 2013 18:32:37 GMT
+- request:
     method: post
-    uri: https://admin:admin@abed.usersys.redhat.com/pulp/api/v2/repositories/integration_test_id/search/units/
-    body: 
-      encoding: US-ASCII
-      string: "{\"criteria\":{\"type_ids\":[\"distribution\"]}}"
-    headers: 
-      Accept: 
+    uri: https://admin:admin@kafka.usersys.redhat.com/pulp/api/v2/repositories/integration_test_id/search/units/
+    body:
+      encoding: UTF-8
+      string: '{"criteria":{"type_ids":["distribution"]}}'
+    headers:
+      Accept:
       - application/json
-      Accept-Encoding: 
+      Accept-Encoding:
       - gzip, deflate
-      Content-Type: 
+      Content-Type:
       - application/json
-      Content-Length: 
-      - "42"
-      User-Agent: 
+      Content-Length:
+      - '42'
+      User-Agent:
       - Ruby
-  response: 
-    status: 
+  response:
+    status:
       code: 200
       message: OK
-    headers: 
-      Date: 
-      - Wed, 10 Jul 2013 23:05:50 GMT
-      Server: 
-      - Apache/2.2.15 (Red Hat)
-      Content-Length: 
-      - "2378"
-      Content-Type: 
+    headers:
+      Date:
+      - Tue, 30 Jul 2013 18:32:37 GMT
+      Server:
+      - Apache/2.4.4 (Fedora) OpenSSL/1.0.1e-fips mod_wsgi/3.4 Python/2.7.3
+      Content-Length:
+      - '2378'
+      Content-Type:
       - application/json
-    body: 
-      encoding: US-ASCII
-      string: "[{\"updated\": \"2013-07-11T03:05:49Z\", \"repo_id\": \"integration_test_id\", \"created\": \"2013-07-11T03:05:49Z\", \"_ns\": \"repo_content_units\", \"unit_id\": \"a0069833-7cae-4b33-83da-f99029d3f167\", \"unit_type_id\": \"distribution\", \"owner_type\": \"importer\", \"_id\": {\"$oid\": \"51dde8cd5ca0135f30479bee\"}, \"id\": \"51dde8cd5ca0135f30479bee\", \"owner_id\": \"yum_importer\", \"metadata\": {\"files\": [{\"checksumtype\": \"sha256\", \"checksum\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\", \"fileName\": \"test2.img\", \"downloadurl\": \"file:///home/jlsherri/git/runcible/test/fixtures/repositories/zoo5/images/test2.img\", \"item_type\": \"distribution\", \"savepath\": \"/var/lib/pulp/working/repos/integration_test_id/importers/yum_importer/tmpxUBnVm/tmpqS9Fwr/images/test2.img\", \"relativepath\": \"images/test2.img\", \"filename\": \"test2.img\", \"pkgpath\": \"/var/lib/pulp/content/distribution/ks-Test Family-TestVariant-16-x86_64/images\", \"size\": 0.0}, {\"checksumtype\": \"sha256\", \"checksum\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\", \"fileName\": \"empty.iso\", \"downloadurl\": \"file:///home/jlsherri/git/runcible/test/fixtures/repositories/zoo5/empty.iso\", \"item_type\": \"distribution\", \"savepath\": \"/var/lib/pulp/working/repos/integration_test_id/importers/yum_importer/tmpxUBnVm/tmpqS9Fwr/empty.iso\", \"relativepath\": \"empty.iso\", \"filename\": \"empty.iso\", \"pkgpath\": \"/var/lib/pulp/content/distribution/ks-Test Family-TestVariant-16-x86_64/\", \"size\": 0.0}, {\"checksumtype\": \"sha256\", \"checksum\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\", \"fileName\": \"test1.img\", \"downloadurl\": \"file:///home/jlsherri/git/runcible/test/fixtures/repositories/zoo5/images/test1.img\", \"item_type\": \"distribution\", \"savepath\": \"/var/lib/pulp/working/repos/integration_test_id/importers/yum_importer/tmpxUBnVm/tmpqS9Fwr/images/test1.img\", \"relativepath\": \"images/test1.img\", \"filename\": \"test1.img\", \"pkgpath\": \"/var/lib/pulp/content/distribution/ks-Test Family-TestVariant-16-x86_64/images\", \"size\": 0.0}], \"_storage_path\": \"/var/lib/pulp/content/distribution/ks-Test Family-TestVariant-16-x86_64\", \"family\": \"Test Family\", \"_ns\": \"units_distribution\", \"variant\": \"TestVariant\", \"version\": \"16\", \"version_sort_index\": \"02-16\", \"_content_type_id\": \"distribution\", \"_id\": \"a0069833-7cae-4b33-83da-f99029d3f167\", \"arch\": \"x86_64\", \"id\": \"ks-Test Family-TestVariant-16-x86_64\"}}]"
+    body:
+      encoding: UTF-8
+      string: '[{"updated": "2013-07-30T22:32:36Z", "repo_id": "integration_test_id",
+        "created": "2013-07-30T22:32:36Z", "_ns": "repo_content_units", "unit_id":
+        "0e86304e-873e-47e3-ab3b-9f3b06964b34", "unit_type_id": "distribution", "owner_type":
+        "importer", "_id": {"$oid": "51f806c4196cbe402b59814a"}, "id": "51f806c4196cbe402b59814a",
+        "owner_id": "yum_importer", "metadata": {"files": [{"checksumtype": "sha256",
+        "checksum": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "fileName": "test2.img", "downloadurl": "file:///home/paji/katello/runcible/test/fixtures/repositories/zoo5/images/test2.img",
+        "item_type": "distribution", "savepath": "/var/lib/pulp/working/repos/integration_test_id/importers/yum_importer/tmpJpcLSK/tmpa9ve4I/images/test2.img",
+        "relativepath": "images/test2.img", "filename": "test2.img", "pkgpath": "/var/lib/pulp/content/distribution/ks-Test
+        Family-TestVariant-16-x86_64/images", "size": 0.0}, {"checksumtype": "sha256",
+        "checksum": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "fileName": "empty.iso", "downloadurl": "file:///home/paji/katello/runcible/test/fixtures/repositories/zoo5/empty.iso",
+        "item_type": "distribution", "savepath": "/var/lib/pulp/working/repos/integration_test_id/importers/yum_importer/tmpJpcLSK/tmpa9ve4I/empty.iso",
+        "relativepath": "empty.iso", "filename": "empty.iso", "pkgpath": "/var/lib/pulp/content/distribution/ks-Test
+        Family-TestVariant-16-x86_64/", "size": 0.0}, {"checksumtype": "sha256", "checksum":
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", "fileName":
+        "test1.img", "downloadurl": "file:///home/paji/katello/runcible/test/fixtures/repositories/zoo5/images/test1.img",
+        "item_type": "distribution", "savepath": "/var/lib/pulp/working/repos/integration_test_id/importers/yum_importer/tmpJpcLSK/tmpa9ve4I/images/test1.img",
+        "relativepath": "images/test1.img", "filename": "test1.img", "pkgpath": "/var/lib/pulp/content/distribution/ks-Test
+        Family-TestVariant-16-x86_64/images", "size": 0.0}], "_storage_path": "/var/lib/pulp/content/distribution/ks-Test
+        Family-TestVariant-16-x86_64", "family": "Test Family", "_ns": "units_distribution",
+        "variant": "TestVariant", "version": "16", "version_sort_index": "02-16",
+        "_content_type_id": "distribution", "_id": "0e86304e-873e-47e3-ab3b-9f3b06964b34",
+        "arch": "x86_64", "id": "ks-Test Family-TestVariant-16-x86_64"}}]'
     http_version: 
-  recorded_at: Wed, 10 Jul 2013 23:05:50 GMT
-- request: 
+  recorded_at: Tue, 30 Jul 2013 18:32:37 GMT
+- request:
     method: post
-    uri: https://admin:admin@abed.usersys.redhat.com/pulp/api/v2/repositories/integration_test_id_clone/actions/unassociate/
-    body: 
-      encoding: US-ASCII
-      string: "{\"criteria\":{\"type_ids\":[\"distribution\"],\"filters\":{\"association\":{\"unit_id\":{\"$in\":[\"a0069833-7cae-4b33-83da-f99029d3f167\"]}}}}}"
-    headers: 
-      Accept: 
+    uri: https://admin:admin@kafka.usersys.redhat.com/pulp/api/v2/repositories/integration_test_id_clone/actions/unassociate/
+    body:
+      encoding: UTF-8
+      string: '{"criteria":{"type_ids":["distribution"],"filters":{"association":{"unit_id":{"$in":["0e86304e-873e-47e3-ab3b-9f3b06964b34"]}}}}}'
+    headers:
+      Accept:
       - application/json
-      Accept-Encoding: 
+      Accept-Encoding:
       - gzip, deflate
-      Content-Type: 
+      Content-Type:
       - application/json
-      Content-Length: 
-      - "129"
-      User-Agent: 
+      Content-Length:
+      - '129'
+      User-Agent:
       - Ruby
-  response: 
-    status: 
+  response:
+    status:
       code: 202
       message: Accepted
-    headers: 
-      Date: 
-      - Wed, 10 Jul 2013 23:05:50 GMT
-      Server: 
-      - Apache/2.2.15 (Red Hat)
-      Content-Encoding: 
+    headers:
+      Date:
+      - Tue, 30 Jul 2013 18:32:37 GMT
+      Server:
+      - Apache/2.4.4 (Fedora) OpenSSL/1.0.1e-fips mod_wsgi/3.4 Python/2.7.3
+      Content-Encoding:
       - utf-8
-      Content-Length: 
-      - "656"
-      Content-Type: 
+      Content-Length:
+      - '656'
+      Content-Type:
       - application/json
-    body: 
-      encoding: US-ASCII
-      string: "{\"task_group_id\": null, \"exception\": null, \"traceback\": null, \"_href\": \"/pulp/api/v2/tasks/f08c08fc-f2d4-4fdd-93c0-01d5d49f40ca/\", \"task_id\": \"f08c08fc-f2d4-4fdd-93c0-01d5d49f40ca\", \"call_request_tags\": [\"pulp:repository:integration_test_id_clone\", \"pulp:action:unassociate\"], \"reasons\": [], \"start_time\": null, \"tags\": [\"pulp:repository:integration_test_id_clone\", \"pulp:action:unassociate\"], \"state\": \"waiting\", \"finish_time\": null, \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": null, \"call_request_id\": \"f08c08fc-f2d4-4fdd-93c0-01d5d49f40ca\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}"
+    body:
+      encoding: UTF-8
+      string: '{"task_group_id": null, "exception": null, "traceback": null, "_href":
+        "/pulp/api/v2/tasks/e361f56e-d1ea-416d-8d48-0b86c3b58b27/", "task_id": "e361f56e-d1ea-416d-8d48-0b86c3b58b27",
+        "call_request_tags": ["pulp:repository:integration_test_id_clone", "pulp:action:unassociate"],
+        "reasons": [], "start_time": null, "tags": ["pulp:repository:integration_test_id_clone",
+        "pulp:action:unassociate"], "state": "waiting", "finish_time": null, "dependency_failures":
+        {}, "schedule_id": null, "progress": {}, "call_request_group_id": null, "call_request_id":
+        "e361f56e-d1ea-416d-8d48-0b86c3b58b27", "principal_login": "admin", "response":
+        "accepted", "result": null}'
     http_version: 
-  recorded_at: Wed, 10 Jul 2013 23:05:50 GMT
-- request: 
+  recorded_at: Tue, 30 Jul 2013 18:32:37 GMT
+- request:
     method: post
-    uri: https://admin:admin@abed.usersys.redhat.com/pulp/api/v2/repositories/integration_test_id_clone/search/units/
-    body: 
-      encoding: US-ASCII
-      string: "{\"criteria\":{\"type_ids\":[\"distribution\"]}}"
-    headers: 
-      Accept: 
+    uri: https://admin:admin@kafka.usersys.redhat.com/pulp/api/v2/repositories/integration_test_id_clone/search/units/
+    body:
+      encoding: UTF-8
+      string: '{"criteria":{"type_ids":["distribution"]}}'
+    headers:
+      Accept:
       - application/json
-      Accept-Encoding: 
+      Accept-Encoding:
       - gzip, deflate
-      Content-Type: 
+      Content-Type:
       - application/json
-      Content-Length: 
-      - "42"
-      User-Agent: 
+      Content-Length:
+      - '42'
+      User-Agent:
       - Ruby
-  response: 
-    status: 
+  response:
+    status:
       code: 200
       message: OK
-    headers: 
-      Date: 
-      - Wed, 10 Jul 2013 23:05:51 GMT
-      Server: 
-      - Apache/2.2.15 (Red Hat)
-      Content-Length: 
-      - "2"
-      Content-Type: 
+    headers:
+      Date:
+      - Tue, 30 Jul 2013 18:32:38 GMT
+      Server:
+      - Apache/2.4.4 (Fedora) OpenSSL/1.0.1e-fips mod_wsgi/3.4 Python/2.7.3
+      Content-Length:
+      - '2'
+      Content-Type:
       - application/json
-    body: 
-      encoding: US-ASCII
-      string: "[]"
+    body:
+      encoding: UTF-8
+      string: '[]'
     http_version: 
-  recorded_at: Wed, 10 Jul 2013 23:05:51 GMT
-- request: 
+  recorded_at: Tue, 30 Jul 2013 18:32:38 GMT
+- request:
     method: post
-    uri: https://admin:admin@abed.usersys.redhat.com/pulp/api/v2/repositories/integration_test_id/search/units/
-    body: 
-      encoding: US-ASCII
-      string: "{\"criteria\":{\"type_ids\":[\"distribution\"]}}"
-    headers: 
-      Accept: 
+    uri: https://admin:admin@kafka.usersys.redhat.com/pulp/api/v2/repositories/integration_test_id/search/units/
+    body:
+      encoding: UTF-8
+      string: '{"criteria":{"type_ids":["distribution"]}}'
+    headers:
+      Accept:
       - application/json
-      Accept-Encoding: 
+      Accept-Encoding:
       - gzip, deflate
-      Content-Type: 
+      Content-Type:
       - application/json
-      Content-Length: 
-      - "42"
-      User-Agent: 
+      Content-Length:
+      - '42'
+      User-Agent:
       - Ruby
-  response: 
-    status: 
+  response:
+    status:
       code: 200
       message: OK
-    headers: 
-      Date: 
-      - Wed, 10 Jul 2013 23:05:51 GMT
-      Server: 
-      - Apache/2.2.15 (Red Hat)
-      Content-Length: 
-      - "2378"
-      Content-Type: 
+    headers:
+      Date:
+      - Tue, 30 Jul 2013 18:32:38 GMT
+      Server:
+      - Apache/2.4.4 (Fedora) OpenSSL/1.0.1e-fips mod_wsgi/3.4 Python/2.7.3
+      Content-Length:
+      - '2378'
+      Content-Type:
       - application/json
-    body: 
-      encoding: US-ASCII
-      string: "[{\"updated\": \"2013-07-11T03:05:49Z\", \"repo_id\": \"integration_test_id\", \"created\": \"2013-07-11T03:05:49Z\", \"_ns\": \"repo_content_units\", \"unit_id\": \"a0069833-7cae-4b33-83da-f99029d3f167\", \"unit_type_id\": \"distribution\", \"owner_type\": \"importer\", \"_id\": {\"$oid\": \"51dde8cd5ca0135f30479bee\"}, \"id\": \"51dde8cd5ca0135f30479bee\", \"owner_id\": \"yum_importer\", \"metadata\": {\"files\": [{\"checksumtype\": \"sha256\", \"checksum\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\", \"fileName\": \"test2.img\", \"downloadurl\": \"file:///home/jlsherri/git/runcible/test/fixtures/repositories/zoo5/images/test2.img\", \"item_type\": \"distribution\", \"savepath\": \"/var/lib/pulp/working/repos/integration_test_id/importers/yum_importer/tmpxUBnVm/tmpqS9Fwr/images/test2.img\", \"relativepath\": \"images/test2.img\", \"filename\": \"test2.img\", \"pkgpath\": \"/var/lib/pulp/content/distribution/ks-Test Family-TestVariant-16-x86_64/images\", \"size\": 0.0}, {\"checksumtype\": \"sha256\", \"checksum\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\", \"fileName\": \"empty.iso\", \"downloadurl\": \"file:///home/jlsherri/git/runcible/test/fixtures/repositories/zoo5/empty.iso\", \"item_type\": \"distribution\", \"savepath\": \"/var/lib/pulp/working/repos/integration_test_id/importers/yum_importer/tmpxUBnVm/tmpqS9Fwr/empty.iso\", \"relativepath\": \"empty.iso\", \"filename\": \"empty.iso\", \"pkgpath\": \"/var/lib/pulp/content/distribution/ks-Test Family-TestVariant-16-x86_64/\", \"size\": 0.0}, {\"checksumtype\": \"sha256\", \"checksum\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\", \"fileName\": \"test1.img\", \"downloadurl\": \"file:///home/jlsherri/git/runcible/test/fixtures/repositories/zoo5/images/test1.img\", \"item_type\": \"distribution\", \"savepath\": \"/var/lib/pulp/working/repos/integration_test_id/importers/yum_importer/tmpxUBnVm/tmpqS9Fwr/images/test1.img\", \"relativepath\": \"images/test1.img\", \"filename\": \"test1.img\", \"pkgpath\": \"/var/lib/pulp/content/distribution/ks-Test Family-TestVariant-16-x86_64/images\", \"size\": 0.0}], \"_storage_path\": \"/var/lib/pulp/content/distribution/ks-Test Family-TestVariant-16-x86_64\", \"family\": \"Test Family\", \"_ns\": \"units_distribution\", \"variant\": \"TestVariant\", \"version\": \"16\", \"version_sort_index\": \"02-16\", \"_content_type_id\": \"distribution\", \"_id\": \"a0069833-7cae-4b33-83da-f99029d3f167\", \"arch\": \"x86_64\", \"id\": \"ks-Test Family-TestVariant-16-x86_64\"}}]"
+    body:
+      encoding: UTF-8
+      string: '[{"updated": "2013-07-30T22:32:36Z", "repo_id": "integration_test_id",
+        "created": "2013-07-30T22:32:36Z", "_ns": "repo_content_units", "unit_id":
+        "0e86304e-873e-47e3-ab3b-9f3b06964b34", "unit_type_id": "distribution", "owner_type":
+        "importer", "_id": {"$oid": "51f806c4196cbe402b59814a"}, "id": "51f806c4196cbe402b59814a",
+        "owner_id": "yum_importer", "metadata": {"files": [{"checksumtype": "sha256",
+        "checksum": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "fileName": "test2.img", "downloadurl": "file:///home/paji/katello/runcible/test/fixtures/repositories/zoo5/images/test2.img",
+        "item_type": "distribution", "savepath": "/var/lib/pulp/working/repos/integration_test_id/importers/yum_importer/tmpJpcLSK/tmpa9ve4I/images/test2.img",
+        "relativepath": "images/test2.img", "filename": "test2.img", "pkgpath": "/var/lib/pulp/content/distribution/ks-Test
+        Family-TestVariant-16-x86_64/images", "size": 0.0}, {"checksumtype": "sha256",
+        "checksum": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "fileName": "empty.iso", "downloadurl": "file:///home/paji/katello/runcible/test/fixtures/repositories/zoo5/empty.iso",
+        "item_type": "distribution", "savepath": "/var/lib/pulp/working/repos/integration_test_id/importers/yum_importer/tmpJpcLSK/tmpa9ve4I/empty.iso",
+        "relativepath": "empty.iso", "filename": "empty.iso", "pkgpath": "/var/lib/pulp/content/distribution/ks-Test
+        Family-TestVariant-16-x86_64/", "size": 0.0}, {"checksumtype": "sha256", "checksum":
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", "fileName":
+        "test1.img", "downloadurl": "file:///home/paji/katello/runcible/test/fixtures/repositories/zoo5/images/test1.img",
+        "item_type": "distribution", "savepath": "/var/lib/pulp/working/repos/integration_test_id/importers/yum_importer/tmpJpcLSK/tmpa9ve4I/images/test1.img",
+        "relativepath": "images/test1.img", "filename": "test1.img", "pkgpath": "/var/lib/pulp/content/distribution/ks-Test
+        Family-TestVariant-16-x86_64/images", "size": 0.0}], "_storage_path": "/var/lib/pulp/content/distribution/ks-Test
+        Family-TestVariant-16-x86_64", "family": "Test Family", "_ns": "units_distribution",
+        "variant": "TestVariant", "version": "16", "version_sort_index": "02-16",
+        "_content_type_id": "distribution", "_id": "0e86304e-873e-47e3-ab3b-9f3b06964b34",
+        "arch": "x86_64", "id": "ks-Test Family-TestVariant-16-x86_64"}}]'
     http_version: 
-  recorded_at: Wed, 10 Jul 2013 23:05:51 GMT
-- request: 
+  recorded_at: Tue, 30 Jul 2013 18:32:38 GMT
+- request:
     method: post
-    uri: https://admin:admin@abed.usersys.redhat.com/pulp/api/v2/repositories/integration_test_id_clone/actions/unassociate/
-    body: 
-      encoding: US-ASCII
-      string: "{\"criteria\":{\"type_ids\":[\"distribution\"],\"filters\":{\"unit\":{\"id\":{\"$in\":[\"ks-Test Family-TestVariant-16-x86_64\"]}}}}}"
-    headers: 
-      Accept: 
+    uri: https://admin:admin@kafka.usersys.redhat.com/pulp/api/v2/repositories/integration_test_id_clone/actions/unassociate/
+    body:
+      encoding: UTF-8
+      string: '{"criteria":{"type_ids":["distribution"],"filters":{"unit":{"id":{"$in":["ks-Test
+        Family-TestVariant-16-x86_64"]}}}}}'
+    headers:
+      Accept:
       - application/json
-      Accept-Encoding: 
+      Accept-Encoding:
       - gzip, deflate
-      Content-Type: 
+      Content-Type:
       - application/json
-      Content-Length: 
-      - "117"
-      User-Agent: 
+      Content-Length:
+      - '117'
+      User-Agent:
       - Ruby
-  response: 
-    status: 
+  response:
+    status:
       code: 202
       message: Accepted
-    headers: 
-      Date: 
-      - Wed, 10 Jul 2013 23:05:51 GMT
-      Server: 
-      - Apache/2.2.15 (Red Hat)
-      Content-Encoding: 
+    headers:
+      Date:
+      - Tue, 30 Jul 2013 18:32:38 GMT
+      Server:
+      - Apache/2.4.4 (Fedora) OpenSSL/1.0.1e-fips mod_wsgi/3.4 Python/2.7.3
+      Content-Encoding:
       - utf-8
-      Content-Length: 
-      - "656"
-      Content-Type: 
+      Content-Length:
+      - '656'
+      Content-Type:
       - application/json
-    body: 
-      encoding: US-ASCII
-      string: "{\"task_group_id\": null, \"exception\": null, \"traceback\": null, \"_href\": \"/pulp/api/v2/tasks/38d85a89-5220-479b-99bd-64a6881c25de/\", \"task_id\": \"38d85a89-5220-479b-99bd-64a6881c25de\", \"call_request_tags\": [\"pulp:repository:integration_test_id_clone\", \"pulp:action:unassociate\"], \"reasons\": [], \"start_time\": null, \"tags\": [\"pulp:repository:integration_test_id_clone\", \"pulp:action:unassociate\"], \"state\": \"waiting\", \"finish_time\": null, \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": null, \"call_request_id\": \"38d85a89-5220-479b-99bd-64a6881c25de\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}"
+    body:
+      encoding: UTF-8
+      string: '{"task_group_id": null, "exception": null, "traceback": null, "_href":
+        "/pulp/api/v2/tasks/45aaf785-dcff-4e02-ad28-1780d0640fd6/", "task_id": "45aaf785-dcff-4e02-ad28-1780d0640fd6",
+        "call_request_tags": ["pulp:repository:integration_test_id_clone", "pulp:action:unassociate"],
+        "reasons": [], "start_time": null, "tags": ["pulp:repository:integration_test_id_clone",
+        "pulp:action:unassociate"], "state": "waiting", "finish_time": null, "dependency_failures":
+        {}, "schedule_id": null, "progress": {}, "call_request_group_id": null, "call_request_id":
+        "45aaf785-dcff-4e02-ad28-1780d0640fd6", "principal_login": "admin", "response":
+        "accepted", "result": null}'
     http_version: 
-  recorded_at: Wed, 10 Jul 2013 23:05:51 GMT
-- request: 
+  recorded_at: Tue, 30 Jul 2013 18:32:39 GMT
+- request:
     method: post
-    uri: https://admin:admin@abed.usersys.redhat.com/pulp/api/v2/repositories/integration_test_id_clone/search/units/
-    body: 
-      encoding: US-ASCII
-      string: "{\"criteria\":{\"type_ids\":[\"distribution\"]}}"
-    headers: 
-      Accept: 
+    uri: https://admin:admin@kafka.usersys.redhat.com/pulp/api/v2/repositories/integration_test_id_clone/search/units/
+    body:
+      encoding: UTF-8
+      string: '{"criteria":{"type_ids":["distribution"]}}'
+    headers:
+      Accept:
       - application/json
-      Accept-Encoding: 
+      Accept-Encoding:
       - gzip, deflate
-      Content-Type: 
+      Content-Type:
       - application/json
-      Content-Length: 
-      - "42"
-      User-Agent: 
+      Content-Length:
+      - '42'
+      User-Agent:
       - Ruby
-  response: 
-    status: 
+  response:
+    status:
       code: 200
       message: OK
-    headers: 
-      Date: 
-      - Wed, 10 Jul 2013 23:05:52 GMT
-      Server: 
-      - Apache/2.2.15 (Red Hat)
-      Content-Length: 
-      - "2"
-      Content-Type: 
+    headers:
+      Date:
+      - Tue, 30 Jul 2013 18:32:40 GMT
+      Server:
+      - Apache/2.4.4 (Fedora) OpenSSL/1.0.1e-fips mod_wsgi/3.4 Python/2.7.3
+      Content-Length:
+      - '2'
+      Content-Type:
       - application/json
-    body: 
-      encoding: US-ASCII
-      string: "[]"
+    body:
+      encoding: UTF-8
+      string: '[]'
     http_version: 
-  recorded_at: Wed, 10 Jul 2013 23:05:52 GMT
-- request: 
+  recorded_at: Tue, 30 Jul 2013 18:32:40 GMT
+- request:
     method: post
-    uri: https://admin:admin@abed.usersys.redhat.com/pulp/api/v2/repositories/integration_test_id/search/units/
-    body: 
-      encoding: US-ASCII
-      string: "{\"criteria\":{\"type_ids\":[\"distribution\"]}}"
-    headers: 
-      Accept: 
+    uri: https://admin:admin@kafka.usersys.redhat.com/pulp/api/v2/repositories/integration_test_id/search/units/
+    body:
+      encoding: UTF-8
+      string: '{"criteria":{"type_ids":["distribution"]}}'
+    headers:
+      Accept:
       - application/json
-      Accept-Encoding: 
+      Accept-Encoding:
       - gzip, deflate
-      Content-Type: 
+      Content-Type:
       - application/json
-      Content-Length: 
-      - "42"
-      User-Agent: 
+      Content-Length:
+      - '42'
+      User-Agent:
       - Ruby
-  response: 
-    status: 
+  response:
+    status:
       code: 200
       message: OK
-    headers: 
-      Date: 
-      - Wed, 10 Jul 2013 23:05:52 GMT
-      Server: 
-      - Apache/2.2.15 (Red Hat)
-      Content-Length: 
-      - "2378"
-      Content-Type: 
+    headers:
+      Date:
+      - Tue, 30 Jul 2013 18:32:40 GMT
+      Server:
+      - Apache/2.4.4 (Fedora) OpenSSL/1.0.1e-fips mod_wsgi/3.4 Python/2.7.3
+      Content-Length:
+      - '2378'
+      Content-Type:
       - application/json
-    body: 
-      encoding: US-ASCII
-      string: "[{\"updated\": \"2013-07-11T03:05:49Z\", \"repo_id\": \"integration_test_id\", \"created\": \"2013-07-11T03:05:49Z\", \"_ns\": \"repo_content_units\", \"unit_id\": \"a0069833-7cae-4b33-83da-f99029d3f167\", \"unit_type_id\": \"distribution\", \"owner_type\": \"importer\", \"_id\": {\"$oid\": \"51dde8cd5ca0135f30479bee\"}, \"id\": \"51dde8cd5ca0135f30479bee\", \"owner_id\": \"yum_importer\", \"metadata\": {\"files\": [{\"checksumtype\": \"sha256\", \"checksum\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\", \"fileName\": \"test2.img\", \"downloadurl\": \"file:///home/jlsherri/git/runcible/test/fixtures/repositories/zoo5/images/test2.img\", \"item_type\": \"distribution\", \"savepath\": \"/var/lib/pulp/working/repos/integration_test_id/importers/yum_importer/tmpxUBnVm/tmpqS9Fwr/images/test2.img\", \"relativepath\": \"images/test2.img\", \"filename\": \"test2.img\", \"pkgpath\": \"/var/lib/pulp/content/distribution/ks-Test Family-TestVariant-16-x86_64/images\", \"size\": 0.0}, {\"checksumtype\": \"sha256\", \"checksum\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\", \"fileName\": \"empty.iso\", \"downloadurl\": \"file:///home/jlsherri/git/runcible/test/fixtures/repositories/zoo5/empty.iso\", \"item_type\": \"distribution\", \"savepath\": \"/var/lib/pulp/working/repos/integration_test_id/importers/yum_importer/tmpxUBnVm/tmpqS9Fwr/empty.iso\", \"relativepath\": \"empty.iso\", \"filename\": \"empty.iso\", \"pkgpath\": \"/var/lib/pulp/content/distribution/ks-Test Family-TestVariant-16-x86_64/\", \"size\": 0.0}, {\"checksumtype\": \"sha256\", \"checksum\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\", \"fileName\": \"test1.img\", \"downloadurl\": \"file:///home/jlsherri/git/runcible/test/fixtures/repositories/zoo5/images/test1.img\", \"item_type\": \"distribution\", \"savepath\": \"/var/lib/pulp/working/repos/integration_test_id/importers/yum_importer/tmpxUBnVm/tmpqS9Fwr/images/test1.img\", \"relativepath\": \"images/test1.img\", \"filename\": \"test1.img\", \"pkgpath\": \"/var/lib/pulp/content/distribution/ks-Test Family-TestVariant-16-x86_64/images\", \"size\": 0.0}], \"_storage_path\": \"/var/lib/pulp/content/distribution/ks-Test Family-TestVariant-16-x86_64\", \"family\": \"Test Family\", \"_ns\": \"units_distribution\", \"variant\": \"TestVariant\", \"version\": \"16\", \"version_sort_index\": \"02-16\", \"_content_type_id\": \"distribution\", \"_id\": \"a0069833-7cae-4b33-83da-f99029d3f167\", \"arch\": \"x86_64\", \"id\": \"ks-Test Family-TestVariant-16-x86_64\"}}]"
+    body:
+      encoding: UTF-8
+      string: '[{"updated": "2013-07-30T22:32:36Z", "repo_id": "integration_test_id",
+        "created": "2013-07-30T22:32:36Z", "_ns": "repo_content_units", "unit_id":
+        "0e86304e-873e-47e3-ab3b-9f3b06964b34", "unit_type_id": "distribution", "owner_type":
+        "importer", "_id": {"$oid": "51f806c4196cbe402b59814a"}, "id": "51f806c4196cbe402b59814a",
+        "owner_id": "yum_importer", "metadata": {"files": [{"checksumtype": "sha256",
+        "checksum": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "fileName": "test2.img", "downloadurl": "file:///home/paji/katello/runcible/test/fixtures/repositories/zoo5/images/test2.img",
+        "item_type": "distribution", "savepath": "/var/lib/pulp/working/repos/integration_test_id/importers/yum_importer/tmpJpcLSK/tmpa9ve4I/images/test2.img",
+        "relativepath": "images/test2.img", "filename": "test2.img", "pkgpath": "/var/lib/pulp/content/distribution/ks-Test
+        Family-TestVariant-16-x86_64/images", "size": 0.0}, {"checksumtype": "sha256",
+        "checksum": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "fileName": "empty.iso", "downloadurl": "file:///home/paji/katello/runcible/test/fixtures/repositories/zoo5/empty.iso",
+        "item_type": "distribution", "savepath": "/var/lib/pulp/working/repos/integration_test_id/importers/yum_importer/tmpJpcLSK/tmpa9ve4I/empty.iso",
+        "relativepath": "empty.iso", "filename": "empty.iso", "pkgpath": "/var/lib/pulp/content/distribution/ks-Test
+        Family-TestVariant-16-x86_64/", "size": 0.0}, {"checksumtype": "sha256", "checksum":
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", "fileName":
+        "test1.img", "downloadurl": "file:///home/paji/katello/runcible/test/fixtures/repositories/zoo5/images/test1.img",
+        "item_type": "distribution", "savepath": "/var/lib/pulp/working/repos/integration_test_id/importers/yum_importer/tmpJpcLSK/tmpa9ve4I/images/test1.img",
+        "relativepath": "images/test1.img", "filename": "test1.img", "pkgpath": "/var/lib/pulp/content/distribution/ks-Test
+        Family-TestVariant-16-x86_64/images", "size": 0.0}], "_storage_path": "/var/lib/pulp/content/distribution/ks-Test
+        Family-TestVariant-16-x86_64", "family": "Test Family", "_ns": "units_distribution",
+        "variant": "TestVariant", "version": "16", "version_sort_index": "02-16",
+        "_content_type_id": "distribution", "_id": "0e86304e-873e-47e3-ab3b-9f3b06964b34",
+        "arch": "x86_64", "id": "ks-Test Family-TestVariant-16-x86_64"}}]'
     http_version: 
-  recorded_at: Wed, 10 Jul 2013 23:05:53 GMT
-- request: 
+  recorded_at: Tue, 30 Jul 2013 18:32:40 GMT
+- request:
     method: post
-    uri: https://admin:admin@abed.usersys.redhat.com/pulp/api/v2/repositories/integration_test_id_clone/actions/unassociate/
-    body: 
-      encoding: US-ASCII
-      string: "{\"criteria\":{\"type_ids\":[\"distribution\"],\"filters\":{\"association\":{\"unit_id\":{\"$in\":[\"a0069833-7cae-4b33-83da-f99029d3f167\"]}}}}}"
-    headers: 
-      Accept: 
+    uri: https://admin:admin@kafka.usersys.redhat.com/pulp/api/v2/repositories/integration_test_id_clone/actions/unassociate/
+    body:
+      encoding: UTF-8
+      string: '{"criteria":{"type_ids":["distribution"],"filters":{"association":{"unit_id":{"$in":["0e86304e-873e-47e3-ab3b-9f3b06964b34"]}}}}}'
+    headers:
+      Accept:
       - application/json
-      Accept-Encoding: 
+      Accept-Encoding:
       - gzip, deflate
-      Content-Type: 
+      Content-Type:
       - application/json
-      Content-Length: 
-      - "129"
-      User-Agent: 
+      Content-Length:
+      - '129'
+      User-Agent:
       - Ruby
-  response: 
-    status: 
+  response:
+    status:
       code: 202
       message: Accepted
-    headers: 
-      Date: 
-      - Wed, 10 Jul 2013 23:05:53 GMT
-      Server: 
-      - Apache/2.2.15 (Red Hat)
-      Content-Encoding: 
+    headers:
+      Date:
+      - Tue, 30 Jul 2013 18:32:40 GMT
+      Server:
+      - Apache/2.4.4 (Fedora) OpenSSL/1.0.1e-fips mod_wsgi/3.4 Python/2.7.3
+      Content-Encoding:
       - utf-8
-      Content-Length: 
-      - "656"
-      Content-Type: 
+      Content-Length:
+      - '656'
+      Content-Type:
       - application/json
-    body: 
-      encoding: US-ASCII
-      string: "{\"task_group_id\": null, \"exception\": null, \"traceback\": null, \"_href\": \"/pulp/api/v2/tasks/d1059fb7-8082-4243-bfb8-ff54de25631e/\", \"task_id\": \"d1059fb7-8082-4243-bfb8-ff54de25631e\", \"call_request_tags\": [\"pulp:repository:integration_test_id_clone\", \"pulp:action:unassociate\"], \"reasons\": [], \"start_time\": null, \"tags\": [\"pulp:repository:integration_test_id_clone\", \"pulp:action:unassociate\"], \"state\": \"waiting\", \"finish_time\": null, \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": null, \"call_request_id\": \"d1059fb7-8082-4243-bfb8-ff54de25631e\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}"
+    body:
+      encoding: UTF-8
+      string: '{"task_group_id": null, "exception": null, "traceback": null, "_href":
+        "/pulp/api/v2/tasks/8a3d7416-8f3d-4d60-9ec2-08818c3247c6/", "task_id": "8a3d7416-8f3d-4d60-9ec2-08818c3247c6",
+        "call_request_tags": ["pulp:repository:integration_test_id_clone", "pulp:action:unassociate"],
+        "reasons": [], "start_time": null, "tags": ["pulp:repository:integration_test_id_clone",
+        "pulp:action:unassociate"], "state": "waiting", "finish_time": null, "dependency_failures":
+        {}, "schedule_id": null, "progress": {}, "call_request_group_id": null, "call_request_id":
+        "8a3d7416-8f3d-4d60-9ec2-08818c3247c6", "principal_login": "admin", "response":
+        "accepted", "result": null}'
     http_version: 
-  recorded_at: Wed, 10 Jul 2013 23:05:53 GMT
-- request: 
+  recorded_at: Tue, 30 Jul 2013 18:32:40 GMT
+- request:
     method: post
-    uri: https://admin:admin@abed.usersys.redhat.com/pulp/api/v2/repositories/integration_test_id_clone/search/units/
-    body: 
-      encoding: US-ASCII
-      string: "{\"criteria\":{\"type_ids\":[\"distribution\"]}}"
-    headers: 
-      Accept: 
+    uri: https://admin:admin@kafka.usersys.redhat.com/pulp/api/v2/repositories/integration_test_id_clone/search/units/
+    body:
+      encoding: UTF-8
+      string: '{"criteria":{"type_ids":["distribution"]}}'
+    headers:
+      Accept:
       - application/json
-      Accept-Encoding: 
+      Accept-Encoding:
       - gzip, deflate
-      Content-Type: 
+      Content-Type:
       - application/json
-      Content-Length: 
-      - "42"
-      User-Agent: 
+      Content-Length:
+      - '42'
+      User-Agent:
       - Ruby
-  response: 
-    status: 
+  response:
+    status:
       code: 200
       message: OK
-    headers: 
-      Date: 
-      - Wed, 10 Jul 2013 23:05:54 GMT
-      Server: 
-      - Apache/2.2.15 (Red Hat)
-      Content-Length: 
-      - "2"
-      Content-Type: 
+    headers:
+      Date:
+      - Tue, 30 Jul 2013 18:32:41 GMT
+      Server:
+      - Apache/2.4.4 (Fedora) OpenSSL/1.0.1e-fips mod_wsgi/3.4 Python/2.7.3
+      Content-Length:
+      - '2'
+      Content-Type:
       - application/json
-    body: 
-      encoding: US-ASCII
-      string: "[]"
+    body:
+      encoding: UTF-8
+      string: '[]'
     http_version: 
-  recorded_at: Wed, 10 Jul 2013 23:05:54 GMT
-recorded_with: VCR 2.4.0
+  recorded_at: Tue, 30 Jul 2013 18:32:41 GMT
+recorded_with: VCR 2.5.0

@@ -1,69 +1,384 @@
---- 
-http_interactions: 
-- request: 
+---
+http_interactions:
+- request:
     method: get
-    uri: https://admin:admin@abed.usersys.redhat.com/pulp/api/v2/tasks/daf47c76-ea66-4bcc-b832-b99f7493da4f/
-    body: 
+    uri: https://admin:admin@kafka.usersys.redhat.com/pulp/api/v2/tasks/?
+    body:
       encoding: US-ASCII
-      string: ""
-    headers: 
-      Accept: 
+      string: ''
+    headers:
+      Accept:
       - application/json
-      Accept-Encoding: 
+      Accept-Encoding:
       - gzip, deflate
-      Content-Type: 
+      Content-Type:
       - application/json
-      User-Agent: 
+      User-Agent:
       - Ruby
-  response: 
-    status: 
+  response:
+    status:
       code: 200
       message: OK
-    headers: 
-      Date: 
-      - Wed, 10 Jul 2013 23:09:04 GMT
-      Server: 
-      - Apache/2.2.15 (Red Hat)
-      Content-Length: 
-      - "2130"
-      Content-Type: 
+    headers:
+      Date:
+      - Tue, 30 Jul 2013 18:36:01 GMT
+      Server:
+      - Apache/2.4.4 (Fedora) OpenSSL/1.0.1e-fips mod_wsgi/3.4 Python/2.7.3
+      Content-Length:
+      - '25278'
+      Content-Type:
       - application/json
-    body: 
-      encoding: US-ASCII
-      string: "{\"task_group_id\": \"48a107e7-abf6-421f-916f-2862a48a4f54\", \"exception\": null, \"traceback\": null, \"_href\": \"/pulp/api/v2/tasks/daf47c76-ea66-4bcc-b832-b99f7493da4f/\", \"task_id\": \"daf47c76-ea66-4bcc-b832-b99f7493da4f\", \"call_request_tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:sync\"], \"reasons\": [], \"start_time\": \"2013-07-10T23:09:03Z\", \"tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:sync\"], \"state\": \"finished\", \"finish_time\": \"2013-07-10T23:09:03Z\", \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {\"yum_importer\": {\"content\": {\"size_total\": 17872, \"items_left\": 0, \"items_total\": 8, \"state\": \"FINISHED\", \"size_left\": 0, \"details\": {\"rpm_total\": 8, \"rpm_done\": 8, \"drpm_total\": 0, \"drpm_done\": 0}, \"error_details\": []}, \"comps\": {\"state\": \"FINISHED\"}, \"distribution\": {\"items_total\": 3, \"state\": \"FINISHED\", \"error_details\": [], \"items_left\": 0}, \"errata\": {\"state\": \"FINISHED\"}, \"metadata\": {\"state\": \"FINISHED\"}}}, \"call_request_group_id\": \"48a107e7-abf6-421f-916f-2862a48a4f54\", \"call_request_id\": \"daf47c76-ea66-4bcc-b832-b99f7493da4f\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": {\"importer_id\": \"yum_importer\", \"exception\": null, \"repo_id\": \"integration_test_id\", \"traceback\": null, \"started\": \"2013-07-10T19:09:03-04:00\", \"_ns\": \"repo_sync_results\", \"completed\": \"2013-07-10T19:09:03-04:00\", \"importer_type_id\": \"yum_importer\", \"error_message\": null, \"summary\": {\"content\": {\"state\": \"FINISHED\"}, \"comps\": {\"state\": \"FINISHED\"}, \"distribution\": {\"state\": \"FINISHED\"}, \"errata\": {\"state\": \"FINISHED\"}, \"metadata\": {\"state\": \"FINISHED\"}}, \"added_count\": 0, \"result\": \"success\", \"updated_count\": 14, \"details\": {\"content\": {\"size_total\": 17872, \"items_left\": 0, \"items_total\": 8, \"state\": \"FINISHED\", \"size_left\": 0, \"details\": {\"rpm_total\": 8, \"rpm_done\": 8, \"drpm_total\": 0, \"drpm_done\": 0}, \"error_details\": []}, \"comps\": {\"state\": \"FINISHED\"}, \"distribution\": {\"items_total\": 3, \"state\": \"FINISHED\", \"error_details\": [], \"items_left\": 0}, \"errata\": {\"state\": \"FINISHED\"}, \"metadata\": {\"state\": \"FINISHED\"}}, \"id\": \"51dde98f5ca0135f3047a711\", \"removed_count\": 0}}"
+    body:
+      encoding: UTF-8
+      string: '[{"task_group_id": null, "exception": ["MissingResource: Missing resource(s):
+        distributor={''repo_id'': ''integration_test_id'', ''_ns'': ''repo_distributors'',
+        ''last_publish'': None, ''auto_publish'': False, ''scheduled_publishes'':
+        [], ''distributor_type_id'': ''yum_distributor'', ''_id'': {''$oid'': ''51f8077c196cbe402b598b07''},
+        ''config'': {''http'': True, ''relative_url'': ''/path'', ''https'': True},
+        ''id'': ''2af41e194d169f2f17cd''}, repository=integration_test_id\n"], "traceback":
+        ["  File \"/usr/lib/python2.7/site-packages/pulp/server/dispatch/task.py\",
+        line 138, in _run\n    result = call(*args, **kwargs)\n", "  File \"/usr/lib/python2.7/site-packages/pulp/server/managers/repo/publish.py\",
+        line 78, in publish\n    raise MissingResource(repository=repo_id, distributor=distributor_id)\n"],
+        "task_id": "76e121a0-3359-43a8-bbae-78cd86d24d54", "call_request_tags": ["pulp:repository:integration_test_id",
+        "pulp:action:publish"], "reasons": [], "start_time": "2013-07-30T18:35:42Z",
+        "tags": ["pulp:repository:integration_test_id", "pulp:action:publish"], "state":
+        "error", "finish_time": "2013-07-30T18:35:42Z", "dependency_failures": {},
+        "schedule_id": null, "progress": {}, "call_request_group_id": null, "call_request_id":
+        "76e121a0-3359-43a8-bbae-78cd86d24d54", "principal_login": "admin", "response":
+        "accepted", "result": null}, {"task_group_id": "047172f1-baf8-4364-a12f-42330aca11bb",
+        "exception": null, "traceback": null, "task_id": "cfde013a-d5db-42c9-82c1-56b033003541",
+        "call_request_tags": ["pulp:repository:integration_test_id", "pulp:action:delete"],
+        "reasons": [], "start_time": "2013-07-30T18:35:44Z", "tags": ["pulp:repository:integration_test_id",
+        "pulp:action:delete"], "state": "finished", "finish_time": "2013-07-30T18:35:44Z",
+        "dependency_failures": {}, "schedule_id": null, "progress": {}, "call_request_group_id":
+        "047172f1-baf8-4364-a12f-42330aca11bb", "call_request_id": "cfde013a-d5db-42c9-82c1-56b033003541",
+        "principal_login": "admin", "response": "accepted", "result": null}, {"task_group_id":
+        null, "exception": null, "traceback": null, "task_id": "bf17e393-4688-46af-be8c-5edc2281bc79",
+        "call_request_tags": ["pulp:repository:integration_test_id", "pulp:action:create"],
+        "reasons": [], "start_time": "2013-07-30T18:35:46Z", "tags": ["pulp:repository:integration_test_id",
+        "pulp:action:create"], "state": "finished", "finish_time": "2013-07-30T18:35:46Z",
+        "dependency_failures": {}, "schedule_id": null, "progress": {}, "call_request_group_id":
+        null, "call_request_id": "bf17e393-4688-46af-be8c-5edc2281bc79", "principal_login":
+        "admin", "response": "accepted", "result": {"scratchpad": {}, "display_name":
+        "integration_test_id", "description": null, "_ns": "repos", "notes": {}, "content_unit_counts":
+        {}, "_id": {"$oid": "51f80782196cbe402b598b40"}, "id": "integration_test_id",
+        "_href": "/pulp/api/v2/repositories/integration_test_id/"}}, {"task_group_id":
+        "2c88550c-b727-49ab-b515-8c26a89cf402", "exception": null, "traceback": null,
+        "task_id": "d365f60c-4137-4c22-bc4d-8ae604490c76", "call_request_tags": ["pulp:repository:integration_test_id",
+        "pulp:action:sync"], "reasons": [], "start_time": "2013-07-30T18:35:46Z",
+        "tags": ["pulp:repository:integration_test_id", "pulp:action:sync"], "state":
+        "finished", "finish_time": "2013-07-30T18:35:46Z", "dependency_failures":
+        {}, "schedule_id": null, "progress": {"yum_importer": {"content": {"size_total":
+        17872, "items_left": 0, "items_total": 8, "state": "FINISHED", "size_left":
+        0, "details": {"rpm_total": 8, "rpm_done": 8, "drpm_total": 0, "drpm_done":
+        0}, "error_details": []}, "comps": {"state": "FINISHED"}, "distribution":
+        {"items_total": 3, "state": "FINISHED", "error_details": [], "items_left":
+        0}, "errata": {"state": "FINISHED"}, "metadata": {"state": "FINISHED"}}},
+        "call_request_group_id": "2c88550c-b727-49ab-b515-8c26a89cf402", "call_request_id":
+        "d365f60c-4137-4c22-bc4d-8ae604490c76", "principal_login": "admin", "response":
+        "accepted", "result": {"importer_id": "yum_importer", "exception": null, "repo_id":
+        "integration_test_id", "traceback": null, "started": "2013-07-30T14:35:46-04:00",
+        "_ns": "repo_sync_results", "completed": "2013-07-30T14:35:46-04:00", "importer_type_id":
+        "yum_importer", "error_message": null, "summary": {"content": {"state": "FINISHED"},
+        "comps": {"state": "FINISHED"}, "distribution": {"state": "FINISHED"}, "errata":
+        {"state": "FINISHED"}, "metadata": {"state": "FINISHED"}}, "added_count":
+        0, "result": "success", "updated_count": 14, "details": {"content": {"size_total":
+        17872, "items_left": 0, "items_total": 8, "state": "FINISHED", "size_left":
+        0, "details": {"rpm_total": 8, "rpm_done": 8, "drpm_total": 0, "drpm_done":
+        0}, "error_details": []}, "comps": {"state": "FINISHED"}, "distribution":
+        {"items_total": 3, "state": "FINISHED", "error_details": [], "items_left":
+        0}, "errata": {"state": "FINISHED"}, "metadata": {"state": "FINISHED"}}, "id":
+        "51f80782196cbe402b598b5c", "removed_count": 0}}, {"task_group_id": "b5a74c8a-96ff-4b5a-81a1-b33ea88f4c45",
+        "exception": null, "traceback": null, "task_id": "e6b4cb8f-7323-47f1-a762-9420293c91f2",
+        "call_request_tags": ["pulp:repository:integration_test_id", "pulp:action:delete"],
+        "reasons": [], "start_time": "2013-07-30T18:35:47Z", "tags": ["pulp:repository:integration_test_id",
+        "pulp:action:delete"], "state": "finished", "finish_time": "2013-07-30T18:35:47Z",
+        "dependency_failures": {}, "schedule_id": null, "progress": {}, "call_request_group_id":
+        "b5a74c8a-96ff-4b5a-81a1-b33ea88f4c45", "call_request_id": "e6b4cb8f-7323-47f1-a762-9420293c91f2",
+        "principal_login": "admin", "response": "accepted", "result": null}, {"task_group_id":
+        null, "exception": null, "traceback": null, "task_id": "417e8af7-a3aa-439d-a82e-91f3f19a9c5e",
+        "call_request_tags": ["pulp:repository:integration_test_id", "pulp:action:create"],
+        "reasons": [], "start_time": "2013-07-30T18:35:49Z", "tags": ["pulp:repository:integration_test_id",
+        "pulp:action:create"], "state": "finished", "finish_time": "2013-07-30T18:35:49Z",
+        "dependency_failures": {}, "schedule_id": null, "progress": {}, "call_request_group_id":
+        null, "call_request_id": "417e8af7-a3aa-439d-a82e-91f3f19a9c5e", "principal_login":
+        "admin", "response": "accepted", "result": {"scratchpad": {}, "display_name":
+        "integration_test_id", "description": null, "_ns": "repos", "notes": {}, "content_unit_counts":
+        {}, "_id": {"$oid": "51f80785196cbe402b598b6f"}, "id": "integration_test_id",
+        "_href": "/pulp/api/v2/repositories/integration_test_id/"}}, {"task_group_id":
+        "274990bf-b11a-4af4-9025-5b4bdecfafd9", "exception": ["MissingResource: Missing
+        resource(s): resource_id=integration_test_id\n"], "traceback": ["  File \"/usr/lib/python2.7/site-packages/pulp/server/dispatch/task.py\",
+        line 138, in _run\n    result = call(*args, **kwargs)\n", "  File \"/usr/lib/python2.7/site-packages/pulp/server/managers/repo/sync.py\",
+        line 93, in sync\n    raise MissingResource(repo_id)\n"], "task_id": "7463558d-2404-4988-984f-a364d7b552d5",
+        "call_request_tags": ["pulp:repository:integration_test_id", "pulp:action:sync"],
+        "reasons": [], "start_time": "2013-07-30T18:35:49Z", "tags": ["pulp:repository:integration_test_id",
+        "pulp:action:sync"], "state": "error", "finish_time": "2013-07-30T18:35:49Z",
+        "dependency_failures": {}, "schedule_id": null, "progress": {}, "call_request_group_id":
+        "274990bf-b11a-4af4-9025-5b4bdecfafd9", "call_request_id": "7463558d-2404-4988-984f-a364d7b552d5",
+        "principal_login": "admin", "response": "accepted", "result": null}, {"task_group_id":
+        "d68e01fc-a032-465f-b8b6-d52b44cbaa3d", "exception": null, "traceback": null,
+        "task_id": "1a997f97-d89e-4be8-8a3c-d8d7daacdf95", "call_request_tags": ["pulp:repository:integration_test_id",
+        "pulp:action:delete"], "reasons": [], "start_time": "2013-07-30T18:35:50Z",
+        "tags": ["pulp:repository:integration_test_id", "pulp:action:delete"], "state":
+        "finished", "finish_time": "2013-07-30T18:35:50Z", "dependency_failures":
+        {}, "schedule_id": null, "progress": {}, "call_request_group_id": "d68e01fc-a032-465f-b8b6-d52b44cbaa3d",
+        "call_request_id": "1a997f97-d89e-4be8-8a3c-d8d7daacdf95", "principal_login":
+        "admin", "response": "accepted", "result": null}, {"task_group_id": null,
+        "exception": null, "traceback": null, "task_id": "170b9ae6-f1a8-472a-b2f2-73b2e69ab8b3",
+        "call_request_tags": ["pulp:user:integration_test_user", "pulp:action:create"],
+        "reasons": [], "start_time": "2013-07-30T18:35:52Z", "tags": ["pulp:user:integration_test_user",
+        "pulp:action:create"], "state": "finished", "finish_time": "2013-07-30T18:35:52Z",
+        "dependency_failures": {}, "schedule_id": null, "progress": {}, "call_request_group_id":
+        null, "call_request_id": "170b9ae6-f1a8-472a-b2f2-73b2e69ab8b3", "principal_login":
+        "admin", "response": "accepted", "result": {"_id": {"$oid": "51f80788196cbe402b598b8a"},
+        "name": "integration_test_user", "roles": [], "_ns": "users", "login": "integration_test_user",
+        "id": "51f80788196cbe402b598b8a", "_href": "/pulp/api/v2/users/integration_test_user/"}},
+        {"task_group_id": null, "exception": null, "traceback": null, "task_id": "89cf9ef8-ad5f-4bea-af1d-87a771c5b040",
+        "call_request_tags": ["pulp:user:integration_test_user", "pulp:action:delete"],
+        "reasons": [], "start_time": "2013-07-30T18:35:52Z", "tags": ["pulp:user:integration_test_user",
+        "pulp:action:delete"], "state": "finished", "finish_time": "2013-07-30T18:35:52Z",
+        "dependency_failures": {}, "schedule_id": null, "progress": {}, "call_request_group_id":
+        null, "call_request_id": "89cf9ef8-ad5f-4bea-af1d-87a771c5b040", "principal_login":
+        "admin", "response": "accepted", "result": null}, {"task_group_id": null,
+        "exception": null, "traceback": null, "task_id": "633a5fb9-0f76-4069-ae69-2fbc659ad6dc",
+        "call_request_tags": ["pulp:user:integration_test_user", "pulp:action:create"],
+        "reasons": [], "start_time": "2013-07-30T18:35:52Z", "tags": ["pulp:user:integration_test_user",
+        "pulp:action:create"], "state": "finished", "finish_time": "2013-07-30T18:35:52Z",
+        "dependency_failures": {}, "schedule_id": null, "progress": {}, "call_request_group_id":
+        null, "call_request_id": "633a5fb9-0f76-4069-ae69-2fbc659ad6dc", "principal_login":
+        "admin", "response": "accepted", "result": {"_id": {"$oid": "51f80788196cbe402b598ba0"},
+        "name": "integration_test_user", "roles": [], "_ns": "users", "login": "integration_test_user",
+        "id": "51f80788196cbe402b598ba0", "_href": "/pulp/api/v2/users/integration_test_user/"}},
+        {"task_group_id": null, "exception": null, "traceback": null, "task_id": "b5bd9116-fbf3-4530-8607-5fcaae0a6e0f",
+        "call_request_tags": ["pulp:role:super-users", "pulp:action:add_user_to_role"],
+        "reasons": [], "start_time": "2013-07-30T18:35:52Z", "tags": ["pulp:role:super-users",
+        "pulp:action:add_user_to_role"], "state": "finished", "finish_time": "2013-07-30T18:35:52Z",
+        "dependency_failures": {}, "schedule_id": null, "progress": {}, "call_request_group_id":
+        null, "call_request_id": "b5bd9116-fbf3-4530-8607-5fcaae0a6e0f", "principal_login":
+        "admin", "response": "accepted", "result": null}, {"task_group_id": null,
+        "exception": null, "traceback": null, "task_id": "e3317548-c7c1-4ea2-86a8-6dd9080fd255",
+        "call_request_tags": ["pulp:role:super-users", "pulp:action:remove_user_from_role"],
+        "reasons": [], "start_time": "2013-07-30T18:35:53Z", "tags": ["pulp:role:super-users",
+        "pulp:action:remove_user_from_role"], "state": "finished", "finish_time":
+        "2013-07-30T18:35:53Z", "dependency_failures": {}, "schedule_id": null, "progress":
+        {}, "call_request_group_id": null, "call_request_id": "e3317548-c7c1-4ea2-86a8-6dd9080fd255",
+        "principal_login": "admin", "response": "accepted", "result": null}, {"task_group_id":
+        null, "exception": null, "traceback": null, "task_id": "904408ca-9111-41fb-a336-1f863aa59baa",
+        "call_request_tags": ["pulp:user:integration_test_user", "pulp:action:delete"],
+        "reasons": [], "start_time": "2013-07-30T18:35:53Z", "tags": ["pulp:user:integration_test_user",
+        "pulp:action:delete"], "state": "finished", "finish_time": "2013-07-30T18:35:53Z",
+        "dependency_failures": {}, "schedule_id": null, "progress": {}, "call_request_group_id":
+        null, "call_request_id": "904408ca-9111-41fb-a336-1f863aa59baa", "principal_login":
+        "admin", "response": "accepted", "result": null}, {"task_group_id": null,
+        "exception": null, "traceback": null, "task_id": "941f147d-ff54-4726-b48d-9c2f3a8952e2",
+        "call_request_tags": ["pulp:user:integration_test_user", "pulp:action:create"],
+        "reasons": [], "start_time": "2013-07-30T18:35:53Z", "tags": ["pulp:user:integration_test_user",
+        "pulp:action:create"], "state": "finished", "finish_time": "2013-07-30T18:35:53Z",
+        "dependency_failures": {}, "schedule_id": null, "progress": {}, "call_request_group_id":
+        null, "call_request_id": "941f147d-ff54-4726-b48d-9c2f3a8952e2", "principal_login":
+        "admin", "response": "accepted", "result": {"_id": {"$oid": "51f80789196cbe402b598bc8"},
+        "name": "integration_test_user", "roles": [], "_ns": "users", "login": "integration_test_user",
+        "id": "51f80789196cbe402b598bc8", "_href": "/pulp/api/v2/users/integration_test_user/"}},
+        {"task_group_id": null, "exception": null, "traceback": null, "task_id": "da1fb6dd-93ba-44de-983c-adae6d313068",
+        "call_request_tags": ["pulp:user:integration_test_user", "pulp:action:delete"],
+        "reasons": [], "start_time": "2013-07-30T18:35:53Z", "tags": ["pulp:user:integration_test_user",
+        "pulp:action:delete"], "state": "finished", "finish_time": "2013-07-30T18:35:53Z",
+        "dependency_failures": {}, "schedule_id": null, "progress": {}, "call_request_group_id":
+        null, "call_request_id": "da1fb6dd-93ba-44de-983c-adae6d313068", "principal_login":
+        "admin", "response": "accepted", "result": null}, {"task_group_id": null,
+        "exception": null, "traceback": null, "task_id": "62aa546b-29f5-46e4-a470-d2f1c8d22643",
+        "call_request_tags": ["pulp:user:integration_test_user", "pulp:action:create"],
+        "reasons": [], "start_time": "2013-07-30T18:35:54Z", "tags": ["pulp:user:integration_test_user",
+        "pulp:action:create"], "state": "finished", "finish_time": "2013-07-30T18:35:54Z",
+        "dependency_failures": {}, "schedule_id": null, "progress": {}, "call_request_group_id":
+        null, "call_request_id": "62aa546b-29f5-46e4-a470-d2f1c8d22643", "principal_login":
+        "admin", "response": "accepted", "result": {"_id": {"$oid": "51f8078a196cbe402b598bde"},
+        "name": "integration_test_user", "roles": [], "_ns": "users", "login": "integration_test_user",
+        "id": "51f8078a196cbe402b598bde", "_href": "/pulp/api/v2/users/integration_test_user/"}},
+        {"task_group_id": null, "exception": null, "traceback": null, "task_id": "0ace621c-873b-440f-8618-18b966dc8f87",
+        "call_request_tags": ["pulp:role:super-users", "pulp:action:add_user_to_role"],
+        "reasons": [], "start_time": "2013-07-30T18:35:54Z", "tags": ["pulp:role:super-users",
+        "pulp:action:add_user_to_role"], "state": "finished", "finish_time": "2013-07-30T18:35:54Z",
+        "dependency_failures": {}, "schedule_id": null, "progress": {}, "call_request_group_id":
+        null, "call_request_id": "0ace621c-873b-440f-8618-18b966dc8f87", "principal_login":
+        "admin", "response": "accepted", "result": null}, {"task_group_id": null,
+        "exception": null, "traceback": null, "task_id": "06646a68-8abb-4785-af22-3afbb98657c3",
+        "call_request_tags": ["pulp:role:super-users", "pulp:action:remove_user_from_role"],
+        "reasons": [], "start_time": "2013-07-30T18:35:54Z", "tags": ["pulp:role:super-users",
+        "pulp:action:remove_user_from_role"], "state": "finished", "finish_time":
+        "2013-07-30T18:35:54Z", "dependency_failures": {}, "schedule_id": null, "progress":
+        {}, "call_request_group_id": null, "call_request_id": "06646a68-8abb-4785-af22-3afbb98657c3",
+        "principal_login": "admin", "response": "accepted", "result": null}, {"task_group_id":
+        null, "exception": null, "traceback": null, "task_id": "e53a7ce6-0fcc-4012-af16-dcc363875642",
+        "call_request_tags": ["pulp:user:integration_test_user", "pulp:action:delete"],
+        "reasons": [], "start_time": "2013-07-30T18:35:54Z", "tags": ["pulp:user:integration_test_user",
+        "pulp:action:delete"], "state": "finished", "finish_time": "2013-07-30T18:35:55Z",
+        "dependency_failures": {}, "schedule_id": null, "progress": {}, "call_request_group_id":
+        null, "call_request_id": "e53a7ce6-0fcc-4012-af16-dcc363875642", "principal_login":
+        "admin", "response": "accepted", "result": null}, {"task_group_id": null,
+        "exception": null, "traceback": null, "task_id": "9f1e4d3f-6451-4ea0-ad76-335a27a46453",
+        "call_request_tags": ["pulp:repository:integration_test_id", "pulp:action:create"],
+        "reasons": [], "start_time": "2013-07-30T18:35:55Z", "tags": ["pulp:repository:integration_test_id",
+        "pulp:action:create"], "state": "finished", "finish_time": "2013-07-30T18:35:55Z",
+        "dependency_failures": {}, "schedule_id": null, "progress": {}, "call_request_group_id":
+        null, "call_request_id": "9f1e4d3f-6451-4ea0-ad76-335a27a46453", "principal_login":
+        "admin", "response": "accepted", "result": {"scratchpad": {}, "display_name":
+        "integration_test_id", "description": null, "_ns": "repos", "notes": {}, "content_unit_counts":
+        {}, "_id": {"$oid": "51f8078b196cbe402b598c06"}, "id": "integration_test_id",
+        "_href": "/pulp/api/v2/repositories/integration_test_id/"}}, {"task_group_id":
+        null, "exception": null, "traceback": null, "task_id": "25033abf-6773-4f2a-8160-1dab24bbf1b2",
+        "call_request_tags": ["pulp:repository:integration_test_id", "pulp:repository_importer:yum_importer",
+        "pulp:action:create_sync_schedule"], "reasons": [], "start_time": "2013-07-30T18:35:55Z",
+        "tags": ["pulp:repository:integration_test_id", "pulp:repository_importer:yum_importer",
+        "pulp:action:create_sync_schedule"], "state": "finished", "finish_time": "2013-07-30T18:35:55Z",
+        "dependency_failures": {}, "schedule_id": null, "progress": {}, "call_request_group_id":
+        null, "call_request_id": "25033abf-6773-4f2a-8160-1dab24bbf1b2", "principal_login":
+        "admin", "response": "accepted", "result": "51f8078b196cbe402b598c12"}, {"task_group_id":
+        null, "exception": null, "traceback": null, "task_id": "e530094c-1352-47b9-9b88-bbc16f015734",
+        "call_request_tags": ["pulp:repository:integration_test_id", "pulp:repository_importer:yum_importer",
+        "pulp:schedule:51f8078b196cbe402b598c12", "pulp:action:delete_sync_schedule"],
+        "reasons": [], "start_time": "2013-07-30T18:35:56Z", "tags": ["pulp:repository:integration_test_id",
+        "pulp:repository_importer:yum_importer", "pulp:schedule:51f8078b196cbe402b598c12",
+        "pulp:action:delete_sync_schedule"], "state": "finished", "finish_time": "2013-07-30T18:35:56Z",
+        "dependency_failures": {}, "schedule_id": null, "progress": {}, "call_request_group_id":
+        null, "call_request_id": "e530094c-1352-47b9-9b88-bbc16f015734", "principal_login":
+        "admin", "response": "accepted", "result": null}, {"task_group_id": "35fada84-fd33-4505-843c-3aa8de31e74a",
+        "exception": null, "traceback": null, "task_id": "64bcbe1b-68f4-4ff7-ba81-ade28a7062ad",
+        "call_request_tags": ["pulp:repository:integration_test_id", "pulp:action:delete"],
+        "reasons": [], "start_time": "2013-07-30T18:35:56Z", "tags": ["pulp:repository:integration_test_id",
+        "pulp:action:delete"], "state": "finished", "finish_time": "2013-07-30T18:35:56Z",
+        "dependency_failures": {}, "schedule_id": null, "progress": {}, "call_request_group_id":
+        "35fada84-fd33-4505-843c-3aa8de31e74a", "call_request_id": "64bcbe1b-68f4-4ff7-ba81-ade28a7062ad",
+        "principal_login": "admin", "response": "accepted", "result": null}, {"task_group_id":
+        null, "exception": null, "traceback": null, "task_id": "5a3bc942-4a9b-49bc-9772-88b87a7841d9",
+        "call_request_tags": ["pulp:repository:integration_test_id", "pulp:action:create"],
+        "reasons": [], "start_time": "2013-07-30T18:35:57Z", "tags": ["pulp:repository:integration_test_id",
+        "pulp:action:create"], "state": "finished", "finish_time": "2013-07-30T18:35:57Z",
+        "dependency_failures": {}, "schedule_id": null, "progress": {}, "call_request_group_id":
+        null, "call_request_id": "5a3bc942-4a9b-49bc-9772-88b87a7841d9", "principal_login":
+        "admin", "response": "accepted", "result": {"scratchpad": {}, "display_name":
+        "integration_test_id", "description": null, "_ns": "repos", "notes": {}, "content_unit_counts":
+        {}, "_id": {"$oid": "51f8078d196cbe402b598c31"}, "id": "integration_test_id",
+        "_href": "/pulp/api/v2/repositories/integration_test_id/"}}, {"task_group_id":
+        null, "exception": null, "traceback": null, "task_id": "fbfc51ab-c855-49e5-a3e5-8dade6eb0b49",
+        "call_request_tags": ["pulp:repository:integration_test_id", "pulp:repository_importer:yum_importer",
+        "pulp:action:create_sync_schedule"], "reasons": [], "start_time": "2013-07-30T18:35:58Z",
+        "tags": ["pulp:repository:integration_test_id", "pulp:repository_importer:yum_importer",
+        "pulp:action:create_sync_schedule"], "state": "finished", "finish_time": "2013-07-30T18:35:58Z",
+        "dependency_failures": {}, "schedule_id": null, "progress": {}, "call_request_group_id":
+        null, "call_request_id": "fbfc51ab-c855-49e5-a3e5-8dade6eb0b49", "principal_login":
+        "admin", "response": "accepted", "result": "51f8078e196cbe402b598c3d"}, {"task_group_id":
+        null, "exception": null, "traceback": null, "task_id": "ebd6527b-4c9e-4977-9789-314beb0675af",
+        "call_request_tags": ["pulp:repository:integration_test_id", "pulp:repository_importer:yum_importer",
+        "pulp:schedule:51f8078e196cbe402b598c3d", "pulp:action:update_sync_schedule"],
+        "reasons": [], "start_time": "2013-07-30T18:35:58Z", "tags": ["pulp:repository:integration_test_id",
+        "pulp:repository_importer:yum_importer", "pulp:schedule:51f8078e196cbe402b598c3d",
+        "pulp:action:update_sync_schedule"], "state": "finished", "finish_time": "2013-07-30T18:35:58Z",
+        "dependency_failures": {}, "schedule_id": null, "progress": {}, "call_request_group_id":
+        null, "call_request_id": "ebd6527b-4c9e-4977-9789-314beb0675af", "principal_login":
+        "admin", "response": "accepted", "result": null}, {"task_group_id": "04a13fd0-5068-4f1b-abbe-acaea7c9f7fe",
+        "exception": null, "traceback": null, "task_id": "d4f4c8b7-03c3-40ba-8c8a-28b1c5d52d77",
+        "call_request_tags": ["pulp:repository:integration_test_id", "pulp:action:delete"],
+        "reasons": [], "start_time": "2013-07-30T18:35:58Z", "tags": ["pulp:repository:integration_test_id",
+        "pulp:action:delete"], "state": "finished", "finish_time": "2013-07-30T18:35:58Z",
+        "dependency_failures": {}, "schedule_id": null, "progress": {}, "call_request_group_id":
+        "04a13fd0-5068-4f1b-abbe-acaea7c9f7fe", "call_request_id": "d4f4c8b7-03c3-40ba-8c8a-28b1c5d52d77",
+        "principal_login": "admin", "response": "accepted", "result": null}, {"task_group_id":
+        null, "exception": null, "traceback": null, "task_id": "59dad875-12ae-49b1-b040-9dc876ba9371",
+        "call_request_tags": ["pulp:repository:integration_test_id", "pulp:action:create"],
+        "reasons": [], "start_time": "2013-07-30T18:36:00Z", "tags": ["pulp:repository:integration_test_id",
+        "pulp:action:create"], "state": "finished", "finish_time": "2013-07-30T18:36:00Z",
+        "dependency_failures": {}, "schedule_id": null, "progress": {}, "call_request_group_id":
+        null, "call_request_id": "59dad875-12ae-49b1-b040-9dc876ba9371", "principal_login":
+        "admin", "response": "accepted", "result": {"scratchpad": {}, "display_name":
+        "integration_test_id", "description": null, "_ns": "repos", "notes": {}, "content_unit_counts":
+        {}, "_id": {"$oid": "51f80790196cbe402b598c5c"}, "id": "integration_test_id",
+        "_href": "/pulp/api/v2/repositories/integration_test_id/"}}, {"task_group_id":
+        "7276be80-2cef-47ba-bfdd-0c9f0677bf75", "exception": null, "traceback": null,
+        "task_id": "1e0c5751-1f01-45ea-bffb-e9928106f4a5", "call_request_tags": ["pulp:repository:integration_test_id",
+        "pulp:action:sync"], "reasons": [], "start_time": "2013-07-30T18:36:00Z",
+        "tags": ["pulp:repository:integration_test_id", "pulp:action:sync"], "state":
+        "finished", "finish_time": "2013-07-30T18:36:01Z", "dependency_failures":
+        {}, "schedule_id": null, "progress": {"yum_importer": {"content": {"size_total":
+        17872, "items_left": 0, "items_total": 8, "state": "FINISHED", "size_left":
+        0, "details": {"rpm_total": 8, "rpm_done": 8, "drpm_total": 0, "drpm_done":
+        0}, "error_details": []}, "comps": {"state": "FINISHED"}, "distribution":
+        {"items_total": 3, "state": "FINISHED", "error_details": [], "items_left":
+        0}, "errata": {"state": "FINISHED"}, "metadata": {"state": "FINISHED"}}},
+        "call_request_group_id": "7276be80-2cef-47ba-bfdd-0c9f0677bf75", "call_request_id":
+        "1e0c5751-1f01-45ea-bffb-e9928106f4a5", "principal_login": "admin", "response":
+        "accepted", "result": {"importer_id": "yum_importer", "exception": null, "repo_id":
+        "integration_test_id", "traceback": null, "started": "2013-07-30T14:36:00-04:00",
+        "_ns": "repo_sync_results", "completed": "2013-07-30T14:36:01-04:00", "importer_type_id":
+        "yum_importer", "error_message": null, "summary": {"content": {"state": "FINISHED"},
+        "comps": {"state": "FINISHED"}, "distribution": {"state": "FINISHED"}, "errata":
+        {"state": "FINISHED"}, "metadata": {"state": "FINISHED"}}, "added_count":
+        0, "result": "success", "updated_count": 14, "details": {"content": {"size_total":
+        17872, "items_left": 0, "items_total": 8, "state": "FINISHED", "size_left":
+        0, "details": {"rpm_total": 8, "rpm_done": 8, "drpm_total": 0, "drpm_done":
+        0}, "error_details": []}, "comps": {"state": "FINISHED"}, "distribution":
+        {"items_total": 3, "state": "FINISHED", "error_details": [], "items_left":
+        0}, "errata": {"state": "FINISHED"}, "metadata": {"state": "FINISHED"}}, "id":
+        "51f80791196cbe402b598c78", "removed_count": 0}}]'
     http_version: 
-  recorded_at: Wed, 10 Jul 2013 23:09:04 GMT
-- request: 
+  recorded_at: Tue, 30 Jul 2013 18:36:01 GMT
+- request:
     method: get
-    uri: https://admin:admin@abed.usersys.redhat.com/pulp/api/v2/tasks/?
-    body: 
+    uri: https://admin:admin@kafka.usersys.redhat.com/pulp/api/v2/tasks/1e0c5751-1f01-45ea-bffb-e9928106f4a5/
+    body:
       encoding: US-ASCII
-      string: ""
-    headers: 
-      Accept: 
+      string: ''
+    headers:
+      Accept:
       - application/json
-      Accept-Encoding: 
+      Accept-Encoding:
       - gzip, deflate
-      Content-Type: 
+      Content-Type:
       - application/json
-      User-Agent: 
+      User-Agent:
       - Ruby
-  response: 
-    status: 
+  response:
+    status:
       code: 200
       message: OK
-    headers: 
-      Date: 
-      - Wed, 10 Jul 2013 23:09:04 GMT
-      Server: 
-      - Apache/2.2.15 (Red Hat)
-      Content-Length: 
-      - "29895"
-      Content-Type: 
+    headers:
+      Date:
+      - Tue, 30 Jul 2013 18:36:02 GMT
+      Server:
+      - Apache/2.4.4 (Fedora) OpenSSL/1.0.1e-fips mod_wsgi/3.4 Python/2.7.3
+      Content-Length:
+      - '2130'
+      Content-Type:
       - application/json
-    body: 
-      encoding: US-ASCII
-      string: "[{\"task_group_id\": null, \"exception\": null, \"traceback\": null, \"task_id\": \"faa9d6aa-807a-4f37-a969-419064692923\", \"call_request_tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:create\"], \"reasons\": [], \"start_time\": \"2013-07-10T23:08:44Z\", \"tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:create\"], \"state\": \"finished\", \"finish_time\": \"2013-07-10T23:08:44Z\", \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": null, \"call_request_id\": \"faa9d6aa-807a-4f37-a969-419064692923\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": {\"scratchpad\": {}, \"display_name\": \"integration_test_id\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_counts\": {}, \"_id\": {\"$oid\": \"51dde97c5ca0135f3047a59d\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\"}}, {\"task_group_id\": \"d6635557-48ce-4419-9740-df08f2d73458\", \"exception\": null, \"traceback\": null, \"task_id\": \"a6a220a7-a758-4550-addd-99777cef352f\", \"call_request_tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:sync\"], \"reasons\": [], \"start_time\": \"2013-07-10T23:08:44Z\", \"tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:sync\"], \"state\": \"finished\", \"finish_time\": \"2013-07-10T23:08:45Z\", \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {\"yum_importer\": {\"content\": {\"size_total\": 17872, \"items_left\": 0, \"items_total\": 8, \"state\": \"FINISHED\", \"size_left\": 0, \"details\": {\"rpm_total\": 8, \"rpm_done\": 8, \"drpm_total\": 0, \"drpm_done\": 0}, \"error_details\": []}, \"comps\": {\"state\": \"FINISHED\"}, \"distribution\": {\"items_total\": 3, \"state\": \"FINISHED\", \"error_details\": [], \"items_left\": 0}, \"errata\": {\"state\": \"FINISHED\"}, \"metadata\": {\"state\": \"FINISHED\"}}}, \"call_request_group_id\": \"d6635557-48ce-4419-9740-df08f2d73458\", \"call_request_id\": \"a6a220a7-a758-4550-addd-99777cef352f\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": {\"importer_id\": \"yum_importer\", \"exception\": null, \"repo_id\": \"integration_test_id\", \"traceback\": null, \"started\": \"2013-07-10T19:08:44-04:00\", \"_ns\": \"repo_sync_results\", \"completed\": \"2013-07-10T19:08:45-04:00\", \"importer_type_id\": \"yum_importer\", \"error_message\": null, \"summary\": {\"content\": {\"state\": \"FINISHED\"}, \"comps\": {\"state\": \"FINISHED\"}, \"distribution\": {\"state\": \"FINISHED\"}, \"errata\": {\"state\": \"FINISHED\"}, \"metadata\": {\"state\": \"FINISHED\"}}, \"added_count\": 0, \"result\": \"success\", \"updated_count\": 14, \"details\": {\"content\": {\"size_total\": 17872, \"items_left\": 0, \"items_total\": 8, \"state\": \"FINISHED\", \"size_left\": 0, \"details\": {\"rpm_total\": 8, \"rpm_done\": 8, \"drpm_total\": 0, \"drpm_done\": 0}, \"error_details\": []}, \"comps\": {\"state\": \"FINISHED\"}, \"distribution\": {\"items_total\": 3, \"state\": \"FINISHED\", \"error_details\": [], \"items_left\": 0}, \"errata\": {\"state\": \"FINISHED\"}, \"metadata\": {\"state\": \"FINISHED\"}}, \"id\": \"51dde97d5ca0135f3047a5ba\", \"removed_count\": 0}}, {\"task_group_id\": null, \"exception\": null, \"traceback\": null, \"task_id\": \"9b8ad44e-d66c-4f91-b36a-0043e1d246a5\", \"call_request_tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:unassociate\"], \"reasons\": [], \"start_time\": \"2013-07-10T23:08:46Z\", \"tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:unassociate\"], \"state\": \"finished\", \"finish_time\": \"2013-07-10T23:08:46Z\", \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": null, \"call_request_id\": \"9b8ad44e-d66c-4f91-b36a-0043e1d246a5\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": [{\"unit_key\": {\"arch\": \"x86_64\", \"version\": \"16\", \"variant\": \"TestVariant\", \"id\": \"ks-Test Family-TestVariant-16-x86_64\", \"family\": \"Test Family\"}, \"type_id\": \"distribution\"}, {\"unit_key\": {\"id\": \"RHEA-2010:0001\"}, \"type_id\": \"erratum\"}, {\"unit_key\": {\"id\": \"RHEA-2010:0002\"}, \"type_id\": \"erratum\"}, {\"unit_key\": {\"repo_id\": \"integration_test_id\", \"id\": \"all\"}, \"type_id\": \"package_category\"}, {\"unit_key\": {\"repo_id\": \"integration_test_id\", \"id\": \"bird\"}, \"type_id\": \"package_group\"}, {\"unit_key\": {\"repo_id\": \"integration_test_id\", \"id\": \"mammal\"}, \"type_id\": \"package_group\"}, {\"unit_key\": {\"name\": \"monkey\", \"checksum\": \"0e8fa50d0128fbabc7ccc5632e3fa25d39b0280169f6166cb8e2c84de8501db1\", \"epoch\": \"0\", \"version\": \"0.3\", \"release\": \"0.8\", \"arch\": \"noarch\", \"checksumtype\": \"sha256\"}, \"type_id\": \"rpm\"}, {\"unit_key\": {\"name\": \"walrus\", \"checksum\": \"6e8d6dc057e3e2c9819f0dc7e6c7b7f86bf2e8571bba414adec7fb621a461dfd\", \"epoch\": \"0\", \"version\": \"0.3\", \"release\": \"0.8\", \"arch\": \"noarch\", \"checksumtype\": \"sha256\"}, \"type_id\": \"rpm\"}, {\"unit_key\": {\"name\": \"giraffe\", \"checksum\": \"f25d67d1d9da04f12e57ca323247b43891ac46533e355b82de6d1922009f9f14\", \"epoch\": \"0\", \"version\": \"0.3\", \"release\": \"0.8\", \"arch\": \"noarch\", \"checksumtype\": \"sha256\"}, \"type_id\": \"rpm\"}, {\"unit_key\": {\"name\": \"penguin\", \"checksum\": \"3fcb2c927de9e13bf68469032a28b139d3e5ad2e58564fc210fd6e48635be694\", \"epoch\": \"0\", \"version\": \"0.3\", \"release\": \"0.8\", \"arch\": \"noarch\", \"checksumtype\": \"sha256\"}, \"type_id\": \"rpm\"}, {\"unit_key\": {\"name\": \"cheetah\", \"checksum\": \"422d0baa0cd9d7713ae796e886a23e17f578f924f74880debdbb7d65fb368dae\", \"epoch\": \"0\", \"version\": \"0.3\", \"release\": \"0.8\", \"arch\": \"noarch\", \"checksumtype\": \"sha256\"}, \"type_id\": \"rpm\"}, {\"unit_key\": {\"name\": \"squirrel\", \"checksum\": \"251768bdd15f13d78487c27638aa6aecd01551e253756093cde1c0ae878a17d2\", \"epoch\": \"0\", \"version\": \"0.3\", \"release\": \"0.8\", \"arch\": \"noarch\", \"checksumtype\": \"sha256\"}, \"type_id\": \"rpm\"}, {\"unit_key\": {\"name\": \"elephant\", \"checksum\": \"3e1c70cd1b421328acaf6397cb3d16145306bb95f65d1b095fc31372a0a701f3\", \"epoch\": \"0\", \"version\": \"0.3\", \"release\": \"0.8\", \"arch\": \"noarch\", \"checksumtype\": \"sha256\"}, \"type_id\": \"rpm\"}, {\"unit_key\": {\"name\": \"lion\", \"checksum\": \"12400dc95c23a4c160725a908716cd3fcdd7a8981585437ab64cd62efa3e4ae4\", \"epoch\": \"0\", \"version\": \"0.3\", \"release\": \"0.8\", \"arch\": \"noarch\", \"checksumtype\": \"sha256\"}, \"type_id\": \"rpm\"}]}, {\"task_group_id\": \"62fc0968-97d2-4169-8e50-f58ef5f74cde\", \"exception\": null, \"traceback\": null, \"task_id\": \"87715009-168a-494e-8fe7-465af9acb131\", \"call_request_tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:delete\"], \"reasons\": [], \"start_time\": \"2013-07-10T23:08:48Z\", \"tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:delete\"], \"state\": \"finished\", \"finish_time\": \"2013-07-10T23:08:48Z\", \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": \"62fc0968-97d2-4169-8e50-f58ef5f74cde\", \"call_request_id\": \"87715009-168a-494e-8fe7-465af9acb131\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}, {\"task_group_id\": null, \"exception\": null, \"traceback\": null, \"task_id\": \"0c639b05-4f4d-40fe-bfd7-0c7ec441de56\", \"call_request_tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:create\"], \"reasons\": [], \"start_time\": \"2013-07-10T23:08:49Z\", \"tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:create\"], \"state\": \"finished\", \"finish_time\": \"2013-07-10T23:08:49Z\", \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": null, \"call_request_id\": \"0c639b05-4f4d-40fe-bfd7-0c7ec441de56\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": {\"scratchpad\": {}, \"display_name\": \"integration_test_id\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_counts\": {}, \"_id\": {\"$oid\": \"51dde9815ca0135f3047a5d9\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\"}}, {\"task_group_id\": \"0f7ac616-36e4-4a92-b9b2-5c55afb6a47a\", \"exception\": null, \"traceback\": null, \"task_id\": \"af4467fe-8d96-41f8-9226-f91f6f7e618d\", \"call_request_tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:sync\"], \"reasons\": [], \"start_time\": \"2013-07-10T23:08:50Z\", \"tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:sync\"], \"state\": \"finished\", \"finish_time\": \"2013-07-10T23:08:50Z\", \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {\"yum_importer\": {\"content\": {\"size_total\": 17872, \"items_left\": 0, \"items_total\": 8, \"state\": \"FINISHED\", \"size_left\": 0, \"details\": {\"rpm_total\": 8, \"rpm_done\": 8, \"drpm_total\": 0, \"drpm_done\": 0}, \"error_details\": []}, \"comps\": {\"state\": \"FINISHED\"}, \"distribution\": {\"items_total\": 3, \"state\": \"FINISHED\", \"error_details\": [], \"items_left\": 0}, \"errata\": {\"state\": \"FINISHED\"}, \"metadata\": {\"state\": \"FINISHED\"}}}, \"call_request_group_id\": \"0f7ac616-36e4-4a92-b9b2-5c55afb6a47a\", \"call_request_id\": \"af4467fe-8d96-41f8-9226-f91f6f7e618d\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": {\"importer_id\": \"yum_importer\", \"exception\": null, \"repo_id\": \"integration_test_id\", \"traceback\": null, \"started\": \"2013-07-10T19:08:50-04:00\", \"_ns\": \"repo_sync_results\", \"completed\": \"2013-07-10T19:08:50-04:00\", \"importer_type_id\": \"yum_importer\", \"error_message\": null, \"summary\": {\"content\": {\"state\": \"FINISHED\"}, \"comps\": {\"state\": \"FINISHED\"}, \"distribution\": {\"state\": \"FINISHED\"}, \"errata\": {\"state\": \"FINISHED\"}, \"metadata\": {\"state\": \"FINISHED\"}}, \"added_count\": 0, \"result\": \"success\", \"updated_count\": 14, \"details\": {\"content\": {\"size_total\": 17872, \"items_left\": 0, \"items_total\": 8, \"state\": \"FINISHED\", \"size_left\": 0, \"details\": {\"rpm_total\": 8, \"rpm_done\": 8, \"drpm_total\": 0, \"drpm_done\": 0}, \"error_details\": []}, \"comps\": {\"state\": \"FINISHED\"}, \"distribution\": {\"items_total\": 3, \"state\": \"FINISHED\", \"error_details\": [], \"items_left\": 0}, \"errata\": {\"state\": \"FINISHED\"}, \"metadata\": {\"state\": \"FINISHED\"}}, \"id\": \"51dde9825ca0135f3047a5f5\", \"removed_count\": 0}}, {\"task_group_id\": \"6815df9e-c5b0-4525-b2da-1ccbec4efee7\", \"exception\": null, \"traceback\": null, \"task_id\": \"cccebd25-d172-40ae-b67c-2e71d5eacb08\", \"call_request_tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:delete\"], \"reasons\": [], \"start_time\": \"2013-07-10T23:08:51Z\", \"tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:delete\"], \"state\": \"finished\", \"finish_time\": \"2013-07-10T23:08:51Z\", \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": \"6815df9e-c5b0-4525-b2da-1ccbec4efee7\", \"call_request_id\": \"cccebd25-d172-40ae-b67c-2e71d5eacb08\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}, {\"task_group_id\": null, \"exception\": null, \"traceback\": null, \"task_id\": \"60c498cf-64de-47b0-a729-58a7af0d17b6\", \"call_request_tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:create\"], \"reasons\": [], \"start_time\": \"2013-07-10T23:08:52Z\", \"tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:create\"], \"state\": \"finished\", \"finish_time\": \"2013-07-10T23:08:52Z\", \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": null, \"call_request_id\": \"60c498cf-64de-47b0-a729-58a7af0d17b6\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": {\"scratchpad\": {}, \"display_name\": \"integration_test_id\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_counts\": {}, \"_id\": {\"$oid\": \"51dde9845ca0135f3047a608\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\"}}, {\"task_group_id\": \"52bf8d6e-387b-489e-b295-5b65c0c65eb9\", \"exception\": [\"MissingResource: Missing resource(s): resource_id=integration_test_id\\n\"], \"traceback\": [\"  File \\\"/usr/lib/python2.6/site-packages/pulp/server/dispatch/task.py\\\", line 138, in _run\\n    result = call(*args, **kwargs)\\n\", \"  File \\\"/usr/lib/python2.6/site-packages/pulp/server/managers/repo/sync.py\\\", line 93, in sync\\n    raise MissingResource(repo_id)\\n\"], \"task_id\": \"915ba3f5-5046-4ace-8002-b20cb2801a43\", \"call_request_tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:sync\"], \"reasons\": [], \"start_time\": \"2013-07-10T23:08:52Z\", \"tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:sync\"], \"state\": \"error\", \"finish_time\": \"2013-07-10T23:08:52Z\", \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": \"52bf8d6e-387b-489e-b295-5b65c0c65eb9\", \"call_request_id\": \"915ba3f5-5046-4ace-8002-b20cb2801a43\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}, {\"task_group_id\": \"b958371d-fa9f-4856-a3e9-d5b3eac86cb9\", \"exception\": null, \"traceback\": null, \"task_id\": \"d4304589-9023-4286-b2db-0f351b5c4633\", \"call_request_tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:delete\"], \"reasons\": [], \"start_time\": \"2013-07-10T23:08:54Z\", \"tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:delete\"], \"state\": \"finished\", \"finish_time\": \"2013-07-10T23:08:54Z\", \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": \"b958371d-fa9f-4856-a3e9-d5b3eac86cb9\", \"call_request_id\": \"d4304589-9023-4286-b2db-0f351b5c4633\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}, {\"task_group_id\": null, \"exception\": null, \"traceback\": null, \"task_id\": \"a2bdb3d3-11ee-4db5-bb04-023e7c27c1c4\", \"call_request_tags\": [\"pulp:user:integration_test_user\", \"pulp:action:create\"], \"reasons\": [], \"start_time\": \"2013-07-10T23:08:55Z\", \"tags\": [\"pulp:user:integration_test_user\", \"pulp:action:create\"], \"state\": \"finished\", \"finish_time\": \"2013-07-10T23:08:55Z\", \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": null, \"call_request_id\": \"a2bdb3d3-11ee-4db5-bb04-023e7c27c1c4\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": {\"_id\": {\"$oid\": \"51dde9875ca0135f3047a623\"}, \"name\": \"integration_test_user\", \"roles\": [], \"_ns\": \"users\", \"login\": \"integration_test_user\", \"id\": \"51dde9875ca0135f3047a623\", \"_href\": \"/pulp/api/v2/users/integration_test_user/\"}}, {\"task_group_id\": null, \"exception\": null, \"traceback\": null, \"task_id\": \"270eaf04-3b74-49c9-9921-a58ae716e39a\", \"call_request_tags\": [\"pulp:user:integration_test_user\", \"pulp:action:delete\"], \"reasons\": [], \"start_time\": \"2013-07-10T23:08:55Z\", \"tags\": [\"pulp:user:integration_test_user\", \"pulp:action:delete\"], \"state\": \"finished\", \"finish_time\": \"2013-07-10T23:08:55Z\", \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": null, \"call_request_id\": \"270eaf04-3b74-49c9-9921-a58ae716e39a\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}, {\"task_group_id\": null, \"exception\": null, \"traceback\": null, \"task_id\": \"14cf7908-eea3-40df-b796-9d3ca2dffa2d\", \"call_request_tags\": [\"pulp:user:integration_test_user\", \"pulp:action:create\"], \"reasons\": [], \"start_time\": \"2013-07-10T23:08:55Z\", \"tags\": [\"pulp:user:integration_test_user\", \"pulp:action:create\"], \"state\": \"finished\", \"finish_time\": \"2013-07-10T23:08:55Z\", \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": null, \"call_request_id\": \"14cf7908-eea3-40df-b796-9d3ca2dffa2d\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": {\"_id\": {\"$oid\": \"51dde9875ca0135f3047a639\"}, \"name\": \"integration_test_user\", \"roles\": [], \"_ns\": \"users\", \"login\": \"integration_test_user\", \"id\": \"51dde9875ca0135f3047a639\", \"_href\": \"/pulp/api/v2/users/integration_test_user/\"}}, {\"task_group_id\": null, \"exception\": null, \"traceback\": null, \"task_id\": \"7a12b0e4-1fb8-4d7a-9c91-c2be27f63249\", \"call_request_tags\": [\"pulp:user:integration_test_user\", \"pulp:action:delete\"], \"reasons\": [], \"start_time\": \"2013-07-10T23:08:56Z\", \"tags\": [\"pulp:user:integration_test_user\", \"pulp:action:delete\"], \"state\": \"finished\", \"finish_time\": \"2013-07-10T23:08:56Z\", \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": null, \"call_request_id\": \"7a12b0e4-1fb8-4d7a-9c91-c2be27f63249\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}, {\"task_group_id\": null, \"exception\": null, \"traceback\": null, \"task_id\": \"823b916f-9361-4a3a-99a8-d2e14c4baff1\", \"call_request_tags\": [\"pulp:user:integration_test_user\", \"pulp:action:create\"], \"reasons\": [], \"start_time\": \"2013-07-10T23:08:56Z\", \"tags\": [\"pulp:user:integration_test_user\", \"pulp:action:create\"], \"state\": \"finished\", \"finish_time\": \"2013-07-10T23:08:56Z\", \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": null, \"call_request_id\": \"823b916f-9361-4a3a-99a8-d2e14c4baff1\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": {\"_id\": {\"$oid\": \"51dde9885ca0135f3047a64f\"}, \"name\": \"integration_test_user\", \"roles\": [], \"_ns\": \"users\", \"login\": \"integration_test_user\", \"id\": \"51dde9885ca0135f3047a64f\", \"_href\": \"/pulp/api/v2/users/integration_test_user/\"}}, {\"task_group_id\": null, \"exception\": null, \"traceback\": null, \"task_id\": \"b090112e-9357-434a-9f04-2a384daf9d96\", \"call_request_tags\": [\"pulp:role:super-users\", \"pulp:action:add_user_to_role\"], \"reasons\": [], \"start_time\": \"2013-07-10T23:08:56Z\", \"tags\": [\"pulp:role:super-users\", \"pulp:action:add_user_to_role\"], \"state\": \"finished\", \"finish_time\": \"2013-07-10T23:08:56Z\", \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": null, \"call_request_id\": \"b090112e-9357-434a-9f04-2a384daf9d96\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}, {\"task_group_id\": null, \"exception\": null, \"traceback\": null, \"task_id\": \"fea427a9-8d98-4dc2-ae82-fc19630e9236\", \"call_request_tags\": [\"pulp:role:super-users\", \"pulp:action:remove_user_from_role\"], \"reasons\": [], \"start_time\": \"2013-07-10T23:08:56Z\", \"tags\": [\"pulp:role:super-users\", \"pulp:action:remove_user_from_role\"], \"state\": \"finished\", \"finish_time\": \"2013-07-10T23:08:56Z\", \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": null, \"call_request_id\": \"fea427a9-8d98-4dc2-ae82-fc19630e9236\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}, {\"task_group_id\": null, \"exception\": null, \"traceback\": null, \"task_id\": \"26eba53d-349d-4d6c-bb5b-2ffe64545d61\", \"call_request_tags\": [\"pulp:user:integration_test_user\", \"pulp:action:delete\"], \"reasons\": [], \"start_time\": \"2013-07-10T23:08:57Z\", \"tags\": [\"pulp:user:integration_test_user\", \"pulp:action:delete\"], \"state\": \"finished\", \"finish_time\": \"2013-07-10T23:08:57Z\", \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": null, \"call_request_id\": \"26eba53d-349d-4d6c-bb5b-2ffe64545d61\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}, {\"task_group_id\": null, \"exception\": null, \"traceback\": null, \"task_id\": \"b0f6812e-67e7-4631-b5b5-d6990f1f4d6c\", \"call_request_tags\": [\"pulp:user:integration_test_user\", \"pulp:action:create\"], \"reasons\": [], \"start_time\": \"2013-07-10T23:08:57Z\", \"tags\": [\"pulp:user:integration_test_user\", \"pulp:action:create\"], \"state\": \"finished\", \"finish_time\": \"2013-07-10T23:08:57Z\", \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": null, \"call_request_id\": \"b0f6812e-67e7-4631-b5b5-d6990f1f4d6c\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": {\"_id\": {\"$oid\": \"51dde9895ca0135f3047a677\"}, \"name\": \"integration_test_user\", \"roles\": [], \"_ns\": \"users\", \"login\": \"integration_test_user\", \"id\": \"51dde9895ca0135f3047a677\", \"_href\": \"/pulp/api/v2/users/integration_test_user/\"}}, {\"task_group_id\": null, \"exception\": null, \"traceback\": null, \"task_id\": \"d1a5d933-8c9d-4d0d-a52a-f19bfda0b1b2\", \"call_request_tags\": [\"pulp:role:super-users\", \"pulp:action:add_user_to_role\"], \"reasons\": [], \"start_time\": \"2013-07-10T23:08:57Z\", \"tags\": [\"pulp:role:super-users\", \"pulp:action:add_user_to_role\"], \"state\": \"finished\", \"finish_time\": \"2013-07-10T23:08:57Z\", \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": null, \"call_request_id\": \"d1a5d933-8c9d-4d0d-a52a-f19bfda0b1b2\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}, {\"task_group_id\": null, \"exception\": null, \"traceback\": null, \"task_id\": \"57513059-6e08-4730-aa59-eabf8d2ec782\", \"call_request_tags\": [\"pulp:role:super-users\", \"pulp:action:remove_user_from_role\"], \"reasons\": [], \"start_time\": \"2013-07-10T23:08:57Z\", \"tags\": [\"pulp:role:super-users\", \"pulp:action:remove_user_from_role\"], \"state\": \"finished\", \"finish_time\": \"2013-07-10T23:08:57Z\", \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": null, \"call_request_id\": \"57513059-6e08-4730-aa59-eabf8d2ec782\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}, {\"task_group_id\": null, \"exception\": null, \"traceback\": null, \"task_id\": \"a673c621-4ffa-439b-a4f7-4885509e792d\", \"call_request_tags\": [\"pulp:user:integration_test_user\", \"pulp:action:delete\"], \"reasons\": [], \"start_time\": \"2013-07-10T23:08:57Z\", \"tags\": [\"pulp:user:integration_test_user\", \"pulp:action:delete\"], \"state\": \"finished\", \"finish_time\": \"2013-07-10T23:08:57Z\", \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": null, \"call_request_id\": \"a673c621-4ffa-439b-a4f7-4885509e792d\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}, {\"task_group_id\": null, \"exception\": null, \"traceback\": null, \"task_id\": \"418b8c09-a791-4cb9-9ab4-c93afd46e02a\", \"call_request_tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:create\"], \"reasons\": [], \"start_time\": \"2013-07-10T23:08:58Z\", \"tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:create\"], \"state\": \"finished\", \"finish_time\": \"2013-07-10T23:08:58Z\", \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": null, \"call_request_id\": \"418b8c09-a791-4cb9-9ab4-c93afd46e02a\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": {\"scratchpad\": {}, \"display_name\": \"integration_test_id\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_counts\": {}, \"_id\": {\"$oid\": \"51dde98a5ca0135f3047a69f\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\"}}, {\"task_group_id\": null, \"exception\": null, \"traceback\": null, \"task_id\": \"c0903cce-8340-4c43-a8e9-e2bfe9cccfda\", \"call_request_tags\": [\"pulp:repository:integration_test_id\", \"pulp:repository_importer:yum_importer\", \"pulp:action:create_sync_schedule\"], \"reasons\": [], \"start_time\": \"2013-07-10T23:08:58Z\", \"tags\": [\"pulp:repository:integration_test_id\", \"pulp:repository_importer:yum_importer\", \"pulp:action:create_sync_schedule\"], \"state\": \"finished\", \"finish_time\": \"2013-07-10T23:08:58Z\", \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": null, \"call_request_id\": \"c0903cce-8340-4c43-a8e9-e2bfe9cccfda\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": \"51dde98a5ca0135f3047a6ab\"}, {\"task_group_id\": null, \"exception\": null, \"traceback\": null, \"task_id\": \"39c19012-a96f-4442-9144-5d51c59473c7\", \"call_request_tags\": [\"pulp:repository:integration_test_id\", \"pulp:repository_importer:yum_importer\", \"pulp:schedule:51dde98a5ca0135f3047a6ab\", \"pulp:action:delete_sync_schedule\"], \"reasons\": [], \"start_time\": \"2013-07-10T23:08:58Z\", \"tags\": [\"pulp:repository:integration_test_id\", \"pulp:repository_importer:yum_importer\", \"pulp:schedule:51dde98a5ca0135f3047a6ab\", \"pulp:action:delete_sync_schedule\"], \"state\": \"finished\", \"finish_time\": \"2013-07-10T23:08:58Z\", \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": null, \"call_request_id\": \"39c19012-a96f-4442-9144-5d51c59473c7\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}, {\"task_group_id\": \"80d8c5fc-c710-421b-b392-df0ef59eab25\", \"exception\": null, \"traceback\": null, \"task_id\": \"619c0d07-bd91-46ec-84f8-d454da0a689c\", \"call_request_tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:delete\"], \"reasons\": [], \"start_time\": \"2013-07-10T23:08:59Z\", \"tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:delete\"], \"state\": \"finished\", \"finish_time\": \"2013-07-10T23:08:59Z\", \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": \"80d8c5fc-c710-421b-b392-df0ef59eab25\", \"call_request_id\": \"619c0d07-bd91-46ec-84f8-d454da0a689c\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}, {\"task_group_id\": null, \"exception\": null, \"traceback\": null, \"task_id\": \"f8fd1cee-e91b-4f78-8018-d8a03fdfaede\", \"call_request_tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:create\"], \"reasons\": [], \"start_time\": \"2013-07-10T23:09:00Z\", \"tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:create\"], \"state\": \"finished\", \"finish_time\": \"2013-07-10T23:09:00Z\", \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": null, \"call_request_id\": \"f8fd1cee-e91b-4f78-8018-d8a03fdfaede\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": {\"scratchpad\": {}, \"display_name\": \"integration_test_id\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_counts\": {}, \"_id\": {\"$oid\": \"51dde98c5ca0135f3047a6ca\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\"}}, {\"task_group_id\": null, \"exception\": null, \"traceback\": null, \"task_id\": \"b23d2c0e-3dff-42f9-ba0b-3a78db8bed47\", \"call_request_tags\": [\"pulp:repository:integration_test_id\", \"pulp:repository_importer:yum_importer\", \"pulp:action:create_sync_schedule\"], \"reasons\": [], \"start_time\": \"2013-07-10T23:09:00Z\", \"tags\": [\"pulp:repository:integration_test_id\", \"pulp:repository_importer:yum_importer\", \"pulp:action:create_sync_schedule\"], \"state\": \"finished\", \"finish_time\": \"2013-07-10T23:09:00Z\", \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": null, \"call_request_id\": \"b23d2c0e-3dff-42f9-ba0b-3a78db8bed47\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": \"51dde98c5ca0135f3047a6d6\"}, {\"task_group_id\": null, \"exception\": null, \"traceback\": null, \"task_id\": \"14e50340-16c0-4d9b-8180-ee9b1482f336\", \"call_request_tags\": [\"pulp:repository:integration_test_id\", \"pulp:repository_importer:yum_importer\", \"pulp:schedule:51dde98c5ca0135f3047a6d6\", \"pulp:action:update_sync_schedule\"], \"reasons\": [], \"start_time\": \"2013-07-10T23:09:01Z\", \"tags\": [\"pulp:repository:integration_test_id\", \"pulp:repository_importer:yum_importer\", \"pulp:schedule:51dde98c5ca0135f3047a6d6\", \"pulp:action:update_sync_schedule\"], \"state\": \"finished\", \"finish_time\": \"2013-07-10T23:09:01Z\", \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": null, \"call_request_id\": \"14e50340-16c0-4d9b-8180-ee9b1482f336\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}, {\"task_group_id\": \"107c1748-53b2-4ab2-ba34-ac03e70d6bfb\", \"exception\": null, \"traceback\": null, \"task_id\": \"eb5ad565-0bfe-4d6c-8943-710362d54866\", \"call_request_tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:delete\"], \"reasons\": [], \"start_time\": \"2013-07-10T23:09:01Z\", \"tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:delete\"], \"state\": \"finished\", \"finish_time\": \"2013-07-10T23:09:01Z\", \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": \"107c1748-53b2-4ab2-ba34-ac03e70d6bfb\", \"call_request_id\": \"eb5ad565-0bfe-4d6c-8943-710362d54866\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": null}, {\"task_group_id\": null, \"exception\": null, \"traceback\": null, \"task_id\": \"514d793b-697e-4f3e-b076-1588bfb286fc\", \"call_request_tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:create\"], \"reasons\": [], \"start_time\": \"2013-07-10T23:09:02Z\", \"tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:create\"], \"state\": \"finished\", \"finish_time\": \"2013-07-10T23:09:02Z\", \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {}, \"call_request_group_id\": null, \"call_request_id\": \"514d793b-697e-4f3e-b076-1588bfb286fc\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": {\"scratchpad\": {}, \"display_name\": \"integration_test_id\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_counts\": {}, \"_id\": {\"$oid\": \"51dde98e5ca0135f3047a6f5\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\"}}, {\"task_group_id\": \"48a107e7-abf6-421f-916f-2862a48a4f54\", \"exception\": null, \"traceback\": null, \"task_id\": \"daf47c76-ea66-4bcc-b832-b99f7493da4f\", \"call_request_tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:sync\"], \"reasons\": [], \"start_time\": \"2013-07-10T23:09:03Z\", \"tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:sync\"], \"state\": \"finished\", \"finish_time\": \"2013-07-10T23:09:03Z\", \"dependency_failures\": {}, \"schedule_id\": null, \"progress\": {\"yum_importer\": {\"content\": {\"size_total\": 17872, \"items_left\": 0, \"items_total\": 8, \"state\": \"FINISHED\", \"size_left\": 0, \"details\": {\"rpm_total\": 8, \"rpm_done\": 8, \"drpm_total\": 0, \"drpm_done\": 0}, \"error_details\": []}, \"comps\": {\"state\": \"FINISHED\"}, \"distribution\": {\"items_total\": 3, \"state\": \"FINISHED\", \"error_details\": [], \"items_left\": 0}, \"errata\": {\"state\": \"FINISHED\"}, \"metadata\": {\"state\": \"FINISHED\"}}}, \"call_request_group_id\": \"48a107e7-abf6-421f-916f-2862a48a4f54\", \"call_request_id\": \"daf47c76-ea66-4bcc-b832-b99f7493da4f\", \"principal_login\": \"admin\", \"response\": \"accepted\", \"result\": {\"importer_id\": \"yum_importer\", \"exception\": null, \"repo_id\": \"integration_test_id\", \"traceback\": null, \"started\": \"2013-07-10T19:09:03-04:00\", \"_ns\": \"repo_sync_results\", \"completed\": \"2013-07-10T19:09:03-04:00\", \"importer_type_id\": \"yum_importer\", \"error_message\": null, \"summary\": {\"content\": {\"state\": \"FINISHED\"}, \"comps\": {\"state\": \"FINISHED\"}, \"distribution\": {\"state\": \"FINISHED\"}, \"errata\": {\"state\": \"FINISHED\"}, \"metadata\": {\"state\": \"FINISHED\"}}, \"added_count\": 0, \"result\": \"success\", \"updated_count\": 14, \"details\": {\"content\": {\"size_total\": 17872, \"items_left\": 0, \"items_total\": 8, \"state\": \"FINISHED\", \"size_left\": 0, \"details\": {\"rpm_total\": 8, \"rpm_done\": 8, \"drpm_total\": 0, \"drpm_done\": 0}, \"error_details\": []}, \"comps\": {\"state\": \"FINISHED\"}, \"distribution\": {\"items_total\": 3, \"state\": \"FINISHED\", \"error_details\": [], \"items_left\": 0}, \"errata\": {\"state\": \"FINISHED\"}, \"metadata\": {\"state\": \"FINISHED\"}}, \"id\": \"51dde98f5ca0135f3047a711\", \"removed_count\": 0}}]"
+    body:
+      encoding: UTF-8
+      string: '{"task_group_id": "7276be80-2cef-47ba-bfdd-0c9f0677bf75", "exception":
+        null, "traceback": null, "_href": "/pulp/api/v2/tasks/1e0c5751-1f01-45ea-bffb-e9928106f4a5/",
+        "task_id": "1e0c5751-1f01-45ea-bffb-e9928106f4a5", "call_request_tags": ["pulp:repository:integration_test_id",
+        "pulp:action:sync"], "reasons": [], "start_time": "2013-07-30T18:36:00Z",
+        "tags": ["pulp:repository:integration_test_id", "pulp:action:sync"], "state":
+        "finished", "finish_time": "2013-07-30T18:36:01Z", "dependency_failures":
+        {}, "schedule_id": null, "progress": {"yum_importer": {"content": {"size_total":
+        17872, "items_left": 0, "items_total": 8, "state": "FINISHED", "size_left":
+        0, "details": {"rpm_total": 8, "rpm_done": 8, "drpm_total": 0, "drpm_done":
+        0}, "error_details": []}, "comps": {"state": "FINISHED"}, "distribution":
+        {"items_total": 3, "state": "FINISHED", "error_details": [], "items_left":
+        0}, "errata": {"state": "FINISHED"}, "metadata": {"state": "FINISHED"}}},
+        "call_request_group_id": "7276be80-2cef-47ba-bfdd-0c9f0677bf75", "call_request_id":
+        "1e0c5751-1f01-45ea-bffb-e9928106f4a5", "principal_login": "admin", "response":
+        "accepted", "result": {"importer_id": "yum_importer", "exception": null, "repo_id":
+        "integration_test_id", "traceback": null, "started": "2013-07-30T14:36:00-04:00",
+        "_ns": "repo_sync_results", "completed": "2013-07-30T14:36:01-04:00", "importer_type_id":
+        "yum_importer", "error_message": null, "summary": {"content": {"state": "FINISHED"},
+        "comps": {"state": "FINISHED"}, "distribution": {"state": "FINISHED"}, "errata":
+        {"state": "FINISHED"}, "metadata": {"state": "FINISHED"}}, "added_count":
+        0, "result": "success", "updated_count": 14, "details": {"content": {"size_total":
+        17872, "items_left": 0, "items_total": 8, "state": "FINISHED", "size_left":
+        0, "details": {"rpm_total": 8, "rpm_done": 8, "drpm_total": 0, "drpm_done":
+        0}, "error_details": []}, "comps": {"state": "FINISHED"}, "distribution":
+        {"items_total": 3, "state": "FINISHED", "error_details": [], "items_left":
+        0}, "errata": {"state": "FINISHED"}, "metadata": {"state": "FINISHED"}}, "id":
+        "51f80791196cbe402b598c78", "removed_count": 0}}'
     http_version: 
-  recorded_at: Wed, 10 Jul 2013 23:09:04 GMT
-recorded_with: VCR 2.4.0
+  recorded_at: Tue, 30 Jul 2013 18:36:02 GMT
+recorded_with: VCR 2.5.0
