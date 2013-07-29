@@ -25,19 +25,13 @@ require 'rubygems'
 require 'minitest/autorun'
 
 require './test/support/repository_support'
-require './lib/runcible/resources/repository'
-require './lib/runcible/resources/repository_schedule'
-require './lib/runcible/extensions/repository'
-require './lib/runcible/extensions/distributor'
-require './lib/runcible/extensions/importer'
-require './lib/runcible/extensions/yum_importer'
 
 
 module TestResourcesScheduleBase
-  include RepositorySupport
 
   def setup
-    @resource = Runcible::Resources::RepositorySchedule
+    @resource = TestRuncible.server.resources.repository_schedule
+    @support = RepositorySupport.new
   end
 
   def teardown
@@ -52,17 +46,17 @@ class TestResourcesRepositoryCreateSchedule < MiniTest::Unit::TestCase
   def setup
     super
     VCR.insert_cassette('repository_schedules')
-    RepositorySupport.create_repo :importer=>true
-    RepositorySupport.create_schedule
+    @support.create_repo :importer=>true
+    @support.create_schedule
   end
 
   def teardown
-    RepositorySupport.destroy_repo
+    @support.destroy_repo
     super
   end
 
   def test_repository_schedules_path
-    path = @resource.path('foo', 'some_importer')
+    path = @resource.class.path('foo', 'some_importer')
 
     assert_match "repositories/foo/importers/some_importer/schedules/sync/", path
   end
@@ -76,7 +70,7 @@ class TestResourcesRepositoryCreateSchedule < MiniTest::Unit::TestCase
   def test_list_schedules
     list = @resource.list(RepositorySupport.repo_id, 'yum_importer')
 
-    assert_match list.first[:schedule], RepositorySupport.schedule_time
+    assert_match list.first[:schedule], @support.schedule_time
   end
 
 end
@@ -87,12 +81,12 @@ class TestResourcesScheduleUpdate < MiniTest::Unit::TestCase
   def setup
     super
     VCR.insert_cassette('repository_schedules_update')
-    RepositorySupport.create_repo :importer=>true
-    RepositorySupport.create_schedule
+    @support.create_repo :importer=>true
+    @support.create_schedule
   end
 
   def teardown
-    RepositorySupport.destroy_repo
+    @support.destroy_repo
     super
   end
 
@@ -111,12 +105,12 @@ class TestResourcesScheduleDelete < MiniTest::Unit::TestCase
   def setup
     super
     VCR.insert_cassette('repository_schedules_delete')
-    RepositorySupport.create_repo :importer=>true
-    RepositorySupport.create_schedule
+    @support.create_repo :importer=>true
+    @support.create_schedule
   end
 
   def teardown
-    RepositorySupport.destroy_repo
+    @support.destroy_repo
     super
   end
 

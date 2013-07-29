@@ -32,9 +32,9 @@ module Runcible
       # @param  [String]               repo_id  the repo ID to bind to
       # @param  [Boolean]              notify_agent sends consumer a notification
       # @return [RestClient::Response]          set of tasks representing each bind operation
-      def self.bind_all(id, repo_id, notify_agent=true)
-        Runcible::Extensions::Repository.retrieve_with_details(repo_id)['distributors'].collect do |d|
-          self.bind(id, repo_id, d['id'], {:notify_agent=>notify_agent})
+      def bind_all(id, repo_id, notify_agent=true)
+        repository_extension.retrieve_with_details(repo_id)['distributors'].collect do |d|
+          bind(id, repo_id, d['id'], {:notify_agent=>notify_agent})
         end.flatten
       end
 
@@ -43,9 +43,9 @@ module Runcible
       # @param  [String]               id       the consumer ID
       # @param  [String]               repo_id  the repo ID to unbind from
       # @return [RestClient::Response]          set of tasks representing each unbind operation
-      def self.unbind_all(id, repo_id)
-        Runcible::Extensions::Repository.retrieve_with_details(repo_id)['distributors'].collect do |d|
-          self.unbind(id, repo_id, d['id'])
+      def unbind_all(id, repo_id)
+        repository_extension.retrieve_with_details(repo_id)['distributors'].collect do |d|
+          unbind(id, repo_id, d['id'])
         end.flatten
       end
 
@@ -56,8 +56,8 @@ module Runcible
       # @param  [Array]                units    array of units to install
       # @param  [Hash]                 options to pass to content install
       # @return [RestClient::Response]          task representing the install operation
-      def self.install_content(id, type_id, units, options={})
-        self.install_units(id, generate_content(type_id, units), options)
+      def install_content(id, type_id, units, options={})
+        install_units(id, generate_content(type_id, units), options)
       end
 
       # Update content on a consumer
@@ -67,8 +67,8 @@ module Runcible
       # @param  [Array]                units    array of units to update
       # @param  [Hash]                 options to pass to content update
       # @return [RestClient::Response]          task representing the update operation
-      def self.update_content(id, type_id, units, options={})
-        self.update_units(id, generate_content(type_id, units, options), options)
+      def update_content(id, type_id, units, options={})
+        update_units(id, generate_content(type_id, units, options), options)
       end
 
       # Uninstall content from a consumer
@@ -77,8 +77,8 @@ module Runcible
       # @param  [String]               type_id  the type of content to uninstall (e.g. rpm, errata)
       # @param  [Array]                units    array of units to uninstall
       # @return [RestClient::Response]          task representing the uninstall operation
-      def self.uninstall_content(id, type_id, units)
-        self.uninstall_units(id, generate_content(type_id, units))
+      def uninstall_content(id, type_id, units)
+        uninstall_units(id, generate_content(type_id, units))
       end
 
       # Generate the content units used by other functions
@@ -87,7 +87,7 @@ module Runcible
       # @param  [Array]   units   array of units
       # @param  [Hash]    options contains options which may impact the format of the content (e.g :all => true)
       # @return [Array]           array of formatted content units
-      def self.generate_content(type_id, units, options={})
+      def generate_content(type_id, units, options={})
         content = []
 
         case type_id
@@ -123,7 +123,7 @@ module Runcible
       #                                                 applicable errata; otherwise, it will list
       #                                                 errata and the consumers they are applicable to
       # @return [RestClient::Response]  content applicability hash with details of errata available to consumer(s)
-      def self.applicable_errata(ids, repoids = [], consumer_report = true)
+      def applicable_errata(ids, repoids = [], consumer_report = true)
 
         ids = [ids] if ids.is_a? String
         consumer_criteria = { 'filters' => { 'id' => { '$in' => ids } } } unless ids.empty?
@@ -136,7 +136,14 @@ module Runcible
           'unit_criteria' => { 'erratum' => { } },
           'override_config' => { 'report_style' => report_style }
         }
-        self.applicability(criteria)
+        applicability(criteria)
+      end
+
+
+      private
+
+      def repository_extension
+        Runcible::Extensions::Repository.new(self.config)
       end
 
     end

@@ -21,36 +21,24 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-require 'active_support/json'
-require 'securerandom'
-
 module Runcible
-  module Extensions
-    class YumDistributor < Distributor
-      #required
-      attr_accessor "relative_url", "http", "https"
-      #optional
-      attr_accessor "protected", "auth_cert", "auth_ca",
-                    "https_ca", "gpgkey", "generate_metadata",
-                    "checksum_type", "skip", "https_publish_dir", "http_publish_dir"
+  module Models
+    class YumImporter < Importer
+        ID = 'yum_importer'
 
-      def initialize(relative_url, http, https, params={})
-        @relative_url=relative_url
-        @http = http
-        @https = https
-        super(params)
-      end
+        #https://github.com/pulp/pulp/blob/master/rpm-support/plugins/importers/yum_importer/importer.py
+        attr_accessor 'feed', 'ssl_verify', 'ssl_ca_cert', 'ssl_client_cert', 'ssl_client_key',
+                          'proxy_url', 'proxy_port', 'proxy_pass', 'proxy_user',
+                          'max_speed', 'verify_size', 'verify_checksum', 'num_threads',
+                          'newest', 'remove_old', 'num_old_packages', 'purge_orphaned', 'skip', 'checksum_type',
+                          'num_retries', 'retry_delay'
+        def id
+           YumImporter::ID
+        end
 
-      def self.type_id
-        'yum_distributor'
+        def config
+            as_json
+        end
       end
-
-      def config
-        to_ret = self.as_json
-        to_ret.delete('auto_publish')
-        to_ret.delete('id')
-        to_ret
-      end
-    end
   end
 end

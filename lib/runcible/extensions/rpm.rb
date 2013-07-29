@@ -31,17 +31,17 @@ module Runcible
       end
 
       # This function is not implemented for RPMs since they do not have content IDs
-      def self.find
+      def find
         raise NotImplementedError
       end
 
       # This function is not implemented for RPMs since they do not have content IDs
-      def self.find_all
+      def find_all
         raise NotImplementedError
       end
 
       # This function is not implemented for RPMs since they do not have content IDs
-      def self.unassociate_ids_from_repo(repo_id, ids)
+      def unassociate_ids_from_repo(repo_id, ids)
         raise NotImplementedError
       end
     end

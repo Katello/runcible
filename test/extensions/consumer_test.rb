@@ -32,54 +32,56 @@ require './test/support/consumer_support'
 class TestConsumerExtension < MiniTest::Unit::TestCase
 
   def self.before_suite
-    RepositorySupport.create_and_sync_repo(:importer_and_distributor => true)
+    @@repo_support = RepositorySupport.new
+    @@consumer_support = ConsumerSupport.new
+    @@repo_support.create_and_sync_repo(:importer_and_distributor => true)
   end
 
   def self.after_suite
-    RepositorySupport.destroy_repo
+    @@repo_support.destroy_repo
   end
 
   def setup
-    @resource = Runcible::Resources::Consumer
-    @extension = Runcible::Extensions::Consumer
+    @resource = TestRuncible.server.resources.consumer
+    @extension = TestRuncible.server.extensions.consumer
     @consumer_id = "integration_test_consumer_extensions11000"
     VCR.insert_cassette('extensions/consumer_extensions')
-    ConsumerSupport.destroy_consumer
-    ConsumerSupport.create_consumer(true)
+    @@consumer_support.destroy_consumer
+    @@consumer_support.create_consumer(true)
     @consumer_id = ConsumerSupport.consumer_id
     bind_repo
   end
 
   def teardown
-    ConsumerSupport.destroy_consumer
+    @@consumer_support.destroy_consumer
     VCR.eject_cassette
   end
 
   def bind_repo
     tasks = @extension.bind_all(@consumer_id, RepositorySupport.repo_id, false)
-    RepositorySupport.wait_on_tasks(tasks)
+    @@repo_support.wait_on_tasks(tasks)
   end
 
   def test_bind_all
     tasks = @extension.unbind_all(@consumer_id, RepositorySupport.repo_id)
-    RepositorySupport.wait_on_tasks(tasks)
+    @@repo_support.wait_on_tasks(tasks)
 
     response = @extension.bind_all(@consumer_id, RepositorySupport.repo_id, false)
-    RepositorySupport.wait_on_tasks(response)
+    @@repo_support.wait_on_tasks(response)
 
     refute_empty response
   end
 
   def test_unbind_all
     response = @extension.unbind_all(@consumer_id, RepositorySupport.repo_id)
-    RepositorySupport.wait_on_tasks(response)
+    @@repo_support.wait_on_tasks(response)
 
     refute_empty response
   end
 
   def test_install_content
     response = @extension.install_content(@consumer_id, "rpm", ["zsh", "foo"])
-    RepositorySupport.wait_on_task(response)
+    @@repo_support.wait_on_task(response)
 
     assert_equal  202, response.code
     assert        response["task_id"]
@@ -87,7 +89,7 @@ class TestConsumerExtension < MiniTest::Unit::TestCase
 
   def test_update_content
     response = @extension.update_content(@consumer_id, "rpm", ["zsh", "foo"])
-    RepositorySupport.wait_on_task(response)
+    @@repo_support.wait_on_task(response)
 
     assert_equal 202, response.code
     assert       response["task_id"]
@@ -95,7 +97,7 @@ class TestConsumerExtension < MiniTest::Unit::TestCase
 
   def test_uninstall_content
     response = @extension.uninstall_content(@consumer_id, "rpm", ["zsh", "foo"])
-    RepositorySupport.wait_on_task(response)
+    @@repo_support.wait_on_task(response)
 
     assert_equal 202, response.code
     assert       response["task_id"]

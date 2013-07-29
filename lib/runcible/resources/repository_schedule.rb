@@ -45,7 +45,7 @@ module Runcible
       # @param  [String]                repo_id       the ID of the repository
       # @param  [String]                importer_type the importer type
       # @return [RestClient::Response]
-      def self.list(repo_id, importer_type)
+      def list(repo_id, importer_type)
         call(:get, path(repo_id, importer_type))
       end
 
@@ -56,7 +56,7 @@ module Runcible
       # @param  [Hash]                  schedule      a hash representing a schedule
       # @param  [Hash]                  optional      container for all optional parameters
       # @return [RestClient::Response]
-      def self.create(repo_id, importer_type, schedule, optional={})
+      def create(repo_id, importer_type, schedule, optional={})
         call(:post, path(repo_id, importer_type),
              :payload => { :required => {:schedule=>schedule}, :optional => optional })
       end
@@ -68,7 +68,7 @@ module Runcible
       # @param  [String]                schedule_id   the ID of the schedule
       # @param  [Hash]                  optional      container for all optional parameters
       # @return [RestClient::Response]
-      def self.update(repo_id, importer_type, schedule_id, optional={})
+      def update(repo_id, importer_type, schedule_id, optional={})
         call(:put, path(repo_id, importer_type, schedule_id),
              :payload => {:optional => optional })
       end
@@ -79,7 +79,7 @@ module Runcible
       # @param  [String]                importer_type the importer type
       # @param  [String]                schedule_id   the ID of the schedule
       # @return [RestClient::Response]
-      def self.delete(repo_id, importer_type, schedule_id)
+      def delete(repo_id, importer_type, schedule_id)
         call(:delete, path(repo_id, importer_type, schedule_id))
       end
 

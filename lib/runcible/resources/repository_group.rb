@@ -42,7 +42,7 @@ module Runcible
       # @param  [String]                id        the ID of the group
       # @param  [Hash]                  optional  container for all optional parameters
       # @return [RestClient::Response]
-      def self.create(id, optional={})
+      def create(id, optional={})
         required = required_params(binding.send(:local_variables), binding)
         call(:post, path, :payload => { :required => required, :optional => optional })
       end
@@ -51,14 +51,14 @@ module Runcible
       #
       # @param  [String]                id  the ID of the Repository group
       # @return [RestClient::Response]
-      def self.retrieve(id)
+      def retrieve(id)
         call(:get, path(id))
       end
 
       # Retrieves all Repository Group
       #
       # @return [RestClient::Response]
-      def self.retrieve_all
+      def retrieve_all
         call(:get, path)
       end
 
@@ -66,7 +66,7 @@ module Runcible
       #
       # @param  [String]                id  the ID of the Repository group
       # @return [RestClient::Response]
-      def self.delete(id)
+      def delete(id)
         call(:delete, path(id))
       end
 
@@ -75,7 +75,7 @@ module Runcible
       # @param  [String]                id        the ID of the Repository group
       # @param  [Hash]                  criteria  criteria based on Mongo syntax representing repos to associate
       # @return [RestClient::Response]
-      def self.associate(id, criteria)
+      def associate(id, criteria)
         call(:post, path(id) + "actions/associate/", :payload => {:required => criteria})
       end
 
@@ -84,7 +84,7 @@ module Runcible
       # @param  [String]                id        the ID of the Repository group
       # @param  [Hash]                  criteria  criteria based on Mongo syntax representing repos ta unassociate
       # @return [RestClient::Response]
-      def self.unassociate(id, criteria)
+      def unassociate(id, criteria)
         call(:post, path(id) + "actions/unassociate/", :payload => {:required => criteria})
       end
 
