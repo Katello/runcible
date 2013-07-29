@@ -1,4 +1,4 @@
-# Copyright (c) 2012
+# Copyright (c) 2013 Red Hat Inc.
 #
 # MIT License
 #
@@ -21,20 +21,43 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-require 'active_support/core_ext/hash'
 require 'active_support/json'
-
+require 'securerandom'
 
 module Runcible
-  module Extensions
+  module Models
+    class ExportDistributor < Distributor
+      #required
+      attr_accessor "http", "https"
 
-    # Generic class to represent Pulp Importers 
-    # Child classes should supply id & config methods
-    class Importer
-      def initialize(params={})
-        params.each{|k,v| self.send("#{k.to_s}=",v)}
+      # Instantiates a export distributor
+      #
+      # @param  [boolean]         http  serve the contents over http
+      # @param  [boolean]         https serve the contents over https
+      # @return [Runcible::Extensions::ExportDistributor]
+      def initialize(http, https)
+        @http = http
+        @https = https
+        # Pulp seems to expect the ID to be export_distributor, not a random
+        super({:id => type_id})
+      end
+
+      # Distributor Type id
+      #
+      # @return [string]
+      def self.type_id
+        'export_distributor'
+      end
+
+      # generate the pulp config for the export distributor
+      #
+      # @return [Hash]
+      def config
+        to_ret = as_json
+        to_ret.delete('auto_publish')
+        to_ret.delete('id')
+        to_ret
       end
     end
-
   end
 end

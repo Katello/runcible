@@ -1,4 +1,4 @@
-# Copyright (c) 2013 Red Hat Inc.
+# Copyright (c) 2012 Red Hat Inc.
 #
 # MIT License
 #
@@ -25,22 +25,28 @@ require 'active_support/json'
 require 'securerandom'
 
 module Runcible
-  module Extensions
-    class YumCloneDistributor < Distributor
-
+  module Models
+    class YumDistributor < Distributor
+      #required
+      attr_accessor "relative_url", "http", "https"
       #optional
-      attr_accessor "source_repo_id", "source_distributor_id", "destination_distributor_id"
+      attr_accessor "protected", "auth_cert", "auth_ca",
+                    "https_ca", "gpgkey", "generate_metadata",
+                    "checksum_type", "skip", "https_publish_dir", "http_publish_dir"
 
-      def initialize(params={})
+      def initialize(relative_url, http, https, params={})
+        @relative_url=relative_url
+        @http = http
+        @https = https
         super(params)
       end
 
       def self.type_id
-        'yum_clone_distributor'
+        'yum_distributor'
       end
 
       def config
-        to_ret = self.as_json
+        to_ret = as_json
         to_ret.delete('auto_publish')
         to_ret.delete('id')
         to_ret
