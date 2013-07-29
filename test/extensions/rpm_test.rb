@@ -77,6 +77,20 @@ class TestExtensionsRpmCopy < UnitCopyBase
     assert_includes response['call_request_tags'], 'pulp:action:associate'
   end
 
+  def test_copy_with_filters
+    response = Runcible::Extensions::Rpm.copy(RepositorySupport.repo_id,
+                                 self.class.clone_name,
+                                 :filters => {
+                                      :unit => {
+                                        "$and" => [{'name' => {'$regex' => 'p.*'}},
+                                            {'version'=> {'$gt'=> '1.0'}}]
+                                        }}
+                                 )
+    RepositorySupport.task = response
+
+    assert_equal    202, response.code
+    assert_includes response['call_request_tags'], 'pulp:action:associate'
+  end
 end
 
 class TestExtensionsRpmUnassociate < UnitUnassociateBase
