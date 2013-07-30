@@ -16,7 +16,7 @@ namespace :test do
     t.pattern = 'test/unit/test_*.rb'
   end
 
-  [:resources, :extensions].each do |task_name|
+  [:resources, :extensions, :unit].each do |task_name|
     desc "Runs the #{task_name} tests"
     task task_name do
       options = {}
