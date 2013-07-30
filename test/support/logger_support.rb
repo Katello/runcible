@@ -22,16 +22,21 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
-class Logger
- 
-  attr_accessor :message
- 
-  def debug(message)
-    @message = message
-  end
+module Runcible
 
-  def error(message)
-    @message = message
+  class Logger
+
+    attr_accessor :message
+
+    def debug(message)
+      @message = message
+    end
+
+    def error(message)
+      @message = message
+    end
+
   end
 
 end
+
