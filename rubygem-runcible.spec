@@ -48,7 +48,7 @@ Name:           %{?scl_prefix}rubygem-%{gem_name}
 Summary:        A gem exposing Pulp's juiciest parts
 Group:          Applications/System
 License:        MIT
-Version:        0.4.11
+Version:        0.4.12
 Release:        1%{?dist}
 URL:            https://github.com/Katello/runcible
 # Can be retrieved by:
@@ -122,6 +122,13 @@ mkdir -p %{buildroot}%{gem_docdir}
 %doc %{gem_instdir}/CONTRIBUTING.md
 
 %changelog
+* Tue Jul 30 2013 Justin Sherrill <jsherril@redhat.com> 0.4.12-1
+- adding support for yum_clone_distributor (jsherril@redhat.com)
+- Improving some of the tests for pulp 2.2 and regenerating cassettes
+  (jsherril@redhat.com)
+- Pulp v2.2: Fixing individual tests for Pulp 2.2 (daviddavis@redhat.com)
+- Updating Readme to include steps for an official release. (ehelms@redhat.com)
+
 * Tue Jul 02 2013 Brad Buckingham <bbuckingham@redhat.com> 0.4.11-1
 - bumping release to 0.4.11 (bbuckingham@redhat.com)
 - consumer/group - update to allow for update all (bbuckingham@redhat.com)
