@@ -25,7 +25,7 @@
 module Runcible
   module Extensions
     class Unit < Runcible::Resources::Unit
-      
+
       # The content type (e.g. rpm, errata)
       def self.content_type
         ''
@@ -121,6 +121,7 @@ module Runcible
       def self.copy(source_repo_id, destination_repo_id, optional={})
         criteria = {:type_ids => [content_type], :filters => {}}
         criteria[:filters]['association'] = {'unit_id' => {'$in' => optional[:ids]}} if optional[:ids]
+        criteria[:filters] = optional[:filters] if optional[:filters]
         criteria[:fields] = {:unit => optional[:fields]} if optional[:fields]
 
         payload = {:criteria => criteria}
