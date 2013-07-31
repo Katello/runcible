@@ -40,7 +40,7 @@ module Runcible
       # @param  [String]                id    the ID of the role
       # @param  [String]                login the login of the user being added
       # @return [RestClient::Response]            
-      def self.add(id, login)
+      def add(id, login)
         required = required_params(binding.send(:local_variables), binding, ["id"])
         call(:post, "#{path(id)}users/", :payload => { :required => required })
       end
@@ -50,7 +50,7 @@ module Runcible
       # @param  [String]                id    the ID of the role
       # @param  [String]                login the login of the user being removed
       # @return [RestClient::Response]            
-      def self.remove(id, login)
+      def remove(id, login)
         call(:delete, "#{path(id)}users/#{login}/")
       end
 

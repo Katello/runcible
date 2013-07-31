@@ -1,4 +1,4 @@
-# Copyright (c) 2012 Red Hat Inc.
+# Copyright (c) 2013 Red Hat Inc.
 #
 # MIT License
 #
@@ -21,24 +21,42 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+require 'active_support/json'
+require 'securerandom'
+
 module Runcible
-  module Extensions
-    class YumImporter < Importer
-        ID = 'yum_importer'
+  module Models
+    class IsoDistributor < Distributor
+      #required
+      attr_accessor "serve_http", "serve_https"
 
-        #https://github.com/pulp/pulp/blob/master/rpm-support/plugins/importers/yum_importer/importer.py
-        attr_accessor 'feed', 'ssl_verify', 'ssl_ca_cert', 'ssl_client_cert', 'ssl_client_key',
-                          'proxy_url', 'proxy_port', 'proxy_pass', 'proxy_user',
-                          'max_speed', 'verify_size', 'verify_checksum', 'num_threads',
-                          'newest', 'remove_old', 'num_old_packages', 'purge_orphaned', 'skip', 'checksum_type',
-                          'num_retries', 'retry_delay'
-        def id
-           YumImporter::ID
-        end
-
-        def config
-            self.as_json
-        end
+      # Instantiates an iso distributor
+      #
+      # @param  [boolean]         http  serve the contents over http
+      # @param  [boolean]         https serve the contents over https
+      # @return [Runcible::Extensions::IsoDistributor]
+      def initialize(http, https)
+        @serve_http = http
+        @serve_https = https
+        super({})
       end
+
+      # Distributor Type id
+      #
+      # @return [string]
+      def self.type_id
+        'iso_distributor'
+      end
+
+      # generate the pulp config for the iso distributor
+      #
+      # @return [Hash]
+      def config
+        to_ret = as_json
+        to_ret.delete('auto_publish')
+        to_ret.delete('id')
+        to_ret
+      end
+    end
   end
 end

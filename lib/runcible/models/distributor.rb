@@ -1,4 +1,4 @@
-# Copyright (c) 2013 Red Hat Inc.
+# Copyright (c) 2012 Red Hat Inc.
 #
 # MIT License
 #
@@ -25,35 +25,31 @@ require 'active_support/json'
 require 'securerandom'
 
 module Runcible
-  module Extensions
-    class IsoDistributor < Distributor
-      #required
-      attr_accessor "serve_http", "serve_https"
+  module Models
+    class Distributor
+      attr_accessor 'auto_publish', 'id'
 
-      # Instantiates an iso distributor
+      def initialize(params={})
+        @auto_publish = false
+        id = params[:id] || SecureRandom.hex(10)
+        params.each{|k,v| send("#{k.to_s}=",v)}
+      end
+
+      def type_id
+        self.class.type_id
+      end
+
+      # Distributor Type id
       #
-      # @param  [boolean]         http  serve the contents over http
-      # @param  [boolean]         https serve the contents over https
-      # @return [Runcible::Extensions::IsoDistributor]
-      def initialize(http, https)
-        @serve_http = http
-        @serve_https = https
-        super({})
+      # @return [string]
+      def type_id
+        self.class.type_id
       end
 
       def self.type_id
-        'iso_distributor'
+        raise NotImplementedError("self.type_id")
       end
 
-      # generate the pulp config for the iso distributor
-      #
-      # @return [Hash]
-      def config
-        to_ret = self.as_json
-        to_ret.delete('auto_publish')
-        to_ret.delete('id')
-        to_ret
-      end
     end
   end
 end

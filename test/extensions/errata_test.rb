@@ -32,13 +32,14 @@ require './test/support/repository_support'
 class TestExtensionsErrata < MiniTest::Unit::TestCase
 
   def self.before_suite
-    @@extension = Runcible::Extensions::Errata
+    @@support = RepositorySupport.new
+    @@extension = TestRuncible.server.extensions.errata
     VCR.insert_cassette('extensions/errata', :match_requests_on => [:method, :path, :params, :body_json])
-    RepositorySupport.create_and_sync_repo(:importer => true)
+    @@support.create_and_sync_repo(:importer => true)
   end
 
   def self.after_suite
-    RepositorySupport.destroy_repo
+    @@support.destroy_repo
     VCR.eject_cassette
   end
 
@@ -92,12 +93,12 @@ end
 
 class TestExtensionsErrataCopy < UnitCopyBase
   def self.extension_class
-    Runcible::Extensions::Errata
+    TestRuncible.server.extensions.errata
   end
 
   def test_copy
-    response = Runcible::Extensions::Errata.copy(RepositorySupport.repo_id, self.class.clone_name)
-    RepositorySupport.task = response
+    response = self.class.extension_class.copy(RepositorySupport.repo_id, self.class.clone_name)
+    @@support.task = response
 
     assert_equal    202, response.code
     assert_includes response['call_request_tags'], 'pulp:action:associate'
@@ -107,27 +108,27 @@ end
 class TestExtensionsErrataUnassociate < UnitUnassociateBase
 
   def self.extension_class
-    Runcible::Extensions::Errata
+    TestRuncible.server.extensions.errata
   end
 
   def setup
-    task = Runcible::Extensions::Repository.unit_copy(self.class.clone_name, RepositorySupport.repo_id)
-    RepositorySupport.wait_on_task(task)
+    task = TestRuncible.server.extensions.repository.unit_copy(self.class.clone_name, RepositorySupport.repo_id)
+    @@support.wait_on_task(task)
   end
 
   def test_unassociate_ids_from_repo
     ids = content_ids(RepositorySupport.repo_id)
     refute_empty ids
-    task = Runcible::Extensions::Errata.unassociate_ids_from_repo(self.class.clone_name, [ids.first])
-    RepositorySupport.wait_on_task(task)
+    task = self.class.extension_class.unassociate_ids_from_repo(self.class.clone_name, [ids.first])
+    @@support.wait_on_task(task)
     assert_equal (ids.length - 1), content_ids(self.class.clone_name).length
   end
 
   def test_unassociate_unit_ids_from_repo
     ids = unit_ids(RepositorySupport.repo_id)
     refute_empty ids
-    task = Runcible::Extensions::Errata.unassociate_unit_ids_from_repo(self.class.clone_name, [ids.first])
-    RepositorySupport.wait_on_task(task)
+    task = self.class.extension_class.unassociate_unit_ids_from_repo(self.class.clone_name, [ids.first])
+    @@support.wait_on_task(task)
     assert_equal (ids.length - 1), unit_ids(self.class.clone_name).length
   end
 
@@ -135,9 +136,9 @@ class TestExtensionsErrataUnassociate < UnitUnassociateBase
   def test_unassociate_from_repo
     ids = unit_ids(RepositorySupport.repo_id)
     refute_empty ids
-    task = Runcible::Extensions::Errata.unassociate_from_repo(self.class.clone_name,
+    task = self.class.extension_class.unassociate_from_repo(self.class.clone_name,
                                                             :association => {'unit_id' => {'$in' => [ids.first]}})
-    RepositorySupport.wait_on_task(task)
+    @@support.wait_on_task(task)
     assert_equal (ids.length - 1), unit_ids(self.class.clone_name).length
   end
 

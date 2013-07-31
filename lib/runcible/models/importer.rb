@@ -1,4 +1,4 @@
-# Copyright (c) 2013 Red Hat Inc.
+# Copyright (c) 2012
 #
 # MIT License
 #
@@ -21,28 +21,20 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+require 'active_support/core_ext/hash'
+require 'active_support/json'
+
+
 module Runcible
-  module Extensions
-    class IsoImporter < Importer
-      ID = 'iso_importer'
+  module Models
 
-      attr_accessor 'feed', 'ssl_ca_cert', 'ssl_client_cert', 'ssl_client_key',
-                        'proxy_url', 'proxy_port', 'proxy_pass', 'proxy_user',
-                        'remove_missing_units', 'num_threads', 'max_speed'
-
-      # Importer Type id
-      #
-      # @return [string]
-      def id
-        IsoImporter::ID
-      end
-
-      # generate the pulp config for the iso importer
-      #
-      # @return [Hash]
-      def config
-          self.as_json
+    # Generic class to represent Pulp Importers 
+    # Child classes should supply id & config methods
+    class Importer
+      def initialize(params={})
+        params.each{|k,v| send("#{k.to_s}=",v)}
       end
     end
+
   end
 end

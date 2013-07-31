@@ -6,7 +6,7 @@ require './lib/runcible'
 class TestExtensionsRpm < MiniTest::Unit::TestCase
 
   def setup
-    @dist = Runcible::Extensions::YumCloneDistributor.new(:id=>"some_distributor_clone",
+    @dist = Runcible::Models::YumCloneDistributor.new(:id=>"some_distributor_clone",
                                                              :destination_distributor_id => "Foo_dist")
   end
 

@@ -27,13 +27,25 @@ require 'minitest/unit'
 require 'minitest/autorun'
 
 require './test/vcr_setup'
-require './lib/runcible/base'
+require './lib/runcible'
+
 
 begin
   require 'debugger'
 rescue LoadError
   puts "Debugging not enabled."
 end
+
+class TestRuncible
+  def self.server=(instance)
+    @@instance = instance
+  end
+
+  def self.server
+    @@instance
+  end
+end
+
 
 class CustomMiniTestRunner
   class Unit < MiniTest::Unit
@@ -113,7 +125,7 @@ class PulpMiniTestRunner
   end
 
   def set_runcible_config(options)
-    Runcible::Base.config = {
+    config = {
       :api_path   => "/pulp/api/v2/",
       :http_auth  => {}
     }
@@ -121,7 +133,7 @@ class PulpMiniTestRunner
     if options[:logging] == "true"
       log = ::Logger.new(STDOUT)
       log.level = Logger::DEBUG
-      Runcible::Base.config[:logging] = {
+      config[:logging] = {
         :logger => log,
         :debug  => true,
 	      :stdout => true
@@ -133,11 +145,11 @@ class PulpMiniTestRunner
       File.open('/etc/pulp/server.conf') do |f|
         f.each_line do |line|
           if line.start_with?('default_password')
-            Runcible::Base.config[:http_auth][:password] = line.split(':')[1].strip
+            config[:http_auth][:password] = line.split(':')[1].strip
           elsif line.start_with?('default_login')
-            Runcible::Base.config[:user] = line.split(':')[1].strip
+            config[:user] = line.split(':')[1].strip
           elsif line.start_with?('server_name')
-            Runcible::Base.config[:url] = "https://#{line.split(':')[1].chomp.strip}"
+           config[:url] = "https://#{line.split(':')[1].chomp.strip}"
           end
         end
       end
@@ -146,21 +158,23 @@ class PulpMiniTestRunner
       File.open('/etc/pulp/server.conf') do |f|
         f.each_line do |line|
           if line.start_with?('oauth_secret')
-            Runcible::Base.config[:oauth][:oauth_secret] = line.split(':')[1].strip
+            config[:oauth][:oauth_secret] = line.split(':')[1].strip
           elsif line.start_with?('oauth_key')
-            Runcible::Base.config[:oauth][:oauth_key] = line.split(':')[1].strip
+           config[:oauth][:oauth_key] = line.split(':')[1].strip
           elsif line.start_with?('default_login')
-            Runcible::Base.config[:user] = line.split(':')[1].strip
+           config[:user] = line.split(':')[1].strip
           elsif line.start_with?('server_name')
-            Runcible::Base.config[:url] = "https://#{line.split(':')[1].chomp.strip}"
+           config[:url] = "https://#{line.split(':')[1].chomp.strip}"
           end
         end
       end
     else
-      Runcible::Base.config[:http_auth][:password] = 'admin'
-      Runcible::Base.config[:user]  = 'admin'
-      Runcible::Base.config[:url]   = "https://localhost"
+      config[:http_auth][:password] = 'admin'
+      config[:user]  = 'admin'
+      config[:url]   = "https://localhost"
     end
+
+    TestRuncible.server = Runcible::Instance.new(config)
   end
 
   def set_vcr_config(mode)

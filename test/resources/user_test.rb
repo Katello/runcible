@@ -24,14 +24,13 @@
 require 'rubygems'
 require 'minitest/autorun'
 
-require './lib/runcible/resources/user'
 
 
 module TestResourcesUserBase
   def setup
     VCR.insert_cassette('user')
     @username = "integration_test_user"
-    @resource = Runcible::Resources::User
+    @resource = TestRuncible.server.resources.user
   end
 
   def teardown
@@ -96,13 +95,13 @@ class TestResourcesUser < MiniTest::Unit::TestCase
   end
 
   def test_path
-    path = @resource.path
+    path = @resource.class.path
 
     assert_match "users/", path
   end
 
   def test_path_with_username
-    path = @resource.path(@username)
+    path = @resource.class.path(@username)
 
     assert_match "users/#{@username}", path
   end
