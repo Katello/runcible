@@ -29,10 +29,10 @@ require './lib/runcible'
 
 
 module TestExtensionsIsoRepositoryBase
-  include RepositorySupport
 
   def setup
-    @extension = Runcible::Extensions::Repository
+    @support = RepositorySupport.new
+    @extension = TestRuncible.server.extensions.repository
     VCR.insert_cassette('extensions/iso_repository_extensions',
                         :match_requests_on => [:path, :method])
   end
@@ -54,12 +54,12 @@ class TestExtensionsIsoRepositoryCreate < MiniTest::Unit::TestCase
 
   def teardown
     super
-    RepositorySupport.destroy_repo(@repo_id)
+    @support.destroy_repo(@repo_id)
   end
 
   def test_create_with_importer_and_distributors_objects
-    distributors = [Runcible::Extensions::IsoDistributor.new(true, true)]
-    importer = Runcible::Extensions::IsoImporter.new(:feed => @repo_url)
+    distributors = [Runcible::Models::IsoDistributor.new(true, true)]
+    importer = Runcible::Models::IsoImporter.new(:feed=>@repo_url)
 
     response = @extension.create_with_importer_and_distributors(@repo_id, importer, distributors)
     assert_equal 201, response.code
@@ -69,7 +69,7 @@ class TestExtensionsIsoRepositoryCreate < MiniTest::Unit::TestCase
     assert_equal "iso_importer", response['importers'].first['importer_type_id']
 
     response = @extension.sync(@repo_id)
-    RepositorySupport.wait_on_tasks(response)
+    @support.wait_on_tasks(response)
 
     response = @extension.sync_history(@repo_id)
     assert_equal 'success', response.first['result']

@@ -30,10 +30,9 @@ require './test/support/repository_support'
 require './test/support/consumer_support'
 
 module TestConsumerGroupBase
-  include RepositorySupport
 
   def setup
-    @resource = Runcible::Resources::ConsumerGroup
+    @resource = TestRuncible.server.resources.consumer_group
     @consumer_group_id = "integration_test_consumer_group"
     VCR.insert_cassette('consumer_group')
   end
@@ -92,6 +91,7 @@ class ConsumerGroupTests  < MiniTest::Unit::TestCase
 
   def setup
     super
+    @support = ConsumerSupport.new
     create_consumer_group
   end
 
@@ -130,7 +130,8 @@ class ConsumerGroupWithConsumerTests < ConsumerGroupTests
 
   def setup
     super
-    ConsumerSupport.create_consumer
+    @support = ConsumerSupport.new
+    @support.create_consumer
     @criteria = {:criteria =>
                    {:filters =>
                      {:id => 
@@ -141,7 +142,7 @@ class ConsumerGroupWithConsumerTests < ConsumerGroupTests
   end
 
   def teardown
-    ConsumerSupport.destroy_consumer
+    @support.destroy_consumer
     super
   end
 
@@ -182,36 +183,36 @@ end
 class TestConsumerGroupRequiresRepo < ConsumerGroupTests
 
   def self.before_suite
-    RepositorySupport.create_and_sync_repo(:importer_and_distributor => true)
+    RepositorySupport.new.create_and_sync_repo(:importer_and_distributor => true)
 
   end
 
   def self.after_suite
-    RepositorySupport.destroy_repo
+    RepositorySupport.new.destroy_repo
   end
 
   def setup
     super
-    ConsumerSupport.create_consumer
+    @support.create_consumer
     criteria = {:criteria =>
                    {:filters =>
                      {:id => {"$in" => [ConsumerSupport.consumer_id]}}}}
 
-    distro_id = RepositorySupport.distributor()['id']
-    Runcible::Resources::Consumer.bind(ConsumerSupport.consumer_id, RepositorySupport.repo_id, distro_id)
+    distro_id = RepositorySupport.new.distributor()['id']
+    TestRuncible.server.resources.consumer.bind(ConsumerSupport.consumer_id, RepositorySupport.repo_id, distro_id)
 
     @resource.associate(@consumer_group_id, criteria)
   end
 
   def teardown
-    ConsumerSupport.destroy_consumer
+    @support.destroy_consumer
     super
   end
 
   def test_install_units
     response  = @resource.install_units(@consumer_group_id,{"units"=>["unit_key"=>{:name => "zsh"}]})
     task      = response.first
-    RepositorySupport.wait_on_task(task)
+    RepositorySupport.new.wait_on_task(task)
 
     assert_equal    202, response.code
     assert          task["task_id"]
@@ -221,7 +222,7 @@ class TestConsumerGroupRequiresRepo < ConsumerGroupTests
   def test_update_units
     response  = @resource.update_units(@consumer_group_id,{"units"=>["unit_key"=>{:name => "zsh"}]})
     task      = response.first
-    RepositorySupport.wait_on_task(task)
+    RepositorySupport.new.wait_on_task(task)
 
     assert_equal    202, response.code
     assert          task["task_id"]
@@ -231,7 +232,7 @@ class TestConsumerGroupRequiresRepo < ConsumerGroupTests
   def test_uninstall_units
     response  = @resource.uninstall_units(@consumer_group_id,{"units"=>["unit_key"=>{:name => "zsh"}]})
     task      = response.first
-    RepositorySupport.wait_on_task(task)
+    RepositorySupport.new.wait_on_task(task)
 
     assert_equal    202, response.code
     assert          task["task_id"]

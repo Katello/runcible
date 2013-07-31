@@ -28,16 +28,28 @@ Or install it yourself as:
 
 ### Set Configuration
 
-The base configuration allows for the following to be set.
+To use a single resource or extension, the configuration can be set:
 
-    Runcible::Base.config = { 
+    repo_api = Runcible::Resources::Repository.new({
                 :url      => "",
                 :api_path => "",
                 :user     => "",
                 :logger   => ""
-              }
+              })
+    repo_api.find(id)
 
-Required Configuration
+Alternatively, a single 'server' instance which can easily use all 
+  resources and extensions can be instantiated:
+
+    my_runcible = Runcible::Instance.new({
+                :url      => "",
+                :api_path => "",
+                :user     => "",
+                :logger   => ""
+              })
+     runcible.resources.repository.find(id)
+
+Required Configuration:
 
     :uri      => The base URI of the Pulp server (default: https://localhost)
     :api_path => The API path of the Pulp server (default: pulp/api/v2/)
@@ -55,7 +67,7 @@ For an example on parsing the Pulp server.conf and using values provided within 
 
 ### Make a Request
 
-Runcible provides two represntation's of Pulp entities to make API calls: [resources](https://github.com/Katello/runcible/tree/master/lib/runcible/resources) and [extensions](https://github.com/Katello/runcible/tree/master/lib/runcible/extensions)
+Runcible provides two representations of Pulp entities to make API calls: [resources](https://github.com/Katello/runcible/tree/master/lib/runcible/resources) and [extensions](https://github.com/Katello/runcible/tree/master/lib/runcible/extensions)
 
 The best examples of how to use either the resources or extensions can be found within the [tests](https://github.com/Katello/runcible/tree/master/test/integration)
 
@@ -63,22 +75,39 @@ The best examples of how to use either the resources or extensions can be found 
 
 Resources are designed to be one-for-one with the Pulp API calls in terms of required parameters and naming of the calls.  For example, in order to create a repository, associate a Yum importer and a distributor:
 
-    Runcible::Resources::Repository.create("Repository_ID")
-    Runcible::Resources::Repository.associate_importer("Repository_ID", "yum_importer", {})
-    Runcible::Resources::Repository.associate_distributor("Repository_ID", "yum_distributor", {"relative_url" => "/", "http" => true, "https" => true})
+    my_runcible = Runcible::Instance.new(config)
+    my_runcible.resources.repository.create("Repository_ID")
+    my_runcible.resources.repository.associate_importer("Repository_ID", "yum_importer", {})
+    my_runcible.resources.repository.associate_distributor("Repository_ID", "yum_distributor", {"relative_url" => "/", "http" => true, "https" => true})
+
+    or
+
+    Runcible::Resources::Repository.new(config).create("Repository_ID")
+    Runcible::Resources::Repository.new(config).associate_importer("Repository_ID", "yum_importer", {})
+    Runcible::Resources::Repository.new(config).associate_distributor("Repository_ID", "yum_distributor", {"relative_url" => "/", "http" => true, "https" => true})
 
 #### Extensions
 
 Extensions are constructs around the Pulp API that make retrieving, accessing or creating certain data types easier.  For example, providing objects that represent the details of a yum importer or distributor, and providing functions to create a Repository with an importer and distributors in a single call.  The same three step process above using extensions is:
 
-    Runcible::Extensions::Repository.create_with_importer_and_distributors("Repository_ID", {:id=>'yum_importer'}, [{'type_id' => 'yum_distributor', 'id'=>'123', 'auto_publish'=>true, 'config'=>{'relative_url' => '/', 'http' => true, 'https' => true}}])
+    my_runcible = Runcible::Instance.new(config)
+    my_runcible.extensions.repository.create_with_importer_and_distributor("Repository_ID", {:id=>'yum_importer'}, [{'type_id' => 'yum_distributor', 'id'=>'123', 'auto_publish'=>true, 'config'=>{'relative_url' => '/', 'http' => true, 'https' => true}}])
+
+    or
+
+    Runcible::Extensions::Repository.new(config).create_with_importer_and_distributors("Repository_ID", {:id=>'yum_importer'}, [{'type_id' => 'yum_distributor', 'id'=>'123', 'auto_publish'=>true, 'config'=>{'relative_url' => '/', 'http' => true, 'https' => true}}])
 
 Alternatively, using distributor and importer objects:
 
-    distributors = [Runcible::Extensions::YumDistributor.new('/path', true, true, :id => '123')]
-    importer = Runcible::Extensions::YumImporter.new()
-    Runcible::Extensions::Repository.create_with_importer_and_distributors("Repository_ID", importer, distributors)
+    distributors = [Runcible::Models::YumDistributor.new('/path', true, true, :id => '123')]
+    importer = Runcible::Models::YumImporter.new()
 
+    my_runcible = Runcible::Instance.new(config)
+    my_runcible.extensions.repository.create_with_importer_and_distributors("Repository_ID", importer, distributors)
+
+    or
+
+    Runcible::Extensions::Repository.new(config).create_with_importer_and_distributors("Repository_ID", importer, distributors)
 
 ## Testing
 

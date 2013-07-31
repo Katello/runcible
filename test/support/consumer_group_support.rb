@@ -26,29 +26,30 @@ require './lib/runcible/resources/consumer_group'
 require './lib/runcible/extensions/consumer_group'
 
 
-module ConsumerGroupSupport
+class ConsumerGroupSupport
 
-  @consumer_group_resource = Runcible::Extensions::ConsumerGroup
-  @consumer_group_id = "integration_test_consumer_group_support"
-
-  def self.consumer_group_id
-    @consumer_group_id
+  def initialize
+    @consumer_group_resource = TestRuncible.server.extensions.consumer_group
   end
 
-  def self.create_consumer_group
+  def self.consumer_group_id
+    "integration_test_consumer_group_support"
+  end
+
+  def create_consumer_group
     consumer_group = {}
     destroy_consumer_group
     VCR.use_cassette('consumer_group_support') do
-      consumer_group = @consumer_group_resource.create(@consumer_group_id)
+      consumer_group = @consumer_group_resource.create(self.class.consumer_group_id)
     end
     return consumer_group
   rescue Exception => e
     raise e unless e.class == RestClient::ResourceNotFound
   end
 
-  def self.destroy_consumer_group
+  def destroy_consumer_group
     VCR.use_cassette('consumer_group_support') do
-      @consumer_group_resource.delete(@consumer_group_id)
+      @consumer_group_resource.delete(self.class.consumer_group_id)
     end
 
   rescue Exception => e

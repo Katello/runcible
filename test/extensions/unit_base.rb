@@ -33,26 +33,27 @@ class UnitCopyBase < MiniTest::Unit::TestCase
   end
 
   def self.before_suite
+    @@support = RepositorySupport.new
     if respond_to?(:extension_class)
-      VCR.insert_cassette("extensions/#{extension_class.content_type}_repository_associate")
-      RepositorySupport.destroy_repo(clone_name)
-      RepositorySupport.destroy_repo
-      RepositorySupport.create_and_sync_repo(:importer => true)
-      Runcible::Extensions::Repository.create_with_importer(clone_name, {:id=>"yum_importer"})
+      VCR.insert_cassette("extensions/#{extension_class.class.content_type}_repository_associate")
+      @@support.destroy_repo(clone_name)
+      @@support.destroy_repo
+      @@support.create_and_sync_repo(:importer => true)
+      TestRuncible.server.extensions.repository.create_with_importer(clone_name, {:id=>"yum_importer"})
     end
   end
 
   def self.after_suite
     if respond_to?(:extension_class)
-      RepositorySupport.destroy_repo(clone_name)
-      RepositorySupport.destroy_repo
+      @@support.destroy_repo(clone_name)
+      @@support.destroy_repo
       VCR.eject_cassette
     end
   end
 
   def units(repo)
-    Runcible::Extensions::Repository.unit_search(repo,
-    :type_ids=>[self.class.extension_class.content_type])
+    TestRuncible.server.extensions.repository.unit_search(repo,
+    :type_ids=>[self.class.extension_class.class.content_type])
   end
 
   def unit_ids(repo)
@@ -68,18 +69,19 @@ class UnitUnassociateBase < MiniTest::Unit::TestCase
   end
 
   def self.before_suite
+    @@support = RepositorySupport.new
     if respond_to?(:extension_class)
       VCR.insert_cassette("extensions/#{extension_class.content_type}_repository_unassociate",
                           :match_requests_on => [:method, :path, :params, :body_json])
-      RepositorySupport.create_and_sync_repo(:importer => true)
-      Runcible::Extensions::Repository.create_with_importer(clone_name, {:id=>"yum_importer"})
+      @@support.create_and_sync_repo(:importer => true)
+      TestRuncible.server.extensions.repository.create_with_importer(clone_name, {:id=>"yum_importer"})
     end
   end
 
   def self.after_suite
     if respond_to?(:extension_class)
-      RepositorySupport.destroy_repo(clone_name)
-      RepositorySupport.destroy_repo
+      @@support.destroy_repo(clone_name)
+      @@support.destroy_repo
       VCR.eject_cassette
     end
   end
@@ -90,7 +92,7 @@ class UnitUnassociateBase < MiniTest::Unit::TestCase
   end
 
   def units(repo)
-    Runcible::Extensions::Repository.unit_search(repo,
+    TestRuncible.server.extensions.repository.unit_search(repo,
     :type_ids=>[self.class.extension_class.content_type])
   end
 
