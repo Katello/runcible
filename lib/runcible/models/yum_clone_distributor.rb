@@ -26,6 +26,8 @@ require 'securerandom'
 
 module Runcible
   module Models
+    # Requires the pulp-katello-plugins
+    #  https://github.com/Katello/pulp-katello-plugins
     class YumCloneDistributor < Distributor
 
       #optional
