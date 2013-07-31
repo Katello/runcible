@@ -79,7 +79,7 @@ class TestExtensionsRpmCopy < UnitCopyBase
   end
 
   def test_copy_with_filters
-    response = Runcible::Extensions::Rpm.copy(RepositorySupport.repo_id,
+    response = self.class.extension_class.copy(RepositorySupport.repo_id,
                                  self.class.clone_name,
                                  :filters => {
                                       :unit => {
@@ -87,7 +87,7 @@ class TestExtensionsRpmCopy < UnitCopyBase
                                             {'version'=> {'$gt'=> '1.0'}}]
                                         }}
                                  )
-    RepositorySupport.task = response
+    @@support.task = response
 
     assert_equal    202, response.code
     assert_includes response['call_request_tags'], 'pulp:action:associate'
