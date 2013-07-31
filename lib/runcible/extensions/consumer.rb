@@ -30,12 +30,14 @@ module Runcible
       #
       # @param  [String]               id       the consumer ID
       # @param  [String]               repo_id  the repo ID to bind to
-      # @param  [Boolean]              notify_agent sends consumer a notification
+      # @param  [Hash]                 options  options to pass to the bindings
+      # @option notify_agent [Boolean] sends consumer a notification
+      # @option binding_config [Hash] sends consumer a notification
       # @return [RestClient::Response]          set of tasks representing each bind operation
-      def bind_all(id, repo_id, notify_agent=true)
+      def bind_all(id, repo_id, type_id, options={})
         repository_extension.retrieve_with_details(repo_id)['distributors'].collect do |d|
-          bind(id, repo_id, d['id'], {:notify_agent=>notify_agent})
-        end.flatten
+          bind(id, repo_id, d['id'], options) if d['distributor_type_id'] == type_id
+        end.reject{|f| f.nil?}.flatten
       end
 
       # Unbind a consumer to all repositories with a given ID
@@ -43,10 +45,31 @@ module Runcible
       # @param  [String]               id       the consumer ID
       # @param  [String]               repo_id  the repo ID to unbind from
       # @return [RestClient::Response]          set of tasks representing each unbind operation
-      def unbind_all(id, repo_id)
+      def unbind_all(id, repo_id, type_id)
         repository_extension.retrieve_with_details(repo_id)['distributors'].collect do |d|
-          unbind(id, repo_id, d['id'])
-        end.flatten
+          unbind(id, repo_id, d['id']) if d['distributor_type_id'] == type_id
+        end.reject{|f| f.nil?}.flatten
+      end
+
+      # Activate a consumer as a pulp node
+      #
+      # @param  [String]               id       the consumer ID
+      # @param  [String]               update_strategy update_strategy for the node (defaults to additive)
+      # @return [RestClient::Response]          response from update call
+      def activate_node(id, update_strategy="additive")
+        delta = {:notes=>{'_child-node' => true,
+                          '_node-update-strategy' => update_strategy}}
+        self.update(id, delta)
+      end
+
+      # Deactivate a consumer as a pulp node
+      #
+      # @param  [String]               id       the consumer ID
+      # @return [RestClient::Response]          response from update call
+      def deactivate_node(id)
+        delta = {:notes=>{'child-node' => nil,
+                          'update_strategy' => nil}}
+        self.update(id, :delta=>delta)
       end
 
       # Install content to a consumer
@@ -95,6 +118,8 @@ module Runcible
             unit_key = :name
           when 'erratum'
             unit_key = :id
+          when 'repository'
+            unit_key = :repo_id
           else
             unit_key = :id
         end
@@ -104,6 +129,8 @@ module Runcible
           content_unit[:type_id] = type_id
           content_unit[:unit_key] = {}
           content.push(content_unit)
+        elsif units.nil?
+          content = [{:unit_key=> nil, :type_id=>type_id}]
         else
           units.each do |unit|
             content_unit = {}
