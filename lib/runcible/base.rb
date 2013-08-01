@@ -24,20 +24,26 @@
 require 'rest_client'
 require 'oauth'
 require 'json'
+require 'thread'
 
 
 module Runcible
   class Base
 
     def initialize(config={})
+      @mutex = Mutex.new
       @config = config
     end
 
+    def lazy_config=(a_block)
+      @mutex.synchronize { @lazy_config = a_block }
+    end
+
     def config
-      if defined?(@config)
+      @mutex.synchronize do
+        @config = @lazy_config.call if defined?(@lazy_config)
+        raise Runcible::ConfigurationUndefinedError, Runcible::ConfigurationUndefinedError.message unless @config
         @config
-      else
-        raise Runcible::ConfigurationUndefinedError, Runcible::ConfigurationUndefinedError.message
       end
     end
 
