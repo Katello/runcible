@@ -35,8 +35,8 @@ module Runcible
       @config = config
     end
 
-    def lazy_config=(blk)
-      @mutex.synchronize { @lazy_config = blk }
+    def lazy_config=(a_block)
+      @mutex.synchronize { @lazy_config = a_block }
     end
 
     def config
