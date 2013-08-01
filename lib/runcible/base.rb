@@ -29,7 +29,7 @@ require 'thread'
 
 module Runcible
   class Base
-    
+
     def initialize(config={})
       @mutex = Mutex.new
       @config = config
