@@ -47,7 +47,7 @@ Alternatively, a single 'server' instance which can easily use all
                 :user     => "",
                 :logger   => ""
               })
-     runcible.resources.repository.find(id)
+     my_runcible.resources.repository.find(id)
 
 Required Configuration:
 
