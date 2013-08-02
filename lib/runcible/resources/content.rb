@@ -39,7 +39,7 @@ module Runcible
       #
       # Request Body Contents: None
       # @return [RestClient::Response]  the upload_id
-      def self.create_upload_request
+      def create_upload_request
         call(:post, path)
       end
 
@@ -48,7 +48,7 @@ module Runcible
       # @param  offset   offset for file assembly
       # @param  content  content of the file being uploaded to the server
       # @return  [RestClient::Response]
-      def self.upload_bits(upload_id, offset, content)
+      def upload_bits(upload_id, offset, content)
         required = required_params(binding.send(:local_variables), binding)
         call(:put, path("#{upload_id}/#{offset}/"), :payload => { :required => required })
       end
@@ -60,7 +60,7 @@ module Runcible
       # @param  [Object]  unit_key      unique identifier for the new unit; the contents are contingent on the type of unit being uploaded
       # @param  [Hash]    optional      container for all optional parameters
       # @return [RestClient::Response]
-      def self.import_into_repo(repo_id, unit_type_id, upload_id,  unit_key, optional={})
+      def import_into_repo(repo_id, unit_type_id, upload_id,  unit_key, optional={})
         required = required_params(binding.send(:local_variables), binding)
         call(:post, Repository.path("#{repo_id}/actions/import_upload/"), :payload => { :required =>required, :optional => optional })
       end
@@ -69,15 +69,15 @@ module Runcible
       #
       # Query Parameters: None
       # @return [RestClient::Response]
-      def self.delete_upload_request(upload_id)
+      def delete_upload_request(upload_id)
         call(:delete, path("#{upload_id}/"))
       end
 
       # List all upload requests
       #
       # Query Parameters: None
-      # @return [RestClient::Response]  the list of IDs for all upload requests on the server
-      def self.list_all_requests
+      # @return [RestClient::Response]  the list of IDs for all upload requests on the server, or empty list
+      def list_all_requests
         call(:get, path)
       end
 

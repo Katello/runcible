@@ -17,7 +17,7 @@ require './test/support/repository_support'
 module TestContentBase
 
   def setup
-    @resource = Runcible::Resources::Content
+    @resource = TestRuncible.server.resources.content
     VCR.insert_cassette('content')
   end
 
