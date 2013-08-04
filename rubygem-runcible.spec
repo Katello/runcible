@@ -48,7 +48,7 @@ Name:           %{?scl_prefix}rubygem-%{gem_name}
 Summary:        A gem exposing Pulp's juiciest parts
 Group:          Applications/System
 License:        MIT
-Version:        1.0.1
+Version:        1.0.2
 Release:        1%{?dist}
 URL:            https://github.com/Katello/runcible
 # Can be retrieved by:
@@ -122,6 +122,9 @@ mkdir -p %{buildroot}%{gem_docdir}
 %doc %{gem_instdir}/CONTRIBUTING.md
 
 %changelog
+* Sun Aug 04 2013 Justin Sherrill <jsherril@redhat.com> 1.0.2-1
+- bumping gem version (jsherril@redhat.com)
+
 * Sun Aug 04 2013 Justin Sherrill <jsherril@redhat.com> 1.0.1-1
 - renamed lazy_config= parameter (dmitri@appliedlogic.ca)
 - a tiny fix in README (dmitri@appliedlogic.ca)
