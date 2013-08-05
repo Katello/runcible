@@ -4,7 +4,7 @@
 
 Exposing Pulp's juiciest parts. http://www.pulpproject.org/
 
-Latest Live Tested Version: **pulp-server-2.1.2-0.2.beta.el6.noarch**
+Latest Live Tested Version: **pulp-server-2.2.0-0.20.beta.el6.noarch**
 
 Current stable Runcible: https://github.com/Katello/runcible/tree/0.3
 
@@ -120,6 +120,11 @@ The documentation is built with yard and hosted on Github via the gh-pages branc
     git push <upstream> gh-pages
     
 ## Building and Releasing
+
+An official release of Runcible should include the release of a gem on rubygems.org and an update to the documentation branch. At a minimum, the following two actions should be performed for each release:
+
+1. [Build and Release Gem](#gem)
+2. [Updating Documentation](#updating-documentation)
 
 ### Gem
 
