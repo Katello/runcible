@@ -60,7 +60,15 @@ module Runcible
           optional[:importer_config] = importer
         end if importer
 
-        if optional.has_key?(:importer_type_id)
+        repo_type = if importer.methods.include?(repo_type)
+                      importer.repo_type
+                    elsif importer.is_a?(Hash) && importer.has_key?(:repo_type)
+                      importer[:repo_type]
+                    else
+                      nil
+                    end
+
+        if optional.has_key?(:importer_type_id) && repo_type
           # pulp needs _repo-type in order to determine the type of repo to create.
           optional[:notes] = { '_repo-type' => importer.repo_type }
         end

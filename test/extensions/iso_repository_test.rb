@@ -59,7 +59,7 @@ class TestExtensionsIsoRepositoryCreate < MiniTest::Unit::TestCase
 
   def test_create_with_importer_and_distributors_objects
     distributors = [Runcible::Extensions::IsoDistributor.new(true, true)]
-    importer = Runcible::Extensions::IsoImporter.new(:feed_url=>@repo_url)
+    importer = Runcible::Extensions::IsoImporter.new(:feed => @repo_url)
 
     response = @extension.create_with_importer_and_distributors(@repo_id, importer, distributors)
     assert_equal 201, response.code

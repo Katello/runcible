@@ -56,7 +56,7 @@ class TestConsumerExtension < MiniTest::Unit::TestCase
   end
 
   def bind_repo
-    tasks = @extension.bind_all(@consumer_id, RepositorySupport.repo_id)
+    tasks = @extension.bind_all(@consumer_id, RepositorySupport.repo_id, false)
     RepositorySupport.wait_on_tasks(tasks)
   end
 
@@ -64,7 +64,7 @@ class TestConsumerExtension < MiniTest::Unit::TestCase
     tasks = @extension.unbind_all(@consumer_id, RepositorySupport.repo_id)
     RepositorySupport.wait_on_tasks(tasks)
 
-    response = @extension.bind_all(@consumer_id, RepositorySupport.repo_id)
+    response = @extension.bind_all(@consumer_id, RepositorySupport.repo_id, false)
     RepositorySupport.wait_on_tasks(response)
 
     refute_empty response

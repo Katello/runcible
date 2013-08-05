@@ -195,7 +195,7 @@ class TestRepositoryImporter < MiniTest::Unit::TestCase
   def test_update_importer
     @resource.associate_importer(RepositorySupport.repo_id, "yum_importer", {})
     response = @resource.update_importer(RepositorySupport.repo_id, "yum_importer",
-                                         {:feed_url=>"http://katello.org/repo/"})
+                                         {:feed=>"http://katello.org/repo/"})
     assert_equal 200, response.code
   end
 end
