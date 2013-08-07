@@ -9,13 +9,14 @@ require './test/support/repository_support'
 class TestExtenionsPackageGroup < MiniTest::Unit::TestCase
 
   def self.before_suite
-    @@extension = Runcible::Extensions::PackageGroup
+    @@support = RepositorySupport.new
+    @@extension = TestRuncible.server.extensions.package_group
     VCR.insert_cassette('extensions/package_group', :match_requests_on => [:method, :path, :params, :body_json])
-    RepositorySupport.create_and_sync_repo(:importer => true)
+    @@support.create_and_sync_repo(:importer => true)
   end
 
   def self.after_suite
-    RepositorySupport.destroy_repo
+    @@support.destroy_repo
     VCR.eject_cassette
   end
 
@@ -73,12 +74,12 @@ end
 
 class TestExtensionsPackageGroupCopy < UnitCopyBase
   def self.extension_class
-    Runcible::Extensions::PackageGroup
+    TestRuncible.server.extensions.package_group
   end
 
   def test_copy
-    response = Runcible::Extensions::PackageGroup.copy(RepositorySupport.repo_id, self.class.clone_name)
-    RepositorySupport.task = response
+    response = self.class.extension_class.copy(RepositorySupport.repo_id, self.class.clone_name)
+    @@support.task = response
 
     clone_ids    = unit_ids(self.class.clone_name)
     original_ids = unit_ids(RepositorySupport.repo_id)
@@ -93,12 +94,12 @@ end
 class TestExtensionsPackageGroupUnassociate < UnitUnassociateBase
 
   def self.extension_class
-    Runcible::Extensions::PackageGroup
+    TestRuncible.server.extensions.package_group
   end
 
   def setup
-    task = Runcible::Extensions::Repository.unit_copy(self.class.clone_name, RepositorySupport.repo_id)
-    RepositorySupport.wait_on_task(task)
+    task =     TestRuncible.server.extensions.repository.unit_copy(self.class.clone_name, RepositorySupport.repo_id)
+    @@support.wait_on_task(task)
 
     @unit_ids     = unit_ids(self.class.clone_name)
     @content_ids  = content_ids(self.class.clone_name)
@@ -106,8 +107,8 @@ class TestExtensionsPackageGroupUnassociate < UnitUnassociateBase
 
   def test_unassociate_ids_from_repo
     VCR.use_cassette('extensions/package_group_unassociate_ids_from_repo', :match_requests_on => [:method, :path, :params, :body_json]) do
-      task = Runcible::Extensions::PackageGroup.unassociate_ids_from_repo(self.class.clone_name, [@content_ids.first])
-      RepositorySupport.wait_on_task(task)
+      task = self.class.extension_class.unassociate_ids_from_repo(self.class.clone_name, [@content_ids.first])
+      @@support.wait_on_task(task)
 
       assert_equal (@content_ids.length - 1), content_ids(self.class.clone_name).length
     end
@@ -115,8 +116,8 @@ class TestExtensionsPackageGroupUnassociate < UnitUnassociateBase
 
   def test_unassociate_unit_ids_from_repo
     VCR.use_cassette('extensions/package_group_unassociate_from_repo', :match_requests_on => [:method, :path, :params, :body_json]) do
-      task = Runcible::Extensions::PackageGroup.unassociate_unit_ids_from_repo(self.class.clone_name, [@unit_ids.first])
-      RepositorySupport.wait_on_task(task)
+      task = self.class.extension_class.unassociate_unit_ids_from_repo(self.class.clone_name, [@unit_ids.first])
+      @@support.wait_on_task(task)
 
       assert_equal (@unit_ids.length - 1), unit_ids(self.class.clone_name).length
     end
@@ -124,9 +125,9 @@ class TestExtensionsPackageGroupUnassociate < UnitUnassociateBase
 
   def test_unassociate_from_repo
     VCR.use_cassette('extensions/package_group_unassociate_from_repo', :match_requests_on => [:method, :path, :params, :body_json]) do
-      task = Runcible::Extensions::PackageGroup.unassociate_from_repo(self.class.clone_name,
+      task = self.class.extension_class.unassociate_from_repo(self.class.clone_name,
                                                                 :association => {'unit_id' => {'$in' => [@unit_ids.first]}})
-      RepositorySupport.wait_on_task(task)
+      @@support.wait_on_task(task)
 
       assert_equal (@unit_ids.length - 1), unit_ids(self.class.clone_name).length
     end

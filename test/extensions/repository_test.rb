@@ -29,10 +29,10 @@ require './lib/runcible'
 
 
 module TestExtensionsRepositoryBase
-  include RepositorySupport
 
   def setup
-    @extension = Runcible::Extensions::Repository
+    @support = RepositorySupport.new
+    @extension = TestRuncible.server.extensions.repository
     VCR.insert_cassette('extensions/repository_extensions', 
                         :match_requests_on => [:body_json, :path, :method])
   end
@@ -48,7 +48,7 @@ class TestExtensionsRepositoryCreate < MiniTest::Unit::TestCase
 
   def teardown
     super
-    RepositorySupport.destroy_repo
+    @support.destroy_repo
   end
 
   def test_create_with_importer
@@ -61,7 +61,7 @@ class TestExtensionsRepositoryCreate < MiniTest::Unit::TestCase
   end
 
   def test_create_with_importer_object
-    response = @extension.create_with_importer(RepositorySupport.repo_id, Runcible::Extensions::YumImporter.new())
+    response = @extension.create_with_importer(RepositorySupport.repo_id, Runcible::Models::YumImporter.new())
     assert_equal 201, response.code
 
     response = @extension.retrieve(RepositorySupport.repo_id, {:details => true})
@@ -83,7 +83,7 @@ class TestExtensionsRepositoryCreate < MiniTest::Unit::TestCase
 
   def test_create_with_distributor_object
     repo_id = RepositorySupport.repo_id + "_distro"
-    response = @extension.create_with_distributors(repo_id, [Runcible::Extensions::YumDistributor.new(
+    response = @extension.create_with_distributors(repo_id, [Runcible::Models::YumDistributor.new(
         '/path', true, true, :id => '123')])
     assert_equal 201, response.code
 
@@ -91,7 +91,7 @@ class TestExtensionsRepositoryCreate < MiniTest::Unit::TestCase
     assert_equal repo_id, response['id']
     assert_equal 'yum_distributor', response['distributors'].first['distributor_type_id']
   ensure
-    RepositorySupport.destroy_repo(repo_id)
+    @support.destroy_repo(repo_id)
   end
 
   def test_create_with_importer_and_distributors
@@ -106,9 +106,9 @@ class TestExtensionsRepositoryCreate < MiniTest::Unit::TestCase
   end
 
   def test_create_with_importer_and_distributors_objects
-    distributors = [Runcible::Extensions::YumDistributor.new(
+    distributors = [Runcible::Models::YumDistributor.new(
             '/path', true, true, :id => '123')]
-    importer = Runcible::Extensions::YumImporter.new()
+    importer = Runcible::Models::YumImporter.new()
     response = @extension.create_with_importer_and_distributors(RepositorySupport.repo_id, importer, distributors)
     assert_equal 201, response.code
 
@@ -125,11 +125,11 @@ class TestExtensionsRepositoryMisc < MiniTest::Unit::TestCase
 
   def setup
     super
-    RepositorySupport.create_and_sync_repo(:importer_and_distributor => true)
+    @support.create_and_sync_repo(:importer_and_distributor => true)
   end
 
   def teardown
-    RepositorySupport.destroy_repo
+    @support.destroy_repo
     super
   end
 
@@ -150,7 +150,7 @@ class TestExtensionsRepositoryMisc < MiniTest::Unit::TestCase
 
   def test_remove_schedules
     VCR.use_cassette('extensions/repository_schedule_removal') do
-      Runcible::Resources::RepositorySchedule.create(RepositorySupport.repo_id, 'yum_importer', "2012-10-25T20:44:00Z/P7D")
+      TestRuncible.server.resources.repository_schedule.create(RepositorySupport.repo_id, 'yum_importer', "2012-10-25T20:44:00Z/P7D")
       response = @extension.remove_schedules(RepositorySupport.repo_id, "yum_importer")
       
       assert_equal 200, response.code
@@ -166,7 +166,7 @@ class TestExtensionsRepositoryMisc < MiniTest::Unit::TestCase
   
   def test_publish_all
     response = @extension.publish_all(RepositorySupport.repo_id)
-    RepositorySupport.wait_on_tasks(response)
+    @support.wait_on_tasks(response)
 
     assert_includes response.first['call_request_tags'], 'pulp:action:publish'
   end
@@ -187,16 +187,16 @@ end
 
 class TestExtensionsRepositoryUnitList < MiniTest::Unit::TestCase
 
-  @@extension = Runcible::Extensions::Repository
-
   def self.before_suite
+    @@extension = TestRuncible.server.extensions.repository
+    @@support = RepositorySupport.new
     VCR.insert_cassette('extensions/repository_unit_list', :match_requests_on => [:method, :path, :params, :body_json])
-    RepositorySupport.destroy_repo
-    RepositorySupport.create_and_sync_repo(:importer => true)
+    @@support.destroy_repo
+    @@support.create_and_sync_repo(:importer => true)
   end
 
   def self.after_suite
-    RepositorySupport.destroy_repo
+    @@support.destroy_repo
     VCR.eject_cassette
   end
 

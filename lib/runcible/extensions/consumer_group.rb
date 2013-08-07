@@ -31,8 +31,8 @@ module Runcible
       # @param  [String]                id            the consumer group ID
       # @param  [Array]                 consumer_ids  array of consumer IDs to add to the group
       # @return [RestClient::Response]                list of consumer IDs
-      def self.add_consumers_by_id(id, consumer_ids)
-        self.associate(id, make_consumer_criteria(consumer_ids))
+      def add_consumers_by_id(id, consumer_ids)
+        associate(id, make_consumer_criteria(consumer_ids))
       end
 
       # Remove consumers by ID from a consumer group
@@ -40,15 +40,15 @@ module Runcible
       # @param  [String]                id            the consumer group ID
       # @param  [Array]                 consumer_ids  array of consumer IDs to remove from the group
       # @return [RestClient::Response]                list of consumer IDs
-      def self.remove_consumers_by_id(id, consumer_ids)
-        self.unassociate(id, make_consumer_criteria(consumer_ids))
+      def remove_consumers_by_id(id, consumer_ids)
+        unassociate(id, make_consumer_criteria(consumer_ids))
       end
 
       # Generates consumer criteria query
       #
       # @param  [Array] consumer_ids  array of consumer IDs
       # @return [Hash]                the formatted query for consumers
-      def self.make_consumer_criteria(consumer_ids)
+      def make_consumer_criteria(consumer_ids)
         {:criteria =>
               {:filters =>
                 {:id =>{"$in" =>consumer_ids}}
@@ -63,8 +63,8 @@ module Runcible
       # @param  [Array]                units    array of units to install
       # @param  [Hash]                 options  to pass to content install
       # @return [RestClient::Response]          task representing the install operation
-      def self.install_content(id, type_id, units, options={})
-        self.install_units(id, generate_content(type_id, units), options)
+      def install_content(id, type_id, units, options={})
+        install_units(id, generate_content(type_id, units), options)
       end
 
       # Update content on a consumer group
@@ -74,8 +74,8 @@ module Runcible
       # @param  [Array]                units    array of units to update
       # @param  [Hash]                 options  to pass to content update
       # @return [RestClient::Response]          task representing the update operation
-      def self.update_content(id, type_id, units, options={})
-        self.update_units(id, generate_content(type_id, units, options), options)
+      def update_content(id, type_id, units, options={})
+        update_units(id, generate_content(type_id, units, options), options)
       end
 
       # Uninstall content from a consumer group
@@ -84,8 +84,8 @@ module Runcible
       # @param  [String]               type_id  the type of content to uninstall (e.g. rpm, errata)
       # @param  [Array]                units    array of units to uninstall
       # @return [RestClient::Response]          task representing the uninstall operation
-      def self.uninstall_content(id, type_id, units)
-        self.uninstall_units(id, generate_content(type_id, units))
+      def uninstall_content(id, type_id, units)
+        uninstall_units(id, generate_content(type_id, units))
       end
 
       # Generate the content units used by other functions
@@ -94,7 +94,7 @@ module Runcible
       # @param  [Array]   units   array of units
       # @param  [Hash]    options contains options which may impact the format of the content (e.g :all => true)
       # @return [Array]           array of formatted content units
-      def self.generate_content(type_id, units, options={})
+      def generate_content(type_id, units, options={})
         content = []
 
         case type_id

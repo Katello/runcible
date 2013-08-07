@@ -48,7 +48,7 @@ Name:           %{?scl_prefix}rubygem-%{gem_name}
 Summary:        A gem exposing Pulp's juiciest parts
 Group:          Applications/System
 License:        MIT
-Version:        0.4.11
+Version:        1.0.2
 Release:        1%{?dist}
 URL:            https://github.com/Katello/runcible
 # Can be retrieved by:
@@ -122,6 +122,37 @@ mkdir -p %{buildroot}%{gem_docdir}
 %doc %{gem_instdir}/CONTRIBUTING.md
 
 %changelog
+* Sun Aug 04 2013 Justin Sherrill <jsherril@redhat.com> 1.0.2-1
+- bumping gem version (jsherril@redhat.com)
+
+* Sun Aug 04 2013 Justin Sherrill <jsherril@redhat.com> 1.0.1-1
+- renamed lazy_config= parameter (dmitri@appliedlogic.ca)
+- a tiny fix in README (dmitri@appliedlogic.ca)
+- added IoC way of configuring of  runcible (dmitri@appliedlogic.ca)
+- adding requirement documentation for pulp-katello-plugin related items
+  (jsherril@redhat.com)
+- attempting full request of rpmids as it is much faster (jsherril@redhat.com)
+- fixing broken test (jsherril@redhat.com)
+- Merge pull request #83 from jlsherrill/multi (jlsherrill@gmail.com)
+- Merge pull request #84 from parthaa/filter-clauses (parthaa@gmail.com)
+- Added code make unit copy accept custom filters (paji@redhat.com)
+- removing untested rake task as its no longer reliable (jsherril@redhat.com)
+- Changing runcible to support multiple pulp servers. (jsherril@redhat.com)
+- adding support for yum_clone_distributor (jsherril@redhat.com)
+- Fixing cassette clearing and test update (daviddavis@redhat.com)
+- Improving some of the tests for pulp 2.2 and regenerating cassettes
+  (jsherril@redhat.com)
+- automatically clear cassettes when running in all mode (jsherril@redhat.com)
+- Pulp v2.2: Fixing individual tests for Pulp 2.2 (daviddavis@redhat.com)
+- Updating Readme to include steps for an official release. (ehelms@redhat.com)
+
+* Tue Jul 30 2013 Justin Sherrill <jsherril@redhat.com> 0.4.12-1
+- adding support for yum_clone_distributor (jsherril@redhat.com)
+- Improving some of the tests for pulp 2.2 and regenerating cassettes
+  (jsherril@redhat.com)
+- Pulp v2.2: Fixing individual tests for Pulp 2.2 (daviddavis@redhat.com)
+- Updating Readme to include steps for an official release. (ehelms@redhat.com)
+
 * Tue Jul 02 2013 Brad Buckingham <bbuckingham@redhat.com> 0.4.11-1
 - bumping release to 0.4.11 (bbuckingham@redhat.com)
 - consumer/group - update to allow for update all (bbuckingham@redhat.com)

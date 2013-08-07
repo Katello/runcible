@@ -32,10 +32,10 @@ class TestResourcesRoles < MiniTest::Unit::TestCase
   def setup
     @username = "integration_test_user"
     @role_name = "super-users"
-    @resource = Runcible::Resources::Role
+    @resource = TestRuncible.server.resources.role
 
     VCR.use_cassette('user') do
-      Runcible::Resources::User.create(@username)
+      TestRuncible.server.resources.user.create(@username)
     end
 
     VCR.insert_cassette('role')
@@ -43,20 +43,20 @@ class TestResourcesRoles < MiniTest::Unit::TestCase
 
   def teardown
     VCR.use_cassette('user') do
-      Runcible::Resources::User.delete(@username)
+      TestRuncible.server.resources.user.delete(@username)
     end
 
     VCR.eject_cassette
   end
 
   def test_path_without_role_name
-    path = @resource.path
+    path = @resource.class.path
 
     assert_match "roles/", path
   end
 
   def test_path_with_role_name
-    path = @resource.path(@role_name)
+    path = @resource.class.path(@role_name)
 
     assert_match "roles/#{@role_name}", path
   end

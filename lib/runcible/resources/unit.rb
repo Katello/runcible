@@ -31,7 +31,7 @@ module Runcible
       #
       # @param  [String]  type  the unit type
       # @return [String]        the unit search path
-      def self.path(type)
+      def path(type)
         "content/units/#{type}/search/"
       end
 
@@ -41,7 +41,7 @@ module Runcible
       # @param  [Hash]                  criteria  criteria object containing Mongo syntax
       # @param  [Hash]                  optional  container for all optional parameters
       # @return [RestClient::Response]            
-      def self.search(type, criteria, optional={})
+      def search(type, criteria, optional={})
         call(:post, path(type), :payload=>{:required=>{:criteria=>criteria}, :optional=>optional})
       end
     end
