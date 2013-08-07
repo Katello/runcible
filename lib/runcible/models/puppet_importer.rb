@@ -21,31 +21,25 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-require 'active_support/json'
-require 'securerandom'
-
 module Runcible
-  module Extensions
-    class PuppetDistributor < Distributor
-      attr_accessor 'serve_http', 'serve_https', 'http_dir', 'https_dir', 'absolute_path'
+  module Models
+    class PuppetImporter < Importer
+        ID = 'puppet_importer'
+        REPO_TYPE = 'puppet-repo'
 
-      def initialize(absolute_path, http, https, params={})
-        @absolute_path = absolute_path
-        @serve_http = http
-        @serve_https = https
-        super(params)
-      end
+        attr_accessor 'feed', 'queries', 'remove_missing'
 
-      def type_id
-        'puppet_distributor'
-      end
+        def id
+          PuppetImporter::ID
+        end
 
-      def config
-        to_ret = self.as_json
-        to_ret.delete('auto_publish')
-        to_ret.delete('id')
-        to_ret
+        def repo_type
+          PuppetImporter::REPO_TYPE
+        end
+
+        def config
+          self.as_json
+        end
       end
-    end
   end
 end
