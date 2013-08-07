@@ -29,10 +29,10 @@ require './test/support/repository_support'
 
 
 module TestRepoGroupBase
-  include RepositorySupport
 
   def setup
-    @resource = Runcible::Resources::RepositoryGroup
+    @support = RepositorySupport.new
+    @resource = TestRuncible.server.resources.repository_group
     @repo_group_id = "integration_test_repository_group"
     VCR.insert_cassette('repository_group')
   end
@@ -118,13 +118,13 @@ class TestRepoGroupAssociate < MiniTest::Unit::TestCase
   def setup
     super
     create_repo_group
-    RepositorySupport.create_repo
+    @support.create_repo
     @repo_id = RepositorySupport.repo_id
   end
 
   def teardown
     destroy_repo_group
-    RepositorySupport.destroy_repo
+    @support.destroy_repo
     super
   end
 
@@ -150,7 +150,7 @@ class TestRepoGroupUnassociate < MiniTest::Unit::TestCase
   def setup
     super
     create_repo_group
-    RepositorySupport.create_repo
+    @support.create_repo
     @repo_id = RepositorySupport.repo_id
     @criteria = {:criteria =>
                    {:filters =>
@@ -164,7 +164,7 @@ class TestRepoGroupUnassociate < MiniTest::Unit::TestCase
 
   def teardown
     destroy_repo_group
-    RepositorySupport.destroy_repo
+    @support.destroy_repo
     super
   end
 

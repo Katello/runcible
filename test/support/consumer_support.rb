@@ -25,22 +25,23 @@ require 'rubygems'
 require './lib/runcible/resources/consumer'
 require './lib/runcible/extensions/consumer'
 
-module ConsumerSupport
+class ConsumerSupport
 
-  @consumer_resource  = Runcible::Extensions::Consumer
-  @consumer_id        = "integration_test_consumer_support"
-
-  def self.consumer_id
-    @consumer_id
+  def initialize
+    @consumer_resource  = TestRuncible.server.resources.consumer
   end
 
-  def self.create_consumer(package_profile=false)
+  def self.consumer_id
+    "integration_test_consumer_support"
+  end
+
+  def create_consumer(package_profile=false)
     consumer = {}
     destroy_consumer
     VCR.use_cassette('support/consumer') do
-      consumer = @consumer_resource.create(@consumer_id)
+      consumer = @consumer_resource.create(self.class.consumer_id)
       if package_profile
-        @consumer_resource.upload_profile(@consumer_id, 'rpm', [{"name" => "elephant", "version" => "0.2", "release" => "0.7", 
+        @consumer_resource.upload_profile(self.class.consumer_id, 'rpm', [{"name" => "elephant", "version" => "0.2", "release" => "0.7",
                                                         "epoch" => 0, "arch" => "noarch"}])
       end
     end
@@ -49,9 +50,9 @@ module ConsumerSupport
     raise e
   end
 
-  def self.destroy_consumer
+  def destroy_consumer
     VCR.use_cassette('consumer_support') do
-      @consumer_resource.delete(@consumer_id)
+      @consumer_resource.delete(self.class.consumer_id)
     end
 
   rescue Exception => e

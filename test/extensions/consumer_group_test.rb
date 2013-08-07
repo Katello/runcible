@@ -33,37 +33,40 @@ require './test/support/repository_support'
 class TestConsumerGroupExtension < MiniTest::Unit::TestCase
 
   def self.before_suite
-    RepositorySupport.create_and_sync_repo(:importer_and_distributor => true)
+    @@repo_support = RepositorySupport.new
+    @@consumer_support = ConsumerSupport.new
+    @@group_support = ConsumerGroupSupport.new
+    @@repo_support.create_and_sync_repo(:importer_and_distributor => true)
   end
 
   def self.after_suite
-    RepositorySupport.destroy_repo
+    @@repo_support.destroy_repo
   end
 
   def setup
-    @resource = Runcible::Resources::ConsumerGroup
-    @extension = Runcible::Extensions::ConsumerGroup
+    @resource = TestRuncible.server.resources.consumer_group
+    @extension = TestRuncible.server.extensions.consumer_group
     VCR.insert_cassette('extensions/consumer_group_extensions')
 
     #ConsumerSupport.destroy_consumer
     #ConsumerGroupSupport.destroy_consumer_group
 
-    ConsumerGroupSupport.create_consumer_group
-    ConsumerSupport.create_consumer
+    @@group_support.create_consumer_group
+    @@consumer_support.create_consumer
 
     criteria = {:criteria =>
                    {:filters =>
                      {:id => {"$in" => [ConsumerSupport.consumer_id]}}}}
-    distro_id = RepositorySupport.distributor()['id']
+    distro_id = @@repo_support.distributor()['id']
 
-    Runcible::Resources::Consumer.bind(ConsumerSupport.consumer_id, RepositorySupport.repo_id, distro_id)
+    TestRuncible.server.extensions.consumer.bind(ConsumerSupport.consumer_id, RepositorySupport.repo_id, distro_id)
     @resource.associate(ConsumerGroupSupport.consumer_group_id, criteria)
     @consumer_group_id = ConsumerGroupSupport.consumer_group_id
   end
 
   def teardown
-    ConsumerSupport.destroy_consumer
-    ConsumerGroupSupport.destroy_consumer_group
+    @@consumer_support.destroy_consumer
+    @@group_support.destroy_consumer_group
     VCR.eject_cassette
   end
 
@@ -95,7 +98,7 @@ class TestConsumerGroupExtension < MiniTest::Unit::TestCase
   def test_install_content
     response = @extension.install_content(@consumer_group_id, "rpm", ["zsh", "foo"])
     task     = response.first
-    RepositorySupport.wait_on_task(task)
+    @@repo_support.wait_on_task(task)
 
     assert_equal 202, response.code
     assert       task["task_id"]
@@ -104,7 +107,7 @@ class TestConsumerGroupExtension < MiniTest::Unit::TestCase
   def test_update_content
     response = @extension.update_content(@consumer_group_id, "rpm", ["zsh", "foo"])
     task     = response.first
-    RepositorySupport.wait_on_task(task)
+    @@repo_support.wait_on_task(task)
 
     assert_equal 202, response.code
     assert       task["task_id"]
@@ -113,7 +116,7 @@ class TestConsumerGroupExtension < MiniTest::Unit::TestCase
   def test_uninstall_content
     response = @extension.uninstall_content(@consumer_group_id, "rpm", ["zsh", "foo"])
     task     = response.first
-    RepositorySupport.wait_on_task(task)
+    @@repo_support.wait_on_task(task)
 
     assert_equal 202, response.code
     assert       task["task_id"]

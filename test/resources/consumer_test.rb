@@ -33,8 +33,8 @@ require './test/support/consumer_support'
 module TestConsumerBase
 
   def setup
-    @resource = Runcible::Resources::Consumer
-    @extension = Runcible::Extensions::Consumer
+    @resource = TestRuncible.server.resources.consumer
+    @extension = TestRuncible.server.extensions.consumer
     @consumer_id = "integration_test_consumer"
     VCR.insert_cassette('consumer')
   end
@@ -192,22 +192,24 @@ class ConsumerRequiresRepoTests < MiniTest::Unit::TestCase
   include TestConsumerBase
 
   def self.before_suite
-    ConsumerSupport.create_consumer(true)
-    RepositorySupport.create_and_sync_repo(:importer_and_distributor => true)
+    @@support = ConsumerSupport.new
+    @@repo_support = RepositorySupport.new
+    @@support.create_consumer(true)
+    @@repo_support.create_and_sync_repo(:importer_and_distributor => true)
   end
 
   def self.after_suite
-    ConsumerSupport.destroy_consumer
-    RepositorySupport.destroy_repo
+    @@support.destroy_consumer
+    @@repo_support.destroy_repo
   end
 
   def self.bind_repo
     tasks = []
     VCR.use_cassette('support/consumer') do
-      distro_id = RepositorySupport.distributor()['id']
-      tasks = Runcible::Resources::Consumer.bind(ConsumerSupport.consumer_id,
-                                   RepositorySupport.repo_id, distro_id, {:notify_agent=>false})
-      RepositorySupport.wait_on_tasks(tasks)
+      distro_id = @@repo_support.distributor()['id']
+      tasks = TestRuncible.server.resources.consumer.bind(ConsumerSupport.consumer_id,
+                                    RepositorySupport.repo_id, distro_id, {:notify_agent=>false})
+      @@repo_support.wait_on_tasks(tasks)
     end
     return tasks
   end
@@ -226,11 +228,11 @@ class TestConsumerBindings < ConsumerRequiresRepoTests
 
   def test_unbind
     self.class.bind_repo
-    distro_id = RepositorySupport.distributor()['id']
+    distro_id = @@repo_support.distributor()['id']
     refute_empty @resource.retrieve_bindings(ConsumerSupport.consumer_id)
 
     response = @resource.unbind(ConsumerSupport.consumer_id, RepositorySupport.repo_id, distro_id)
-    RepositorySupport.wait_on_tasks(response)
+    @@repo_support.wait_on_tasks(response)
 
     assert_equal 202, response.code
   end
@@ -246,7 +248,7 @@ class TestConsumerRequiresRepo < ConsumerRequiresRepoTests
   end
 
   def test_retrieve_binding
-    distributor_id = RepositorySupport.distributor()['id']
+    distributor_id = @@repo_support.distributor()['id']
     response = @resource.retrieve_binding(ConsumerSupport.consumer_id, RepositorySupport.repo_id, distributor_id)
 
     assert_equal 200, response.code
@@ -280,7 +282,7 @@ class TestConsumerRequiresRepo < ConsumerRequiresRepoTests
 
   def test_install_units
     response  = @resource.install_units(@consumer_id,{"units"=>["unit_key"=>{:name => "zsh"}]})
-    RepositorySupport.wait_on_task(response)
+    @@repo_support.wait_on_task(response)
 
     assert_equal 202, response.code
     refute_empty response
@@ -288,7 +290,7 @@ class TestConsumerRequiresRepo < ConsumerRequiresRepoTests
 
   def test_update_units
     response  = @resource.update_units(@consumer_id,{"units"=>["unit_key"=>{:name => "zsh"}]})
-    RepositorySupport.wait_on_task(response)
+    @@repo_support.wait_on_task(response)
 
     assert_equal 202, response.code
     refute_empty response
@@ -296,7 +298,7 @@ class TestConsumerRequiresRepo < ConsumerRequiresRepoTests
 
   def test_uninstall_units
     response  = @resource.uninstall_units(@consumer_id,{"units"=>["unit_key"=>{:name => "zsh"}]})
-    RepositorySupport.wait_on_task(response)
+    @@repo_support.wait_on_task(response)
 
     assert_equal 202, response.code
     refute_empty response

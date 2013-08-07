@@ -39,7 +39,7 @@ module Runcible
       #
       # @param  [String]              id  the id of the task
       # @return [RestClient::Response]            
-      def self.poll(id)
+      def poll(id)
         call(:get, path(id))
       end
 
@@ -47,7 +47,7 @@ module Runcible
       #
       # @param  [String]              id  the id of the task
       # @return [RestClient::Response]            
-      def self.cancel(id)
+      def cancel(id)
         #cancelling a task may require cancelling some higher level
         #  task, so query the tasks _href field to make sure
         call(:delete, poll(id)['_href'])
@@ -57,7 +57,7 @@ module Runcible
       #
       # @param  [Array]                 tags array of tags to scope the list on
       # @return [RestClient::Response]            
-      def self.list(tags=[])
+      def list(tags=[])
         call(:get, path, :params=>{:tag=>tags})
       end
 
@@ -66,8 +66,8 @@ module Runcible
       #
       # @param  [Array] ids array of ids to poll the status of
       # @return [Array]     array of RestClient::Response task poll objects           
-      def self.poll_all(ids)
-        return ids.collect{|id| self.poll(id)}
+      def poll_all(ids)
+        return ids.collect{|id| poll(id)}
       end
 
     end

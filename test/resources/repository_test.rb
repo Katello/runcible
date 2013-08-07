@@ -16,11 +16,11 @@ require './lib/runcible'
 
 
 module TestResourcesRepositoryBase
-  include RepositorySupport
 
   def setup
-    @resource = Runcible::Resources::Repository
-    @extension = Runcible::Extensions::Repository
+    @resource = TestRuncible.server.resources.repository
+    @extension = TestRuncible.server.extensions.repository
+    @support = RepositorySupport.new
     VCR.insert_cassette('repository')
   end
 
@@ -35,12 +35,12 @@ class TestResourcesRepositoryCreate < MiniTest::Unit::TestCase
   include TestResourcesRepositoryBase
 
   def teardown
-    RepositorySupport.destroy_repo
+    @support.destroy_repo
     super
   end
 
   def test_create
-    response = RepositorySupport.create_repo
+    response = @support.create_repo
 
     assert_equal 201, response.code
     assert_equal RepositorySupport.repo_id, response['id']
@@ -53,12 +53,12 @@ class TestResourcesRepositoryDelete < MiniTest::Unit::TestCase
 
   def setup
     super
-    RepositorySupport.create_repo
+    @support.create_repo
   end
 
   def test_delete
     response = @resource.delete(RepositorySupport.repo_id)
-    RepositorySupport.wait_on_tasks(response)
+    @support.wait_on_tasks(response)
 
     assert_equal 202, response.code
   end
@@ -70,21 +70,21 @@ class TestResourcesRepository < MiniTest::Unit::TestCase
   include TestResourcesRepositoryBase
   
   def self.before_suite
-    RepositorySupport.create_repo(:importer => true)
+    RepositorySupport.new.create_repo(:importer => true)
   end
 
   def self.after_suite
-    RepositorySupport.destroy_repo
+    RepositorySupport.new.destroy_repo
   end
 
   def test_path
-    path = @resource.path
+    path = @resource.class.path
 
     assert_match "repositories/", path
   end
 
   def test_repository_path_with_id
-    path = @resource.path(RepositorySupport.repo_id)
+    path = @resource.class.path(RepositorySupport.repo_id)
 
     assert_match "repositories/#{RepositorySupport.repo_id}", path
   end
@@ -123,11 +123,11 @@ class TestRespositoryDistributor < MiniTest::Unit::TestCase
   include TestResourcesRepositoryBase
   def setup
     super
-    RepositorySupport.create_repo(:importer => false)
+    @support.create_repo(:importer => false)
   end
 
   def teardown
-    RepositorySupport.destroy_repo
+    @support.destroy_repo
     super
   end
 
@@ -146,7 +146,7 @@ class TestRespositoryDistributor < MiniTest::Unit::TestCase
                                     distributor_config, {:distributor_id => "dist_1"})
 
     response = @resource.delete_distributor(RepositorySupport.repo_id, "dist_1")
-    RepositorySupport.wait_on_tasks(response)
+    @support.wait_on_tasks(response)
 
     assert_equal 202, response.code
   end
@@ -170,11 +170,11 @@ class TestRepositoryImporter < MiniTest::Unit::TestCase
 
   def setup
     super
-    RepositorySupport.create_repo(:importer => false)
+    RepositorySupport.new.create_repo(:importer => false)
   end
 
   def teardown
-    RepositorySupport.destroy_repo
+    RepositorySupport.new.destroy_repo
     super
   end
 
@@ -211,14 +211,14 @@ class TestResourcesRepositorySync < MiniTest::Unit::TestCase
   end
 
   def teardown
-    RepositorySupport.destroy_repo
+    @support.destroy_repo
     super
   end
 
   def test_sync
-    RepositorySupport.create_repo
+    @support.create_repo
     response = @resource.sync(RepositorySupport.repo_id)
-    RepositorySupport.task = response[0]
+    @support.task = response[0]
 
     assert_equal    202, response.code
     refute_empty    response
@@ -226,9 +226,9 @@ class TestResourcesRepositorySync < MiniTest::Unit::TestCase
   end
 
   def test_sync_repo_with_yum_importer
-    RepositorySupport.create_repo(:importer => true)
+    @support.create_repo(:importer => true)
     response = @resource.sync(RepositorySupport.repo_id)
-    RepositorySupport.task = response.first
+    @support.task = response.first
 
     assert_equal    202, response.code
     refute_empty    response
@@ -242,17 +242,17 @@ class TestResourcesRepositoryRequiresSync < MiniTest::Unit::TestCase
 
   def setup
     super
-    RepositorySupport.create_and_sync_repo(:importer_and_distributor => true)
+    @support.create_and_sync_repo(:importer_and_distributor => true)
   end
 
   def teardown
-    RepositorySupport.destroy_repo
+    @support.destroy_repo
     super
   end
 
   def test_publish
-    response = @resource.publish(RepositorySupport.repo_id, RepositorySupport.distributor)
-    RepositorySupport.wait_on_task(response)
+    response = @resource.publish(RepositorySupport.repo_id, @support.distributor)
+    @support.wait_on_task(response)
 
     assert_equal    202, response.code
     assert_includes response['call_request_tags'], 'pulp:action:publish'
@@ -260,7 +260,7 @@ class TestResourcesRepositoryRequiresSync < MiniTest::Unit::TestCase
 
   def test_unassociate_units
     response = @resource.unassociate_units(RepositorySupport.repo_id, {})
-    RepositorySupport.wait_on_task(response)
+    @support.wait_on_task(response)
 
     assert_equal 202, response.code
   end
@@ -288,19 +288,19 @@ class TestResourcesRepositoryClone < MiniTest::Unit::TestCase
   def setup
     super
     @clone_name = RepositorySupport.repo_id + "_clone"
-    RepositorySupport.create_and_sync_repo(:importer => true)
+    @support.create_and_sync_repo(:importer => true)
     @extension.create_with_importer(@clone_name, :id => "yum_importer")
   end
 
   def teardown
-    RepositorySupport.destroy_repo(@clone_name)
-    RepositorySupport.destroy_repo
+    @support.destroy_repo(@clone_name)
+    @support.destroy_repo
     super
   end
 
   def test_unit_copy
     response = @resource.unit_copy(@clone_name, RepositorySupport.repo_id)
-    RepositorySupport.task = response
+    @support.task = response
 
     assert_equal    202, response.code
     assert_includes response['call_request_tags'], 'pulp:action:associate'

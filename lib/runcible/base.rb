@@ -24,42 +24,34 @@
 require 'rest_client'
 require 'oauth'
 require 'json'
+require 'thread'
 
 
 module Runcible
   class Base
 
-    # Accepted Configuration Values
-    # 
-    # :user     Pulp username
-    # :password Password for this user
-    # :oauth    Oauth credentials
-    # :headers  Additional headers e.g. content-type => "application/json"
-    # :url      Scheme and hostname for the pulp server e.g. https://localhost/
-    # :api_path URL path for the api e.g. pulp/api/v2/
-    # :timeout  timeout in seconds for the connection (defaults to rest client's default)
-    # :open_timeout  timeout in seconds for the connection to open(defaults to rest client's default)
-    def self.config=(conf={})
-      @@config = {
-        :api_path   => '/pulp/api/v2/',
-        :url        => 'https://localhost',
-        :user       => '',
-        :http_auth  => {:password => {} },
-        :headers    => {:content_type => 'application/json',
-                        :accept       => 'application/json'},
-        :logging    => {}
-      }.merge(conf)
+    def initialize(config={})
+      @mutex = Mutex.new
+      @config = config
     end
 
-    def self.config
-      if defined?(@@config)
-        @@config
-      else
-        raise Runcible::ConfigurationUndefinedError, Runcible::ConfigurationUndefinedError.message
+    def lazy_config=(a_block)
+      @mutex.synchronize { @lazy_config = a_block }
+    end
+
+    def config
+      @mutex.synchronize do
+        @config = @lazy_config.call if defined?(@lazy_config)
+        raise Runcible::ConfigurationUndefinedError, Runcible::ConfigurationUndefinedError.message unless @config
+        @config
       end
     end
 
-    def self.call(method, path, options={})
+    def path(*args)
+      self.class.path(*args)
+    end
+
+    def call(method, path, options={})
       clone_config = self.config.clone
       #on occation path will already have prefix (sync cancel)
       path = clone_config[:api_path] + path if !path.start_with?(clone_config[:api_path])
@@ -100,7 +92,7 @@ module Runcible
       raise e
     end
 
-    def self.get_response(client, path, *args)
+    def get_response(client, path, *args)
       client[path].send(*args) do |response, request, result, &block|
         resp = response.return!(request, result)
         log_debug
@@ -108,7 +100,7 @@ module Runcible
       end
     end
 
-    def self.combine_get_params(path, params)
+    def combine_get_params(path, params)
       query_string  = params.collect do |k, v|
         if v.is_a? Array
           v.collect{|y| "#{k.to_s}=#{y.to_s}" }.join('&')
@@ -119,7 +111,7 @@ module Runcible
       path + "?#{query_string}"
     end
 
-    def self.generate_payload(options)
+    def generate_payload(options)
       if options[:payload]
         if options[:payload][:optional]
           if options[:payload][:required]
@@ -139,7 +131,7 @@ module Runcible
       return payload.to_json
     end
 
-    def self.process_response(response)
+    def process_response(response)
       begin
         body = JSON.parse(response.body)
         if body.respond_to? :with_indifferent_access
@@ -156,7 +148,7 @@ module Runcible
       return response
     end
 
-    def self.required_params(local_names, binding, keys_to_remove=[])
+    def required_params(local_names, binding, keys_to_remove=[])
       local_names = local_names.reduce({}) do |acc, v|
         value = binding.eval(v.to_s) unless v == :_
         acc[v] = value unless value.nil?
@@ -176,11 +168,11 @@ module Runcible
       return local_names
     end
 
-    def self.add_http_auth_header
+    def add_http_auth_header
       return {:user => config[:user], :password => config[:http_auth][:password]}
     end
 
-    def self.add_oauth_header(method, path, headers)
+    def add_oauth_header(method, path, headers)
       default_options = { :site               => config[:url],
                           :http_method        => method,
                           :request_token_path => "",
@@ -202,22 +194,26 @@ module Runcible
       return headers
     end
 
-    def self.log_debug
+    def log_debug
       if self.config[:logging][:debug]
         log_message = generate_log_message                  
         self.config[:logging][:logger].debug(log_message)
       end
     end
 
-    def self.log_exception
+    def log_exception
       if self.config[:logging][:exception]
         log_message = generate_log_message
         self.config[:logging][:logger].error(log_message)
       end
     end
 
-    def self.generate_log_message
+    def generate_log_message
       RestClient.log.join('\n')
+    end
+
+    def logger
+      self.config[:logging][:logger]
     end
 
   end 
