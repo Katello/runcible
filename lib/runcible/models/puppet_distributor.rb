@@ -29,6 +29,13 @@ module Runcible
     class PuppetDistributor < Distributor
       attr_accessor 'serve_http', 'serve_https', 'http_dir', 'https_dir', 'absolute_path'
 
+      def initialize(absolute_path, http, https, params={})
+        @absolute_path = absolute_path
+        @serve_http = http
+        @serve_https = https
+        super(params)
+      end
+
       def type_id
         'puppet_distributor'
       end
@@ -38,14 +45,6 @@ module Runcible
         to_ret.delete('auto_publish')
         to_ret.delete('id')
         to_ret
-      end
-
-      def http=(serve_http)
-        self.serve_http = serve_http
-      end
-
-      def https=(serve_https)
-        self.serve_https = serve_https
       end
     end
   end
