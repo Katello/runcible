@@ -60,6 +60,19 @@ module Runcible
           optional[:importer_config] = importer
         end if importer
 
+        repo_type = if importer.methods.include?(repo_type)
+                      importer.repo_type
+                    elsif importer.is_a?(Hash) && importer.has_key?(:repo_type)
+                      importer[:repo_type]
+                    else
+                      nil
+                    end
+
+        if optional.has_key?(:importer_type_id) && repo_type
+          # pulp needs _repo-type in order to determine the type of repo to create.
+          optional[:notes] = { '_repo-type' => importer.repo_type }
+        end
+
         optional[:distributors] = distributors.collect do |d|
           if d.is_a?(Runcible::Models::Distributor)
             {'distributor_type' => d.type_id,
@@ -221,6 +234,26 @@ module Runcible
       def package_categories(id)
         criteria = {:type_ids=>[Runcible::Extensions::PackageCategory.content_type]}
         unit_search(id, criteria).collect{|i| i['metadata'].with_indifferent_access}
+      end
+
+      # Retrieves the puppet module IDs for a single repository
+      #
+      # @param  [String]                id the ID of the repository
+      # @return [RestClient::Response]     the set of repository puppet module IDs
+      def self.puppet_module_ids(id)
+        criteria = {:type_ids=>[Runcible::Extensions::PuppetModule.content_type],
+                    :fields=>{:unit=>[], :association=>['unit_id']}}
+
+        self.unit_search(id, criteria).collect{|i| i['unit_id']}
+      end
+
+      # Retrieves the puppet modules for a single repository
+      #
+      # @param  [String]                id the ID of the repository
+      # @return [RestClient::Response]     the set of repository puppet modules
+      def self.puppet_modules(id)
+        criteria = {:type_ids=>[Runcible::Extensions::PuppetModule.content_type]}
+        self.unit_search(id, criteria).collect{|i| i['metadata'].with_indifferent_access}
       end
 
       # Creates or updates a sync schedule for a repository
