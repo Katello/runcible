@@ -23,74 +23,71 @@
 
 require 'rubygems'
 
-require './lib/runcible/resources/repository'
-require './lib/runcible/resources/repository_schedule'
-require './lib/runcible/resources/task'
-require './lib/runcible/extensions/repository'
-require './lib/runcible/extensions/distributor'
-require './lib/runcible/extensions/yum_distributor'
-require './lib/runcible/extensions/importer'
-require './lib/runcible/extensions/yum_importer'
+require './lib/runcible'
 
-module RepositorySupport
+class RepositorySupport
 
-  @repo_url       = "file://#{File.expand_path(File.dirname(__FILE__))}".gsub("support", "fixtures/repositories/zoo5")
-  @repo_id        = "integration_test_id"
-  @repo_name      = @repo_id
-  @repo_resource  = Runcible::Resources::Repository
-  @schedule_resource  = Runcible::Resources::RepositorySchedule
-  @repo_extension = Runcible::Extensions::Repository
-  @task_resource  = Runcible::Resources::Task
-  @schedule_time  = '2012-09-25T20:44:00Z/P7D'
-  @importer_type  = 'yum_importer'
-  @distributors = [Runcible::Extensions::YumDistributor.new('/path', true, true)]
+  @@repo_id        = "integration_test_id"
+  @@repo_url       = "file://#{File.expand_path(File.dirname(__FILE__))}".gsub("support", "fixtures/repositories/zoo5")
+  @@repo_name      = @@repo_id
 
+  def initialize
+    @repo_resource  = TestRuncible.server.extensions.repository
+    @schedule_resource  = TestRuncible.server.resources.repository_schedule
+    @repo_extension = TestRuncible.server.extensions.repository
+    @task_resource  = TestRuncible.server.resources.task
+    @schedule_time  = '2012-09-25T20:44:00Z/P7D'
+    @importer_type  = 'yum_importer'
+    @distributors = [Runcible::Models::YumDistributor.new('/path', true, true)]
+  end
 
-  def self.distributor
-    Runcible::Extensions::Repository.retrieve_with_details(RepositorySupport.repo_id)['distributors'].first
+  def distributor
+    @repo_extension.retrieve_with_details(RepositorySupport.repo_id)['distributors'].first
   end
 
   def self.repo_name
-    @repo_name
+    @@repo_name
   end
 
   def self.repo_id
-    @repo_id
+    @@repo_id
   end
 
   def self.repo_url
     @repo_url
   end
 
-  def self.schedule_time
+  def schedule_time
     @schedule_time
   end
 
-  def self.task_resource
+  def task_resource
     @task_resource
   end
 
-  def self.repo_resource
+  def repo_resource
     @repo_resource
   end
 
-  def self.task=(task)
+  def task=(task)
     @task = task
   end
 
-  def self.task
+  def task
     @task
   end
 
-  def self.create_and_sync_repo(options={})
+
+  def create_and_sync_repo(options={})
+    destroy_repo
     create_repo(options)
     sync_repo(options)
   end
 
-  def self.create_repo(options={})
+  def create_repo(options={})
     repo = nil
     VCR.use_cassette('support/repository') do
-      repo = @repo_resource.retrieve(@repo_id)
+      repo = @repo_resource.retrieve(RepositorySupport.repo_id)
     end
 
     if !repo.nil?
@@ -101,9 +98,10 @@ module RepositorySupport
       if options[:importer]
         repo = @repo_extension.create_with_importer(@repo_id, {:id=>@importer_type, :feed => @repo_url})
       elsif options[:importer_and_distributor]
-        repo = @repo_extension.create_with_importer_and_distributors(@repo_id, {:id=>@importer_type, :feed => @repo_url}, @distributors)
+        repo = @repo_extension.create_with_importer_and_distributors(@repo_id,
+                                   {:id=>@importer_type, :feed => @repo_url}, @distributors)
       else
-        repo = @repo_resource.create(@repo_id)
+        repo = @repo_resource.create(RepositorySupport.repo_id)
       end
     end
 
@@ -113,18 +111,19 @@ module RepositorySupport
       if options[:importer]
         repo = @repo_extension.create_with_importer(@repo_id, {:id=>@importer_type, :feed => @repo_url})
       elsif options[:importer_and_distributor]
-        repo = @repo_extension.create_with_importer_and_distributors(@repo_id, {:id=>@importer_type, :feed => @repo_url}, @distributors)
+        repo = @repo_extension.create_with_importer_and_distributors(@repo_id,
+                                       {:id=>@importer_type, :feed => @repo_url}, @distributors)
       else
-        repo = @repo_resource.create(@repo_id)
+        repo = @repo_resource.create(RepositorySupport.repo_id)
       end
     end
 
     return repo
   end
 
-  def self.sync_repo(options={})
+  def sync_repo(options={})
     VCR.use_cassette('support/repository') do
-      @task = @repo_resource.sync(@repo_id).first
+      @task = @repo_resource.sync(RepositorySupport.repo_id).first
 
       if !options[:wait]
         self.wait_on_task(task)
@@ -136,13 +135,13 @@ module RepositorySupport
     puts e
   end
 
-  def self.wait_on_tasks(tasks)
+  def wait_on_tasks(tasks)
     tasks.each do |task|
       self.wait_on_task(task)
     end
   end
 
-  def self.wait_on_task task
+  def wait_on_task task
     VCR.use_cassette('support/task') do
       while !(['finished', 'error', 'timed_out', 'canceled', 'reset'].include?(task['state'])) do
         self.sleep_if_needed
@@ -151,21 +150,21 @@ module RepositorySupport
     end
   end
 
-  def self.sleep_if_needed
+  def sleep_if_needed
     if VCR.configuration.default_cassette_options[:record] != :none
       sleep 0.5 # do not overload backend engines
     end
   end
 
-  def self.create_schedule
+  def create_schedule
     schedule = {}
     VCR.use_cassette('support/repository') do
-      schedule = @schedule_resource.create(@repo_id, @importer_type, @schedule_time)
+      schedule = @schedule_resource.create(RepositorySupport.repo_id, @importer_type, @schedule_time)
     end
     schedule['_id']
   end
 
-  def self.destroy_repo(id=@repo_id)
+  def destroy_repo(id=RepositorySupport.repo_id)
     VCR.use_cassette('support/repository') do
       if @task
         wait_on_task(@task)
@@ -178,10 +177,10 @@ module RepositorySupport
   rescue Exception => e
   end
 
-  def self.rpm_ids
+  def rpm_ids
     pkg_ids = []
     VCR.use_cassette('support/repository', :match_requests_on => [:body_json, :path, :method]) do
-      pkg_ids = @repo_extension.rpm_ids(@repo_id)
+      pkg_ids = @repo_extension.rpm_ids(RepositorySupport.repo_id)
     end
     return pkg_ids
   end

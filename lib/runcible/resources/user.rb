@@ -38,7 +38,7 @@ module Runcible
       # Retrieves all users
       #
       # @return [RestClient::Response]            
-      def self.retrieve_all
+      def retrieve_all
         call(:get, path)
       end
 
@@ -47,7 +47,7 @@ module Runcible
       # @param  [String]                login     the login requested for the user
       # @param  [Hash]                  optional  container for all optional parameters
       # @return [RestClient::Response]            
-      def self.create(login, optional={})
+      def create(login, optional={})
         required = required_params(binding.send(:local_variables), binding)
         call(:post, path, :payload => { :required => required, :optional => optional })
       end
@@ -56,7 +56,7 @@ module Runcible
       #
       # @param  [String]                login the login of the user being retrieved
       # @return [RestClient::Response]            
-      def self.retrieve(login)
+      def retrieve(login)
         call(:get, path(login))
       end
 
@@ -64,7 +64,7 @@ module Runcible
       #
       # @param  [String]                login the login of the user being deleted
       # @return [RestClient::Response]            
-      def self.delete(login)
+      def delete(login)
         call(:delete, path(login))
       end
 

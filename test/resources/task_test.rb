@@ -29,10 +29,9 @@ require './lib/runcible/resources/task'
 
 
 module TestResourcesTaskBase
-  include RepositorySupport
 
   def setup
-    @resource = Runcible::Resources::Task
+    @resource = TestRuncible.server.resources.task
     VCR.insert_cassette('task', :match_requests_on => [:method, :path, :body], :allow_playback_repeats => true)
   end
 
@@ -47,22 +46,23 @@ class TestResourcesTask < MiniTest::Unit::TestCase
   include TestResourcesTaskBase
 
   def self.before_suite
-    RepositorySupport.create_repo(:importer => true)
-    @@task = RepositorySupport.sync_repo
+    @@support = RepositorySupport.new
+    @@support.create_repo(:importer => true)
+    @@task = @@support.sync_repo
   end
 
   def self.after_suite
-    RepositorySupport.destroy_repo
+    @@support.destroy_repo
   end
 
   def test_path
-    path = @resource.path
+    path = @resource.class.path
 
     assert_match "tasks/", path
   end
 
   def test_path_with_task_id
-    path = @resource.path(@@task['task_id'])
+    path = @resource.class.path(@@task['task_id'])
 
     assert_match "tasks/#{@@task['task_id']}/", path
   end
@@ -83,16 +83,16 @@ class TestResourcesTask < MiniTest::Unit::TestCase
 
   def test_cancel
     skip "TODO: Needs more reliable testable scenario"
-    response = @resource.cancel(RepositorySupport.task['task_id'])
+    response = @resource.cancel(@@support.task['task_id'])
 
     assert_equal 200, response.code
   end
 
   def test_poll_all
-    tasks = @resource.poll_all([RepositorySupport.task['task_id']])
+    tasks = @resource.poll_all([@@support.task['task_id']])
     
     refute_empty tasks
-    refute_empty tasks.select{ |task| task['task_id'] == RepositorySupport.task['task_id'] }
+    refute_empty tasks.select{ |task| task['task_id'] == @@support.task['task_id'] }
   end
 
 end

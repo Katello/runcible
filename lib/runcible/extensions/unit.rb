@@ -25,24 +25,28 @@
 module Runcible
   module Extensions
     class Unit < Runcible::Resources::Unit
-      
+
       # The content type (e.g. rpm, errata)
       def self.content_type
-        ''
+        raise "Content type not defined"
+      end
+
+      def content_type
+        self.class.content_type
       end
 
       # Retrieves all content of a certain @@type
       #
       # @return [RestClient::Response]  list of all content for the given type
-      def self.all
-        self.search(content_type, {})
+      def all
+        search(content_type, {})
       end
 
       # Retrieves a single content by it's content ID
       #
       # @param  [Array]                id   the content ID of the content to retrieve
       # @return [RestClient::Response]      the requested content
-      def self.find(id, optional={})
+      def find(id, optional={})
         optional[:include_repos] ||= true
         find_all([id], optional).first
       end
@@ -51,16 +55,16 @@ module Runcible
       #
       # @param  [Array]                ids  list of content IDs to retrieve
       # @return [RestClient::Response]      list of content
-      def self.find_all(ids, optional={})
+      def find_all(ids, optional={})
         optional[:include_repos] ||= true
-        self.search(content_type, { :filters => {'id'=> {'$in'=> ids}} }, optional)
+        search(content_type, { :filters => {'id'=> {'$in'=> ids}} }, optional)
       end
 
       # Retrieves a single content by it's unit ID
       #
       # @param  [Array]                id   the unit ID of the content to retrieve
       # @return [RestClient::Response]      the requested content
-      def self.find_by_unit_id(id, optional={})
+      def find_by_unit_id(id, optional={})
         optional[:include_repos] ||= true
         find_all_by_unit_ids([id], [], optional).first
       end
@@ -70,11 +74,11 @@ module Runcible
       # @param  [Array]                ids    list of content unit IDs to retrieve
       # @param  [Array]                fields optional list of to retrieve
       # @return [RestClient::Response]        list of content
-      def self.find_all_by_unit_ids(ids, fields=[], optional={})
+      def find_all_by_unit_ids(ids, fields=[], optional={})
         optional[:include_repos] ||= true
         criteria = { :filters => { :_id => { '$in'=> ids } } }
         criteria[:fields] = fields unless fields.empty?
-        self.search(content_type, criteria, optional)
+        search(content_type, criteria, optional)
       end
 
       # unassociates content units from a repository
@@ -82,10 +86,10 @@ module Runcible
       # @param  [String]                repo_id the repository ID to remove units from
       # @param  [Hash]                  filters the filters to find the units  this content type to remove
       # @return [RestClient::Response]          a task representing the unit unassociate operation
-      def self.unassociate_from_repo(repo_id, filters)
+      def unassociate_from_repo(repo_id, filters)
         criteria = {:type_ids => [content_type]}
         criteria[:filters] = filters
-        Runcible::Extensions::Repository.unassociate_units(repo_id, criteria)
+        Runcible::Extensions::Repository.new(self.config).unassociate_units(repo_id, criteria)
       end
 
       # unassociates content units from a repository
@@ -96,7 +100,7 @@ module Runcible
       #                                       ex: "RHEA-2010:0001" for errata..,
       #                                       Note rpms do not have ids, so cant use this.
       # @return [RestClient::Response]          a task representing the unit unassociate operation
-      def self.unassociate_ids_from_repo(repo_id, ids)
+      def unassociate_ids_from_repo(repo_id, ids)
         unassociate_from_repo(repo_id, :unit => {'id' => {'$in' => ids}})
       end
 
@@ -108,7 +112,7 @@ module Runcible
       #                                     for example: "efdd2d63-b275-4728-a298-f68cf4c174e7"
       #
       # @return [RestClient::Response]          a task representing the unit unassociate operation
-      def self.unassociate_unit_ids_from_repo(repo_id, ids)
+      def unassociate_unit_ids_from_repo(repo_id, ids)
         unassociate_from_repo(repo_id, :association => {'unit_id' => {'$in' => ids}})
       end
 
@@ -118,15 +122,16 @@ module Runcible
       # @param  [String]                destination_repo_id the destination repository ID
       # @param  [Hash]                  optional            container for all optional parameters
       # @return [RestClient::Response]                      a task representing the unit copy operation
-      def self.copy(source_repo_id, destination_repo_id, optional={})
+      def copy(source_repo_id, destination_repo_id, optional={})
         criteria = {:type_ids => [content_type], :filters => {}}
         criteria[:filters]['association'] = {'unit_id' => {'$in' => optional[:ids]}} if optional[:ids]
+        criteria[:filters] = optional[:filters] if optional[:filters]
         criteria[:fields] = {:unit => optional[:fields]} if optional[:fields]
 
         payload = {:criteria => criteria}
         payload[:override_config] = {:copy_children => optional[:copy_children]} if optional.has_key?(:copy_children)
 
-        Runcible::Extensions::Repository.unit_copy(destination_repo_id, source_repo_id, payload)
+        Runcible::Extensions::Repository.new(self.config).unit_copy(destination_repo_id, source_repo_id, payload)
       end
 
     end
