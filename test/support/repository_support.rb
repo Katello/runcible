@@ -38,7 +38,7 @@ class RepositorySupport
     @task_resource  = TestRuncible.server.resources.task
     @schedule_time  = '2012-09-25T20:44:00Z/P7D'
     @importer_type  = 'yum_importer'
-    @distributors = [Runcible::Models::YumDistributor.new('/path', true, true)]
+    @distributors = [Runcible::Models::YumDistributor.new('/path', true, true, :id=>"yum_dist")]
   end
 
   def distributor
@@ -54,7 +54,7 @@ class RepositorySupport
   end
 
   def self.repo_url
-    @repo_url
+    @@repo_url
   end
 
   def schedule_time
@@ -96,10 +96,10 @@ class RepositorySupport
 
     VCR.use_cassette('support/repository') do
       if options[:importer]
-        repo = @repo_extension.create_with_importer(@repo_id, {:id=>@importer_type, :feed => @repo_url})
+        repo = @repo_extension.create_with_importer(RepositorySupport.repo_id, {:id=>@importer_type, :feed => RepositorySupport.repo_url})
       elsif options[:importer_and_distributor]
-        repo = @repo_extension.create_with_importer_and_distributors(@repo_id,
-                                   {:id=>@importer_type, :feed => @repo_url}, @distributors)
+        repo = @repo_extension.create_with_importer_and_distributors(RepositorySupport.repo_id,
+                                   {:id=>@importer_type, :feed => RepositorySupport.repo_url}, @distributors)
       else
         repo = @repo_resource.create(RepositorySupport.repo_id)
       end
@@ -109,10 +109,10 @@ class RepositorySupport
 
     VCR.use_cassette('support/repository') do
       if options[:importer]
-        repo = @repo_extension.create_with_importer(@repo_id, {:id=>@importer_type, :feed => @repo_url})
+        repo = @repo_extension.create_with_importer(RepositorySupport.repo_id, {:id=>@importer_type, :feed => RepositorySupport.repo_url})
       elsif options[:importer_and_distributor]
-        repo = @repo_extension.create_with_importer_and_distributors(@repo_id,
-                                       {:id=>@importer_type, :feed => @repo_url}, @distributors)
+        repo = @repo_extension.create_with_importer_and_distributors(RepositorySupport.repo_id,
+                                       {:id=>@importer_type, :feed => RepositorySupport.repo_url}, @distributors)
       else
         repo = @repo_resource.create(RepositorySupport.repo_id)
       end
