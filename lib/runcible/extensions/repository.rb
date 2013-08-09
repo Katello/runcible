@@ -240,20 +240,20 @@ module Runcible
       #
       # @param  [String]                id the ID of the repository
       # @return [RestClient::Response]     the set of repository puppet module IDs
-      def self.puppet_module_ids(id)
+      def puppet_module_ids(id)
         criteria = {:type_ids=>[Runcible::Extensions::PuppetModule.content_type],
                     :fields=>{:unit=>[], :association=>['unit_id']}}
 
-        self.unit_search(id, criteria).collect{|i| i['unit_id']}
+        unit_search(id, criteria).collect{|i| i['unit_id']}
       end
 
       # Retrieves the puppet modules for a single repository
       #
       # @param  [String]                id the ID of the repository
       # @return [RestClient::Response]     the set of repository puppet modules
-      def self.puppet_modules(id)
+      def puppet_modules(id)
         criteria = {:type_ids=>[Runcible::Extensions::PuppetModule.content_type]}
-        self.unit_search(id, criteria).collect{|i| i['metadata'].with_indifferent_access}
+        unit_search(id, criteria).collect{|i| i['metadata'].with_indifferent_access}
       end
 
       # Creates or updates a sync schedule for a repository
