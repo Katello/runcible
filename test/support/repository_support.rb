@@ -28,17 +28,24 @@ require './lib/runcible'
 class RepositorySupport
 
   @@repo_id        = "integration_test_id"
-  @@repo_url       = "file://#{File.expand_path(File.dirname(__FILE__))}".gsub("support", "fixtures/repositories/zoo5")
   @@repo_name      = @@repo_id
 
-  def initialize
-    @repo_resource  = TestRuncible.server.extensions.repository
-    @schedule_resource  = TestRuncible.server.resources.repository_schedule
-    @repo_extension = TestRuncible.server.extensions.repository
-    @task_resource  = TestRuncible.server.resources.task
-    @schedule_time  = '2012-09-25T20:44:00Z/P7D'
-    @importer_type  = 'yum_importer'
-    @distributors = [Runcible::Models::YumDistributor.new('/path', true, true, :id=>"yum_dist")]
+  def initialize(type  = "yum")
+    @repo_resource     = TestRuncible.server.extensions.repository
+    @schedule_resource = TestRuncible.server.resources.repository_schedule
+    @repo_extension    = TestRuncible.server.extensions.repository
+    @task_resource     = TestRuncible.server.resources.task
+    @schedule_time     = '2012-09-25T20:44:00Z/P7D'
+    @repo_type         = type
+    @importer_type     = "#{@repo_type}_importer"
+
+    if @repo_type == "yum"
+      @distributors = [Runcible::Models::YumDistributor.new('/path', true, true, :id => "puppet_dist")]
+      @repo_url     = "file://#{File.expand_path(File.dirname(__FILE__))}".gsub("support", "fixtures/repositories/zoo5")
+    elsif @repo_type == "puppet"
+      @distributors = [Runcible::Models::PuppetDistributor.new('/path', true, true, :id => "yum_dist")]
+      @repo_url     = "http://davidd.fedorapeople.org/repos/random_puppet/"
+    end
   end
 
   def distributor
@@ -96,10 +103,10 @@ class RepositorySupport
 
     VCR.use_cassette('support/repository') do
       if options[:importer]
-        repo = @repo_extension.create_with_importer(RepositorySupport.repo_id, {:id=>@importer_type, :feed => RepositorySupport.repo_url})
+        repo = @repo_extension.create_with_importer(RepositorySupport.repo_id, {:id=>@importer_type, :feed => @repo_url})
       elsif options[:importer_and_distributor]
         repo = @repo_extension.create_with_importer_and_distributors(RepositorySupport.repo_id,
-                                   {:id=>@importer_type, :feed => RepositorySupport.repo_url}, @distributors)
+                                   {:id=>@importer_type, :feed => @repo_url}, @distributors)
       else
         repo = @repo_resource.create(RepositorySupport.repo_id)
       end
@@ -109,10 +116,10 @@ class RepositorySupport
 
     VCR.use_cassette('support/repository') do
       if options[:importer]
-        repo = @repo_extension.create_with_importer(RepositorySupport.repo_id, {:id=>@importer_type, :feed => RepositorySupport.repo_url})
+        repo = @repo_extension.create_with_importer(RepositorySupport.repo_id, {:id=>@importer_type, :feed => @repo_url})
       elsif options[:importer_and_distributor]
         repo = @repo_extension.create_with_importer_and_distributors(RepositorySupport.repo_id,
-                                       {:id=>@importer_type, :feed => RepositorySupport.repo_url}, @distributors)
+                                       {:id=>@importer_type, :feed => @repo_url}, @distributors)
       else
         repo = @repo_resource.create(RepositorySupport.repo_id)
       end
