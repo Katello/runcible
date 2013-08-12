@@ -67,6 +67,9 @@ class TestExtensionsPuppetRepositoryCreate < MiniTest::Unit::TestCase
     response = @extension.retrieve(RepositorySupport.repo_id, {:details => true})
     assert_equal RepositorySupport.repo_id, response['id']
     assert_equal "puppet_importer", response['importers'].first['importer_type_id']
+
+    @extension.expects(:create).with(RepositorySupport.repo_id, has_entry(:notes, anything)).returns(true)
+    @extension.create_with_importer(RepositorySupport.repo_id, Runcible::Models::PuppetImporter.new())
   end
 
   def test_create_with_distributors

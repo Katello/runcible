@@ -9,6 +9,7 @@ group :test do
   gem 'webmock'
   gem 'minitest', '< 5'
   gem 'parseconfig'
+  gem 'mocha'
 end
 
 group :debug do
