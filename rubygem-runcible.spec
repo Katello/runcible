@@ -48,7 +48,7 @@ Name:           %{?scl_prefix}rubygem-%{gem_name}
 Summary:        A gem exposing Pulp's juiciest parts
 Group:          Applications/System
 License:        MIT
-Version:        1.0.2
+Version:        1.0.3
 Release:        1%{?dist}
 URL:            https://github.com/Katello/runcible
 # Can be retrieved by:
@@ -122,6 +122,21 @@ mkdir -p %{buildroot}%{gem_docdir}
 %doc %{gem_instdir}/CONTRIBUTING.md
 
 %changelog
+* Mon Aug 12 2013 David Davis <daviddavis@redhat.com> 1.0.3-1
+- Bump to 1.0.3 (daviddavis@redhat.com)
+- Updating cassettes (daviddavis@redhat.com)
+- Fixing and reorganizing puppet repo tests (daviddavis@redhat.com)
+- Puppet: Wrote some tests and fixed repo methods (daviddavis@redhat.com)
+- Merge pull request #95 from mptap/package_uploads (jlsherrill@gmail.com)
+- Add Package Upload Pulp API support to runcible (mtapaswi@redhat.com)
+- Puppet: Adding distributor and importer tests (daviddavis@redhat.com)
+- Puppet: Using new 1.0 architecture for puppet classes (daviddavis@redhat.com)
+- Merge branch 'master' into puppet (daviddavis@redhat.com)
+- Fixing repository importer code (daviddavis@redhat.com)
+- Merge commit '54f9d7bc4655f0a783b5aeacc580b8db2b09935d' into puppet-merge
+  (daviddavis@redhat.com)
+- puppet: initial support for puppet repositories (bbuckingham@redhat.com)
+
 * Sun Aug 04 2013 Justin Sherrill <jsherril@redhat.com> 1.0.2-1
 - bumping gem version (jsherril@redhat.com)
 
