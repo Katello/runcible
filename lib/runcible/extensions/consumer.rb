@@ -30,9 +30,10 @@ module Runcible
       #
       # @param  [String]               id       the consumer ID
       # @param  [String]               repo_id  the repo ID to bind to
+      # @param  [String]               type_id the distributor type_id to bind to
       # @param  [Hash]                 options  options to pass to the bindings
-      # @option notify_agent [Boolean] sends consumer a notification
-      # @option binding_config [Hash] sends consumer a notification
+      # @option  options [Boolean]     :notify_agent sends consumer a notification
+      # @option  options [Hash]        :binding_config sends consumer a notification
       # @return [RestClient::Response]          set of tasks representing each bind operation
       def bind_all(id, repo_id, type_id, options={})
         repository_extension.retrieve_with_details(repo_id)['distributors'].collect do |d|
@@ -44,6 +45,7 @@ module Runcible
       #
       # @param  [String]               id       the consumer ID
       # @param  [String]               repo_id  the repo ID to unbind from
+      # @param  [String]               type_id  the distributor type_id to unbind from
       # @return [RestClient::Response]          set of tasks representing each unbind operation
       def unbind_all(id, repo_id, type_id)
         repository_extension.retrieve_with_details(repo_id)['distributors'].collect do |d|

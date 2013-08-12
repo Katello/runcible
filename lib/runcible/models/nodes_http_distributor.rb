@@ -27,12 +27,10 @@ require 'securerandom'
 module Runcible
   module Models
     class NodesHttpDistributor < Distributor
-      #required
 
       # Instantiates an nodes distributor
       #
-      # @param  [boolean]         http  serve the contents over http
-      # @param  [boolean]         https serve the contents over https
+      # @param  [Hash]         params  Distributor options
       # @return [Runcible::Extensions::NodesHttpDistributor]
       def initialize(params)
         super(params)
