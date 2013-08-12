@@ -25,6 +25,7 @@ require 'rubygems'
 require 'logger'
 require 'minitest/unit'
 require 'minitest/autorun'
+require 'mocha'
 
 require './test/vcr_setup'
 require './lib/runcible'
