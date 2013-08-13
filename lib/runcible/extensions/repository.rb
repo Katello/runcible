@@ -60,7 +60,7 @@ module Runcible
           optional[:importer_config] = importer
         end if importer
 
-        repo_type = if importer.methods.include?(repo_type)
+        repo_type = if importer.methods.include?(:repo_type)
                       importer.repo_type
                     elsif importer.is_a?(Hash) && importer.has_key?(:repo_type)
                       importer[:repo_type]
