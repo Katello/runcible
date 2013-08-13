@@ -58,22 +58,36 @@ class TestConsumerExtension < MiniTest::Unit::TestCase
   end
 
   def bind_repo
-    tasks = @extension.bind_all(@consumer_id, RepositorySupport.repo_id, false)
+    tasks = @extension.bind_all(@consumer_id, RepositorySupport.repo_id,
+                                Runcible::Models::YumDistributor.type_id, {:notify_agent=>false})
     @@repo_support.wait_on_tasks(tasks)
   end
 
+  def test_activate_node
+    response = @extension.activate_node(@consumer_id)
+    refute_empty response
+  end
+
+  def test_deactivate_node
+    @extension.activate_node(@consumer_id)
+    response = @extension.deactivate_node(@consumer_id)
+    refute_empty response
+  end
+
   def test_bind_all
-    tasks = @extension.unbind_all(@consumer_id, RepositorySupport.repo_id)
+    tasks = @extension.unbind_all(@consumer_id, RepositorySupport.repo_id, Runcible::Models::YumDistributor.type_id)
     @@repo_support.wait_on_tasks(tasks)
 
-    response = @extension.bind_all(@consumer_id, RepositorySupport.repo_id, false)
+    response = @extension.bind_all(@consumer_id, RepositorySupport.repo_id,
+                                   Runcible::Models::YumDistributor.type_id, {:notify_agent=>false})
     @@repo_support.wait_on_tasks(response)
 
     refute_empty response
   end
 
   def test_unbind_all
-    response = @extension.unbind_all(@consumer_id, RepositorySupport.repo_id)
+    response = @extension.unbind_all(@consumer_id, RepositorySupport.repo_id,
+                                     Runcible::Models::YumDistributor.type_id)
     @@repo_support.wait_on_tasks(response)
 
     refute_empty response
