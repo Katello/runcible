@@ -134,7 +134,8 @@ class TestRespositoryDistributor < MiniTest::Unit::TestCase
 
   def test_associate_distributor
     distributor_config = {"relative_url" => "/", "http" => true, "https" => true}
-    response = @resource.associate_distributor(RepositorySupport.repo_id, "yum_distributor", distributor_config)
+    response = @resource.associate_distributor(RepositorySupport.repo_id, "yum_distributor", distributor_config,
+                                               {:distributor_id => "dist_1"})
 
     assert_equal 201, response.code
     assert_equal "yum_distributor", response['distributor_type_id']
