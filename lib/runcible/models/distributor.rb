@@ -35,10 +35,6 @@ module Runcible
         params.each{|k,v| send("#{k.to_s}=",v)}
       end
 
-      def type_id
-        self.class.type_id
-      end
-
       # Distributor Type id
       #
       # @return [string]
