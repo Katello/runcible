@@ -36,7 +36,7 @@ module Runcible
         super(params)
       end
 
-      def type_id
+      def self.type_id
         'puppet_distributor'
       end
 
