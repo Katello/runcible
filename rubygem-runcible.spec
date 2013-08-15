@@ -48,7 +48,7 @@ Name:           %{?scl_prefix}rubygem-%{gem_name}
 Summary:        A gem exposing Pulp's juiciest parts
 Group:          Applications/System
 License:        MIT
-Version:        1.0.3
+Version:        1.0.4
 Release:        1%{?dist}
 URL:            https://github.com/Katello/runcible
 # Can be retrieved by:
@@ -122,6 +122,13 @@ mkdir -p %{buildroot}%{gem_docdir}
 %doc %{gem_instdir}/CONTRIBUTING.md
 
 %changelog
+* Thu Aug 15 2013 Justin Sherrill <jsherril@redhat.com> 1.0.4-1
+- Removing duplicate distributor method (daviddavis@redhat.com)
+- Puppet: Adding in missing method to distributor (daviddavis@redhat.com)
+- Adding support for f19 in rel-eng (daviddavis@redhat.com)
+- Puppet: Fixing a bug and writing a test for it (daviddavis@redhat.com)
+- initial node support (jsherril@redhat.com)
+
 * Mon Aug 12 2013 David Davis <daviddavis@redhat.com> 1.0.3-1
 - Bump to 1.0.3 (daviddavis@redhat.com)
 - Updating cassettes (daviddavis@redhat.com)
