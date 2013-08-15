@@ -6,7 +6,7 @@
 <title>
   Class: Runcible::Extensions::Consumer
   
-    &mdash; Documentation by YARD 0.8.6.1
+    &mdash; Documentation by YARD 0.8.7
   
 </title>
 
@@ -121,6 +121,30 @@
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#activate_node-instance_method" title="#activate_node (instance method)">- (RestClient::Response) <strong>activate_node</strong>(id, update_strategy = &quot;additive&quot;) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Activate a consumer as a pulp node.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#applicable_errata-instance_method" title="#applicable_errata (instance method)">- (RestClient::Response) <strong>applicable_errata</strong>(ids, repoids = [], consumer_report = true) </a>
     
 
@@ -145,7 +169,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#bind_all-instance_method" title="#bind_all (instance method)">- (RestClient::Response) <strong>bind_all</strong>(id, repo_id, notify_agent = true) </a>
+      <a href="#bind_all-instance_method" title="#bind_all (instance method)">- (RestClient::Response) <strong>bind_all</strong>(id, repo_id, type_id, options = {}) </a>
     
 
     
@@ -161,6 +185,30 @@
   
     <span class="summary_desc"><div class='inline'>
 <p>Bind a consumer to all repositories with a given ID.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#deactivate_node-instance_method" title="#deactivate_node (instance method)">- (RestClient::Response) <strong>deactivate_node</strong>(id) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Deactivate a consumer as a pulp node.</p>
 </div></span>
   
 </li>
@@ -217,7 +265,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#unbind_all-instance_method" title="#unbind_all (instance method)">- (RestClient::Response) <strong>unbind_all</strong>(id, repo_id) </a>
+      <a href="#unbind_all-instance_method" title="#unbind_all (instance method)">- (RestClient::Response) <strong>unbind_all</strong>(id, repo_id, type_id) </a>
     
 
     
@@ -324,7 +372,108 @@
 
     
       <div class="method_details first">
-  <h3 class="signature first" id="applicable_errata-instance_method">
+  <h3 class="signature first" id="activate_node-instance_method">
+  
+    - (<tt>RestClient::Response</tt>) <strong>activate_node</strong>(id, update_strategy = &quot;additive&quot;) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Activate a consumer as a pulp node</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>id</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the consumer ID</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>update_strategy</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&quot;additive&quot;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>update_strategy for the node (defaults to additive)</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>RestClient::Response</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>response from update call</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+61
+62
+63
+64
+65</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/runcible/extensions/consumer.rb', line 61</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_activate_node'>activate_node</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_update_strategy'>update_strategy</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>additive</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_delta'>delta</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='symbol'>:notes</span><span class='op'>=&gt;</span><span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>_child-node</span><span class='tstring_end'>'</span></span> <span class='op'>=&gt;</span> <span class='kw'>true</span><span class='comma'>,</span>
+                    <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>_node-update-strategy</span><span class='tstring_end'>'</span></span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_update_strategy'>update_strategy</span><span class='rbrace'>}</span><span class='rbrace'>}</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_delta'>delta</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="applicable_errata-instance_method">
   
     - (<tt>RestClient::Response</tt>) <strong>applicable_errata</strong>(ids, repoids = [], consumer_report = true) 
   
@@ -424,24 +573,24 @@ it will list errata and the consumers they are applicable to</p>
       <pre class="lines">
 
 
-126
-127
-128
-129
-130
-131
-132
-133
-134
-135
-136
-137
-138
-139
-140</pre>
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/runcible/extensions/consumer.rb', line 126</span>
+      <pre class="code"><span class="info file"># File 'lib/runcible/extensions/consumer.rb', line 155</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_applicable_errata'>applicable_errata</span><span class='lparen'>(</span><span class='id identifier rubyid_ids'>ids</span><span class='comma'>,</span> <span class='id identifier rubyid_repoids'>repoids</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_consumer_report'>consumer_report</span> <span class='op'>=</span> <span class='kw'>true</span><span class='rparen'>)</span>
 
@@ -466,7 +615,7 @@ it will list errata and the consumers they are applicable to</p>
       <div class="method_details ">
   <h3 class="signature " id="bind_all-instance_method">
   
-    - (<tt>RestClient::Response</tt>) <strong>bind_all</strong>(id, repo_id, notify_agent = true) 
+    - (<tt>RestClient::Response</tt>) <strong>bind_all</strong>(id, repo_id, type_id, options = {}) 
   
 
   
@@ -518,23 +667,80 @@ it will list errata and the consumers they are applicable to</p>
   
     <li>
       
-        <span class='name'>notify_agent</span>
+        <span class='name'>type_id</span>
       
       
-        <span class='type'>(<tt>Boolean</tt>)</span>
+        <span class='type'>(<tt>String</tt>)</span>
       
-      
-        <em class="default">(defaults to: <tt>true</tt>)</em>
       
       
         &mdash;
         <div class='inline'>
-<p>sends consumer a notification</p>
+<p>the distributor type_id to bind to</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>options to pass to the bindings</p>
 </div>
       
     </li>
   
 </ul>
+
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    <p class="tag_title">Options Hash (<tt>options</tt>):</p>
+    <ul class="option">
+      
+        <li>
+          <span class="name">:notify_agent</span>
+          <span class="type">(<tt>Boolean</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'>
+<p>sends consumer a notification</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:binding_config</span>
+          <span class="type">(<tt>Hash</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'>
+<p>sends consumer a notification</p>
+</div>
+          
+        </li>
+      
+    </ul>
+  
 
 <p class="tag_title">Returns:</p>
 <ul class="return">
@@ -561,19 +767,102 @@ it will list errata and the consumers they are applicable to</p>
       <pre class="lines">
 
 
-35
-36
-37
 38
-39</pre>
+39
+40
+41
+42</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/runcible/extensions/consumer.rb', line 35</span>
+      <pre class="code"><span class="info file"># File 'lib/runcible/extensions/consumer.rb', line 38</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_bind_all'>bind_all</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_repo_id'>repo_id</span><span class='comma'>,</span> <span class='id identifier rubyid_notify_agent'>notify_agent</span><span class='op'>=</span><span class='kw'>true</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_bind_all'>bind_all</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_repo_id'>repo_id</span><span class='comma'>,</span> <span class='id identifier rubyid_type_id'>type_id</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_repository_extension'>repository_extension</span><span class='period'>.</span><span class='id identifier rubyid_retrieve_with_details'>retrieve_with_details</span><span class='lparen'>(</span><span class='id identifier rubyid_repo_id'>repo_id</span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>distributors</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_collect'>collect</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_d'>d</span><span class='op'>|</span>
-    <span class='id identifier rubyid_bind'>bind</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_repo_id'>repo_id</span><span class='comma'>,</span> <span class='id identifier rubyid_d'>d</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>id</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='symbol'>:notify_agent</span><span class='op'>=&gt;</span><span class='id identifier rubyid_notify_agent'>notify_agent</span><span class='rbrace'>}</span><span class='rparen'>)</span>
-  <span class='kw'>end</span><span class='period'>.</span><span class='id identifier rubyid_flatten'>flatten</span>
+    <span class='id identifier rubyid_bind'>bind</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_repo_id'>repo_id</span><span class='comma'>,</span> <span class='id identifier rubyid_d'>d</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>id</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_d'>d</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>distributor_type_id</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='id identifier rubyid_type_id'>type_id</span>
+  <span class='kw'>end</span><span class='period'>.</span><span class='id identifier rubyid_reject'>reject</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_f'>f</span><span class='op'>|</span> <span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span><span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_flatten'>flatten</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="deactivate_node-instance_method">
+  
+    - (<tt>RestClient::Response</tt>) <strong>deactivate_node</strong>(id) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Deactivate a consumer as a pulp node</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>id</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the consumer ID</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>RestClient::Response</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>response from update call</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+71
+72
+73
+74
+75</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/runcible/extensions/consumer.rb', line 71</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_deactivate_node'>deactivate_node</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_delta'>delta</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='symbol'>:notes</span><span class='op'>=&gt;</span><span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>child-node</span><span class='tstring_end'>'</span></span> <span class='op'>=&gt;</span> <span class='kw'>nil</span><span class='comma'>,</span>
+                    <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>update_strategy</span><span class='tstring_end'>'</span></span> <span class='op'>=&gt;</span> <span class='kw'>nil</span><span class='rbrace'>}</span><span class='rbrace'>}</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='symbol'>:delta</span><span class='op'>=&gt;</span><span class='id identifier rubyid_delta'>delta</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -679,36 +968,40 @@ true)</p>
       <pre class="lines">
 
 
-90
-91
-92
-93
-94
-95
-96
-97
-98
-99
-100
-101
-102
-103
-104
-105
-106
-107
-108
-109
-110
-111
-112
-113
-114
 115
-116</pre>
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/runcible/extensions/consumer.rb', line 90</span>
+      <pre class="code"><span class="info file"># File 'lib/runcible/extensions/consumer.rb', line 115</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_generate_content'>generate_content</span><span class='lparen'>(</span><span class='id identifier rubyid_type_id'>type_id</span><span class='comma'>,</span> <span class='id identifier rubyid_units'>units</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_content'>content</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
@@ -718,6 +1011,8 @@ true)</p>
       <span class='id identifier rubyid_unit_key'>unit_key</span> <span class='op'>=</span> <span class='symbol'>:name</span>
     <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>erratum</span><span class='tstring_end'>'</span></span>
       <span class='id identifier rubyid_unit_key'>unit_key</span> <span class='op'>=</span> <span class='symbol'>:id</span>
+    <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>repository</span><span class='tstring_end'>'</span></span>
+      <span class='id identifier rubyid_unit_key'>unit_key</span> <span class='op'>=</span> <span class='symbol'>:repo_id</span>
     <span class='kw'>else</span>
       <span class='id identifier rubyid_unit_key'>unit_key</span> <span class='op'>=</span> <span class='symbol'>:id</span>
   <span class='kw'>end</span>
@@ -727,6 +1022,8 @@ true)</p>
     <span class='id identifier rubyid_content_unit'>content_unit</span><span class='lbracket'>[</span><span class='symbol'>:type_id</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_type_id'>type_id</span>
     <span class='id identifier rubyid_content_unit'>content_unit</span><span class='lbracket'>[</span><span class='symbol'>:unit_key</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
     <span class='id identifier rubyid_content'>content</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_content_unit'>content_unit</span><span class='rparen'>)</span>
+  <span class='kw'>elsif</span> <span class='id identifier rubyid_units'>units</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+    <span class='id identifier rubyid_content'>content</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='lbrace'>{</span><span class='symbol'>:unit_key</span><span class='op'>=&gt;</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='symbol'>:type_id</span><span class='op'>=&gt;</span><span class='id identifier rubyid_type_id'>type_id</span><span class='rbrace'>}</span><span class='rbracket'>]</span>
   <span class='kw'>else</span>
     <span class='id identifier rubyid_units'>units</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_unit'>unit</span><span class='op'>|</span>
       <span class='id identifier rubyid_content_unit'>content_unit</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
@@ -856,12 +1153,12 @@ true)</p>
       <pre class="lines">
 
 
-59
-60
-61</pre>
+84
+85
+86</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/runcible/extensions/consumer.rb', line 59</span>
+      <pre class="code"><span class="info file"># File 'lib/runcible/extensions/consumer.rb', line 84</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_install_content'>install_content</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_type_id'>type_id</span><span class='comma'>,</span> <span class='id identifier rubyid_units'>units</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_install_units'>install_units</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_generate_content'>generate_content</span><span class='lparen'>(</span><span class='id identifier rubyid_type_id'>type_id</span><span class='comma'>,</span> <span class='id identifier rubyid_units'>units</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
@@ -874,7 +1171,7 @@ true)</p>
       <div class="method_details ">
   <h3 class="signature " id="unbind_all-instance_method">
   
-    - (<tt>RestClient::Response</tt>) <strong>unbind_all</strong>(id, repo_id) 
+    - (<tt>RestClient::Response</tt>) <strong>unbind_all</strong>(id, repo_id, type_id) 
   
 
   
@@ -924,6 +1221,22 @@ true)</p>
       
     </li>
   
+    <li>
+      
+        <span class='name'>type_id</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the distributor type_id to unbind from</p>
+</div>
+      
+    </li>
+  
 </ul>
 
 <p class="tag_title">Returns:</p>
@@ -951,19 +1264,19 @@ true)</p>
       <pre class="lines">
 
 
-46
-47
-48
-49
-50</pre>
+50
+51
+52
+53
+54</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/runcible/extensions/consumer.rb', line 46</span>
+      <pre class="code"><span class="info file"># File 'lib/runcible/extensions/consumer.rb', line 50</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_unbind_all'>unbind_all</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_repo_id'>repo_id</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_unbind_all'>unbind_all</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_repo_id'>repo_id</span><span class='comma'>,</span> <span class='id identifier rubyid_type_id'>type_id</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_repository_extension'>repository_extension</span><span class='period'>.</span><span class='id identifier rubyid_retrieve_with_details'>retrieve_with_details</span><span class='lparen'>(</span><span class='id identifier rubyid_repo_id'>repo_id</span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>distributors</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_collect'>collect</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_d'>d</span><span class='op'>|</span>
-    <span class='id identifier rubyid_unbind'>unbind</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_repo_id'>repo_id</span><span class='comma'>,</span> <span class='id identifier rubyid_d'>d</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>id</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
-  <span class='kw'>end</span><span class='period'>.</span><span class='id identifier rubyid_flatten'>flatten</span>
+    <span class='id identifier rubyid_unbind'>unbind</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_repo_id'>repo_id</span><span class='comma'>,</span> <span class='id identifier rubyid_d'>d</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>id</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_d'>d</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>distributor_type_id</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='id identifier rubyid_type_id'>type_id</span>
+  <span class='kw'>end</span><span class='period'>.</span><span class='id identifier rubyid_reject'>reject</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_f'>f</span><span class='op'>|</span> <span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span><span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_flatten'>flatten</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1066,12 +1379,12 @@ true)</p>
       <pre class="lines">
 
 
-80
-81
-82</pre>
+105
+106
+107</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/runcible/extensions/consumer.rb', line 80</span>
+      <pre class="code"><span class="info file"># File 'lib/runcible/extensions/consumer.rb', line 105</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_uninstall_content'>uninstall_content</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_type_id'>type_id</span><span class='comma'>,</span> <span class='id identifier rubyid_units'>units</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_uninstall_units'>uninstall_units</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_generate_content'>generate_content</span><span class='lparen'>(</span><span class='id identifier rubyid_type_id'>type_id</span><span class='comma'>,</span> <span class='id identifier rubyid_units'>units</span><span class='rparen'>)</span><span class='rparen'>)</span>
@@ -1195,12 +1508,12 @@ true)</p>
       <pre class="lines">
 
 
-70
-71
-72</pre>
+95
+96
+97</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/runcible/extensions/consumer.rb', line 70</span>
+      <pre class="code"><span class="info file"># File 'lib/runcible/extensions/consumer.rb', line 95</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_update_content'>update_content</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_type_id'>type_id</span><span class='comma'>,</span> <span class='id identifier rubyid_units'>units</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_update_units'>update_units</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_generate_content'>generate_content</span><span class='lparen'>(</span><span class='id identifier rubyid_type_id'>type_id</span><span class='comma'>,</span> <span class='id identifier rubyid_units'>units</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
@@ -1215,9 +1528,9 @@ true)</p>
 </div>
 
     <div id="footer">
-  Generated on Sun Aug  4 07:24:29 2013 by
+  Generated on Thu Aug 15 17:28:22 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.6.1 (ruby-1.9.3).
+  0.8.7 (ruby-1.9.3).
 </div>
 
   </body>
