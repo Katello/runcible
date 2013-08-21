@@ -48,7 +48,7 @@ Name:           %{?scl_prefix}rubygem-%{gem_name}
 Summary:        A gem exposing Pulp's juiciest parts
 Group:          Applications/System
 License:        MIT
-Version:        1.0.4
+Version:        1.0.5
 Release:        1%{?dist}
 URL:            https://github.com/Katello/runcible
 # Can be retrieved by:
@@ -122,6 +122,10 @@ mkdir -p %{buildroot}%{gem_docdir}
 %doc %{gem_instdir}/CONTRIBUTING.md
 
 %changelog
+* Wed Aug 21 2013 Partha Aji <paji@redhat.com> 1.0.5-1
+- Version bump (paji@redhat.com)
+- Added some mods to get copy call accept filters (paji@redhat.com)
+
 * Thu Aug 15 2013 Justin Sherrill <jsherril@redhat.com> 1.0.4-1
 - Removing duplicate distributor method (daviddavis@redhat.com)
 - Puppet: Adding in missing method to distributor (daviddavis@redhat.com)
