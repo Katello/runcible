@@ -129,7 +129,12 @@ module Runcible
         criteria[:fields] = {:unit => optional[:fields]} if optional[:fields]
 
         payload = {:criteria => criteria}
-        payload[:override_config] = {:copy_children => optional[:copy_children]} if optional.has_key?(:copy_children)
+        payload[:override_config] = optional[:override_config] if optional.has_key?(:override_config)
+
+        if optional[:copy_children]
+          payload[:override_config] ||= {}
+          payload[:override_config][:recursive] = true
+        end
 
         Runcible::Extensions::Repository.new(self.config).unit_copy(destination_repo_id, source_repo_id, payload)
       end
