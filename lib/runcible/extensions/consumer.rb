@@ -137,7 +137,13 @@ module Runcible
           units.each do |unit|
             content_unit = {}
             content_unit[:type_id] = type_id
-            content_unit[:unit_key] = { unit_key => unit }
+            if unit.is_a?(Hash)
+              #allow user to pass in entire unit
+              content_unit[:unit_key] = unit
+            else
+              content_unit[:unit_key] = { unit_key => unit }
+            end
+
             content.push(content_unit)
           end
         end
