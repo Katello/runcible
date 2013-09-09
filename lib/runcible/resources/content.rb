@@ -50,8 +50,7 @@ module Runcible
       # @param  [File]    content    content of the file being uploaded to the server
       # @return  [RestClient::Response] none
       def upload_bits(upload_id, offset, content)
-        required = required_params(binding.send(:local_variables), binding)
-        call(:put, path("#{upload_id}/#{offset}/"), :payload => { :required => required })
+        call(:put, path("#{upload_id}/#{offset}/"), :payload => content)
       end
 
       # Import into a repository
