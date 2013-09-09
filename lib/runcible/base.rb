@@ -82,7 +82,7 @@ module Runcible
 
       args = [method]
       args << generate_payload(options) if [:post, :put].include?(method)
-      args << headers 
+      args << headers
 
       response = get_response(client, path, *args)
       process_response(response)
@@ -112,17 +112,25 @@ module Runcible
     end
 
     def generate_payload(options)
-      if options[:payload]
-        if options[:payload][:optional]
-          if options[:payload][:required]
-            payload = options[:payload][:required].merge(options[:payload][:optional])
+      if options[:payload].is_a?(String)
+        return options[:payload]
+      elsif options[:payload].is_a?(Hash)
+        format_payload_json(options[:payload])
+      end
+    end
+
+    def format_payload_json(payload_hash)
+      if payload_hash
+        if payload_hash[:optional]
+          if payload_hash[:required]
+            payload = payload_hash[:required].merge(payload_hash[:optional])
           else
-            payload = options[:payload][:optional]
+            payload = payload_hash[:optional]
           end
-        elsif options[:payload][:delta]
-          payload = options[:payload]
+        elsif payload_hash[:delta]
+          payload = payload_hash
         else
-          payload = options[:payload][:required]
+          payload = payload_hash[:required]
         end
       else
         payload = {}
