@@ -48,7 +48,7 @@ Name:           %{?scl_prefix}rubygem-%{gem_name}
 Summary:        A gem exposing Pulp's juiciest parts
 Group:          Applications/System
 License:        MIT
-Version:        1.0.5
+Version:        1.0.6
 Release:        1%{?dist}
 URL:            https://github.com/Katello/runcible
 # Can be retrieved by:
@@ -122,6 +122,11 @@ mkdir -p %{buildroot}%{gem_docdir}
 %doc %{gem_instdir}/CONTRIBUTING.md
 
 %changelog
+* Wed Sep 11 2013 Justin Sherrill <jsherril@redhat.com> 1.0.6-1
+- Runcible: Fix upload_bits method (daviddavis@redhat.com)
+- allowing hash to be passed for package actions, instead of only name
+  (jsherril@redhat.com)
+
 * Wed Aug 21 2013 Partha Aji <paji@redhat.com> 1.0.5-1
 - Version bump (paji@redhat.com)
 - Added some mods to get copy call accept filters (paji@redhat.com)
