@@ -78,4 +78,22 @@ class TestBase < MiniTest::Unit::TestCase
     assert_equal @log_message, @logger.message
   end
 
+  def test_generate_payload
+    options = {:payload => "abc123"}
+    assert_equal "abc123", @my_runcible.generate_payload(options)
+
+    payload = {:required => {:a => "1",
+                             :b => "2"
+                            },
+               :optional => {:c => "3"
+                            }
+    }
+    result = {:a => "1",
+              :b => "2",
+              :c => "3"
+    }
+
+    assert_equal result.to_json, @my_runcible.generate_payload(:payload => payload)
+  end
+
 end
