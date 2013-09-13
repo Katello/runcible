@@ -97,3 +97,15 @@ class TestListAllUploadRequests < MiniTest::Unit::TestCase
 
 end
 
+
+class TestOrphans < MiniTest::Unit::TestCase
+  include TestContentBase
+
+  def test_list_orphans
+    assert @resource.list_orphans.is_a?(Hash)
+  end
+
+  def test_remove_orphans
+    assert @resource.remove_orphans.is_a?(Hash)
+  end
+end
