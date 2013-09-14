@@ -27,7 +27,6 @@ require 'minitest/mock'
 require './lib/runcible/base'
 require './test/support/logger_support'
 
-
 class TestBase < MiniTest::Unit::TestCase
 
   def setup

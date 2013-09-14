@@ -28,7 +28,6 @@ require './lib/runcible'
 require './test/extensions/unit_base'
 require './test/support/repository_support'
 
-
 class TestExtensionsErrata < MiniTest::Unit::TestCase
 
   def self.before_suite
@@ -131,7 +130,6 @@ class TestExtensionsErrataUnassociate < UnitUnassociateBase
     @@support.wait_on_task(task)
     assert_equal (ids.length - 1), unit_ids(self.class.clone_name).length
   end
-
 
   def test_unassociate_from_repo
     ids = unit_ids(RepositorySupport.repo_id)

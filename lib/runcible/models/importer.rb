@@ -24,7 +24,6 @@
 require 'active_support/core_ext/hash'
 require 'active_support/json'
 
-
 module Runcible
   module Models
 

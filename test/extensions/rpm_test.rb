@@ -5,7 +5,6 @@ require './lib/runcible'
 require './test/extensions/unit_base'
 require './test/support/repository_support'
 
-
 class TestExtensionsRpm < MiniTest::Unit::TestCase
 
   def self.before_suite

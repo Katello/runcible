@@ -4,7 +4,6 @@ require 'minitest/autorun'
 require './lib/runcible'
 require './test/support/repository_support'
 
-
 class TestExtenionsPackageCategory < MiniTest::Unit::TestCase
 
   def self.before_suite

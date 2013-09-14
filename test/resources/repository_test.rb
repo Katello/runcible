@@ -14,7 +14,6 @@ require 'minitest/autorun'
 require './test/support/repository_support'
 require './lib/runcible'
 
-
 module TestResourcesRepositoryBase
 
   def setup
@@ -29,7 +28,6 @@ module TestResourcesRepositoryBase
   end
 
 end
-
 
 class TestResourcesRepositoryCreate < MiniTest::Unit::TestCase
   include TestResourcesRepositoryBase
@@ -47,7 +45,6 @@ class TestResourcesRepositoryCreate < MiniTest::Unit::TestCase
   end
 end
 
-
 class TestResourcesRepositoryDelete < MiniTest::Unit::TestCase
   include TestResourcesRepositoryBase
 
@@ -64,7 +61,6 @@ class TestResourcesRepositoryDelete < MiniTest::Unit::TestCase
   end
 
 end
-
 
 class TestResourcesRepository < MiniTest::Unit::TestCase
   include TestResourcesRepositoryBase
@@ -118,7 +114,6 @@ class TestResourcesRepository < MiniTest::Unit::TestCase
   end
 end
 
-
 class TestRespositoryDistributor < MiniTest::Unit::TestCase
   include TestResourcesRepositoryBase
   def setup
@@ -130,7 +125,6 @@ class TestRespositoryDistributor < MiniTest::Unit::TestCase
     @support.destroy_repo
     super
   end
-
 
   def test_associate_distributor
     distributor_config = {"relative_url" => "/", "http" => true, "https" => true}
@@ -163,8 +157,6 @@ class TestRespositoryDistributor < MiniTest::Unit::TestCase
   end
 
 end
-
-
 
 class TestRepositoryImporter < MiniTest::Unit::TestCase
   include TestResourcesRepositoryBase
@@ -201,7 +193,6 @@ class TestRepositoryImporter < MiniTest::Unit::TestCase
   end
 end
 
-
 class TestResourcesRepositorySync < MiniTest::Unit::TestCase
   include TestResourcesRepositoryBase
 
@@ -236,7 +227,6 @@ class TestResourcesRepositorySync < MiniTest::Unit::TestCase
     assert_includes response.first["call_request_tags"], 'pulp:action:sync'
   end
 end
-
 
 class TestResourcesRepositoryRequiresSync < MiniTest::Unit::TestCase
   include TestResourcesRepositoryBase
@@ -281,7 +271,6 @@ class TestResourcesRepositoryRequiresSync < MiniTest::Unit::TestCase
   end
 
 end
-
 
 class TestResourcesRepositoryClone < MiniTest::Unit::TestCase
   include TestResourcesRepositoryBase

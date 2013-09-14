@@ -1,3 +1,4 @@
+
 # Copyright (c) 2012 Red Hat
 #
 # MIT License
@@ -27,7 +28,6 @@ require 'minitest/autorun'
 require './lib/runcible'
 require './test/extensions/unit_base'
 require './test/support/repository_support'
-
 
 class TestExtensionsDistribution < MiniTest::Unit::TestCase
 
@@ -100,7 +100,6 @@ class TestExtensionsDistributionCopy < UnitCopyBase
     TestRuncible.server.extensions.distribution
   end
 
-
   def test_copy
     response = self.class.extension_class.copy(RepositorySupport.repo_id, self.class.clone_name)
     @@support.task = response
@@ -130,7 +129,6 @@ class TestExtensionsDistributionUnassociate < UnitUnassociateBase
     @@support.wait_on_task(task)
     assert_equal (ids.length - 1), unit_ids(self.class.clone_name).length
   end
-
 
   def test_unassociate_from_repo
     ids = unit_ids(RepositorySupport.repo_id)

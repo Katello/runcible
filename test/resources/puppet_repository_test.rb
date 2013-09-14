@@ -27,7 +27,6 @@ require 'minitest/autorun'
 require './test/support/repository_support'
 require './lib/runcible'
 
-
 module TestResourcesPuppetRepositoryBase
 
   def setup

@@ -53,7 +53,6 @@ module TestConsumerGroupBase
 
 end
 
-
 class TestConsumerGroupCreate < MiniTest::Unit::TestCase
   include TestConsumerGroupBase
 
@@ -68,7 +67,6 @@ class TestConsumerGroupCreate < MiniTest::Unit::TestCase
     assert_equal @consumer_group_id, response['id']
   end
 end
-
 
 class TestConsumerGroupDestroy < MiniTest::Unit::TestCase
   include TestConsumerGroupBase
@@ -178,7 +176,6 @@ class TestConsumerGroupUnassociate < ConsumerGroupWithConsumerTests
     end
   end
 end
-
 
 class TestConsumerGroupRequiresRepo < ConsumerGroupTests
 

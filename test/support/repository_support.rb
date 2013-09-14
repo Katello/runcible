@@ -1,3 +1,4 @@
+
 # Copyright 2012 Red Hat, Inc.
 #
 # MIT License
@@ -83,7 +84,6 @@ class RepositorySupport
   def task
     @task
   end
-
 
   def create_and_sync_repo(options={})
     destroy_repo

@@ -27,7 +27,6 @@ require 'minitest/autorun'
 require './lib/runcible/resources/user'
 require './lib/runcible/resources/role'
 
-
 class TestResourcesRoles < MiniTest::Unit::TestCase
   def setup
     @username = "integration_test_user"

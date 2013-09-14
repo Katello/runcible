@@ -177,7 +177,6 @@ module Runcible
         applicability(criteria)
       end
 
-
       private
 
       def repository_extension

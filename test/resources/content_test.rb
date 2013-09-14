@@ -1,3 +1,4 @@
+
 # Copyright 2013 Red Hat, Inc.
 #
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
@@ -96,4 +97,3 @@ class TestListAllUploadRequests < MiniTest::Unit::TestCase
   end
 
 end
-

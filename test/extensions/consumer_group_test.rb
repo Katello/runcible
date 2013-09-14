@@ -29,7 +29,6 @@ require './test/support/consumer_support'
 require './test/support/consumer_group_support'
 require './test/support/repository_support'
 
-
 class TestConsumerGroupExtension < MiniTest::Unit::TestCase
 
   def self.before_suite

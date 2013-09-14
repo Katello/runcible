@@ -25,7 +25,6 @@ require 'rubygems'
 require './lib/runcible/resources/consumer_group'
 require './lib/runcible/extensions/consumer_group'
 
-
 class ConsumerGroupSupport
 
   def initialize

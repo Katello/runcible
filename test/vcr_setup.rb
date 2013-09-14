@@ -24,7 +24,6 @@
 require 'rubygems'
 require 'vcr'
 
-
 def configure_vcr(mode=:none)
 
   if ENV['record'] == "false" && mode == :none

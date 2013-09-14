@@ -1,3 +1,4 @@
+
 # Copyright 2012 Red Hat, Inc.
 #
 # MIT License
@@ -27,7 +28,6 @@ require 'minitest/autorun'
 require './test/support/repository_support'
 require './lib/runcible/resources/event_notifier'
 
-
 module TestEventNotifierBase
   def setup
     @resource = TestRuncible.server.resources.event_notifier
@@ -35,7 +35,6 @@ module TestEventNotifierBase
   end
 
 end
-
 
 class TestEventNotifier < MiniTest::Unit::TestCase
   include TestEventNotifierBase
@@ -61,7 +60,6 @@ class TestEventNotifier < MiniTest::Unit::TestCase
   end
 
 end
-
 
 class TestEventNotifierList < MiniTest::Unit::TestCase
   include TestEventNotifierBase

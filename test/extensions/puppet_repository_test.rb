@@ -27,7 +27,6 @@ require 'minitest/autorun'
 require './test/support/repository_support'
 require './lib/runcible'
 
-
 module TestExtensionsPuppetRepositoryBase
 
   def setup
@@ -135,6 +134,4 @@ class TestExtensionsPuppetRepositoryCreate < MiniTest::Unit::TestCase
     end
   end
 
-
 end
-

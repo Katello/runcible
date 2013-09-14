@@ -27,7 +27,6 @@ require 'minitest/autorun'
 require './test/support/repository_support'
 require './lib/runcible/resources/task'
 
-
 module TestResourcesTaskBase
 
   def setup
@@ -40,7 +39,6 @@ module TestResourcesTaskBase
   end
 
 end
-
 
 class TestResourcesTask < MiniTest::Unit::TestCase
   include TestResourcesTaskBase

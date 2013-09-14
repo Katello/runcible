@@ -27,7 +27,6 @@ require './lib/runcible/resources/repository_group'
 require './lib/runcible/resources/repository'
 require './test/support/repository_support'
 
-
 module TestRepoGroupBase
 
   def setup
@@ -53,7 +52,6 @@ module TestRepoGroupBase
 
 end
 
-
 class TestRepoGroupCreate < MiniTest::Unit::TestCase
   include TestRepoGroupBase
 
@@ -68,7 +66,6 @@ class TestRepoGroupCreate < MiniTest::Unit::TestCase
   end
 
 end
-
 
 class TestRepoGroup < MiniTest::Unit::TestCase
   include TestRepoGroupBase
@@ -95,7 +92,6 @@ class TestRepoGroup < MiniTest::Unit::TestCase
   end
 end
 
-
 class TestRepoGroupDestroy < MiniTest::Unit::TestCase
   include TestRepoGroupBase
 
@@ -110,7 +106,6 @@ class TestRepoGroupDestroy < MiniTest::Unit::TestCase
   end
 
 end
-
 
 class TestRepoGroupAssociate < MiniTest::Unit::TestCase
   include TestRepoGroupBase
@@ -142,7 +137,6 @@ class TestRepoGroupAssociate < MiniTest::Unit::TestCase
     assert_includes response, @repo_id
   end
 end
-
 
 class TestRepoGroupUnassociate < MiniTest::Unit::TestCase
   include TestRepoGroupBase

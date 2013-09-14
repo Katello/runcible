@@ -30,7 +30,6 @@ require 'mocha'
 require './test/vcr_setup'
 require './lib/runcible'
 
-
 begin
   require 'debugger'
 rescue LoadError
@@ -46,7 +45,6 @@ class TestRuncible
     @@instance
   end
 end
-
 
 class CustomMiniTestRunner
   class Unit < MiniTest::Unit
@@ -96,7 +94,6 @@ class CustomMiniTestRunner
 
   end
 end
-
 
 class PulpMiniTestRunner
 

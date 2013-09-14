@@ -24,8 +24,6 @@
 require 'rubygems'
 require 'minitest/autorun'
 
-
-
 module TestResourcesUserBase
   def setup
     VCR.insert_cassette('user')
@@ -67,7 +65,6 @@ class TestResourcesUserCreate < MiniTest::Unit::TestCase
   end
 
 end
-
 
 class TestResourcesUser < MiniTest::Unit::TestCase
   include TestResourcesUserBase

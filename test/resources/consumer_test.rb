@@ -29,7 +29,6 @@ require './lib/runcible/extensions/consumer'
 require './test/support/repository_support'
 require './test/support/consumer_support'
 
-
 module TestConsumerBase
 
   def setup
@@ -74,7 +73,6 @@ class ConsumerTests < MiniTest::Unit::TestCase
 
 end
 
-
 class TestConsumerCreate < MiniTest::Unit::TestCase
   include TestConsumerBase
 
@@ -107,7 +105,6 @@ class TestConsumerDestroy < MiniTest::Unit::TestCase
   end
 
 end
-
 
 class TestGeneralMethods < MiniTest::Unit::TestCase
   include TestConsumerBase
@@ -151,7 +148,6 @@ class TestGeneralMethods < MiniTest::Unit::TestCase
 
 end
 
-
 class TestProfiles < MiniTest::Unit::TestCase
   include TestConsumerBase
 
@@ -187,7 +183,6 @@ class TestProfiles < MiniTest::Unit::TestCase
 
 end
 
-
 class ConsumerRequiresRepoTests < MiniTest::Unit::TestCase
   include TestConsumerBase
 
@@ -216,7 +211,6 @@ class ConsumerRequiresRepoTests < MiniTest::Unit::TestCase
 
 end
 
-
 class TestConsumerBindings < ConsumerRequiresRepoTests
 
   def test_bind
@@ -238,7 +232,6 @@ class TestConsumerBindings < ConsumerRequiresRepoTests
   end
 
 end
-
 
 class TestConsumerRequiresRepo < ConsumerRequiresRepoTests
 
@@ -305,5 +298,3 @@ class TestConsumerRequiresRepo < ConsumerRequiresRepoTests
   end
 
 end
-
-

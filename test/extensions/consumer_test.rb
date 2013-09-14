@@ -28,7 +28,6 @@ require './lib/runcible/extensions/consumer'
 require './test/support/repository_support'
 require './test/support/consumer_support'
 
-
 class TestConsumerExtension < MiniTest::Unit::TestCase
 
   def self.before_suite
@@ -140,5 +139,3 @@ class TestConsumerExtension < MiniTest::Unit::TestCase
   end
 
 end
-
-

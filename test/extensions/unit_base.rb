@@ -62,7 +62,6 @@ class UnitCopyBase < MiniTest::Unit::TestCase
 
 end
 
-
 class UnitUnassociateBase < MiniTest::Unit::TestCase
   def self.clone_name
     RepositorySupport.repo_id + "_clone"

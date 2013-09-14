@@ -1,3 +1,4 @@
+
 # Copyright 2012 Red Hat, Inc.
 #
 # MIT License
@@ -26,7 +27,6 @@ require 'minitest/autorun'
 
 require './test/support/repository_support'
 require './lib/runcible'
-
 
 module TestExtensionsRepositoryBase
 
@@ -117,7 +117,6 @@ class TestExtensionsRepositoryCreate < MiniTest::Unit::TestCase
     assert_equal "yum_importer", response['importers'].first['importer_type_id']
   end
 
-
 end
 
 class TestExtensionsRepositoryMisc < MiniTest::Unit::TestCase
@@ -183,7 +182,6 @@ class TestExtensionsRepositoryMisc < MiniTest::Unit::TestCase
   end
 
 end
-
 
 class TestExtensionsRepositoryUnitList < MiniTest::Unit::TestCase
 

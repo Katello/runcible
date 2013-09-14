@@ -34,7 +34,6 @@ module Runcible
       @@extension_classes
     end
 
-
     attr_accessor :resources
     attr_accessor :extensions
 
@@ -60,7 +59,6 @@ module Runcible
                               :accept       => 'application/json'},
               :logging    => {}
             }.merge(config).with_indifferent_access
-
 
       initialize_wrappers(config)
     end
@@ -105,7 +103,6 @@ module Runcible
 
   end
 
-
   #Wrapper class to provide access to instances
   class Wrapper
 
@@ -124,6 +121,4 @@ module Runcible
     end
   end
 
-
 end
-

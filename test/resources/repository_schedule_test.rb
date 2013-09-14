@@ -26,7 +26,6 @@ require 'minitest/autorun'
 
 require './test/support/repository_support'
 
-
 module TestResourcesScheduleBase
 
   def setup
@@ -97,7 +96,6 @@ class TestResourcesScheduleUpdate < MiniTest::Unit::TestCase
     assert_equal 200, response.code
   end
 end
-
 
 class TestResourcesScheduleDelete < MiniTest::Unit::TestCase
   include TestResourcesScheduleBase
