@@ -51,7 +51,7 @@ module Runcible
       # @param  [String]                notifier_type_id  the type ID of the event notifier
       # @param  [Hash]                  notifier_config   configuration options for the notifier
       # @param  [Hash]                  event_types       event types to include in the notifier
-      # @return [RestClient::Response]            
+      # @return [RestClient::Response]
       def create(notifier_type_id, notifier_config, event_types)
         required = required_params(binding.send(:local_variables), binding)
         call(:post, path, :payload => {:required => required})
@@ -60,7 +60,7 @@ module Runcible
       # Deletes an Event Notification
       #
       # @param  [String]                id  the ID of the event notifier
-      # @return [RestClient::Response]            
+      # @return [RestClient::Response]
       def delete(id)
         call(:delete, path(id))
       end
@@ -68,7 +68,7 @@ module Runcible
       # List all Event Notifiers
       #
       # @param  [String]                id  the ID of the event notifier
-      # @return [RestClient::Response]            
+      # @return [RestClient::Response]
       def list
         call(:get, path)
       end

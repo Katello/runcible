@@ -134,7 +134,7 @@ class ConsumerGroupWithConsumerTests < ConsumerGroupTests
     @support.create_consumer
     @criteria = {:criteria =>
                    {:filters =>
-                     {:id => 
+                     {:id =>
                         {"$in" => [ConsumerSupport.consumer_id]}
                      }
                    }

@@ -204,7 +204,7 @@ module Runcible
 
     def log_debug
       if self.config[:logging][:debug]
-        log_message = generate_log_message                  
+        log_message = generate_log_message
         self.config[:logging][:logger].debug(log_message)
       end
     end
@@ -224,7 +224,7 @@ module Runcible
       self.config[:logging][:logger]
     end
 
-  end 
+  end
 
   class ConfigurationUndefinedError < StandardError
 

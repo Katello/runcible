@@ -90,7 +90,7 @@ class TestResourcesTask < MiniTest::Unit::TestCase
 
   def test_poll_all
     tasks = @resource.poll_all([@@support.task['task_id']])
-    
+
     refute_empty tasks
     refute_empty tasks.select{ |task| task['task_id'] == @@support.task['task_id'] }
   end

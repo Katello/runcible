@@ -136,7 +136,7 @@ class RepositorySupport
         self.wait_on_task(task)
       end
     end
-  
+
     return @task
   rescue Exception => e
     puts e

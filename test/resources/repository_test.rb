@@ -68,7 +68,7 @@ end
 
 class TestResourcesRepository < MiniTest::Unit::TestCase
   include TestResourcesRepositoryBase
-  
+
   def self.before_suite
     RepositorySupport.new.create_repo(:importer => true)
   end
@@ -204,7 +204,7 @@ end
 
 class TestResourcesRepositorySync < MiniTest::Unit::TestCase
   include TestResourcesRepositoryBase
-  
+
   def setup
     super
     VCR.eject_cassette

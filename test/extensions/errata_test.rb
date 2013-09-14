@@ -53,7 +53,7 @@ class TestExtensionsErrata < MiniTest::Unit::TestCase
   def test_find
     id = @@extension.all.sort_by{|p| p['id']}.first['id']
     response = @@extension.find(id)
-    
+
     refute_empty response
     assert_equal id, response['id']
   end
@@ -61,14 +61,14 @@ class TestExtensionsErrata < MiniTest::Unit::TestCase
   def test_find_by_unit_id
     id = @@extension.all.sort_by{|p| p['id']}.first['_id']
     response = @@extension.find_by_unit_id(id)
-    
+
     refute_empty response
     assert_equal id, response['_id']
   end
 
   def test_find_unknown
     response = @@extension.find_all(['f'])
-    
+
     assert_empty response
   end
 

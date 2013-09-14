@@ -30,7 +30,7 @@ module Runcible
       # Generates the API path for Consumers
       #
       # @param  [String]  id  the ID of the consumer
-      # @return [String]      the consumer path, may contain the id if passed      
+      # @return [String]      the consumer path, may contain the id if passed
       def self.path(id=nil)
         (id == nil) ? "consumers/" : "consumers/#{id}/"
       end

@@ -28,7 +28,7 @@ require 'active_support/json'
 module Runcible
   module Models
 
-    # Generic class to represent Pulp Importers 
+    # Generic class to represent Pulp Importers
     # Child classes should supply id & config methods
     class Importer
       def initialize(params={})

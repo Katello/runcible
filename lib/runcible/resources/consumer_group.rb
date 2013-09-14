@@ -31,12 +31,12 @@ module Runcible
       # Generates the API path for Consumer Groups
       #
       # @param  [String]  id  the ID of the consumer group
-      # @return [String]      the consumer group path, may contain the id if passed      
+      # @return [String]      the consumer group path, may contain the id if passed
       def path(id=nil)
         groups = "consumer_groups/"
         id.nil? ? groups : groups + "#{id}/"
       end
-      
+
       # Creates a Consumer Group
       #
       # @param  [String]                id        the ID of the consumer

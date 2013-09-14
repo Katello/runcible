@@ -241,9 +241,9 @@ end
 
 
 class TestConsumerRequiresRepo < ConsumerRequiresRepoTests
-    
+
   def self.before_suite
-    super  
+    super
     bind_repo
   end
 

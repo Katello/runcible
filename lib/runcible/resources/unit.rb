@@ -40,7 +40,7 @@ module Runcible
       # @param  [String]                type      the unit type
       # @param  [Hash]                  criteria  criteria object containing Mongo syntax
       # @param  [Hash]                  optional  container for all optional parameters
-      # @return [RestClient::Response]            
+      # @return [RestClient::Response]
       def search(type, criteria, optional={})
         call(:post, path(type), :payload=>{:required=>{:criteria=>criteria}, :optional=>optional})
       end
