@@ -32,7 +32,7 @@ module Runcible
       # @param  [String]  upload_id  the id of the upload_request
       # @return [String]             the content path, may contain the upload_id if passed
       def self.path(upload_id=nil)
-        (upload_id == nil) ? "content/uploads/" : "content/uploads/#{upload_id}/"
+        (upload_id.nil?) ? "content/uploads/" : "content/uploads/#{upload_id}/"
       end
 
       # Creates an Upload Request

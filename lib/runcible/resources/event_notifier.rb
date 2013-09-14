@@ -43,7 +43,7 @@ module Runcible
       # @param  [String]  id  the ID of the event notifier
       # @return [String]      the event notifier path, may contain the ID if passed
       def self.path(id=nil)
-        (id == nil) ? "events/" : "events/#{id}/"
+        (id.nil?) ? "events/" : "events/#{id}/"
       end
 
       # Creates an Event Notification

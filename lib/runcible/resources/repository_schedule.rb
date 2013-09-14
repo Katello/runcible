@@ -37,7 +37,7 @@ module Runcible
       def self.path(repo_id, importer_id, schedule_id=nil)
         repo_path = Runcible::Resources::Repository.path(repo_id)
         path = "#{repo_path}importers/#{importer_id}/schedules/sync/"
-        (schedule_id == nil) ? path : "#{path}#{schedule_id}/"
+        (schedule_id.nil?) ? path : "#{path}#{schedule_id}/"
       end
 
       # List the schedules for a repository for a given importer type
