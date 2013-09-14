@@ -15,3 +15,7 @@ end
 group :debug do
   gem 'debugger'
 end
+
+group :development do
+  gem "rubocop", "~> 0.12.0"
+end
