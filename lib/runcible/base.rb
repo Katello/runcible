@@ -26,11 +26,10 @@ require 'oauth'
 require 'json'
 require 'thread'
 
-
 module Runcible
   class Base
 
-    def initialize(config={})
+    def initialize(config = {})
       @mutex = Mutex.new
       @config = config
     end
@@ -42,7 +41,10 @@ module Runcible
     def config
       @mutex.synchronize do
         @config = @lazy_config.call if defined?(@lazy_config)
-        raise Runcible::ConfigurationUndefinedError, Runcible::ConfigurationUndefinedError.message unless @config
+
+        unless @config
+          raise Runcible::ConfigurationUndefinedError, Runcible::ConfigurationUndefinedError.message
+        end
         @config
       end
     end
@@ -51,15 +53,12 @@ module Runcible
       self.class.path(*args)
     end
 
-    def call(method, path, options={})
+    def call(method, path, options = {})
       clone_config = self.config.clone
       #on occation path will already have prefix (sync cancel)
       path = clone_config[:api_path] + path if !path.start_with?(clone_config[:api_path])
 
       RestClient.log    = []
-      logger            = clone_config[:logging][:logger]
-      debug_logging     = clone_config[:logging][:debug]
-      exception_logging = clone_config[:logging][:exception]
 
       headers = clone_config[:headers].clone
 
@@ -107,7 +106,7 @@ module Runcible
         else
           "#{k.to_s}=#{v.to_s}"
         end
-      end.flatten().join('&')
+      end.flatten.join('&')
       path + "?#{query_string}"
     end
 
@@ -150,13 +149,15 @@ module Runcible
           end
         end
         response = RestClient::Response.create(body, response.net_http_res, response.args)
+      # TODO: we should probably log this at least
+      # rubocop:disable HandleExceptions
       rescue JSON::ParserError
       end
 
       return response
     end
 
-    def required_params(local_names, binding, keys_to_remove=[])
+    def required_params(local_names, binding, keys_to_remove = [])
       local_names = local_names.reduce({}) do |acc, v|
         value = binding.eval(v.to_s) unless v == :_
         acc[v] = value unless value.nil?
@@ -188,7 +189,8 @@ module Runcible
                           :access_token_path  => "" }
 
       default_options[:ca_file] = config[:ca_cert_file] unless config[:ca_cert_file].nil?
-      consumer = OAuth::Consumer.new(config[:oauth][:oauth_key], config[:oauth][:oauth_secret], default_options)
+      consumer = OAuth::Consumer.new(config[:oauth][:oauth_key], config[:oauth][:oauth_secret],
+                                     default_options)
 
       method_to_http_request = { :get    => Net::HTTP::Get,
                                  :post   => Net::HTTP::Post,

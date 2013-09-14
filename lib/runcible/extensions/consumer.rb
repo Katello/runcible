@@ -21,7 +21,6 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-
 module Runcible
   module Extensions
     class Consumer < Runcible::Resources::Consumer
@@ -35,7 +34,7 @@ module Runcible
       # @option  options [Boolean]     :notify_agent sends consumer a notification
       # @option  options [Hash]        :binding_config sends consumer a notification
       # @return [RestClient::Response]          set of tasks representing each bind operation
-      def bind_all(id, repo_id, type_id, options={})
+      def bind_all(id, repo_id, type_id, options = {})
         repository_extension.retrieve_with_details(repo_id)['distributors'].collect do |d|
           bind(id, repo_id, d['id'], options) if d['distributor_type_id'] == type_id
         end.reject{|f| f.nil?}.flatten
@@ -56,11 +55,12 @@ module Runcible
       # Activate a consumer as a pulp node
       #
       # @param  [String]               id       the consumer ID
-      # @param  [String]               update_strategy update_strategy for the node (defaults to additive)
+      # @param  [String]               update_strategy update_strategy for the node
+      #                                                (defaults to additive)
       # @return [RestClient::Response]          response from update call
       def activate_node(id, update_strategy="additive")
-        delta = {:notes=>{'_child-node' => true,
-                          '_node-update-strategy' => update_strategy}}
+        delta = {:notes => {'_child-node' => true,
+                            '_node-update-strategy' => update_strategy}}
         self.update(id, delta)
       end
 
@@ -69,9 +69,9 @@ module Runcible
       # @param  [String]               id       the consumer ID
       # @return [RestClient::Response]          response from update call
       def deactivate_node(id)
-        delta = {:notes=>{'child-node' => nil,
-                          'update_strategy' => nil}}
-        self.update(id, :delta=>delta)
+        delta = {:notes => {'child-node' => nil,
+                            'update_strategy' => nil}}
+        self.update(id, :delta => delta)
       end
 
       # Install content to a consumer
@@ -81,7 +81,7 @@ module Runcible
       # @param  [Array]                units    array of units to install
       # @param  [Hash]                 options to pass to content install
       # @return [RestClient::Response]          task representing the install operation
-      def install_content(id, type_id, units, options={})
+      def install_content(id, type_id, units, options = {})
         install_units(id, generate_content(type_id, units), options)
       end
 
@@ -92,7 +92,7 @@ module Runcible
       # @param  [Array]                units    array of units to update
       # @param  [Hash]                 options to pass to content update
       # @return [RestClient::Response]          task representing the update operation
-      def update_content(id, type_id, units, options={})
+      def update_content(id, type_id, units, options = {})
         update_units(id, generate_content(type_id, units, options), options)
       end
 
@@ -110,20 +110,23 @@ module Runcible
       #
       # @param  [String]  type_id the type of content (e.g. rpm, errata)
       # @param  [Array]   units   array of units
-      # @param  [Hash]    options contains options which may impact the format of the content (e.g :all => true)
+      # @param  [Hash]    options contains options which may impact the format of the content
+      #                           (e.g :all => true)
       # @return [Array]           array of formatted content units
-      def generate_content(type_id, units, options={})
+      # TODO: break up method
+      # rubocop:disable MethodLength
+      def generate_content(type_id, units, options = {})
         content = []
 
         case type_id
-          when 'rpm', 'package_group'
-            unit_key = :name
-          when 'erratum'
-            unit_key = :id
-          when 'repository'
-            unit_key = :repo_id
-          else
-            unit_key = :id
+        when 'rpm', 'package_group'
+          unit_key = :name
+        when 'erratum'
+          unit_key = :id
+        when 'repository'
+          unit_key = :repo_id
+        else
+          unit_key = :id
         end
 
         if options[:all]
