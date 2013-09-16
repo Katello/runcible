@@ -27,11 +27,12 @@ module Runcible
   module Resources
     # @see https://pulp-dev-guide.readthedocs.org/en/latest/rest-api/content/index.html
     class Content < Runcible::Base
+
       # Generates the API path for Contents
       #
       # @param  [String]  upload_id  the id of the upload_request
       # @return [String]             the content path, may contain the upload_id if passed
-      def self.path(upload_id=nil)
+      def upload_path(upload_id=nil)
         (upload_id == nil) ? "content/uploads/" : "content/uploads/#{upload_id}/"
       end
 
@@ -40,7 +41,7 @@ module Runcible
       # Request Body Contents: None
       # @return [RestClient::Response] Pulp returns the upload_id which is used for subsequent operations
       def create_upload_request
-        call(:post, path)
+        call(:post, upload_path)
       end
 
       # Upload bits
@@ -50,7 +51,7 @@ module Runcible
       # @param  [File]    content    content of the file being uploaded to the server
       # @return  [RestClient::Response] none
       def upload_bits(upload_id, offset, content)
-        call(:put, path("#{upload_id}/#{offset}/"), :payload => content)
+        call(:put, upload_path("#{upload_id}/#{offset}/"), :payload => content)
       end
 
       # Import into a repository
@@ -72,7 +73,7 @@ module Runcible
       # Query Parameters: None
       # @return [RestClient::Response] none
       def delete_upload_request(upload_id)
-        call(:delete, path("#{upload_id}/"))
+        call(:delete, upload_path("#{upload_id}/"))
       end
 
       # List all upload requests
@@ -80,7 +81,33 @@ module Runcible
       # Query Parameters: None
       # @return [RestClient::Response]  the list of IDs for all upload requests on the server; empty list if there are none
       def list_all_requests
-        call(:get, path)
+        call(:get, upload_path)
+      end
+
+      # Generates an api path for orphaned content
+      #
+      # @param  [String]  type_id  the type id of the orphaned content
+      # @return [String]  the content path, may contain the type_id if passed
+      def orphan_path(type_id = nil)
+        path = "content/orphans/"
+        path << "#{type_id}/" if type_id
+        path
+      end
+
+      # List all orphaned content optionally by type
+      #
+      # @param type_id  content unit type (rpm, puppet_module, etc.)
+      # @return list of orphaned content
+      def list_orphans(type_id = nil)
+        call(:get, orphan_path(type_id))
+      end
+
+      # Delete all orphaned content optionally by type
+      #
+      # @param type_id  content unit type (rpm, puppet_module, etc.)
+      # @return list of orphaned content
+      def remove_orphans(type_id = nil)
+        call(:delete, orphan_path(type_id))
       end
 
     end
