@@ -16,7 +16,7 @@ namespace :test do
     t.pattern = 'test/unit/test_*.rb'
   end
 
-  [:resources, :extensions, :unit].each do |task_name|
+  [:resources, :extensions, :unit, :models].each do |task_name|
     desc "Runs the #{task_name} tests"
     task task_name do
       options = {}
@@ -68,6 +68,7 @@ end
 desc "Runs all tests"
 task :test do
   Rake::Task['test:unit'].invoke
+  Rake::Task['test:models'].invoke
   Rake::Task['test:resources'].invoke
   Rake::Task['test:extensions'].invoke
 end
