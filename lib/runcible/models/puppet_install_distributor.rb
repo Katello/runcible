@@ -29,7 +29,7 @@ module Runcible
     class PuppetInstallDistributor < Distributor
       attr_accessor 'install_path'
 
-      def initialize(install_path, params={})
+      def initialize(install_path, params = {})
         @install_path = install_path
         super(params)
       end

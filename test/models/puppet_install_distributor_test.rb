@@ -3,7 +3,7 @@ require 'minitest/autorun'
 
 require './lib/runcible'
 
-class PuppetDistributorTest < MiniTest::Unit::TestCase
+class PuppetInstallDistributorTest < MiniTest::Unit::TestCase
 
   def setup
     @dist = Runcible::Models::PuppetInstallDistributor.new("/etc/puppet")
