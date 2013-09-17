@@ -6,14 +6,11 @@ require './lib/runcible'
 class PuppetDistributorTest < MiniTest::Unit::TestCase
 
   def setup
-    @dist = Runcible::Models::PuppetDistributor.new(:id => "puppet_distirubtor",
-                                                    :http => "http://example.com",
-                                                    :https => "https://example.com"
-                                                   )
+    @dist = Runcible::Models::PuppetDistributor.new("/some/path/testing/", true, true)
   end
 
   def test_config
-    config = {"serve_http" => "http://example.com", "serve_https" => "https://example.com"}
+    config = {"absolute_path" => "/some/path/testing/", "serve_http" => true, "serve_https" => true}
     assert_equal config, @dist.config
   end
 
