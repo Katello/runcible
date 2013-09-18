@@ -42,7 +42,7 @@ class ConsumerSupport
       consumer = @consumer_resource.create(self.class.consumer_id)
       if package_profile
         @consumer_resource.upload_profile(self.class.consumer_id, 'rpm', [{"name" => "elephant", "version" => "0.2", "release" => "0.7",
-                                                        "epoch" => 0, "arch" => "noarch"}])
+                                                                           "epoch" => 0, "arch" => "noarch", "vendor" => "Fedora"}])
       end
     end
     return consumer

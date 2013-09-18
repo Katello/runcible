@@ -168,7 +168,7 @@ class TestProfiles < MiniTest::Unit::TestCase
   def test_upload_profile
     packages = [{"vendor" => "FedoraHosted", "name" => "elephant",
                  "version" => "0.3", "release" => "0.8",
-                 "arch" => "noarch"}]
+                 "arch" => "noarch", "epoch" => ""}]
     response = @resource.upload_profile(@consumer_id, 'rpm', packages)
 
     assert_equal packages, response['profile']
@@ -177,7 +177,7 @@ class TestProfiles < MiniTest::Unit::TestCase
   def test_retrieve_profile
     packages = [{"vendor" => "FedoraHosted", "name" => "elephant",
                  "version" => "0.3", "release" => "0.8",
-                 "arch" => "noarch"}]
+                 "arch" => "noarch", "epoch" => "1"}]
     @resource.upload_profile(@consumer_id, 'rpm', packages)
     response = @resource.retrieve_profile(@consumer_id, 'rpm')
 
@@ -262,23 +262,23 @@ class TestConsumerRequiresRepo < ConsumerRequiresRepoTests
     refute_empty response
   end
 
-  def test_applicability
-    criteria  = {
-      'consumer_criteria' => {
-        'filters' => {'id' => {'$in' => [ConsumerSupport.consumer_id]}}
-      },
-      'repo_criteria' => {
-        'filters' => {'id'=> {'$in'=> [RepositorySupport.repo_id]}}
-      },
-      'units' => {
-        'erratum' => []
-      }
-    }
-    response  = @resource.applicability(criteria)
+  #def test_applicability
+    #criteria  = {
+      #'consumer_criteria' => {
+        #'filters' => {'id' => {'$in' => [ConsumerSupport.consumer_id]}}
+      #},
+      #'repo_criteria' => {
+        #'filters' => {'id'=> {'$in'=> [RepositorySupport.repo_id]}}
+      #},
+      #'units' => {
+        #'erratum' => []
+      #}
+    #}
+    #response  = @resource.applicability(criteria)
 
-    assert_equal 200, response.code
-    refute_empty response['erratum'][ConsumerSupport.consumer_id]
-  end
+    #assert_equal 200, response.code
+    #refute_empty response['erratum'][ConsumerSupport.consumer_id]
+  #end
 
   def test_install_units
     response  = @resource.install_units(@consumer_id,{"units"=>["unit_key"=>{:name => "zsh"}]})
