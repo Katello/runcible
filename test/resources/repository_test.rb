@@ -133,7 +133,7 @@ class TestRespositoryDistributor < MiniTest::Unit::TestCase
 
 
   def test_associate_distributor
-    distributor_config = {"relative_url" => "/", "http" => true, "https" => true}
+    distributor_config = {"relative_url" => "/123/456", "http" => true, "https" => true}
     response = @resource.associate_distributor(RepositorySupport.repo_id, "yum_distributor", distributor_config,
                                                {:distributor_id => "dist_1"})
 
@@ -142,7 +142,7 @@ class TestRespositoryDistributor < MiniTest::Unit::TestCase
   end
 
   def test_delete_distributor
-    distributor_config = {"relative_url" => "/", "http" => true, "https" => true}
+    distributor_config = {"relative_url" => "/123/456", "http" => true, "https" => true}
     @resource.associate_distributor(RepositorySupport.repo_id, "yum_distributor",
                                     distributor_config, {:distributor_id => "dist_1"})
 
@@ -153,7 +153,7 @@ class TestRespositoryDistributor < MiniTest::Unit::TestCase
   end
 
   def test_update_distributor
-    distributor_config = {"relative_url" => "/", "http" => true, "https" => true}
+    distributor_config = {"relative_url" => "/123/456", "http" => true, "https" => true}
     distributor = @resource.associate_distributor(RepositorySupport.repo_id, "yum_distributor",
                                     distributor_config, {:distributor_id => "dist_1"})
 

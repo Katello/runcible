@@ -132,12 +132,12 @@ class TestConsumerExtension < MiniTest::Unit::TestCase
     assert_empty content.first[:unit_key]
   end
 
-  def test_applicable_errata
-    response  = @extension.applicable_errata(@consumer_id)
+  #def test_applicable_errata
+    #response  = @extension.applicable_errata(@consumer_id)
 
-    assert_equal 200, response.code
-    refute_empty response['erratum'][ConsumerSupport.consumer_id]
-  end
+    #assert_equal 200, response.code
+    #refute_empty response['erratum'][ConsumerSupport.consumer_id]
+  #end
 
 end
 
