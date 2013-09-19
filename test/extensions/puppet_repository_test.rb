@@ -78,7 +78,7 @@ class TestExtensionsPuppetRepositoryCreate < MiniTest::Unit::TestCase
   end
 
   def test_create_with_distributors
-    VCR.use_cassette('extensions/puppet_repository_create_with_distributors') do
+    VCR.use_cassette('extensions/puppet_repository_create_with_distributors_hash') do
 
       distributors = [{'type_id' => 'puppet_distributor', 'id'=>'123', 'auto_publish'=>true,
                        'config'=>{'relative_url' => '/path', 'http' => true, 'https' => true}}]

@@ -68,7 +68,7 @@ end
 
 class TestResourcesRepository < MiniTest::Unit::TestCase
   include TestResourcesRepositoryBase
-  
+
   def self.before_suite
     RepositorySupport.new.create_repo(:importer => true)
   end
@@ -116,6 +116,17 @@ class TestResourcesRepository < MiniTest::Unit::TestCase
     assert_equal 200, response.code
     refute_empty response
   end
+
+  def test_generate_applicability
+    criteria  = {
+      'repo_criteria' => { 'filters' => { 'id' => { '$in' => [RepositorySupport.repo_id] } } }
+    }
+    response = @resource.regenerate_applicability(criteria)
+    assert_equal 202, response.code
+    task = RepositorySupport.new.wait_on_task(response)
+    assert 'success', task['state']
+  end
+
 end
 
 
@@ -204,7 +215,7 @@ end
 
 class TestResourcesRepositorySync < MiniTest::Unit::TestCase
   include TestResourcesRepositoryBase
-  
+
   def setup
     super
     VCR.eject_cassette

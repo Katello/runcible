@@ -30,7 +30,7 @@ module Runcible
       # Generates the API path for Consumers
       #
       # @param  [String]  id  the ID of the consumer
-      # @return [String]      the consumer path, may contain the id if passed      
+      # @return [String]      the consumer path, may contain the id if passed
       def self.path(id=nil)
         (id == nil) ? "consumers/" : "consumers/#{id}/"
       end
@@ -163,12 +163,20 @@ module Runcible
         call(:post, path("#{id}/actions/content/uninstall/"), :payload => { :required => required })
       end
 
-      # Determine if a set of content is applicable to a consumer
+      # (Re)Generate applicability for some set of consumers
       #
-      # @param  [Hash]                  options hash of uninstall options
+      # @param [Hash]                 options payload representing criteria
+      # @return [RestClient::Response]
+      def regenerate_applicability(options = {})
+        call(:post, path("actions/content/regenerate_applicability/"), :payload => { :required => options})
+      end
+
+      # retrieve the applicability for some set of consumers
+      #
+      # @param  [Hash]                  options hash representing criteria
       # @return [RestClient::Response]
       def applicability(options={})
-        call(:post, path("actions/content/applicability/"), :payload => { :required => options })
+        call(:post, path + "content/applicability/", :payload => { :required => options })
       end
 
     end
