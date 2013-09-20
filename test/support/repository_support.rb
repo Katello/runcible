@@ -136,7 +136,7 @@ class RepositorySupport
         self.wait_on_task(task)
       end
     end
-  
+
     return @task
   rescue Exception => e
     puts e
@@ -155,6 +155,7 @@ class RepositorySupport
         task = @task_resource.poll(task["task_id"])
       end
     end
+    task
   end
 
   def sleep_if_needed

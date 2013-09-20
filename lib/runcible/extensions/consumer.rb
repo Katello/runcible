@@ -150,6 +150,17 @@ module Runcible
         content
       end
 
+      # Regenerate the applicability for a set of consumers
+      #
+      # @param [String, Array]         ids  array of consumer ids
+      # @return [RestClient::Response]
+      def regenerate_applicability_by_ids(ids)
+        criteria  = {
+          'consumer_criteria' => { 'filters' => { 'id' => { '$in' => ids } } }
+        }
+        regenerate_applicability(criteria)
+      end
+
       # Retrieve the set of errata that is applicable to a consumer(s)
       #
       # @param  [String, Array]         ids             string containing a single consumer id or an array of ids
@@ -158,22 +169,15 @@ module Runcible
       #                                                 applicable errata; otherwise, it will list
       #                                                 errata and the consumers they are applicable to
       # @return [RestClient::Response]  content applicability hash with details of errata available to consumer(s)
-      def applicable_errata(ids, repoids = [], consumer_report = true)
-
+      def applicable_errata(ids)
         ids = [ids] if ids.is_a? String
-        consumer_criteria = { 'filters' => { 'id' => { '$in' => ids } } } unless ids.empty?
-        repo_criteria = { 'filters' => { 'id' => { '$in' => repoids } } } unless repoids.empty?
-        report_style = (consumer_report == true) ? 'by_consumer' : 'by_units'
 
         criteria  = {
-          'consumer_criteria' => consumer_criteria,
-          'repo_criteria' => repo_criteria,
-          'unit_criteria' => { 'erratum' => { } },
-          'override_config' => { 'report_style' => report_style }
+          'criteria' => { 'filters' => { 'id' => { '$in' => ids } } },
+          'content_types' => [Runcible::Extensions::Errata.content_type]
         }
         applicability(criteria)
       end
-
 
       private
 

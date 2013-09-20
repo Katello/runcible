@@ -30,7 +30,7 @@ module Runcible
       #
       # @param  [String]                               id       the id of the repository being created
       # @param  [Hash, Runcible::Extensions::Importer] importer either a hash representing an importer or an Importer object
-      # @return [RestClient::Response]                          the created repository         
+      # @return [RestClient::Response]                          the created repository
       def create_with_importer(id, importer)
         create_with_importer_and_distributors(id, importer)
       end
@@ -39,7 +39,7 @@ module Runcible
       #
       # @param  [String]                id            the id of the repository being created
       # @param  [Array]                 distributors  an array of hashes representing distributors or an array of Distributor objects
-      # @return [RestClient::Response]                the created repository         
+      # @return [RestClient::Response]                the created repository
       def create_with_distributors(id, distributors)
         create_with_importer_and_distributors(id, nil, distributors)
       end
@@ -50,7 +50,7 @@ module Runcible
       # @param  [Hash, Runcible::Extensions::Importer]  importer      either a hash representing an importer or an Importer object
       # @param  [Array]                                 distributors  an array of hashes representing distributors or an array of Distributor objects
       # @param  [Hash]                                  optional      container for all optional parameters
-      # @return [RestClient::Response]                                the created repository         
+      # @return [RestClient::Response]                                the created repository
       def create_with_importer_and_distributors(id, importer, distributors=[], optional={})
         if importer.is_a?(Runcible::Models::Importer)
           optional[:importer_type_id] = importer.id
@@ -113,7 +113,7 @@ module Runcible
       # @param  [Array]                repository_ids the repository ID
       # @return [RestClient::Response]                the set of repositories requested
       def search_by_repository_ids(repository_ids)
-        criteria = {:filters => 
+        criteria = {:filters =>
                       { "id" => {"$in" => repository_ids}}
                    }
         search(criteria)
@@ -275,7 +275,7 @@ module Runcible
       #
       # @param  [String]                repo_id   the ID of the repository
       # @param  [String]                type      the importer type
-      # @return [RestClient::Response]            
+      # @return [RestClient::Response]
       def remove_schedules(repo_id, type)
         schedules = Runcible::Resources::RepositorySchedule.new(self.config).list(repo_id, type)
         schedules.each do |schedule|
@@ -286,7 +286,7 @@ module Runcible
       # Publishes a repository for all of it's distributors
       #
       # @param  [String]                repo_id the ID of the repository
-      # @return [RestClient::Response]          set of tasks representing each publish  
+      # @return [RestClient::Response]          set of tasks representing each publish
       def publish_all(repo_id)
         to_ret = []
         retrieve_with_details(repo_id)['distributors'].each do |d|
@@ -301,6 +301,17 @@ module Runcible
       # @return [RestClient::Response]          the repository with full details
       def retrieve_with_details(repo_id)
         retrieve(repo_id, {:details => true})
+      end
+
+      # Regenerate the applicability for consumers bound to a given set of repositories
+      #
+      # @param [String, Array]         ids  array of repo ids
+      # @return [RestClient::Response]
+      def regenerate_applicability_by_ids(ids)
+        criteria  = {
+          'repo_criteria' => { 'filters' => { 'id' => { '$in' => ids } } }
+        }
+        regenerate_applicability(criteria)
       end
 
     end

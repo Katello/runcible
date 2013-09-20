@@ -152,6 +152,44 @@ class TestGeneralMethods < MiniTest::Unit::TestCase
 end
 
 
+class TestConsumerApplicability <MiniTest::Unit::TestCase
+  include TestConsumerBase
+
+  def setup
+    super
+    create_consumer
+  end
+
+  def teardown
+    destroy_consumer
+    super
+  end
+
+  def test_generate_applicability
+    criteria  = {
+      'consumer_criteria' => { 'filters' => { 'id' => { '$in' => [@consumer_id] } } }
+    }
+
+    response = @resource.regenerate_applicability(criteria)
+    assert_equal 202, response.code
+    task = RepositorySupport.new.wait_on_task(response)
+    assert 'success', task['state']
+
+  end
+
+  def test_applicability
+    criteria  = {
+      'criteria' => { 'filters' => { 'id' => { '$in' => [@consumer_id] } } },
+      'content_types' => [Runcible::Extensions::Errata.content_type]
+    }
+    response  = @resource.applicability(criteria)
+
+    assert_equal 200, response.code
+  end
+
+end
+
+
 class TestProfiles < MiniTest::Unit::TestCase
   include TestConsumerBase
 
@@ -241,9 +279,9 @@ end
 
 
 class TestConsumerRequiresRepo < ConsumerRequiresRepoTests
-    
+
   def self.before_suite
-    super  
+    super
     bind_repo
   end
 
@@ -261,24 +299,6 @@ class TestConsumerRequiresRepo < ConsumerRequiresRepoTests
     assert_equal 200, response.code
     refute_empty response
   end
-
-  #def test_applicability
-    #criteria  = {
-      #'consumer_criteria' => {
-        #'filters' => {'id' => {'$in' => [ConsumerSupport.consumer_id]}}
-      #},
-      #'repo_criteria' => {
-        #'filters' => {'id'=> {'$in'=> [RepositorySupport.repo_id]}}
-      #},
-      #'units' => {
-        #'erratum' => []
-      #}
-    #}
-    #response  = @resource.applicability(criteria)
-
-    #assert_equal 200, response.code
-    #refute_empty response['erratum'][ConsumerSupport.consumer_id]
-  #end
 
   def test_install_units
     response  = @resource.install_units(@consumer_id,{"units"=>["unit_key"=>{:name => "zsh"}]})

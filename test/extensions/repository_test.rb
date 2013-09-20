@@ -33,7 +33,7 @@ module TestExtensionsRepositoryBase
   def setup
     @support = RepositorySupport.new
     @extension = TestRuncible.server.extensions.repository
-    VCR.insert_cassette('extensions/repository_extensions', 
+    VCR.insert_cassette('extensions/repository_extensions',
                         :match_requests_on => [:body_json, :path, :method])
   end
 
@@ -152,18 +152,18 @@ class TestExtensionsRepositoryMisc < MiniTest::Unit::TestCase
     VCR.use_cassette('extensions/repository_schedule_removal') do
       TestRuncible.server.resources.repository_schedule.create(RepositorySupport.repo_id, 'yum_importer', "2012-10-25T20:44:00Z/P7D")
       response = @extension.remove_schedules(RepositorySupport.repo_id, "yum_importer")
-      
+
       assert_equal 200, response.code
     end
   end
 
   def test_retrieve_with_details
     response = @extension.retrieve_with_details(RepositorySupport.repo_id)
-  
+
     assert_equal    200, response.code
     assert_includes response, 'distributors'
   end
-  
+
   def test_publish_all
     response = @extension.publish_all(RepositorySupport.repo_id)
     @support.wait_on_tasks(response)
@@ -180,6 +180,13 @@ class TestExtensionsRepositoryMisc < MiniTest::Unit::TestCase
     response = @extension.sync_status(RepositorySupport.repo_id)
 
     assert_equal 200, response.code
+  end
+
+  def test_generate_applicability_by_ids
+    response = @extension.regenerate_applicability_by_ids([@consumer_id])
+    assert_equal 202, response.code
+    task = RepositorySupport.new.wait_on_task(response)
+    assert 'success', task['state']
   end
 
 end
