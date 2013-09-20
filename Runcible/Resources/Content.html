@@ -126,39 +126,6 @@
 
   
     <h2>
-      Class Method Summary
-      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
-    </h2>
-
-    <ul class="summary">
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#path-class_method" title="path (class method)">+ (String) <strong>path</strong>(upload_id = nil) </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>Generates the API path for Contents.</p>
-</div></span>
-  
-</li>
-
-      
-    </ul>
-  
-    <h2>
       Instance Method Summary
       <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
     </h2>
@@ -264,6 +231,78 @@
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#list_orphans-instance_method" title="#list_orphans (instance method)">- (Object) <strong>list_orphans</strong>(type_id = nil) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>List all orphaned content optionally by type.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#orphan_path-instance_method" title="#orphan_path (instance method)">- (String) <strong>orphan_path</strong>(type_id = nil) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Generates an api path for orphaned content.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#remove_orphans-instance_method" title="#remove_orphans (instance method)">- (Object) <strong>remove_orphans</strong>(type_id = nil) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Delete all orphaned content optionally by type.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#upload_bits-instance_method" title="#upload_bits (instance method)">- (RestClient::Response) <strong>upload_bits</strong>(upload_id, offset, content) </a>
     
 
@@ -280,6 +319,30 @@
   
     <span class="summary_desc"><div class='inline'>
 <p>Upload bits.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#upload_path-instance_method" title="#upload_path (instance method)">- (String) <strong>upload_path</strong>(upload_id = nil) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Generates the API path for Contents.</p>
 </div></span>
   
 </li>
@@ -306,93 +369,6 @@
   
 </div>
 
-
-  <div id="class_method_details" class="method_details_list">
-    <h2>Class Method Details</h2>
-
-    
-      <div class="method_details first">
-  <h3 class="signature first" id="path-class_method">
-  
-    + (<tt>String</tt>) <strong>path</strong>(upload_id = nil) 
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Generates the API path for Contents</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  <p class="tag_title">Parameters:</p>
-<ul class="param">
-  
-    <li>
-      
-        <span class='name'>upload_id</span>
-      
-      
-        <span class='type'>(<tt>String</tt>)</span>
-      
-      
-        <em class="default">(defaults to: <tt>nil</tt>)</em>
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>the id of the upload_request</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>String</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>the content path, may contain the upload_id if passed</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-34
-35
-36</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/runcible/resources/content.rb', line 34</span>
-
-<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_path'>path</span><span class='lparen'>(</span><span class='id identifier rubyid_upload_id'>upload_id</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
-  <span class='lparen'>(</span><span class='id identifier rubyid_upload_id'>upload_id</span> <span class='op'>==</span> <span class='kw'>nil</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>content/uploads/</span><span class='tstring_end'>&quot;</span></span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>content/uploads/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_upload_id'>upload_id</span><span class='rbrace'>}</span><span class='tstring_content'>/</span><span class='tstring_end'>&quot;</span></span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-  </div>
 
   <div id="instance_method_details" class="method_details_list">
     <h2>Instance Method Details</h2>
@@ -444,15 +420,15 @@
       <pre class="lines">
 
 
-42
 43
-44</pre>
+44
+45</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/runcible/resources/content.rb', line 42</span>
+      <pre class="code"><span class="info file"># File 'lib/runcible/resources/content.rb', line 43</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_create_upload_request'>create_upload_request</span>
-  <span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='symbol'>:post</span><span class='comma'>,</span> <span class='id identifier rubyid_path'>path</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='symbol'>:post</span><span class='comma'>,</span> <span class='id identifier rubyid_upload_path'>upload_path</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -525,15 +501,15 @@
       <pre class="lines">
 
 
-74
 75
-76</pre>
+76
+77</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/runcible/resources/content.rb', line 74</span>
+      <pre class="code"><span class="info file"># File 'lib/runcible/resources/content.rb', line 75</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_delete_upload_request'>delete_upload_request</span><span class='lparen'>(</span><span class='id identifier rubyid_upload_id'>upload_id</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='symbol'>:delete</span><span class='comma'>,</span> <span class='id identifier rubyid_path'>path</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_upload_id'>upload_id</span><span class='rbrace'>}</span><span class='tstring_content'>/</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='symbol'>:delete</span><span class='comma'>,</span> <span class='id identifier rubyid_upload_path'>upload_path</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_upload_id'>upload_id</span><span class='rbrace'>}</span><span class='tstring_content'>/</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -671,13 +647,13 @@ of unit being uploaded</p>
       <pre class="lines">
 
 
-64
 65
 66
-67</pre>
+67
+68</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/runcible/resources/content.rb', line 64</span>
+      <pre class="code"><span class="info file"># File 'lib/runcible/resources/content.rb', line 65</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_import_into_repo'>import_into_repo</span><span class='lparen'>(</span><span class='id identifier rubyid_repo_id'>repo_id</span><span class='comma'>,</span> <span class='id identifier rubyid_unit_type_id'>unit_type_id</span><span class='comma'>,</span> <span class='id identifier rubyid_upload_id'>upload_id</span><span class='comma'>,</span>  <span class='id identifier rubyid_unit_key'>unit_key</span><span class='comma'>,</span> <span class='id identifier rubyid_optional'>optional</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_required'>required</span> <span class='op'>=</span> <span class='id identifier rubyid_required_params'>required_params</span><span class='lparen'>(</span><span class='id identifier rubyid_binding'>binding</span><span class='period'>.</span><span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='symbol'>:local_variables</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_binding'>binding</span><span class='rparen'>)</span>
@@ -735,15 +711,262 @@ are none</p>
       <pre class="lines">
 
 
-82
 83
-84</pre>
+84
+85</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/runcible/resources/content.rb', line 82</span>
+      <pre class="code"><span class="info file"># File 'lib/runcible/resources/content.rb', line 83</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_list_all_requests'>list_all_requests</span>
-  <span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='symbol'>:get</span><span class='comma'>,</span> <span class='id identifier rubyid_path'>path</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='symbol'>:get</span><span class='comma'>,</span> <span class='id identifier rubyid_upload_path'>upload_path</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="list_orphans-instance_method">
+  
+    - (<tt>Object</tt>) <strong>list_orphans</strong>(type_id = nil) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>List all orphaned content optionally by type</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>type_id</span>
+      
+      
+        <span class='type'></span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>content unit type (rpm, puppet_module, etc.)</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        
+        <div class='inline'>
+<p>list of orphaned content</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+101
+102
+103</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/runcible/resources/content.rb', line 101</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_list_orphans'>list_orphans</span><span class='lparen'>(</span><span class='id identifier rubyid_type_id'>type_id</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='symbol'>:get</span><span class='comma'>,</span> <span class='id identifier rubyid_orphan_path'>orphan_path</span><span class='lparen'>(</span><span class='id identifier rubyid_type_id'>type_id</span><span class='rparen'>)</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="orphan_path-instance_method">
+  
+    - (<tt>String</tt>) <strong>orphan_path</strong>(type_id = nil) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Generates an api path for orphaned content</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>type_id</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the type id of the orphaned content</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the content path, may contain the type_id if passed</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+91
+92
+93
+94
+95</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/runcible/resources/content.rb', line 91</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_orphan_path'>orphan_path</span><span class='lparen'>(</span><span class='id identifier rubyid_type_id'>type_id</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_path'>path</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>content/orphans/</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_path'>path</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_type_id'>type_id</span><span class='rbrace'>}</span><span class='tstring_content'>/</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_type_id'>type_id</span>
+  <span class='id identifier rubyid_path'>path</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="remove_orphans-instance_method">
+  
+    - (<tt>Object</tt>) <strong>remove_orphans</strong>(type_id = nil) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Delete all orphaned content optionally by type</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>type_id</span>
+      
+      
+        <span class='type'></span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>content unit type (rpm, puppet_module, etc.)</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        
+        <div class='inline'>
+<p>list of orphaned content</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+109
+110
+111</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/runcible/resources/content.rb', line 109</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_remove_orphans'>remove_orphans</span><span class='lparen'>(</span><span class='id identifier rubyid_type_id'>type_id</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='symbol'>:delete</span><span class='comma'>,</span> <span class='id identifier rubyid_orphan_path'>orphan_path</span><span class='lparen'>(</span><span class='id identifier rubyid_type_id'>type_id</span><span class='rparen'>)</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -846,15 +1069,96 @@ are none</p>
       <pre class="lines">
 
 
-52
 53
-54</pre>
+54
+55</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/runcible/resources/content.rb', line 52</span>
+      <pre class="code"><span class="info file"># File 'lib/runcible/resources/content.rb', line 53</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_upload_bits'>upload_bits</span><span class='lparen'>(</span><span class='id identifier rubyid_upload_id'>upload_id</span><span class='comma'>,</span> <span class='id identifier rubyid_offset'>offset</span><span class='comma'>,</span> <span class='id identifier rubyid_content'>content</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='symbol'>:put</span><span class='comma'>,</span> <span class='id identifier rubyid_path'>path</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_upload_id'>upload_id</span><span class='rbrace'>}</span><span class='tstring_content'>/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_offset'>offset</span><span class='rbrace'>}</span><span class='tstring_content'>/</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='comma'>,</span> <span class='symbol'>:payload</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_content'>content</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='symbol'>:put</span><span class='comma'>,</span> <span class='id identifier rubyid_upload_path'>upload_path</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_upload_id'>upload_id</span><span class='rbrace'>}</span><span class='tstring_content'>/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_offset'>offset</span><span class='rbrace'>}</span><span class='tstring_content'>/</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='comma'>,</span> <span class='symbol'>:payload</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_content'>content</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="upload_path-instance_method">
+  
+    - (<tt>String</tt>) <strong>upload_path</strong>(upload_id = nil) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Generates the API path for Contents</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>upload_id</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the id of the upload_request</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the content path, may contain the upload_id if passed</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+35
+36
+37</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/runcible/resources/content.rb', line 35</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_upload_path'>upload_path</span><span class='lparen'>(</span><span class='id identifier rubyid_upload_id'>upload_id</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='lparen'>(</span><span class='id identifier rubyid_upload_id'>upload_id</span> <span class='op'>==</span> <span class='kw'>nil</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>content/uploads/</span><span class='tstring_end'>&quot;</span></span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>content/uploads/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_upload_id'>upload_id</span><span class='rbrace'>}</span><span class='tstring_content'>/</span><span class='tstring_end'>&quot;</span></span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -866,7 +1170,7 @@ are none</p>
 </div>
 
     <div id="footer">
-  Generated on Wed Sep 11 11:12:27 2013 by
+  Generated on Fri Sep 20 15:28:52 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7 (ruby-1.9.3).
 </div>

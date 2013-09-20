@@ -187,7 +187,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Determine if a set of content is applicable to a consumer.</p>
+<p>retrieve the applicability for some set of consumers.</p>
 </div></span>
   
 </li>
@@ -284,6 +284,30 @@
   
     <span class="summary_desc"><div class='inline'>
 <p>Install a set of units onto a consumer.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#regenerate_applicability-instance_method" title="#regenerate_applicability (instance method)">- (RestClient::Response) <strong>regenerate_applicability</strong>(options = {}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>(Re)Generate applicability for some set of consumers.</p>
 </div></span>
   
 </li>
@@ -630,7 +654,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Determine if a set of content is applicable to a consumer</p>
+<p>retrieve the applicability for some set of consumers</p>
 
 
   </div>
@@ -652,7 +676,7 @@
       
         &mdash;
         <div class='inline'>
-<p>hash of uninstall options</p>
+<p>hash representing criteria</p>
 </div>
       
     </li>
@@ -679,15 +703,15 @@
       <pre class="lines">
 
 
-170
-171
-172</pre>
+178
+179
+180</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/runcible/resources/consumer.rb', line 170</span>
+      <pre class="code"><span class="info file"># File 'lib/runcible/resources/consumer.rb', line 178</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_applicability'>applicability</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='symbol'>:post</span><span class='comma'>,</span> <span class='id identifier rubyid_path'>path</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>actions/content/applicability/</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='comma'>,</span> <span class='symbol'>:payload</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span> <span class='symbol'>:required</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_options'>options</span> <span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='symbol'>:post</span><span class='comma'>,</span> <span class='id identifier rubyid_path'>path</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>content/applicability/</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='symbol'>:payload</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span> <span class='symbol'>:required</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_options'>options</span> <span class='rbrace'>}</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1092,6 +1116,82 @@
 <span class='kw'>def</span> <span class='id identifier rubyid_install_units'>install_units</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_units'>units</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_required'>required</span> <span class='op'>=</span> <span class='id identifier rubyid_required_params'>required_params</span><span class='lparen'>(</span><span class='id identifier rubyid_binding'>binding</span><span class='period'>.</span><span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='symbol'>:local_variables</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_binding'>binding</span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>id</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='symbol'>:post</span><span class='comma'>,</span> <span class='id identifier rubyid_path'>path</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_id'>id</span><span class='rbrace'>}</span><span class='tstring_content'>/actions/content/install/</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='comma'>,</span> <span class='symbol'>:payload</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span> <span class='symbol'>:required</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_required'>required</span> <span class='rbrace'>}</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="regenerate_applicability-instance_method">
+  
+    - (<tt>RestClient::Response</tt>) <strong>regenerate_applicability</strong>(options = {}) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>(Re)Generate applicability for some set of consumers</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>payload representing criteria</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>RestClient::Response</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+170
+171
+172</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/runcible/resources/consumer.rb', line 170</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_regenerate_applicability'>regenerate_applicability</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='symbol'>:post</span><span class='comma'>,</span> <span class='id identifier rubyid_path'>path</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>actions/content/regenerate_applicability/</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='comma'>,</span> <span class='symbol'>:payload</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span> <span class='symbol'>:required</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_options'>options</span><span class='rbrace'>}</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1973,7 +2073,7 @@
 </div>
 
     <div id="footer">
-  Generated on Wed Sep 11 11:12:28 2013 by
+  Generated on Fri Sep 20 15:28:52 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7 (ruby-1.9.3).
 </div>
