@@ -6,7 +6,7 @@
 <title>
   File: README
   
-    &mdash; Documentation by YARD 0.8.7
+    &mdash; Documentation by YARD 0.8.7.3
   
 </title>
 
@@ -61,11 +61,12 @@
 
     <iframe id="search_frame"></iframe>
 
-    <div id="content"><div id='filecontents'><h1 id='runcible'>Runcible</h1>
+    <div id="content"><div id='filecontents'>
+<h1 id="runcible">Runcible</h1>
 
-<p><a href='http://travis-ci.org/Katello/runcible'><img alt='Build Status' src='https://secure.travis-ci.org/Katello/runcible.png' /></a></p>
+<p><a href="http://travis-ci.org/Katello/runcible"><img src="https://secure.travis-ci.org/Katello/runcible.png" alt="Build Status" /></a></p>
 
-<p>Exposing Pulp&#8217;s juiciest parts. http://www.pulpproject.org/</p>
+<p>Exposing Pulp???s juiciest parts. http://www.pulpproject.org/</p>
 
 <p>Latest Live Tested Version: <strong>pulp-server-2.3.0-0.12.alpha.el6.noarch</strong></p>
 
@@ -73,9 +74,9 @@
 
 <p>For in-depth class and method documentation: http://katello.github.com/runcible/</p>
 
-<h2 id='installation'>Installation</h2>
+<h2 id="installation">Installation</h2>
 
-<p>Add this line to your application&#8217;s Gemfile:</p>
+<p>Add this line to your application???s Gemfile:</p>
 
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_gem'>gem</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>runcible</span><span class='tstring_end'>'</span></span></code></pre>
 
@@ -87,9 +88,9 @@
 
 <pre class="code ruby"><code class="ruby">$ gem install runcible</code></pre>
 
-<h2 id='usage'>Usage</h2>
+<h2 id="usage">Usage</h2>
 
-<h3 id='set_configuration'>Set Configuration</h3>
+<h3 id="set_configuration">Set Configuration</h3>
 
 <p>To use a single resource or extension, the configuration can be set:</p>
 
@@ -101,7 +102,7 @@
           <span class='rbrace'>}</span><span class='rparen'>)</span>
 <span class='id identifier rubyid_repo_api'>repo_api</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span></code></pre>
 
-<p>Alternatively, a single &#8216;server&#8217; instance which can easily use all resources and extensions can be instantiated:</p>
+<p>Alternatively, a single ???server??? instance which can easily use all resources and extensions can be instantiated:</p>
 
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_my_runcible'>my_runcible</span> <span class='op'>=</span> <span class='const'>Runcible</span><span class='op'>::</span><span class='const'>Instance</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='lbrace'>{</span>
             <span class='symbol'>:url</span>      <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
@@ -125,15 +126,15 @@
 :oauth      =&gt; {:oauth_secret =&gt; &quot;&quot;,
                 :oauth_key    =&gt; &quot;&quot; }</code></pre>
 
-<p>For an example on parsing the Pulp server.conf and using values provided within for the configuration see the <a href='https://github.com/Katello/runcible/blob/master/test/integration/test_runner.rb'>test_runner</a></p>
+<p>For an example on parsing the Pulp server.conf and using values provided within for the configuration see the <a href="https://github.com/Katello/runcible/blob/master/test/integration/test_runner.rb">test_runner</a></p>
 
-<h3 id='make_a_request'>Make a Request</h3>
+<h3 id="make_a_request">Make a Request</h3>
 
-<p>Runcible provides two representations of Pulp entities to make API calls: <a href='https://github.com/Katello/runcible/tree/master/lib/runcible/resources'>resources</a> and <a href='https://github.com/Katello/runcible/tree/master/lib/runcible/extensions'>extensions</a></p>
+<p>Runcible provides two representations of Pulp entities to make API calls: <a href="https://github.com/Katello/runcible/tree/master/lib/runcible/resources">resources</a> and <a href="https://github.com/Katello/runcible/tree/master/lib/runcible/extensions">extensions</a></p>
 
-<p>The best examples of how to use either the resources or extensions can be found within the <a href='https://github.com/Katello/runcible/tree/master/test/integration'>tests</a></p>
+<p>The best examples of how to use either the resources or extensions can be found within the <a href="https://github.com/Katello/runcible/tree/master/test/integration">tests</a></p>
 
-<h4 id='resources'>Resources</h4>
+<h4 id="resources">Resources</h4>
 
 <p>Resources are designed to be one-for-one with the Pulp API calls in terms of required parameters and naming of the calls. For example, in order to create a repository, associate a Yum importer and a distributor:</p>
 
@@ -148,7 +149,7 @@ Runcible::Resources::Repository.new(config).create(&quot;Repository_ID&quot;)
 Runcible::Resources::Repository.new(config).associate_importer(&quot;Repository_ID&quot;, &quot;yum_importer&quot;, {})
 Runcible::Resources::Repository.new(config).associate_distributor(&quot;Repository_ID&quot;, &quot;yum_distributor&quot;, {&quot;relative_url&quot; =&gt; &quot;/&quot;, &quot;http&quot; =&gt; true, &quot;https&quot; =&gt; true})</code></pre>
 
-<h4 id='extensions'>Extensions</h4>
+<h4 id="extensions">Extensions</h4>
 
 <p>Extensions are constructs around the Pulp API that make retrieving, accessing or creating certain data types easier. For example, providing objects that represent the details of a yum importer or distributor, and providing functions to create a Repository with an importer and distributors in a single call. The same three step process above using extensions is:</p>
 
@@ -171,7 +172,7 @@ or
 
 Runcible::Extensions::Repository.new(config).create_with_importer_and_distributors(&quot;Repository_ID&quot;, importer, distributors)</code></pre>
 
-<h2 id='testing'>Testing</h2>
+<h2 id="testing">Testing</h2>
 
 <p>To run all tests using recorded data, run:</p>
 
@@ -199,7 +200,7 @@ rake test mode=none test=./test/extensions/respository_test.rb</code></pre>
 
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_logging'>logging</span><span class='op'>=</span><span class='kw'>true</span></code></pre>
 
-<h2 id='updating_documentation'>Updating Documentation</h2>
+<h2 id="updating_documentation">Updating Documentation</h2>
 
 <p>The documentation is built with yard and hosted on Github via the gh-pages branch of the repository. To update the documentation on Github:</p>
 
@@ -210,17 +211,17 @@ git add ./
 git commit -a -m 'Updating docs to version X.X'
 git push &lt;upstream&gt; gh-pages</code></pre>
 
-<h2 id='building_and_releasing'>Building and Releasing</h2>
+<h2 id="building_and_releasing">Building and Releasing</h2>
 
 <p>An official release of Runcible should include the release of a gem on rubygems.org and an update to the documentation branch. At a minimum, the following two actions should be performed for each release:</p>
 
 <ol>
-<li><a href='#gem'>Build and Release Gem</a></li>
+<li><a href="#gem">Build and Release Gem</a></li>
 
-<li><a href='#updating-documentation'>Updating Documentation</a></li>
+<li><a href="#updating-documentation">Updating Documentation</a></li>
 </ol>
 
-<h3 id='gem'>Gem</h3>
+<h3 id="gem">Gem</h3>
 
 <p>While anyone can grab the source and build a new version of the gem, only those with Rubygems.org permissions on the project can release an official version.</p>
 
@@ -237,15 +238,15 @@ vim lib/runcible/version.rb</code></pre>
 
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_gem'>gem</span> <span class='id identifier rubyid_build'>build</span> <span class='id identifier rubyid_runcible'>runcible</span><span class='period'>.</span><span class='id identifier rubyid_gemspec'>gemspec</span></code></pre>
 
-<h4 id='official_release'>Official Release</h4>
+<h4 id="official_release">Official Release</h4>
 
 <p>For an official release, again assuming you have the right permssions:</p>
 
 <pre class="code ruby"><code class="ruby">gem push runcible-&lt;version&gt;.gem</code></pre>
 
-<h3 id='rpm_release'>RPM Release</h3>
+<h3 id="rpm_release">RPM Release</h3>
 
-<p>If you are wanting to generate a new RPM build, please make sure you have followed the steps above if the build is going to include new code. All builds should first go in gem form to Rubygems. You&#8217;ll need to make sure tito is installed:</p>
+<p>If you are wanting to generate a new RPM build, please make sure you have followed the steps above if the build is going to include new code. All builds should first go in gem form to Rubygems. You???ll need to make sure tito is installed:</p>
 
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_yum'>yum</span> <span class='id identifier rubyid_install'>install</span> <span class='id identifier rubyid_tito'>tito</span></code></pre>
 
@@ -263,26 +264,27 @@ vim lib/runcible/version.rb</code></pre>
 
 <p>From here there are a variety of options to build and release an RPM pakaged version of Runcible (e.g. you can build an SRPM to feed to Koji, or use mock locally)</p>
 
-<h2 id='contributing'>Contributing</h2>
+<h2 id="contributing">Contributing</h2>
 
 <ol>
 <li>Fork it</li>
 
 <li>Create your feature branch (<code>git checkout -b my-new-feature</code>)</li>
 
-<li>Commit your changes (<code>git commit -am &#39;Added some feature&#39;</code>)</li>
+<li>Commit your changes (<code>git commit -am 'Added some feature'</code>)</li>
 
 <li>Ensure all tests are passing</li>
 
 <li>Push to the branch (<code>git push origin my-new-feature</code>)</li>
 
 <li>Create new Pull Request</li>
-</ol></div></div>
+</ol>
+</div></div>
 
     <div id="footer">
-  Generated on Fri Sep 20 15:28:51 2013 by
+  Generated on Thu Jan 16 15:06:25 2014 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7 (ruby-1.9.3).
+  0.8.7.3 (ruby-1.9.3).
 </div>
 
   </body>
