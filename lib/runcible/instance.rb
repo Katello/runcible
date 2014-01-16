@@ -34,7 +34,6 @@ module Runcible
       @@extension_classes
     end
 
-
     attr_accessor :resources
     attr_accessor :extensions
 
@@ -72,6 +71,10 @@ module Runcible
       @config[key] = value
     end
 
+    def config
+      @config
+    end
+
     private
 
     def initialize_wrappers(config)
@@ -105,7 +108,6 @@ module Runcible
 
   end
 
-
   #Wrapper class to provide access to instances
   class Wrapper
 
@@ -123,7 +125,6 @@ module Runcible
       "#{@name} - #{@methods.uniq.sort.to_s}"
     end
   end
-
 
 end
 
