@@ -24,11 +24,9 @@
 require 'rubygems'
 require 'minitest/autorun'
 
-
-
 module TestResourcesUserBase
   def setup
-    VCR.insert_cassette('user')
+    VCR.insert_cassette(self.class.cassette_name)
     @username = "integration_test_user"
     @resource = TestRuncible.server.resources.user
   end
@@ -42,14 +40,12 @@ class TestResourcesUserCreate < MiniTest::Unit::TestCase
   include TestResourcesUserBase
 
   def teardown
-    super
-    VCR.use_cassette('user_support') do
-      begin
-        @resource.retrieve(@username)
-        @resource.delete(@username)
-      rescue RestClient::ResourceNotFound => e
-      end
+    begin
+      @resource.retrieve(@username)
+      @resource.delete(@username)
+    rescue RestClient::ResourceNotFound => e
     end
+    super
   end
 
   def test_create
@@ -74,24 +70,20 @@ class TestResourcesUser < MiniTest::Unit::TestCase
 
   def setup
     super
-    VCR.use_cassette('user_support') do
-      begin
-        @resource.retrieve(@username)
-      rescue RestClient::ResourceNotFound => e
-        @resource.create(@username)
-      end
+    begin
+      @resource.retrieve(@username)
+    rescue RestClient::ResourceNotFound => e
+      @resource.create(@username)
     end
   end
 
   def teardown
-    super
-    VCR.use_cassette('user_support') do
-      begin
-        @resource.retrieve(@username)
-        @resource.delete(@username)
-      rescue RestClient::ResourceNotFound => e
-      end
+    begin
+      @resource.retrieve(@username)
+      @resource.delete(@username)
+    rescue RestClient::ResourceNotFound => e
     end
+    super
   end
 
   def test_path
