@@ -34,18 +34,12 @@ class TestResourcesRoles < MiniTest::Unit::TestCase
     @role_name = "super-users"
     @resource = TestRuncible.server.resources.role
 
-    VCR.use_cassette('user') do
-      TestRuncible.server.resources.user.create(@username)
-    end
-
     VCR.insert_cassette('role')
+    TestRuncible.server.resources.user.create(@username)
   end
 
   def teardown
-    VCR.use_cassette('user') do
-      TestRuncible.server.resources.user.delete(@username)
-    end
-
+    TestRuncible.server.resources.user.delete(@username)
     VCR.eject_cassette
   end
 
