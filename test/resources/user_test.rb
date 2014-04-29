@@ -28,7 +28,7 @@ require 'minitest/autorun'
 
 module TestResourcesUserBase
   def setup
-    VCR.insert_cassette('user')
+    VCR.insert_cassette(self.class.cassette)
     @username = "integration_test_user"
     @resource = TestRuncible.server.resources.user
   end
@@ -41,15 +41,17 @@ end
 class TestResourcesUserCreate < MiniTest::Unit::TestCase
   include TestResourcesUserBase
 
+  def self.cassette
+    'user_create'
+  end
+
   def teardown
-    super
-    VCR.use_cassette('user_support') do
-      begin
-        @resource.retrieve(@username)
-        @resource.delete(@username)
-      rescue RestClient::ResourceNotFound => e
-      end
+    begin
+      @resource.retrieve(@username)
+      @resource.delete(@username)
+    rescue RestClient::ResourceNotFound => e
     end
+    super
   end
 
   def test_create
@@ -72,26 +74,26 @@ end
 class TestResourcesUser < MiniTest::Unit::TestCase
   include TestResourcesUserBase
 
+  def self.cassette
+    'user'
+  end
+
   def setup
     super
-    VCR.use_cassette('user_support') do
-      begin
-        @resource.retrieve(@username)
-      rescue RestClient::ResourceNotFound => e
-        @resource.create(@username)
-      end
+    begin
+      @resource.retrieve(@username)
+    rescue RestClient::ResourceNotFound => e
+      @resource.create(@username)
     end
   end
 
   def teardown
-    super
-    VCR.use_cassette('user_support') do
-      begin
-        @resource.retrieve(@username)
-        @resource.delete(@username)
-      rescue RestClient::ResourceNotFound => e
-      end
+    begin
+      @resource.retrieve(@username)
+      @resource.delete(@username)
+    rescue RestClient::ResourceNotFound => e
     end
+    super
   end
 
   def test_path
