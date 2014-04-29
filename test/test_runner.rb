@@ -47,6 +47,26 @@ class TestRuncible
   end
 end
 
+module CassetteHelpers
+  def cassette_name
+    # remove 'test' word and underscore the name
+    file = self.name.gsub(/test/i, '').gsub(/(.)([A-Z])/,'\1_\2').downcase
+
+    if self.send(:caller).first =~ %r{test/resources}
+      file = file.sub(/_?resources_?/, '')
+      "resources/#{file}"
+    elsif self.send(:caller).first =~ %r{test/extensions}
+      file = file.sub(/_?extensions_?/, '')
+      "extensions/#{file}"
+    else
+      file
+    end
+  end
+end
+
+class MiniTest::Unit::TestCase
+  extend CassetteHelpers
+end
 
 class CustomMiniTestRunner
   class Unit < MiniTest::Unit
