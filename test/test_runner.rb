@@ -47,6 +47,16 @@ class TestRuncible
   end
 end
 
+module CassetteHelpers
+  def cassette_name
+    # remove 'test' word and underscore the name
+    self.name.gsub(/test/i, '').gsub(/(.)([A-Z])/,'\1_\2').downcase
+  end
+end
+
+class MiniTest::Unit::TestCase
+  extend CassetteHelpers
+end
 
 class CustomMiniTestRunner
   class Unit < MiniTest::Unit
