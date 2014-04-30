@@ -1,0 +1,77 @@
+--- 
+http_interactions: 
+- request: 
+    method: post
+    uri: https://admin:admin@centos.installer/pulp/api/v2/repositories/integration_test_id_clone/actions/associate/
+    body: 
+      encoding: US-ASCII
+      string: "{\"source_repo_id\":\"integration_test_id\",\"criteria\":{\"type_ids\":[\"rpm\"],\"filters\":{\"unit\":{\"$and\":[{\"name\":{\"$regex\":\"p.*\"}},{\"version\":{\"$gt\":\"1.0\"}}]}}}}"
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "154"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 202
+      message: Accepted
+    headers: 
+      Date: 
+      - Wed, 30 Apr 2014 20:49:18 GMT
+      Server: 
+      - Apache/2.2.15 (CentOS)
+      Content-Encoding: 
+      - utf-8
+      Content-Length: 
+      - "172"
+      Connection: 
+      - close
+      Content-Type: 
+      - application/json
+    body: 
+      encoding: US-ASCII
+      string: "{\"spawned_tasks\": [{\"_href\": \"/pulp/api/v2/tasks/55c09e90-1905-4b78-b020-4c8be0d0add0/\", \"task_id\": \"55c09e90-1905-4b78-b020-4c8be0d0add0\"}], \"result\": null, \"error\": null}"
+    http_version: 
+  recorded_at: Wed, 30 Apr 2014 20:49:19 GMT
+- request: 
+    method: get
+    uri: https://admin:admin@centos.installer/pulp/api/v2/tasks/55c09e90-1905-4b78-b020-4c8be0d0add0/
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/json
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Date: 
+      - Wed, 30 Apr 2014 20:49:19 GMT
+      Server: 
+      - Apache/2.2.15 (CentOS)
+      Content-Length: 
+      - "574"
+      Connection: 
+      - close
+      Content-Type: 
+      - application/json
+    body: 
+      encoding: US-ASCII
+      string: "{\"task_type\": \"pulp.server.managers.repo.unit_association.associate_from_repo\", \"_href\": \"/pulp/api/v2/tasks/55c09e90-1905-4b78-b020-4c8be0d0add0/\", \"task_id\": \"55c09e90-1905-4b78-b020-4c8be0d0add0\", \"tags\": [\"pulp:repository:integration_test_id_clone\", \"pulp:repository:integration_test_id\", \"pulp:action:associate\"], \"finish_time\": \"2014-04-30T20:49:19Z\", \"_ns\": \"task_status\", \"start_time\": \"2014-04-30T20:49:19Z\", \"spawned_tasks\": [], \"queue\": \"reserved_resource_worker-0@centos.installer\", \"state\": \"finished\", \"result\": [], \"_id\": {\"$oid\": \"536161cf6f17e7ee7c724a6d\"}}"
+    http_version: 
+  recorded_at: Wed, 30 Apr 2014 20:49:19 GMT
+recorded_with: VCR 2.9.0

@@ -27,46 +27,46 @@ require 'minitest/autorun'
 require './lib/runcible/resources/user'
 require './lib/runcible/resources/role'
 
+module Resources
 
-class TestResourcesRoles < MiniTest::Unit::TestCase
-  def setup
-    @username = "integration_test_user"
-    @role_name = "super-users"
-    @resource = TestRuncible.server.resources.role
+  class TestRoles < MiniTest::Unit::TestCase
+    def setup
+      @username = "integration_test_user"
+      @role_name = "super-users"
+      @resource = TestRuncible.server.resources.role
 
-    VCR.insert_cassette(self.class.cassette_name)
-    TestRuncible.server.resources.user.create(@username)
+      TestRuncible.server.resources.user.create(@username)
+    end
+
+    def teardown
+      TestRuncible.server.resources.user.delete(@username)
+    end
+
+    def test_path_without_role_name
+      path = @resource.class.path
+
+      assert_match "roles/", path
+    end
+
+    def test_path_with_role_name
+      path = @resource.class.path(@role_name)
+
+      assert_match "roles/#{@role_name}", path
+    end
+
+    def test_add
+      response = @resource.add(@role_name, @username)
+
+      assert_equal 200, response.code
+      @resource.remove(@role_name, @username)
+    end
+
+    def test_remove
+      @resource.add(@role_name, @username)
+      response = @resource.remove(@role_name, @username)
+
+      assert_equal 200, response.code
+    end
+
   end
-
-  def teardown
-    TestRuncible.server.resources.user.delete(@username)
-    VCR.eject_cassette
-  end
-
-  def test_path_without_role_name
-    path = @resource.class.path
-
-    assert_match "roles/", path
-  end
-
-  def test_path_with_role_name
-    path = @resource.class.path(@role_name)
-
-    assert_match "roles/#{@role_name}", path
-  end
-
-  def test_add
-    response = @resource.add(@role_name, @username)
-
-    assert_equal 200, response.code
-    @resource.remove(@role_name, @username)
-  end
-
-  def test_remove
-    @resource.add(@role_name, @username)
-    response = @resource.remove(@role_name, @username)
-
-    assert_equal 200, response.code
-  end
-
 end
