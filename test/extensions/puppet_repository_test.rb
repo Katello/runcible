@@ -27,32 +27,25 @@ require 'minitest/autorun'
 require './test/support/repository_support'
 require './lib/runcible'
 
+module Extensions
+  module TestPuppetRepositoryBase
 
-module TestExtensionsPuppetRepositoryBase
+    def setup
+      @support = RepositorySupport.new("puppet")
+      @extension = TestRuncible.server.extensions.repository
+    end
 
-  def setup
-    @support = RepositorySupport.new("puppet")
-    @extension = TestRuncible.server.extensions.repository
-    VCR.insert_cassette('extensions/puppet_repository',
-                        :match_requests_on => [:body_json, :path, :method])
   end
 
-  def teardown
-    VCR.eject_cassette
-  end
+  class TestPuppetRepositoryCreate < MiniTest::Unit::TestCase
+    include TestPuppetRepositoryBase
 
-end
+    def teardown
+      @support.destroy_repo
+      super
+    end
 
-class TestExtensionsPuppetRepositoryCreate < MiniTest::Unit::TestCase
-  include TestExtensionsPuppetRepositoryBase
-
-  def teardown
-    super
-    @support.destroy_repo
-  end
-
-  def test_create_with_importer
-    VCR.use_cassette('extensions/puppet_repository_create_with_importer') do
+    def test_create_with_importer
       response = @extension.create_with_importer(RepositorySupport.repo_id, {:id=>"puppet_importer"})
       assert_equal 201, response.code
 
@@ -60,10 +53,8 @@ class TestExtensionsPuppetRepositoryCreate < MiniTest::Unit::TestCase
       assert_equal RepositorySupport.repo_id, response['id']
       assert_equal "puppet_importer", response['importers'].first['importer_type_id']
     end
-  end
 
-  def test_create_with_importer_object
-    VCR.use_cassette('extensions/puppet_repository_create_with_importer') do
+    def test_create_with_importer_object
       response = @extension.create_with_importer(RepositorySupport.repo_id, Runcible::Models::PuppetImporter.new())
       assert_equal 201, response.code
 
@@ -75,11 +66,7 @@ class TestExtensionsPuppetRepositoryCreate < MiniTest::Unit::TestCase
       @extension.create_with_importer(RepositorySupport.repo_id, Runcible::Models::PuppetImporter.new())
     end
 
-  end
-
-  def test_create_with_distributors
-    VCR.use_cassette('extensions/puppet_repository_create_with_distributors_hash') do
-
+    def test_create_with_distributors
       distributors = [{'type_id' => 'puppet_distributor', 'id'=>'123', 'auto_publish'=>true,
                        'config'=>{'relative_url' => '/path', 'http' => true, 'https' => true}}]
       response = @extension.create_with_distributors(RepositorySupport.repo_id, distributors)
@@ -87,10 +74,8 @@ class TestExtensionsPuppetRepositoryCreate < MiniTest::Unit::TestCase
       assert_equal 201, response.code
       assert_equal RepositorySupport.repo_id, response['id']
     end
-  end
 
-  def test_create_with_distributor_object
-    VCR.use_cassette('extensions/puppet_repository_create_with_distributors') do
+    def test_create_with_distributor_object
         begin
         repo_id = RepositorySupport.repo_id + "_distro"
         response = @extension.create_with_distributors(repo_id, [Runcible::Models::PuppetDistributor.new(
@@ -105,10 +90,7 @@ class TestExtensionsPuppetRepositoryCreate < MiniTest::Unit::TestCase
       end
     end
 
-  end
-
-  def test_create_with_importer_and_distributors
-    VCR.use_cassette('extensions/puppet_repository_create_with_importers_distributors') do
+    def test_create_with_importer_and_distributors
       distributors = [{'type_id' => 'puppet_distributor', 'id'=>'123', 'auto_publish'=>true,
                        'config'=>{'relative_url' => '/', 'http' => true, 'https' => true}}]
       response = @extension.create_with_importer_and_distributors(RepositorySupport.repo_id, {:id=>'puppet_importer'}, distributors)
@@ -118,13 +100,9 @@ class TestExtensionsPuppetRepositoryCreate < MiniTest::Unit::TestCase
       assert_equal RepositorySupport.repo_id, response['id']
       assert_equal 'puppet_distributor', response['distributors'].first['distributor_type_id']
     end
-  end
 
-  def test_create_with_importer_and_distributors_objects
-    VCR.use_cassette('extensions/puppet_repository_create_with_importers_distributors') do
-
-      distributors = [Runcible::Models::PuppetDistributor.new(
-              '/path', true, true, :id => '123')]
+    def test_create_with_importer_and_distributors_objects
+      distributors = [Runcible::Models::PuppetDistributor.new('/path', true, true, :id => '123')]
       importer = Runcible::Models::PuppetImporter.new()
       response = @extension.create_with_importer_and_distributors(RepositorySupport.repo_id, importer, distributors)
       assert_equal 201, response.code
@@ -134,7 +112,4 @@ class TestExtensionsPuppetRepositoryCreate < MiniTest::Unit::TestCase
       assert_equal "puppet_importer", response['importers'].first['importer_type_id']
     end
   end
-
-
 end
-

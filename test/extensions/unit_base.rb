@@ -27,77 +27,74 @@ require 'minitest/mock'
 require './lib/runcible'
 require './test/support/repository_support'
 
-class UnitCopyBase < MiniTest::Unit::TestCase
-  def self.clone_name
-    RepositorySupport.repo_id + "_clone"
-  end
-
-  def self.before_suite
-    @@support = RepositorySupport.new
-    if respond_to?(:extension_class)
-      VCR.insert_cassette("extensions/#{extension_class.class.content_type}_repository_associate")
-      @@support.destroy_repo(clone_name)
-      @@support.destroy_repo
-      @@support.create_and_sync_repo(:importer => true)
-      TestRuncible.server.extensions.repository.create_with_importer(clone_name, {:id=>"yum_importer"})
+module Extensions
+  class UnitCopyBase < MiniTest::Unit::TestCase
+    def self.clone_name
+      RepositorySupport.repo_id + "_clone"
     end
-  end
 
-  def self.after_suite
-    if respond_to?(:extension_class)
-      @@support.destroy_repo(clone_name)
-      @@support.destroy_repo
-      VCR.eject_cassette
+    def self.before_suite
+      self.support = RepositorySupport.new
+      if respond_to?(:extension_class)
+        self.support.destroy_repo(clone_name)
+        self.support.destroy_repo
+        self.support.create_and_sync_repo(:importer => true)
+        TestRuncible.server.extensions.repository.create_with_importer(clone_name, {:id=>"yum_importer"})
+      end
     end
-  end
 
-  def units(repo)
-    TestRuncible.server.extensions.repository.unit_search(repo,
-    :type_ids=>[self.class.extension_class.class.content_type])
-  end
-
-  def unit_ids(repo)
-    units(repo).collect {|i| i['unit_id']}
-  end
-
-end
-
-
-class UnitUnassociateBase < MiniTest::Unit::TestCase
-  def self.clone_name
-    RepositorySupport.repo_id + "_clone"
-  end
-
-  def self.before_suite
-    @@support = RepositorySupport.new
-    if respond_to?(:extension_class)
-      VCR.insert_cassette("extensions/#{extension_class.content_type}_repository_unassociate",
-                          :match_requests_on => [:method, :path, :params, :body_json])
-      @@support.create_and_sync_repo(:importer => true)
-      TestRuncible.server.extensions.repository.create_with_importer(clone_name, {:id=>"yum_importer"})
+    def self.after_suite
+      if respond_to?(:extension_class)
+        self.support.destroy_repo(clone_name)
+        self.support.destroy_repo
+      end
     end
-  end
 
-  def self.after_suite
-    if respond_to?(:extension_class)
-      @@support.destroy_repo(clone_name)
-      @@support.destroy_repo
-      VCR.eject_cassette
+    def units(repo)
+      TestRuncible.server.extensions.repository.unit_search(repo,
+      :type_ids=>[self.class.extension_class.class.content_type])
     end
+
+    def unit_ids(repo)
+      units(repo).collect {|i| i['unit_id']}
+    end
+
   end
 
-  def content_ids(repo)
-    groups = units(repo)
-    groups.collect{|i| i['metadata']['id']}
-  end
 
-  def units(repo)
-    TestRuncible.server.extensions.repository.unit_search(repo,
-    :type_ids=>[self.class.extension_class.content_type])
-  end
+  class UnitUnassociateBase < MiniTest::Unit::TestCase
+    def self.clone_name
+      RepositorySupport.repo_id + "_clone"
+    end
 
-  def unit_ids(repo)
-    units(repo).collect {|i| i['unit_id']}
-  end
+    def self.before_suite
+      self.support = RepositorySupport.new
+      if respond_to?(:extension_class)
+        self.support.create_and_sync_repo(:importer => true)
+        TestRuncible.server.extensions.repository.create_with_importer(clone_name, {:id=>"yum_importer"})
+      end
+    end
 
+    def self.after_suite
+      if respond_to?(:extension_class)
+        self.support.destroy_repo(clone_name)
+        self.support.destroy_repo
+      end
+    end
+
+    def content_ids(repo)
+      groups = units(repo)
+      groups.collect{|i| i['metadata']['id']}
+    end
+
+    def units(repo)
+      TestRuncible.server.extensions.repository.unit_search(repo,
+      :type_ids=>[self.class.extension_class.content_type])
+    end
+
+    def unit_ids(repo)
+      units(repo).collect {|i| i['unit_id']}
+    end
+
+  end
 end

@@ -1,0 +1,77 @@
+--- 
+http_interactions: 
+- request: 
+    method: post
+    uri: https://admin:admin@centos.installer/pulp/api/v2/events/
+    body: 
+      encoding: US-ASCII
+      string: "{\"notifier_type_id\":\"http\",\"notifier_config\":{\"url\":\"http://foo.com/foo/\"},\"event_types\":[\"repo.publish.finish\"]}"
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "113"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 201
+      message: Created
+    headers: 
+      Date: 
+      - Wed, 30 Apr 2014 20:49:33 GMT
+      Server: 
+      - Apache/2.2.15 (CentOS)
+      Location: 
+      - /pulp/api/v2/events/536161dd86d9a928eeb27a9b/
+      Content-Length: 
+      - "282"
+      Connection: 
+      - close
+      Content-Type: 
+      - application/json
+    body: 
+      encoding: US-ASCII
+      string: "{\"_href\": \"/pulp/api/v2/events/536161dd86d9a928eeb27a9b/\", \"notifier_config\": {\"url\": \"http://foo.com/foo/\"}, \"_ns\": \"event_listeners\", \"event_types\": [\"repo.publish.finish\"], \"_id\": {\"$oid\": \"536161dd86d9a928eeb27a9b\"}, \"id\": \"536161dd86d9a928eeb27a9b\", \"notifier_type_id\": \"http\"}"
+    http_version: 
+  recorded_at: Wed, 30 Apr 2014 20:49:33 GMT
+- request: 
+    method: delete
+    uri: https://admin:admin@centos.installer/pulp/api/v2/events/536161dd86d9a928eeb27a9b/
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/json
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Date: 
+      - Wed, 30 Apr 2014 20:49:33 GMT
+      Server: 
+      - Apache/2.2.15 (CentOS)
+      Content-Length: 
+      - "4"
+      Connection: 
+      - close
+      Content-Type: 
+      - application/json
+    body: 
+      encoding: US-ASCII
+      string: "null"
+    http_version: 
+  recorded_at: Wed, 30 Apr 2014 20:49:33 GMT
+recorded_with: VCR 2.9.0

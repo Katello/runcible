@@ -27,51 +27,46 @@ require 'minitest/autorun'
 require './test/support/repository_support'
 require './lib/runcible'
 
+module Extensions
+  module TestIsoRepositoryBase
 
-module TestExtensionsIsoRepositoryBase
+    def setup
+      @support = RepositorySupport.new
+      @extension = TestRuncible.server.extensions.repository
+    end
 
-  def setup
-    @support = RepositorySupport.new
-    @extension = TestRuncible.server.extensions.repository
-    VCR.insert_cassette('extensions/iso_repository_extensions',
-                        :match_requests_on => [:path, :method])
   end
 
-  def teardown
-    VCR.eject_cassette
-  end
+  class TestIsoRepositoryCreate < MiniTest::Unit::TestCase
+    include TestIsoRepositoryBase
 
-end
+    def setup
+      super
+      @repo_url = "file://#{File.expand_path(File.dirname(__FILE__))}".gsub("test/extensions", "test/fixtures/repositories/iso/")
+      @repo_id = 'test_repo_iso_fixture'
+    end
 
-class TestExtensionsIsoRepositoryCreate < MiniTest::Unit::TestCase
-  include TestExtensionsIsoRepositoryBase
+    def teardown
+      @support.destroy_repo(@repo_id)
+      super
+    end
 
-  def setup
-    super
-    @repo_url = "file://#{File.expand_path(File.dirname(__FILE__))}".gsub("test/extensions", "test/fixtures/repositories/iso/")
-    @repo_id = 'test_repo_iso_fixture'
-  end
+    def test_create_with_importer_and_distributors_objects
+      distributors = [Runcible::Models::IsoDistributor.new(true, true)]
+      importer = Runcible::Models::IsoImporter.new(:feed=>@repo_url)
 
-  def teardown
-    super
-    @support.destroy_repo(@repo_id)
-  end
+      response = @extension.create_with_importer_and_distributors(@repo_id, importer, distributors)
+      assert_equal 201, response.code
 
-  def test_create_with_importer_and_distributors_objects
-    distributors = [Runcible::Models::IsoDistributor.new(true, true)]
-    importer = Runcible::Models::IsoImporter.new(:feed=>@repo_url)
+      response = @extension.retrieve(@repo_id, {:details => true})
+      assert_equal @repo_id, response['id']
+      assert_equal "iso_importer", response['importers'].first['importer_type_id']
 
-    response = @extension.create_with_importer_and_distributors(@repo_id, importer, distributors)
-    assert_equal 201, response.code
+      response = @extension.sync(@repo_id)
+      assert_async_response(response)
 
-    response = @extension.retrieve(@repo_id, {:details => true})
-    assert_equal @repo_id, response['id']
-    assert_equal "iso_importer", response['importers'].first['importer_type_id']
-
-    response = @extension.sync(@repo_id)
-    @support.wait_on_tasks(response)
-
-    response = @extension.sync_history(@repo_id)
-    assert_equal 'success', response.first['result']
+      response = @extension.sync_history(@repo_id)
+      assert_equal 'success', response.first['result']
+    end
   end
 end

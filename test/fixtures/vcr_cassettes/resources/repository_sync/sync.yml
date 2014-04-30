@@ -1,0 +1,225 @@
+--- 
+http_interactions: 
+- request: 
+    method: get
+    uri: https://admin:admin@centos.installer/pulp/api/v2/repositories/integration_test_id/
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/json
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 404
+      message: Not Found
+    headers: 
+      Date: 
+      - Wed, 30 Apr 2014 20:50:36 GMT
+      Server: 
+      - Apache/2.2.15 (CentOS)
+      Content-Encoding: 
+      - utf-8
+      Content-Length: 
+      - "427"
+      Connection: 
+      - close
+      Content-Type: 
+      - application/json
+    body: 
+      encoding: US-ASCII
+      string: "{\"http_request_method\": \"GET\", \"exception\": null, \"error_message\": \"Missing resource(s): repo=integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\", \"http_status\": 404, \"error\": {\"code\": \"PLP0009\", \"data\": {\"resources\": {\"repo\": \"integration_test_id\"}}, \"description\": \"Missing resource(s): repo=integration_test_id\", \"sub_errors\": []}, \"traceback\": null, \"resources\": {\"repo\": \"integration_test_id\"}}"
+    http_version: 
+  recorded_at: Wed, 30 Apr 2014 20:50:36 GMT
+- request: 
+    method: post
+    uri: https://admin:admin@centos.installer/pulp/api/v2/repositories/
+    body: 
+      encoding: US-ASCII
+      string: "{\"id\":\"integration_test_id\"}"
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "28"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 201
+      message: Created
+    headers: 
+      Date: 
+      - Wed, 30 Apr 2014 20:50:36 GMT
+      Server: 
+      - Apache/2.2.15 (CentOS)
+      Location: 
+      - integration_test_id
+      Content-Length: 
+      - "267"
+      Connection: 
+      - close
+      Content-Type: 
+      - application/json
+    body: 
+      encoding: US-ASCII
+      string: "{\"scratchpad\": {}, \"display_name\": \"integration_test_id\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_counts\": {}, \"_id\": {\"$oid\": \"5361621c86d9a928ef3b4229\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\"}"
+    http_version: 
+  recorded_at: Wed, 30 Apr 2014 20:50:36 GMT
+- request: 
+    method: post
+    uri: https://admin:admin@centos.installer/pulp/api/v2/repositories/integration_test_id/actions/sync/
+    body: 
+      encoding: US-ASCII
+      string: "{}"
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "2"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 202
+      message: Accepted
+    headers: 
+      Date: 
+      - Wed, 30 Apr 2014 20:50:36 GMT
+      Server: 
+      - Apache/2.2.15 (CentOS)
+      Content-Encoding: 
+      - utf-8
+      Content-Length: 
+      - "172"
+      Connection: 
+      - close
+      Content-Type: 
+      - application/json
+    body: 
+      encoding: US-ASCII
+      string: "{\"spawned_tasks\": [{\"_href\": \"/pulp/api/v2/tasks/376cd812-c865-4ad8-b862-9a432a5413cc/\", \"task_id\": \"376cd812-c865-4ad8-b862-9a432a5413cc\"}], \"result\": null, \"error\": null}"
+    http_version: 
+  recorded_at: Wed, 30 Apr 2014 20:50:37 GMT
+- request: 
+    method: get
+    uri: https://admin:admin@centos.installer/pulp/api/v2/tasks/376cd812-c865-4ad8-b862-9a432a5413cc/
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/json
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Date: 
+      - Wed, 30 Apr 2014 20:50:37 GMT
+      Server: 
+      - Apache/2.2.15 (CentOS)
+      Content-Length: 
+      - "1559"
+      Connection: 
+      - close
+      Content-Type: 
+      - application/json
+    body: 
+      encoding: US-ASCII
+      string: "{\"task_type\": \"pulp.server.tasks.repository.sync_with_auto_publish\", \"_href\": \"/pulp/api/v2/tasks/376cd812-c865-4ad8-b862-9a432a5413cc/\", \"task_id\": \"376cd812-c865-4ad8-b862-9a432a5413cc\", \"tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:sync\"], \"finish_time\": \"2014-04-30T20:50:37Z\", \"_ns\": \"task_status\", \"start_time\": \"2014-04-30T20:50:37Z\", \"traceback\": \"Traceback (most recent call last):\\n  File \\\"/usr/lib/python2.6/site-packages/celery/app/trace.py\\\", line 240, in trace_task\\n    R = retval = fun(*args, **kwargs)\\n  File \\\"/usr/lib/python2.6/site-packages/pulp/server/async/tasks.py\\\", line 416, in __call__\\n    return super(Task, self).__call__(*args, **kwargs)\\n  File \\\"/usr/lib/python2.6/site-packages/celery/app/trace.py\\\", line 437, in __protected_call__\\n    return self.run(*args, **kwargs)\\n  File \\\"/usr/lib/python2.6/site-packages/pulp/server/tasks/repository.py\\\", line 210, in sync_with_auto_publish\\n    sync_result = managers.repo_sync_manager().sync(repo_id, sync_config_override=overrides)\\n  File \\\"/usr/lib/python2.6/site-packages/pulp/server/managers/repo/sync.py\\\", line 90, in sync\\n    raise MissingResource(repo_id)\\nMissingResource: Missing resource(s): resource_id=integration_test_id\\n\", \"spawned_tasks\": [], \"queue\": \"reserved_resource_worker-0@centos.installer\", \"state\": \"error\", \"error\": {\"code\": \"PLP0009\", \"data\": {\"resources\": {\"resource_id\": \"integration_test_id\"}}, \"description\": \"Missing resource(s): resource_id=integration_test_id\", \"sub_errors\": []}, \"_id\": {\"$oid\": \"5361621d6f17e7ee7c724aac\"}}"
+    http_version: 
+  recorded_at: Wed, 30 Apr 2014 20:50:37 GMT
+- request: 
+    method: delete
+    uri: https://admin:admin@centos.installer/pulp/api/v2/repositories/integration_test_id/
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/json
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 202
+      message: Accepted
+    headers: 
+      Date: 
+      - Wed, 30 Apr 2014 20:50:37 GMT
+      Server: 
+      - Apache/2.2.15 (CentOS)
+      Content-Encoding: 
+      - utf-8
+      Content-Length: 
+      - "172"
+      Connection: 
+      - close
+      Content-Type: 
+      - application/json
+    body: 
+      encoding: US-ASCII
+      string: "{\"spawned_tasks\": [{\"_href\": \"/pulp/api/v2/tasks/2d842447-a529-401d-9948-a7e54cf6c1fe/\", \"task_id\": \"2d842447-a529-401d-9948-a7e54cf6c1fe\"}], \"result\": null, \"error\": null}"
+    http_version: 
+  recorded_at: Wed, 30 Apr 2014 20:50:38 GMT
+- request: 
+    method: get
+    uri: https://admin:admin@centos.installer/pulp/api/v2/tasks/2d842447-a529-401d-9948-a7e54cf6c1fe/
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/json
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Date: 
+      - Wed, 30 Apr 2014 20:50:38 GMT
+      Server: 
+      - Apache/2.2.15 (CentOS)
+      Content-Length: 
+      - "501"
+      Connection: 
+      - close
+      Content-Type: 
+      - application/json
+    body: 
+      encoding: US-ASCII
+      string: "{\"task_type\": \"pulp.server.tasks.repository.delete\", \"_href\": \"/pulp/api/v2/tasks/2d842447-a529-401d-9948-a7e54cf6c1fe/\", \"task_id\": \"2d842447-a529-401d-9948-a7e54cf6c1fe\", \"tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:delete\"], \"finish_time\": \"2014-04-30T20:50:38Z\", \"_ns\": \"task_status\", \"start_time\": \"2014-04-30T20:50:38Z\", \"spawned_tasks\": [], \"queue\": \"reserved_resource_worker-0@centos.installer\", \"state\": \"finished\", \"result\": null, \"_id\": {\"$oid\": \"5361621e6f17e7ee7c724aad\"}}"
+    http_version: 
+  recorded_at: Wed, 30 Apr 2014 20:50:39 GMT
+recorded_with: VCR 2.9.0
