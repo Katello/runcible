@@ -33,20 +33,20 @@ class UnitCopyBase < MiniTest::Unit::TestCase
   end
 
   def self.before_suite
-    @@support = RepositorySupport.new
+    self.support = RepositorySupport.new
     if respond_to?(:extension_class)
-      VCR.insert_cassette("extensions/#{extension_class.class.content_type}_repository_associate")
-      @@support.destroy_repo(clone_name)
-      @@support.destroy_repo
-      @@support.create_and_sync_repo(:importer => true)
+      VCR.insert_cassette(self.cassette_name)
+      self.support.destroy_repo(clone_name)
+      self.support.destroy_repo
+      self.support.create_and_sync_repo(:importer => true)
       TestRuncible.server.extensions.repository.create_with_importer(clone_name, {:id=>"yum_importer"})
     end
   end
 
   def self.after_suite
     if respond_to?(:extension_class)
-      @@support.destroy_repo(clone_name)
-      @@support.destroy_repo
+      self.support.destroy_repo(clone_name)
+      self.support.destroy_repo
       VCR.eject_cassette
     end
   end
@@ -69,19 +69,19 @@ class UnitUnassociateBase < MiniTest::Unit::TestCase
   end
 
   def self.before_suite
-    @@support = RepositorySupport.new
+    self.support = RepositorySupport.new
     if respond_to?(:extension_class)
-      VCR.insert_cassette("extensions/#{extension_class.content_type}_repository_unassociate",
+      VCR.insert_cassette(self.cassette_name,
                           :match_requests_on => [:method, :path, :params, :body_json])
-      @@support.create_and_sync_repo(:importer => true)
+      self.support.create_and_sync_repo(:importer => true)
       TestRuncible.server.extensions.repository.create_with_importer(clone_name, {:id=>"yum_importer"})
     end
   end
 
   def self.after_suite
     if respond_to?(:extension_class)
-      @@support.destroy_repo(clone_name)
-      @@support.destroy_repo
+      self.support.destroy_repo(clone_name)
+      self.support.destroy_repo
       VCR.eject_cassette
     end
   end

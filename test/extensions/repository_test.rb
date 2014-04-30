@@ -33,7 +33,7 @@ module TestExtensionsRepositoryBase
   def setup
     @support = RepositorySupport.new
     @extension = TestRuncible.server.extensions.repository
-    VCR.insert_cassette('extensions/repository_extensions',
+    VCR.insert_cassette(self.class.cassette_name,
                         :match_requests_on => [:body_json, :path, :method])
   end
 
@@ -45,6 +45,11 @@ end
 
 class TestExtensionsRepositoryCreate < MiniTest::Unit::TestCase
   include TestExtensionsRepositoryBase
+
+  def setup
+    super
+    @support.destroy_repo 
+  end
 
   def teardown
     super
@@ -70,7 +75,7 @@ class TestExtensionsRepositoryCreate < MiniTest::Unit::TestCase
   end
 
   def test_create_with_distributors
-    VCR.use_cassette('extensions/repository_create_with_importer') do
+    VCR.use_cassette('extensions/repository/create_with_importer') do
 
       distributors = [{'type_id' => 'yum_distributor', 'id'=>'123', 'auto_publish'=>true,
                        'config'=>{'relative_url' => '/path', 'http' => true, 'https' => true}}]
@@ -95,14 +100,17 @@ class TestExtensionsRepositoryCreate < MiniTest::Unit::TestCase
   end
 
   def test_create_with_importer_and_distributors
-    distributors = [{'type_id' => 'yum_distributor', 'id'=>'123', 'auto_publish'=>true,
-                     'config'=>{'relative_url' => '/123/456', 'http' => true, 'https' => true}}]
-    response = @extension.create_with_importer_and_distributors(RepositorySupport.repo_id, {:id=>'yum_importer'}, distributors)
-    assert_equal 201, response.code
+    VCR.use_cassette('extensions/repository/test_create_with_importer_and_distributors') do
 
-    response = @extension.retrieve(RepositorySupport.repo_id, {:details => true})
-    assert_equal RepositorySupport.repo_id, response['id']
-    assert_equal 'yum_distributor', response['distributors'].first['distributor_type_id']
+      distributors = [{'type_id' => 'yum_distributor', 'id'=>'123', 'auto_publish'=>true,
+                       'config'=>{'relative_url' => '/123/456', 'http' => true, 'https' => true}}]
+      response = @extension.create_with_importer_and_distributors(RepositorySupport.repo_id, {:id=>'yum_importer'}, distributors)
+      assert_equal 201, response.code
+
+      response = @extension.retrieve(RepositorySupport.repo_id, {:details => true})
+      assert_equal RepositorySupport.repo_id, response['id']
+      assert_equal 'yum_distributor', response['distributors'].first['distributor_type_id']
+    end
   end
 
   def test_create_with_importer_and_distributors_objects
@@ -121,16 +129,21 @@ class TestExtensionsRepositoryCreate < MiniTest::Unit::TestCase
 end
 
 class TestExtensionsRepositoryMisc < MiniTest::Unit::TestCase
-  include TestExtensionsRepositoryBase
 
-  def setup
-    super
-    @support.create_and_sync_repo(:importer_and_distributor => true)
+  def self.before_suite
+    self.support = RepositorySupport.new
+    VCR.insert_cassette(self.cassette_name,
+                        :match_requests_on => [:body_json, :path, :method])
+    self.support.create_and_sync_repo(:importer_and_distributor => true)
   end
 
-  def teardown
-    @support.destroy_repo
-    super
+  def self.after_suite
+    self.support.destroy_repo
+    VCR.eject_cassette
+  end
+
+  def setup
+    @extension = TestRuncible.server.extensions.repository
   end
 
   def test_search_by_repository_ids
@@ -165,10 +178,12 @@ class TestExtensionsRepositoryMisc < MiniTest::Unit::TestCase
   end
 
   def test_publish_all
-    response = @extension.publish_all(RepositorySupport.repo_id)
-    @support.wait_on_tasks(response)
-
-    assert_includes response.first['call_request_tags'], 'pulp:action:publish'
+    responses = @extension.publish_all(RepositorySupport.repo_id)
+    assert_equal 1, responses.length
+    responses.each do |response|
+      tasks = assert_success_response(response)
+      assert_includes tasks.first['tags'], 'pulp:action:publish'
+    end
   end
 
   def test_publish_status
@@ -184,9 +199,9 @@ class TestExtensionsRepositoryMisc < MiniTest::Unit::TestCase
 
   def test_generate_applicability_by_ids
     response = @extension.regenerate_applicability_by_ids([@consumer_id])
-    assert_equal 202, response.code
-    task = RepositorySupport.new.wait_on_task(response)
-    assert 'success', task['state']
+
+    tasks = assert_success_response(response)
+    assert_equal 'finished', tasks.first['state']
   end
 
 end
@@ -196,14 +211,14 @@ class TestExtensionsRepositoryUnitList < MiniTest::Unit::TestCase
 
   def self.before_suite
     @@extension = TestRuncible.server.extensions.repository
-    @@support = RepositorySupport.new
-    VCR.insert_cassette('extensions/repository_unit_list', :match_requests_on => [:method, :path, :params, :body_json])
-    @@support.destroy_repo
-    @@support.create_and_sync_repo(:importer => true)
+    self.support = RepositorySupport.new
+    VCR.insert_cassette(self.cassette_name, :match_requests_on => [:method, :path, :params, :body_json])
+    self.support.destroy_repo
+    self.support.create_and_sync_repo(:importer => true)
   end
 
   def self.after_suite
-    @@support.destroy_repo
+    self.support.destroy_repo
     VCR.eject_cassette
   end
 

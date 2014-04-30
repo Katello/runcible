@@ -51,7 +51,6 @@ module CassetteHelpers
   def cassette_name
     # remove 'test' word and underscore the name
     file = self.name.gsub(/test/i, '').gsub(/(.)([A-Z])/,'\1_\2').downcase
-
     if self.send(:caller).first =~ %r{test/resources}
       file = file.sub(/_?resources_?/, '')
       "resources/#{file}"
@@ -66,6 +65,25 @@ end
 
 class MiniTest::Unit::TestCase
   extend CassetteHelpers
+
+  class << self
+    attr_accessor :support
+  end
+
+  def assert_success_response(response)
+    support = @support || self.class.support
+    fail "@support or @@supsport not defined" unless support
+
+    if response.code == 202
+      tasks = support.wait_on_response(response)
+      tasks.each do |task|
+        assert task["state"], "finished"
+      end
+    else
+      assert response.code, 200
+    end
+  end
+
 end
 
 class CustomMiniTestRunner
@@ -116,7 +134,6 @@ class CustomMiniTestRunner
 
   end
 end
-
 
 class PulpMiniTestRunner
 

@@ -34,7 +34,7 @@ module TestRepoGroupBase
     @support = RepositorySupport.new
     @resource = TestRuncible.server.resources.repository_group
     @repo_group_id = "integration_test_repository_group"
-    VCR.insert_cassette('repository_group')
+    VCR.insert_cassette(self.class.cassette_name)
   end
 
   def teardown

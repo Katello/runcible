@@ -34,7 +34,7 @@ module TestResourcesPuppetRepositoryBase
     @resource = TestRuncible.server.resources.repository
     @extension = TestRuncible.server.extensions.repository
     @support = RepositorySupport.new
-    VCR.insert_cassette('repository')
+    VCR.insert_cassette(self.class.cassette_name)
   end
 
   def teardown
@@ -57,18 +57,15 @@ class TestResourcesPuppetRepositoryRequiresSync < MiniTest::Unit::TestCase
   end
 
   def test_publish
-    response = @resource.publish(RepositorySupport.repo_id, @support.distributor)
-    @support.wait_on_task(response)
+    response = @resource.publish(RepositorySupport.repo_id, @support.distributor['id'])
+    tasks = assert_success_response(response)
 
-    assert_equal    202, response.code
-    assert_includes response['call_request_tags'], 'pulp:action:publish'
+    assert_includes tasks.first['tags'], 'pulp:action:publish'
   end
 
   def test_unassociate_units
     response = @resource.unassociate_units(RepositorySupport.repo_id, {})
-    @support.wait_on_task(response)
-
-    assert_equal 202, response.code
+    assert_success_response(response)
   end
 
   def test_unit_search
@@ -83,32 +80,6 @@ class TestResourcesPuppetRepositoryRequiresSync < MiniTest::Unit::TestCase
 
     assert        200, response.code
     refute_empty  response
-  end
-
-end
-
-class TestResourcesPuppetRepositoryClone < MiniTest::Unit::TestCase
-  include TestResourcesPuppetRepositoryBase
-
-  def setup
-    super
-    @clone_name = RepositorySupport.repo_id + "_clone"
-    @support.create_and_sync_repo(:importer => true)
-    @extension.create_with_importer(@clone_name, :id => "yum_importer")
-  end
-
-  def teardown
-    @support.destroy_repo(@clone_name)
-    @support.destroy_repo
-    super
-  end
-
-  def test_unit_copy
-    response = @resource.unit_copy(@clone_name, RepositorySupport.repo_id)
-    @support.task = response
-
-    assert_equal    202, response.code
-    assert_includes response['call_request_tags'], 'pulp:action:associate'
   end
 
 end

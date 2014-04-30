@@ -92,68 +92,59 @@ class RepositorySupport
   end
 
   def create_repo(options={})
-    repo = nil
-    VCR.use_cassette('support/repository') do
-      repo = @repo_resource.retrieve(RepositorySupport.repo_id)
-    end
+    repo = @repo_resource.retrieve(RepositorySupport.repo_id)
 
     if !repo.nil?
       destroy_repo
     end
 
-    VCR.use_cassette('support/repository') do
-      if options[:importer]
-        repo = @repo_extension.create_with_importer(RepositorySupport.repo_id, {:id=>@importer_type, :feed => @repo_url})
-      elsif options[:importer_and_distributor]
-        repo = @repo_extension.create_with_importer_and_distributors(RepositorySupport.repo_id,
-                                   {:id=>@importer_type, :feed => @repo_url}, @distributors)
-      else
-        repo = @repo_resource.create(RepositorySupport.repo_id)
-      end
+    if options[:importer]
+      repo = @repo_extension.create_with_importer(RepositorySupport.repo_id, {:id=>@importer_type, :feed => @repo_url})
+    elsif options[:importer_and_distributor]
+      repo = @repo_extension.create_with_importer_and_distributors(RepositorySupport.repo_id,
+                                 {:id=>@importer_type, :feed => @repo_url}, @distributors)
+    else
+      repo = @repo_resource.create(RepositorySupport.repo_id)
     end
 
   rescue RestClient::ResourceNotFound
 
-    VCR.use_cassette('support/repository') do
-      if options[:importer]
-        repo = @repo_extension.create_with_importer(RepositorySupport.repo_id, {:id=>@importer_type, :feed => @repo_url})
-      elsif options[:importer_and_distributor]
-        repo = @repo_extension.create_with_importer_and_distributors(RepositorySupport.repo_id,
-                                       {:id=>@importer_type, :feed => @repo_url}, @distributors)
-      else
-        repo = @repo_resource.create(RepositorySupport.repo_id)
-      end
+    if options[:importer]
+      repo = @repo_extension.create_with_importer(RepositorySupport.repo_id, {:id=>@importer_type, :feed => @repo_url})
+    elsif options[:importer_and_distributor]
+      repo = @repo_extension.create_with_importer_and_distributors(RepositorySupport.repo_id,
+                                     {:id=>@importer_type, :feed => @repo_url}, @distributors)
+    else
+      repo = @repo_resource.create(RepositorySupport.repo_id)
     end
 
     return repo
   end
 
   def sync_repo(options={})
-    VCR.use_cassette('support/repository') do
-      @task = @repo_resource.sync(RepositorySupport.repo_id).first
+    task = @repo_resource.sync(RepositorySupport.repo_id)
 
-      if !options[:wait]
-        self.wait_on_task(task)
-      end
+    if !options[:wait]
+      self.wait_on_response(task)
     end
 
-    return @task
-  rescue Exception => e
-    puts e
+    task
+  end
+
+  def wait_on_response(response)
+    wait_on_tasks(response["spawned_tasks"].map{|task_ref| {"task_id"=> task_ref["task_id"]}})
   end
 
   def wait_on_tasks(tasks)
-    tasks.each do |task|
+    tasks.map do |task|
       self.wait_on_task(task)
     end
   end
 
   def wait_on_task task
-    VCR.use_cassette('support/task') do
-      while !(['finished', 'error', 'timed_out', 'canceled', 'reset'].include?(task['state'])) do
-        self.sleep_if_needed
-        task = @task_resource.poll(task["task_id"])
-      end
+    while !(['finished', 'error', 'timed_out', 'canceled', 'reset'].include?(task['state'])) do
+      self.sleep_if_needed
+      task = @task_resource.poll(task["task_id"])
     end
     task
   end
@@ -165,32 +156,23 @@ class RepositorySupport
   end
 
   def create_schedule
-    schedule = {}
-    VCR.use_cassette('support/repository') do
-      schedule = @schedule_resource.create(RepositorySupport.repo_id, @importer_type, @schedule_time)
-    end
+    schedule = @schedule_resource.create(RepositorySupport.repo_id, @importer_type, @schedule_time)
     schedule['_id']
   end
 
   def destroy_repo(id=RepositorySupport.repo_id)
-    VCR.use_cassette('support/repository') do
-      if @task
-        wait_on_task(@task)
-        @task = nil
-      end
-
-      tasks = @repo_resource.delete(id)
-      wait_on_tasks(tasks)
+    if @task
+      wait_on_response(@task)
+      @task = nil
     end
+
+    tasks = @repo_resource.delete(id)
+    wait_on_response(tasks)
   rescue Exception => e
   end
 
   def rpm_ids
-    pkg_ids = []
-    VCR.use_cassette('support/repository', :match_requests_on => [:body_json, :path, :method]) do
-      pkg_ids = @repo_extension.rpm_ids(RepositorySupport.repo_id)
-    end
-    return pkg_ids
+    @repo_extension.rpm_ids(RepositorySupport.repo_id)
   end
 
 end

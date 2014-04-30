@@ -18,7 +18,7 @@ module TestContentBase
 
   def setup
     @resource = TestRuncible.server.resources.content
-    VCR.insert_cassette('content')
+    VCR.insert_cassette(self.class.cassette_name)
   end
 
   def teardown
@@ -60,14 +60,12 @@ class TestImportIntoRepo < MiniTest::Unit::TestCase
     test_unit_key = {"checksumtype"=> "sha256", "checksum"=> "5e9fb809128d23a3e25d0c5fd38dd5d37d4ebceae7c6af8f15fed93e39d3145f",
                      "epoch"=> "0", "version"=> "8.3.3", "release"=> "1.elfake", "arch"=> "noarch", "name"=> "recons"}
 
-    @@repo_support = RepositorySupport.new
-    @@repo_support.create_and_sync_repo(:importer_and_distributor => true)
+    self.class.support = RepositorySupport.new
+    self.class.support.create_and_sync_repo(:importer_and_distributor => true)
     response = @resource.import_into_repo(RepositorySupport.repo_id, 'rpm', 'uvwx', test_unit_key)
-
-    assert_equal 200, response.code
-
+    assert_success_response(response)
   ensure
-    @@repo_support.destroy_repo
+    self.class.support.destroy_repo
 
   end
 

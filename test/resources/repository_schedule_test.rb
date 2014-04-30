@@ -32,6 +32,7 @@ module TestResourcesScheduleBase
   def setup
     @resource = TestRuncible.server.resources.repository_schedule
     @support = RepositorySupport.new
+    VCR.insert_cassette(self.class.cassette_name)
   end
 
   def teardown
@@ -45,7 +46,6 @@ class TestResourcesRepositoryCreateSchedule < MiniTest::Unit::TestCase
 
   def setup
     super
-    VCR.insert_cassette('repository_schedules')
     @support.create_repo :importer=>true
     @support.create_schedule
   end
@@ -80,7 +80,6 @@ class TestResourcesScheduleUpdate < MiniTest::Unit::TestCase
 
   def setup
     super
-    VCR.insert_cassette('repository_schedules_update')
     @support.create_repo :importer=>true
     @support.create_schedule
   end
@@ -104,7 +103,6 @@ class TestResourcesScheduleDelete < MiniTest::Unit::TestCase
 
   def setup
     super
-    VCR.insert_cassette('repository_schedules_delete')
     @support.create_repo :importer=>true
     @support.create_schedule
   end

@@ -8,14 +8,14 @@ require './test/support/repository_support'
 class TestExtenionsPackageCategory < MiniTest::Unit::TestCase
 
   def self.before_suite
-    @@support = RepositorySupport.new
+    self.support = RepositorySupport.new
     @@extension = TestRuncible.server.extensions.package_category
-    VCR.insert_cassette('extensions/package_category', :match_requests_on => [:method, :path, :params, :body_json])
-    @@support.create_and_sync_repo(:importer => true)
+    VCR.insert_cassette(self.cassette_name, :match_requests_on => [:method, :path, :params, :body_json])
+    self.support.create_and_sync_repo(:importer => true)
   end
 
   def self.after_suite
-    @@support.destroy_repo
+    self.support.destroy_repo
     VCR.eject_cassette
   end
 

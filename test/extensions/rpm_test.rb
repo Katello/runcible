@@ -9,14 +9,14 @@ require './test/support/repository_support'
 class TestExtensionsRpm < MiniTest::Unit::TestCase
 
   def self.before_suite
-    @@support = RepositorySupport.new
+    self.support = RepositorySupport.new
     @@extension = TestRuncible.server.extensions.rpm
-    VCR.insert_cassette('extensions/rpm', :match_requests_on => [:method, :path, :params, :body_json])
-    @@support.create_and_sync_repo(:importer => true)
+    VCR.insert_cassette(self.cassette_name, :match_requests_on => [:method, :path, :params, :body_json])
+    self.support.create_and_sync_repo(:importer => true)
   end
 
   def self.after_suite
-    @@support.destroy_repo
+    self.support.destroy_repo
     VCR.eject_cassette
   end
 
@@ -72,10 +72,9 @@ class TestExtensionsRpmCopy < UnitCopyBase
 
   def test_copy
     response = self.class.extension_class.copy(RepositorySupport.repo_id, self.class.clone_name)
-    @@support.task = response
 
-    assert_equal    202, response.code
-    assert_includes response['call_request_tags'], 'pulp:action:associate'
+    tasks = assert_success_response(response)
+    assert_includes tasks.first['tags'], 'pulp:action:associate'
   end
 
   def test_copy_with_filters
@@ -87,10 +86,8 @@ class TestExtensionsRpmCopy < UnitCopyBase
                                             {'version'=> {'$gt'=> '1.0'}}]
                                         }}
                                  )
-    @@support.task = response
-
-    assert_equal    202, response.code
-    assert_includes response['call_request_tags'], 'pulp:action:associate'
+    tasks = assert_success_response(response)
+    assert_includes tasks.first['tags'], 'pulp:action:associate'
   end
 end
 
@@ -101,8 +98,8 @@ class TestExtensionsRpmUnassociate < UnitUnassociateBase
   end
 
   def setup
-    task = TestRuncible.server.extensions.repository.unit_copy(self.class.clone_name, RepositorySupport.repo_id)
-    @@support.wait_on_task(task)
+    response = TestRuncible.server.extensions.repository.unit_copy(self.class.clone_name, RepositorySupport.repo_id)
+    self.class.support.wait_on_response(response)
   end
 
   def test_unassociate_ids_from_repo
@@ -116,17 +113,18 @@ class TestExtensionsRpmUnassociate < UnitUnassociateBase
   def test_unassociate_unit_ids_from_repo
     ids = unit_ids(self.class.clone_name)
     refute_empty ids
-    task = self.class.extension_class.unassociate_unit_ids_from_repo(self.class.clone_name, [ids.first])
-    @@support.wait_on_task(task)
+    response = self.class.extension_class.unassociate_unit_ids_from_repo(self.class.clone_name, [ids.first])
+
+    assert_success_response(response)
     assert_equal (ids.length - 1), unit_ids(self.class.clone_name).length
   end
 
   def test_unassociate_from_repo
     ids = unit_ids(self.class.clone_name)
     refute_empty ids
-    task = self.class.extension_class.unassociate_from_repo(self.class.clone_name,
+    response = self.class.extension_class.unassociate_from_repo(self.class.clone_name,
                                                             :association => {'unit_id' => {'$in' => [ids.first]}})
-    @@support.wait_on_task(task)
+    assert_success_response(response)
     assert_equal (ids.length - 1), unit_ids(self.class.clone_name).length
   end
 

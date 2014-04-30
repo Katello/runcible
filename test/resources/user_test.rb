@@ -26,7 +26,7 @@ require 'minitest/autorun'
 
 module TestResourcesUserBase
   def setup
-    VCR.insert_cassette(self.class.cassette_name)
+    VCR.insert_cassette(self.class.cassette_name, :match_requests_on => [:method, :path, :params, :body_json])
     @username = "integration_test_user"
     @resource = TestRuncible.server.resources.user
   end
@@ -40,11 +40,9 @@ class TestResourcesUserCreate < MiniTest::Unit::TestCase
   include TestResourcesUserBase
 
   def teardown
-    begin
-      @resource.retrieve(@username)
-      @resource.delete(@username)
-    rescue RestClient::ResourceNotFound => e
-    end
+    @resource.retrieve(@username)
+    @resource.delete(@username)
+  ensure
     super
   end
 
@@ -78,11 +76,10 @@ class TestResourcesUser < MiniTest::Unit::TestCase
   end
 
   def teardown
-    begin
-      @resource.retrieve(@username)
-      @resource.delete(@username)
-    rescue RestClient::ResourceNotFound => e
-    end
+    @resource.retrieve(@username)
+    @resource.delete(@username)
+  rescue RestClient::ResourceNotFound => e
+  ensure
     super
   end
 
@@ -99,10 +96,12 @@ class TestResourcesUser < MiniTest::Unit::TestCase
   end
 
   def test_retrieve
-    response = @resource.retrieve(@username)
+    VCR.use_cassette('resources/user_retrieve') do
+      response = @resource.retrieve(@username)
 
-    assert_equal 200, response.code
-    assert_equal @username, response["login"]
+      assert_equal 200, response.code
+      assert_equal @username, response["login"]
+    end
   end
 
   def test_retrieve_all

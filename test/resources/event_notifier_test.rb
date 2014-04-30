@@ -32,6 +32,7 @@ module TestEventNotifierBase
   def setup
     @resource = TestRuncible.server.resources.event_notifier
     @resource_class = Runcible::Resources::EventNotifier
+    VCR.insert_cassette(self.class.cassette_name)
   end
 
 end
@@ -42,7 +43,6 @@ class TestEventNotifier < MiniTest::Unit::TestCase
 
   def setup
     super
-    VCR.insert_cassette('event_notifier')
     @@notifier_id = nil
   end
 
@@ -68,7 +68,6 @@ class TestEventNotifierList < MiniTest::Unit::TestCase
 
   def setup
     super
-    VCR.insert_cassette('event_notifier_list')
     response = @resource.create(@resource.class::NotifierTypes::REST_API, {:url=>'http://foo.com/foo/'},
             [@resource_class::EventTypes::REPO_PUBLISH_COMPLETE])
     @@notifier_id = response['id']
@@ -93,7 +92,6 @@ class TestEventNotifierDelete < MiniTest::Unit::TestCase
 
   def setup
     super
-    VCR.insert_cassette('event_notifier_remove')
     response = @resource.create(@resource.class::NotifierTypes::REST_API, {:url=>'http://foo.com/foo/'},
             [@resource_class::EventTypes::REPO_PUBLISH_COMPLETE])
     @@notifier_id = response['id']

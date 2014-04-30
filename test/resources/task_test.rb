@@ -32,11 +32,6 @@ module TestResourcesTaskBase
 
   def setup
     @resource = TestRuncible.server.resources.task
-    VCR.insert_cassette('task', :match_requests_on => [:method, :path, :body], :allow_playback_repeats => true)
-  end
-
-  def teardown
-    VCR.eject_cassette
   end
 
 end
@@ -46,13 +41,18 @@ class TestResourcesTask < MiniTest::Unit::TestCase
   include TestResourcesTaskBase
 
   def self.before_suite
-    @@support = RepositorySupport.new
-    @@support.create_repo(:importer => true)
-    @@task = @@support.sync_repo
+    VCR.insert_cassette(self.cassette_name,
+                        :match_requests_on => [:method, :path, :body], :allow_playback_repeats => true)
+
+    self.support = RepositorySupport.new
+    self.support.create_repo(:importer => true)
+    @@task_id = self.support.sync_repo["spawned_tasks"].first["task_id"]
   end
 
   def self.after_suite
-    @@support.destroy_repo
+    self.support.destroy_repo
+    VCR.eject_cassette
+
   end
 
   def test_path
@@ -62,16 +62,16 @@ class TestResourcesTask < MiniTest::Unit::TestCase
   end
 
   def test_path_with_task_id
-    path = @resource.class.path(@@task['task_id'])
+    path = @resource.class.path(@@task_id)
 
-    assert_match "tasks/#{@@task['task_id']}/", path
+    assert_match "tasks/#{@@task_id}/", path
   end
 
   def test_poll
-    response = @resource.poll(@@task['task_id'])
+    response = @resource.poll(@@task_id)
 
     assert_equal 200, response.code
-    assert_equal @@task['task_id'], response['task_id']
+    assert_equal @@task_id, response['task_id']
   end
 
   def test_list
@@ -83,16 +83,16 @@ class TestResourcesTask < MiniTest::Unit::TestCase
 
   def test_cancel
     skip "TODO: Needs more reliable testable scenario"
-    response = @resource.cancel(@@support.task['task_id'])
+    response = @resource.cancel(@@task_id)
 
     assert_equal 200, response.code
   end
 
   def test_poll_all
-    tasks = @resource.poll_all([@@support.task['task_id']])
+    tasks = @resource.poll_all([@@task_id])
     
     refute_empty tasks
-    refute_empty tasks.select{ |task| task['task_id'] == @@support.task['task_id'] }
+    refute_empty tasks.select{ |task| task['task_id'] == @@task_id }
   end
 
 end

@@ -21,11 +21,22 @@ module TestResourcesRepositoryBase
     @resource = TestRuncible.server.resources.repository
     @extension = TestRuncible.server.extensions.repository
     @support = RepositorySupport.new
-    VCR.insert_cassette('repository')
+    VCR.insert_cassette(self.class.cassette_name, :match_requests_on => [:method, :path, :params, :body_json])
   end
 
   def teardown
     VCR.eject_cassette
+  end
+
+  def assert_success_response(response)
+    if response.code == 202
+      tasks = @support.wait_on_response(response)
+      tasks.each do |task|
+        assert task["state"], "finished"
+      end
+    else
+      assert response.code, 200
+    end
   end
 
 end
@@ -33,6 +44,10 @@ end
 
 class TestResourcesRepositoryCreate < MiniTest::Unit::TestCase
   include TestResourcesRepositoryBase
+
+  def setup
+    super
+  end
 
   def teardown
     @support.destroy_repo
@@ -58,23 +73,25 @@ class TestResourcesRepositoryDelete < MiniTest::Unit::TestCase
 
   def test_delete
     response = @resource.delete(RepositorySupport.repo_id)
-    @support.wait_on_tasks(response)
+    @support.wait_on_response(response)
 
     assert_equal 202, response.code
   end
 
 end
 
-
-class TestResourcesRepository < MiniTest::Unit::TestCase
+class TestResourcesRepositoryMisc < MiniTest::Unit::TestCase
   include TestResourcesRepositoryBase
 
-  def self.before_suite
+  def setup
+    super
     RepositorySupport.new.create_repo(:importer => true)
   end
 
-  def self.after_suite
+  def teardown
     RepositorySupport.new.destroy_repo
+  ensure
+    super
   end
 
   def test_path
@@ -93,14 +110,16 @@ class TestResourcesRepository < MiniTest::Unit::TestCase
     response = @resource.update(RepositorySupport.repo_id, { :description => "updated_description_" + RepositorySupport.repo_id })
 
     assert_equal 200, response.code
-    assert_equal "updated_description_" + RepositorySupport.repo_id, response["description"]
+    assert_equal "updated_description_" + RepositorySupport.repo_id, response["result"]["description"]
   end
 
   def test_retrieve
-    response = @resource.retrieve(RepositorySupport.repo_id)
+    VCR.use_cassette('resources/retrieve') do
+      response = @resource.retrieve(RepositorySupport.repo_id)
 
-    assert_equal 200, response.code
-    assert_equal RepositorySupport.repo_id, response["display_name"]
+      assert_equal 200, response.code
+      assert_equal RepositorySupport.repo_id, response["display_name"]
+    end
   end
 
   def test_retrieve_all
@@ -123,8 +142,8 @@ class TestResourcesRepository < MiniTest::Unit::TestCase
     }
     response = @resource.regenerate_applicability(criteria)
     assert_equal 202, response.code
-    task = RepositorySupport.new.wait_on_task(response)
-    assert 'success', task['state']
+    task = RepositorySupport.new.wait_on_response(response)
+    assert 'finished', task.first['state']
   end
 
 end
@@ -139,6 +158,7 @@ class TestRespositoryDistributor < MiniTest::Unit::TestCase
 
   def teardown
     @support.destroy_repo
+  ensure
     super
   end
 
@@ -158,7 +178,7 @@ class TestRespositoryDistributor < MiniTest::Unit::TestCase
                                     distributor_config, {:distributor_id => "dist_1"})
 
     response = @resource.delete_distributor(RepositorySupport.repo_id, "dist_1")
-    @support.wait_on_tasks(response)
+    @support.wait_on_response(response)
 
     assert_equal 202, response.code
   end
@@ -187,28 +207,31 @@ class TestRepositoryImporter < MiniTest::Unit::TestCase
 
   def teardown
     RepositorySupport.new.destroy_repo
+  ensure
     super
   end
 
   def test_associate_importer
     response = @resource.associate_importer(RepositorySupport.repo_id, "yum_importer", {})
+    assert_success_response(response)
 
-    assert_equal 201, response.code
-    assert_equal "yum_importer", response['importer_type_id']
+    repo = @resource.retrieve(RepositorySupport.repo_id, {:details => true})
+    assert_equal "yum_importer", repo['importers'].first['id']
   end
 
   def test_delete_importer
     @resource.associate_importer(RepositorySupport.repo_id, "yum_importer", {})
     response = @resource.delete_importer(RepositorySupport.repo_id, "yum_importer")
 
-    assert_equal 200, response.code
+    assert_success_response(response)
   end
 
   def test_update_importer
     @resource.associate_importer(RepositorySupport.repo_id, "yum_importer", {})
     response = @resource.update_importer(RepositorySupport.repo_id, "yum_importer",
                                          {:feed=>"http://katello.org/repo/"})
-    assert_equal 200, response.code
+
+    assert_success_response(response)
   end
 end
 
@@ -218,33 +241,28 @@ class TestResourcesRepositorySync < MiniTest::Unit::TestCase
 
   def setup
     super
-    VCR.eject_cassette
-    VCR.insert_cassette('repository_sync')
   end
 
   def teardown
     @support.destroy_repo
+  ensure
     super
   end
 
   def test_sync
     @support.create_repo
     response = @resource.sync(RepositorySupport.repo_id)
-    @support.task = response[0]
 
-    assert_equal    202, response.code
-    refute_empty    response
-    assert_includes response.first["call_request_tags"], 'pulp:action:sync'
+    tasks = assert_success_response(response)
+    assert_includes tasks.first["tags"], 'pulp:action:sync'
   end
 
   def test_sync_repo_with_yum_importer
     @support.create_repo(:importer => true)
     response = @resource.sync(RepositorySupport.repo_id)
-    @support.task = response.first
 
-    assert_equal    202, response.code
-    refute_empty    response
-    assert_includes response.first["call_request_tags"], 'pulp:action:sync'
+    tasks = assert_success_response(response)
+    assert_includes tasks.first["tags"], 'pulp:action:sync'
   end
 end
 
@@ -259,22 +277,21 @@ class TestResourcesRepositoryRequiresSync < MiniTest::Unit::TestCase
 
   def teardown
     @support.destroy_repo
+  ensure
     super
   end
 
   def test_publish
-    response = @resource.publish(RepositorySupport.repo_id, @support.distributor)
-    @support.wait_on_task(response)
+    response = @resource.publish(RepositorySupport.repo_id, @support.distributor['id'])
 
-    assert_equal    202, response.code
-    assert_includes response['call_request_tags'], 'pulp:action:publish'
+    tasks = assert_success_response(response)
+    assert_includes tasks.first["tags"], 'pulp:action:publish'
   end
-
+  
   def test_unassociate_units
     response = @resource.unassociate_units(RepositorySupport.repo_id, {})
-    @support.wait_on_task(response)
 
-    assert_equal 202, response.code
+    assert_success_response(response)
   end
 
   def test_unit_search
@@ -307,15 +324,15 @@ class TestResourcesRepositoryClone < MiniTest::Unit::TestCase
   def teardown
     @support.destroy_repo(@clone_name)
     @support.destroy_repo
+  ensure
     super
   end
 
   def test_unit_copy
     response = @resource.unit_copy(@clone_name, RepositorySupport.repo_id)
-    @support.task = response
+    tasks = assert_success_response(response)
 
-    assert_equal    202, response.code
-    assert_includes response['call_request_tags'], 'pulp:action:associate'
+    assert_includes tasks.first['tags'], 'pulp:action:associate'
   end
 
 end

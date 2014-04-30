@@ -33,7 +33,7 @@ module TestExtensionsIsoRepositoryBase
   def setup
     @support = RepositorySupport.new
     @extension = TestRuncible.server.extensions.repository
-    VCR.insert_cassette('extensions/iso_repository_extensions',
+    VCR.insert_cassette(self.class.cassette_name,
                         :match_requests_on => [:path, :method])
   end
 
@@ -53,8 +53,8 @@ class TestExtensionsIsoRepositoryCreate < MiniTest::Unit::TestCase
   end
 
   def teardown
-    super
     @support.destroy_repo(@repo_id)
+    super
   end
 
   def test_create_with_importer_and_distributors_objects
@@ -69,7 +69,7 @@ class TestExtensionsIsoRepositoryCreate < MiniTest::Unit::TestCase
     assert_equal "iso_importer", response['importers'].first['importer_type_id']
 
     response = @extension.sync(@repo_id)
-    @support.wait_on_tasks(response)
+    assert_success_response(response)
 
     response = @extension.sync_history(@repo_id)
     assert_equal 'success', response.first['result']

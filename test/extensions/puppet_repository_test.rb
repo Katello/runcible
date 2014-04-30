@@ -33,7 +33,7 @@ module TestExtensionsPuppetRepositoryBase
   def setup
     @support = RepositorySupport.new("puppet")
     @extension = TestRuncible.server.extensions.repository
-    VCR.insert_cassette('extensions/puppet_repository',
+    VCR.insert_cassette(self.class.cassette_name,
                         :match_requests_on => [:body_json, :path, :method])
   end
 
@@ -47,8 +47,8 @@ class TestExtensionsPuppetRepositoryCreate < MiniTest::Unit::TestCase
   include TestExtensionsPuppetRepositoryBase
 
   def teardown
-    super
     @support.destroy_repo
+    super
   end
 
   def test_create_with_importer
