@@ -37,21 +37,15 @@ class ConsumerGroupSupport
   end
 
   def create_consumer_group
-    consumer_group = {}
     destroy_consumer_group
-    VCR.use_cassette('consumer_group_support') do
-      consumer_group = @consumer_group_resource.create(self.class.consumer_group_id)
-    end
+    consumer_group = @consumer_group_resource.create(self.class.consumer_group_id)
     return consumer_group
   rescue Exception => e
     raise e unless e.class == RestClient::ResourceNotFound
   end
 
   def destroy_consumer_group
-    VCR.use_cassette('consumer_group_support') do
-      @consumer_group_resource.delete(self.class.consumer_group_id)
-    end
-
+    @consumer_group_resource.delete(self.class.consumer_group_id)
   rescue Exception => e
     raise e unless e.class == RestClient::ResourceNotFound
   end
