@@ -36,14 +36,11 @@ class ConsumerSupport
   end
 
   def create_consumer(package_profile=false)
-    consumer = {}
     destroy_consumer
-    VCR.use_cassette('support/consumer') do
-      consumer = @consumer_resource.create(self.class.consumer_id)
-      if package_profile
-        @consumer_resource.upload_profile(self.class.consumer_id, 'rpm', [{"name" => "elephant", "version" => "0.2", "release" => "0.7",
-                                                                           "epoch" => 0, "arch" => "noarch", "vendor" => "Fedora"}])
-      end
+    consumer = @consumer_resource.create(self.class.consumer_id)
+    if package_profile
+      @consumer_resource.upload_profile(self.class.consumer_id, 'rpm', [{"name" => "elephant", "version" => "0.2", "release" => "0.7",
+                                                                         "epoch" => 0, "arch" => "noarch", "vendor" => "Fedora"}])
     end
     return consumer
   rescue => e
@@ -51,10 +48,7 @@ class ConsumerSupport
   end
 
   def destroy_consumer
-    VCR.use_cassette('consumer_support') do
-      @consumer_resource.delete(self.class.consumer_id)
-    end
-
+    @consumer_resource.delete(self.class.consumer_id)
   rescue Exception => e
     raise e unless e.class == RestClient::ResourceNotFound
   end

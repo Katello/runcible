@@ -1,0 +1,338 @@
+--- 
+http_interactions: 
+- request: 
+    method: post
+    uri: https://admin:admin@centos.installer/pulp/api/v2/consumer_groups/
+    body: 
+      encoding: US-ASCII
+      string: "{\"id\":\"integration_test_consumer_group\",\"display_name\":\"foo\",\"description\":\"Test description.\",\"consumer_ids\":[]}"
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "113"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 201
+      message: Created
+    headers: 
+      Date: 
+      - Tue, 06 May 2014 15:29:52 GMT
+      Server: 
+      - Apache/2.2.15 (CentOS)
+      Location: 
+      - /pulp/api/v2/consumer_groups/integration_test_consumer_group/
+      Content-Length: 
+      - "298"
+      Connection: 
+      - close
+      Content-Type: 
+      - application/json
+    body: 
+      encoding: US-ASCII
+      string: "{\"scratchpad\": null, \"display_name\": \"foo\", \"description\": \"Test description.\", \"_ns\": \"consumer_groups\", \"notes\": {}, \"consumer_ids\": [], \"_id\": {\"$oid\": \"5368fff086d9a916a8aa3804\"}, \"id\": \"integration_test_consumer_group\", \"_href\": \"/pulp/api/v2/consumer_groups/integration_test_consumer_group/\"}"
+    http_version: 
+  recorded_at: Tue, 06 May 2014 15:29:52 GMT
+- request: 
+    method: delete
+    uri: https://admin:admin@centos.installer/pulp/api/v2/consumers/integration_test_consumer_support/
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/json
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 404
+      message: Not Found
+    headers: 
+      Date: 
+      - Tue, 06 May 2014 15:29:52 GMT
+      Server: 
+      - Apache/2.2.15 (CentOS)
+      Content-Encoding: 
+      - utf-8
+      Content-Length: 
+      - "513"
+      Connection: 
+      - close
+      Content-Type: 
+      - application/json
+    body: 
+      encoding: US-ASCII
+      string: "{\"http_request_method\": \"DELETE\", \"exception\": null, \"error_message\": \"Missing resource(s): consumer=integration_test_consumer_support\", \"_href\": \"/pulp/api/v2/consumers/integration_test_consumer_support/\", \"http_status\": 404, \"error\": {\"code\": \"PLP0009\", \"data\": {\"resources\": {\"consumer\": \"integration_test_consumer_support\"}}, \"description\": \"Missing resource(s): consumer=integration_test_consumer_support\", \"sub_errors\": []}, \"traceback\": null, \"resources\": {\"consumer\": \"integration_test_consumer_support\"}}"
+    http_version: 
+  recorded_at: Tue, 06 May 2014 15:29:52 GMT
+- request: 
+    method: post
+    uri: https://admin:admin@centos.installer/pulp/api/v2/consumers/
+    body: 
+      encoding: US-ASCII
+      string: "{\"id\":\"integration_test_consumer_support\"}"
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "42"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 201
+      message: Created
+    headers: 
+      Date: 
+      - Tue, 06 May 2014 15:29:52 GMT
+      Server: 
+      - Apache/2.2.15 (CentOS)
+      Location: 
+      - /pulp/api/v2/consumers/integration_test_consumer_support/
+      Content-Length: 
+      - "2170"
+      Connection: 
+      - close
+      Content-Type: 
+      - application/json
+    body: 
+      encoding: US-ASCII
+      string: "{\"consumer\": {\"display_name\": \"integration_test_consumer_support\", \"description\": null, \"_ns\": \"consumers\", \"notes\": {}, \"rsa_pub\": null, \"capabilities\": {}, \"_id\": {\"$oid\": \"5368fff086d9a916a8aa3806\"}, \"id\": \"integration_test_consumer_support\", \"_href\": {\"_href\": \"/pulp/api/v2/consumers/integration_test_consumer_support/\"}}, \"certificate\": \"-----BEGIN RSA PRIVATE KEY-----\\nMIICXQIBAAKBgQDAMelagHKdWGFAnZP7/wJ7Wuq84JYzJ20NwCU/bozeAi4uXsC9\\nLrT/DlNARGaoObXxxqPvoPEGMSeVfAFm7DsRRLswwwBObYnrMz1pNVRCOBph4OXy\\nC811Fv2cepb3BZalcEQvVAmyfVm1PKl387GVYp0xirHRD709jf4i/lcIdwIDAQAB\\nAoGAKfW7oIqSe0+kS9sbR9Tw0cWTohDWOezNnkbo2uRj1MRdGLqPEb50vYp/GnTU\\nhL20v0hC2jok5NkubzBXjgTdEBLDNNKNi1kpY8X5ppAhxvqC/LkSrWQoJ+Fgc+EI\\nUFWlsbR5m4ibpO0kqTFzVNZ5ZB7hAKVBoaGMX0tLYLdBGkECQQD0rT0jTvQGsJZH\\nrAZ9cNK3+3WQMguuwAEFpVq6ayQHG6g0hZWg/A95cyBCga9C0FEnrVL/8lVpKdZD\\nphylKMO5AkEAyRbntkQbFj/xqo7xUnhQSp/ChKwOCICtgn0FP7PZ5q71m7rg8R4k\\nQOuMx9VeKjhRm9IIp8OVEncMHkgQm2ulrwJBAMxyCRj8uujwGtJOiqm8YUZ8ZjKT\\nrrFZHEGEdng4WEVcNcOVL37xv1hi+zy3MiPo/zbhG+5jpjyWScQDBAJ5OnkCQHJI\\ngDvIDRTiFnh2cJQMKKWgki5QklEmwHWOk/MWRdqiyJdO6BRgqv3yYLoZe0DHbSn/\\nfkfKEejCm7KCBl4uGaUCQQCAZ9l+HCdGiLEere9GnN1QilT+fbGrIVn8geZwDbML\\nSZLyv3y1MsaIX17KevLNytI2UbWp/flLfQ/6iAjqUO/e\\n-----END RSA PRIVATE KEY-----\\n-----BEGIN CERTIFICATE-----\\nMIICcTCCAVkCAgH9MA0GCSqGSIb3DQEBBQUAMCoxGTAXBgNVBAMMEGNlbnRvcy5p\\nbnN0YWxsZXIxDTALBgNVBAoMBFBVTFAwHhcNMTQwNTA2MTUyOTUyWhcNMjQwNTAz\\nMTUyOTUyWjBWMSowKAYDVQQDFCFpbnRlZ3JhdGlvbl90ZXN0X2NvbnN1bWVyX3N1\\ncHBvcnQxKDAmBgoJkiaJk/IsZAEBExg1MzY4ZmZmMDg2ZDlhOTE2YThhYTM4MDYw\\ngZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAMAx6VqAcp1YYUCdk/v/Anta6rzg\\nljMnbQ3AJT9ujN4CLi5ewL0utP8OU0BEZqg5tfHGo++g8QYxJ5V8AWbsOxFEuzDD\\nAE5tieszPWk1VEI4GmHg5fILzXUW/Zx6lvcFlqVwRC9UCbJ9WbU8qXfzsZVinTGK\\nsdEPvT2N/iL+Vwh3AgMBAAEwDQYJKoZIhvcNAQEFBQADggEBALJsH9ObOeYmBqTI\\n4Vvf3RMr2upAx6CC5kddOqZolj7ajJULZxMa4KtXG+nySjF+cYQzkmzxNCuxdCH6\\nVd84779z6KgV/A36lWiWNWI/cGupbkDugyqPre7ieOOZ6tgaY9bfFAIyk540tWeh\\nlNa7P+1lyq5dBZhTwdVJFO1zBDHEB53tG70WI4JXJZY61+dS3L+Pa80zmkbB/lYo\\nGIx78Wb/Xw/0W2bsrbe8UoFcjghEv+MPcC/mvp0joHC8Ji0VHAfILk32DetZyo8f\\nvtfTtqCMk2nv8bn8KwOdDSLvRqqc0kIHgj20XDhpeUJDoG7SnezBFiTIr1FleDog\\nTFgiyAM=\\n-----END CERTIFICATE-----\"}"
+    http_version: 
+  recorded_at: Tue, 06 May 2014 15:29:52 GMT
+- request: 
+    method: get
+    uri: https://admin:admin@centos.installer/pulp/api/v2/repositories/integration_test_id/?details=true
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/json
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Date: 
+      - Tue, 06 May 2014 15:29:52 GMT
+      Server: 
+      - Apache/2.2.15 (CentOS)
+      Content-Length: 
+      - "1038"
+      Connection: 
+      - close
+      Content-Type: 
+      - application/json
+    body: 
+      encoding: US-ASCII
+      string: "{\"scratchpad\": {\"checksum_type\": \"sha256\"}, \"display_name\": \"integration_test_id\", \"description\": null, \"distributors\": [{\"repo_id\": \"integration_test_id\", \"_ns\": \"repo_distributors\", \"last_publish\": null, \"auto_publish\": false, \"scheduled_publishes\": [], \"distributor_type_id\": \"yum_distributor\", \"_id\": {\"$oid\": \"5368ffee86d9a916a8aa37de\"}, \"config\": {\"http\": true, \"relative_url\": \"/path\", \"https\": true}, \"id\": \"puppet_dist\"}], \"_ns\": \"repos\", \"notes\": {}, \"content_unit_counts\": {\"package_group\": 2, \"distribution\": 1, \"package_category\": 1, \"rpm\": 8, \"erratum\": 2}, \"importers\": [{\"repo_id\": \"integration_test_id\", \"_ns\": \"repo_importers\", \"importer_type_id\": \"yum_importer\", \"last_sync\": \"2014-05-06T16:29:51+01:00\", \"scheduled_syncs\": [], \"_id\": {\"$oid\": \"5368ffee86d9a916a8aa37dd\"}, \"config\": {\"feed\": \"file:///home/jlsherri/git/runcible/test/fixtures/repositories/zoo5\"}, \"id\": \"yum_importer\"}], \"_id\": {\"$oid\": \"5368ffee86d9a916a8aa37dc\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\"}"
+    http_version: 
+  recorded_at: Tue, 06 May 2014 15:29:52 GMT
+- request: 
+    method: post
+    uri: https://admin:admin@centos.installer/pulp/api/v2/consumers/integration_test_consumer_support/bindings//
+    body: 
+      encoding: US-ASCII
+      string: "{\"repo_id\":\"integration_test_id\",\"distributor_id\":\"puppet_dist\"}"
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "64"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 202
+      message: Accepted
+    headers: 
+      Date: 
+      - Tue, 06 May 2014 15:29:52 GMT
+      Server: 
+      - Apache/2.2.15 (CentOS)
+      Content-Encoding: 
+      - utf-8
+      Content-Length: 
+      - "961"
+      Connection: 
+      - close
+      Content-Type: 
+      - application/json
+    body: 
+      encoding: US-ASCII
+      string: "{\"spawned_tasks\": [{\"exception\": null, \"task_type\": null, \"_href\": \"/pulp/api/v2/tasks/e8262ec4-5561-45b5-9597-1bfb24f30fc3/\", \"task_id\": \"e8262ec4-5561-45b5-9597-1bfb24f30fc3\", \"tags\": [\"pulp:consumer:integration_test_consumer_support\", \"pulp:repository:integration_test_id\", \"pulp:repository_distributor:puppet_dist\", \"pulp:action:agent_bind\"], \"finish_time\": null, \"_ns\": \"task_status\", \"start_time\": null, \"traceback\": null, \"spawned_tasks\": [], \"progress_report\": {}, \"queue\": \"agent\", \"state\": \"waiting\", \"result\": null, \"error\": null, \"_id\": {\"$oid\": \"5368fff186d9a916a8aa380e\"}, \"id\": \"5368fff186d9a916a8aa380e\"}], \"result\": {\"notify_agent\": true, \"repo_id\": \"integration_test_id\", \"deleted\": false, \"_ns\": \"consumer_bindings\", \"distributor_id\": \"puppet_dist\", \"consumer_id\": \"integration_test_consumer_support\", \"consumer_actions\": [], \"binding_config\": {}, \"_id\": {\"$oid\": \"5368fff186d9a916a8aa380b\"}, \"id\": \"5368fff186d9a916a8aa380b\"}, \"error\": null}"
+    http_version: 
+  recorded_at: Tue, 06 May 2014 15:29:53 GMT
+- request: 
+    method: post
+    uri: https://admin:admin@centos.installer/pulp/api/v2/consumer_groups/integration_test_consumer_group/actions/associate/
+    body: 
+      encoding: US-ASCII
+      string: "{\"criteria\":{\"filters\":{\"id\":{\"$in\":[\"integration_test_consumer_support\"]}}}}"
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "77"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Date: 
+      - Tue, 06 May 2014 15:29:53 GMT
+      Server: 
+      - Apache/2.2.15 (CentOS)
+      Content-Length: 
+      - "37"
+      Connection: 
+      - close
+      Content-Type: 
+      - application/json
+    body: 
+      encoding: US-ASCII
+      string: "[\"integration_test_consumer_support\"]"
+    http_version: 
+  recorded_at: Tue, 06 May 2014 15:29:53 GMT
+- request: 
+    method: post
+    uri: https://admin:admin@centos.installer/pulp/api/v2/consumer_groups/integration_test_consumer_group/actions/content/install/
+    body: 
+      encoding: US-ASCII
+      string: "{\"units\":[{\"unit_key\":{\"name\":\"zsh\"},\"type_id\":\"rpm\"}],\"options\":{}}"
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "68"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 202
+      message: Accepted
+    headers: 
+      Date: 
+      - Tue, 06 May 2014 15:29:53 GMT
+      Server: 
+      - Apache/2.2.15 (CentOS)
+      Content-Encoding: 
+      - utf-8
+      Content-Length: 
+      - "170"
+      Connection: 
+      - close
+      Content-Type: 
+      - application/json
+    body: 
+      encoding: US-ASCII
+      string: "{\"spawned_tasks\": [{\"_href\": \"/pulp/api/v2/tasks/4c8dba9d-7ed0-4507-84d9-0f08307a52f0/\", \"task_id\": \"4c8dba9d-7ed0-4507-84d9-0f08307a52f0\"}], \"result\": {}, \"error\": null}"
+    http_version: 
+  recorded_at: Tue, 06 May 2014 15:29:53 GMT
+- request: 
+    method: delete
+    uri: https://admin:admin@centos.installer/pulp/api/v2/consumers/integration_test_consumer_support/
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/json
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Date: 
+      - Tue, 06 May 2014 15:29:53 GMT
+      Server: 
+      - Apache/2.2.15 (CentOS)
+      Content-Length: 
+      - "4"
+      Connection: 
+      - close
+      Content-Type: 
+      - application/json
+    body: 
+      encoding: US-ASCII
+      string: "null"
+    http_version: 
+  recorded_at: Tue, 06 May 2014 15:29:53 GMT
+- request: 
+    method: delete
+    uri: https://admin:admin@centos.installer/pulp/api/v2/consumer_groups/integration_test_consumer_group/
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/json
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Date: 
+      - Tue, 06 May 2014 15:29:53 GMT
+      Server: 
+      - Apache/2.2.15 (CentOS)
+      Content-Length: 
+      - "4"
+      Connection: 
+      - close
+      Content-Type: 
+      - application/json
+    body: 
+      encoding: US-ASCII
+      string: "null"
+    http_version: 
+  recorded_at: Tue, 06 May 2014 15:29:53 GMT
+recorded_with: VCR 2.9.0
