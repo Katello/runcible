@@ -30,7 +30,6 @@ require 'mocha'
 require './test/vcr_setup'
 require './lib/runcible'
 
-
 begin
   require 'debugger'
 rescue LoadError
@@ -47,6 +46,46 @@ class TestRuncible
   end
 end
 
+class MiniTest::Unit::TestCase
+
+  def cassette_name
+    test_name = self.__name__.gsub("test_", "")
+    parent = (self.class.name.split("::")[-2] || "").underscore
+    self_class = self.class.name.split("::")[-1].underscore.gsub("test_", "")
+    "#{parent}/#{self_class}/#{test_name}"
+  end
+
+  def run_with_vcr(args)
+      VCR.insert_cassette(cassette_name)
+      to_ret = run_without_vcr(args)
+      VCR.eject_cassette
+      to_ret
+  end
+
+  alias_method_chain :run, :vcr
+
+  class << self
+    attr_accessor :support
+
+    def suite_cassette_name
+      parent = (self.name.split("::")[-2] || "").underscore
+      self_class = self.name.split("::")[-1].underscore.gsub("test_", "")
+      "#{parent}/#{self_class}/suite"
+    end
+  end
+
+  def assert_async_response(response)
+    support = @support || self.class.support
+    fail "@support or @@supsport not defined" unless support
+
+    assert_equal 202, response.code
+    tasks = support.wait_on_response(response)
+    tasks.each do |task|
+      assert task["state"], "finished"
+    end
+  end
+
+end
 
 class CustomMiniTestRunner
   class Unit < MiniTest::Unit
@@ -80,10 +119,19 @@ class CustomMiniTestRunner
           puts "Running Suite #{suite.inspect} - #{type.inspect} "
         end
 
-        suite.before_suite if suite.respond_to?(:before_suite)
+        if suite.respond_to?(:before_suite)
+          VCR.use_cassette(suite.suite_cassette_name) do
+            suite.before_suite
+          end
+        end
         super(suite, type)
       ensure
-        suite.after_suite if suite.respond_to?(:after_suite)
+        if suite.respond_to?(:after_suite)
+          VCR.use_cassette(suite.suite_cassette_name) do
+            suite.after_suite
+          end
+        end
+
         if logging?
           puts "Completed Running Suite #{suite.inspect} - #{type.inspect} "
         end
@@ -96,7 +144,6 @@ class CustomMiniTestRunner
 
   end
 end
-
 
 class PulpMiniTestRunner
 

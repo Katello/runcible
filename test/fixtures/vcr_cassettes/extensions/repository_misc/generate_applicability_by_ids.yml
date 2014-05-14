@@ -1,0 +1,77 @@
+--- 
+http_interactions: 
+- request: 
+    method: post
+    uri: https://admin:admin@centos.installer/pulp/api/v2/repositories/actions/content/regenerate_applicability//
+    body: 
+      encoding: US-ASCII
+      string: "{\"repo_criteria\":{\"filters\":{\"id\":{\"$in\":[null]}}}}"
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "51"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 202
+      message: Accepted
+    headers: 
+      Date: 
+      - Wed, 30 Apr 2014 20:49:07 GMT
+      Server: 
+      - Apache/2.2.15 (CentOS)
+      Content-Encoding: 
+      - utf-8
+      Content-Length: 
+      - "172"
+      Connection: 
+      - close
+      Content-Type: 
+      - application/json
+    body: 
+      encoding: US-ASCII
+      string: "{\"spawned_tasks\": [{\"_href\": \"/pulp/api/v2/tasks/727bcff0-9373-4a4b-97ec-121e6f859191/\", \"task_id\": \"727bcff0-9373-4a4b-97ec-121e6f859191\"}], \"result\": null, \"error\": null}"
+    http_version: 
+  recorded_at: Wed, 30 Apr 2014 20:49:07 GMT
+- request: 
+    method: get
+    uri: https://admin:admin@centos.installer/pulp/api/v2/tasks/727bcff0-9373-4a4b-97ec-121e6f859191/
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/json
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Date: 
+      - Wed, 30 Apr 2014 20:49:08 GMT
+      Server: 
+      - Apache/2.2.15 (CentOS)
+      Content-Length: 
+      - "533"
+      Connection: 
+      - close
+      Content-Type: 
+      - application/json
+    body: 
+      encoding: US-ASCII
+      string: "{\"task_type\": \"pulp.server.managers.consumer.applicability.regenerate_applicability_for_repos\", \"_href\": \"/pulp/api/v2/tasks/727bcff0-9373-4a4b-97ec-121e6f859191/\", \"task_id\": \"727bcff0-9373-4a4b-97ec-121e6f859191\", \"tags\": [\"pulp:action:content_applicability_regeneration\"], \"finish_time\": \"2014-04-30T20:49:07Z\", \"_ns\": \"task_status\", \"start_time\": \"2014-04-30T20:49:07Z\", \"spawned_tasks\": [], \"queue\": \"reserved_resource_worker-0@centos.installer\", \"state\": \"finished\", \"result\": null, \"_id\": {\"$oid\": \"536161c36f17e7ee7c724a66\"}}"
+    http_version: 
+  recorded_at: Wed, 30 Apr 2014 20:49:08 GMT
+recorded_with: VCR 2.9.0
