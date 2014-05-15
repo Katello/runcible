@@ -76,7 +76,7 @@ module Extensions
       @extension.unbind_all(@consumer_id, RepositorySupport.repo_id, Runcible::Models::YumDistributor.type_id)
       response = @extension.bind_all(@consumer_id, RepositorySupport.repo_id,
                                      Runcible::Models::YumDistributor.type_id, {:notify_agent=>false})
-      assert_equal 202, response.first.code
+      assert_equal 200, response.first.code
     end
 
     def test_unbind_all

@@ -75,13 +75,13 @@ module Runcible
 
         optional[:distributors] = distributors.collect do |d|
           if d.is_a?(Runcible::Models::Distributor)
-            {'distributor_type' => d.type_id,
+            {'distributor_type_id' => d.type_id,
               "distributor_config" => d.config,
               "auto_publish" => d.auto_publish,
               "distributor_id" => d.id
             }
           else
-            {'distributor_type' => d['type_id'],
+            {'distributor_type_id' => d['type_id'],
              "distributor_config" => d['config'],
              "auto_publish" => d['auto_publish'],
              "distributor_id" => d['id']

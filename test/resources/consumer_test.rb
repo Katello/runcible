@@ -253,7 +253,7 @@ module Resources
       response = self.class.bind_repo
 
       refute_empty response
-      assert_equal 202, response.code
+      assert_equal 200, response.code
     end
 
     def test_unbind

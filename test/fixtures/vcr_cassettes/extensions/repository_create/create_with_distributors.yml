@@ -21,7 +21,7 @@ http_interactions:
       message: Not Found
     headers: 
       Date: 
-      - Wed, 30 Apr 2014 20:49:00 GMT
+      - Thu, 15 May 2014 17:42:54 GMT
       Server: 
       - Apache/2.2.15 (CentOS)
       Content-Encoding: 
@@ -36,13 +36,13 @@ http_interactions:
       encoding: US-ASCII
       string: "{\"http_request_method\": \"DELETE\", \"exception\": null, \"error_message\": \"Missing resource(s): repo_id=integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\", \"http_status\": 404, \"error\": {\"code\": \"PLP0009\", \"data\": {\"resources\": {\"repo_id\": \"integration_test_id\"}}, \"description\": \"Missing resource(s): repo_id=integration_test_id\", \"sub_errors\": []}, \"traceback\": null, \"resources\": {\"repo_id\": \"integration_test_id\"}}"
     http_version: 
-  recorded_at: Wed, 30 Apr 2014 20:49:00 GMT
+  recorded_at: Thu, 15 May 2014 17:42:54 GMT
 - request: 
     method: post
     uri: https://admin:admin@centos.installer/pulp/api/v2/repositories/
     body: 
       encoding: US-ASCII
-      string: "{\"id\":\"integration_test_id\",\"distributors\":[{\"distributor_type\":\"yum_distributor\",\"distributor_config\":{\"relative_url\":\"/path\",\"http\":true,\"https\":true},\"auto_publish\":true,\"distributor_id\":\"123\"}]}"
+      string: "{\"id\":\"integration_test_id\",\"distributors\":[{\"distributor_type_id\":\"yum_distributor\",\"distributor_config\":{\"relative_url\":\"/path\",\"http\":true,\"https\":true},\"auto_publish\":true,\"distributor_id\":\"123\"}]}"
     headers: 
       Accept: 
       - application/json
@@ -51,7 +51,7 @@ http_interactions:
       Content-Type: 
       - application/json
       Content-Length: 
-      - "198"
+      - "201"
       User-Agent: 
       - Ruby
   response: 
@@ -60,7 +60,7 @@ http_interactions:
       message: Created
     headers: 
       Date: 
-      - Wed, 30 Apr 2014 20:49:00 GMT
+      - Thu, 15 May 2014 17:42:54 GMT
       Server: 
       - Apache/2.2.15 (CentOS)
       Location: 
@@ -73,9 +73,9 @@ http_interactions:
       - application/json
     body: 
       encoding: US-ASCII
-      string: "{\"scratchpad\": {}, \"display_name\": \"integration_test_id\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_counts\": {}, \"_id\": {\"$oid\": \"536161bc86d9a928ef3b41be\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\"}"
+      string: "{\"scratchpad\": {}, \"display_name\": \"integration_test_id\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_counts\": {}, \"_id\": {\"$oid\": \"5374fc9e86d9a9321d8e0be1\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\"}"
     http_version: 
-  recorded_at: Wed, 30 Apr 2014 20:49:00 GMT
+  recorded_at: Thu, 15 May 2014 17:42:54 GMT
 - request: 
     method: delete
     uri: https://admin:admin@centos.installer/pulp/api/v2/repositories/integration_test_id/
@@ -97,7 +97,7 @@ http_interactions:
       message: Accepted
     headers: 
       Date: 
-      - Wed, 30 Apr 2014 20:49:00 GMT
+      - Thu, 15 May 2014 17:42:54 GMT
       Server: 
       - Apache/2.2.15 (CentOS)
       Content-Encoding: 
@@ -110,12 +110,12 @@ http_interactions:
       - application/json
     body: 
       encoding: US-ASCII
-      string: "{\"spawned_tasks\": [{\"_href\": \"/pulp/api/v2/tasks/66cefcc6-cfd7-47ac-982d-af9a344b37f3/\", \"task_id\": \"66cefcc6-cfd7-47ac-982d-af9a344b37f3\"}], \"result\": null, \"error\": null}"
+      string: "{\"spawned_tasks\": [{\"_href\": \"/pulp/api/v2/tasks/89ba52fc-b9ab-48c7-9828-72fab8046832/\", \"task_id\": \"89ba52fc-b9ab-48c7-9828-72fab8046832\"}], \"result\": null, \"error\": null}"
     http_version: 
-  recorded_at: Wed, 30 Apr 2014 20:49:01 GMT
+  recorded_at: Thu, 15 May 2014 17:42:55 GMT
 - request: 
     method: get
-    uri: https://admin:admin@centos.installer/pulp/api/v2/tasks/66cefcc6-cfd7-47ac-982d-af9a344b37f3/
+    uri: https://admin:admin@centos.installer/pulp/api/v2/tasks/89ba52fc-b9ab-48c7-9828-72fab8046832/
     body: 
       encoding: US-ASCII
       string: ""
@@ -134,18 +134,18 @@ http_interactions:
       message: OK
     headers: 
       Date: 
-      - Wed, 30 Apr 2014 20:49:01 GMT
+      - Thu, 15 May 2014 17:42:55 GMT
       Server: 
       - Apache/2.2.15 (CentOS)
       Content-Length: 
-      - "501"
+      - "611"
       Connection: 
       - close
       Content-Type: 
       - application/json
     body: 
       encoding: US-ASCII
-      string: "{\"task_type\": \"pulp.server.tasks.repository.delete\", \"_href\": \"/pulp/api/v2/tasks/66cefcc6-cfd7-47ac-982d-af9a344b37f3/\", \"task_id\": \"66cefcc6-cfd7-47ac-982d-af9a344b37f3\", \"tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:delete\"], \"finish_time\": \"2014-04-30T20:49:01Z\", \"_ns\": \"task_status\", \"start_time\": \"2014-04-30T20:49:01Z\", \"spawned_tasks\": [], \"queue\": \"reserved_resource_worker-0@centos.installer\", \"state\": \"finished\", \"result\": null, \"_id\": {\"$oid\": \"536161bd6f17e7ee7c724a61\"}}"
+      string: "{\"exception\": null, \"task_type\": \"pulp.server.tasks.repository.delete\", \"_href\": \"/pulp/api/v2/tasks/89ba52fc-b9ab-48c7-9828-72fab8046832/\", \"task_id\": \"89ba52fc-b9ab-48c7-9828-72fab8046832\", \"tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:delete\"], \"finish_time\": \"2014-05-15T17:42:55Z\", \"_ns\": \"task_status\", \"start_time\": \"2014-05-15T17:42:55Z\", \"traceback\": null, \"spawned_tasks\": [], \"progress_report\": {}, \"queue\": \"reserved_resource_worker-1@centos.installer\", \"state\": \"finished\", \"result\": null, \"error\": null, \"_id\": {\"$oid\": \"5374fc9f3c307ec505e85ffa\"}, \"id\": \"5374fc9f86d9a9321d8e0be4\"}"
     http_version: 
-  recorded_at: Wed, 30 Apr 2014 20:49:01 GMT
+  recorded_at: Thu, 15 May 2014 17:42:55 GMT
 recorded_with: VCR 2.9.0
