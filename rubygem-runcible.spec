@@ -122,6 +122,16 @@ mkdir -p %{buildroot}%{gem_docdir}
 %doc %{gem_instdir}/CONTRIBUTING.md
 
 %changelog
+* Thu May 15 2014 Justin Sherrill <jsherril@redhat.com> 1.1.0-1
+- Bumping runcible version to 1.1.0 (jsherril@redhat.com)
+- adding support for pulp 2.4.0-0.14 (jsherril@redhat.com)
+- adding consumer(group) support for pulp2.4 (jsherril@redhat.com)
+- Updating runcible to use one cassette per test (jsherril@redhat.com)
+- 2.4 support and some cleanup for all most remaining items
+  (jsherril@redhat.com)
+- Worked on splitting up user and role cassettes (daviddavis@redhat.com)
+- Created a cassette_name method for test classes (daviddavis@redhat.com)
+
 * Thu Jan 16 2014 Justin Sherrill <jsherril@redhat.com> 1.0.8-1
 - adding a config method for retrieving current configuration
   (jsherril@redhat.com)
