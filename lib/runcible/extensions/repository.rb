@@ -256,6 +256,26 @@ module Runcible
         unit_search(id, criteria).collect{|i| i['metadata'].with_indifferent_access}
       end
 
+      # Retrieves the docker image IDs for a single repository
+      #
+      # @param  [String]                id the ID of the repository
+      # @return [RestClient::Response]  the set of repository docker image IDs
+      def docker_image_ids(id)
+        criteria = {:type_ids=>[Runcible::Extensions::DockerImage.content_type],
+                    :fields=>{:unit=>[], :association=>['unit_id']}}
+
+        unit_search(id, criteria).collect{|i| i['unit_id']}
+      end
+
+      # Retrieves the docker images for a single repository
+      #
+      # @param  [String]                id the ID of the repository
+      # @return [RestClient::Response]  the set of repository docker images
+      def docker_images(id)
+        criteria = {:type_ids=>[Runcible::Extensions::DockerImage.content_type]}
+        unit_search(id, criteria).collect{|i| i['metadata'].with_indifferent_access}
+      end
+
       # Creates or updates a sync schedule for a repository
       #
       # @param  [String]                repo_id   the ID of the repository
