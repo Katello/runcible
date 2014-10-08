@@ -122,6 +122,9 @@ mkdir -p %{buildroot}%{gem_docdir}
 %doc %{gem_instdir}/CONTRIBUTING.md
 
 %changelog
+* Wed Oct 08 2014 Justin Sherrill <jsherril@redhat.com> 1.2.0-1
+- Fixes #7765 - Add docker methods to repo (daviddavis@redhat.com)
+- Fixes #7617 - CRUD docker repo bindings (paji@redhat.com)
 * Thu May 15 2014 Justin Sherrill <jsherril@redhat.com> 1.1.0-1
 - Bumping runcible version to 1.1.0 (jsherril@redhat.com)
 - adding support for pulp 2.4.0-0.14 (jsherril@redhat.com)
