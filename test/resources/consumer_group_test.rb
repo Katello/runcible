@@ -31,21 +31,24 @@ require './test/support/consumer_support'
 
 module Resources
   module TestConsumerGroupBase
-    def setu(p)
-      @resource = TestRuncible.server.resources.consumer_grou p
-      @consumer_group_id = 'integration_test_consumer_group  '
+    def setup
+      @resource = TestRuncible.server.resources.consumer_group
+      @consumer_group_id = 'integration_test_consumer_group'
     end
 
-    def create_consumer_grou(_p)
-      @resource.create(@consumer_group_id, :display_name => 'foo', :description => 'Test description.', :consumer_ids => [])
-    rescue =>   e
+    def create_consumer_group
+      @resource.create(@consumer_group_id, :display_name => 'foo',
+                                           :description => 'Test description.', :consumer_ids => [])
+    rescue => e
+      puts "Could not create consumer group #{@consumer_group_id}. Exception \n #{e}"
     end
 
-    def destroy_consumer_grou(_p)
+    def destroy_consumer_group
       @resource.delete(@consumer_group_id)
-    rescue =>   e
+    rescue => e
+      puts "Could not destroy consumer group #{@consumer_group_id}. Exception \n #{e}"
     end
-end
+  end
 
   class TestConsumerGroupCreate < MiniTest::Unit::TestCase
     include TestConsumerGroupBase

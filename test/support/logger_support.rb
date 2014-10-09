@@ -24,13 +24,7 @@
 module Runcible
   class Logger
     attr_accessor :message
-
-    def debug(message)
-      @message = message
-    end
-
-    def error(message)
-      @message = message
-    end
+    alias_method :debug, :message=
+    alias_method :error, :message=
   end
 end

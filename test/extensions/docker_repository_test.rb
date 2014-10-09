@@ -52,9 +52,9 @@ module Extensions
     end
 
     def test_create_with_importer_object
-      response = @extension.create_with_importer(RepositorySupport.repo_id,
-                                                 Runcible::Models::DockerImporter.new(:feed => 'https://index.docker.io',
-                                                                                      :upstream_name => 'busybox'))
+      mock_importer = Runcible::Models::DockerImporter.new(:feed => 'https://index.docker.io',
+                                                           :upstream_name => 'busybox')
+      response = @extension.create_with_importer(RepositorySupport.repo_id, mock_importer)
       assert_equal 201, response.code
       response = @extension.retrieve(RepositorySupport.repo_id, :details => true)
       assert_equal RepositorySupport.repo_id, response['id']
@@ -75,8 +75,8 @@ module Extensions
 
     def test_create_with_distributor_object
       repo_id = RepositorySupport.repo_id + '_distro'
-      response = @extension.create_with_distributors(repo_id, [Runcible::Models::DockerDistributor.new(:docker_publish_directory => '/path',
-                                                                                                       :id => '123')])
+      mock_distro = Runcible::Models::DockerDistributor.new(:docker_publish_directory => '/path', :id => '123')
+      response = @extension.create_with_distributors(repo_id, [mock_distro])
       assert_equal 201, response.code
       response = @extension.retrieve(repo_id, :details => true)
       assert_equal repo_id, response['id']
@@ -88,7 +88,8 @@ module Extensions
     def test_create_with_importer_and_distributors
       distributors = [{'type_id' => 'docker_distributor_web', 'id' => '123', 'auto_publish' => true,
                        'config' => {}}]
-      response = @extension.create_with_importer_and_distributors(RepositorySupport.repo_id, {:id => 'docker_importer'}, distributors)
+      response = @extension.create_with_importer_and_distributors(RepositorySupport.repo_id,
+                                                                 {:id => 'docker_importer'}, distributors)
       assert_equal 201, response.code
 
       response = @extension.retrieve(RepositorySupport.repo_id, :details => true)

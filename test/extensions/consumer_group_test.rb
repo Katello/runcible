@@ -73,13 +73,16 @@ module Extensions
     end
 
     def test_remove_consumers_by_id
-      assert_includes @resource.retrieve(ConsumerGroupSupport.consumer_group_id)['consumer_ids'], ConsumerSupport.consumer_id
+      assert_includes(@resource.retrieve(ConsumerGroupSupport.consumer_group_id)['consumer_ids'],
+                      ConsumerSupport.consumer_id)
 
-      response = @extension.remove_consumers_by_id(ConsumerGroupSupport.consumer_group_id, [ConsumerSupport.consumer_id])
+      response = @extension.remove_consumers_by_id(ConsumerGroupSupport.consumer_group_id,
+                                                   [ConsumerSupport.consumer_id])
 
       assert_equal 200, response.code
       assert_empty response # no consumers
-      refute_includes @resource.retrieve(ConsumerGroupSupport.consumer_group_id)['consumer_ids'], ConsumerSupport.consumer_id
+      refute_includes(@resource.retrieve(ConsumerGroupSupport.consumer_group_id)['consumer_ids'],
+                       ConsumerSupport.consumer_id)
     end
 
     def test_make_consumer_criteria

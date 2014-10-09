@@ -56,7 +56,7 @@ def configure_vcr(mode = :none)
           request_1.body == request_2.body
         end
       end
-    rescue => e
+    rescue
       #ignore the warning thrown about this matcher already being resgistered
     end
 
@@ -64,7 +64,7 @@ def configure_vcr(mode = :none)
       c.register_request_matcher :params do |request_1, request_2|
         URI(request_1.uri).query == URI(request_2.uri).query
       end
-    rescue => e
+    rescue
       #ignore the warning thrown about this matcher already being resgistered
     end
   end

@@ -31,14 +31,14 @@ module Base
   class TestBase < MiniTest::Unit::TestCase
     def setup
       @logger = ::Runcible::Logger.new
-      @my_runcible = Runcible::Base.new ({
+      @my_runcible = Runcible::Base.new(
         :base_url => 'http://localhost/',
         :user     => 'test_user',
         :password => 'test_password',
         :headers  => { :content_type => 'application/json',
                        :accept       => 'application/json' },
         :logging  => { :logger => @logger }
-      })
+      )
 
       @log_message = 'Fake log message.'
       RestClient.log = [@log_message]

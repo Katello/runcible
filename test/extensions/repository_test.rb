@@ -91,7 +91,8 @@ module Extensions
     def test_create_with_importer_and_distributors
       distributors = [{'type_id' => 'yum_distributor', 'id' => '123', 'auto_publish' => true,
                        'config' => {'relative_url' => '/123/456', 'http' => true, 'https' => true}}]
-      response = @extension.create_with_importer_and_distributors(RepositorySupport.repo_id, {:id => 'yum_importer'}, distributors)
+      response = @extension.create_with_importer_and_distributors(RepositorySupport.repo_id,
+                                                                  {:id => 'yum_importer'}, distributors)
       assert_equal 201, response.code
 
       response = @extension.retrieve(RepositorySupport.repo_id, :details => true)

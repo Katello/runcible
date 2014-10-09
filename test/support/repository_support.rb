@@ -81,7 +81,6 @@ class RepositorySupport
 
   def create_repo(options = {})
     repo = @repo_resource.retrieve(RepositorySupport.repo_id)
-
     unless repo.nil?
       destroy_repo
     end
@@ -156,7 +155,7 @@ class RepositorySupport
 
     tasks = @repo_resource.delete(id)
     wait_on_response(tasks)
-  rescue => e
+  rescue
   end
 
   def rpm_ids

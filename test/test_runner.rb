@@ -46,41 +46,45 @@ class TestRuncible
   end
 end
 
-class MiniTest::Unit::TestCase
-  def cassette_name
-    test_name = self.__name__.gsub('test_', '')
-    parent = (self.class.name.split('::')[-2] || '').underscore
-    self_class = self.class.name.split('::')[-1].underscore.gsub('test_', '')
-    "#{parent}/#{self_class}/#{test_name}"
-  end
+module MiniTest
+  class Unit
+    class TestCase
+      def cassette_name
+        test_name = self.__name__.gsub('test_', '')
+        parent = (self.class.name.split('::')[-2] || '').underscore
+        self_class = self.class.name.split('::')[-1].underscore.gsub('test_', '')
+        "#{parent}/#{self_class}/#{test_name}"
+      end
 
-  def run_with_vcr(args)
-    VCR.insert_cassette(cassette_name)
-    to_ret = run_without_vcr(args)
-    VCR.eject_cassette
-    to_ret
-  end
+      def run_with_vcr(args)
+        VCR.insert_cassette(cassette_name)
+        to_ret = run_without_vcr(args)
+        VCR.eject_cassette
+        to_ret
+      end
 
-  alias_method_chain :run, :vcr
+      alias_method_chain :run, :vcr
 
-  class << self
-    attr_accessor :support
+      class << self
+        attr_accessor :support
 
-    def suite_cassette_name
-      parent = (self.name.split('::')[-2] || '').underscore
-      self_class = self.name.split('::')[-1].underscore.gsub('test_', '')
-      "#{parent}/#{self_class}/suite"
-    end
-  end
+        def suite_cassette_name
+          parent = (self.name.split('::')[-2] || '').underscore
+          self_class = self.name.split('::')[-1].underscore.gsub('test_', '')
+          "#{parent}/#{self_class}/suite"
+        end
+      end
 
-  def assert_async_response(response)
-    support = @support || self.class.support
-    fail '@support or @@supsport not defined' unless support
+      def assert_async_response(response)
+        support = @support || self.class.support
+        fail '@support or @@supsport not defined' unless support
 
-    assert_equal 202, response.code
-    tasks = support.wait_on_response(response)
-    tasks.each do |task|
-      assert task['state'], 'finished'
+        assert_equal 202, response.code
+        tasks = support.wait_on_response(response)
+        tasks.each do |task|
+          assert task['state'], 'finished'
+        end
+      end
     end
   end
 end
@@ -98,8 +102,8 @@ class CustomMiniTestRunner
     def _run_suites(suites, type)
       if ENV['suite']
         suites = suites.select do |suite|
-                   suite.name == ENV['suite']
-                 end
+          suite.name == ENV['suite']
+        end
       end
       before_suites
       super(suites, type)
@@ -113,9 +117,9 @@ class CustomMiniTestRunner
       end
       if suite.respond_to?(:before_suite)
         VCR.use_cassette(suite.suite_cassette_name) do
-         suite.before_suite
-       end
-     end
+          suite.before_suite
+        end
+      end
       super(suite, type)
     ensure
       if suite.respond_to?(:after_suite)
@@ -125,7 +129,7 @@ class CustomMiniTestRunner
       end
       if logging?
         puts "Completed Running Suite #{suite.inspect} - #{type.inspect} "
-     end
+      end
     end
 
     def logging?
@@ -144,12 +148,12 @@ class PulpMiniTestRunner
     MiniTest::Unit.runner = CustomMiniTestRunner::Unit.new
 
     if mode == 'all'
-      set_runcible_config(:auth_type => auth_type, :logging => logging)
+      runcible_config(:auth_type => auth_type, :logging => logging)
     else
-      set_runcible_config(:logging => logging)
+      runcible_config(:logging => logging)
     end
 
-    set_vcr_config(mode)
+    vcr_config(mode)
 
     if test_name && File.exist?(test_name)
       require test_name
@@ -160,20 +164,16 @@ class PulpMiniTestRunner
     end
   end
 
-  def set_runcible_config(options)
-    config = {
-      :api_path   => '/pulp/api/v2/',
-      :http_auth  => {}
-    }
+  def runcible_config(options)
+    config = { :api_path   => '/pulp/api/v2/',
+               :http_auth  => {}}
 
     if options[:logging] == 'true'
       log = ::Logger.new(STDOUT)
       log.level = Logger::DEBUG
-      config[:logging] = {
-        :logger => log,
-        :debug  => true,
-	       :stdout => true
-      }
+      config[:logging] = { :logger => log,
+                           :debug  => true,
+                           :stdout => true}
     end
 
     if options[:auth_type] == 'http'
@@ -213,7 +213,7 @@ class PulpMiniTestRunner
     TestRuncible.server = Runcible::Instance.new(config)
   end
 
-  def set_vcr_config(mode)
+  def vcr_config(mode)
     if mode == 'all'
       configure_vcr(:all)
     elsif mode == 'new_episodes'

@@ -63,7 +63,7 @@ module Resources
       super
       begin
         @resource.retrieve(@username)
-      rescue RestClient::ResourceNotFound => e
+      rescue RestClient::ResourceNotFound
         @resource.create(@username)
       end
     end
@@ -71,6 +71,7 @@ module Resources
     def teardown
       @resource.delete(@username)
     rescue RestClient::ResourceNotFound => e
+      puts "Could not destroy user #{@username}. Exception \n #{e}"
     ensure
       super
     end

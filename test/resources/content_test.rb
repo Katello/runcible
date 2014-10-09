@@ -46,8 +46,13 @@ module Resources
     include TestContentBase
 
     def test_import_into_repo
-      test_unit_key = {'checksumtype' => 'sha256', 'checksum' => '5e9fb809128d23a3e25d0c5fd38dd5d37d4ebceae7c6af8f15fed93e39d3145f',
-                       'epoch' => '0', 'version' => '8.3.3', 'release' => '1.elfake', 'arch' => 'noarch', 'name' => 'recons'}
+      test_unit_key = {'checksumtype' => 'sha256',
+                       'checksum' => '5e9fb809128d23a3e25d0c5fd38dd5d37d4ebceae7c6af8f15fed93e39d3145f',
+                       'epoch' => '0',
+                       'version' => '8.3.3',
+                       'release' => '1.elfake',
+                       'arch' => 'noarch',
+                       'name' => 'recons'}
 
       self.class.support = RepositorySupport.new
       self.class.support.create_and_sync_repo(:importer_and_distributor => true)

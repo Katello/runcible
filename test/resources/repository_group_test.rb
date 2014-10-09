@@ -38,11 +38,13 @@ module Resources
     def create_repo_group
       @resource.create(@repo_group_id, :display_name => 'foo', :description => 'Test description.')
     rescue => e
+      puts "could not create repo group with id => #{@repo_group_id}. Exception => #{e}"
     end
 
     def destroy_repo_group
       @resource.delete(@repo_group_id)
     rescue => e
+      puts "could not destroy repo group with id => #{@repo_group_id}. Exception => #{e}"
     end
   end
 

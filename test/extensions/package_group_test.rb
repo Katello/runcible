@@ -102,22 +102,23 @@ module Extensions
       response = self.class.extension_class.unassociate_ids_from_repo(self.class.clone_name, [@content_ids.first])
       assert_async_response(response)
 
-      assert_equal (@content_ids.length - 1), content_ids(self.class.clone_name).length
+      assert_equal((@content_ids.length - 1), content_ids(self.class.clone_name).length)
     end
 
     def test_unassociate_unit_ids_from_repo
       response = self.class.extension_class.unassociate_unit_ids_from_repo(self.class.clone_name, [@unit_ids.first])
       assert_async_response(response)
 
-      assert_equal (@unit_ids.length - 1), unit_ids(self.class.clone_name).length
+      assert_equal((@unit_ids.length - 1), unit_ids(self.class.clone_name).length)
     end
 
     def test_unassociate_from_repo
       response = self.class.extension_class.unassociate_from_repo(self.class.clone_name,
-                                                                :association => {'unit_id' => {'$in' => [@unit_ids.first]}})
+                                                                  :association =>
+                                                                  {'unit_id' => {'$in' => [@unit_ids.first]}})
       assert_async_response(response)
 
-      assert_equal (@unit_ids.length - 1), unit_ids(self.class.clone_name).length
+      assert_equal((@unit_ids.length - 1), unit_ids(self.class.clone_name).length)
     end
 
     def test_copied_package_groups

@@ -40,8 +40,8 @@ module Resources
     def create_consumer(package_profile = false)
       consumer = @resource.create(@consumer_id, :name => 'boo')
       if package_profile
-        @consumer_resource.upload_profile(@consumer_id, 'rpm', [{'name' => 'elephant', 'version' => '0.2', 'release' => '0.7',
-                                                                 'epoch' => 0, 'arch' => 'noarch'}])
+        @consumer_resource.upload_profile(@consumer_id, 'rpm', [{'name' => 'elephant', 'version' => '0.2',
+                                                                 'release' => '0.7', 'epoch' => 0, 'arch' => 'noarch'}])
       end
       consumer
     end
@@ -209,7 +209,6 @@ module Resources
 
   class ConsumerRequiresRepoTests < MiniTest::Unit::TestCase
     include TestConsumerBase
-
     def self.before_suite
       @@support = ConsumerSupport.new
       @@repo_support = RepositorySupport.new

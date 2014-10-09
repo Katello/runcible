@@ -36,7 +36,6 @@ module Resources
 
   class TestTask < MiniTest::Unit::TestCase
     include TestTaskBase
-
     def self.before_suite
       self.support = RepositorySupport.new
       self.support.create_repo(:importer => true)

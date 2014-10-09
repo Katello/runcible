@@ -40,7 +40,8 @@ module Extensions
 
     def setup
       super
-      @repo_url = "file://#{File.expand_path(File.dirname(__FILE__))}".gsub('test/extensions', 'test/fixtures/repositories/iso/')
+      @repo_url = "file://#{File.expand_path(File.dirname(__FILE__))}".gsub('test/extensions',
+                                                                           'test/fixtures/repositories/iso/')
       @repo_id = 'test_repo_iso_fixture'
     end
 

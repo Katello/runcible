@@ -97,7 +97,8 @@ module Resources
     end
 
     def test_update
-      response = @resource.update(RepositorySupport.repo_id,  :description => 'updated_description_' + RepositorySupport.repo_id)
+      response = @resource.update(RepositorySupport.repo_id,
+                                  :description => 'updated_description_' + RepositorySupport.repo_id)
 
       assert_equal 200, response.code
       assert_equal 'updated_description_' + RepositorySupport.repo_id, response['result']['description']
