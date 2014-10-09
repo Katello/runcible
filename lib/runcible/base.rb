@@ -107,7 +107,8 @@ module Runcible
         else
           "#{k.to_s}=#{v.to_s}"
         end
-      end.flatten().join('&')
+      end
+      query_string = query_string.flatten().join('&')
       path + "?#{query_string}"
     end
 
