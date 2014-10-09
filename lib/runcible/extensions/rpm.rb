@@ -21,28 +21,26 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-
 module Runcible
   module Extensions
     class Rpm < Runcible::Extensions::Unit
-
       def self.content_type
         'rpm'
       end
 
       # This function is not implemented for RPMs since they do not have content IDs
       def find
-        raise NotImplementedError
+        fail NotImplementedError
       end
 
       # This function is not implemented for RPMs since they do not have content IDs
       def find_all
-        raise NotImplementedError
+        fail NotImplementedError
       end
 
       # This function is not implemented for RPMs since they do not have content IDs
-      def unassociate_ids_from_repo(repo_id, ids)
-        raise NotImplementedError
+      def unassociate_ids_from_repo(_repo_id, _ids)
+        fail NotImplementedError
       end
     end
   end

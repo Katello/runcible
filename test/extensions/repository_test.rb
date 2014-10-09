@@ -29,12 +29,10 @@ require './lib/runcible'
 
 module Extensions
   module TestRepositoryBase
-
     def setup
       @support = RepositorySupport.new
       @extension = TestRuncible.server.extensions.repository
     end
-
   end
 
   class TestRepositoryCreate < MiniTest::Unit::TestCase
@@ -51,26 +49,26 @@ module Extensions
     end
 
     def test_create_with_importer
-      response = @extension.create_with_importer(RepositorySupport.repo_id, {:id=>"yum_importer"})
+      response = @extension.create_with_importer(RepositorySupport.repo_id, :id => 'yum_importer')
       assert_equal 201, response.code
 
-      response = @extension.retrieve(RepositorySupport.repo_id, {:details => true})
+      response = @extension.retrieve(RepositorySupport.repo_id, :details => true)
       assert_equal RepositorySupport.repo_id, response['id']
-      assert_equal "yum_importer", response['importers'].first['importer_type_id']
+      assert_equal 'yum_importer', response['importers'].first['importer_type_id']
     end
 
     def test_create_with_importer_object
-      response = @extension.create_with_importer(RepositorySupport.repo_id, Runcible::Models::YumImporter.new())
+      response = @extension.create_with_importer(RepositorySupport.repo_id, Runcible::Models::YumImporter.new)
       assert_equal 201, response.code
 
-      response = @extension.retrieve(RepositorySupport.repo_id, {:details => true})
+      response = @extension.retrieve(RepositorySupport.repo_id, :details => true)
       assert_equal RepositorySupport.repo_id, response['id']
-      assert_equal "yum_importer", response['importers'].first['importer_type_id']
+      assert_equal 'yum_importer', response['importers'].first['importer_type_id']
     end
 
     def test_create_with_distributors
-      distributors = [{'type_id' => 'yum_distributor', 'id'=>'123', 'auto_publish'=>true,
-                       'config'=>{'relative_url' => '/path', 'http' => true, 'https' => true}}]
+      distributors = [{'type_id' => 'yum_distributor', 'id' => '123', 'auto_publish' => true,
+                       'config' => {'relative_url' => '/path', 'http' => true, 'https' => true}}]
       response = @extension.create_with_distributors(RepositorySupport.repo_id, distributors)
 
       assert_equal 201, response.code
@@ -78,12 +76,12 @@ module Extensions
     end
 
     def test_create_with_distributor_object
-      repo_id = RepositorySupport.repo_id + "_distro"
+      repo_id = RepositorySupport.repo_id + '_distro'
       response = @extension.create_with_distributors(repo_id, [Runcible::Models::YumDistributor.new(
           '/path', true, true, :id => '123')])
       assert_equal 201, response.code
 
-      response = @extension.retrieve(repo_id, {:details => true})
+      response = @extension.retrieve(repo_id, :details => true)
       assert_equal repo_id, response['id']
       assert_equal 'yum_distributor', response['distributors'].first['distributor_type_id']
     ensure
@@ -91,12 +89,12 @@ module Extensions
     end
 
     def test_create_with_importer_and_distributors
-      distributors = [{'type_id' => 'yum_distributor', 'id'=>'123', 'auto_publish'=>true,
-                       'config'=>{'relative_url' => '/123/456', 'http' => true, 'https' => true}}]
-      response = @extension.create_with_importer_and_distributors(RepositorySupport.repo_id, {:id=>'yum_importer'}, distributors)
+      distributors = [{'type_id' => 'yum_distributor', 'id' => '123', 'auto_publish' => true,
+                       'config' => {'relative_url' => '/123/456', 'http' => true, 'https' => true}}]
+      response = @extension.create_with_importer_and_distributors(RepositorySupport.repo_id, {:id => 'yum_importer'}, distributors)
       assert_equal 201, response.code
 
-      response = @extension.retrieve(RepositorySupport.repo_id, {:details => true})
+      response = @extension.retrieve(RepositorySupport.repo_id, :details => true)
       assert_equal RepositorySupport.repo_id, response['id']
       assert_equal 'yum_distributor', response['distributors'].first['distributor_type_id']
     end
@@ -104,20 +102,17 @@ module Extensions
     def test_create_with_importer_and_distributors_objects
       distributors = [Runcible::Models::YumDistributor.new(
               '/path', true, true, :id => '123')]
-      importer = Runcible::Models::YumImporter.new()
+      importer = Runcible::Models::YumImporter.new
       response = @extension.create_with_importer_and_distributors(RepositorySupport.repo_id, importer, distributors)
       assert_equal 201, response.code
 
-      response = @extension.retrieve(RepositorySupport.repo_id, {:details => true})
+      response = @extension.retrieve(RepositorySupport.repo_id, :details => true)
       assert_equal RepositorySupport.repo_id, response['id']
-      assert_equal "yum_importer", response['importers'].first['importer_type_id']
+      assert_equal 'yum_importer', response['importers'].first['importer_type_id']
     end
-
-
   end
 
   class TestRepositoryMisc < MiniTest::Unit::TestCase
-
     def self.before_suite
       self.support = RepositorySupport.new
       self.support.create_and_sync_repo(:importer_and_distributor => true)
@@ -135,20 +130,20 @@ module Extensions
       response = @extension.search_by_repository_ids([RepositorySupport.repo_id])
 
       assert_equal 200, response.code
-      refute_empty response.collect{ |repo| repo["display_name"] == RepositorySupport.repo_id }
+      refute_empty response.map { |repo| repo['display_name'] == RepositorySupport.repo_id }
     end
 
     def test_create_or_update_schedule
-      response = @extension.create_or_update_schedule(RepositorySupport.repo_id, 'yum_importer', "2012-09-25T20:44:00Z/P7D")
+      response = @extension.create_or_update_schedule(RepositorySupport.repo_id, 'yum_importer', '2012-09-25T20:44:00Z/P7D')
       assert_equal 201, response.code
 
-      response = @extension.create_or_update_schedule(RepositorySupport.repo_id, 'yum_importer', "2011-09-25T20:44:00Z/P7D")
+      response = @extension.create_or_update_schedule(RepositorySupport.repo_id, 'yum_importer', '2011-09-25T20:44:00Z/P7D')
       assert_equal 200, response.code
     end
 
     def test_remove_schedules
-      TestRuncible.server.resources.repository_schedule.create(RepositorySupport.repo_id, 'yum_importer', "2012-10-25T20:44:00Z/P7D")
-      response = @extension.remove_schedules(RepositorySupport.repo_id, "yum_importer")
+      TestRuncible.server.resources.repository_schedule.create(RepositorySupport.repo_id, 'yum_importer', '2012-10-25T20:44:00Z/P7D')
+      response = @extension.remove_schedules(RepositorySupport.repo_id, 'yum_importer')
 
       assert_equal 200, response.code
     end
@@ -156,7 +151,7 @@ module Extensions
     def test_retrieve_with_details
       response = @extension.retrieve_with_details(RepositorySupport.repo_id)
 
-      assert_equal    200, response.code
+      assert_equal 200, response.code
       assert_includes response, 'distributors'
     end
 
@@ -186,12 +181,9 @@ module Extensions
       tasks = assert_async_response(response)
       assert_equal 'finished', tasks.first['state']
     end
-
   end
 
-
   class TestRepositoryUnitList < MiniTest::Unit::TestCase
-
     def self.before_suite
       @@extension = TestRuncible.server.extensions.repository
       self.support = RepositorySupport.new
@@ -206,15 +198,15 @@ module Extensions
     def test_rpm_ids
       response = @@extension.rpm_ids(RepositorySupport.repo_id)
 
-      refute_empty    response
-      assert_kind_of  String, response.first
+      refute_empty response
+      assert_kind_of String, response.first
     end
 
     def test_rpms
       response = @@extension.rpms(RepositorySupport.repo_id)
 
-      refute_empty    response
-      assert_kind_of  Hash, response.first
+      refute_empty response
+      assert_kind_of Hash, response.first
     end
 
     def test_errata_ids
@@ -261,6 +253,5 @@ module Extensions
 
       refute_empty response
     end
-
   end
 end

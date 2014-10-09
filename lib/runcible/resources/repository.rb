@@ -31,8 +31,8 @@ module Runcible
       #
       # @param  [String]  id  the id of the repository
       # @return [String]      the repository path, may contain the id if passed
-      def self.path(id=nil)
-        (id == nil) ? "repositories/" : "repositories/#{id}/"
+      def self.path(id = nil)
+        (id.nil?) ? 'repositories/' : "repositories/#{id}/"
       end
 
       # Creates a repository
@@ -40,7 +40,7 @@ module Runcible
       # @param  [String]                id        the id of the repository
       # @param  [Hash]                  optional  container for all optional parameters
       # @return [RestClient::Response]
-      def create(id, optional={})
+      def create(_id, optional = {})
         required = required_params(binding.send(:local_variables), binding)
         call(:post, path, :payload => { :required => required, :optional => optional })
       end
@@ -50,7 +50,7 @@ module Runcible
       # @param  [String]                id      the id of the repository
       # @param  [Hash]                  params  container for optional query parameters
       # @return [RestClient::Response]
-      def retrieve(id, params={})
+      def retrieve(id, params = {})
         call(:get, path(id), :params => params)
       end
 
@@ -59,7 +59,7 @@ module Runcible
       # @param  [String]                id        the id of the repository
       # @param  [Hash]                  optional  container for all optional parameters
       # @return [RestClient::Response]
-      def update(id, optional={})
+      def update(id, optional = {})
         call(:put, path(id), :payload => { :delta => optional })
       end
 
@@ -75,7 +75,7 @@ module Runcible
       #
       # @param  [Hash]                  optional  container for all optional parameters
       # @return [RestClient::Response]
-      def retrieve_all(optional={})
+      def retrieve_all(optional = {})
         call(:get, path, :payload => { :optional => optional })
       end
 
@@ -84,9 +84,9 @@ module Runcible
       # @param  [Hash]                  criteria  criteria object containing Mongo syntax
       # @param  [Hash]                  optional  container for all optional parameters
       # @return [RestClient::Response]
-      def search(criteria, optional={})
+      def search(_criteria, optional = {})
         required = required_params(binding.send(:local_variables), binding)
-        call(:post, path("search"), :payload => { :required => required, :optional => optional })
+        call(:post, path('search'), :payload => { :required => required, :optional => optional })
       end
 
       # Associates an importer to a repository
@@ -95,7 +95,7 @@ module Runcible
       # @param  [String]                importer_type_id  the type ID of the importer being associated
       # @param  [Hash]                  importer_config   configuration options for the importer
       # @return [RestClient::Response]
-      def associate_importer(id, importer_type_id, importer_config)
+      def associate_importer(id, _importer_type_id, _importer_config)
         required = required_params(binding.send(:local_variables), binding)
         call(:post, path("#{id}/importers"), :payload => { :required => required })
       end
@@ -107,8 +107,8 @@ module Runcible
       # @param  [Hash]                  distributor_config  configuration options for the distributor
       # @param  [Hash]                  optional            container for all optional parameters
       # @return [RestClient::Response]
-      def associate_distributor(id, distributor_type_id, distributor_config, optional={})
-        required = required_params(binding.send(:local_variables), binding, ["id"])
+      def associate_distributor(id, _distributor_type_id, _distributor_config, optional = {})
+        required = required_params(binding.send(:local_variables), binding, ['id'])
         call(:post, path("#{id}/distributors"), :payload => { :required => required, :optional => optional })
       end
 
@@ -117,7 +117,7 @@ module Runcible
       # @param  [String]                id        the id of the repository
       # @param  [Hash]                  optional  container for all optional parameters
       # @return [RestClient::Response]
-      def sync(id, optional={})
+      def sync(id, optional = {})
         call(:post, "#{path(id)}actions/sync/", :payload => { :optional => optional })
       end
 
@@ -135,8 +135,8 @@ module Runcible
       # @param  [String]                source_repo_id      the id of the source repository
       # @param  [Hash]                  optional            container for all optional parameters
       # @return [RestClient::Response]
-      def unit_copy(destination_repo_id, source_repo_id, optional={})
-        required = required_params(binding.send(:local_variables), binding, ["destination_repo_id"])
+      def unit_copy(destination_repo_id, _source_repo_id, optional = {})
+        required = required_params(binding.send(:local_variables), binding, ['destination_repo_id'])
         call(:post, "#{path(destination_repo_id)}actions/associate/",
              :payload => { :required => required, :optional => optional })
       end
@@ -146,8 +146,8 @@ module Runcible
       # @param  [String]                source_repo_id  the id of the source repository
       # @param  [Hash]                  criteria        criteria object containing Mongo syntax
       # @return [RestClient::Response]
-      def unassociate_units(source_repo_id, criteria={})
-        required = required_params(binding.send(:local_variables), binding, ["source_repo_id"])
+      def unassociate_units(source_repo_id, _criteria = {})
+        required = required_params(binding.send(:local_variables), binding, ['source_repo_id'])
         call(:post, "#{path(source_repo_id)}actions/unassociate/",
              :payload => { :required => required })
       end
@@ -157,8 +157,8 @@ module Runcible
       # @param  [String]                id        the id of the repository
       # @param  [Hash]                  criteria  criteria object containing Mongo syntax
       # @return [RestClient::Response]
-      def unit_search(id, criteria={})
-        call(:post, "#{path(id)}search/units/", :payload=>{:required=>{:criteria=>criteria}})
+      def unit_search(id, criteria = {})
+        call(:post, "#{path(id)}search/units/", :payload => {:required => {:criteria => criteria}})
       end
 
       # Publishes a repository using the specified distributor
@@ -167,8 +167,9 @@ module Runcible
       # @param  [String]                distributor_id  the id of the distributor
       # @param  [Hash]                  optional  optional params
       # @return [RestClient::Response]
-      def publish(id, distributor_id, optional={})
-        call(:post, "#{path(id)}actions/publish/", :payload=>{:required=>{:id=>distributor_id}, :optional=>optional})
+      def publish(id, distributor_id, optional = {})
+        call(:post, "#{path(id)}actions/publish/",
+             :payload => {:required => {:id => distributor_id}, :optional => optional})
       end
 
       # Deletes the specified distributor from the repository
@@ -186,8 +187,8 @@ module Runcible
       # @param  [String]                distributor_id  the id of the distributor
       # @param  [Hash]                  distributor_config attributes to change
       # @return [RestClient::Response]
-      def update_distributor(id, distributor_id, distributor_config)
-        required = required_params(binding.send(:local_variables), binding, ["id", "distributor_id"])
+      def update_distributor(id, distributor_id, _distributor_config)
+        required = required_params(binding.send(:local_variables), binding, ['id', 'distributor_id'])
         call(:put, path("#{id}/distributors/#{distributor_id}/"), :payload => { :required => required})
       end
 
@@ -206,8 +207,8 @@ module Runcible
       # @param  [String]                importer_id  the id of the importer
       # @param  [Hash]                  importer_config  attributes to change
       # @return [RestClient::Response]
-      def update_importer(id, importer_id, importer_config)
-        required = required_params(binding.send(:local_variables), binding, ["id", "importer_id"])
+      def update_importer(id, importer_id, _importer_config)
+        required = required_params(binding.send(:local_variables), binding, ['id', 'importer_id'])
         call(:put, path("#{id}/importers/#{importer_id}/"), :payload => { :required => required})
       end
 
@@ -216,9 +217,8 @@ module Runcible
       # @param  [Hash]                   options payload representing criteria
       # @return [RestClient::Response]
       def regenerate_applicability(options = {})
-        call(:post, path("actions/content/regenerate_applicability/"), :payload => { :required => options})
+        call(:post, path('actions/content/regenerate_applicability/'), :payload => { :required => options})
       end
-
     end
   end
 end

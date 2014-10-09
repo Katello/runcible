@@ -29,10 +29,10 @@ module Runcible
     class Distributor
       attr_accessor 'auto_publish', 'id'
 
-      def initialize(params={})
+      def initialize(params = {})
         @auto_publish = false
-        id = params[:id] || SecureRandom.hex(10)
-        params.each{|k,v| send("#{k.to_s}=",v)}
+        self.id = params[:id] || SecureRandom.hex(10)
+        params.each { |k, v| send("#{k}=", v) }
       end
 
       # Distributor Type id
@@ -43,9 +43,8 @@ module Runcible
       end
 
       def self.type_id
-        raise NotImplementedError("self.type_id")
+        fail NotImplementedError('self.type_id')
       end
-
     end
   end
 end

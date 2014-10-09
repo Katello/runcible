@@ -7,7 +7,6 @@ require './test/support/repository_support'
 
 module Extensions
   class TestRpm < MiniTest::Unit::TestCase
-
     def self.before_suite
       self.support = RepositorySupport.new
       @@extension = TestRuncible.server.extensions.rpm
@@ -38,7 +37,7 @@ module Extensions
     end
 
     def test_find_by_unit_id
-      id = @@extension.all.sort_by{|p| p['_id']}.first['_id']
+      id = @@extension.all.sort_by { |p| p['_id'] }.first['_id']
       response = @@extension.find_by_unit_id(id)
 
       refute_empty response
@@ -52,18 +51,16 @@ module Extensions
     end
 
     def test_find_all_by_unit_ids
-      pkgs = @@extension.all.sort_by{|p| p['_id']}
-      ids = pkgs[0..2].collect{|p| p['_id']}
+      pkgs = @@extension.all.sort_by { |p| p['_id'] }
+      ids = pkgs[0..2].map { |p| p['_id'] }
       response = @@extension.find_all_by_unit_ids(ids)
 
       assert_equal 200, response.code
       assert_equal ids.length, response.length
     end
-
   end
 
   class TestRpmCopy < UnitCopyBase
-
     def self.extension_class
       TestRuncible.server.extensions.rpm
     end
@@ -79,10 +76,10 @@ module Extensions
       response = self.class.extension_class.copy(RepositorySupport.repo_id,
                                    self.class.clone_name,
                                    :filters => {
-                                        :unit => {
-                                          "$and" => [{'name' => {'$regex' => 'p.*'}},
-                                              {'version'=> {'$gt'=> '1.0'}}]
-                                          }}
+                                     :unit => {
+                                       '$and' => [{'name' => {'$regex' => 'p.*'}},
+                                                  {'version' => {'$gt' => '1.0'}}]
+                                     }}
                                    )
       tasks = assert_async_response(response)
       assert_includes tasks.first['tags'], 'pulp:action:associate'
@@ -90,7 +87,6 @@ module Extensions
   end
 
   class TestRpmUnassociate < UnitUnassociateBase
-
     def self.extension_class
       TestRuncible.server.extensions.rpm
     end
@@ -125,6 +121,5 @@ module Extensions
       assert_async_response(response)
       assert_equal (ids.length - 1), unit_ids(self.class.clone_name).length
     end
-
   end
 end

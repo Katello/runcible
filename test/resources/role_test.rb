@@ -28,11 +28,10 @@ require './lib/runcible/resources/user'
 require './lib/runcible/resources/role'
 
 module Resources
-
   class TestRoles < MiniTest::Unit::TestCase
     def setup
-      @username = "integration_test_user"
-      @role_name = "super-users"
+      @username = 'integration_test_user'
+      @role_name = 'super-users'
       @resource = TestRuncible.server.resources.role
 
       TestRuncible.server.resources.user.create(@username)
@@ -45,7 +44,7 @@ module Resources
     def test_path_without_role_name
       path = @resource.class.path
 
-      assert_match "roles/", path
+      assert_match 'roles/', path
     end
 
     def test_path_with_role_name
@@ -67,6 +66,5 @@ module Resources
 
       assert_equal 200, response.code
     end
-
   end
 end

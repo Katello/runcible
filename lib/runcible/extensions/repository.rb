@@ -21,15 +21,14 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-
 module Runcible
   module Extensions
     class Repository < Runcible::Resources::Repository
-
       # Utility function that allows an importer to be added at repository creation time
       #
       # @param  [String]                               id       the id of the repository being created
-      # @param  [Hash, Runcible::Extensions::Importer] importer either a hash representing an importer or an Importer object
+      # @param  [Hash, Runcible::Extensions::Importer] importer either a hash representing an importer or
+      #                                                         an Importer object
       # @return [RestClient::Response]                          the created repository
       def create_with_importer(id, importer)
         create_with_importer_and_distributors(id, importer)
@@ -38,7 +37,8 @@ module Runcible
       # Utility function that allows distributors to be added at repository creation time
       #
       # @param  [String]                id            the id of the repository being created
-      # @param  [Array]                 distributors  an array of hashes representing distributors or an array of Distributor objects
+      # @param  [Array]                 distributors  an array of hashes representing distributors or
+      #                                               an array of Distributor objects
       # @return [RestClient::Response]                the created repository
       def create_with_distributors(id, distributors)
         create_with_importer_and_distributors(id, nil, distributors)
@@ -47,11 +47,13 @@ module Runcible
       # Utility function that allows an importer and distributors to be added at repository creation time
       #
       # @param  [String]                                id            the id of the repository being created
-      # @param  [Hash, Runcible::Extensions::Importer]  importer      either a hash representing an importer or an Importer object
-      # @param  [Array]                                 distributors  an array of hashes representing distributors or an array of Distributor objects
+      # @param  [Hash, Runcible::Extensions::Importer]  importer      either a hash representing an importer or
+      #                                                               an Importer object
+      # @param  [Array]                                 distributors  an array of hashes representing distributors or
+      #                                                               an array of Distributor objects
       # @param  [Hash]                                  optional      container for all optional parameters
       # @return [RestClient::Response]                                the created repository
-      def create_with_importer_and_distributors(id, importer, distributors=[], optional={})
+      def create_with_importer_and_distributors(id, importer, distributors = [], optional = {})
         if importer.is_a?(Runcible::Models::Importer)
           optional[:importer_type_id] = importer.id
           optional[:importer_config] = importer.config
@@ -62,32 +64,32 @@ module Runcible
 
         repo_type = if importer.methods.include?(:repo_type)
                       importer.repo_type
-                    elsif importer.is_a?(Hash) && importer.has_key?(:repo_type)
+                    elsif importer.is_a?(Hash) && importer.key?(:repo_type)
                       importer[:repo_type]
                     else
                       nil
                     end
 
-        if optional.has_key?(:importer_type_id) && repo_type
+        if optional.key?(:importer_type_id) && repo_type
           # pulp needs _repo-type in order to determine the type of repo to create.
           optional[:notes] = { '_repo-type' => importer.repo_type }
         end
 
-        optional[:distributors] = distributors.collect do |d|
+        optional[:distributors] = distributors.map do |d|
           if d.is_a?(Runcible::Models::Distributor)
             {'distributor_type_id' => d.type_id,
-              "distributor_config" => d.config,
-              "auto_publish" => d.auto_publish,
-              "distributor_id" => d.id
+             'distributor_config' => d.config,
+             'auto_publish' => d.auto_publish,
+             'distributor_id' => d.id
             }
           else
             {'distributor_type_id' => d['type_id'],
-             "distributor_config" => d['config'],
-             "auto_publish" => d['auto_publish'],
-             "distributor_id" => d['id']
+             'distributor_config' => d['config'],
+             'auto_publish' => d['auto_publish'],
+             'distributor_id' => d['id']
             }
           end
-        end if !distributors.empty?
+        end unless distributors.empty?
         optional[:id] = id
         create(id, optional)
       end
@@ -97,7 +99,7 @@ module Runcible
       # @param  [String]                repo_id the repository ID
       # @return [RestClient::Response]          a task representing the sync status
       def sync_status(repo_id)
-        Runcible::Resources::Task.new(self.config).list(["pulp:repository:#{repo_id}", "pulp:action:sync"])
+        Runcible::Resources::Task.new(self.config).list(["pulp:repository:#{repo_id}", 'pulp:action:sync'])
       end
 
       # Retrieves the publish status for a repository
@@ -105,7 +107,7 @@ module Runcible
       # @param  [String]                repo_id the repository ID
       # @return [RestClient::Response]          a task representing the sync status
       def publish_status(repo_id)
-        Runcible::Resources::Task.new(self.config).list(["pulp:repository:#{repo_id}", "pulp:action:publish"])
+        Runcible::Resources::Task.new(self.config).list(["pulp:repository:#{repo_id}", 'pulp:action:publish'])
       end
 
       # Retrieves a set of repositories by their IDs
@@ -114,11 +116,10 @@ module Runcible
       # @return [RestClient::Response]                the set of repositories requested
       def search_by_repository_ids(repository_ids)
         criteria = {:filters =>
-                      { "id" => {"$in" => repository_ids}}
+                      { 'id' => {'$in' => repository_ids}}
                    }
         search(criteria)
       end
-
 
       # Retrieves the RPM IDs for a single repository
       #
@@ -126,22 +127,28 @@ module Runcible
       # @return [Array<String>]     the array of repository RPM IDs
 
       def rpm_ids(id)
-        criteria = {:type_ids=>[Runcible::Extensions::Rpm.content_type],
-                            :fields=>{:unit=>[], :association=>['unit_id']}}
-        self.unit_search(id, criteria).collect{|i| i['unit_id']}
+        criteria = {:type_ids => [Runcible::Extensions::Rpm.content_type],
+                    :fields => {:unit => [], :association => ['unit_id']}}
+        self.unit_search(id, criteria).map { |i| i['unit_id'] }
       rescue RestClient::RequestTimeout
-        self.logger.warn("Call to rpm_ids timed out")
+        self.logger.warn('Call to rpm_ids timed out')
         # lazy evaluated iterator from zero to infinite
-        pages = Enumerator.new { |y| page = 0; loop { y << page; page += 1 } }
+        pages = Enumerator.new do |y|
+          page = 0
+          loop do
+            y << page
+            page += 1
+          end
+        end
 
-        # TODO this is hotfix, pagination support should be added to Runcible
-        pages.inject([]) do |rpm_ids, page|
+        # TODO: this is hotfix, pagination support should be added to Runcible
+        pages.reduce([]) do |rpm_ids, page|
           page_size = 500
           criteria  = { :type_ids => [Runcible::Extensions::Rpm.content_type],
                         :fields   => { :unit => [], :association => ['unit_id'] },
                         :limit    => page_size,
-                        :skip     => 0 + page*page_size }
-          result    = unit_search(id, criteria).collect { |i| i['unit_id'] }
+                        :skip     => 0 + page * page_size }
+          result    = unit_search(id, criteria).map { |i| i['unit_id'] }
           rpm_ids.concat(result)
           if result.empty? || result.size < 500
             break rpm_ids
@@ -156,8 +163,8 @@ module Runcible
       # @param  [String]                id the ID of the repository
       # @return [RestClient::Response]     the set of repository RPMs
       def rpms(id)
-        criteria = {:type_ids=>[Runcible::Extensions::Rpm.content_type]}
-        unit_search(id, criteria).collect{|i| i['metadata'].with_indifferent_access}
+        criteria = {:type_ids => [Runcible::Extensions::Rpm.content_type]}
+        unit_search(id, criteria).map { |i| i['metadata'].with_indifferent_access }
       end
 
       # Retrieves the RPMs by NVRE for a single repository
@@ -168,23 +175,23 @@ module Runcible
       # @param  [String]                release the release of the RPMs
       # @param  [String]                epoch   the epoch of the RPMs
       # @return [RestClient::Response]          the set of repository RPMs
-      def rpms_by_nvre(id, name, version=nil, release=nil, epoch=nil)
+      def rpms_by_nvre(id, name, version = nil, release = nil, epoch = nil)
         and_condition = []
-        and_condition << {:name=>name} if name
-        and_condition << {:version=>version} if version
-        and_condition << {:release=>release} if release
-        and_condition << {:epoch=>epoch} if epoch
+        and_condition << {:name => name} if name
+        and_condition << {:version => version} if version
+        and_condition << {:release => release} if release
+        and_condition << {:epoch => epoch} if epoch
 
-        criteria = {:type_ids=>[Runcible::Extensions::Rpm.content_type],
-                :filters => {
-                    :unit => {
-                      "$and" => and_condition
-                    }
-                },
-                :sort => {
-                    :unit => [ ['name', 'ascending'], ['version', 'descending'] ]
-                }}
-        unit_search(id, criteria).collect{|p| p['metadata'].with_indifferent_access}
+        criteria = {:type_ids => [Runcible::Extensions::Rpm.content_type],
+                    :filters => {
+                      :unit => {
+                        '$and' => and_condition
+                      }
+                    },
+                    :sort => {
+                      :unit => [['name', 'ascending'], ['version', 'descending']]
+                    }}
+        unit_search(id, criteria).map { |p| p['metadata'].with_indifferent_access }
       end
 
       # Retrieves the errata IDs for a single repository
@@ -192,10 +199,10 @@ module Runcible
       # @param  [String]                id the ID of the repository
       # @return [RestClient::Response]     the set of repository errata IDs
       def errata_ids(id)
-         criteria = {:type_ids=>[Runcible::Extensions::Errata.content_type],
-                     :fields=>{:unit=>[], :association=>['unit_id']}}
+        criteria = {:type_ids => [Runcible::Extensions::Errata.content_type],
+                    :fields => {:unit => [], :association => ['unit_id']}}
 
-         unit_search(id, criteria).collect{|i| i['unit_id']}
+        unit_search(id, criteria).map { |i| i['unit_id'] }
       end
 
       # Retrieves the errata for a single repository
@@ -203,8 +210,8 @@ module Runcible
       # @param  [String]                id the ID of the repository
       # @return [RestClient::Response]     the set of repository errata
       def errata(id)
-         criteria = {:type_ids=>[Runcible::Extensions::Errata.content_type]}
-         unit_search(id, criteria).collect{|i| i['metadata'].with_indifferent_access}
+        criteria = {:type_ids => [Runcible::Extensions::Errata.content_type]}
+        unit_search(id, criteria).map { |i| i['metadata'].with_indifferent_access }
       end
 
       # Retrieves the distributions for a single repository
@@ -212,9 +219,9 @@ module Runcible
       # @param  [String]                id the ID of the repository
       # @return [RestClient::Response]     the set of repository distributions
       def distributions(id)
-        criteria = {:type_ids=>[Runcible::Extensions::Distribution.content_type]}
+        criteria = {:type_ids => [Runcible::Extensions::Distribution.content_type]}
 
-        unit_search(id, criteria).collect{|i| i['metadata'].with_indifferent_access}
+        unit_search(id, criteria).map { |i| i['metadata'].with_indifferent_access }
       end
 
       # Retrieves the package groups for a single repository
@@ -222,9 +229,9 @@ module Runcible
       # @param  [String]                id the ID of the repository
       # @return [RestClient::Response]     the set of repository package groups
       def package_groups(id)
-        criteria = {:type_ids=>[Runcible::Extensions::PackageGroup.content_type]}
+        criteria = {:type_ids => [Runcible::Extensions::PackageGroup.content_type]}
 
-        unit_search(id, criteria).collect{|i| i['metadata'].with_indifferent_access}
+        unit_search(id, criteria).map { |i| i['metadata'].with_indifferent_access }
       end
 
       # Retrieves the package group categoriess for a single repository
@@ -232,8 +239,8 @@ module Runcible
       # @param  [String]                id the ID of the repository
       # @return [RestClient::Response]     the set of repository package group categories
       def package_categories(id)
-        criteria = {:type_ids=>[Runcible::Extensions::PackageCategory.content_type]}
-        unit_search(id, criteria).collect{|i| i['metadata'].with_indifferent_access}
+        criteria = {:type_ids => [Runcible::Extensions::PackageCategory.content_type]}
+        unit_search(id, criteria).map { |i| i['metadata'].with_indifferent_access }
       end
 
       # Retrieves the puppet module IDs for a single repository
@@ -241,10 +248,10 @@ module Runcible
       # @param  [String]                id the ID of the repository
       # @return [RestClient::Response]     the set of repository puppet module IDs
       def puppet_module_ids(id)
-        criteria = {:type_ids=>[Runcible::Extensions::PuppetModule.content_type],
-                    :fields=>{:unit=>[], :association=>['unit_id']}}
+        criteria = {:type_ids => [Runcible::Extensions::PuppetModule.content_type],
+                    :fields => {:unit => [], :association => ['unit_id']}}
 
-        unit_search(id, criteria).collect{|i| i['unit_id']}
+        unit_search(id, criteria).map { |i| i['unit_id'] }
       end
 
       # Retrieves the puppet modules for a single repository
@@ -252,8 +259,8 @@ module Runcible
       # @param  [String]                id the ID of the repository
       # @return [RestClient::Response]     the set of repository puppet modules
       def puppet_modules(id)
-        criteria = {:type_ids=>[Runcible::Extensions::PuppetModule.content_type]}
-        unit_search(id, criteria).collect{|i| i['metadata'].with_indifferent_access}
+        criteria = {:type_ids => [Runcible::Extensions::PuppetModule.content_type]}
+        unit_search(id, criteria).map { |i| i['metadata'].with_indifferent_access }
       end
 
       # Retrieves the docker image IDs for a single repository
@@ -261,10 +268,10 @@ module Runcible
       # @param  [String]                id the ID of the repository
       # @return [RestClient::Response]  the set of repository docker image IDs
       def docker_image_ids(id)
-        criteria = {:type_ids=>[Runcible::Extensions::DockerImage.content_type],
-                    :fields=>{:unit=>[], :association=>['unit_id']}}
+        criteria = {:type_ids => [Runcible::Extensions::DockerImage.content_type],
+                    :fields => {:unit => [], :association => ['unit_id']}}
 
-        unit_search(id, criteria).collect{|i| i['unit_id']}
+        unit_search(id, criteria).map { |i| i['unit_id'] }
       end
 
       # Retrieves the docker images for a single repository
@@ -272,8 +279,8 @@ module Runcible
       # @param  [String]                id the ID of the repository
       # @return [RestClient::Response]  the set of repository docker images
       def docker_images(id)
-        criteria = {:type_ids=>[Runcible::Extensions::DockerImage.content_type]}
-        unit_search(id, criteria).collect{|i| i['metadata'].with_indifferent_access}
+        criteria = {:type_ids => [Runcible::Extensions::DockerImage.content_type]}
+        unit_search(id, criteria).map { |i| i['metadata'].with_indifferent_access }
       end
 
       # Creates or updates a sync schedule for a repository
@@ -287,7 +294,8 @@ module Runcible
         if schedules.empty?
           Runcible::Resources::RepositorySchedule.new(self.config).create(repo_id, type, schedule)
         else
-          Runcible::Resources::RepositorySchedule.new(self.config).update(repo_id, type, schedules[0]['_id'], {:schedule=>schedule})
+          Runcible::Resources::RepositorySchedule.new(self.config).update(repo_id, type,
+                                                      schedules[0]['_id'], :schedule => schedule)
         end
       end
 
@@ -320,7 +328,7 @@ module Runcible
       # @param  [String]                repo_id the ID of the repository
       # @return [RestClient::Response]          the repository with full details
       def retrieve_with_details(repo_id)
-        retrieve(repo_id, {:details => true})
+        retrieve(repo_id, :details => true)
       end
 
       # Regenerate the applicability for consumers bound to a given set of repositories
@@ -333,7 +341,6 @@ module Runcible
         }
         regenerate_applicability(criteria)
       end
-
     end
   end
 end

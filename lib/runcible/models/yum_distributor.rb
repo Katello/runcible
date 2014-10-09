@@ -28,14 +28,14 @@ module Runcible
   module Models
     class YumDistributor < Distributor
       #required
-      attr_accessor "relative_url", "http", "https"
+      attr_accessor 'relative_url', 'http', 'https'
       #optional
-      attr_accessor "protected", "auth_cert", "auth_ca",
-                    "https_ca", "gpgkey", "generate_metadata",
-                    "checksum_type", "skip", "https_publish_dir", "http_publish_dir"
+      attr_accessor 'protected', 'auth_cert', 'auth_ca',
+                    'https_ca', 'gpgkey', 'generate_metadata',
+                    'checksum_type', 'skip', 'https_publish_dir', 'http_publish_dir'
 
-      def initialize(relative_url, http, https, params={})
-        @relative_url=relative_url
+      def initialize(relative_url, http, https, params = {})
+        @relative_url = relative_url
         @http = http
         @https = https
         super(params)

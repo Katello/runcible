@@ -28,7 +28,7 @@ module Runcible
   module Models
     class ExportDistributor < Distributor
       #required
-      attr_accessor "http", "https"
+      attr_accessor 'http', 'https'
 
       # Instantiates a export distributor
       #

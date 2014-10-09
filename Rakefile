@@ -1,6 +1,6 @@
 #!/usr/bin/env rake
-require "bundler/gem_tasks"
-require "rake/testtask"
+require 'bundler/gem_tasks'
+require 'rake/testtask'
 
 def clear_cassettes
   `rm -rf test/fixtures/vcr_cassettes/*.yml`
@@ -9,9 +9,8 @@ def clear_cassettes
   print "Cassettes cleared\n"
 end
 
-
 namespace :test do
-  "Runs the unit tests"
+  desc 'Runs the unit tests'
   Rake::TestTask.new :unit do |t|
     t.pattern = 'test/unit/test_*.rb'
   end
@@ -27,9 +26,9 @@ namespace :test do
       options[:logging]   = ENV['logging']
 
       if !['new_episodes', 'all', 'none', 'once'].include?(options[:mode])
-        puts "Invalid test mode"
+        puts 'Invalid test mode'
       else
-        require "./test/test_runner"
+        require './test/test_runner'
 
         test_runner = PulpMiniTestRunner.new
 
@@ -41,13 +40,13 @@ namespace :test do
 
         clear_cassettes if options[:mode] == 'all' && options[:test_name].nil? && ENV['record'] != 'false'
         test_runner.run_tests(task_name, options)
-        Rake::Task[:update_test_version].invoke if options[:mode] == "all" && ENV['record'] != 'false'
+        Rake::Task[:update_test_version].invoke if options[:mode] == 'all' && ENV['record'] != 'false'
       end
     end
   end
 end
 
-desc "Updats the version of Pulp tested against in README"
+desc 'Updats the version of Pulp tested against in README'
 task :update_test_version do
   text = File.open('README.md').read
 
@@ -60,12 +59,12 @@ task :update_test_version do
   end
 end
 
-desc "Clears out all cassette files"
+desc 'Clears out all cassette files'
 task :clear_cassettes do
   clear_cassettes
 end
 
-desc "Runs all tests"
+desc 'Runs all tests'
 task :test do
   Rake::Task['test:unit'].invoke
   Rake::Task['test:models'].invoke
@@ -77,4 +76,5 @@ begin
   require 'rubocop/rake_task'
   RuboCop::RakeTask.new
 rescue
+  puts "Rubocop not loaded"
 end

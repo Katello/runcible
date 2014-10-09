@@ -14,30 +14,25 @@ require 'minitest/autorun'
 require './test/support/repository_support'
 require './lib/runcible'
 
-
 module Resources
   module TestRepositoryBase
-
     def setup
       @resource = TestRuncible.server.resources.repository
       @extension = TestRuncible.server.extensions.repository
       @support = RepositorySupport.new
     end
 
-
     def assert_async_response(response)
       if response.code == 202
         tasks = @support.wait_on_response(response)
         tasks.each do |task|
-          assert task["state"], "finished"
+          assert task['state'], 'finished'
         end
       else
         assert response.code, 200
       end
     end
-
   end
-
 
   class TestRepositoryCreate < MiniTest::Unit::TestCase
     include TestRepositoryBase
@@ -59,7 +54,6 @@ module Resources
     end
   end
 
-
   class TestRepositoryDelete < MiniTest::Unit::TestCase
     include TestRepositoryBase
 
@@ -74,7 +68,6 @@ module Resources
 
       assert_equal 202, response.code
     end
-
   end
 
   class TestRepositoryMisc < MiniTest::Unit::TestCase
@@ -94,7 +87,7 @@ module Resources
     def test_path
       path = @resource.class.path
 
-      assert_match "repositories/", path
+      assert_match 'repositories/', path
     end
 
     def test_repository_path_with_id
@@ -104,21 +97,21 @@ module Resources
     end
 
     def test_update
-      response = @resource.update(RepositorySupport.repo_id, { :description => "updated_description_" + RepositorySupport.repo_id })
+      response = @resource.update(RepositorySupport.repo_id,  :description => 'updated_description_' + RepositorySupport.repo_id)
 
       assert_equal 200, response.code
-      assert_equal "updated_description_" + RepositorySupport.repo_id, response["result"]["description"]
+      assert_equal 'updated_description_' + RepositorySupport.repo_id, response['result']['description']
     end
 
     def test_retrieve
-        response = @resource.retrieve(RepositorySupport.repo_id)
+      response = @resource.retrieve(RepositorySupport.repo_id)
 
-        assert_equal 200, response.code
-        assert_equal RepositorySupport.repo_id, response["display_name"]
+      assert_equal 200, response.code
+      assert_equal RepositorySupport.repo_id, response['display_name']
     end
 
     def test_retrieve_all
-      response = @resource.retrieve_all()
+      response = @resource.retrieve_all
 
       assert_equal 200, response.code
       refute_empty response
@@ -140,9 +133,7 @@ module Resources
       task = RepositorySupport.new.wait_on_response(response)
       assert 'finished', task.first['state']
     end
-
   end
-
 
   class TestRespositoryDistributor < MiniTest::Unit::TestCase
     include TestRepositoryBase
@@ -157,40 +148,36 @@ module Resources
       super
     end
 
-
     def test_associate_distributor
-      distributor_config = {"relative_url" => "/123/456", "http" => true, "https" => true}
-      response = @resource.associate_distributor(RepositorySupport.repo_id, "yum_distributor", distributor_config,
-                                                 {:distributor_id => "dist_1"})
+      distributor_config = {'relative_url' => '/123/456', 'http' => true, 'https' => true}
+      response = @resource.associate_distributor(RepositorySupport.repo_id, 'yum_distributor', distributor_config,
+                                                 :distributor_id => 'dist_1')
 
       assert_equal 201, response.code
-      assert_equal "yum_distributor", response['distributor_type_id']
+      assert_equal 'yum_distributor', response['distributor_type_id']
     end
 
     def test_delete_distributor
-      distributor_config = {"relative_url" => "/123/456", "http" => true, "https" => true}
-      @resource.associate_distributor(RepositorySupport.repo_id, "yum_distributor",
-                                      distributor_config, {:distributor_id => "dist_1"})
+      distributor_config = {'relative_url' => '/123/456', 'http' => true, 'https' => true}
+      @resource.associate_distributor(RepositorySupport.repo_id, 'yum_distributor',
+                                      distributor_config, :distributor_id => 'dist_1')
 
-      response = @resource.delete_distributor(RepositorySupport.repo_id, "dist_1")
+      response = @resource.delete_distributor(RepositorySupport.repo_id, 'dist_1')
       @support.wait_on_response(response)
 
       assert_equal 202, response.code
     end
 
     def test_update_distributor
-      distributor_config = {"relative_url" => "/123/456", "http" => true, "https" => true}
-      distributor = @resource.associate_distributor(RepositorySupport.repo_id, "yum_distributor",
-                                      distributor_config, {:distributor_id => "dist_1"})
+      distributor_config = {'relative_url' => '/123/456', 'http' => true, 'https' => true}
+      distributor = @resource.associate_distributor(RepositorySupport.repo_id, 'yum_distributor',
+                                      distributor_config, :distributor_id => 'dist_1')
 
       response = @resource.update_distributor(RepositorySupport.repo_id, distributor['id'],
-                                           {:relative_url=>"/new_path/"})
+                                           :relative_url => '/new_path/')
       assert_equal 202, response.code
     end
-
   end
-
-
 
   class TestRepositoryImporter < MiniTest::Unit::TestCase
     include TestRepositoryBase
@@ -207,29 +194,28 @@ module Resources
     end
 
     def test_associate_importer
-      response = @resource.associate_importer(RepositorySupport.repo_id, "yum_importer", {})
+      response = @resource.associate_importer(RepositorySupport.repo_id, 'yum_importer', {})
       assert_async_response(response)
 
-      repo = @resource.retrieve(RepositorySupport.repo_id, {:details => true})
-      assert_equal "yum_importer", repo['importers'].first['id']
+      repo = @resource.retrieve(RepositorySupport.repo_id, :details => true)
+      assert_equal 'yum_importer', repo['importers'].first['id']
     end
 
     def test_delete_importer
-      @resource.associate_importer(RepositorySupport.repo_id, "yum_importer", {})
-      response = @resource.delete_importer(RepositorySupport.repo_id, "yum_importer")
+      @resource.associate_importer(RepositorySupport.repo_id, 'yum_importer', {})
+      response = @resource.delete_importer(RepositorySupport.repo_id, 'yum_importer')
 
       assert_async_response(response)
     end
 
     def test_update_importer
-      @resource.associate_importer(RepositorySupport.repo_id, "yum_importer", {})
-      response = @resource.update_importer(RepositorySupport.repo_id, "yum_importer",
-                                           {:feed=>"http://katello.org/repo/"})
+      @resource.associate_importer(RepositorySupport.repo_id, 'yum_importer', {})
+      response = @resource.update_importer(RepositorySupport.repo_id, 'yum_importer',
+                                           :feed => 'http://katello.org/repo/')
 
       assert_async_response(response)
     end
   end
-
 
   class TestRepositorySync < MiniTest::Unit::TestCase
     include TestRepositoryBase
@@ -249,7 +235,7 @@ module Resources
       response = @resource.sync(RepositorySupport.repo_id)
 
       tasks = assert_async_response(response)
-      assert_includes tasks.first["tags"], 'pulp:action:sync'
+      assert_includes tasks.first['tags'], 'pulp:action:sync'
     end
 
     def test_sync_repo_with_yum_importer
@@ -257,10 +243,9 @@ module Resources
       response = @resource.sync(RepositorySupport.repo_id)
 
       tasks = assert_async_response(response)
-      assert_includes tasks.first["tags"], 'pulp:action:sync'
+      assert_includes tasks.first['tags'], 'pulp:action:sync'
     end
   end
-
 
   class TestRepositoryRequiresSync < MiniTest::Unit::TestCase
     include TestRepositoryBase
@@ -280,7 +265,7 @@ module Resources
       response = @resource.publish(RepositorySupport.repo_id, @support.distributor['id'])
 
       tasks = assert_async_response(response)
-      assert_includes tasks.first["tags"], 'pulp:action:publish'
+      assert_includes tasks.first['tags'], 'pulp:action:publish'
     end
 
     def test_unassociate_units
@@ -299,21 +284,19 @@ module Resources
     def test_sync_history
       response = @resource.sync_history(RepositorySupport.repo_id)
 
-      assert        200, response.code
-      refute_empty  response
+      assert 200, response.code
+      refute_empty response
     end
-
   end
-
 
   class TestRepositoryClone < MiniTest::Unit::TestCase
     include TestRepositoryBase
 
     def setup
       super
-      @clone_name = RepositorySupport.repo_id + "_clone"
+      @clone_name = RepositorySupport.repo_id + '_clone'
       @support.create_and_sync_repo(:importer => true)
-      @extension.create_with_importer(@clone_name, :id => "yum_importer")
+      @extension.create_with_importer(@clone_name, :id => 'yum_importer')
     end
 
     def teardown
@@ -329,6 +312,5 @@ module Resources
 
       assert_includes tasks.first['tags'], 'pulp:action:associate'
     end
-
   end
 end

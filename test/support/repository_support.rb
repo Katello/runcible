@@ -26,11 +26,10 @@ require 'rubygems'
 require './lib/runcible'
 
 class RepositorySupport
-
-  @@repo_id        = "integration_test_id"
+  @@repo_id        = 'integration_test_id'
   @@repo_name      = @@repo_id
 
-  def initialize(type  = "yum")
+  def initialize(type  = 'yum')
     @repo_resource     = TestRuncible.server.extensions.repository
     @schedule_resource = TestRuncible.server.resources.repository_schedule
     @repo_extension    = TestRuncible.server.extensions.repository
@@ -39,12 +38,12 @@ class RepositorySupport
     @repo_type         = type
     @importer_type     = "#{@repo_type}_importer"
 
-    if @repo_type == "yum"
-      @distributors = [Runcible::Models::YumDistributor.new('/path', true, true, :id => "puppet_dist")]
-      @repo_url     = "file://#{File.expand_path(File.dirname(__FILE__))}".gsub("support", "fixtures/repositories/zoo5")
-    elsif @repo_type == "puppet"
-      @distributors = [Runcible::Models::PuppetDistributor.new('/path', true, true, :id => "yum_dist")]
-      @repo_url     = "http://davidd.fedorapeople.org/repos/random_puppet/"
+    if @repo_type == 'yum'
+      @distributors = [Runcible::Models::YumDistributor.new('/path', true, true, :id => 'puppet_dist')]
+      @repo_url     = "file://#{File.expand_path(File.dirname(__FILE__))}".gsub('support', 'fixtures/repositories/zoo5')
+    elsif @repo_type == 'puppet'
+      @distributors = [Runcible::Models::PuppetDistributor.new('/path', true, true, :id => 'yum_dist')]
+      @repo_url     = 'http://davidd.fedorapeople.org/repos/random_puppet/'
     end
   end
 
@@ -64,45 +63,34 @@ class RepositorySupport
     @@repo_url
   end
 
-  def schedule_time
-    @schedule_time
-  end
+  attr_reader :schedule_time
 
-  def task_resource
-    @task_resource
-  end
+  attr_reader :task_resource
 
-  def repo_resource
-    @repo_resource
-  end
+  attr_reader :repo_resource
 
-  def task=(task)
-    @task = task
-  end
+  attr_writer :task
 
-  def task
-    @task
-  end
+  attr_reader :task
 
-
-  def create_and_sync_repo(options={})
+  def create_and_sync_repo(options = {})
     destroy_repo
     create_repo(options)
     sync_repo(options)
   end
 
-  def create_repo(options={})
+  def create_repo(options = {})
     repo = @repo_resource.retrieve(RepositorySupport.repo_id)
 
-    if !repo.nil?
+    unless repo.nil?
       destroy_repo
     end
 
     if options[:importer]
-      repo = @repo_extension.create_with_importer(RepositorySupport.repo_id, {:id=>@importer_type, :feed => @repo_url})
+      repo = @repo_extension.create_with_importer(RepositorySupport.repo_id, :id => @importer_type, :feed => @repo_url)
     elsif options[:importer_and_distributor]
       repo = @repo_extension.create_with_importer_and_distributors(RepositorySupport.repo_id,
-                                 {:id=>@importer_type, :feed => @repo_url}, @distributors)
+                                 {:id => @importer_type, :feed => @repo_url}, @distributors)
     else
       repo = @repo_resource.create(RepositorySupport.repo_id)
     end
@@ -110,10 +98,10 @@ class RepositorySupport
   rescue RestClient::ResourceNotFound
 
     if options[:importer]
-      repo = @repo_extension.create_with_importer(RepositorySupport.repo_id, {:id=>@importer_type, :feed => @repo_url})
+      repo = @repo_extension.create_with_importer(RepositorySupport.repo_id, :id => @importer_type, :feed => @repo_url)
     elsif options[:importer_and_distributor]
       repo = @repo_extension.create_with_importer_and_distributors(RepositorySupport.repo_id,
-                                     {:id=>@importer_type, :feed => @repo_url}, @distributors)
+                                     {:id => @importer_type, :feed => @repo_url}, @distributors)
     else
       repo = @repo_resource.create(RepositorySupport.repo_id)
     end
@@ -121,10 +109,10 @@ class RepositorySupport
     return repo
   end
 
-  def sync_repo(options={})
+  def sync_repo(options = {})
     task = @repo_resource.sync(RepositorySupport.repo_id)
 
-    if !options[:wait]
+    unless options[:wait]
       self.wait_on_response(task)
     end
 
@@ -132,7 +120,7 @@ class RepositorySupport
   end
 
   def wait_on_response(response)
-    wait_on_tasks(response["spawned_tasks"].map{|task_ref| {"task_id"=> task_ref["task_id"]}})
+    wait_on_tasks(response['spawned_tasks'].map { |task_ref| {'task_id' => task_ref['task_id']} })
   end
 
   def wait_on_tasks(tasks)
@@ -141,10 +129,10 @@ class RepositorySupport
     end
   end
 
-  def wait_on_task task
-    while !(['finished', 'error', 'timed_out', 'canceled', 'reset'].include?(task['state'])) do
+  def wait_on_task(task)
+    until (['finished', 'error', 'timed_out', 'canceled', 'reset'].include?(task['state']))
       self.sleep_if_needed
-      task = @task_resource.poll(task["task_id"])
+      task = @task_resource.poll(task['task_id'])
     end
     task
   end
@@ -160,7 +148,7 @@ class RepositorySupport
     schedule['_id']
   end
 
-  def destroy_repo(id=RepositorySupport.repo_id)
+  def destroy_repo(id = RepositorySupport.repo_id)
     if @task
       wait_on_response(@task)
       @task = nil
@@ -168,11 +156,10 @@ class RepositorySupport
 
     tasks = @repo_resource.delete(id)
     wait_on_response(tasks)
-  rescue Exception => e
+  rescue => e
   end
 
   def rpm_ids
     @repo_extension.rpm_ids(RepositorySupport.repo_id)
   end
-
 end

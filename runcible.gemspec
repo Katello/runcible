@@ -2,17 +2,17 @@
 require File.expand_path('../lib/runcible/version', __FILE__)
 
 Gem::Specification.new do |gem|
-  gem.authors       = ["Eric D Helms, Justin Sherrill"]
-  gem.email         = ["ehelms@redhat.com, jsherril@redhat.com"]
+  gem.authors       = ['Eric D Helms, Justin Sherrill']
+  gem.email         = ['ehelms@redhat.com, jsherril@redhat.com']
   gem.description   = "Exposing Pulp's juiciest components to the Ruby world."
-  gem.summary       = ""
-  gem.homepage      = "https://github.com/Katello/runcible"
+  gem.summary       = ''
+  gem.homepage      = 'https://github.com/Katello/runcible'
 
-  gem.files         = Dir['lib/**/*.rb'] + ['LICENSE', 'Rakefile', 'Gemfile', 
+  gem.files         = Dir['lib/**/*.rb'] + ['LICENSE', 'Rakefile', 'Gemfile',
                                             'README.md', 'CONTRIBUTING.md']
-  gem.test_files    = gem.files.grep(%r{^(test)/})
-  gem.name          = "runcible"
-  gem.require_paths = ["lib"]
+  gem.test_files    = gem.files.grep(/^(test)/)
+  gem.name          = 'runcible'
+  gem.require_paths = ['lib']
   gem.version       = Runcible::VERSION
 
   gem.add_dependency('json')

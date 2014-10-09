@@ -29,26 +29,23 @@ require './lib/runcible/extensions/consumer'
 require './test/support/repository_support'
 require './test/support/consumer_support'
 
-  module Resources
+module Resources
   module TestConsumerGroupBase
-
-    def setup
-      @resource = TestRuncible.server.resources.consumer_group
-      @consumer_group_id = "integration_test_consumer_group"
+    def setu(p)
+      @resource = TestRuncible.server.resources.consumer_grou p
+      @consumer_group_id = 'integration_test_consumer_group  '
     end
 
-    def create_consumer_group
-      @resource.create(@consumer_group_id, :display_name => "foo", :description => 'Test description.', :consumer_ids => [])
-    rescue Exception => e
+    def create_consumer_grou(_p)
+      @resource.create(@consumer_group_id, :display_name => 'foo', :description => 'Test description.', :consumer_ids => [])
+    rescue =>   e
     end
 
-    def destroy_consumer_group
+    def destroy_consumer_grou(_p)
       @resource.delete(@consumer_group_id)
-    rescue Exception => e
+    rescue =>   e
     end
-
-  end
-
+end
 
   class TestConsumerGroupCreate < MiniTest::Unit::TestCase
     include TestConsumerGroupBase
@@ -65,7 +62,6 @@ require './test/support/consumer_support'
     end
   end
 
-
   class TestConsumerGroupDestroy < MiniTest::Unit::TestCase
     include TestConsumerGroupBase
 
@@ -79,7 +75,6 @@ require './test/support/consumer_support'
 
       assert_equal 200, response.code
     end
-
   end
 
   class ConsumerGroupTests  < MiniTest::Unit::TestCase
@@ -95,7 +90,6 @@ require './test/support/consumer_support'
       destroy_consumer_group
       super
     end
-
   end
 
   class TestConsumerGroup < ConsumerGroupTests
@@ -119,11 +113,9 @@ require './test/support/consumer_support'
       assert_equal @consumer_group_id, response['id']
       assert_empty response['consumer_ids']
     end
-
   end
 
   class ConsumerGroupWithConsumerTests < ConsumerGroupTests
-
     def setup
       super
       @support = ConsumerSupport.new
@@ -131,7 +123,7 @@ require './test/support/consumer_support'
       @criteria = {:criteria =>
                      {:filters =>
                        {:id =>
-                          {"$in" => [ConsumerSupport.consumer_id]}
+                          {'$in' => [ConsumerSupport.consumer_id]}
                        }
                      }
                   }
@@ -141,44 +133,37 @@ require './test/support/consumer_support'
       @support.destroy_consumer
       super
     end
-
   end
 
   class TestConsumerGroupAssociate < ConsumerGroupWithConsumerTests
-
     def test_associate
       response = @resource.associate(@consumer_group_id, @criteria)
 
-      assert_equal    200, response.code
+      assert_equal 200, response.code
       assert_includes response, ConsumerSupport.consumer_id
     end
-
   end
 
   class TestConsumerGroupUnassociate < ConsumerGroupWithConsumerTests
-
     def setup
       super
       @resource.associate(@consumer_group_id, @criteria)
     end
 
     def test_unassociate
-      assert_includes @resource.retrieve(@consumer_group_id)["consumer_ids"], ConsumerSupport.consumer_id
+      assert_includes @resource.retrieve(@consumer_group_id)['consumer_ids'], ConsumerSupport.consumer_id
 
       response = @resource.unassociate(@consumer_group_id, @criteria)
 
-      assert_equal    200, response.code
+      assert_equal 200, response.code
       refute_includes response, ConsumerSupport.consumer_id
-      refute_includes @resource.retrieve(@consumer_group_id)["consumer_ids"], ConsumerSupport.consumer_id
+      refute_includes @resource.retrieve(@consumer_group_id)['consumer_ids'], ConsumerSupport.consumer_id
     end
   end
 
-
   class TestConsumerGroupRequiresRepo < ConsumerGroupTests
-
     def self.before_suite
       RepositorySupport.new.create_and_sync_repo(:importer_and_distributor => true)
-
     end
 
     def self.after_suite
@@ -190,9 +175,9 @@ require './test/support/consumer_support'
       @support.create_consumer
       criteria = {:criteria =>
                      {:filters =>
-                       {:id => {"$in" => [ConsumerSupport.consumer_id]}}}}
+                       {:id => {'$in' => [ConsumerSupport.consumer_id]}}}}
 
-      distro_id = RepositorySupport.new.distributor()['id']
+      distro_id = RepositorySupport.new.distributor['id']
       TestRuncible.server.resources.consumer.bind(ConsumerSupport.consumer_id, RepositorySupport.repo_id, distro_id)
 
       @resource.associate(@consumer_group_id, criteria)
@@ -204,25 +189,24 @@ require './test/support/consumer_support'
     end
 
     def test_install_units
-      response  = @resource.install_units(@consumer_group_id, ["unit_key"=>{:name => "zsh"}, "type_id" => "rpm"])
+      response  = @resource.install_units(@consumer_group_id, ['unit_key' => {:name => 'zsh'}, 'type_id' => 'rpm'])
 
-      assert_equal    202, response.code
-      assert          response["spawned_tasks"].first["task_id"]
+      assert_equal 202, response.code
+      assert response['spawned_tasks'].first['task_id']
     end
 
     def test_update_units
-      response  = @resource.update_units(@consumer_group_id, ["unit_key"=>{:name => "zsh"}, "type_id" => "rpm"])
+      response  = @resource.update_units(@consumer_group_id, ['unit_key' => {:name => 'zsh'}, 'type_id' => 'rpm'])
 
-      assert_equal    202, response.code
-      assert          response["spawned_tasks"].first["task_id"]
+      assert_equal 202, response.code
+      assert response['spawned_tasks'].first['task_id']
     end
 
     def test_uninstall_units
-      response  = @resource.uninstall_units(@consumer_group_id, ["unit_key"=>{:name => "zsh"}, "type_id" => "rpm"])
+      response  = @resource.uninstall_units(@consumer_group_id, ['unit_key' => {:name => 'zsh'}, 'type_id' => 'rpm'])
 
-      assert_equal    202, response.code
-      assert          response["spawned_tasks"].first["task_id"]
+      assert_equal 202, response.code
+      assert response['spawned_tasks'].first['task_id']
     end
-
   end
 end

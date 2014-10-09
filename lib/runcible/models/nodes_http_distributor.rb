@@ -27,7 +27,6 @@ require 'securerandom'
 module Runcible
   module Models
     class NodesHttpDistributor < Distributor
-
       # Instantiates an nodes distributor
       #
       # @param  [Hash]         params  Distributor options

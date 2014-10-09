@@ -36,4 +36,4 @@ resources += Dir[File.dirname(__FILE__) + '/runcible/models/importer.rb']
 resources += Dir[File.dirname(__FILE__) + '/runcible/models/distributor.rb']
 resources += Dir[File.dirname(__FILE__) + '/runcible/models/*.rb']
 
-resources.uniq.each{ |f| require f }
+resources.uniq.each { |f| require f }

@@ -41,7 +41,7 @@ module Runcible
       #
       # @return [Hash]
       def config
-          as_json
+        as_json
       end
     end
   end
