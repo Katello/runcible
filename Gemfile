@@ -10,6 +10,7 @@ group :test do
   gem 'minitest', '~> 4.7'
   gem 'parseconfig'
   gem 'mocha', "~> 0.14.0"
+  gem 'rubocop', "0.24.1"
 end
 
 group :debug do

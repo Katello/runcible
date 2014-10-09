@@ -72,3 +72,9 @@ task :test do
   Rake::Task['test:resources'].invoke
   Rake::Task['test:extensions'].invoke
 end
+
+begin
+  require 'rubocop/rake_task'
+  RuboCop::RakeTask.new
+rescue
+end
