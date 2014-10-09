@@ -21,11 +21,9 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-
 module Runcible
   module Extensions
     class ConsumerGroup < Runcible::Resources::ConsumerGroup
-
       # Add consumers by ID to a consumer group
       #
       # @param  [String]                id            the consumer group ID
@@ -51,7 +49,7 @@ module Runcible
       def make_consumer_criteria(consumer_ids)
         {:criteria =>
               {:filters =>
-                {:id =>{"$in" =>consumer_ids}}
+                {:id => {'$in' => consumer_ids}}
               }
         }
       end
@@ -63,7 +61,7 @@ module Runcible
       # @param  [Array]                units    array of units to install
       # @param  [Hash]                 options  to pass to content install
       # @return [RestClient::Response]          task representing the install operation
-      def install_content(id, type_id, units, options={})
+      def install_content(id, type_id, units, options = {})
         install_units(id, generate_content(type_id, units), options)
       end
 
@@ -74,7 +72,7 @@ module Runcible
       # @param  [Array]                units    array of units to update
       # @param  [Hash]                 options  to pass to content update
       # @return [RestClient::Response]          task representing the update operation
-      def update_content(id, type_id, units, options={})
+      def update_content(id, type_id, units, options = {})
         update_units(id, generate_content(type_id, units, options), options)
       end
 
@@ -94,16 +92,16 @@ module Runcible
       # @param  [Array]   units   array of units
       # @param  [Hash]    options contains options which may impact the format of the content (e.g :all => true)
       # @return [Array]           array of formatted content units
-      def generate_content(type_id, units, options={})
+      def generate_content(type_id, units, options = {})
         content = []
 
         case type_id
-          when 'rpm', 'package_group'
-            unit_key = :name
-          when 'erratum'
-            unit_key = :id
-          else
-            unit_key = :id
+        when 'rpm', 'package_group'
+          unit_key = :name
+        when 'erratum'
+          unit_key = :id
+        else
+          unit_key = :id
         end
 
         if options[:all]
@@ -121,7 +119,6 @@ module Runcible
         end
         content
       end
-
     end
   end
 end

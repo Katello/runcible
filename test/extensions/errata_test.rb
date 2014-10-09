@@ -30,7 +30,6 @@ require './test/support/repository_support'
 
 module Extensions
   class TestErrata < MiniTest::Unit::TestCase
-
     def self.before_suite
       self.support = RepositorySupport.new
       @@extension = TestRuncible.server.extensions.errata
@@ -49,7 +48,7 @@ module Extensions
     end
 
     def test_find
-      id = @@extension.all.sort_by{|p| p['id']}.first['id']
+      id = @@extension.all.sort_by { |p| p['id'] }.first['id']
       response = @@extension.find(id)
 
       refute_empty response
@@ -57,7 +56,7 @@ module Extensions
     end
 
     def test_find_by_unit_id
-      id = @@extension.all.sort_by{|p| p['id']}.first['_id']
+      id = @@extension.all.sort_by { |p| p['id'] }.first['_id']
       response = @@extension.find_by_unit_id(id)
 
       refute_empty response
@@ -71,7 +70,7 @@ module Extensions
     end
 
     def test_find_all_by_unit_ids
-      id = @@extension.all.sort_by{|p| p['_id']}.first['_id']
+      id = @@extension.all.sort_by { |p| p['_id'] }.first['_id']
       response = @@extension.find_all_by_unit_ids([id])
 
       refute_empty response
@@ -79,14 +78,13 @@ module Extensions
     end
 
     def test_find_all
-      pkgs = @@extension.all.sort_by{|p| p['id']}
-      ids = pkgs[0..2].collect{|p| p['id']}
+      pkgs = @@extension.all.sort_by { |p| p['id'] }
+      ids = pkgs[0..2].map { |p| p['id'] }
       response = @@extension.find_all(ids)
 
       assert_equal 200, response.code
       assert_equal ids.length, response.length
     end
-
   end
 
   class TestErrataCopy < UnitCopyBase
@@ -103,7 +101,6 @@ module Extensions
   end
 
   class TestErrataUnassociate < UnitUnassociateBase
-
     def self.extension_class
       TestRuncible.server.extensions.errata
     end
@@ -119,7 +116,7 @@ module Extensions
       response = self.class.extension_class.unassociate_ids_from_repo(self.class.clone_name, [ids.first])
 
       assert_async_response(response)
-      assert_equal (ids.length - 1), content_ids(self.class.clone_name).length
+      assert_equal((ids.length - 1), content_ids(self.class.clone_name).length)
     end
 
     def test_unassociate_unit_ids_from_repo
@@ -128,9 +125,8 @@ module Extensions
       response = self.class.extension_class.unassociate_unit_ids_from_repo(self.class.clone_name, [ids.first])
 
       assert_async_response(response)
-      assert_equal (ids.length - 1), unit_ids(self.class.clone_name).length
+      assert_equal((ids.length - 1), unit_ids(self.class.clone_name).length)
     end
-
 
     def test_unassociate_from_repo
       ids = unit_ids(RepositorySupport.repo_id)
@@ -139,8 +135,7 @@ module Extensions
                                                               :association => {'unit_id' => {'$in' => [ids.first]}})
 
       assert_async_response(response)
-      assert_equal (ids.length - 1), unit_ids(self.class.clone_name).length
+      assert_equal((ids.length - 1), unit_ids(self.class.clone_name).length)
     end
-
   end
 end

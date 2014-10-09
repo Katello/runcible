@@ -33,7 +33,7 @@ require './lib/runcible'
 begin
   require 'debugger'
 rescue LoadError
-  puts "Debugging not enabled."
+  puts 'Debugging not enabled.'
 end
 
 class TestRuncible
@@ -46,50 +46,51 @@ class TestRuncible
   end
 end
 
-class MiniTest::Unit::TestCase
+module MiniTest
+  class Unit
+    class TestCase
+      def cassette_name
+        test_name = self.__name__.gsub('test_', '')
+        parent = (self.class.name.split('::')[-2] || '').underscore
+        self_class = self.class.name.split('::')[-1].underscore.gsub('test_', '')
+        "#{parent}/#{self_class}/#{test_name}"
+      end
 
-  def cassette_name
-    test_name = self.__name__.gsub("test_", "")
-    parent = (self.class.name.split("::")[-2] || "").underscore
-    self_class = self.class.name.split("::")[-1].underscore.gsub("test_", "")
-    "#{parent}/#{self_class}/#{test_name}"
-  end
+      def run_with_vcr(args)
+        VCR.insert_cassette(cassette_name)
+        to_ret = run_without_vcr(args)
+        VCR.eject_cassette
+        to_ret
+      end
 
-  def run_with_vcr(args)
-      VCR.insert_cassette(cassette_name)
-      to_ret = run_without_vcr(args)
-      VCR.eject_cassette
-      to_ret
-  end
+      alias_method_chain :run, :vcr
 
-  alias_method_chain :run, :vcr
+      class << self
+        attr_accessor :support
 
-  class << self
-    attr_accessor :support
+        def suite_cassette_name
+          parent = (self.name.split('::')[-2] || '').underscore
+          self_class = self.name.split('::')[-1].underscore.gsub('test_', '')
+          "#{parent}/#{self_class}/suite"
+        end
+      end
 
-    def suite_cassette_name
-      parent = (self.name.split("::")[-2] || "").underscore
-      self_class = self.name.split("::")[-1].underscore.gsub("test_", "")
-      "#{parent}/#{self_class}/suite"
+      def assert_async_response(response)
+        support = @support || self.class.support
+        fail '@support or @@supsport not defined' unless support
+
+        assert_equal 202, response.code
+        tasks = support.wait_on_response(response)
+        tasks.each do |task|
+          assert task['state'], 'finished'
+        end
+      end
     end
   end
-
-  def assert_async_response(response)
-    support = @support || self.class.support
-    fail "@support or @@supsport not defined" unless support
-
-    assert_equal 202, response.code
-    tasks = support.wait_on_response(response)
-    tasks.each do |task|
-      assert task["state"], "finished"
-    end
-  end
-
 end
 
 class CustomMiniTestRunner
   class Unit < MiniTest::Unit
-
     def before_suites
       # code to run before the first test
     end
@@ -99,96 +100,83 @@ class CustomMiniTestRunner
     end
 
     def _run_suites(suites, type)
-      begin
-        if ENV['suite']
-          suites = suites.select do |suite|
-                     suite.name == ENV['suite']
-                   end
+      if ENV['suite']
+        suites = suites.select do |suite|
+          suite.name == ENV['suite']
         end
-
-        before_suites
-        super(suites, type)
-      ensure
-        after_suites
       end
+      before_suites
+      super(suites, type)
+    ensure
+      after_suites
     end
 
     def _run_suite(suite, type)
-      begin
-        if logging?
-          puts "Running Suite #{suite.inspect} - #{type.inspect} "
+      if logging?
+        puts "Running Suite #{suite.inspect} - #{type.inspect} "
+      end
+      if suite.respond_to?(:before_suite)
+        VCR.use_cassette(suite.suite_cassette_name) do
+          suite.before_suite
         end
-
-        if suite.respond_to?(:before_suite)
-          VCR.use_cassette(suite.suite_cassette_name) do
-            suite.before_suite
-          end
+      end
+      super(suite, type)
+    ensure
+      if suite.respond_to?(:after_suite)
+        VCR.use_cassette(suite.suite_cassette_name) do
+          suite.after_suite
         end
-        super(suite, type)
-      ensure
-        if suite.respond_to?(:after_suite)
-          VCR.use_cassette(suite.suite_cassette_name) do
-            suite.after_suite
-          end
-        end
-
-        if logging?
-          puts "Completed Running Suite #{suite.inspect} - #{type.inspect} "
-        end
+      end
+      if logging?
+        puts "Completed Running Suite #{suite.inspect} - #{type.inspect} "
       end
     end
 
     def logging?
       ENV['logging']
     end
-
   end
 end
 
 class PulpMiniTestRunner
-
-  def run_tests(suite, options={})
-    mode      = options[:mode] || "none"
+  def run_tests(suite, options = {})
+    mode      = options[:mode] || 'none'
     test_name = options[:test_name] || nil
-    auth_type = options[:auth_type] || "http"
+    auth_type = options[:auth_type] || 'http'
     logging   = options[:logging] || false
 
     MiniTest::Unit.runner = CustomMiniTestRunner::Unit.new
 
-    if mode == "all"
-      set_runcible_config({ :auth_type => auth_type, :logging => logging })
+    if mode == 'all'
+      runcible_config(:auth_type => auth_type, :logging => logging)
     else
-      set_runcible_config({ :logging => logging })
+      runcible_config(:logging => logging)
     end
 
-    set_vcr_config(mode)
+    vcr_config(mode)
 
-    if test_name && File.exists?(test_name)
+    if test_name && File.exist?(test_name)
       require test_name
     elsif test_name
       require "./test/#{test_name}_test.rb"
     else
-      Dir["./test/#{suite}/*_test.rb"].each {|file| require file }
+      Dir["./test/#{suite}/*_test.rb"].each { |file| require file }
     end
   end
 
-  def set_runcible_config(options)
-    config = {
-      :api_path   => "/pulp/api/v2/",
-      :http_auth  => {}
-    }
+  def runcible_config(options)
+    config = { :api_path   => '/pulp/api/v2/',
+               :http_auth  => {}}
 
-    if options[:logging] == "true"
+    if options[:logging] == 'true'
       log = ::Logger.new(STDOUT)
       log.level = Logger::DEBUG
-      config[:logging] = {
-        :logger => log,
-        :debug  => true,
-	      :stdout => true
-      }
+      config[:logging] = { :logger => log,
+                           :debug  => true,
+                           :stdout => true}
     end
 
-    if options[:auth_type] == "http"
+    if options[:auth_type] == 'http'
 
       File.open('/etc/pulp/server.conf') do |f|
         f.each_line do |line|
@@ -197,40 +185,40 @@ class PulpMiniTestRunner
           elsif line.start_with?('default_login')
             config[:user] = line.split(':')[1].strip
           elsif line.start_with?('server_name')
-           config[:url] = "https://#{line.split(':')[1].chomp.strip}"
+            config[:url] = "https://#{line.split(':')[1].chomp.strip}"
           end
         end
       end
-    elsif options[:auth_type] == "oauth"
+    elsif options[:auth_type] == 'oauth'
 
       File.open('/etc/pulp/server.conf') do |f|
         f.each_line do |line|
           if line.start_with?('oauth_secret')
             config[:oauth][:oauth_secret] = line.split(':')[1].strip
           elsif line.start_with?('oauth_key')
-           config[:oauth][:oauth_key] = line.split(':')[1].strip
+            config[:oauth][:oauth_key] = line.split(':')[1].strip
           elsif line.start_with?('default_login')
-           config[:user] = line.split(':')[1].strip
+            config[:user] = line.split(':')[1].strip
           elsif line.start_with?('server_name')
-           config[:url] = "https://#{line.split(':')[1].chomp.strip}"
+            config[:url] = "https://#{line.split(':')[1].chomp.strip}"
           end
         end
       end
     else
       config[:http_auth][:password] = 'admin'
       config[:user]  = 'admin'
-      config[:url]   = "https://localhost"
+      config[:url]   = 'https://localhost'
     end
 
     TestRuncible.server = Runcible::Instance.new(config)
   end
 
-  def set_vcr_config(mode)
-    if mode == "all"
+  def vcr_config(mode)
+    if mode == 'all'
       configure_vcr(:all)
-    elsif mode == "new_episodes"
+    elsif mode == 'new_episodes'
       configure_vcr(:new_episodes)
-    elsif mode == "once"
+    elsif mode == 'once'
       configure_vcr(:once)
     else
       configure_vcr(:none)

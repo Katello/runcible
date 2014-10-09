@@ -4,9 +4,8 @@ require 'minitest/autorun'
 require './lib/runcible'
 
 class PuppetImporterTest < MiniTest::Unit::TestCase
-
   def setup
-    @attrs = {"feed" => "http://forge.puppetlabs.com", "queries" => "apache"}
+    @attrs = {'feed' => 'http://forge.puppetlabs.com', 'queries' => 'apache'}
     @importer = Runcible::Models::PuppetImporter.new(@attrs)
   end
 
@@ -17,5 +16,4 @@ class PuppetImporterTest < MiniTest::Unit::TestCase
   def test_repo_type
     assert_equal Runcible::Models::PuppetImporter::REPO_TYPE, @importer.repo_type
   end
-
 end

@@ -29,7 +29,7 @@ module Runcible
     class PuppetDistributor < Distributor
       attr_accessor 'serve_http', 'serve_https', 'http_dir', 'https_dir', 'absolute_path'
 
-      def initialize(absolute_path, http, https, params={})
+      def initialize(absolute_path, http, https, params = {})
         @absolute_path = absolute_path
         @serve_http = http
         @serve_https = https

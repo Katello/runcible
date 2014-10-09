@@ -29,11 +29,10 @@ module Runcible
     # Requires the pulp-katello-plugins
     #  https://github.com/Katello/pulp-katello-plugins
     class YumCloneDistributor < Distributor
-
       #optional
-      attr_accessor "source_repo_id", "source_distributor_id", "destination_distributor_id"
+      attr_accessor 'source_repo_id', 'source_distributor_id', 'destination_distributor_id'
 
-      def initialize(params={})
+      def initialize(params = {})
         super(params)
       end
 

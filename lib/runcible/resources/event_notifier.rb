@@ -21,12 +21,10 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-
 module Runcible
   module Resources
     # @see https://pulp-dev-guide.readthedocs.org/en/latest/events/index.html
     class EventNotifier < Runcible::Base
-
       class EventTypes
         REPO_SYNC_COMPLETE    = 'repo.sync.finish'
         REPO_SYNC_START       = 'repo.sync.start'
@@ -42,8 +40,8 @@ module Runcible
       #
       # @param  [String]  id  the ID of the event notifier
       # @return [String]      the event notifier path, may contain the ID if passed
-      def self.path(id=nil)
-        (id == nil) ? "events/" : "events/#{id}/"
+      def self.path(id = nil)
+        (id.nil?) ? 'events/' : "events/#{id}/"
       end
 
       # Creates an Event Notification
@@ -51,8 +49,8 @@ module Runcible
       # @param  [String]                notifier_type_id  the type ID of the event notifier
       # @param  [Hash]                  notifier_config   configuration options for the notifier
       # @param  [Hash]                  event_types       event types to include in the notifier
-      # @return [RestClient::Response]            
-      def create(notifier_type_id, notifier_config, event_types)
+      # @return [RestClient::Response]
+      def create(_notifier_type_id, _notifier_config, _event_types)
         required = required_params(binding.send(:local_variables), binding)
         call(:post, path, :payload => {:required => required})
       end
@@ -60,7 +58,7 @@ module Runcible
       # Deletes an Event Notification
       #
       # @param  [String]                id  the ID of the event notifier
-      # @return [RestClient::Response]            
+      # @return [RestClient::Response]
       def delete(id)
         call(:delete, path(id))
       end
@@ -68,12 +66,10 @@ module Runcible
       # List all Event Notifiers
       #
       # @param  [String]                id  the ID of the event notifier
-      # @return [RestClient::Response]            
+      # @return [RestClient::Response]
       def list
         call(:get, path)
       end
-
     end
   end
 end
-

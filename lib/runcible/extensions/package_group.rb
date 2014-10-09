@@ -21,11 +21,9 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-
 module Runcible
   module Extensions
     class PackageGroup < Runcible::Extensions::Unit
-
       def self.content_type
         'package_group'
       end

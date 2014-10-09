@@ -26,11 +26,9 @@ require 'oauth'
 require 'json'
 require 'thread'
 
-
 module Runcible
   class Base
-
-    def initialize(config={})
+    def initialize(config = {})
       @mutex = Mutex.new
       @config = config
     end
@@ -42,7 +40,7 @@ module Runcible
     def config
       @mutex.synchronize do
         @config = @lazy_config.call if defined?(@lazy_config)
-        raise Runcible::ConfigurationUndefinedError, Runcible::ConfigurationUndefinedError.message unless @config
+        fail Runcible::ConfigurationUndefinedError, Runcible::ConfigurationUndefinedError.message unless @config
         @config
       end
     end
@@ -51,16 +49,12 @@ module Runcible
       self.class.path(*args)
     end
 
-    def call(method, path, options={})
+    def call(method, path, options = {})
       clone_config = self.config.clone
       #on occation path will already have prefix (sync cancel)
-      path = clone_config[:api_path] + path if !path.start_with?(clone_config[:api_path])
+      path = clone_config[:api_path] + path unless path.start_with?(clone_config[:api_path])
 
       RestClient.log    = []
-      logger            = clone_config[:logging][:logger]
-      debug_logging     = clone_config[:logging][:debug]
-      exception_logging = clone_config[:logging][:exception]
-
       headers = clone_config[:headers].clone
 
       get_params = options[:params] if options[:params]
@@ -72,7 +66,7 @@ module Runcible
 
       if clone_config[:oauth]
         headers = add_oauth_header(method, path, headers) if clone_config[:oauth]
-        headers["pulp-user"] = clone_config[:user]
+        headers['pulp-user'] = clone_config[:user]
         client = RestClient::Resource.new(clone_config[:url], client_options)
       else
         client_options[:user] =  clone_config[:user]
@@ -93,7 +87,7 @@ module Runcible
     end
 
     def get_response(client, path, *args)
-      client[path].send(*args) do |response, request, result, &block|
+      client[path].send(*args) do |response, request, result, &_block|
         resp = response.return!(request, result)
         log_debug
         return resp
@@ -101,14 +95,14 @@ module Runcible
     end
 
     def combine_get_params(path, params)
-      query_string  = params.collect do |k, v|
+      query_string  = params.map do |k, v|
         if v.is_a? Array
-          v.collect{|y| "#{k.to_s}=#{y.to_s}" }.join('&')
+          v.map { |y| "#{k}=#{y}" }.join('&')
         else
-          "#{k.to_s}=#{v.to_s}"
+          "#{k}=#{v}"
         end
       end
-      query_string = query_string.flatten().join('&')
+      query_string = query_string.flatten.join('&')
       path + "?#{query_string}"
     end
 
@@ -146,19 +140,20 @@ module Runcible
         if body.respond_to? :with_indifferent_access
           body = body.with_indifferent_access
         elsif body.is_a? Array
-          body = body.collect  do |i|
+          body = body.map  do |i|
             i.respond_to?(:with_indifferent_access) ? i.with_indifferent_access : i
           end
         end
         response = RestClient::Response.create(body, response.net_http_res, response.args)
       rescue JSON::ParserError
+        log_exception
       end
 
       return response
     end
 
-    def required_params(local_names, binding, keys_to_remove=[])
-      local_names = local_names.reduce({}) do |acc, v|
+    def required_params(local_names, binding, keys_to_remove = [])
+      local_names = local_names.each_with_object({}) do |v, acc|
         value = binding.eval(v.to_s) unless v == :_
         acc[v] = value unless value.nil?
         acc
@@ -167,8 +162,8 @@ module Runcible
       #The double delete is to support 1.8.7 and 1.9.3
       local_names.delete(:payload)
       local_names.delete(:optional)
-      local_names.delete("payload")
-      local_names.delete("optional")
+      local_names.delete('payload')
+      local_names.delete('optional')
       keys_to_remove.each do |key|
         local_names.delete(key)
         local_names.delete(key.to_sym)
@@ -184,9 +179,9 @@ module Runcible
     def add_oauth_header(method, path, headers)
       default_options = { :site               => config[:url],
                           :http_method        => method,
-                          :request_token_path => "",
-                          :authorize_path     => "",
-                          :access_token_path  => "" }
+                          :request_token_path => '',
+                          :authorize_path     => '',
+                          :access_token_path  => '' }
 
       default_options[:ca_file] = config[:ca_cert_file] unless config[:ca_cert_file].nil?
       consumer = OAuth::Consumer.new(config[:oauth][:oauth_key], config[:oauth][:oauth_secret], default_options)
@@ -205,7 +200,7 @@ module Runcible
 
     def log_debug
       if self.config[:logging][:debug]
-        log_message = generate_log_message                  
+        log_message = generate_log_message
         self.config[:logging][:logger].debug(log_message)
       end
     end
@@ -224,14 +219,12 @@ module Runcible
     def logger
       self.config[:logging][:logger]
     end
-
-  end 
+  end
 
   class ConfigurationUndefinedError < StandardError
-
     def self.message
       # override me to change the error message
-      "Configuration not set. Runcible::Base.config= must be called before Runcible::Base.config."
+      'Configuration not set. Runcible::Base.config= must be called before Runcible::Base.config.'
     end
   end
 end

@@ -27,7 +27,7 @@ require 'minitest/autorun'
 module Resources
   module TestUserBase
     def setup
-      @username = "integration_test_user"
+      @username = 'integration_test_user'
       @resource = TestRuncible.server.resources.user
     end
   end
@@ -49,14 +49,12 @@ module Resources
     end
 
     def test_create_with_name_and_password
-      response = @resource.create(@username, {:name => @username, :password => "integration_test_password"})
+      response = @resource.create(@username, :name => @username, :password => 'integration_test_password')
 
       assert_equal 201, response.code
       assert_equal @username, response['name']
     end
-
   end
-
 
   class TestUser < MiniTest::Unit::TestCase
     include TestUserBase
@@ -65,7 +63,7 @@ module Resources
       super
       begin
         @resource.retrieve(@username)
-      rescue RestClient::ResourceNotFound => e
+      rescue RestClient::ResourceNotFound
         @resource.create(@username)
       end
     end
@@ -73,6 +71,7 @@ module Resources
     def teardown
       @resource.delete(@username)
     rescue RestClient::ResourceNotFound => e
+      puts "Could not destroy user #{@username}. Exception \n #{e}"
     ensure
       super
     end
@@ -80,7 +79,7 @@ module Resources
     def test_path
       path = @resource.class.path
 
-      assert_match "users/", path
+      assert_match 'users/', path
     end
 
     def test_path_with_username
@@ -93,11 +92,11 @@ module Resources
       response = @resource.retrieve(@username)
 
       assert_equal 200, response.code
-      assert_equal @username, response["login"]
+      assert_equal @username, response['login']
     end
 
     def test_retrieve_all
-      response = @resource.retrieve_all()
+      response = @resource.retrieve_all
 
       assert_equal 200, response.code
       refute_empty response
@@ -108,6 +107,5 @@ module Resources
 
       assert_equal 200, response.code
     end
-
   end
 end

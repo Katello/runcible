@@ -29,12 +29,10 @@ require './lib/runcible'
 
 module Extensions
   module TestIsoRepositoryBase
-
     def setup
       @support = RepositorySupport.new
       @extension = TestRuncible.server.extensions.repository
     end
-
   end
 
   class TestIsoRepositoryCreate < MiniTest::Unit::TestCase
@@ -42,7 +40,8 @@ module Extensions
 
     def setup
       super
-      @repo_url = "file://#{File.expand_path(File.dirname(__FILE__))}".gsub("test/extensions", "test/fixtures/repositories/iso/")
+      @repo_url = "file://#{File.expand_path(File.dirname(__FILE__))}".gsub('test/extensions',
+                                                                           'test/fixtures/repositories/iso/')
       @repo_id = 'test_repo_iso_fixture'
     end
 
@@ -53,14 +52,14 @@ module Extensions
 
     def test_create_with_importer_and_distributors_objects
       distributors = [Runcible::Models::IsoDistributor.new(true, true)]
-      importer = Runcible::Models::IsoImporter.new(:feed=>@repo_url)
+      importer = Runcible::Models::IsoImporter.new(:feed => @repo_url)
 
       response = @extension.create_with_importer_and_distributors(@repo_id, importer, distributors)
       assert_equal 201, response.code
 
-      response = @extension.retrieve(@repo_id, {:details => true})
+      response = @extension.retrieve(@repo_id, :details => true)
       assert_equal @repo_id, response['id']
-      assert_equal "iso_importer", response['importers'].first['importer_type_id']
+      assert_equal 'iso_importer', response['importers'].first['importer_type_id']
 
       response = @extension.sync(@repo_id)
       assert_async_response(response)

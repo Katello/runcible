@@ -24,18 +24,16 @@
 require 'rubygems'
 require 'vcr'
 
-
-def configure_vcr(mode=:none)
-
-  if ENV['record'] == "false" && mode == :none
-    raise "Record flag is not applicable for mode 'none', please use with 'mode=all'"
+def configure_vcr(mode = :none)
+  if ENV['record'] == 'false' && mode == :none
+    fail "Record flag is not applicable for mode 'none', please use with 'mode=all'"
   end
 
   VCR.configure do |c|
     c.cassette_library_dir = 'test/fixtures/vcr_cassettes'
     c.hook_into :webmock
 
-    if ENV['record'] == "false" && mode != :none
+    if ENV['record'] == 'false' && mode != :none
       uri = URI.parse(Runcible::Base.config[:url])
       c.ignore_hosts uri.host
     end
@@ -58,7 +56,7 @@ def configure_vcr(mode=:none)
           request_1.body == request_2.body
         end
       end
-    rescue => e
+    rescue
       #ignore the warning thrown about this matcher already being resgistered
     end
 
@@ -66,7 +64,7 @@ def configure_vcr(mode=:none)
       c.register_request_matcher :params do |request_1, request_2|
         URI(request_1.uri).query == URI(request_2.uri).query
       end
-    rescue => e
+    rescue
       #ignore the warning thrown about this matcher already being resgistered
     end
   end

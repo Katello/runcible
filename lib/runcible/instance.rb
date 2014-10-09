@@ -23,14 +23,14 @@
 
 module Runcible
   class Instance
-
+    # rubocop:disable Style/ClassVars
     def self.resource_classes
-      @@resource_classes ||= gather_classes("resources")
+      @@resource_classes ||= gather_classes('resources')
       @@resource_classes
     end
 
     def self.extension_classes
-      @@extension_classes ||= gather_classes("extensions")
+      @@extension_classes ||= gather_classes('extensions')
       @@extension_classes
     end
 
@@ -46,20 +46,20 @@ module Runcible
     # @option config [String]  :url  Scheme and hostname for the pulp server e.g. https://localhost/
     # @option config [String]  :api_path URL path for the api e.g. pulp/api/v2/
     # @option config [String]  :timeout Timeout in seconds for the connection (defaults to rest client's default)
-    # @option config [String]  :open_timeout timeout in seconds for the connection to open(defaults to rest client's default)
+    # @option config [String]  :open_timeout timeout in seconds for the connection
+    #                           to open(defaults to rest client's default)
     # @option config [Hash]    :http_auth Needed when using simple http auth
     # @option http_auth [String] :password The password to use for simple auth
-    def initialize(config={})
+    def initialize(config = {})
       @config = {
-              :api_path   => '/pulp/api/v2/',
-              :url        => 'https://localhost',
-              :user       => '',
-              :http_auth  => {:password => {} },
-              :headers    => {:content_type => 'application/json',
-                              :accept       => 'application/json'},
-              :logging    => {}
-            }.merge(config).with_indifferent_access
-
+        :api_path   => '/pulp/api/v2/',
+        :url        => 'https://localhost',
+        :user       => '',
+        :http_auth  => {:password => {} },
+        :headers    => {:content_type => 'application/json',
+                        :accept       => 'application/json'},
+        :logging    => {}
+      }.merge(config).with_indifferent_access
 
       initialize_wrappers(config)
     end
@@ -71,13 +71,11 @@ module Runcible
       @config[key] = value
     end
 
-    def config
-      @config
-    end
+    attr_reader :config
 
     private
 
-    def initialize_wrappers(config)
+    def initialize_wrappers(_config)
       self.resources = Wrapper.new('resources')
       self.extensions = Wrapper.new('extensions')
 
@@ -95,22 +93,20 @@ module Runcible
     def accessible_class(class_object)
       #converts a class (Runcible::Resources::ConsumerGroup) to a user friendly name:
       #  (e.g. consumer_group)
-      class_object.name.split("::").last.underscore
+      class_object.name.split('::').last.underscore
     end
 
     def self.gather_classes(type)
       const = Runcible
       const = const.const_get(type.camelize)
       path = File.dirname(__FILE__) + "/#{type}/*.rb"
-      base_names = Dir.glob(path).collect{|f| File.basename(f, '.rb')  }
-      classes = base_names.collect{|name| const.const_get(name.camelize)}
+      base_names = Dir.glob(path).map { |f| File.basename(f, '.rb')  }
+      base_names.map { |name| const.const_get(name.camelize) }
     end
-
   end
 
   #Wrapper class to provide access to instances
   class Wrapper
-
     def initialize(name)
       @name = name
       @methods = []
@@ -122,9 +118,7 @@ module Runcible
     end
 
     def to_s
-      "#{@name} - #{@methods.uniq.sort.to_s}"
+      "#{@name} - #{@methods.uniq.sort}"
     end
   end
-
 end
-

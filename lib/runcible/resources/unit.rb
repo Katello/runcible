@@ -21,12 +21,10 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-
 module Runcible
   module Resources
     # @see https://pulp-dev-guide.readthedocs.org/en/latest/rest-api/content/index.html
     class Unit < Runcible::Base
-
       # Generates the API path for Units
       #
       # @param  [String]  type  the unit type
@@ -40,11 +38,10 @@ module Runcible
       # @param  [String]                type      the unit type
       # @param  [Hash]                  criteria  criteria object containing Mongo syntax
       # @param  [Hash]                  optional  container for all optional parameters
-      # @return [RestClient::Response]            
-      def search(type, criteria, optional={})
-        call(:post, path(type), :payload=>{:required=>{:criteria=>criteria}, :optional=>optional})
+      # @return [RestClient::Response]
+      def search(type, criteria, optional = {})
+        call(:post, path(type), :payload => {:required => {:criteria => criteria}, :optional => optional})
       end
     end
-
   end
 end

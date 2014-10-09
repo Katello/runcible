@@ -28,10 +28,10 @@ module Runcible
   module Models
     class DockerDistributor < Distributor
       #optional
-      attr_accessor "docker_publish_directory", "protected",
-                    "redirect_url",  "repo_registry_id"
+      attr_accessor 'docker_publish_directory', 'protected',
+                    'redirect_url',  'repo_registry_id'
 
-      def initialize(params={})
+      def initialize(params = {})
         super(params)
       end
 

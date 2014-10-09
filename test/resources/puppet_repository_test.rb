@@ -29,13 +29,11 @@ require './lib/runcible'
 
 module Resources
   module TestPuppetRepositoryBase
-
     def setup
       @resource = TestRuncible.server.resources.repository
       @extension = TestRuncible.server.extensions.repository
       @support = RepositorySupport.new
     end
-
   end
 
   class TestPuppetRepositoryRequiresSync < MiniTest::Unit::TestCase
@@ -73,9 +71,8 @@ module Resources
     def test_sync_history
       response = @resource.sync_history(RepositorySupport.repo_id)
 
-      assert        200, response.code
-      refute_empty  response
+      assert 200, response.code
+      refute_empty response
     end
-
   end
 end
