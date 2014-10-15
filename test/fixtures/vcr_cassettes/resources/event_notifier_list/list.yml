@@ -2,7 +2,7 @@
 http_interactions: 
 - request: 
     method: post
-    uri: https://admin:admin@centos.installer/pulp/api/v2/events/
+    uri: https://admin:admin@box.devel.com/pulp/api/v2/events/
     body: 
       encoding: US-ASCII
       string: "{\"notifier_type_id\":\"http\",\"notifier_config\":{\"url\":\"http://foo.com/foo/\"},\"event_types\":[\"repo.publish.finish\"]}"
@@ -23,11 +23,13 @@ http_interactions:
       message: Created
     headers: 
       Date: 
-      - Thu, 15 May 2014 17:43:47 GMT
+      - Wed, 15 Oct 2014 14:26:21 GMT
       Server: 
-      - Apache/2.2.15 (CentOS)
+      - Apache/2.2.15 (Red Hat)
       Location: 
-      - /pulp/api/v2/events/5374fcd386d9a9321c14a33e/
+      - /pulp/api/v2/events/543e840d47078708d9ecb6eb/
+      Vary: 
+      - Accept-Encoding
       Content-Length: 
       - "282"
       Connection: 
@@ -35,13 +37,13 @@ http_interactions:
       Content-Type: 
       - application/json
     body: 
-      encoding: US-ASCII
-      string: "{\"_href\": \"/pulp/api/v2/events/5374fcd386d9a9321c14a33e/\", \"notifier_config\": {\"url\": \"http://foo.com/foo/\"}, \"_ns\": \"event_listeners\", \"event_types\": [\"repo.publish.finish\"], \"_id\": {\"$oid\": \"5374fcd386d9a9321c14a33e\"}, \"id\": \"5374fcd386d9a9321c14a33e\", \"notifier_type_id\": \"http\"}"
+      encoding: ASCII-8BIT
+      string: "{\"_href\": \"/pulp/api/v2/events/543e840d47078708d9ecb6eb/\", \"notifier_config\": {\"url\": \"http://foo.com/foo/\"}, \"_ns\": \"event_listeners\", \"event_types\": [\"repo.publish.finish\"], \"_id\": {\"$oid\": \"543e840d47078708d9ecb6eb\"}, \"id\": \"543e840d47078708d9ecb6eb\", \"notifier_type_id\": \"http\"}"
     http_version: 
-  recorded_at: Thu, 15 May 2014 17:43:47 GMT
+  recorded_at: Wed, 15 Oct 2014 14:26:21 GMT
 - request: 
     method: get
-    uri: https://admin:admin@centos.installer/pulp/api/v2/events/
+    uri: https://admin:admin@box.devel.com/pulp/api/v2/events/
     body: 
       encoding: US-ASCII
       string: ""
@@ -60,23 +62,25 @@ http_interactions:
       message: OK
     headers: 
       Date: 
-      - Thu, 15 May 2014 17:43:47 GMT
+      - Wed, 15 Oct 2014 14:26:21 GMT
       Server: 
-      - Apache/2.2.15 (CentOS)
+      - Apache/2.2.15 (Red Hat)
+      Vary: 
+      - Accept-Encoding
       Content-Length: 
-      - "569"
+      - "566"
       Connection: 
       - close
       Content-Type: 
       - application/json
     body: 
-      encoding: US-ASCII
-      string: "[{\"_href\": \"/pulp/api/v2/events/\", \"notifier_config\": {\"url\": \"http://localhost:3000/katello/api/v2/repositories/sync_complete?token=foo\"}, \"_ns\": \"event_listeners\", \"event_types\": [\"repo.sync.finish\"], \"_id\": {\"$oid\": \"5374fae086d9a9321e2b8da3\"}, \"id\": \"5374fae086d9a9321e2b8da3\", \"notifier_type_id\": \"http\"}, {\"_href\": \"/pulp/api/v2/events/\", \"notifier_config\": {\"url\": \"http://foo.com/foo/\"}, \"_ns\": \"event_listeners\", \"event_types\": [\"repo.publish.finish\"], \"_id\": {\"$oid\": \"5374fcd386d9a9321c14a33e\"}, \"id\": \"5374fcd386d9a9321c14a33e\", \"notifier_type_id\": \"http\"}]"
+      encoding: ASCII-8BIT
+      string: "[{\"_href\": \"/pulp/api/v2/events/\", \"notifier_config\": {\"url\": \"http://localhost:3000/katello/api/v2/repositories/sync_complete?token=\"}, \"_ns\": \"event_listeners\", \"event_types\": [\"repo.sync.finish\"], \"_id\": {\"$oid\": \"543e805e47078708d9ecb235\"}, \"id\": \"543e805e47078708d9ecb235\", \"notifier_type_id\": \"http\"}, {\"_href\": \"/pulp/api/v2/events/\", \"notifier_config\": {\"url\": \"http://foo.com/foo/\"}, \"_ns\": \"event_listeners\", \"event_types\": [\"repo.publish.finish\"], \"_id\": {\"$oid\": \"543e840d47078708d9ecb6eb\"}, \"id\": \"543e840d47078708d9ecb6eb\", \"notifier_type_id\": \"http\"}]"
     http_version: 
-  recorded_at: Thu, 15 May 2014 17:43:47 GMT
+  recorded_at: Wed, 15 Oct 2014 14:26:21 GMT
 - request: 
     method: delete
-    uri: https://admin:admin@centos.installer/pulp/api/v2/events/5374fcd386d9a9321c14a33e/
+    uri: https://admin:admin@box.devel.com/pulp/api/v2/events/543e840d47078708d9ecb6eb/
     body: 
       encoding: US-ASCII
       string: ""
@@ -95,9 +99,11 @@ http_interactions:
       message: OK
     headers: 
       Date: 
-      - Thu, 15 May 2014 17:43:47 GMT
+      - Wed, 15 Oct 2014 14:26:21 GMT
       Server: 
-      - Apache/2.2.15 (CentOS)
+      - Apache/2.2.15 (Red Hat)
+      Vary: 
+      - Accept-Encoding
       Content-Length: 
       - "4"
       Connection: 
@@ -105,8 +111,8 @@ http_interactions:
       Content-Type: 
       - application/json
     body: 
-      encoding: US-ASCII
+      encoding: ASCII-8BIT
       string: "null"
     http_version: 
-  recorded_at: Thu, 15 May 2014 17:43:47 GMT
-recorded_with: VCR 2.9.0
+  recorded_at: Wed, 15 Oct 2014 14:26:21 GMT
+recorded_with: VCR 2.9.3

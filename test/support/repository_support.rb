@@ -26,6 +26,8 @@ require 'rubygems'
 require './lib/runcible'
 
 class RepositorySupport
+  FIXTURE_PATH = '/var/www/repositories'
+
   @@repo_id        = 'integration_test_id'
   @@repo_name      = @@repo_id
 
@@ -40,7 +42,7 @@ class RepositorySupport
 
     if @repo_type == 'yum'
       @distributors = [Runcible::Models::YumDistributor.new('/path', true, true, :id => 'puppet_dist')]
-      @repo_url     = "file://#{File.expand_path(File.dirname(__FILE__))}".gsub('support', 'fixtures/repositories/zoo5')
+      @repo_url     = "file://#{FIXTURE_PATH}/zoo5"
     elsif @repo_type == 'puppet'
       @distributors = [Runcible::Models::PuppetDistributor.new('/path', true, true, :id => 'yum_dist')]
       @repo_url     = 'http://davidd.fedorapeople.org/repos/random_puppet/'

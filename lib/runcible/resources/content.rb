@@ -62,7 +62,7 @@ module Runcible
       #                                  on the type of unit being uploaded
       # @param  [Hash]    optional      container for all optional parameters
       # @return [RestClient::Response]  none
-      def import_into_repo(repo_id, _unit_type_id, _upload_id,  _unit_key, optional = {})
+      def import_into_repo(repo_id, unit_type_id, upload_id, unit_key, optional = {})
         required = required_params(binding.send(:local_variables), binding)
         call(:post, Repository.path("#{repo_id}/actions/import_upload/"),
                                     :payload => { :required => required, :optional => optional })

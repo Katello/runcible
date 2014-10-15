@@ -45,7 +45,7 @@ module Runcible
       # @param  [String]                login     the login requested for the user
       # @param  [Hash]                  optional  container for all optional parameters
       # @return [RestClient::Response]
-      def create(_login, optional = {})
+      def create(login, optional = {})
         required = required_params(binding.send(:local_variables), binding)
         call(:post, path, :payload => { :required => required, :optional => optional })
       end

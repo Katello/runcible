@@ -25,7 +25,7 @@ require 'rubygems'
 require 'logger'
 require 'minitest/unit'
 require 'minitest/autorun'
-require 'mocha'
+require 'mocha/setup'
 
 require './test/vcr_setup'
 require './lib/runcible'
@@ -57,7 +57,8 @@ module MiniTest
       end
 
       def run_with_vcr(args)
-        VCR.insert_cassette(cassette_name)
+        options = self.class.respond_to?(:cassette_options) ? self.class.cassette_options : {}
+        VCR.insert_cassette(cassette_name, options)
         to_ret = run_without_vcr(args)
         VCR.eject_cassette
         to_ret
@@ -112,18 +113,19 @@ class CustomMiniTestRunner
     end
 
     def _run_suite(suite, type)
+      options = suite.respond_to?(:cassette_options) ? suite.cassette_options : {}
       if logging?
         puts "Running Suite #{suite.inspect} - #{type.inspect} "
       end
       if suite.respond_to?(:before_suite)
-        VCR.use_cassette(suite.suite_cassette_name) do
+        VCR.use_cassette(suite.suite_cassette_name, options) do
           suite.before_suite
         end
       end
       super(suite, type)
     ensure
       if suite.respond_to?(:after_suite)
-        VCR.use_cassette(suite.suite_cassette_name) do
+        VCR.use_cassette(suite.suite_cassette_name, options) do
           suite.after_suite
         end
       end
@@ -209,7 +211,7 @@ class PulpMiniTestRunner
       config[:user]  = 'admin'
       config[:url]   = 'https://localhost'
     end
-
+    config[:verify_ssl] = false
     TestRuncible.server = Runcible::Instance.new(config)
   end
 

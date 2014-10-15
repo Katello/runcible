@@ -38,7 +38,7 @@ module Runcible
       # @param  [String]                id        the ID of the consumer
       # @param  [Hash]                  optional  container for all optional parameters
       # @return [RestClient::Response]
-      def create(_id, optional = {})
+      def create(id, optional = {})
         required = required_params(binding.send(:local_variables), binding)
         call(:post, path, :payload => { :required => required, :optional => optional })
       end
@@ -74,7 +74,7 @@ module Runcible
       # @param  [String]                content_type  the content type
       # @param  [Hash]                  profile       hash representing the consumer profile
       # @return [RestClient::Response]
-      def upload_profile(id, _content_type, _profile)
+      def upload_profile(id, content_type, profile)
         required = required_params(binding.send(:local_variables), binding, ['id'])
         call(:post, path("#{id}/profiles/"), :payload => { :required => required })
       end
@@ -113,7 +113,7 @@ module Runcible
       # @param  [String]                distributor_id  the ID of the distributor
       # @param  [Hash]                  optional optional parameters
       # @return [RestClient::Response]
-      def bind(id, _repo_id, _distributor_id, optional = {})
+      def bind(id, repo_id, distributor_id, optional = {})
         required = required_params(binding.send(:local_variables), binding, ['id'])
         call(:post, path("#{id}/bindings/"), :payload => { :required => required, :optional => optional })
       end
@@ -134,7 +134,7 @@ module Runcible
       # @param  [Array]                 units   array of units to install
       # @param  [Hash]                  options hash of install options
       # @return [RestClient::Response]
-      def install_units(id, _units, _options = {})
+      def install_units(id, units, options = {})
         required = required_params(binding.send(:local_variables), binding, ['id'])
         call(:post, path("#{id}/actions/content/install/"), :payload => { :required => required })
       end
@@ -145,7 +145,7 @@ module Runcible
       # @param  [Array]                 units   array of units to update
       # @param  [Hash]                  options hash of update options
       # @return [RestClient::Response]
-      def update_units(id, _units, _options = {})
+      def update_units(id, units, options = {})
         required = required_params(binding.send(:local_variables), binding, ['id'])
         call(:post, path("#{id}/actions/content/update/"), :payload => { :required => required })
       end
@@ -156,7 +156,7 @@ module Runcible
       # @param  [Array]                 units   array of units to uninstall
       # @param  [Hash]                  options hash of uninstall options
       # @return [RestClient::Response]
-      def uninstall_units(id, _units, _options = {})
+      def uninstall_units(id, units, options = {})
         required = required_params(binding.send(:local_variables), binding, ['id'])
         call(:post, path("#{id}/actions/content/uninstall/"), :payload => { :required => required })
       end

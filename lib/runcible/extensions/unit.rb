@@ -106,7 +106,7 @@ module Runcible
       #
       # @param  [String]                repo_id the repository ID to remove units from
       # @param  [Array]                 ids list of the unique hash ids of the content unit
-      #                                     with respect to this repo. unit_id, _id are other names for this.
+      #                                     with respect to this repo. unit_id, id are other names for this.
       #                                     for example: "efdd2d63-b275-4728-a298-f68cf4c174e7"
       #
       # @return [RestClient::Response]          a task representing the unit unassociate operation

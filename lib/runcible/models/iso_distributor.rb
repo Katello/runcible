@@ -35,10 +35,10 @@ module Runcible
       # @param  [boolean]         http  serve the contents over http
       # @param  [boolean]         https serve the contents over https
       # @return [Runcible::Extensions::IsoDistributor]
-      def initialize(http, https)
+      def initialize(http, https, options = {})
         @serve_http = http
         @serve_https = https
-        super({})
+        super(options)
       end
 
       # Distributor Type id

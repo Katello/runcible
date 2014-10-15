@@ -50,7 +50,7 @@ module Runcible
       # @param  [Hash]                  notifier_config   configuration options for the notifier
       # @param  [Hash]                  event_types       event types to include in the notifier
       # @return [RestClient::Response]
-      def create(_notifier_type_id, _notifier_config, _event_types)
+      def create(notifier_type_id, notifier_config, event_types)
         required = required_params(binding.send(:local_variables), binding)
         call(:post, path, :payload => {:required => required})
       end

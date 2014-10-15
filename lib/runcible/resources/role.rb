@@ -38,7 +38,7 @@ module Runcible
       # @param  [String]                id    the ID of the role
       # @param  [String]                login the login of the user being added
       # @return [RestClient::Response]
-      def add(id, _login)
+      def add(id, login)
         required = required_params(binding.send(:local_variables), binding, ['id'])
         call(:post, "#{path(id)}users/", :payload => { :required => required })
       end

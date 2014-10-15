@@ -40,8 +40,7 @@ module Extensions
 
     def setup
       super
-      @repo_url = "file://#{File.expand_path(File.dirname(__FILE__))}".gsub('test/extensions',
-                                                                           'test/fixtures/repositories/iso/')
+      @repo_url = "file://#{RepositorySupport::FIXTURE_PATH}/iso"
       @repo_id = 'test_repo_iso_fixture'
     end
 
@@ -51,7 +50,7 @@ module Extensions
     end
 
     def test_create_with_importer_and_distributors_objects
-      distributors = [Runcible::Models::IsoDistributor.new(true, true)]
+      distributors = [Runcible::Models::IsoDistributor.new(true, true, :id => 'iso_distributor')]
       importer = Runcible::Models::IsoImporter.new(:feed => @repo_url)
 
       response = @extension.create_with_importer_and_distributors(@repo_id, importer, distributors)
