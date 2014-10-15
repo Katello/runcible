@@ -2,10 +2,10 @@
 http_interactions: 
 - request: 
     method: post
-    uri: https://admin:admin@centos.installer/pulp/api/v2/repositories/
+    uri: https://admin:admin@box.devel.com/pulp/api/v2/repositories/
     body: 
       encoding: US-ASCII
-      string: "{\"id\":\"test_repo_iso_fixture\",\"importer_type_id\":\"iso_importer\",\"importer_config\":{\"feed\":\"file:///home/jlsherri/git/runcible/test/fixtures/repositories/iso/\"},\"distributors\":[{\"distributor_type_id\":\"iso_distributor\",\"distributor_config\":{\"serve_http\":true,\"serve_https\":true},\"auto_publish\":false,\"distributor_id\":null}]}"
+      string: "{\"id\":\"test_repo_iso_fixture\",\"importer_type_id\":\"iso_importer\",\"importer_config\":{\"feed\":\"file:///var/www/repositories/iso\"},\"distributors\":[{\"distributor_type_id\":\"iso_distributor\",\"distributor_config\":{\"serve_http\":true,\"serve_https\":true},\"auto_publish\":false,\"distributor_id\":\"iso_distributor\"}]}"
     headers: 
       Accept: 
       - application/json
@@ -14,7 +14,7 @@ http_interactions:
       Content-Type: 
       - application/json
       Content-Length: 
-      - "322"
+      - "301"
       User-Agent: 
       - Ruby
   response: 
@@ -23,25 +23,27 @@ http_interactions:
       message: Created
     headers: 
       Date: 
-      - Thu, 15 May 2014 17:42:17 GMT
+      - Wed, 15 Oct 2014 14:24:54 GMT
       Server: 
-      - Apache/2.2.15 (CentOS)
+      - Apache/2.2.15 (Red Hat)
       Location: 
       - test_repo_iso_fixture
+      Vary: 
+      - Accept-Encoding
       Content-Length: 
-      - "273"
+      - "325"
       Connection: 
       - close
       Content-Type: 
       - application/json
     body: 
-      encoding: US-ASCII
-      string: "{\"scratchpad\": {}, \"display_name\": \"test_repo_iso_fixture\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_counts\": {}, \"_id\": {\"$oid\": \"5374fc7986d9a9321e2b9041\"}, \"id\": \"test_repo_iso_fixture\", \"_href\": \"/pulp/api/v2/repositories/test_repo_iso_fixture/\"}"
+      encoding: ASCII-8BIT
+      string: "{\"scratchpad\": {}, \"display_name\": \"test_repo_iso_fixture\", \"description\": null, \"last_unit_added\": null, \"notes\": {}, \"last_unit_removed\": null, \"content_unit_counts\": {}, \"_ns\": \"repos\", \"_id\": {\"$oid\": \"543e83b647078708d9ecb49a\"}, \"id\": \"test_repo_iso_fixture\", \"_href\": \"/pulp/api/v2/repositories/test_repo_iso_fixture/\"}"
     http_version: 
-  recorded_at: Thu, 15 May 2014 17:42:17 GMT
+  recorded_at: Wed, 15 Oct 2014 14:24:54 GMT
 - request: 
     method: get
-    uri: https://admin:admin@centos.installer/pulp/api/v2/repositories/test_repo_iso_fixture/?details=true
+    uri: https://admin:admin@box.devel.com/pulp/api/v2/repositories/test_repo_iso_fixture/?details=true
     body: 
       encoding: US-ASCII
       string: ""
@@ -60,23 +62,25 @@ http_interactions:
       message: OK
     headers: 
       Date: 
-      - Thu, 15 May 2014 17:42:17 GMT
+      - Wed, 15 Oct 2014 14:24:54 GMT
       Server: 
-      - Apache/2.2.15 (CentOS)
+      - Apache/2.2.15 (Red Hat)
+      Vary: 
+      - Accept-Encoding
       Content-Length: 
-      - "928"
+      - "925"
       Connection: 
       - close
       Content-Type: 
       - application/json
     body: 
-      encoding: US-ASCII
-      string: "{\"scratchpad\": {}, \"display_name\": \"test_repo_iso_fixture\", \"description\": null, \"distributors\": [{\"repo_id\": \"test_repo_iso_fixture\", \"_ns\": \"repo_distributors\", \"last_publish\": null, \"auto_publish\": false, \"scheduled_publishes\": [], \"distributor_type_id\": \"iso_distributor\", \"_id\": {\"$oid\": \"5374fc7986d9a9321e2b9043\"}, \"config\": {\"serve_https\": true, \"serve_http\": true}, \"id\": \"7002c1ce-95c4-41ea-9223-97760c3f7701\"}], \"_ns\": \"repos\", \"notes\": {}, \"content_unit_counts\": {}, \"importers\": [{\"repo_id\": \"test_repo_iso_fixture\", \"_ns\": \"repo_importers\", \"importer_type_id\": \"iso_importer\", \"last_sync\": null, \"scheduled_syncs\": [], \"_id\": {\"$oid\": \"5374fc7986d9a9321e2b9042\"}, \"config\": {\"feed\": \"file:///home/jlsherri/git/runcible/test/fixtures/repositories/iso/\"}, \"id\": \"iso_importer\"}], \"_id\": {\"$oid\": \"5374fc7986d9a9321e2b9041\"}, \"id\": \"test_repo_iso_fixture\", \"_href\": \"/pulp/api/v2/repositories/test_repo_iso_fixture/\"}"
+      encoding: ASCII-8BIT
+      string: "{\"scratchpad\": {}, \"display_name\": \"test_repo_iso_fixture\", \"description\": null, \"distributors\": [{\"repo_id\": \"test_repo_iso_fixture\", \"_ns\": \"repo_distributors\", \"last_publish\": null, \"auto_publish\": false, \"scheduled_publishes\": [], \"distributor_type_id\": \"iso_distributor\", \"_id\": {\"$oid\": \"543e83b647078708d9ecb49c\"}, \"config\": {\"serve_https\": true, \"serve_http\": true}, \"id\": \"iso_distributor\"}], \"last_unit_added\": null, \"notes\": {}, \"last_unit_removed\": null, \"content_unit_counts\": {}, \"_ns\": \"repos\", \"importers\": [{\"repo_id\": \"test_repo_iso_fixture\", \"_ns\": \"repo_importers\", \"importer_type_id\": \"iso_importer\", \"last_sync\": null, \"scheduled_syncs\": [], \"_id\": {\"$oid\": \"543e83b647078708d9ecb49b\"}, \"config\": {\"feed\": \"file:///var/www/repositories/iso\"}, \"id\": \"iso_importer\"}], \"_id\": {\"$oid\": \"543e83b647078708d9ecb49a\"}, \"id\": \"test_repo_iso_fixture\", \"_href\": \"/pulp/api/v2/repositories/test_repo_iso_fixture/\"}"
     http_version: 
-  recorded_at: Thu, 15 May 2014 17:42:17 GMT
+  recorded_at: Wed, 15 Oct 2014 14:24:54 GMT
 - request: 
     method: post
-    uri: https://admin:admin@centos.installer/pulp/api/v2/repositories/test_repo_iso_fixture/actions/sync/
+    uri: https://admin:admin@box.devel.com/pulp/api/v2/repositories/test_repo_iso_fixture/actions/sync/
     body: 
       encoding: US-ASCII
       string: "{}"
@@ -97,9 +101,9 @@ http_interactions:
       message: Accepted
     headers: 
       Date: 
-      - Thu, 15 May 2014 17:42:17 GMT
+      - Wed, 15 Oct 2014 14:24:54 GMT
       Server: 
-      - Apache/2.2.15 (CentOS)
+      - Apache/2.2.15 (Red Hat)
       Content-Encoding: 
       - utf-8
       Content-Length: 
@@ -110,12 +114,12 @@ http_interactions:
       - application/json
     body: 
       encoding: US-ASCII
-      string: "{\"spawned_tasks\": [{\"_href\": \"/pulp/api/v2/tasks/8b45b756-d88b-4658-bc34-e7af18ea85eb/\", \"task_id\": \"8b45b756-d88b-4658-bc34-e7af18ea85eb\"}], \"result\": null, \"error\": null}"
+      string: "{\"spawned_tasks\": [{\"_href\": \"/pulp/api/v2/tasks/3dcb6e59-f82c-40b7-9d75-75e766ef088c/\", \"task_id\": \"3dcb6e59-f82c-40b7-9d75-75e766ef088c\"}], \"result\": null, \"error\": null}"
     http_version: 
-  recorded_at: Thu, 15 May 2014 17:42:18 GMT
+  recorded_at: Wed, 15 Oct 2014 14:24:55 GMT
 - request: 
     method: get
-    uri: https://admin:admin@centos.installer/pulp/api/v2/tasks/8b45b756-d88b-4658-bc34-e7af18ea85eb/
+    uri: https://admin:admin@box.devel.com/pulp/api/v2/tasks/3dcb6e59-f82c-40b7-9d75-75e766ef088c/
     body: 
       encoding: US-ASCII
       string: ""
@@ -134,23 +138,25 @@ http_interactions:
       message: OK
     headers: 
       Date: 
-      - Thu, 15 May 2014 17:42:18 GMT
+      - Wed, 15 Oct 2014 14:24:56 GMT
       Server: 
-      - Apache/2.2.15 (CentOS)
+      - Apache/2.2.15 (Red Hat)
+      Vary: 
+      - Accept-Encoding
       Content-Length: 
-      - "1754"
+      - "1744"
       Connection: 
       - close
       Content-Type: 
       - application/json
     body: 
-      encoding: US-ASCII
-      string: "{\"exception\": null, \"task_type\": \"pulp.server.tasks.repository.sync_with_auto_publish\", \"_href\": \"/pulp/api/v2/tasks/8b45b756-d88b-4658-bc34-e7af18ea85eb/\", \"task_id\": \"8b45b756-d88b-4658-bc34-e7af18ea85eb\", \"tags\": [\"pulp:repository:test_repo_iso_fixture\", \"pulp:action:sync\"], \"finish_time\": \"2014-05-15T17:42:18Z\", \"_ns\": \"task_status\", \"start_time\": \"2014-05-15T17:42:18Z\", \"traceback\": null, \"spawned_tasks\": [], \"progress_report\": {\"iso_importer\": {\"total_bytes\": 14, \"traceback\": null, \"error_message\": null, \"finished_bytes\": 14, \"num_isos\": 1, \"state\": \"complete\", \"iso_error_messages\": [], \"num_isos_finished\": 1, \"state_times\": {\"not_started\": \"2014-05-15T17:42:18\", \"manifest_in_progress\": \"2014-05-15T17:42:18\", \"complete\": \"2014-05-15T17:42:18\", \"isos_in_progress\": \"2014-05-15T17:42:18\"}}}, \"queue\": \"reserved_resource_worker-1@centos.installer\", \"state\": \"finished\", \"result\": {\"importer_type_id\": \"iso_importer\", \"importer_id\": \"iso_importer\", \"exception\": null, \"repo_id\": \"test_repo_iso_fixture\", \"removed_count\": 0, \"started\": \"2014-05-15T18:42:18+01:00\", \"_ns\": \"repo_sync_results\", \"completed\": \"2014-05-15T18:42:18+01:00\", \"traceback\": null, \"summary\": {\"error_message\": null, \"traceback\": null, \"finished_bytes\": 14, \"num_isos\": 1, \"state\": \"complete\", \"iso_error_messages\": [], \"state_times\": {\"not_started\": \"2014-05-15T17:42:18\", \"manifest_in_progress\": \"2014-05-15T17:42:18\", \"complete\": \"2014-05-15T17:42:18\", \"isos_in_progress\": \"2014-05-15T17:42:18\"}, \"num_isos_finished\": 1, \"total_bytes\": 14}, \"added_count\": 1, \"error_message\": null, \"updated_count\": 0, \"details\": null, \"id\": \"5374fc7a86d9a932edcb1fa8\", \"result\": \"success\"}, \"error\": null, \"_id\": {\"$oid\": \"5374fc7a3c307ec505e85fde\"}, \"id\": \"5374fc7a86d9a9321e2b9045\"}"
+      encoding: ASCII-8BIT
+      string: "{\"exception\": null, \"task_type\": \"pulp.server.tasks.repository.sync_with_auto_publish\", \"_href\": \"/pulp/api/v2/tasks/3dcb6e59-f82c-40b7-9d75-75e766ef088c/\", \"task_id\": \"3dcb6e59-f82c-40b7-9d75-75e766ef088c\", \"tags\": [\"pulp:repository:test_repo_iso_fixture\", \"pulp:action:sync\"], \"finish_time\": \"2014-10-15T14:24:55Z\", \"_ns\": \"task_status\", \"start_time\": \"2014-10-15T14:24:55Z\", \"traceback\": null, \"spawned_tasks\": [], \"progress_report\": {\"iso_importer\": {\"total_bytes\": 14, \"traceback\": null, \"error_message\": null, \"finished_bytes\": 14, \"num_isos\": 1, \"state\": \"complete\", \"iso_error_messages\": [], \"num_isos_finished\": 1, \"state_times\": {\"not_started\": \"2014-10-15T14:24:55\", \"manifest_in_progress\": \"2014-10-15T14:24:55\", \"complete\": \"2014-10-15T14:24:55\", \"isos_in_progress\": \"2014-10-15T14:24:55\"}}}, \"queue\": \"reserved_resource_worker-0@box.devel.com.dq\", \"state\": \"finished\", \"result\": {\"importer_type_id\": \"iso_importer\", \"importer_id\": \"iso_importer\", \"exception\": null, \"repo_id\": \"test_repo_iso_fixture\", \"removed_count\": 0, \"started\": \"2014-10-15T14:24:55Z\", \"_ns\": \"repo_sync_results\", \"completed\": \"2014-10-15T14:24:55Z\", \"traceback\": null, \"summary\": {\"error_message\": null, \"traceback\": null, \"finished_bytes\": 14, \"num_isos\": 1, \"state\": \"complete\", \"iso_error_messages\": [], \"state_times\": {\"not_started\": \"2014-10-15T14:24:55\", \"manifest_in_progress\": \"2014-10-15T14:24:55\", \"complete\": \"2014-10-15T14:24:55\", \"isos_in_progress\": \"2014-10-15T14:24:55\"}, \"num_isos_finished\": 1, \"total_bytes\": 14}, \"added_count\": 1, \"error_message\": null, \"updated_count\": 0, \"details\": null, \"id\": \"543e83b74707870948c0aa59\", \"result\": \"success\"}, \"error\": null, \"_id\": {\"$oid\": \"543e83b7505c6f3b4b509b5b\"}, \"id\": \"543e83b747078708d9ecb49f\"}"
     http_version: 
-  recorded_at: Thu, 15 May 2014 17:42:18 GMT
+  recorded_at: Wed, 15 Oct 2014 14:24:56 GMT
 - request: 
     method: get
-    uri: https://admin:admin@centos.installer/pulp/api/v2/repositories/test_repo_iso_fixture//history/sync/
+    uri: https://admin:admin@box.devel.com/pulp/api/v2/repositories/test_repo_iso_fixture//history/sync/
     body: 
       encoding: US-ASCII
       string: ""
@@ -169,23 +175,25 @@ http_interactions:
       message: OK
     headers: 
       Date: 
-      - Thu, 15 May 2014 17:42:18 GMT
+      - Wed, 15 Oct 2014 14:24:56 GMT
       Server: 
-      - Apache/2.2.15 (CentOS)
+      - Apache/2.2.15 (Red Hat)
+      Vary: 
+      - Accept-Encoding
       Content-Length: 
-      - "813"
+      - "803"
       Connection: 
       - close
       Content-Type: 
       - application/json
     body: 
-      encoding: US-ASCII
-      string: "[{\"importer_type_id\": \"iso_importer\", \"importer_id\": \"iso_importer\", \"exception\": null, \"repo_id\": \"test_repo_iso_fixture\", \"removed_count\": 0, \"started\": \"2014-05-15T18:42:18+01:00\", \"_ns\": \"repo_sync_results\", \"completed\": \"2014-05-15T18:42:18+01:00\", \"traceback\": null, \"summary\": {\"error_message\": null, \"traceback\": null, \"finished_bytes\": 14, \"num_isos\": 1, \"state\": \"complete\", \"iso_error_messages\": [], \"state_times\": {\"not_started\": \"2014-05-15T17:42:18\", \"manifest_in_progress\": \"2014-05-15T17:42:18\", \"complete\": \"2014-05-15T17:42:18\", \"isos_in_progress\": \"2014-05-15T17:42:18\"}, \"num_isos_finished\": 1, \"total_bytes\": 14}, \"added_count\": 1, \"error_message\": null, \"updated_count\": 0, \"details\": null, \"_id\": {\"$oid\": \"5374fc7a86d9a932edcb1fa8\"}, \"id\": \"5374fc7a86d9a932edcb1fa8\", \"result\": \"success\"}]"
+      encoding: ASCII-8BIT
+      string: "[{\"importer_type_id\": \"iso_importer\", \"importer_id\": \"iso_importer\", \"exception\": null, \"repo_id\": \"test_repo_iso_fixture\", \"removed_count\": 0, \"started\": \"2014-10-15T14:24:55Z\", \"_ns\": \"repo_sync_results\", \"completed\": \"2014-10-15T14:24:55Z\", \"traceback\": null, \"summary\": {\"error_message\": null, \"traceback\": null, \"finished_bytes\": 14, \"num_isos\": 1, \"state\": \"complete\", \"iso_error_messages\": [], \"state_times\": {\"not_started\": \"2014-10-15T14:24:55\", \"manifest_in_progress\": \"2014-10-15T14:24:55\", \"complete\": \"2014-10-15T14:24:55\", \"isos_in_progress\": \"2014-10-15T14:24:55\"}, \"num_isos_finished\": 1, \"total_bytes\": 14}, \"added_count\": 1, \"error_message\": null, \"updated_count\": 0, \"details\": null, \"_id\": {\"$oid\": \"543e83b74707870948c0aa59\"}, \"id\": \"543e83b74707870948c0aa59\", \"result\": \"success\"}]"
     http_version: 
-  recorded_at: Thu, 15 May 2014 17:42:18 GMT
+  recorded_at: Wed, 15 Oct 2014 14:24:56 GMT
 - request: 
     method: delete
-    uri: https://admin:admin@centos.installer/pulp/api/v2/repositories/test_repo_iso_fixture/
+    uri: https://admin:admin@box.devel.com/pulp/api/v2/repositories/test_repo_iso_fixture/
     body: 
       encoding: US-ASCII
       string: ""
@@ -204,9 +212,9 @@ http_interactions:
       message: Accepted
     headers: 
       Date: 
-      - Thu, 15 May 2014 17:42:18 GMT
+      - Wed, 15 Oct 2014 14:24:56 GMT
       Server: 
-      - Apache/2.2.15 (CentOS)
+      - Apache/2.2.15 (Red Hat)
       Content-Encoding: 
       - utf-8
       Content-Length: 
@@ -217,12 +225,12 @@ http_interactions:
       - application/json
     body: 
       encoding: US-ASCII
-      string: "{\"spawned_tasks\": [{\"_href\": \"/pulp/api/v2/tasks/3fe9692a-99ee-4836-94ad-a14331c700de/\", \"task_id\": \"3fe9692a-99ee-4836-94ad-a14331c700de\"}], \"result\": null, \"error\": null}"
+      string: "{\"spawned_tasks\": [{\"_href\": \"/pulp/api/v2/tasks/39528aaa-1aff-4dc7-9e69-70dafda2bb26/\", \"task_id\": \"39528aaa-1aff-4dc7-9e69-70dafda2bb26\"}], \"result\": null, \"error\": null}"
     http_version: 
-  recorded_at: Thu, 15 May 2014 17:42:19 GMT
+  recorded_at: Wed, 15 Oct 2014 14:24:56 GMT
 - request: 
     method: get
-    uri: https://admin:admin@centos.installer/pulp/api/v2/tasks/3fe9692a-99ee-4836-94ad-a14331c700de/
+    uri: https://admin:admin@box.devel.com/pulp/api/v2/tasks/39528aaa-1aff-4dc7-9e69-70dafda2bb26/
     body: 
       encoding: US-ASCII
       string: ""
@@ -241,9 +249,11 @@ http_interactions:
       message: OK
     headers: 
       Date: 
-      - Thu, 15 May 2014 17:42:19 GMT
+      - Wed, 15 Oct 2014 14:24:57 GMT
       Server: 
-      - Apache/2.2.15 (CentOS)
+      - Apache/2.2.15 (Red Hat)
+      Vary: 
+      - Accept-Encoding
       Content-Length: 
       - "613"
       Connection: 
@@ -251,8 +261,8 @@ http_interactions:
       Content-Type: 
       - application/json
     body: 
-      encoding: US-ASCII
-      string: "{\"exception\": null, \"task_type\": \"pulp.server.tasks.repository.delete\", \"_href\": \"/pulp/api/v2/tasks/3fe9692a-99ee-4836-94ad-a14331c700de/\", \"task_id\": \"3fe9692a-99ee-4836-94ad-a14331c700de\", \"tags\": [\"pulp:repository:test_repo_iso_fixture\", \"pulp:action:delete\"], \"finish_time\": \"2014-05-15T17:42:19Z\", \"_ns\": \"task_status\", \"start_time\": \"2014-05-15T17:42:19Z\", \"traceback\": null, \"spawned_tasks\": [], \"progress_report\": {}, \"queue\": \"reserved_resource_worker-1@centos.installer\", \"state\": \"finished\", \"result\": null, \"error\": null, \"_id\": {\"$oid\": \"5374fc7b3c307ec505e85fdf\"}, \"id\": \"5374fc7b86d9a9321e2b9048\"}"
+      encoding: ASCII-8BIT
+      string: "{\"exception\": null, \"task_type\": \"pulp.server.tasks.repository.delete\", \"_href\": \"/pulp/api/v2/tasks/39528aaa-1aff-4dc7-9e69-70dafda2bb26/\", \"task_id\": \"39528aaa-1aff-4dc7-9e69-70dafda2bb26\", \"tags\": [\"pulp:repository:test_repo_iso_fixture\", \"pulp:action:delete\"], \"finish_time\": \"2014-10-15T14:24:56Z\", \"_ns\": \"task_status\", \"start_time\": \"2014-10-15T14:24:56Z\", \"traceback\": null, \"spawned_tasks\": [], \"progress_report\": {}, \"queue\": \"reserved_resource_worker-0@box.devel.com.dq\", \"state\": \"finished\", \"result\": null, \"error\": null, \"_id\": {\"$oid\": \"543e83b8505c6f3b4b509b5c\"}, \"id\": \"543e83b847078708d9ecb4a2\"}"
     http_version: 
-  recorded_at: Thu, 15 May 2014 17:42:19 GMT
-recorded_with: VCR 2.9.0
+  recorded_at: Wed, 15 Oct 2014 14:24:57 GMT
+recorded_with: VCR 2.9.3

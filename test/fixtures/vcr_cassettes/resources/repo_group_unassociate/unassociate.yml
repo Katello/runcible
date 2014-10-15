@@ -2,7 +2,7 @@
 http_interactions: 
 - request: 
     method: post
-    uri: https://admin:admin@centos.installer/pulp/api/v2/repo_groups/
+    uri: https://admin:admin@box.devel.com/pulp/api/v2/repo_groups/
     body: 
       encoding: US-ASCII
       string: "{\"id\":\"integration_test_repository_group\",\"display_name\":\"foo\",\"description\":\"Test description.\"}"
@@ -23,11 +23,13 @@ http_interactions:
       message: Created
     headers: 
       Date: 
-      - Thu, 15 May 2014 17:44:11 GMT
+      - Wed, 15 Oct 2014 14:26:41 GMT
       Server: 
-      - Apache/2.2.15 (CentOS)
+      - Apache/2.2.15 (Red Hat)
       Location: 
       - /pulp/api/v2/repo_groups/integration_test_repository_group/
+      Vary: 
+      - Accept-Encoding
       Content-Length: 
       - "310"
       Connection: 
@@ -35,13 +37,13 @@ http_interactions:
       Content-Type: 
       - application/json
     body: 
-      encoding: US-ASCII
-      string: "{\"scratchpad\": null, \"display_name\": \"foo\", \"description\": \"Test description.\", \"distributors\": [], \"_ns\": \"repo_groups\", \"notes\": {}, \"repo_ids\": [], \"_id\": {\"$oid\": \"5374fceb86d9a9321d8e0c96\"}, \"id\": \"integration_test_repository_group\", \"_href\": \"/pulp/api/v2/repo_groups/integration_test_repository_group/\"}"
+      encoding: ASCII-8BIT
+      string: "{\"scratchpad\": null, \"display_name\": \"foo\", \"description\": \"Test description.\", \"distributors\": [], \"_ns\": \"repo_groups\", \"notes\": {}, \"repo_ids\": [], \"_id\": {\"$oid\": \"543e842147078708d9ecb775\"}, \"id\": \"integration_test_repository_group\", \"_href\": \"/pulp/api/v2/repo_groups/integration_test_repository_group/\"}"
     http_version: 
-  recorded_at: Thu, 15 May 2014 17:44:11 GMT
+  recorded_at: Wed, 15 Oct 2014 14:26:41 GMT
 - request: 
     method: get
-    uri: https://admin:admin@centos.installer/pulp/api/v2/repositories/integration_test_id/
+    uri: https://admin:admin@box.devel.com/pulp/api/v2/repositories/integration_test_id/
     body: 
       encoding: US-ASCII
       string: ""
@@ -60,9 +62,9 @@ http_interactions:
       message: Not Found
     headers: 
       Date: 
-      - Thu, 15 May 2014 17:44:11 GMT
+      - Wed, 15 Oct 2014 14:26:41 GMT
       Server: 
-      - Apache/2.2.15 (CentOS)
+      - Apache/2.2.15 (Red Hat)
       Content-Encoding: 
       - utf-8
       Content-Length: 
@@ -75,10 +77,10 @@ http_interactions:
       encoding: US-ASCII
       string: "{\"http_request_method\": \"GET\", \"exception\": null, \"error_message\": \"Missing resource(s): repo=integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\", \"http_status\": 404, \"error\": {\"code\": \"PLP0009\", \"data\": {\"resources\": {\"repo\": \"integration_test_id\"}}, \"description\": \"Missing resource(s): repo=integration_test_id\", \"sub_errors\": []}, \"traceback\": null, \"resources\": {\"repo\": \"integration_test_id\"}}"
     http_version: 
-  recorded_at: Thu, 15 May 2014 17:44:11 GMT
+  recorded_at: Wed, 15 Oct 2014 14:26:41 GMT
 - request: 
     method: post
-    uri: https://admin:admin@centos.installer/pulp/api/v2/repositories/
+    uri: https://admin:admin@box.devel.com/pulp/api/v2/repositories/
     body: 
       encoding: US-ASCII
       string: "{\"id\":\"integration_test_id\"}"
@@ -99,25 +101,27 @@ http_interactions:
       message: Created
     headers: 
       Date: 
-      - Thu, 15 May 2014 17:44:11 GMT
+      - Wed, 15 Oct 2014 14:26:41 GMT
       Server: 
-      - Apache/2.2.15 (CentOS)
+      - Apache/2.2.15 (Red Hat)
       Location: 
       - integration_test_id
+      Vary: 
+      - Accept-Encoding
       Content-Length: 
-      - "267"
+      - "319"
       Connection: 
       - close
       Content-Type: 
       - application/json
     body: 
-      encoding: US-ASCII
-      string: "{\"scratchpad\": {}, \"display_name\": \"integration_test_id\", \"description\": null, \"_ns\": \"repos\", \"notes\": {}, \"content_unit_counts\": {}, \"_id\": {\"$oid\": \"5374fceb86d9a9321d8e0c98\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\"}"
+      encoding: ASCII-8BIT
+      string: "{\"scratchpad\": {}, \"display_name\": \"integration_test_id\", \"description\": null, \"last_unit_added\": null, \"notes\": {}, \"last_unit_removed\": null, \"content_unit_counts\": {}, \"_ns\": \"repos\", \"_id\": {\"$oid\": \"543e842147078708d9ecb777\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\"}"
     http_version: 
-  recorded_at: Thu, 15 May 2014 17:44:11 GMT
+  recorded_at: Wed, 15 Oct 2014 14:26:41 GMT
 - request: 
     method: post
-    uri: https://admin:admin@centos.installer/pulp/api/v2/repo_groups/integration_test_repository_group/actions/associate/
+    uri: https://admin:admin@box.devel.com/pulp/api/v2/repo_groups/integration_test_repository_group/actions/associate/
     body: 
       encoding: US-ASCII
       string: "{\"criteria\":{\"filters\":{\"id\":{\"$in\":[\"integration_test_id\"]}}}}"
@@ -138,9 +142,11 @@ http_interactions:
       message: OK
     headers: 
       Date: 
-      - Thu, 15 May 2014 17:44:11 GMT
+      - Wed, 15 Oct 2014 14:26:41 GMT
       Server: 
-      - Apache/2.2.15 (CentOS)
+      - Apache/2.2.15 (Red Hat)
+      Vary: 
+      - Accept-Encoding
       Content-Length: 
       - "23"
       Connection: 
@@ -148,13 +154,13 @@ http_interactions:
       Content-Type: 
       - application/json
     body: 
-      encoding: US-ASCII
+      encoding: ASCII-8BIT
       string: "[\"integration_test_id\"]"
     http_version: 
-  recorded_at: Thu, 15 May 2014 17:44:11 GMT
+  recorded_at: Wed, 15 Oct 2014 14:26:41 GMT
 - request: 
     method: post
-    uri: https://admin:admin@centos.installer/pulp/api/v2/repo_groups/integration_test_repository_group/actions/unassociate/
+    uri: https://admin:admin@box.devel.com/pulp/api/v2/repo_groups/integration_test_repository_group/actions/unassociate/
     body: 
       encoding: US-ASCII
       string: "{\"criteria\":{\"filters\":{\"id\":{\"$in\":[\"integration_test_id\"]}}}}"
@@ -175,9 +181,11 @@ http_interactions:
       message: OK
     headers: 
       Date: 
-      - Thu, 15 May 2014 17:44:11 GMT
+      - Wed, 15 Oct 2014 14:26:41 GMT
       Server: 
-      - Apache/2.2.15 (CentOS)
+      - Apache/2.2.15 (Red Hat)
+      Vary: 
+      - Accept-Encoding
       Content-Length: 
       - "2"
       Connection: 
@@ -185,13 +193,13 @@ http_interactions:
       Content-Type: 
       - application/json
     body: 
-      encoding: US-ASCII
+      encoding: ASCII-8BIT
       string: "[]"
     http_version: 
-  recorded_at: Thu, 15 May 2014 17:44:11 GMT
+  recorded_at: Wed, 15 Oct 2014 14:26:41 GMT
 - request: 
     method: delete
-    uri: https://admin:admin@centos.installer/pulp/api/v2/repo_groups/integration_test_repository_group/
+    uri: https://admin:admin@box.devel.com/pulp/api/v2/repo_groups/integration_test_repository_group/
     body: 
       encoding: US-ASCII
       string: ""
@@ -210,9 +218,11 @@ http_interactions:
       message: OK
     headers: 
       Date: 
-      - Thu, 15 May 2014 17:44:11 GMT
+      - Wed, 15 Oct 2014 14:26:41 GMT
       Server: 
-      - Apache/2.2.15 (CentOS)
+      - Apache/2.2.15 (Red Hat)
+      Vary: 
+      - Accept-Encoding
       Content-Length: 
       - "4"
       Connection: 
@@ -220,13 +230,13 @@ http_interactions:
       Content-Type: 
       - application/json
     body: 
-      encoding: US-ASCII
+      encoding: ASCII-8BIT
       string: "null"
     http_version: 
-  recorded_at: Thu, 15 May 2014 17:44:11 GMT
+  recorded_at: Wed, 15 Oct 2014 14:26:41 GMT
 - request: 
     method: delete
-    uri: https://admin:admin@centos.installer/pulp/api/v2/repositories/integration_test_id/
+    uri: https://admin:admin@box.devel.com/pulp/api/v2/repositories/integration_test_id/
     body: 
       encoding: US-ASCII
       string: ""
@@ -245,9 +255,9 @@ http_interactions:
       message: Accepted
     headers: 
       Date: 
-      - Thu, 15 May 2014 17:44:11 GMT
+      - Wed, 15 Oct 2014 14:26:41 GMT
       Server: 
-      - Apache/2.2.15 (CentOS)
+      - Apache/2.2.15 (Red Hat)
       Content-Encoding: 
       - utf-8
       Content-Length: 
@@ -258,12 +268,12 @@ http_interactions:
       - application/json
     body: 
       encoding: US-ASCII
-      string: "{\"spawned_tasks\": [{\"_href\": \"/pulp/api/v2/tasks/9f932509-6f63-4c41-84a6-8123935a3307/\", \"task_id\": \"9f932509-6f63-4c41-84a6-8123935a3307\"}], \"result\": null, \"error\": null}"
+      string: "{\"spawned_tasks\": [{\"_href\": \"/pulp/api/v2/tasks/0c408ae3-f0a8-45d1-9276-23eebddc290c/\", \"task_id\": \"0c408ae3-f0a8-45d1-9276-23eebddc290c\"}], \"result\": null, \"error\": null}"
     http_version: 
-  recorded_at: Thu, 15 May 2014 17:44:12 GMT
+  recorded_at: Wed, 15 Oct 2014 14:26:42 GMT
 - request: 
     method: get
-    uri: https://admin:admin@centos.installer/pulp/api/v2/tasks/9f932509-6f63-4c41-84a6-8123935a3307/
+    uri: https://admin:admin@box.devel.com/pulp/api/v2/tasks/0c408ae3-f0a8-45d1-9276-23eebddc290c/
     body: 
       encoding: US-ASCII
       string: ""
@@ -282,9 +292,11 @@ http_interactions:
       message: OK
     headers: 
       Date: 
-      - Thu, 15 May 2014 17:44:12 GMT
+      - Wed, 15 Oct 2014 14:26:42 GMT
       Server: 
-      - Apache/2.2.15 (CentOS)
+      - Apache/2.2.15 (Red Hat)
+      Vary: 
+      - Accept-Encoding
       Content-Length: 
       - "611"
       Connection: 
@@ -292,8 +304,8 @@ http_interactions:
       Content-Type: 
       - application/json
     body: 
-      encoding: US-ASCII
-      string: "{\"exception\": null, \"task_type\": \"pulp.server.tasks.repository.delete\", \"_href\": \"/pulp/api/v2/tasks/9f932509-6f63-4c41-84a6-8123935a3307/\", \"task_id\": \"9f932509-6f63-4c41-84a6-8123935a3307\", \"tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:delete\"], \"finish_time\": \"2014-05-15T17:44:12Z\", \"_ns\": \"task_status\", \"start_time\": \"2014-05-15T17:44:12Z\", \"traceback\": null, \"spawned_tasks\": [], \"progress_report\": {}, \"queue\": \"reserved_resource_worker-1@centos.installer\", \"state\": \"finished\", \"result\": null, \"error\": null, \"_id\": {\"$oid\": \"5374fcec3c307ec505e8602b\"}, \"id\": \"5374fcec86d9a9321d8e0c9f\"}"
+      encoding: ASCII-8BIT
+      string: "{\"exception\": null, \"task_type\": \"pulp.server.tasks.repository.delete\", \"_href\": \"/pulp/api/v2/tasks/0c408ae3-f0a8-45d1-9276-23eebddc290c/\", \"task_id\": \"0c408ae3-f0a8-45d1-9276-23eebddc290c\", \"tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:delete\"], \"finish_time\": \"2014-10-15T14:26:42Z\", \"_ns\": \"task_status\", \"start_time\": \"2014-10-15T14:26:42Z\", \"traceback\": null, \"spawned_tasks\": [], \"progress_report\": {}, \"queue\": \"reserved_resource_worker-1@box.devel.com.dq\", \"state\": \"finished\", \"result\": null, \"error\": null, \"_id\": {\"$oid\": \"543e8422505c6f3b4b509ba8\"}, \"id\": \"543e842247078708d9ecb77e\"}"
     http_version: 
-  recorded_at: Thu, 15 May 2014 17:44:12 GMT
-recorded_with: VCR 2.9.0
+  recorded_at: Wed, 15 Oct 2014 14:26:42 GMT
+recorded_with: VCR 2.9.3

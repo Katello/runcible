@@ -61,7 +61,7 @@ module Runcible
         :logging    => {}
       }.merge(config).with_indifferent_access
 
-      initialize_wrappers(config)
+      initialize_wrappers
     end
 
     # Update an existing config value
@@ -75,7 +75,7 @@ module Runcible
 
     private
 
-    def initialize_wrappers(_config)
+    def initialize_wrappers
       self.resources = Wrapper.new('resources')
       self.extensions = Wrapper.new('extensions')
 

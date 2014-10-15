@@ -2,7 +2,7 @@
 http_interactions: 
 - request: 
     method: post
-    uri: https://admin:admin@centos.installer/pulp/api/v2/consumer_groups/
+    uri: https://admin:admin@box.devel.com/pulp/api/v2/consumer_groups/
     body: 
       encoding: US-ASCII
       string: "{\"id\":\"integration_test_consumer_group\",\"display_name\":\"foo\",\"description\":\"Test description.\",\"consumer_ids\":[]}"
@@ -23,11 +23,13 @@ http_interactions:
       message: Created
     headers: 
       Date: 
-      - Thu, 15 May 2014 17:43:40 GMT
+      - Wed, 15 Oct 2014 14:26:14 GMT
       Server: 
-      - Apache/2.2.15 (CentOS)
+      - Apache/2.2.15 (Red Hat)
       Location: 
       - /pulp/api/v2/consumer_groups/integration_test_consumer_group/
+      Vary: 
+      - Accept-Encoding
       Content-Length: 
       - "298"
       Connection: 
@@ -35,13 +37,13 @@ http_interactions:
       Content-Type: 
       - application/json
     body: 
-      encoding: US-ASCII
-      string: "{\"scratchpad\": null, \"display_name\": \"foo\", \"description\": \"Test description.\", \"_ns\": \"consumer_groups\", \"notes\": {}, \"consumer_ids\": [], \"_id\": {\"$oid\": \"5374fccc86d9a9321d8e0c43\"}, \"id\": \"integration_test_consumer_group\", \"_href\": \"/pulp/api/v2/consumer_groups/integration_test_consumer_group/\"}"
+      encoding: ASCII-8BIT
+      string: "{\"scratchpad\": null, \"display_name\": \"foo\", \"description\": \"Test description.\", \"_ns\": \"consumer_groups\", \"notes\": {}, \"consumer_ids\": [], \"_id\": {\"$oid\": \"543e840647078708d9ecb68c\"}, \"id\": \"integration_test_consumer_group\", \"_href\": \"/pulp/api/v2/consumer_groups/integration_test_consumer_group/\"}"
     http_version: 
-  recorded_at: Thu, 15 May 2014 17:43:40 GMT
+  recorded_at: Wed, 15 Oct 2014 14:26:14 GMT
 - request: 
     method: delete
-    uri: https://admin:admin@centos.installer/pulp/api/v2/consumers/integration_test_consumer_support/
+    uri: https://admin:admin@box.devel.com/pulp/api/v2/consumers/integration_test_consumer_support/
     body: 
       encoding: US-ASCII
       string: ""
@@ -60,9 +62,9 @@ http_interactions:
       message: Not Found
     headers: 
       Date: 
-      - Thu, 15 May 2014 17:43:40 GMT
+      - Wed, 15 Oct 2014 14:26:14 GMT
       Server: 
-      - Apache/2.2.15 (CentOS)
+      - Apache/2.2.15 (Red Hat)
       Content-Encoding: 
       - utf-8
       Content-Length: 
@@ -75,10 +77,10 @@ http_interactions:
       encoding: US-ASCII
       string: "{\"http_request_method\": \"DELETE\", \"exception\": null, \"error_message\": \"Missing resource(s): consumer=integration_test_consumer_support\", \"_href\": \"/pulp/api/v2/consumers/integration_test_consumer_support/\", \"http_status\": 404, \"error\": {\"code\": \"PLP0009\", \"data\": {\"resources\": {\"consumer\": \"integration_test_consumer_support\"}}, \"description\": \"Missing resource(s): consumer=integration_test_consumer_support\", \"sub_errors\": []}, \"traceback\": null, \"resources\": {\"consumer\": \"integration_test_consumer_support\"}}"
     http_version: 
-  recorded_at: Thu, 15 May 2014 17:43:40 GMT
+  recorded_at: Wed, 15 Oct 2014 14:26:14 GMT
 - request: 
     method: post
-    uri: https://admin:admin@centos.installer/pulp/api/v2/consumers/
+    uri: https://admin:admin@box.devel.com/pulp/api/v2/consumers/
     body: 
       encoding: US-ASCII
       string: "{\"id\":\"integration_test_consumer_support\"}"
@@ -99,25 +101,27 @@ http_interactions:
       message: Created
     headers: 
       Date: 
-      - Thu, 15 May 2014 17:43:40 GMT
+      - Wed, 15 Oct 2014 14:26:14 GMT
       Server: 
-      - Apache/2.2.15 (CentOS)
+      - Apache/2.2.15 (Red Hat)
       Location: 
       - /pulp/api/v2/consumers/integration_test_consumer_support/
+      Vary: 
+      - Accept-Encoding
       Content-Length: 
-      - "2170"
+      - "2276"
       Connection: 
       - close
       Content-Type: 
       - application/json
     body: 
-      encoding: US-ASCII
-      string: "{\"consumer\": {\"display_name\": \"integration_test_consumer_support\", \"description\": null, \"_ns\": \"consumers\", \"notes\": {}, \"rsa_pub\": null, \"capabilities\": {}, \"_id\": {\"$oid\": \"5374fccc86d9a9321d8e0c45\"}, \"id\": \"integration_test_consumer_support\", \"_href\": {\"_href\": \"/pulp/api/v2/consumers/integration_test_consumer_support/\"}}, \"certificate\": \"-----BEGIN RSA PRIVATE KEY-----\\nMIICXQIBAAKBgQCzMrayphL6HrmgU/r3NnT3YJ39ksJndsIM1Rj1DZeH5cQaEkFn\\nK2li+tB+pPwt8RMjt6C3zQJTWi7gL8TY/gvUeoMnNnfjZOfGsRffxDkY8h8u+QV7\\nvy0zEuErg2huXQXyOpRvbMI2tDppOl8u1098tTmQPCigCGNozLCOCbVGtQIDAQAB\\nAoGAaX9mzeA19ejW0cv/SUFXNTg9a0bWisEA1zsxuTtqRYiAnfS3anzFS49r5dNN\\n3+I4qWN3DB52ywmh5TxaQIG4BkBNPX1vM5Z2p3yrY7BZ2B+ZxMZoE2ZpaxWh5OV2\\njSzlGshUCb2ywcZoG8RcKCymMAdUFq2T8zjr0irxvnkcBLUCQQDd0KHNHsmGjekh\\nzVZJQ4axY7XwxskL7YUeHmA8SnHbGkWDaOaFlNLrymos7b55qsfdIIPQy2czsvJC\\n7l+L/K9rAkEAztCy3tEkZNrneGhfWXf5Lew0Z545XlWqLi/4YWb3tsseXvi5HyWy\\nVY1r7IOOQgoISHYqKqDjNNZlH2fsG8IKXwJBAKJHwAh8jL3HVxemzYj+QS3IoFSO\\naooydKCLYqbZZCEDQHYaqgRy1Dkztqg2K5OB0YVDA40fMtrNAZbcJMUa0g8CQDP8\\nrhnohLd9d1YDFoTM7awnhfzN/ynBauf1UwBY+8fNQzMoXpB/z1ZGGGz5nNbo4rAk\\nU/EnRDXR9tVwMB/CJQ0CQQDDLtr0RT0+Ku4ff837i2qXu3jJafE57w4zRV+8AIvB\\n6+oU08V8uFetwR1aQgydbv2tqi8a5RwKiHHs0LR/ZKka\\n-----END RSA PRIVATE KEY-----\\n-----BEGIN CERTIFICATE-----\\nMIICcTCCAVkCAgLJMA0GCSqGSIb3DQEBBQUAMCoxGTAXBgNVBAMMEGNlbnRvcy5p\\nbnN0YWxsZXIxDTALBgNVBAoMBFBVTFAwHhcNMTQwNTE1MTc0MzQwWhcNMjQwNTEy\\nMTc0MzQwWjBWMSowKAYDVQQDFCFpbnRlZ3JhdGlvbl90ZXN0X2NvbnN1bWVyX3N1\\ncHBvcnQxKDAmBgoJkiaJk/IsZAEBExg1Mzc0ZmNjYzg2ZDlhOTMyMWQ4ZTBjNDUw\\ngZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBALMytrKmEvoeuaBT+vc2dPdgnf2S\\nwmd2wgzVGPUNl4flxBoSQWcraWL60H6k/C3xEyO3oLfNAlNaLuAvxNj+C9R6gyc2\\nd+Nk58axF9/EORjyHy75BXu/LTMS4SuDaG5dBfI6lG9swja0Omk6Xy7XT3y1OZA8\\nKKAIY2jMsI4JtUa1AgMBAAEwDQYJKoZIhvcNAQEFBQADggEBAC3DFBlihxl6Y9tw\\nWwv0acEHT7GZ6z/5iD6PQ50Osxt+rPrZ0Y3UZQZHXj8XWijM+Q/0Z72/ZFU42+FF\\n5yFBnj5UJsLTYTFgqMqPgr5NhsSBexF5iA+hE3vBsckoVDOX3SbELXraSB3+utej\\nPz8EU873IM3bjwCAnUx9GQFaDZF+xHCR+k+lfV0oDTa4NoyuUMSdL6DEH+4DbcrO\\nIXzlBt26J/uO2KUrkb4MrsFnLOFfK4O8C6dlD+kbAxPdfiDGopCCIkFKmIN4YrJA\\nFJwFkyXLtsy6ACI4UBf1HVG4U+GwReK2DQDfAucU5We82NqFrYoSz3fDdcxtdoxK\\nN08Sr/w=\\n-----END CERTIFICATE-----\"}"
+      encoding: ASCII-8BIT
+      string: "{\"consumer\": {\"display_name\": \"integration_test_consumer_support\", \"description\": null, \"_ns\": \"consumers\", \"notes\": {}, \"rsa_pub\": null, \"capabilities\": {}, \"_id\": {\"$oid\": \"543e840647078708d9ecb68e\"}, \"id\": \"integration_test_consumer_support\", \"_href\": {\"_href\": \"/pulp/api/v2/consumers/integration_test_consumer_support/\"}}, \"certificate\": \"-----BEGIN RSA PRIVATE KEY-----\\nMIICXQIBAAKBgQDN0T3P+dfHw3QwI+jvfvKs7boGwocpgy3TnducE33XMpw4MhAx\\nw5SrXYT8QJQIBuJZykoFDlhURwYKCw6muGCa8/C/NGWN8fGPYckkdvwg+TC0U7Hm\\nL/JZmA+IOwODqZUF1euFRykDgahFSYRF1hUjReqYqIwH9zoUov0TQxcQPwIDAQAB\\nAoGAAyMoZQ4y6tmg4Mb7WwM9YcNx7X5znv9f6HTkjxmA9pHP7c9djdSkZIRVbZ7y\\nYrjwJFxACpmwYQCAKBEJFSOEXXFQ/ffohQm/DWjsH3DXJ/+Zr64rY85V+/irOWds\\nLU4Mj3XWeMhshWVBQqQ7o0OUGV7p0r3YiTkIjV9zAc3AEPkCQQDmIqFcEVhNg/Fj\\nbyCi70h+DJ/G1yghfhNRu2Y5tqULpTNAijYDMPz4u6QoaxHMTDeDCUruHYiH4+NY\\nFe0SU7XFAkEA5PLxy2QcdgXLGeQLROf8a1V3Pu8/yts19pU0CJU0Jgscih9K75Uo\\nKW3PIQbhuXvNAd6SvvkdZitLLJE9DzoSMwJAKXUHmGxPefdQ3tbADFoKtxpTFiDg\\nS9hIZqrZqX/rj4N9Dh1XyY9jovM6iUVweVspjON5qheL5t74r3+Tq3+E+QJBAKRa\\nGmVNenjm88OkRsqyViue8LlG+l5fOr/Gn9HBeewNcfFdQWf3hRsobtZgoE2Mp8A9\\nzM42+nnLfm2B3Xk+0K0CQQCAiGEAfLyx4cn0pnEzD/NTa9jbRIF71lzlqQC+MUHL\\nC22iF3pjbjIjB4mnx9tXumvkirfAIpXYmh8ppYqQBav9\\n-----END RSA PRIVATE KEY-----\\n-----BEGIN CERTIFICATE-----\\nMIICvzCCAacCAgHoMA0GCSqGSIb3DQEBBQUAMHgxCzAJBgNVBAYTAlVTMRcwFQYD\\nVQQIEw5Ob3J0aCBDYXJvbGluYTEQMA4GA1UEBxMHUmFsZWlnaDEQMA4GA1UEChMH\\nU29tZU9yZzEUMBIGA1UECxMLU29tZU9yZ1VuaXQxFjAUBgNVBAMTDWJveC5kZXZl\\nbC5jb20wHhcNMTQxMDE1MTQyNjE0WhcNMjQxMDEyMTQyNjE0WjBWMSowKAYDVQQD\\nFCFpbnRlZ3JhdGlvbl90ZXN0X2NvbnN1bWVyX3N1cHBvcnQxKDAmBgoJkiaJk/Is\\nZAEBExg1NDNlODQwNjQ3MDc4NzA4ZDllY2I2OGUwgZ8wDQYJKoZIhvcNAQEBBQAD\\ngY0AMIGJAoGBAM3RPc/518fDdDAj6O9+8qztugbChymDLdOd25wTfdcynDgyEDHD\\nlKtdhPxAlAgG4lnKSgUOWFRHBgoLDqa4YJrz8L80ZY3x8Y9hySR2/CD5MLRTseYv\\n8lmYD4g7A4OplQXV64VHKQOBqEVJhEXWFSNF6piojAf3OhSi/RNDFxA/AgMBAAEw\\nDQYJKoZIhvcNAQEFBQADggEBAKjBQmz2g6MK0/zLA1uei79ksYmKzZlkxTAZChvU\\nJzNm0YjbCP/HMQW/SX8PDCYwetXmMgHoX/S7VXUwdaDUj0TKiT3EZ+iAmHTEaXL1\\nRi37tp9A20TE0Eba2Pev2zxOTzYVKTSPcAh7n97CBii+C8WF5NQ7T6DFlQ4rSCI6\\nZS3BlBC+7Zgz4KqKF4g7ru1vvWp3rWr2sBRjT8QB5fLd9lBgBvLpeSv9kt8lXw67\\nc4y5Ud4G628jL5PGHNykR+ESoqEe7Pq+i9JRi+PSHFpKy4hhNfJuF0SugjS36X/T\\nXjpzRWAj2tP468nvRbpBSJS6U+lyhg8B/Bv6l4qfnsI1m6I=\\n-----END CERTIFICATE-----\"}"
     http_version: 
-  recorded_at: Thu, 15 May 2014 17:43:40 GMT
+  recorded_at: Wed, 15 Oct 2014 14:26:14 GMT
 - request: 
     method: get
-    uri: https://admin:admin@centos.installer/pulp/api/v2/repositories/integration_test_id/?details=true
+    uri: https://admin:admin@box.devel.com/pulp/api/v2/repositories/integration_test_id/?details=true
     body: 
       encoding: US-ASCII
       string: ""
@@ -136,23 +140,25 @@ http_interactions:
       message: OK
     headers: 
       Date: 
-      - Thu, 15 May 2014 17:43:40 GMT
+      - Wed, 15 Oct 2014 14:26:14 GMT
       Server: 
-      - Apache/2.2.15 (CentOS)
+      - Apache/2.2.15 (Red Hat)
+      Vary: 
+      - Accept-Encoding
       Content-Length: 
-      - "1038"
+      - "1072"
       Connection: 
       - close
       Content-Type: 
       - application/json
     body: 
-      encoding: US-ASCII
-      string: "{\"scratchpad\": {\"checksum_type\": \"sha256\"}, \"display_name\": \"integration_test_id\", \"description\": null, \"distributors\": [{\"repo_id\": \"integration_test_id\", \"_ns\": \"repo_distributors\", \"last_publish\": null, \"auto_publish\": false, \"scheduled_publishes\": [], \"distributor_type_id\": \"yum_distributor\", \"_id\": {\"$oid\": \"5374fcc986d9a9321c14a325\"}, \"config\": {\"http\": true, \"relative_url\": \"/path\", \"https\": true}, \"id\": \"puppet_dist\"}], \"_ns\": \"repos\", \"notes\": {}, \"content_unit_counts\": {\"package_group\": 2, \"distribution\": 1, \"package_category\": 1, \"rpm\": 8, \"erratum\": 2}, \"importers\": [{\"repo_id\": \"integration_test_id\", \"_ns\": \"repo_importers\", \"importer_type_id\": \"yum_importer\", \"last_sync\": \"2014-05-15T18:43:38+01:00\", \"scheduled_syncs\": [], \"_id\": {\"$oid\": \"5374fcc986d9a9321c14a324\"}, \"config\": {\"feed\": \"file:///home/jlsherri/git/runcible/test/fixtures/repositories/zoo5\"}, \"id\": \"yum_importer\"}], \"_id\": {\"$oid\": \"5374fcc986d9a9321c14a323\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\"}"
+      encoding: ASCII-8BIT
+      string: "{\"scratchpad\": {\"checksum_type\": \"sha256\"}, \"display_name\": \"integration_test_id\", \"description\": null, \"distributors\": [{\"repo_id\": \"integration_test_id\", \"_ns\": \"repo_distributors\", \"last_publish\": null, \"auto_publish\": false, \"scheduled_publishes\": [], \"distributor_type_id\": \"yum_distributor\", \"_id\": {\"$oid\": \"543e840447078708d9ecb675\"}, \"config\": {\"http\": true, \"relative_url\": \"/path\", \"https\": true}, \"id\": \"puppet_dist\"}], \"_ns\": \"repos\", \"notes\": {}, \"last_unit_removed\": null, \"content_unit_counts\": {\"package_group\": 2, \"distribution\": 1, \"package_category\": 1, \"rpm\": 8, \"erratum\": 2}, \"last_unit_added\": {\"$date\": 1413383173757}, \"importers\": [{\"repo_id\": \"integration_test_id\", \"_ns\": \"repo_importers\", \"importer_type_id\": \"yum_importer\", \"last_sync\": \"2014-10-15T14:26:13Z\", \"scheduled_syncs\": [], \"_id\": {\"$oid\": \"543e840447078708d9ecb674\"}, \"config\": {\"feed\": \"file:///var/www/repositories/zoo5\"}, \"id\": \"yum_importer\"}], \"_id\": {\"$oid\": \"543e840447078708d9ecb673\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\"}"
     http_version: 
-  recorded_at: Thu, 15 May 2014 17:43:40 GMT
+  recorded_at: Wed, 15 Oct 2014 14:26:14 GMT
 - request: 
     method: post
-    uri: https://admin:admin@centos.installer/pulp/api/v2/consumers/integration_test_consumer_support/bindings//
+    uri: https://admin:admin@box.devel.com/pulp/api/v2/consumers/integration_test_consumer_support/bindings//
     body: 
       encoding: US-ASCII
       string: "{\"repo_id\":\"integration_test_id\",\"distributor_id\":\"puppet_dist\"}"
@@ -173,25 +179,25 @@ http_interactions:
       message: Accepted
     headers: 
       Date: 
-      - Thu, 15 May 2014 17:43:40 GMT
+      - Wed, 15 Oct 2014 14:26:14 GMT
       Server: 
-      - Apache/2.2.15 (CentOS)
+      - Apache/2.2.15 (Red Hat)
       Content-Encoding: 
       - utf-8
       Content-Length: 
-      - "961"
+      - "480"
       Connection: 
       - close
       Content-Type: 
       - application/json
     body: 
       encoding: US-ASCII
-      string: "{\"spawned_tasks\": [{\"exception\": null, \"task_type\": null, \"_href\": \"/pulp/api/v2/tasks/2a468a0c-af02-4a0d-bfdf-ca0aa3d3c92d/\", \"task_id\": \"2a468a0c-af02-4a0d-bfdf-ca0aa3d3c92d\", \"tags\": [\"pulp:consumer:integration_test_consumer_support\", \"pulp:repository:integration_test_id\", \"pulp:repository_distributor:puppet_dist\", \"pulp:action:agent_bind\"], \"finish_time\": null, \"_ns\": \"task_status\", \"start_time\": null, \"traceback\": null, \"spawned_tasks\": [], \"progress_report\": {}, \"queue\": \"agent\", \"state\": \"waiting\", \"result\": null, \"error\": null, \"_id\": {\"$oid\": \"5374fccd86d9a9321e2b90cf\"}, \"id\": \"5374fccd86d9a9321e2b90cf\"}], \"result\": {\"notify_agent\": true, \"repo_id\": \"integration_test_id\", \"deleted\": false, \"_ns\": \"consumer_bindings\", \"distributor_id\": \"puppet_dist\", \"consumer_id\": \"integration_test_consumer_support\", \"consumer_actions\": [], \"binding_config\": {}, \"_id\": {\"$oid\": \"5374fccd86d9a9321e2b90cc\"}, \"id\": \"5374fccd86d9a9321e2b90cc\"}, \"error\": null}"
+      string: "{\"spawned_tasks\": [{\"_href\": \"/pulp/api/v2/tasks/f8d7fcc9-3c10-40a4-b8ca-349f243271a8/\", \"task_id\": \"f8d7fcc9-3c10-40a4-b8ca-349f243271a8\"}], \"result\": {\"notify_agent\": true, \"repo_id\": \"integration_test_id\", \"deleted\": false, \"_ns\": \"consumer_bindings\", \"distributor_id\": \"puppet_dist\", \"consumer_id\": \"integration_test_consumer_support\", \"consumer_actions\": [], \"binding_config\": {}, \"_id\": {\"$oid\": \"543e840647078708d9ecb693\"}, \"id\": \"543e840647078708d9ecb693\"}, \"error\": null}"
     http_version: 
-  recorded_at: Thu, 15 May 2014 17:43:41 GMT
+  recorded_at: Wed, 15 Oct 2014 14:26:14 GMT
 - request: 
     method: post
-    uri: https://admin:admin@centos.installer/pulp/api/v2/consumer_groups/integration_test_consumer_group/actions/associate/
+    uri: https://admin:admin@box.devel.com/pulp/api/v2/consumer_groups/integration_test_consumer_group/actions/associate/
     body: 
       encoding: US-ASCII
       string: "{\"criteria\":{\"filters\":{\"id\":{\"$in\":[\"integration_test_consumer_support\"]}}}}"
@@ -212,9 +218,11 @@ http_interactions:
       message: OK
     headers: 
       Date: 
-      - Thu, 15 May 2014 17:43:41 GMT
+      - Wed, 15 Oct 2014 14:26:14 GMT
       Server: 
-      - Apache/2.2.15 (CentOS)
+      - Apache/2.2.15 (Red Hat)
+      Vary: 
+      - Accept-Encoding
       Content-Length: 
       - "37"
       Connection: 
@@ -222,13 +230,13 @@ http_interactions:
       Content-Type: 
       - application/json
     body: 
-      encoding: US-ASCII
+      encoding: ASCII-8BIT
       string: "[\"integration_test_consumer_support\"]"
     http_version: 
-  recorded_at: Thu, 15 May 2014 17:43:41 GMT
+  recorded_at: Wed, 15 Oct 2014 14:26:14 GMT
 - request: 
     method: post
-    uri: https://admin:admin@centos.installer/pulp/api/v2/consumer_groups/integration_test_consumer_group/actions/content/uninstall/
+    uri: https://admin:admin@box.devel.com/pulp/api/v2/consumer_groups/integration_test_consumer_group/actions/content/uninstall/
     body: 
       encoding: US-ASCII
       string: "{\"units\":[{\"unit_key\":{\"name\":\"zsh\"},\"type_id\":\"rpm\"}],\"options\":{}}"
@@ -249,9 +257,9 @@ http_interactions:
       message: Accepted
     headers: 
       Date: 
-      - Thu, 15 May 2014 17:43:41 GMT
+      - Wed, 15 Oct 2014 14:26:14 GMT
       Server: 
-      - Apache/2.2.15 (CentOS)
+      - Apache/2.2.15 (Red Hat)
       Content-Encoding: 
       - utf-8
       Content-Length: 
@@ -262,12 +270,12 @@ http_interactions:
       - application/json
     body: 
       encoding: US-ASCII
-      string: "{\"spawned_tasks\": [{\"_href\": \"/pulp/api/v2/tasks/ac4b4bb5-5359-4ade-91cb-d8cc8cfe2f5d/\", \"task_id\": \"ac4b4bb5-5359-4ade-91cb-d8cc8cfe2f5d\"}], \"result\": {}, \"error\": null}"
+      string: "{\"spawned_tasks\": [{\"_href\": \"/pulp/api/v2/tasks/2b8f035d-76b7-4132-a251-2f3bb526f1e6/\", \"task_id\": \"2b8f035d-76b7-4132-a251-2f3bb526f1e6\"}], \"result\": {}, \"error\": null}"
     http_version: 
-  recorded_at: Thu, 15 May 2014 17:43:41 GMT
+  recorded_at: Wed, 15 Oct 2014 14:26:15 GMT
 - request: 
     method: delete
-    uri: https://admin:admin@centos.installer/pulp/api/v2/consumers/integration_test_consumer_support/
+    uri: https://admin:admin@box.devel.com/pulp/api/v2/consumers/integration_test_consumer_support/
     body: 
       encoding: US-ASCII
       string: ""
@@ -286,9 +294,11 @@ http_interactions:
       message: OK
     headers: 
       Date: 
-      - Thu, 15 May 2014 17:43:41 GMT
+      - Wed, 15 Oct 2014 14:26:15 GMT
       Server: 
-      - Apache/2.2.15 (CentOS)
+      - Apache/2.2.15 (Red Hat)
+      Vary: 
+      - Accept-Encoding
       Content-Length: 
       - "4"
       Connection: 
@@ -296,13 +306,13 @@ http_interactions:
       Content-Type: 
       - application/json
     body: 
-      encoding: US-ASCII
+      encoding: ASCII-8BIT
       string: "null"
     http_version: 
-  recorded_at: Thu, 15 May 2014 17:43:41 GMT
+  recorded_at: Wed, 15 Oct 2014 14:26:15 GMT
 - request: 
     method: delete
-    uri: https://admin:admin@centos.installer/pulp/api/v2/consumer_groups/integration_test_consumer_group/
+    uri: https://admin:admin@box.devel.com/pulp/api/v2/consumer_groups/integration_test_consumer_group/
     body: 
       encoding: US-ASCII
       string: ""
@@ -321,9 +331,11 @@ http_interactions:
       message: OK
     headers: 
       Date: 
-      - Thu, 15 May 2014 17:43:41 GMT
+      - Wed, 15 Oct 2014 14:26:15 GMT
       Server: 
-      - Apache/2.2.15 (CentOS)
+      - Apache/2.2.15 (Red Hat)
+      Vary: 
+      - Accept-Encoding
       Content-Length: 
       - "4"
       Connection: 
@@ -331,8 +343,8 @@ http_interactions:
       Content-Type: 
       - application/json
     body: 
-      encoding: US-ASCII
+      encoding: ASCII-8BIT
       string: "null"
     http_version: 
-  recorded_at: Thu, 15 May 2014 17:43:41 GMT
-recorded_with: VCR 2.9.0
+  recorded_at: Wed, 15 Oct 2014 14:26:15 GMT
+recorded_with: VCR 2.9.3

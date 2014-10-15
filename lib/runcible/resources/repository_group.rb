@@ -41,7 +41,7 @@ module Runcible
       # @param  [String]                id        the ID of the group
       # @param  [Hash]                  optional  container for all optional parameters
       # @return [RestClient::Response]
-      def create(_id, optional = {})
+      def create(id, optional = {})
         required = required_params(binding.send(:local_variables), binding)
         call(:post, path, :payload => { :required => required, :optional => optional })
       end

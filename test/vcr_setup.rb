@@ -29,6 +29,12 @@ def configure_vcr(mode = :none)
     fail "Record flag is not applicable for mode 'none', please use with 'mode=all'"
   end
 
+  if mode != :none
+    unless system("sudo cp -rf #{File.dirname(__FILE__)}/fixtures/repositories /var/www/")
+      fail "Cannot copy repository fixtures to /var/www, ensure sudo access"
+    end
+  end
+
   VCR.configure do |c|
     c.cassette_library_dir = 'test/fixtures/vcr_cassettes'
     c.hook_into :webmock
@@ -40,8 +46,9 @@ def configure_vcr(mode = :none)
 
     c.default_cassette_options = {
       :record => mode,
-      :match_requests_on => [:method, :path, :params],
-      :serialize_with => :syck
+      :match_requests_on => [:method, :path, :params, :body_json],
+      :serialize_with => :syck,
+      :decode_compressed_response => true
     }
 
     begin

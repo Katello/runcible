@@ -2,7 +2,7 @@
 http_interactions: 
 - request: 
     method: post
-    uri: https://admin:admin@centos.installer/pulp/api/v2/repositories/integration_test_id_clone/actions/associate/
+    uri: https://admin:admin@box.devel.com/pulp/api/v2/repositories/integration_test_id_clone/actions/associate/
     body: 
       encoding: US-ASCII
       string: "{\"source_repo_id\":\"integration_test_id\",\"criteria\":{\"type_ids\":[\"package_group\"],\"filters\":{}}}"
@@ -23,9 +23,9 @@ http_interactions:
       message: Accepted
     headers: 
       Date: 
-      - Thu, 15 May 2014 17:42:28 GMT
+      - Wed, 15 Oct 2014 14:25:05 GMT
       Server: 
-      - Apache/2.2.15 (CentOS)
+      - Apache/2.2.15 (Red Hat)
       Content-Encoding: 
       - utf-8
       Content-Length: 
@@ -36,12 +36,12 @@ http_interactions:
       - application/json
     body: 
       encoding: US-ASCII
-      string: "{\"spawned_tasks\": [{\"_href\": \"/pulp/api/v2/tasks/badb6079-fec8-4d4d-be29-546a468b1feb/\", \"task_id\": \"badb6079-fec8-4d4d-be29-546a468b1feb\"}], \"result\": null, \"error\": null}"
+      string: "{\"spawned_tasks\": [{\"_href\": \"/pulp/api/v2/tasks/8fe8bc49-1ad8-4679-93ca-393e2d56aab9/\", \"task_id\": \"8fe8bc49-1ad8-4679-93ca-393e2d56aab9\"}], \"result\": null, \"error\": null}"
     http_version: 
-  recorded_at: Thu, 15 May 2014 17:42:28 GMT
+  recorded_at: Wed, 15 Oct 2014 14:25:05 GMT
 - request: 
     method: get
-    uri: https://admin:admin@centos.installer/pulp/api/v2/tasks/badb6079-fec8-4d4d-be29-546a468b1feb/
+    uri: https://admin:admin@box.devel.com/pulp/api/v2/tasks/8fe8bc49-1ad8-4679-93ca-393e2d56aab9/
     body: 
       encoding: US-ASCII
       string: ""
@@ -60,9 +60,11 @@ http_interactions:
       message: OK
     headers: 
       Date: 
-      - Thu, 15 May 2014 17:42:29 GMT
+      - Wed, 15 Oct 2014 14:25:06 GMT
       Server: 
-      - Apache/2.2.15 (CentOS)
+      - Apache/2.2.15 (Red Hat)
+      Vary: 
+      - Accept-Encoding
       Content-Length: 
       - "902"
       Connection: 
@@ -70,13 +72,13 @@ http_interactions:
       Content-Type: 
       - application/json
     body: 
-      encoding: US-ASCII
-      string: "{\"exception\": null, \"task_type\": \"pulp.server.managers.repo.unit_association.associate_from_repo\", \"_href\": \"/pulp/api/v2/tasks/badb6079-fec8-4d4d-be29-546a468b1feb/\", \"task_id\": \"badb6079-fec8-4d4d-be29-546a468b1feb\", \"tags\": [\"pulp:repository:integration_test_id_clone\", \"pulp:repository:integration_test_id\", \"pulp:action:associate\"], \"finish_time\": \"2014-05-15T17:42:28Z\", \"_ns\": \"task_status\", \"start_time\": \"2014-05-15T17:42:28Z\", \"traceback\": null, \"spawned_tasks\": [], \"progress_report\": {}, \"queue\": \"reserved_resource_worker-1@centos.installer\", \"state\": \"finished\", \"result\": {\"units_successful\": [{\"unit_key\": {\"repo_id\": \"integration_test_id_clone\", \"id\": \"bird\"}, \"type_id\": \"package_group\"}, {\"unit_key\": {\"repo_id\": \"integration_test_id_clone\", \"id\": \"mammal\"}, \"type_id\": \"package_group\"}]}, \"error\": null, \"_id\": {\"$oid\": \"5374fc843c307ec505e85fe5\"}, \"id\": \"5374fc8486d9a9321e2b9057\"}"
+      encoding: ASCII-8BIT
+      string: "{\"exception\": null, \"task_type\": \"pulp.server.managers.repo.unit_association.associate_from_repo\", \"_href\": \"/pulp/api/v2/tasks/8fe8bc49-1ad8-4679-93ca-393e2d56aab9/\", \"task_id\": \"8fe8bc49-1ad8-4679-93ca-393e2d56aab9\", \"tags\": [\"pulp:repository:integration_test_id_clone\", \"pulp:repository:integration_test_id\", \"pulp:action:associate\"], \"finish_time\": \"2014-10-15T14:25:05Z\", \"_ns\": \"task_status\", \"start_time\": \"2014-10-15T14:25:05Z\", \"traceback\": null, \"spawned_tasks\": [], \"progress_report\": {}, \"queue\": \"reserved_resource_worker-0@box.devel.com.dq\", \"state\": \"finished\", \"result\": {\"units_successful\": [{\"unit_key\": {\"repo_id\": \"integration_test_id_clone\", \"id\": \"bird\"}, \"type_id\": \"package_group\"}, {\"unit_key\": {\"repo_id\": \"integration_test_id_clone\", \"id\": \"mammal\"}, \"type_id\": \"package_group\"}]}, \"error\": null, \"_id\": {\"$oid\": \"543e83c1505c6f3b4b509b62\"}, \"id\": \"543e83c147078708d9ecb4eb\"}"
     http_version: 
-  recorded_at: Thu, 15 May 2014 17:42:29 GMT
+  recorded_at: Wed, 15 Oct 2014 14:25:06 GMT
 - request: 
     method: post
-    uri: https://admin:admin@centos.installer/pulp/api/v2/repositories/integration_test_id_clone/search/units/
+    uri: https://admin:admin@box.devel.com/pulp/api/v2/repositories/integration_test_id_clone/search/units/
     body: 
       encoding: US-ASCII
       string: "{\"criteria\":{\"type_ids\":[\"package_group\"]}}"
@@ -97,9 +99,11 @@ http_interactions:
       message: OK
     headers: 
       Date: 
-      - Thu, 15 May 2014 17:42:29 GMT
+      - Wed, 15 Oct 2014 14:25:06 GMT
       Server: 
-      - Apache/2.2.15 (CentOS)
+      - Apache/2.2.15 (Red Hat)
+      Vary: 
+      - Accept-Encoding
       Content-Length: 
       - "1836"
       Connection: 
@@ -107,13 +111,13 @@ http_interactions:
       Content-Type: 
       - application/json
     body: 
-      encoding: US-ASCII
-      string: "[{\"updated\": \"2014-05-15T16:42:28Z\", \"repo_id\": \"integration_test_id_clone\", \"created\": \"2014-05-15T16:42:28Z\", \"_ns\": \"repo_content_units\", \"unit_id\": \"64b4d336-56cb-4b5f-873f-c7f55548b09e\", \"metadata\": {\"_storage_path\": null, \"mandatory_package_names\": [\"penguin\"], \"repo_id\": \"integration_test_id_clone\", \"translated_name\": {}, \"description\": null, \"user_visible\": true, \"default\": true, \"_ns\": \"units_package_group\", \"_last_updated\": 1400175748, \"optional_package_names\": [], \"id\": \"bird\", \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"64b4d336-56cb-4b5f-873f-c7f55548b09e\", \"display_order\": 1024, \"name\": \"bird\"}, \"unit_type_id\": \"package_group\", \"owner_type\": \"user\", \"_id\": {\"$oid\": \"5374fc8486d9a932edcb1fe0\"}, \"id\": \"5374fc8486d9a932edcb1fe0\", \"owner_id\": \"SYSTEM\"}, {\"updated\": \"2014-05-15T16:42:28Z\", \"repo_id\": \"integration_test_id_clone\", \"created\": \"2014-05-15T16:42:28Z\", \"_ns\": \"repo_content_units\", \"unit_id\": \"ad6aaf32-c0a1-4f8b-85cf-57aaf87984cb\", \"metadata\": {\"_storage_path\": null, \"mandatory_package_names\": [\"elephant,giraffe,cheetah,lion,monkey,penguin,squirrel,walrus\", \"penguin\"], \"repo_id\": \"integration_test_id_clone\", \"translated_name\": {}, \"description\": null, \"user_visible\": true, \"default\": true, \"_ns\": \"units_package_group\", \"_last_updated\": 1400175748, \"optional_package_names\": [], \"id\": \"mammal\", \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"ad6aaf32-c0a1-4f8b-85cf-57aaf87984cb\", \"display_order\": 1024, \"name\": \"mammal\"}, \"unit_type_id\": \"package_group\", \"owner_type\": \"user\", \"_id\": {\"$oid\": \"5374fc8486d9a932edcb1fe1\"}, \"id\": \"5374fc8486d9a932edcb1fe1\", \"owner_id\": \"SYSTEM\"}]"
+      encoding: ASCII-8BIT
+      string: "[{\"updated\": \"2014-10-15T14:25:05Z\", \"repo_id\": \"integration_test_id_clone\", \"created\": \"2014-10-15T14:25:05Z\", \"_ns\": \"repo_content_units\", \"unit_id\": \"2582e0c5-5615-4dfb-8ea3-f77b8e9ef879\", \"metadata\": {\"_storage_path\": null, \"mandatory_package_names\": [\"penguin\"], \"repo_id\": \"integration_test_id_clone\", \"translated_name\": {}, \"description\": null, \"user_visible\": true, \"default\": true, \"_ns\": \"units_package_group\", \"_last_updated\": 1413383105, \"optional_package_names\": [], \"id\": \"bird\", \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"2582e0c5-5615-4dfb-8ea3-f77b8e9ef879\", \"display_order\": 1024, \"name\": \"bird\"}, \"unit_type_id\": \"package_group\", \"owner_type\": \"user\", \"_id\": {\"$oid\": \"543e83c14707870948c0aa5b\"}, \"id\": \"543e83c14707870948c0aa5b\", \"owner_id\": \"SYSTEM\"}, {\"updated\": \"2014-10-15T14:25:05Z\", \"repo_id\": \"integration_test_id_clone\", \"created\": \"2014-10-15T14:25:05Z\", \"_ns\": \"repo_content_units\", \"unit_id\": \"5adc1af7-99c6-4ced-bdf2-b4984d3fdfcb\", \"metadata\": {\"_storage_path\": null, \"mandatory_package_names\": [\"elephant,giraffe,cheetah,lion,monkey,penguin,squirrel,walrus\", \"penguin\"], \"repo_id\": \"integration_test_id_clone\", \"translated_name\": {}, \"description\": null, \"user_visible\": true, \"default\": true, \"_ns\": \"units_package_group\", \"_last_updated\": 1413383105, \"optional_package_names\": [], \"id\": \"mammal\", \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"5adc1af7-99c6-4ced-bdf2-b4984d3fdfcb\", \"display_order\": 1024, \"name\": \"mammal\"}, \"unit_type_id\": \"package_group\", \"owner_type\": \"user\", \"_id\": {\"$oid\": \"543e83c14707870948c0aa5c\"}, \"id\": \"543e83c14707870948c0aa5c\", \"owner_id\": \"SYSTEM\"}]"
     http_version: 
-  recorded_at: Thu, 15 May 2014 17:42:29 GMT
+  recorded_at: Wed, 15 Oct 2014 14:25:06 GMT
 - request: 
     method: post
-    uri: https://admin:admin@centos.installer/pulp/api/v2/repositories/integration_test_id/search/units/
+    uri: https://admin:admin@box.devel.com/pulp/api/v2/repositories/integration_test_id/search/units/
     body: 
       encoding: US-ASCII
       string: "{\"criteria\":{\"type_ids\":[\"package_group\"]}}"
@@ -134,9 +138,11 @@ http_interactions:
       message: OK
     headers: 
       Date: 
-      - Thu, 15 May 2014 17:42:29 GMT
+      - Wed, 15 Oct 2014 14:25:06 GMT
       Server: 
-      - Apache/2.2.15 (CentOS)
+      - Apache/2.2.15 (Red Hat)
+      Vary: 
+      - Accept-Encoding
       Content-Length: 
       - "1832"
       Connection: 
@@ -144,8 +150,8 @@ http_interactions:
       Content-Type: 
       - application/json
     body: 
-      encoding: US-ASCII
-      string: "[{\"updated\": \"2014-05-15T16:42:27Z\", \"repo_id\": \"integration_test_id\", \"created\": \"2014-05-15T16:42:27Z\", \"_ns\": \"repo_content_units\", \"unit_id\": \"6e8df550-55bc-4454-a8fb-224dd7c40a1f\", \"metadata\": {\"_storage_path\": null, \"mandatory_package_names\": [\"penguin\"], \"repo_id\": \"integration_test_id\", \"translated_name\": {}, \"description\": null, \"user_visible\": true, \"default\": true, \"_ns\": \"units_package_group\", \"_last_updated\": 1400175747, \"optional_package_names\": [], \"id\": \"bird\", \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"6e8df550-55bc-4454-a8fb-224dd7c40a1f\", \"display_order\": 1024, \"name\": \"bird\"}, \"unit_type_id\": \"package_group\", \"owner_type\": \"importer\", \"_id\": {\"$oid\": \"5374fc8386d9a932edcb1fdb\"}, \"id\": \"5374fc8386d9a932edcb1fdb\", \"owner_id\": \"yum_importer\"}, {\"updated\": \"2014-05-15T16:42:27Z\", \"repo_id\": \"integration_test_id\", \"created\": \"2014-05-15T16:42:27Z\", \"_ns\": \"repo_content_units\", \"unit_id\": \"d1143663-b130-4953-a9c2-2f42a331d5fa\", \"metadata\": {\"_storage_path\": null, \"mandatory_package_names\": [\"elephant,giraffe,cheetah,lion,monkey,penguin,squirrel,walrus\", \"penguin\"], \"repo_id\": \"integration_test_id\", \"translated_name\": {}, \"description\": null, \"user_visible\": true, \"default\": true, \"_ns\": \"units_package_group\", \"_last_updated\": 1400175747, \"optional_package_names\": [], \"id\": \"mammal\", \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"d1143663-b130-4953-a9c2-2f42a331d5fa\", \"display_order\": 1024, \"name\": \"mammal\"}, \"unit_type_id\": \"package_group\", \"owner_type\": \"importer\", \"_id\": {\"$oid\": \"5374fc8386d9a932edcb1fdc\"}, \"id\": \"5374fc8386d9a932edcb1fdc\", \"owner_id\": \"yum_importer\"}]"
+      encoding: ASCII-8BIT
+      string: "[{\"updated\": \"2014-10-15T14:25:04Z\", \"repo_id\": \"integration_test_id\", \"created\": \"2014-10-15T14:25:04Z\", \"_ns\": \"repo_content_units\", \"unit_id\": \"4bc735ab-e634-45b7-bb65-45a639a86251\", \"metadata\": {\"_storage_path\": null, \"mandatory_package_names\": [\"penguin\"], \"repo_id\": \"integration_test_id\", \"translated_name\": {}, \"description\": null, \"user_visible\": true, \"default\": true, \"_ns\": \"units_package_group\", \"_last_updated\": 1413383104, \"optional_package_names\": [], \"id\": \"bird\", \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"4bc735ab-e634-45b7-bb65-45a639a86251\", \"display_order\": 1024, \"name\": \"bird\"}, \"unit_type_id\": \"package_group\", \"owner_type\": \"importer\", \"_id\": {\"$oid\": \"543e83c047078709559b2223\"}, \"id\": \"543e83c047078709559b2223\", \"owner_id\": \"yum_importer\"}, {\"updated\": \"2014-10-15T14:25:04Z\", \"repo_id\": \"integration_test_id\", \"created\": \"2014-10-15T14:25:04Z\", \"_ns\": \"repo_content_units\", \"unit_id\": \"6728c381-9bf2-4f1b-a56d-d40de9ce09ec\", \"metadata\": {\"_storage_path\": null, \"mandatory_package_names\": [\"elephant,giraffe,cheetah,lion,monkey,penguin,squirrel,walrus\", \"penguin\"], \"repo_id\": \"integration_test_id\", \"translated_name\": {}, \"description\": null, \"user_visible\": true, \"default\": true, \"_ns\": \"units_package_group\", \"_last_updated\": 1413383104, \"optional_package_names\": [], \"id\": \"mammal\", \"translated_description\": {}, \"conditional_package_names\": [], \"default_package_names\": [], \"_content_type_id\": \"package_group\", \"langonly\": null, \"_id\": \"6728c381-9bf2-4f1b-a56d-d40de9ce09ec\", \"display_order\": 1024, \"name\": \"mammal\"}, \"unit_type_id\": \"package_group\", \"owner_type\": \"importer\", \"_id\": {\"$oid\": \"543e83c047078709559b2224\"}, \"id\": \"543e83c047078709559b2224\", \"owner_id\": \"yum_importer\"}]"
     http_version: 
-  recorded_at: Thu, 15 May 2014 17:42:29 GMT
-recorded_with: VCR 2.9.0
+  recorded_at: Wed, 15 Oct 2014 14:25:06 GMT
+recorded_with: VCR 2.9.3

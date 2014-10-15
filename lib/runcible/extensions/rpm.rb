@@ -39,7 +39,7 @@ module Runcible
       end
 
       # This function is not implemented for RPMs since they do not have content IDs
-      def unassociate_ids_from_repo(_repo_id, _ids)
+      def unassociate_ids_from_repo(repo_id, ids)
         fail NotImplementedError
       end
     end

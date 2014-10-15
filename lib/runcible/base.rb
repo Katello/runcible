@@ -63,6 +63,7 @@ module Runcible
       client_options = {}
       client_options[:timeout] =  clone_config[:timeout] if clone_config[:timeout]
       client_options[:open_timeout] =  clone_config[:open_timeout] if clone_config[:open_timeout]
+      client_options[:verify_ssl] =  clone_config[:verify_ssl] unless clone_config[:verify_ssl].nil?
 
       if clone_config[:oauth]
         headers = add_oauth_header(method, path, headers) if clone_config[:oauth]
