@@ -14,5 +14,5 @@ group :test do
 end
 
 group :debug do
-  gem 'debugger'
+  gem 'debugger' if RUBY_VERSION == "1.9.3"
 end
