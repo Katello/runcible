@@ -283,6 +283,15 @@ module Runcible
         unit_search(id, criteria).map { |i| i['metadata'].with_indifferent_access }
       end
 
+      # Updates the docker tags in a repo
+      # @param  [String]  id the ID of the repository
+      # @param [Hash]     tags for an image in the following format
+      #                   the [{:image_id => <image hash>, :tag =>"value"}]
+      # @return [RestClient::Response]
+      def update_docker_tags(id, tags)
+        update(id, :scratchpad => {:tags =>  tags})
+      end
+
       # Creates or updates a sync schedule for a repository
       #
       # @param  [String]                repo_id   the ID of the repository
