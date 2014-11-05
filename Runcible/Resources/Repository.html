@@ -725,8 +725,8 @@ repositories.</p>
     <td>
       <pre class="code"><span class="info file"># File 'lib/runcible/resources/repository.rb', line 34</span>
 
-<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_path'>path</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
-  <span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span> <span class='op'>==</span> <span class='kw'>nil</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>repositories/</span><span class='tstring_end'>&quot;</span></span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>repositories/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_id'>id</span><span class='rbrace'>}</span><span class='tstring_content'>/</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_path'>path</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>repositories/</span><span class='tstring_end'>'</span></span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>repositories/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_id'>id</span><span class='rbrace'>}</span><span class='tstring_content'>/</span><span class='tstring_end'>&quot;</span></span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -856,8 +856,8 @@ repositories.</p>
     <td>
       <pre class="code"><span class="info file"># File 'lib/runcible/resources/repository.rb', line 110</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_associate_distributor'>associate_distributor</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_distributor_type_id'>distributor_type_id</span><span class='comma'>,</span> <span class='id identifier rubyid_distributor_config'>distributor_config</span><span class='comma'>,</span> <span class='id identifier rubyid_optional'>optional</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_required'>required</span> <span class='op'>=</span> <span class='id identifier rubyid_required_params'>required_params</span><span class='lparen'>(</span><span class='id identifier rubyid_binding'>binding</span><span class='period'>.</span><span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='symbol'>:local_variables</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_binding'>binding</span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>id</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_associate_distributor'>associate_distributor</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_distributor_type_id'>distributor_type_id</span><span class='comma'>,</span> <span class='id identifier rubyid_distributor_config'>distributor_config</span><span class='comma'>,</span> <span class='id identifier rubyid_optional'>optional</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_required'>required</span> <span class='op'>=</span> <span class='id identifier rubyid_required_params'>required_params</span><span class='lparen'>(</span><span class='id identifier rubyid_binding'>binding</span><span class='period'>.</span><span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='symbol'>:local_variables</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_binding'>binding</span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>id</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='symbol'>:post</span><span class='comma'>,</span> <span class='id identifier rubyid_path'>path</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_id'>id</span><span class='rbrace'>}</span><span class='tstring_content'>/distributors</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='comma'>,</span> <span class='symbol'>:payload</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span> <span class='symbol'>:required</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_required'>required</span><span class='comma'>,</span> <span class='symbol'>:optional</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_optional'>optional</span> <span class='rbrace'>}</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -1058,7 +1058,7 @@ repositories.</p>
     <td>
       <pre class="code"><span class="info file"># File 'lib/runcible/resources/repository.rb', line 43</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_create'>create</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_optional'>optional</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_create'>create</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_optional'>optional</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_required'>required</span> <span class='op'>=</span> <span class='id identifier rubyid_required_params'>required_params</span><span class='lparen'>(</span><span class='id identifier rubyid_binding'>binding</span><span class='period'>.</span><span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='symbol'>:local_variables</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_binding'>binding</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='symbol'>:post</span><span class='comma'>,</span> <span class='id identifier rubyid_path'>path</span><span class='comma'>,</span> <span class='symbol'>:payload</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span> <span class='symbol'>:required</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_required'>required</span><span class='comma'>,</span> <span class='symbol'>:optional</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_optional'>optional</span> <span class='rbrace'>}</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
@@ -1216,12 +1216,12 @@ repositories.</p>
       <pre class="lines">
 
 
-179
 180
-181</pre>
+181
+182</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/runcible/resources/repository.rb', line 179</span>
+      <pre class="code"><span class="info file"># File 'lib/runcible/resources/repository.rb', line 180</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_delete_distributor'>delete_distributor</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_distributor_id'>distributor_id</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='symbol'>:delete</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_path'>path</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='tstring_content'>/distributors/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_distributor_id'>distributor_id</span><span class='rbrace'>}</span><span class='tstring_content'>/</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -1306,12 +1306,12 @@ repositories.</p>
       <pre class="lines">
 
 
-199
 200
-201</pre>
+201
+202</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/runcible/resources/repository.rb', line 199</span>
+      <pre class="code"><span class="info file"># File 'lib/runcible/resources/repository.rb', line 200</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_delete_importer'>delete_importer</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_importer_id'>importer_id</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='symbol'>:delete</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_path'>path</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='tstring_content'>/importers/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_importer_id'>importer_id</span><span class='rbrace'>}</span><span class='tstring_content'>/</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -1416,13 +1416,15 @@ repositories.</p>
 
 170
 171
-172</pre>
+172
+173</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/runcible/resources/repository.rb', line 170</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_publish'>publish</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_distributor_id'>distributor_id</span><span class='comma'>,</span> <span class='id identifier rubyid_optional'>optional</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='symbol'>:post</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_path'>path</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='tstring_content'>actions/publish/</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='symbol'>:payload</span><span class='op'>=&gt;</span><span class='lbrace'>{</span><span class='symbol'>:required</span><span class='op'>=&gt;</span><span class='lbrace'>{</span><span class='symbol'>:id</span><span class='op'>=&gt;</span><span class='id identifier rubyid_distributor_id'>distributor_id</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='symbol'>:optional</span><span class='op'>=&gt;</span><span class='id identifier rubyid_optional'>optional</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_publish'>publish</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_distributor_id'>distributor_id</span><span class='comma'>,</span> <span class='id identifier rubyid_optional'>optional</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='symbol'>:post</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_path'>path</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='tstring_content'>actions/publish/</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+       <span class='symbol'>:payload</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span><span class='symbol'>:required</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span><span class='symbol'>:id</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_distributor_id'>distributor_id</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='symbol'>:optional</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_optional'>optional</span><span class='rbrace'>}</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1491,15 +1493,15 @@ repositories</p>
       <pre class="lines">
 
 
-218
 219
-220</pre>
+220
+221</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/runcible/resources/repository.rb', line 218</span>
+      <pre class="code"><span class="info file"># File 'lib/runcible/resources/repository.rb', line 219</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_regenerate_applicability'>regenerate_applicability</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='symbol'>:post</span><span class='comma'>,</span> <span class='id identifier rubyid_path'>path</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>actions/content/regenerate_applicability/</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='comma'>,</span> <span class='symbol'>:payload</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span> <span class='symbol'>:required</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_options'>options</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='symbol'>:post</span><span class='comma'>,</span> <span class='id identifier rubyid_path'>path</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>actions/content/regenerate_applicability/</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span><span class='comma'>,</span> <span class='symbol'>:payload</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span> <span class='symbol'>:required</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_options'>options</span><span class='rbrace'>}</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1590,7 +1592,7 @@ repositories</p>
     <td>
       <pre class="code"><span class="info file"># File 'lib/runcible/resources/repository.rb', line 53</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_retrieve'>retrieve</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_retrieve'>retrieve</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='symbol'>:get</span><span class='comma'>,</span> <span class='id identifier rubyid_path'>path</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='symbol'>:params</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -1666,7 +1668,7 @@ repositories</p>
     <td>
       <pre class="code"><span class="info file"># File 'lib/runcible/resources/repository.rb', line 78</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_retrieve_all'>retrieve_all</span><span class='lparen'>(</span><span class='id identifier rubyid_optional'>optional</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_retrieve_all'>retrieve_all</span><span class='lparen'>(</span><span class='id identifier rubyid_optional'>optional</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='symbol'>:get</span><span class='comma'>,</span> <span class='id identifier rubyid_path'>path</span><span class='comma'>,</span> <span class='symbol'>:payload</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span> <span class='symbol'>:optional</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_optional'>optional</span> <span class='rbrace'>}</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -1759,9 +1761,9 @@ repositories</p>
     <td>
       <pre class="code"><span class="info file"># File 'lib/runcible/resources/repository.rb', line 87</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_search'>search</span><span class='lparen'>(</span><span class='id identifier rubyid_criteria'>criteria</span><span class='comma'>,</span> <span class='id identifier rubyid_optional'>optional</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_search'>search</span><span class='lparen'>(</span><span class='id identifier rubyid_criteria'>criteria</span><span class='comma'>,</span> <span class='id identifier rubyid_optional'>optional</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_required'>required</span> <span class='op'>=</span> <span class='id identifier rubyid_required_params'>required_params</span><span class='lparen'>(</span><span class='id identifier rubyid_binding'>binding</span><span class='period'>.</span><span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='symbol'>:local_variables</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_binding'>binding</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='symbol'>:post</span><span class='comma'>,</span> <span class='id identifier rubyid_path'>path</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>search</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='comma'>,</span> <span class='symbol'>:payload</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span> <span class='symbol'>:required</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_required'>required</span><span class='comma'>,</span> <span class='symbol'>:optional</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_optional'>optional</span> <span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='symbol'>:post</span><span class='comma'>,</span> <span class='id identifier rubyid_path'>path</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>search</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span><span class='comma'>,</span> <span class='symbol'>:payload</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span> <span class='symbol'>:required</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_required'>required</span><span class='comma'>,</span> <span class='symbol'>:optional</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_optional'>optional</span> <span class='rbrace'>}</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1852,7 +1854,7 @@ repositories</p>
     <td>
       <pre class="code"><span class="info file"># File 'lib/runcible/resources/repository.rb', line 120</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_sync'>sync</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_optional'>optional</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_sync'>sync</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_optional'>optional</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='symbol'>:post</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_path'>path</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='tstring_content'>actions/sync/</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='symbol'>:payload</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span> <span class='symbol'>:optional</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_optional'>optional</span> <span class='rbrace'>}</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -2020,8 +2022,8 @@ repositories</p>
     <td>
       <pre class="code"><span class="info file"># File 'lib/runcible/resources/repository.rb', line 149</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_unassociate_units'>unassociate_units</span><span class='lparen'>(</span><span class='id identifier rubyid_source_repo_id'>source_repo_id</span><span class='comma'>,</span> <span class='id identifier rubyid_criteria'>criteria</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_required'>required</span> <span class='op'>=</span> <span class='id identifier rubyid_required_params'>required_params</span><span class='lparen'>(</span><span class='id identifier rubyid_binding'>binding</span><span class='period'>.</span><span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='symbol'>:local_variables</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_binding'>binding</span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>source_repo_id</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_unassociate_units'>unassociate_units</span><span class='lparen'>(</span><span class='id identifier rubyid_source_repo_id'>source_repo_id</span><span class='comma'>,</span> <span class='id identifier rubyid_criteria'>criteria</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_required'>required</span> <span class='op'>=</span> <span class='id identifier rubyid_required_params'>required_params</span><span class='lparen'>(</span><span class='id identifier rubyid_binding'>binding</span><span class='period'>.</span><span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='symbol'>:local_variables</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_binding'>binding</span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>source_repo_id</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='symbol'>:post</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_path'>path</span><span class='lparen'>(</span><span class='id identifier rubyid_source_repo_id'>source_repo_id</span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='tstring_content'>actions/unassociate/</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
        <span class='symbol'>:payload</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span> <span class='symbol'>:required</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_required'>required</span> <span class='rbrace'>}</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
@@ -2132,8 +2134,8 @@ repositories</p>
     <td>
       <pre class="code"><span class="info file"># File 'lib/runcible/resources/repository.rb', line 138</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_unit_copy'>unit_copy</span><span class='lparen'>(</span><span class='id identifier rubyid_destination_repo_id'>destination_repo_id</span><span class='comma'>,</span> <span class='id identifier rubyid_source_repo_id'>source_repo_id</span><span class='comma'>,</span> <span class='id identifier rubyid_optional'>optional</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_required'>required</span> <span class='op'>=</span> <span class='id identifier rubyid_required_params'>required_params</span><span class='lparen'>(</span><span class='id identifier rubyid_binding'>binding</span><span class='period'>.</span><span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='symbol'>:local_variables</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_binding'>binding</span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>destination_repo_id</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_unit_copy'>unit_copy</span><span class='lparen'>(</span><span class='id identifier rubyid_destination_repo_id'>destination_repo_id</span><span class='comma'>,</span> <span class='id identifier rubyid_source_repo_id'>source_repo_id</span><span class='comma'>,</span> <span class='id identifier rubyid_optional'>optional</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_required'>required</span> <span class='op'>=</span> <span class='id identifier rubyid_required_params'>required_params</span><span class='lparen'>(</span><span class='id identifier rubyid_binding'>binding</span><span class='period'>.</span><span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='symbol'>:local_variables</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_binding'>binding</span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>destination_repo_id</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='symbol'>:post</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_path'>path</span><span class='lparen'>(</span><span class='id identifier rubyid_destination_repo_id'>destination_repo_id</span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='tstring_content'>actions/associate/</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
        <span class='symbol'>:payload</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span> <span class='symbol'>:required</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_required'>required</span><span class='comma'>,</span> <span class='symbol'>:optional</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_optional'>optional</span> <span class='rbrace'>}</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
@@ -2226,8 +2228,8 @@ repositories</p>
     <td>
       <pre class="code"><span class="info file"># File 'lib/runcible/resources/repository.rb', line 160</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_unit_search'>unit_search</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_criteria'>criteria</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='symbol'>:post</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_path'>path</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='tstring_content'>search/units/</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='symbol'>:payload</span><span class='op'>=&gt;</span><span class='lbrace'>{</span><span class='symbol'>:required</span><span class='op'>=&gt;</span><span class='lbrace'>{</span><span class='symbol'>:criteria</span><span class='op'>=&gt;</span><span class='id identifier rubyid_criteria'>criteria</span><span class='rbrace'>}</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_unit_search'>unit_search</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_criteria'>criteria</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='symbol'>:post</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_path'>path</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='tstring_content'>search/units/</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='symbol'>:payload</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span><span class='symbol'>:required</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span><span class='symbol'>:criteria</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_criteria'>criteria</span><span class='rbrace'>}</span><span class='rbrace'>}</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -2318,7 +2320,7 @@ repositories</p>
     <td>
       <pre class="code"><span class="info file"># File 'lib/runcible/resources/repository.rb', line 62</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_update'>update</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_optional'>optional</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_update'>update</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_optional'>optional</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='symbol'>:put</span><span class='comma'>,</span> <span class='id identifier rubyid_path'>path</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='symbol'>:payload</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span> <span class='symbol'>:delta</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_optional'>optional</span> <span class='rbrace'>}</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -2417,16 +2419,16 @@ repositories</p>
       <pre class="lines">
 
 
-189
 190
 191
-192</pre>
+192
+193</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/runcible/resources/repository.rb', line 189</span>
+      <pre class="code"><span class="info file"># File 'lib/runcible/resources/repository.rb', line 190</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_update_distributor'>update_distributor</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_distributor_id'>distributor_id</span><span class='comma'>,</span> <span class='id identifier rubyid_distributor_config'>distributor_config</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_required'>required</span> <span class='op'>=</span> <span class='id identifier rubyid_required_params'>required_params</span><span class='lparen'>(</span><span class='id identifier rubyid_binding'>binding</span><span class='period'>.</span><span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='symbol'>:local_variables</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_binding'>binding</span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>id</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>distributor_id</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_required'>required</span> <span class='op'>=</span> <span class='id identifier rubyid_required_params'>required_params</span><span class='lparen'>(</span><span class='id identifier rubyid_binding'>binding</span><span class='period'>.</span><span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='symbol'>:local_variables</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_binding'>binding</span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>id</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>distributor_id</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='symbol'>:put</span><span class='comma'>,</span> <span class='id identifier rubyid_path'>path</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_id'>id</span><span class='rbrace'>}</span><span class='tstring_content'>/distributors/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_distributor_id'>distributor_id</span><span class='rbrace'>}</span><span class='tstring_content'>/</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='comma'>,</span> <span class='symbol'>:payload</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span> <span class='symbol'>:required</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_required'>required</span><span class='rbrace'>}</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -2525,16 +2527,16 @@ repositories</p>
       <pre class="lines">
 
 
-209
 210
 211
-212</pre>
+212
+213</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/runcible/resources/repository.rb', line 209</span>
+      <pre class="code"><span class="info file"># File 'lib/runcible/resources/repository.rb', line 210</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_update_importer'>update_importer</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_importer_id'>importer_id</span><span class='comma'>,</span> <span class='id identifier rubyid_importer_config'>importer_config</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_required'>required</span> <span class='op'>=</span> <span class='id identifier rubyid_required_params'>required_params</span><span class='lparen'>(</span><span class='id identifier rubyid_binding'>binding</span><span class='period'>.</span><span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='symbol'>:local_variables</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_binding'>binding</span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>id</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>importer_id</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_required'>required</span> <span class='op'>=</span> <span class='id identifier rubyid_required_params'>required_params</span><span class='lparen'>(</span><span class='id identifier rubyid_binding'>binding</span><span class='period'>.</span><span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='symbol'>:local_variables</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_binding'>binding</span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>id</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>importer_id</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='symbol'>:put</span><span class='comma'>,</span> <span class='id identifier rubyid_path'>path</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_id'>id</span><span class='rbrace'>}</span><span class='tstring_content'>/importers/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_importer_id'>importer_id</span><span class='rbrace'>}</span><span class='tstring_content'>/</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='comma'>,</span> <span class='symbol'>:payload</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span> <span class='symbol'>:required</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_required'>required</span><span class='rbrace'>}</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -2547,7 +2549,7 @@ repositories</p>
 </div>
 
     <div id="footer">
-  Generated on Wed Oct  8 15:53:57 2014 by
+  Generated on Wed Nov  5 10:52:01 2014 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.3 (ruby-1.9.3).
 </div>
