@@ -122,6 +122,14 @@ mkdir -p %{buildroot}%{gem_docdir}
 %doc %{gem_instdir}/CONTRIBUTING.md
 
 %changelog
+* Wed Nov 05 2014 Justin Sherrill <jsherril@redhat.com> 1.3.0-1
+- Fixes #8079 - Can update docker tags in repository (paji@redhat.com)
+- only support debugger on ruby 1.9.3 (jsherril@redhat.com)
+- fixing runcible errors caused by rubocop changes (jsherril@redhat.com)
+- Fixes #7880 - Rubocop enabled the runcible tests (paji@redhat.com)
+- Ref #7880: Rubocop fixes update (paji@redhat.com)
+- Fixes #7880 - Add rubocop to runcible (daviddavis@redhat.com)
+
 * Wed Oct 08 2014 Justin Sherrill <jsherril@redhat.com> 1.2.0-1
 - Fixes #7765 - Add docker methods to repo (daviddavis@redhat.com)
 - Fixes #7617 - CRUD docker repo bindings (paji@redhat.com)
