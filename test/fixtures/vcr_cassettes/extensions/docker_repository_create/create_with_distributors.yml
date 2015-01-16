@@ -1,118 +1,170 @@
---- 
-http_interactions: 
-- request: 
-    method: post
-    uri: https://admin:admin@box.devel.com/pulp/api/v2/repositories/
-    body: 
-      encoding: US-ASCII
-      string: "{\"id\":\"integration_test_id\",\"distributors\":[{\"distributor_type_id\":\"docker_distributor_web\",\"distributor_config\":{\"docker_publish_directory\":\"/path\"},\"auto_publish\":true,\"distributor_id\":\"123\"}]}"
-    headers: 
-      Accept: 
-      - application/json
-      Accept-Encoding: 
-      - gzip, deflate
-      Content-Type: 
-      - application/json
-      Content-Length: 
-      - "195"
-      User-Agent: 
-      - Ruby
-  response: 
-    status: 
-      code: 201
-      message: Created
-    headers: 
-      Date: 
-      - Wed, 15 Oct 2014 14:24:33 GMT
-      Server: 
-      - Apache/2.2.15 (Red Hat)
-      Location: 
-      - integration_test_id
-      Vary: 
-      - Accept-Encoding
-      Content-Length: 
-      - "319"
-      Connection: 
-      - close
-      Content-Type: 
-      - application/json
-    body: 
-      encoding: ASCII-8BIT
-      string: "{\"scratchpad\": {}, \"display_name\": \"integration_test_id\", \"description\": null, \"last_unit_added\": null, \"notes\": {}, \"last_unit_removed\": null, \"content_unit_counts\": {}, \"_ns\": \"repos\", \"_id\": {\"$oid\": \"543e83a147078708d9ecb437\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\"}"
-    http_version: 
-  recorded_at: Wed, 15 Oct 2014 14:24:33 GMT
-- request: 
-    method: delete
-    uri: https://admin:admin@box.devel.com/pulp/api/v2/repositories/integration_test_id/
-    body: 
-      encoding: US-ASCII
-      string: ""
-    headers: 
-      Accept: 
-      - application/json
-      Accept-Encoding: 
-      - gzip, deflate
-      Content-Type: 
-      - application/json
-      User-Agent: 
-      - Ruby
-  response: 
-    status: 
-      code: 202
-      message: Accepted
-    headers: 
-      Date: 
-      - Wed, 15 Oct 2014 14:24:33 GMT
-      Server: 
-      - Apache/2.2.15 (Red Hat)
-      Content-Encoding: 
-      - utf-8
-      Content-Length: 
-      - "172"
-      Connection: 
-      - close
-      Content-Type: 
-      - application/json
-    body: 
-      encoding: US-ASCII
-      string: "{\"spawned_tasks\": [{\"_href\": \"/pulp/api/v2/tasks/209d50bd-8966-4c7e-8a12-9b2006e3c739/\", \"task_id\": \"209d50bd-8966-4c7e-8a12-9b2006e3c739\"}], \"result\": null, \"error\": null}"
-    http_version: 
-  recorded_at: Wed, 15 Oct 2014 14:24:34 GMT
-- request: 
+---
+http_interactions:
+- request:
     method: get
     uri: https://admin:admin@box.devel.com/pulp/api/v2/tasks/209d50bd-8966-4c7e-8a12-9b2006e3c739/
-    body: 
+    body:
       encoding: US-ASCII
-      string: ""
-    headers: 
-      Accept: 
+      string: ''
+    headers:
+      Accept:
       - application/json
-      Accept-Encoding: 
+      Accept-Encoding:
       - gzip, deflate
-      Content-Type: 
+      Content-Type:
       - application/json
-      User-Agent: 
+      User-Agent:
       - Ruby
-  response: 
-    status: 
+  response:
+    status:
       code: 200
       message: OK
-    headers: 
-      Date: 
+    headers:
+      Date:
       - Wed, 15 Oct 2014 14:24:34 GMT
-      Server: 
+      Server:
       - Apache/2.2.15 (Red Hat)
-      Vary: 
+      Vary:
       - Accept-Encoding
-      Content-Length: 
-      - "611"
-      Connection: 
+      Content-Length:
+      - '611'
+      Connection:
       - close
-      Content-Type: 
+      Content-Type:
       - application/json
-    body: 
+    body:
       encoding: ASCII-8BIT
-      string: "{\"exception\": null, \"task_type\": \"pulp.server.tasks.repository.delete\", \"_href\": \"/pulp/api/v2/tasks/209d50bd-8966-4c7e-8a12-9b2006e3c739/\", \"task_id\": \"209d50bd-8966-4c7e-8a12-9b2006e3c739\", \"tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:delete\"], \"finish_time\": \"2014-10-15T14:24:34Z\", \"_ns\": \"task_status\", \"start_time\": \"2014-10-15T14:24:34Z\", \"traceback\": null, \"spawned_tasks\": [], \"progress_report\": {}, \"queue\": \"reserved_resource_worker-1@box.devel.com.dq\", \"state\": \"finished\", \"result\": null, \"error\": null, \"_id\": {\"$oid\": \"543e83a2505c6f3b4b509b4a\"}, \"id\": \"543e83a247078708d9ecb43a\"}"
+      string: '{"exception": null, "task_type": "pulp.server.tasks.repository.delete",
+        "_href": "/pulp/api/v2/tasks/209d50bd-8966-4c7e-8a12-9b2006e3c739/", "task_id":
+        "209d50bd-8966-4c7e-8a12-9b2006e3c739", "tags": ["pulp:repository:integration_test_id",
+        "pulp:action:delete"], "finish_time": "2014-10-15T14:24:34Z", "_ns": "task_status",
+        "start_time": "2014-10-15T14:24:34Z", "traceback": null, "spawned_tasks":
+        [], "progress_report": {}, "queue": "reserved_resource_worker-1@box.devel.com.dq",
+        "state": "finished", "result": null, "error": null, "_id": {"$oid": "543e83a2505c6f3b4b509b4a"},
+        "id": "543e83a247078708d9ecb43a"}'
     http_version: 
   recorded_at: Wed, 15 Oct 2014 14:24:34 GMT
+- request:
+    method: post
+    uri: https://admin:wnTfDh26NVdZY4U5fCNLnXqgXGyYnSTH@katello-edison.example.com/pulp/api/v2/repositories/
+    body:
+      encoding: UTF-8
+      string: '{"id":"integration_test_id","distributors":[{"distributor_type_id":"docker_distributor_web","distributor_config":{"docker_publish_directory":"/path"},"auto_publish":true,"distributor_id":"123"}]}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '195'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Fri, 16 Jan 2015 18:50:02 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Location:
+      - integration_test_id
+      Content-Length:
+      - '319'
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '{"scratchpad": {}, "display_name": "integration_test_id", "description":
+        null, "last_unit_added": null, "notes": {}, "last_unit_removed": null, "content_unit_counts":
+        {}, "_ns": "repos", "_id": {"$oid": "54b95d5a8963d70799dd8f8e"}, "id": "integration_test_id",
+        "_href": "/pulp/api/v2/repositories/integration_test_id/"}'
+    http_version: 
+  recorded_at: Fri, 16 Jan 2015 18:50:02 GMT
+- request:
+    method: delete
+    uri: https://admin:wnTfDh26NVdZY4U5fCNLnXqgXGyYnSTH@katello-edison.example.com/pulp/api/v2/repositories/integration_test_id/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Date:
+      - Fri, 16 Jan 2015 18:50:02 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Encoding:
+      - utf-8
+      Content-Length:
+      - '172'
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/8d7c532f-edbd-43d7-9679-0cf9c41c52e8/",
+        "task_id": "8d7c532f-edbd-43d7-9679-0cf9c41c52e8"}], "result": null, "error":
+        null}'
+    http_version: 
+  recorded_at: Fri, 16 Jan 2015 18:50:03 GMT
+- request:
+    method: get
+    uri: https://admin:wnTfDh26NVdZY4U5fCNLnXqgXGyYnSTH@katello-edison.example.com/pulp/api/v2/tasks/8d7c532f-edbd-43d7-9679-0cf9c41c52e8/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 16 Jan 2015 18:50:03 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '624'
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '{"exception": null, "task_type": "pulp.server.tasks.repository.delete",
+        "_href": "/pulp/api/v2/tasks/8d7c532f-edbd-43d7-9679-0cf9c41c52e8/", "task_id":
+        "8d7c532f-edbd-43d7-9679-0cf9c41c52e8", "tags": ["pulp:repository:integration_test_id",
+        "pulp:action:delete"], "finish_time": "2015-01-16T18:50:03Z", "_ns": "task_status",
+        "start_time": "2015-01-16T18:50:03Z", "traceback": null, "spawned_tasks":
+        [], "progress_report": {}, "queue": "reserved_resource_worker-1@katello-edison.example.com.dq",
+        "state": "finished", "result": null, "error": null, "_id": {"$oid": "54b95d5b4399fa849d11d454"},
+        "id": "54b95d5b8963d70799dd8f91"}'
+    http_version: 
+  recorded_at: Fri, 16 Jan 2015 18:50:03 GMT
 recorded_with: VCR 2.9.3

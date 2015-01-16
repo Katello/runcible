@@ -1,155 +1,214 @@
---- 
-http_interactions: 
-- request: 
-    method: post
-    uri: https://admin:admin@box.devel.com/pulp/api/v2/repositories/
-    body: 
-      encoding: US-ASCII
-      string: "{\"id\":\"integration_test_id\",\"importer_type_id\":\"docker_importer\",\"importer_config\":{},\"distributors\":[{\"distributor_type_id\":\"docker_distributor_web\",\"distributor_config\":{},\"auto_publish\":true,\"distributor_id\":\"123\"}]}"
-    headers: 
-      Accept: 
-      - application/json
-      Accept-Encoding: 
-      - gzip, deflate
-      Content-Type: 
-      - application/json
-      Content-Length: 
-      - "219"
-      User-Agent: 
-      - Ruby
-  response: 
-    status: 
-      code: 201
-      message: Created
-    headers: 
-      Date: 
-      - Wed, 15 Oct 2014 14:24:29 GMT
-      Server: 
-      - Apache/2.2.15 (Red Hat)
-      Location: 
-      - integration_test_id
-      Vary: 
-      - Accept-Encoding
-      Content-Length: 
-      - "319"
-      Connection: 
-      - close
-      Content-Type: 
-      - application/json
-    body: 
-      encoding: ASCII-8BIT
-      string: "{\"scratchpad\": {}, \"display_name\": \"integration_test_id\", \"description\": null, \"last_unit_added\": null, \"notes\": {}, \"last_unit_removed\": null, \"content_unit_counts\": {}, \"_ns\": \"repos\", \"_id\": {\"$oid\": \"543e839d47078708d9ecb423\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\"}"
-    http_version: 
-  recorded_at: Wed, 15 Oct 2014 14:24:29 GMT
-- request: 
-    method: get
-    uri: https://admin:admin@box.devel.com/pulp/api/v2/repositories/integration_test_id/?details=true
-    body: 
-      encoding: US-ASCII
-      string: ""
-    headers: 
-      Accept: 
-      - application/json
-      Accept-Encoding: 
-      - gzip, deflate
-      Content-Type: 
-      - application/json
-      User-Agent: 
-      - Ruby
-  response: 
-    status: 
-      code: 200
-      message: OK
-    headers: 
-      Date: 
-      - Wed, 15 Oct 2014 14:24:29 GMT
-      Server: 
-      - Apache/2.2.15 (Red Hat)
-      Vary: 
-      - Accept-Encoding
-      Content-Length: 
-      - "834"
-      Connection: 
-      - close
-      Content-Type: 
-      - application/json
-    body: 
-      encoding: ASCII-8BIT
-      string: "{\"scratchpad\": {}, \"display_name\": \"integration_test_id\", \"description\": null, \"distributors\": [{\"repo_id\": \"integration_test_id\", \"_ns\": \"repo_distributors\", \"last_publish\": null, \"auto_publish\": true, \"scheduled_publishes\": [], \"distributor_type_id\": \"docker_distributor_web\", \"_id\": {\"$oid\": \"543e839d47078708d9ecb425\"}, \"config\": {}, \"id\": \"123\"}], \"last_unit_added\": null, \"notes\": {}, \"last_unit_removed\": null, \"content_unit_counts\": {}, \"_ns\": \"repos\", \"importers\": [{\"repo_id\": \"integration_test_id\", \"_ns\": \"repo_importers\", \"importer_type_id\": \"docker_importer\", \"last_sync\": null, \"scheduled_syncs\": [], \"_id\": {\"$oid\": \"543e839d47078708d9ecb424\"}, \"config\": {}, \"id\": \"docker_importer\"}], \"_id\": {\"$oid\": \"543e839d47078708d9ecb423\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\"}"
-    http_version: 
-  recorded_at: Wed, 15 Oct 2014 14:24:30 GMT
-- request: 
-    method: delete
-    uri: https://admin:admin@box.devel.com/pulp/api/v2/repositories/integration_test_id/
-    body: 
-      encoding: US-ASCII
-      string: ""
-    headers: 
-      Accept: 
-      - application/json
-      Accept-Encoding: 
-      - gzip, deflate
-      Content-Type: 
-      - application/json
-      User-Agent: 
-      - Ruby
-  response: 
-    status: 
-      code: 202
-      message: Accepted
-    headers: 
-      Date: 
-      - Wed, 15 Oct 2014 14:24:30 GMT
-      Server: 
-      - Apache/2.2.15 (Red Hat)
-      Content-Encoding: 
-      - utf-8
-      Content-Length: 
-      - "172"
-      Connection: 
-      - close
-      Content-Type: 
-      - application/json
-    body: 
-      encoding: US-ASCII
-      string: "{\"spawned_tasks\": [{\"_href\": \"/pulp/api/v2/tasks/3a502419-3ffb-442a-b45e-123d6ef8a1c9/\", \"task_id\": \"3a502419-3ffb-442a-b45e-123d6ef8a1c9\"}], \"result\": null, \"error\": null}"
-    http_version: 
-  recorded_at: Wed, 15 Oct 2014 14:24:30 GMT
-- request: 
+---
+http_interactions:
+- request:
     method: get
     uri: https://admin:admin@box.devel.com/pulp/api/v2/tasks/3a502419-3ffb-442a-b45e-123d6ef8a1c9/
-    body: 
+    body:
       encoding: US-ASCII
-      string: ""
-    headers: 
-      Accept: 
+      string: ''
+    headers:
+      Accept:
       - application/json
-      Accept-Encoding: 
+      Accept-Encoding:
       - gzip, deflate
-      Content-Type: 
+      Content-Type:
       - application/json
-      User-Agent: 
+      User-Agent:
       - Ruby
-  response: 
-    status: 
+  response:
+    status:
       code: 200
       message: OK
-    headers: 
-      Date: 
+    headers:
+      Date:
       - Wed, 15 Oct 2014 14:24:31 GMT
-      Server: 
+      Server:
       - Apache/2.2.15 (Red Hat)
-      Vary: 
+      Vary:
       - Accept-Encoding
-      Content-Length: 
-      - "611"
-      Connection: 
+      Content-Length:
+      - '611'
+      Connection:
       - close
-      Content-Type: 
+      Content-Type:
       - application/json
-    body: 
+    body:
       encoding: ASCII-8BIT
-      string: "{\"exception\": null, \"task_type\": \"pulp.server.tasks.repository.delete\", \"_href\": \"/pulp/api/v2/tasks/3a502419-3ffb-442a-b45e-123d6ef8a1c9/\", \"task_id\": \"3a502419-3ffb-442a-b45e-123d6ef8a1c9\", \"tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:delete\"], \"finish_time\": \"2014-10-15T14:24:30Z\", \"_ns\": \"task_status\", \"start_time\": \"2014-10-15T14:24:30Z\", \"traceback\": null, \"spawned_tasks\": [], \"progress_report\": {}, \"queue\": \"reserved_resource_worker-1@box.devel.com.dq\", \"state\": \"finished\", \"result\": null, \"error\": null, \"_id\": {\"$oid\": \"543e839e505c6f3b4b509b47\"}, \"id\": \"543e839e47078708d9ecb428\"}"
+      string: '{"exception": null, "task_type": "pulp.server.tasks.repository.delete",
+        "_href": "/pulp/api/v2/tasks/3a502419-3ffb-442a-b45e-123d6ef8a1c9/", "task_id":
+        "3a502419-3ffb-442a-b45e-123d6ef8a1c9", "tags": ["pulp:repository:integration_test_id",
+        "pulp:action:delete"], "finish_time": "2014-10-15T14:24:30Z", "_ns": "task_status",
+        "start_time": "2014-10-15T14:24:30Z", "traceback": null, "spawned_tasks":
+        [], "progress_report": {}, "queue": "reserved_resource_worker-1@box.devel.com.dq",
+        "state": "finished", "result": null, "error": null, "_id": {"$oid": "543e839e505c6f3b4b509b47"},
+        "id": "543e839e47078708d9ecb428"}'
     http_version: 
   recorded_at: Wed, 15 Oct 2014 14:24:31 GMT
+- request:
+    method: post
+    uri: https://admin:wnTfDh26NVdZY4U5fCNLnXqgXGyYnSTH@katello-edison.example.com/pulp/api/v2/repositories/
+    body:
+      encoding: UTF-8
+      string: '{"id":"integration_test_id","importer_type_id":"docker_importer","importer_config":{},"distributors":[{"distributor_type_id":"docker_distributor_web","distributor_config":{},"auto_publish":true,"distributor_id":"123"}]}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '219'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Fri, 16 Jan 2015 18:50:03 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Location:
+      - integration_test_id
+      Content-Length:
+      - '319'
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '{"scratchpad": {}, "display_name": "integration_test_id", "description":
+        null, "last_unit_added": null, "notes": {}, "last_unit_removed": null, "content_unit_counts":
+        {}, "_ns": "repos", "_id": {"$oid": "54b95d5b8963d70799dd8f93"}, "id": "integration_test_id",
+        "_href": "/pulp/api/v2/repositories/integration_test_id/"}'
+    http_version: 
+  recorded_at: Fri, 16 Jan 2015 18:50:03 GMT
+- request:
+    method: get
+    uri: https://admin:wnTfDh26NVdZY4U5fCNLnXqgXGyYnSTH@katello-edison.example.com/pulp/api/v2/repositories/integration_test_id/?details=true
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 16 Jan 2015 18:50:03 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '834'
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '{"scratchpad": {}, "display_name": "integration_test_id", "description":
+        null, "distributors": [{"repo_id": "integration_test_id", "_ns": "repo_distributors",
+        "last_publish": null, "auto_publish": true, "scheduled_publishes": [], "distributor_type_id":
+        "docker_distributor_web", "_id": {"$oid": "54b95d5b8963d70799dd8f95"}, "config":
+        {}, "id": "123"}], "last_unit_added": null, "notes": {}, "last_unit_removed":
+        null, "content_unit_counts": {}, "_ns": "repos", "importers": [{"repo_id":
+        "integration_test_id", "_ns": "repo_importers", "importer_type_id": "docker_importer",
+        "last_sync": null, "scheduled_syncs": [], "_id": {"$oid": "54b95d5b8963d70799dd8f94"},
+        "config": {}, "id": "docker_importer"}], "_id": {"$oid": "54b95d5b8963d70799dd8f93"},
+        "id": "integration_test_id", "_href": "/pulp/api/v2/repositories/integration_test_id/"}'
+    http_version: 
+  recorded_at: Fri, 16 Jan 2015 18:50:03 GMT
+- request:
+    method: delete
+    uri: https://admin:wnTfDh26NVdZY4U5fCNLnXqgXGyYnSTH@katello-edison.example.com/pulp/api/v2/repositories/integration_test_id/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Date:
+      - Fri, 16 Jan 2015 18:50:03 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Encoding:
+      - utf-8
+      Content-Length:
+      - '172'
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/3cf59bda-4223-47df-bc99-0c65f841b2c7/",
+        "task_id": "3cf59bda-4223-47df-bc99-0c65f841b2c7"}], "result": null, "error":
+        null}'
+    http_version: 
+  recorded_at: Fri, 16 Jan 2015 18:50:04 GMT
+- request:
+    method: get
+    uri: https://admin:wnTfDh26NVdZY4U5fCNLnXqgXGyYnSTH@katello-edison.example.com/pulp/api/v2/tasks/3cf59bda-4223-47df-bc99-0c65f841b2c7/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 16 Jan 2015 18:50:04 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '624'
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '{"exception": null, "task_type": "pulp.server.tasks.repository.delete",
+        "_href": "/pulp/api/v2/tasks/3cf59bda-4223-47df-bc99-0c65f841b2c7/", "task_id":
+        "3cf59bda-4223-47df-bc99-0c65f841b2c7", "tags": ["pulp:repository:integration_test_id",
+        "pulp:action:delete"], "finish_time": "2015-01-16T18:50:04Z", "_ns": "task_status",
+        "start_time": "2015-01-16T18:50:04Z", "traceback": null, "spawned_tasks":
+        [], "progress_report": {}, "queue": "reserved_resource_worker-1@katello-edison.example.com.dq",
+        "state": "finished", "result": null, "error": null, "_id": {"$oid": "54b95d5c4399fa849d11d457"},
+        "id": "54b95d5c8963d70799dd8f98"}'
+    http_version: 
+  recorded_at: Fri, 16 Jan 2015 18:50:05 GMT
 recorded_with: VCR 2.9.3
