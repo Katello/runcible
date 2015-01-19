@@ -75,12 +75,19 @@ module Extensions
 
     def test_create_with_distributor_object
       repo_id = RepositorySupport.repo_id + '_distro'
-      mock_distro = Runcible::Models::DockerDistributor.new(:docker_publish_directory => '/path', :id => '123')
+      url = "http://acme.org"
+      repo_registry_id = "busybox"
+      mock_distro = Runcible::Models::DockerDistributor.new(:docker_publish_directory => '/path',
+                                                            :id => '123',
+                                                            :redirect_url => url,
+                                                            :repo_registry_id => repo_registry_id)
       response = @extension.create_with_distributors(repo_id, [mock_distro])
       assert_equal 201, response.code
       response = @extension.retrieve(repo_id, :details => true)
       assert_equal repo_id, response['id']
       assert_equal 'docker_distributor_web', response['distributors'].first['distributor_type_id']
+      assert_equal url, response['distributors'].first['config']["redirect_url"]
+      assert_equal repo_registry_id, response['distributors'].first['config']["repo-registry-id"]
     ensure
       @support.destroy_repo(repo_id)
     end
