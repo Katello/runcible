@@ -1,86 +1,6 @@
 --- 
 http_interactions: 
 - request: 
-    method: post
-    uri: https://admin:admin@box.devel.com/pulp/api/v2/consumers/
-    body: 
-      encoding: US-ASCII
-      string: "{\"id\":\"integration_test_consumer\",\"name\":\"boo\"}"
-    headers: 
-      Accept: 
-      - application/json
-      Accept-Encoding: 
-      - gzip, deflate
-      Content-Type: 
-      - application/json
-      Content-Length: 
-      - "47"
-      User-Agent: 
-      - Ruby
-  response: 
-    status: 
-      code: 201
-      message: Created
-    headers: 
-      Date: 
-      - Wed, 15 Oct 2014 14:26:06 GMT
-      Server: 
-      - Apache/2.2.15 (Red Hat)
-      Location: 
-      - /pulp/api/v2/consumers/integration_test_consumer/
-      Vary: 
-      - Accept-Encoding
-      Content-Length: 
-      - "2240"
-      Connection: 
-      - close
-      Content-Type: 
-      - application/json
-    body: 
-      encoding: ASCII-8BIT
-      string: "{\"consumer\": {\"display_name\": \"integration_test_consumer\", \"description\": null, \"_ns\": \"consumers\", \"notes\": {}, \"rsa_pub\": null, \"capabilities\": {}, \"_id\": {\"$oid\": \"543e83fe47078708d9ecb61c\"}, \"id\": \"integration_test_consumer\", \"_href\": {\"_href\": \"/pulp/api/v2/consumers/integration_test_consumer/\"}}, \"certificate\": \"-----BEGIN RSA PRIVATE KEY-----\\nMIICXAIBAAKBgQCyeEZTsOuuX9nk1g63yvO/H6ajwoYbqaXSANE8XK0Z5Txn+WBN\\n/jpIYdfEIY3naEU9deKcYcRfocqQWSR3rU8zHA6nWAPA9DqRh0ZfytEwlPwP4Ldw\\n4LOwBHc9dlO2+kfRSSqaf8/hFZSFZCVssHyhD1Fzhp0PZWtSR4zl3Vdf3wIDAQAB\\nAoGAQ/wHJjhd/yXqNf7IyoCYS3T+IKGoPn9oeE/xZKIVGqk1UpIvemZew1XqQH9b\\ntAwHXDs84L9pc9iI9mXOu3wcj8N5xkH618ENYu1pq/C2UhbAPuv8VIVl9fQvnQvF\\nnXnUGnh/DKgcyvLcoeg3Xi19QRquKeI1oBvSZVCZn6/0/cECQQDjFPeZXstaiiFH\\nZXeVRAQk6nHau9H38bNK0BWbMtzfJ7sTBpdzy5eLNhGAXgwfw76s29+XALfTLuu6\\nDsc4l45/AkEAyTKE1S6y2HcGSHcuWFThE+jULJvEoKTpmW2N+aN1jBTVrLd6bS6y\\n2zVVyNZ6U2LvvIfi6USvQGvoWjYUdHw+oQJAXAPXALLEu/9U1NVsy3MwKrVFRVju\\nEAZEnIANAUJu9Y3n5CG7pRROZ/6UwOtbBlQPI4RE6a9EzbIpms76MxhWiQJBAL+n\\n5QsiUfGL6CtNhJNWP5X0m3Dm7TZOAcxKpQzhnc7T5fuCSBgLfQr90nrffGVEgLRq\\nCUhGSl8mq46Lp46S8CECQGnvMSdqaK/XzupqNWKFSy2wby97h7EHSGL4MX+x8sk5\\ntAoeSPu8mo1PCfhXUofnv9LYs8zShwpCjiGhVkCdm6w=\\n-----END RSA PRIVATE KEY-----\\n-----BEGIN CERTIFICATE-----\\nMIICtzCCAZ8CAgHiMA0GCSqGSIb3DQEBBQUAMHgxCzAJBgNVBAYTAlVTMRcwFQYD\\nVQQIEw5Ob3J0aCBDYXJvbGluYTEQMA4GA1UEBxMHUmFsZWlnaDEQMA4GA1UEChMH\\nU29tZU9yZzEUMBIGA1UECxMLU29tZU9yZ1VuaXQxFjAUBgNVBAMTDWJveC5kZXZl\\nbC5jb20wHhcNMTQxMDE1MTQyNjA2WhcNMjQxMDEyMTQyNjA2WjBOMSIwIAYDVQQD\\nFBlpbnRlZ3JhdGlvbl90ZXN0X2NvbnN1bWVyMSgwJgYKCZImiZPyLGQBARMYNTQz\\nZTgzZmU0NzA3ODcwOGQ5ZWNiNjFjMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKB\\ngQCyeEZTsOuuX9nk1g63yvO/H6ajwoYbqaXSANE8XK0Z5Txn+WBN/jpIYdfEIY3n\\naEU9deKcYcRfocqQWSR3rU8zHA6nWAPA9DqRh0ZfytEwlPwP4Ldw4LOwBHc9dlO2\\n+kfRSSqaf8/hFZSFZCVssHyhD1Fzhp0PZWtSR4zl3Vdf3wIDAQABMA0GCSqGSIb3\\nDQEBBQUAA4IBAQCSXNw/hmkOEXWolhCIRE7MFENmOW1O7a+9CpFL5xk5wllHLOT6\\nHpUL4PGWJEaCwqLXsKR3MBqonXxpPwso+zRPBsvMU+pMkLvtPj9AaJmr9TZLVTzl\\n82ONXJy7YBhxYk/avhRl6cBbJFsCMdRFwsqtMTD68+NnBOywvIxrtQ22rXqWvqNz\\nLWDh4fydVR6pVjCrPCNQoFS/in0brgO1yxtXcQ+VArdjCt2+sR5sQqysOA5866IT\\nVL7S0p3y9UbOZwcqr5MLzTkm3jf5eoRQbsWs6Od4Q1VPqIGFG0AqG9cBCuzinIWA\\nJkQdlOGG2V5MSRS/XteahcDrI0OOfETbd55e\\n-----END CERTIFICATE-----\"}"
-    http_version: 
-  recorded_at: Wed, 15 Oct 2014 14:26:06 GMT
-- request: 
-    method: post
-    uri: https://admin:admin@box.devel.com/pulp/api/v2/consumers/actions/content/regenerate_applicability//
-    body: 
-      encoding: US-ASCII
-      string: "{\"consumer_criteria\":{\"filters\":{\"id\":{\"$in\":[\"integration_test_consumer\"]}}}}"
-    headers: 
-      Accept: 
-      - application/json
-      Accept-Encoding: 
-      - gzip, deflate
-      Content-Type: 
-      - application/json
-      Content-Length: 
-      - "78"
-      User-Agent: 
-      - Ruby
-  response: 
-    status: 
-      code: 202
-      message: Accepted
-    headers: 
-      Date: 
-      - Wed, 15 Oct 2014 14:26:06 GMT
-      Server: 
-      - Apache/2.2.15 (Red Hat)
-      Content-Encoding: 
-      - utf-8
-      Content-Length: 
-      - "172"
-      Connection: 
-      - close
-      Content-Type: 
-      - application/json
-    body: 
-      encoding: US-ASCII
-      string: "{\"spawned_tasks\": [{\"_href\": \"/pulp/api/v2/tasks/7dc77850-7b07-454d-893e-ee3cffbca84b/\", \"task_id\": \"7dc77850-7b07-454d-893e-ee3cffbca84b\"}], \"result\": null, \"error\": null}"
-    http_version: 
-  recorded_at: Wed, 15 Oct 2014 14:26:07 GMT
-- request: 
     method: get
     uri: https://admin:admin@box.devel.com/pulp/api/v2/tasks/7dc77850-7b07-454d-893e-ee3cffbca84b/
     body: 
@@ -118,8 +38,8 @@ http_interactions:
     http_version: 
   recorded_at: Wed, 15 Oct 2014 14:26:07 GMT
 - request: 
-    method: delete
-    uri: https://admin:admin@box.devel.com/pulp/api/v2/consumers/integration_test_consumer/
+    method: get
+    uri: https://admin:eYo5Dh2rR6jQayB4vFLEpqUwMcXosuXg@kt1.local/pulp/api/v2/tasks/295a0bb2-b6f3-45e3-804a-5832f35ad5eb/
     body: 
       encoding: US-ASCII
       string: ""
@@ -138,7 +58,194 @@ http_interactions:
       message: OK
     headers: 
       Date: 
-      - Wed, 15 Oct 2014 14:26:07 GMT
+      - Sun, 01 Feb 2015 18:29:07 GMT
+      Server: 
+      - Apache/2.2.15 (Red Hat)
+      Vary: 
+      - Accept-Encoding
+      Content-Length: 
+      - "698"
+      Content-Type: 
+      - application/json
+    body: 
+      encoding: ASCII-8BIT
+      string: "{\"exception\": null, \"task_type\": \"pulp.server.managers.consumer.applicability.regenerate_applicability_for_consumers\", \"_href\": \"/pulp/api/v2/tasks/295a0bb2-b6f3-45e3-804a-5832f35ad5eb/\", \"task_id\": \"295a0bb2-b6f3-45e3-804a-5832f35ad5eb\", \"tags\": [\"pulp:action:content_applicability_regeneration\"], \"finish_time\": \"2015-02-01T18:29:07Z\", \"_ns\": \"task_status\", \"start_time\": \"2015-02-01T18:29:07Z\", \"traceback\": null, \"spawned_tasks\": [], \"progress_report\": {}, \"queue\": \"reserved_resource_worker-0@kt1.local.dq\", \"state\": \"finished\", \"worker_name\": \"reserved_resource_worker-0@kt1.local\", \"result\": null, \"error\": null, \"_id\": {\"$oid\": \"54ce7073962f40ae3501a2c1\"}, \"id\": \"54ce7073b2ff981dcc43fec7\"}"
+    http_version: 
+  recorded_at: Sun, 01 Feb 2015 18:29:07 GMT
+- request: 
+    method: get
+    uri: https://admin:eYo5Dh2rR6jQayB4vFLEpqUwMcXosuXg@kt1.local/pulp/api/v2/tasks/a2767262-c977-4811-a56f-7c09f76d4441/
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/json
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Date: 
+      - Mon, 02 Feb 2015 06:40:20 GMT
+      Server: 
+      - Apache/2.2.15 (Red Hat)
+      Vary: 
+      - Accept-Encoding
+      Content-Length: 
+      - "698"
+      Content-Type: 
+      - application/json
+    body: 
+      encoding: ASCII-8BIT
+      string: "{\"exception\": null, \"task_type\": \"pulp.server.managers.consumer.applicability.regenerate_applicability_for_consumers\", \"_href\": \"/pulp/api/v2/tasks/a2767262-c977-4811-a56f-7c09f76d4441/\", \"task_id\": \"a2767262-c977-4811-a56f-7c09f76d4441\", \"tags\": [\"pulp:action:content_applicability_regeneration\"], \"finish_time\": \"2015-02-02T06:40:20Z\", \"_ns\": \"task_status\", \"start_time\": \"2015-02-02T06:40:20Z\", \"traceback\": null, \"spawned_tasks\": [], \"progress_report\": {}, \"queue\": \"reserved_resource_worker-0@kt1.local.dq\", \"state\": \"finished\", \"worker_name\": \"reserved_resource_worker-0@kt1.local\", \"result\": null, \"error\": null, \"_id\": {\"$oid\": \"54cf1bd4962f40ae3501a3c5\"}, \"id\": \"54cf1bd4b2ff981dcc4404cd\"}"
+    http_version: 
+  recorded_at: Mon, 02 Feb 2015 06:40:20 GMT
+- request: 
+    method: post
+    uri: https://admin:eYo5Dh2rR6jQayB4vFLEpqUwMcXosuXg@kt1.local/pulp/api/v2/consumers/
+    body: 
+      encoding: US-ASCII
+      string: "{\"id\":\"integration_test_consumer\",\"name\":\"boo\"}"
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "47"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 201
+      message: Created
+    headers: 
+      Date: 
+      - Tue, 03 Feb 2015 20:24:47 GMT
+      Server: 
+      - Apache/2.2.15 (Red Hat)
+      Location: 
+      - /pulp/api/v2/consumers/integration_test_consumer/
+      Vary: 
+      - Accept-Encoding
+      Content-Length: 
+      - "2236"
+      Connection: 
+      - close
+      Content-Type: 
+      - application/json
+    body: 
+      encoding: ASCII-8BIT
+      string: "{\"consumer\": {\"display_name\": \"integration_test_consumer\", \"description\": null, \"_ns\": \"consumers\", \"notes\": {}, \"rsa_pub\": null, \"capabilities\": {}, \"_id\": {\"$oid\": \"54d12e8fb2ff9814a6ccd993\"}, \"id\": \"integration_test_consumer\", \"_href\": {\"_href\": \"/pulp/api/v2/consumers/integration_test_consumer/\"}}, \"certificate\": \"-----BEGIN RSA PRIVATE KEY-----\\nMIICXAIBAAKBgQCYUtd35XVO8dkRTmkh6cRyBiE76cU4mQk/V9X0s6554w41AbH2\\ny32tMRISwS+y20cA50MggxZvJ+2Vql1jJZ4HFjFIQOlj+B593lH+2fs91hYijac5\\nusw8728dPo50L69qXjMWdOZEP36nGET4uQ5dECXLrmh9foFbejZk1lAjxwIDAQAB\\nAoGATPzx8qODGxeZwumCsaVZqNf4TDPnfqe6yM04UqnOccSVFa15qWdIahT3MYt6\\n9EdoJ8i7YN9go2Xm61JkSQxmRh8H+F1G6E8m85p7jxHHtVzTNHIMjiNo0NZVY11Q\\nXRj+GHnpGhl3MDtlJSLSDbm5tAc+daQx8V8lv6QzBZLLzEECQQDI518eLN/7b7Qg\\nokwd+CULE6esCurOfEHsajGQrbaypBCrWcd/R1Y3Y+xRFxgosbTDXlqSRNsGdhah\\nj0zuGLr/AkEAwhjayCngptcEV9So1OBjC24s0DqmKb81KvlYeeHlczBfyeYLhBAv\\npHUeUmRQEqth1tpyewSVsWWERF4vI/Z/OQJAGnSNS/Xw0LVW7O0yRMgGaLz/2WHe\\npa4rKCybtkeJxWBhaY76/EGykryvw8Xcwo8UFJ36I0S56tHmDQRHxxqulQJBAL+o\\nHTizKVJ1VKOJqKBzZTmfM/71OqhUVyK1Dilj5takOKG7VzmzZeflgehnhy24Lych\\nkxNoBowhqsZ7nd7MAvkCQFA+c+VH5V/Esq6Tt03MCmQtfMW6eCBt01bSl1YYlw1T\\nkFBRkzHcGUh5VFfC5mIq34vpwMicndcr7N3y6mwvFvA=\\n-----END RSA PRIVATE KEY-----\\n-----BEGIN CERTIFICATE-----\\nMIICszCCAZsCAgD2MA0GCSqGSIb3DQEBBQUAMHQxCzAJBgNVBAYTAlVTMRcwFQYD\\nVQQIEw5Ob3J0aCBDYXJvbGluYTEQMA4GA1UEBxMHUmFsZWlnaDEQMA4GA1UEChMH\\nS2F0ZWxsbzEUMBIGA1UECxMLU29tZU9yZ1VuaXQxEjAQBgNVBAMTCWt0MS5sb2Nh\\nbDAeFw0xNTAyMDMyMDI0NDdaFw0yNTAxMzEyMDI0NDdaME4xIjAgBgNVBAMUGWlu\\ndGVncmF0aW9uX3Rlc3RfY29uc3VtZXIxKDAmBgoJkiaJk/IsZAEBExg1NGQxMmU4\\nZmIyZmY5ODE0YTZjY2Q5OTMwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAJhS\\n13fldU7x2RFOaSHpxHIGITvpxTiZCT9X1fSzrnnjDjUBsfbLfa0xEhLBL7LbRwDn\\nQyCDFm8n7ZWqXWMlngcWMUhA6WP4Hn3eUf7Z+z3WFiKNpzm6zDzvbx0+jnQvr2pe\\nMxZ05kQ/fqcYRPi5Dl0QJcuuaH1+gVt6NmTWUCPHAgMBAAEwDQYJKoZIhvcNAQEF\\nBQADggEBAMdhZJuIy5ZgmdpGnjptvieIRoz6gLrB1xv8XRSUbvIgQDGu5Kfi9esz\\nIVEjyHQvaUKg4k4cnoP1/RzhDob+WqhDARwMLgKuzfvDUOeu3gRHEWVn9Uh/pMFb\\nDmSB/Lb501+0KsVHmcKQtjq/ju3OmuzknLG0hdqxZdLRt7qSP3qqlt8ByTPJPL8H\\njsGrodiyt/GG3N/Ow2xJqrGafwY7QCl2Z6+/XrQ2s6Z4/+M90EXfd8EkJ/B5KSXi\\ncyLGwhxOCVpkGZr7k53TW+CCJp6k2Y+RbuMs7PVG8Ij1/OQjevcqXmD510Gtxx82\\n0JXyUuDpRO9P3vYdUwp1EiN13QMe448=\\n-----END CERTIFICATE-----\"}"
+    http_version: 
+  recorded_at: Tue, 03 Feb 2015 20:24:47 GMT
+- request: 
+    method: post
+    uri: https://admin:eYo5Dh2rR6jQayB4vFLEpqUwMcXosuXg@kt1.local/pulp/api/v2/consumers/actions/content/regenerate_applicability//
+    body: 
+      encoding: US-ASCII
+      string: "{\"consumer_criteria\":{\"filters\":{\"id\":{\"$in\":[\"integration_test_consumer\"]}}}}"
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "78"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 202
+      message: Accepted
+    headers: 
+      Date: 
+      - Tue, 03 Feb 2015 20:24:47 GMT
+      Server: 
+      - Apache/2.2.15 (Red Hat)
+      Content-Encoding: 
+      - utf-8
+      Content-Length: 
+      - "172"
+      Connection: 
+      - close
+      Content-Type: 
+      - application/json
+    body: 
+      encoding: US-ASCII
+      string: "{\"spawned_tasks\": [{\"_href\": \"/pulp/api/v2/tasks/c2a34fe1-d98e-418d-b6ee-8e98336ab447/\", \"task_id\": \"c2a34fe1-d98e-418d-b6ee-8e98336ab447\"}], \"result\": null, \"error\": null}"
+    http_version: 
+  recorded_at: Tue, 03 Feb 2015 20:24:47 GMT
+- request: 
+    method: get
+    uri: https://admin:eYo5Dh2rR6jQayB4vFLEpqUwMcXosuXg@kt1.local/pulp/api/v2/tasks/c2a34fe1-d98e-418d-b6ee-8e98336ab447/
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/json
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Date: 
+      - Tue, 03 Feb 2015 20:24:48 GMT
+      Server: 
+      - Apache/2.2.15 (Red Hat)
+      Vary: 
+      - Accept-Encoding
+      Content-Length: 
+      - "698"
+      Connection: 
+      - close
+      Content-Type: 
+      - application/json
+    body: 
+      encoding: ASCII-8BIT
+      string: "{\"exception\": null, \"task_type\": \"pulp.server.managers.consumer.applicability.regenerate_applicability_for_consumers\", \"_href\": \"/pulp/api/v2/tasks/c2a34fe1-d98e-418d-b6ee-8e98336ab447/\", \"task_id\": \"c2a34fe1-d98e-418d-b6ee-8e98336ab447\", \"tags\": [\"pulp:action:content_applicability_regeneration\"], \"finish_time\": \"2015-02-03T20:24:47Z\", \"_ns\": \"task_status\", \"start_time\": \"2015-02-03T20:24:47Z\", \"traceback\": null, \"spawned_tasks\": [], \"progress_report\": {}, \"queue\": \"reserved_resource_worker-0@kt1.local.dq\", \"state\": \"finished\", \"worker_name\": \"reserved_resource_worker-0@kt1.local\", \"result\": null, \"error\": null, \"_id\": {\"$oid\": \"54d12e8fdb087ce12b11fd23\"}, \"id\": \"54d12e8fb2ff980faeab9f88\"}"
+    http_version: 
+  recorded_at: Tue, 03 Feb 2015 20:24:48 GMT
+- request: 
+    method: delete
+    uri: https://admin:eYo5Dh2rR6jQayB4vFLEpqUwMcXosuXg@kt1.local/pulp/api/v2/consumers/integration_test_consumer/
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/json
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Date: 
+      - Tue, 03 Feb 2015 20:24:48 GMT
       Server: 
       - Apache/2.2.15 (Red Hat)
       Vary: 
@@ -153,5 +260,5 @@ http_interactions:
       encoding: ASCII-8BIT
       string: "null"
     http_version: 
-  recorded_at: Wed, 15 Oct 2014 14:26:07 GMT
+  recorded_at: Tue, 03 Feb 2015 20:24:48 GMT
 recorded_with: VCR 2.9.3
