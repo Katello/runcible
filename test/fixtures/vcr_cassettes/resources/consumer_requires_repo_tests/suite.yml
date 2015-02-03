@@ -1,205 +1,6 @@
 --- 
 http_interactions: 
 - request: 
-    method: post
-    uri: https://admin:admin@box.devel.com/pulp/api/v2/consumers/
-    body: 
-      encoding: US-ASCII
-      string: "{\"id\":\"integration_test_consumer_support\"}"
-    headers: 
-      Accept: 
-      - application/json
-      Accept-Encoding: 
-      - gzip, deflate
-      Content-Type: 
-      - application/json
-      Content-Length: 
-      - "42"
-      User-Agent: 
-      - Ruby
-  response: 
-    status: 
-      code: 201
-      message: Created
-    headers: 
-      Date: 
-      - Wed, 15 Oct 2014 14:26:03 GMT
-      Server: 
-      - Apache/2.2.15 (Red Hat)
-      Location: 
-      - /pulp/api/v2/consumers/integration_test_consumer_support/
-      Vary: 
-      - Accept-Encoding
-      Content-Length: 
-      - "2276"
-      Connection: 
-      - close
-      Content-Type: 
-      - application/json
-    body: 
-      encoding: ASCII-8BIT
-      string: "{\"consumer\": {\"display_name\": \"integration_test_consumer_support\", \"description\": null, \"_ns\": \"consumers\", \"notes\": {}, \"rsa_pub\": null, \"capabilities\": {}, \"_id\": {\"$oid\": \"543e83fb47078708d9ecb600\"}, \"id\": \"integration_test_consumer_support\", \"_href\": {\"_href\": \"/pulp/api/v2/consumers/integration_test_consumer_support/\"}}, \"certificate\": \"-----BEGIN RSA PRIVATE KEY-----\\nMIICXAIBAAKBgQDNOTU1548Svnq52pD9Zpr9ix8huJ0t4yrYxkSTNM5VXZn6GXyn\\n+OXyPJnDCyYOSu4B9k3mIZ19KVms74f9tmUZtSLvvsVnXlWkWhRENaVU25eufQkp\\ntHtwuQOJrS1WDZuQaeno9uC/2csm+sNrZXIPr2b1F62EOUAsL5F/kVfeMwIDAQAB\\nAoGAZUhOkoPtgHqxZvgPhoAVDfyTKLlMGVF72/A998if7FF9pIjflKaqFZsC59eg\\nuH0SabV9TI5ag2Lc9xRgMT7LNbn2KRhn+kdTMJa+D6Y7Efdl1XqUFo4S7lPR63Xk\\n+7IBNvj4BKwqMRkSVxVhMHJqcGlO6rXDJuXaXyPplgaY4wECQQD2IyqNt/qPnm7h\\nIJoinRRVhWSnGTwdX1mrGHFW7BTqJb8V3i0EfSxVIgh2b+BcTE1tcTZYQQYZmFlR\\nnpQDfXCRAkEA1XJaovSVJbyHRAcNg9iB+fKG30vLok40QSRHMdfAe07+xjfzIM+e\\n481mYvR0ZvbA5fZYtAsSF8s+NPGjbpUEgwJAbgIbo8mFsCjkb7Qtj6jbDLoY2WI6\\n7vnNzt2W0n2jf18tf22Uezwi003psF2iTj5AINkHq/wr6MahrQwOJV0sMQJBAIB/\\nTW1YzQlgzBX6IPrEtsrgZK29FaRqbC7jRjENcAVL8zklqaqRE1iU6RSdkg4CcvJ+\\nMbyCBaxpYNPCvN7vuz0CQA3fMEwPTOhOPvcsmRNPFa8/nWNa9MswrnoQgQHQekF+\\nTE+XpN+gi2jN4lkpTX58QSQqPxXhwOOU3v+bxbKQ4/8=\\n-----END RSA PRIVATE KEY-----\\n-----BEGIN CERTIFICATE-----\\nMIICvzCCAacCAgHgMA0GCSqGSIb3DQEBBQUAMHgxCzAJBgNVBAYTAlVTMRcwFQYD\\nVQQIEw5Ob3J0aCBDYXJvbGluYTEQMA4GA1UEBxMHUmFsZWlnaDEQMA4GA1UEChMH\\nU29tZU9yZzEUMBIGA1UECxMLU29tZU9yZ1VuaXQxFjAUBgNVBAMTDWJveC5kZXZl\\nbC5jb20wHhcNMTQxMDE1MTQyNjAzWhcNMjQxMDEyMTQyNjAzWjBWMSowKAYDVQQD\\nFCFpbnRlZ3JhdGlvbl90ZXN0X2NvbnN1bWVyX3N1cHBvcnQxKDAmBgoJkiaJk/Is\\nZAEBExg1NDNlODNmYjQ3MDc4NzA4ZDllY2I2MDAwgZ8wDQYJKoZIhvcNAQEBBQAD\\ngY0AMIGJAoGBAM05NTXnjxK+ernakP1mmv2LHyG4nS3jKtjGRJM0zlVdmfoZfKf4\\n5fI8mcMLJg5K7gH2TeYhnX0pWazvh/22ZRm1Iu++xWdeVaRaFEQ1pVTbl659CSm0\\ne3C5A4mtLVYNm5Bp6ej24L/Zyyb6w2tlcg+vZvUXrYQ5QCwvkX+RV94zAgMBAAEw\\nDQYJKoZIhvcNAQEFBQADggEBAE+oxsymumMKJk42FUD96gYPp5y4rE43bVAjU2C+\\nSAz8x+0R+MvdkwGUKyB++p8VkzNgJkfX/d+/6Xdhmr5SoD3ObRhw0my4CXWVRMqq\\npIKbWmvegtzUuNBJYFh/4f8UO+idXdaNZmtNm0sQI2o+K4ErlGJevwFmpbOPDvZ2\\njUvsWBS49G+aVgc3Aj0D7lyPdL55xve4/dn0UIYJMpm3Z+CA8du1AbPoa5qVCre1\\ndWJlkKaJ+x3A6z+CMRlOrk5V5fwHQwtkrhuzBj3odLFPk68CLIgkdQ8TVHU4FegN\\nBFpdy/RT74sVA4mYL1OkLVgOno4ecPEnlEzY69mzLZhopXA=\\n-----END CERTIFICATE-----\"}"
-    http_version: 
-  recorded_at: Wed, 15 Oct 2014 14:26:03 GMT
-- request: 
-    method: post
-    uri: https://admin:admin@box.devel.com/pulp/api/v2/consumers/integration_test_consumer_support/profiles//
-    body: 
-      encoding: US-ASCII
-      string: "{\"content_type\":\"rpm\",\"profile\":[{\"name\":\"elephant\",\"version\":\"0.2\",\"release\":\"0.7\",\"epoch\":0,\"arch\":\"noarch\",\"vendor\":\"Fedora\"}]}"
-    headers: 
-      Accept: 
-      - application/json
-      Accept-Encoding: 
-      - gzip, deflate
-      Content-Type: 
-      - application/json
-      Content-Length: 
-      - "130"
-      User-Agent: 
-      - Ruby
-  response: 
-    status: 
-      code: 201
-      message: Created
-    headers: 
-      Date: 
-      - Wed, 15 Oct 2014 14:26:03 GMT
-      Server: 
-      - Apache/2.2.15 (Red Hat)
-      Location: 
-      - /pulp/api/v2/consumers/integration_test_consumer_support/profiles/integration_test_consumer_support/rpm/
-      Vary: 
-      - Accept-Encoding
-      Content-Length: 
-      - "509"
-      Connection: 
-      - close
-      Content-Type: 
-      - application/json
-    body: 
-      encoding: ASCII-8BIT
-      string: "{\"profile\": [{\"vendor\": \"Fedora\", \"name\": \"elephant\", \"epoch\": 0, \"version\": \"0.2\", \"release\": \"0.7\", \"arch\": \"noarch\"}], \"_href\": \"/pulp/api/v2/consumers/integration_test_consumer_support/profiles/integration_test_consumer_support/rpm/\", \"_ns\": \"consumer_unit_profiles\", \"profile_hash\": \"db16b75e977ae3fbbf27beb919693137b26ba59eb7be73f2888197b89521e50d\", \"consumer_id\": \"integration_test_consumer_support\", \"content_type\": \"rpm\", \"_id\": {\"$oid\": \"543e83fb47078708d9ecb604\"}, \"id\": \"543e83fb47078708d9ecb604\"}"
-    http_version: 
-  recorded_at: Wed, 15 Oct 2014 14:26:03 GMT
-- request: 
-    method: get
-    uri: https://admin:admin@box.devel.com/pulp/api/v2/repositories/integration_test_id/
-    body: 
-      encoding: US-ASCII
-      string: ""
-    headers: 
-      Accept: 
-      - application/json
-      Accept-Encoding: 
-      - gzip, deflate
-      Content-Type: 
-      - application/json
-      User-Agent: 
-      - Ruby
-  response: 
-    status: 
-      code: 404
-      message: Not Found
-    headers: 
-      Date: 
-      - Wed, 15 Oct 2014 14:26:03 GMT
-      Server: 
-      - Apache/2.2.15 (Red Hat)
-      Content-Encoding: 
-      - utf-8
-      Content-Length: 
-      - "427"
-      Connection: 
-      - close
-      Content-Type: 
-      - application/json
-    body: 
-      encoding: US-ASCII
-      string: "{\"http_request_method\": \"GET\", \"exception\": null, \"error_message\": \"Missing resource(s): repo=integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\", \"http_status\": 404, \"error\": {\"code\": \"PLP0009\", \"data\": {\"resources\": {\"repo\": \"integration_test_id\"}}, \"description\": \"Missing resource(s): repo=integration_test_id\", \"sub_errors\": []}, \"traceback\": null, \"resources\": {\"repo\": \"integration_test_id\"}}"
-    http_version: 
-  recorded_at: Wed, 15 Oct 2014 14:26:03 GMT
-- request: 
-    method: post
-    uri: https://admin:admin@box.devel.com/pulp/api/v2/repositories/
-    body: 
-      encoding: US-ASCII
-      string: "{\"id\":\"integration_test_id\",\"importer_type_id\":\"yum_importer\",\"importer_config\":{\"feed\":\"file:///var/www/repositories/zoo5\"},\"distributors\":[{\"distributor_type_id\":\"yum_distributor\",\"distributor_config\":{\"relative_url\":\"/path\",\"http\":true,\"https\":true},\"auto_publish\":false,\"distributor_id\":\"puppet_dist\"}]}"
-    headers: 
-      Accept: 
-      - application/json
-      Accept-Encoding: 
-      - gzip, deflate
-      Content-Type: 
-      - application/json
-      Content-Length: 
-      - "307"
-      User-Agent: 
-      - Ruby
-  response: 
-    status: 
-      code: 201
-      message: Created
-    headers: 
-      Date: 
-      - Wed, 15 Oct 2014 14:26:04 GMT
-      Server: 
-      - Apache/2.2.15 (Red Hat)
-      Location: 
-      - integration_test_id
-      Vary: 
-      - Accept-Encoding
-      Content-Length: 
-      - "319"
-      Connection: 
-      - close
-      Content-Type: 
-      - application/json
-    body: 
-      encoding: ASCII-8BIT
-      string: "{\"scratchpad\": {}, \"display_name\": \"integration_test_id\", \"description\": null, \"last_unit_added\": null, \"notes\": {}, \"last_unit_removed\": null, \"content_unit_counts\": {}, \"_ns\": \"repos\", \"_id\": {\"$oid\": \"543e83fc47078708d9ecb606\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\"}"
-    http_version: 
-  recorded_at: Wed, 15 Oct 2014 14:26:04 GMT
-- request: 
-    method: post
-    uri: https://admin:admin@box.devel.com/pulp/api/v2/repositories/integration_test_id/actions/sync/
-    body: 
-      encoding: US-ASCII
-      string: "{}"
-    headers: 
-      Accept: 
-      - application/json
-      Accept-Encoding: 
-      - gzip, deflate
-      Content-Type: 
-      - application/json
-      Content-Length: 
-      - "2"
-      User-Agent: 
-      - Ruby
-  response: 
-    status: 
-      code: 202
-      message: Accepted
-    headers: 
-      Date: 
-      - Wed, 15 Oct 2014 14:26:04 GMT
-      Server: 
-      - Apache/2.2.15 (Red Hat)
-      Content-Encoding: 
-      - utf-8
-      Content-Length: 
-      - "172"
-      Connection: 
-      - close
-      Content-Type: 
-      - application/json
-    body: 
-      encoding: US-ASCII
-      string: "{\"spawned_tasks\": [{\"_href\": \"/pulp/api/v2/tasks/5b66726a-e3e2-40ff-9f98-69d717a51d89/\", \"task_id\": \"5b66726a-e3e2-40ff-9f98-69d717a51d89\"}], \"result\": null, \"error\": null}"
-    http_version: 
-  recorded_at: Wed, 15 Oct 2014 14:26:04 GMT
-- request: 
     method: get
     uri: https://admin:admin@box.devel.com/pulp/api/v2/tasks/5b66726a-e3e2-40ff-9f98-69d717a51d89/
     body: 
@@ -234,80 +35,6 @@ http_interactions:
     body: 
       encoding: ASCII-8BIT
       string: "{\"exception\": null, \"task_type\": \"pulp.server.tasks.repository.sync_with_auto_publish\", \"_href\": \"/pulp/api/v2/tasks/5b66726a-e3e2-40ff-9f98-69d717a51d89/\", \"task_id\": \"5b66726a-e3e2-40ff-9f98-69d717a51d89\", \"tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:sync\"], \"finish_time\": \"2014-10-15T14:26:05Z\", \"_ns\": \"task_status\", \"start_time\": \"2014-10-15T14:26:04Z\", \"traceback\": null, \"spawned_tasks\": [], \"progress_report\": {\"yum_importer\": {\"content\": {\"size_total\": 0, \"items_left\": 0, \"items_total\": 0, \"state\": \"FINISHED\", \"size_left\": 0, \"details\": {\"rpm_total\": 0, \"rpm_done\": 0, \"drpm_total\": 0, \"drpm_done\": 0}, \"error_details\": []}, \"comps\": {\"state\": \"FINISHED\"}, \"distribution\": {\"items_total\": 3, \"state\": \"FINISHED\", \"error_details\": [], \"items_left\": 0}, \"errata\": {\"state\": \"FINISHED\"}, \"metadata\": {\"state\": \"FINISHED\"}}}, \"queue\": \"reserved_resource_worker-1@box.devel.com.dq\", \"state\": \"finished\", \"result\": {\"importer_type_id\": \"yum_importer\", \"importer_id\": \"yum_importer\", \"exception\": null, \"repo_id\": \"integration_test_id\", \"removed_count\": 0, \"started\": \"2014-10-15T14:26:04Z\", \"_ns\": \"repo_sync_results\", \"completed\": \"2014-10-15T14:26:05Z\", \"traceback\": null, \"summary\": {\"content\": {\"state\": \"FINISHED\"}, \"comps\": {\"state\": \"FINISHED\"}, \"distribution\": {\"state\": \"FINISHED\"}, \"errata\": {\"state\": \"FINISHED\"}, \"metadata\": {\"state\": \"FINISHED\"}}, \"added_count\": 0, \"error_message\": null, \"updated_count\": 14, \"details\": {\"content\": {\"size_total\": 0, \"items_left\": 0, \"items_total\": 0, \"state\": \"FINISHED\", \"size_left\": 0, \"details\": {\"rpm_total\": 0, \"rpm_done\": 0, \"drpm_total\": 0, \"drpm_done\": 0}, \"error_details\": []}, \"comps\": {\"state\": \"FINISHED\"}, \"distribution\": {\"items_total\": 3, \"state\": \"FINISHED\", \"error_details\": [], \"items_left\": 0}, \"errata\": {\"state\": \"FINISHED\"}, \"metadata\": {\"state\": \"FINISHED\"}}, \"id\": \"543e83fd47078709559b22ac\", \"result\": \"success\"}, \"error\": null, \"_id\": {\"$oid\": \"543e83fc505c6f3b4b509b90\"}, \"id\": \"543e83fc47078708d9ecb60a\"}"
-    http_version: 
-  recorded_at: Wed, 15 Oct 2014 14:26:05 GMT
-- request: 
-    method: delete
-    uri: https://admin:admin@box.devel.com/pulp/api/v2/consumers/integration_test_consumer_support/
-    body: 
-      encoding: US-ASCII
-      string: ""
-    headers: 
-      Accept: 
-      - application/json
-      Accept-Encoding: 
-      - gzip, deflate
-      Content-Type: 
-      - application/json
-      User-Agent: 
-      - Ruby
-  response: 
-    status: 
-      code: 200
-      message: OK
-    headers: 
-      Date: 
-      - Wed, 15 Oct 2014 14:26:05 GMT
-      Server: 
-      - Apache/2.2.15 (Red Hat)
-      Vary: 
-      - Accept-Encoding
-      Content-Length: 
-      - "4"
-      Connection: 
-      - close
-      Content-Type: 
-      - application/json
-    body: 
-      encoding: ASCII-8BIT
-      string: "null"
-    http_version: 
-  recorded_at: Wed, 15 Oct 2014 14:26:05 GMT
-- request: 
-    method: delete
-    uri: https://admin:admin@box.devel.com/pulp/api/v2/repositories/integration_test_id/
-    body: 
-      encoding: US-ASCII
-      string: ""
-    headers: 
-      Accept: 
-      - application/json
-      Accept-Encoding: 
-      - gzip, deflate
-      Content-Type: 
-      - application/json
-      User-Agent: 
-      - Ruby
-  response: 
-    status: 
-      code: 202
-      message: Accepted
-    headers: 
-      Date: 
-      - Wed, 15 Oct 2014 14:26:05 GMT
-      Server: 
-      - Apache/2.2.15 (Red Hat)
-      Content-Encoding: 
-      - utf-8
-      Content-Length: 
-      - "172"
-      Connection: 
-      - close
-      Content-Type: 
-      - application/json
-    body: 
-      encoding: US-ASCII
-      string: "{\"spawned_tasks\": [{\"_href\": \"/pulp/api/v2/tasks/0e43e392-4f94-4431-a05c-4e7391405acd/\", \"task_id\": \"0e43e392-4f94-4431-a05c-4e7391405acd\"}], \"result\": null, \"error\": null}"
     http_version: 
   recorded_at: Wed, 15 Oct 2014 14:26:05 GMT
 - request: 
@@ -347,4 +74,530 @@ http_interactions:
       string: "{\"exception\": null, \"task_type\": \"pulp.server.tasks.repository.delete\", \"_href\": \"/pulp/api/v2/tasks/0e43e392-4f94-4431-a05c-4e7391405acd/\", \"task_id\": \"0e43e392-4f94-4431-a05c-4e7391405acd\", \"tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:delete\"], \"finish_time\": \"2014-10-15T14:26:05Z\", \"_ns\": \"task_status\", \"start_time\": \"2014-10-15T14:26:05Z\", \"traceback\": null, \"spawned_tasks\": [], \"progress_report\": {}, \"queue\": \"reserved_resource_worker-1@box.devel.com.dq\", \"state\": \"finished\", \"result\": null, \"error\": null, \"_id\": {\"$oid\": \"543e83fd505c6f3b4b509b91\"}, \"id\": \"543e83fd47078708d9ecb610\"}"
     http_version: 
   recorded_at: Wed, 15 Oct 2014 14:26:06 GMT
+- request: 
+    method: post
+    uri: https://admin:eYo5Dh2rR6jQayB4vFLEpqUwMcXosuXg@kt1.local/pulp/api/v2/repositories/
+    body: 
+      encoding: US-ASCII
+      string: "{\"id\":\"integration_test_id\",\"importer_type_id\":\"yum_importer\",\"importer_config\":{\"feed\":\"file:///var/www/repositories/zoo5\"},\"distributors\":[{\"distributor_type_id\":\"yum_distributor\",\"distributor_config\":{\"relative_url\":\"/path\",\"http\":true,\"https\":true},\"auto_publish\":false,\"distributor_id\":\"puppet_dist\"}]}"
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "307"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 201
+      message: Created
+    headers: 
+      Date: 
+      - Sun, 01 Feb 2015 18:29:04 GMT
+      Server: 
+      - Apache/2.2.15 (Red Hat)
+      Location: 
+      - integration_test_id
+      Vary: 
+      - Accept-Encoding
+      Content-Length: 
+      - "319"
+      Content-Type: 
+      - application/json
+    body: 
+      encoding: ASCII-8BIT
+      string: "{\"scratchpad\": {}, \"display_name\": \"integration_test_id\", \"description\": null, \"last_unit_added\": null, \"notes\": {}, \"last_unit_removed\": null, \"content_unit_counts\": {}, \"_ns\": \"repos\", \"_id\": {\"$oid\": \"54ce7070b2ff9879e94e107d\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\"}"
+    http_version: 
+  recorded_at: Sun, 01 Feb 2015 18:29:04 GMT
+- request: 
+    method: get
+    uri: https://admin:eYo5Dh2rR6jQayB4vFLEpqUwMcXosuXg@kt1.local/pulp/api/v2/tasks/fa4208e8-c37e-4287-bb8b-808f3a2926bf/
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/json
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Date: 
+      - Sun, 01 Feb 2015 18:29:04 GMT
+      Server: 
+      - Apache/2.2.15 (Red Hat)
+      Vary: 
+      - Accept-Encoding
+      Content-Length: 
+      - "2053"
+      Content-Type: 
+      - application/json
+    body: 
+      encoding: ASCII-8BIT
+      string: "{\"exception\": null, \"task_type\": \"pulp.server.tasks.repository.sync_with_auto_publish\", \"_href\": \"/pulp/api/v2/tasks/fa4208e8-c37e-4287-bb8b-808f3a2926bf/\", \"task_id\": \"fa4208e8-c37e-4287-bb8b-808f3a2926bf\", \"tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:sync\"], \"finish_time\": \"2015-02-01T18:29:04Z\", \"_ns\": \"task_status\", \"start_time\": \"2015-02-01T18:29:04Z\", \"traceback\": null, \"spawned_tasks\": [], \"progress_report\": {\"yum_importer\": {\"content\": {\"size_total\": 0, \"items_left\": 0, \"items_total\": 0, \"state\": \"FINISHED\", \"size_left\": 0, \"details\": {\"rpm_total\": 0, \"rpm_done\": 0, \"drpm_total\": 0, \"drpm_done\": 0}, \"error_details\": []}, \"comps\": {\"state\": \"FINISHED\"}, \"distribution\": {\"items_total\": 3, \"state\": \"FINISHED\", \"error_details\": [], \"items_left\": 0}, \"errata\": {\"state\": \"FINISHED\"}, \"metadata\": {\"state\": \"FINISHED\"}}}, \"queue\": \"reserved_resource_worker-0@kt1.local.dq\", \"state\": \"finished\", \"worker_name\": \"reserved_resource_worker-0@kt1.local\", \"result\": {\"importer_type_id\": \"yum_importer\", \"importer_id\": \"yum_importer\", \"exception\": null, \"repo_id\": \"integration_test_id\", \"removed_count\": 0, \"started\": \"2015-02-01T18:29:04Z\", \"_ns\": \"repo_sync_results\", \"completed\": \"2015-02-01T18:29:04Z\", \"traceback\": null, \"summary\": {\"content\": {\"state\": \"FINISHED\"}, \"comps\": {\"state\": \"FINISHED\"}, \"distribution\": {\"state\": \"FINISHED\"}, \"errata\": {\"state\": \"FINISHED\"}, \"metadata\": {\"state\": \"FINISHED\"}}, \"added_count\": 0, \"error_message\": null, \"updated_count\": 14, \"details\": {\"content\": {\"size_total\": 0, \"items_left\": 0, \"items_total\": 0, \"state\": \"FINISHED\", \"size_left\": 0, \"details\": {\"rpm_total\": 0, \"rpm_done\": 0, \"drpm_total\": 0, \"drpm_done\": 0}, \"error_details\": []}, \"comps\": {\"state\": \"FINISHED\"}, \"distribution\": {\"items_total\": 3, \"state\": \"FINISHED\", \"error_details\": [], \"items_left\": 0}, \"errata\": {\"state\": \"FINISHED\"}, \"metadata\": {\"state\": \"FINISHED\"}}, \"id\": \"54ce7070b2ff981e8887d4b0\", \"result\": \"success\"}, \"error\": null, \"_id\": {\"$oid\": \"54ce7070962f40ae3501a2bf\"}, \"id\": \"54ce7070b2ff981dcc43febb\"}"
+    http_version: 
+  recorded_at: Sun, 01 Feb 2015 18:29:05 GMT
+- request: 
+    method: get
+    uri: https://admin:eYo5Dh2rR6jQayB4vFLEpqUwMcXosuXg@kt1.local/pulp/api/v2/tasks/23c41302-3ced-4634-92c6-a6e04c6f2268/
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/json
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Date: 
+      - Sun, 01 Feb 2015 18:29:05 GMT
+      Server: 
+      - Apache/2.2.15 (Red Hat)
+      Vary: 
+      - Accept-Encoding
+      Content-Length: 
+      - "662"
+      Content-Type: 
+      - application/json
+    body: 
+      encoding: ASCII-8BIT
+      string: "{\"exception\": null, \"task_type\": \"pulp.server.tasks.repository.delete\", \"_href\": \"/pulp/api/v2/tasks/23c41302-3ced-4634-92c6-a6e04c6f2268/\", \"task_id\": \"23c41302-3ced-4634-92c6-a6e04c6f2268\", \"tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:delete\"], \"finish_time\": \"2015-02-01T18:29:05Z\", \"_ns\": \"task_status\", \"start_time\": \"2015-02-01T18:29:05Z\", \"traceback\": null, \"spawned_tasks\": [], \"progress_report\": {}, \"queue\": \"reserved_resource_worker-0@kt1.local.dq\", \"state\": \"finished\", \"worker_name\": \"reserved_resource_worker-0@kt1.local\", \"result\": null, \"error\": null, \"_id\": {\"$oid\": \"54ce7071962f40ae3501a2c0\"}, \"id\": \"54ce7071b2ff981dcc43fec1\"}"
+    http_version: 
+  recorded_at: Sun, 01 Feb 2015 18:29:06 GMT
+- request: 
+    method: get
+    uri: https://admin:eYo5Dh2rR6jQayB4vFLEpqUwMcXosuXg@kt1.local/pulp/api/v2/tasks/b0f81bac-c4b2-4f9c-922c-abcdf5b11392/
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/json
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Date: 
+      - Mon, 02 Feb 2015 06:40:18 GMT
+      Server: 
+      - Apache/2.2.15 (Red Hat)
+      Vary: 
+      - Accept-Encoding
+      Content-Length: 
+      - "2053"
+      Content-Type: 
+      - application/json
+    body: 
+      encoding: ASCII-8BIT
+      string: "{\"exception\": null, \"task_type\": \"pulp.server.tasks.repository.sync_with_auto_publish\", \"_href\": \"/pulp/api/v2/tasks/b0f81bac-c4b2-4f9c-922c-abcdf5b11392/\", \"task_id\": \"b0f81bac-c4b2-4f9c-922c-abcdf5b11392\", \"tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:sync\"], \"finish_time\": \"2015-02-02T06:40:18Z\", \"_ns\": \"task_status\", \"start_time\": \"2015-02-02T06:40:17Z\", \"traceback\": null, \"spawned_tasks\": [], \"progress_report\": {\"yum_importer\": {\"content\": {\"size_total\": 0, \"items_left\": 0, \"items_total\": 0, \"state\": \"FINISHED\", \"size_left\": 0, \"details\": {\"rpm_total\": 0, \"rpm_done\": 0, \"drpm_total\": 0, \"drpm_done\": 0}, \"error_details\": []}, \"comps\": {\"state\": \"FINISHED\"}, \"distribution\": {\"items_total\": 3, \"state\": \"FINISHED\", \"error_details\": [], \"items_left\": 0}, \"errata\": {\"state\": \"FINISHED\"}, \"metadata\": {\"state\": \"FINISHED\"}}}, \"queue\": \"reserved_resource_worker-0@kt1.local.dq\", \"state\": \"finished\", \"worker_name\": \"reserved_resource_worker-0@kt1.local\", \"result\": {\"importer_type_id\": \"yum_importer\", \"importer_id\": \"yum_importer\", \"exception\": null, \"repo_id\": \"integration_test_id\", \"removed_count\": 0, \"started\": \"2015-02-02T06:40:17Z\", \"_ns\": \"repo_sync_results\", \"completed\": \"2015-02-02T06:40:18Z\", \"traceback\": null, \"summary\": {\"content\": {\"state\": \"FINISHED\"}, \"comps\": {\"state\": \"FINISHED\"}, \"distribution\": {\"state\": \"FINISHED\"}, \"errata\": {\"state\": \"FINISHED\"}, \"metadata\": {\"state\": \"FINISHED\"}}, \"added_count\": 0, \"error_message\": null, \"updated_count\": 14, \"details\": {\"content\": {\"size_total\": 0, \"items_left\": 0, \"items_total\": 0, \"state\": \"FINISHED\", \"size_left\": 0, \"details\": {\"rpm_total\": 0, \"rpm_done\": 0, \"drpm_total\": 0, \"drpm_done\": 0}, \"error_details\": []}, \"comps\": {\"state\": \"FINISHED\"}, \"distribution\": {\"items_total\": 3, \"state\": \"FINISHED\", \"error_details\": [], \"items_left\": 0}, \"errata\": {\"state\": \"FINISHED\"}, \"metadata\": {\"state\": \"FINISHED\"}}, \"id\": \"54cf1bd2b2ff981e8887da30\", \"result\": \"success\"}, \"error\": null, \"_id\": {\"$oid\": \"54cf1bd1962f40ae3501a3c3\"}, \"id\": \"54cf1bd1b2ff981dcc4404c1\"}"
+    http_version: 
+  recorded_at: Mon, 02 Feb 2015 06:40:18 GMT
+- request: 
+    method: get
+    uri: https://admin:eYo5Dh2rR6jQayB4vFLEpqUwMcXosuXg@kt1.local/pulp/api/v2/tasks/d43556c1-ee60-449f-8b4f-681fe0e8d721/
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/json
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Date: 
+      - Mon, 02 Feb 2015 06:40:19 GMT
+      Server: 
+      - Apache/2.2.15 (Red Hat)
+      Vary: 
+      - Accept-Encoding
+      Content-Length: 
+      - "662"
+      Content-Type: 
+      - application/json
+    body: 
+      encoding: ASCII-8BIT
+      string: "{\"exception\": null, \"task_type\": \"pulp.server.tasks.repository.delete\", \"_href\": \"/pulp/api/v2/tasks/d43556c1-ee60-449f-8b4f-681fe0e8d721/\", \"task_id\": \"d43556c1-ee60-449f-8b4f-681fe0e8d721\", \"tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:delete\"], \"finish_time\": \"2015-02-02T06:40:18Z\", \"_ns\": \"task_status\", \"start_time\": \"2015-02-02T06:40:18Z\", \"traceback\": null, \"spawned_tasks\": [], \"progress_report\": {}, \"queue\": \"reserved_resource_worker-0@kt1.local.dq\", \"state\": \"finished\", \"worker_name\": \"reserved_resource_worker-0@kt1.local\", \"result\": null, \"error\": null, \"_id\": {\"$oid\": \"54cf1bd2962f40ae3501a3c4\"}, \"id\": \"54cf1bd2b2ff981dcc4404c7\"}"
+    http_version: 
+  recorded_at: Mon, 02 Feb 2015 06:40:19 GMT
+- request: 
+    method: post
+    uri: https://admin:eYo5Dh2rR6jQayB4vFLEpqUwMcXosuXg@kt1.local/pulp/api/v2/consumers/
+    body: 
+      encoding: US-ASCII
+      string: "{\"id\":\"integration_test_consumer_support\"}"
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "42"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 201
+      message: Created
+    headers: 
+      Date: 
+      - Tue, 03 Feb 2015 20:24:42 GMT
+      Server: 
+      - Apache/2.2.15 (Red Hat)
+      Location: 
+      - /pulp/api/v2/consumers/integration_test_consumer_support/
+      Vary: 
+      - Accept-Encoding
+      Content-Length: 
+      - "2272"
+      Connection: 
+      - close
+      Content-Type: 
+      - application/json
+    body: 
+      encoding: ASCII-8BIT
+      string: "{\"consumer\": {\"display_name\": \"integration_test_consumer_support\", \"description\": null, \"_ns\": \"consumers\", \"notes\": {}, \"rsa_pub\": null, \"capabilities\": {}, \"_id\": {\"$oid\": \"54d12e8ab2ff9814a6ccd975\"}, \"id\": \"integration_test_consumer_support\", \"_href\": {\"_href\": \"/pulp/api/v2/consumers/integration_test_consumer_support/\"}}, \"certificate\": \"-----BEGIN RSA PRIVATE KEY-----\\nMIICXAIBAAKBgQDQYK8AqqUzbvU+EctE13W5EHapiUXv5ISUSeR2CJlj2JlzMx06\\noM100bvLBKztE6v10stn7QHyMvuu3O9Sr203wt/OAZTEoosEnMDqmMIpGy9pqgrw\\nThFuWLH6AnJwmWnwOVJICsf7ia6gD39U+OnmrB2H/LFcG6aQyQVGMHUEZQIDAQAB\\nAoGAYehbsdt8Pbtv3ZcsxA7ckHTs3GHUi4/6v1Ys00zdDa3zA87LeAWgI7h8HTr4\\nKXipvpop2o3g8TUFTrced+JXVRfeC3zXlOemPvIKe7XQS5bziEZDz1N7ky580gUf\\nDUmCFhBGUItb6d/AjrMB2HQuXNq8CFWpYO8g78+leTIpQq0CQQDoa0OnIV83wglg\\neWKlfVI/6nvbkRalQTuPQj/SwSYrcn24JUGKk6kMUlhh+ROlxoUegx/vxM3/qnVQ\\n7yBnaEcfAkEA5YT7U9UkGG31mtOAIg7DsRGKc+HZIhv0WfOLDH4Ee5blnqT1ZOg3\\nwYlaOqJzdJXTUtofAory4d2a8/TaYDyX+wJBAKmyn+vovugsQcJx/qfMUAChCZww\\nXHN+pKkd+xG7u03fw5FvimJPHBAGE8g9H65bu5iiru/XJ320DQJyBpvaFIsCQGYg\\nMtiNiV8ZZmR64ZPF8AtU279OahhESgjQVjm7xPDdJtTdX5eDwHNsU2qtqCPjGsHN\\n7mhqPUKFIZKVi6mwrIsCQD3SWIM6s32shzyaYZi0DATqSR0QN3UW6qS0mJl+z2i2\\nvZnPW07/1+UU4kfwGnRYyKNeZMssNZJVrTfJv91LHSc=\\n-----END RSA PRIVATE KEY-----\\n-----BEGIN CERTIFICATE-----\\nMIICuzCCAaMCAgD0MA0GCSqGSIb3DQEBBQUAMHQxCzAJBgNVBAYTAlVTMRcwFQYD\\nVQQIEw5Ob3J0aCBDYXJvbGluYTEQMA4GA1UEBxMHUmFsZWlnaDEQMA4GA1UEChMH\\nS2F0ZWxsbzEUMBIGA1UECxMLU29tZU9yZ1VuaXQxEjAQBgNVBAMTCWt0MS5sb2Nh\\nbDAeFw0xNTAyMDMyMDI0NDJaFw0yNTAxMzEyMDI0NDJaMFYxKjAoBgNVBAMUIWlu\\ndGVncmF0aW9uX3Rlc3RfY29uc3VtZXJfc3VwcG9ydDEoMCYGCgmSJomT8ixkAQET\\nGDU0ZDEyZThhYjJmZjk4MTRhNmNjZDk3NTCBnzANBgkqhkiG9w0BAQEFAAOBjQAw\\ngYkCgYEA0GCvAKqlM271PhHLRNd1uRB2qYlF7+SElEnkdgiZY9iZczMdOqDNdNG7\\nywSs7ROr9dLLZ+0B8jL7rtzvUq9tN8LfzgGUxKKLBJzA6pjCKRsvaaoK8E4Rblix\\n+gJycJlp8DlSSArH+4muoA9/VPjp5qwdh/yxXBumkMkFRjB1BGUCAwEAATANBgkq\\nhkiG9w0BAQUFAAOCAQEALZJKQI3mM2nS1LXhS9upaEd+bWiRGfBpsFgk04+f9ycx\\n7MG6vU/nc3mPpOVVpdne+kWlwPIMHu52BZ6BltIBzJPYyfwm4Wvd8TrMUSLh1P3Y\\nB5CTubK9wOdWXMHBVe0MyKVJKCYpjXJ3KaRGtgITfiNLvDrZQVXu8yFK3nbrrsPa\\nO8whRhDqGxpHrL+O0qI9w1+FX22bW/JygiepNQkNemWXKxFon7yNquSgva3cUxJR\\nDuN1NSYqnamirc+6scjNei95tVCNa8vdn2qhEav6GbpYjNRjS0xKtv5IDVqD6zvH\\n8ctUJLgIHqCaSDmDPxyu8dX19lLgou0U3hoKslHdhQ==\\n-----END CERTIFICATE-----\"}"
+    http_version: 
+  recorded_at: Tue, 03 Feb 2015 20:24:42 GMT
+- request: 
+    method: post
+    uri: https://admin:eYo5Dh2rR6jQayB4vFLEpqUwMcXosuXg@kt1.local/pulp/api/v2/consumers/integration_test_consumer_support/profiles//
+    body: 
+      encoding: US-ASCII
+      string: "{\"content_type\":\"rpm\",\"profile\":[{\"name\":\"elephant\",\"version\":\"0.2\",\"release\":\"0.7\",\"epoch\":0,\"arch\":\"noarch\",\"vendor\":\"Fedora\"}]}"
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "130"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 201
+      message: Created
+    headers: 
+      Date: 
+      - Tue, 03 Feb 2015 20:24:42 GMT
+      Server: 
+      - Apache/2.2.15 (Red Hat)
+      Location: 
+      - /pulp/api/v2/consumers/integration_test_consumer_support/profiles/integration_test_consumer_support/rpm/
+      Vary: 
+      - Accept-Encoding
+      Content-Length: 
+      - "509"
+      Connection: 
+      - close
+      Content-Type: 
+      - application/json
+    body: 
+      encoding: ASCII-8BIT
+      string: "{\"profile\": [{\"vendor\": \"Fedora\", \"name\": \"elephant\", \"epoch\": 0, \"version\": \"0.2\", \"release\": \"0.7\", \"arch\": \"noarch\"}], \"_href\": \"/pulp/api/v2/consumers/integration_test_consumer_support/profiles/integration_test_consumer_support/rpm/\", \"_ns\": \"consumer_unit_profiles\", \"profile_hash\": \"db16b75e977ae3fbbf27beb919693137b26ba59eb7be73f2888197b89521e50d\", \"consumer_id\": \"integration_test_consumer_support\", \"content_type\": \"rpm\", \"_id\": {\"$oid\": \"54d12e8ab2ff9814a6ccd979\"}, \"id\": \"54d12e8ab2ff9814a6ccd979\"}"
+    http_version: 
+  recorded_at: Tue, 03 Feb 2015 20:24:42 GMT
+- request: 
+    method: get
+    uri: https://admin:eYo5Dh2rR6jQayB4vFLEpqUwMcXosuXg@kt1.local/pulp/api/v2/repositories/integration_test_id/
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/json
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 404
+      message: Not Found
+    headers: 
+      Date: 
+      - Tue, 03 Feb 2015 20:24:43 GMT
+      Server: 
+      - Apache/2.2.15 (Red Hat)
+      Content-Encoding: 
+      - utf-8
+      Content-Length: 
+      - "427"
+      Connection: 
+      - close
+      Content-Type: 
+      - application/json
+    body: 
+      encoding: US-ASCII
+      string: "{\"http_request_method\": \"GET\", \"exception\": null, \"error_message\": \"Missing resource(s): repo=integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\", \"http_status\": 404, \"error\": {\"code\": \"PLP0009\", \"data\": {\"resources\": {\"repo\": \"integration_test_id\"}}, \"description\": \"Missing resource(s): repo=integration_test_id\", \"sub_errors\": []}, \"traceback\": null, \"resources\": {\"repo\": \"integration_test_id\"}}"
+    http_version: 
+  recorded_at: Tue, 03 Feb 2015 20:24:43 GMT
+- request: 
+    method: post
+    uri: https://admin:eYo5Dh2rR6jQayB4vFLEpqUwMcXosuXg@kt1.local/pulp/api/v2/repositories/
+    body: 
+      encoding: US-ASCII
+      string: "{\"id\":\"integration_test_id\",\"importer_type_id\":\"yum_importer\",\"importer_config\":{\"feed\":\"file:///var/www/repositories/zoo5\"},\"distributors\":[{\"distributor_type_id\":\"yum_distributor\",\"distributor_config\":{\"relative_url\":\"/path\",\"http\":true,\"https\":true},\"auto_publish\":false,\"distributor_id\":\"yum_dist\"}]}"
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "304"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 201
+      message: Created
+    headers: 
+      Date: 
+      - Tue, 03 Feb 2015 20:24:43 GMT
+      Server: 
+      - Apache/2.2.15 (Red Hat)
+      Location: 
+      - integration_test_id
+      Vary: 
+      - Accept-Encoding
+      Content-Length: 
+      - "319"
+      Connection: 
+      - close
+      Content-Type: 
+      - application/json
+    body: 
+      encoding: ASCII-8BIT
+      string: "{\"scratchpad\": {}, \"display_name\": \"integration_test_id\", \"description\": null, \"last_unit_added\": null, \"notes\": {}, \"last_unit_removed\": null, \"content_unit_counts\": {}, \"_ns\": \"repos\", \"_id\": {\"$oid\": \"54d12e8bb2ff9814a6ccd97b\"}, \"id\": \"integration_test_id\", \"_href\": \"/pulp/api/v2/repositories/integration_test_id/\"}"
+    http_version: 
+  recorded_at: Tue, 03 Feb 2015 20:24:43 GMT
+- request: 
+    method: post
+    uri: https://admin:eYo5Dh2rR6jQayB4vFLEpqUwMcXosuXg@kt1.local/pulp/api/v2/repositories/integration_test_id/actions/sync/
+    body: 
+      encoding: US-ASCII
+      string: "{}"
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/json
+      Content-Length: 
+      - "2"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 202
+      message: Accepted
+    headers: 
+      Date: 
+      - Tue, 03 Feb 2015 20:24:43 GMT
+      Server: 
+      - Apache/2.2.15 (Red Hat)
+      Content-Encoding: 
+      - utf-8
+      Content-Length: 
+      - "172"
+      Connection: 
+      - close
+      Content-Type: 
+      - application/json
+    body: 
+      encoding: US-ASCII
+      string: "{\"spawned_tasks\": [{\"_href\": \"/pulp/api/v2/tasks/b208f33e-12fa-4fad-b405-bec215f20b62/\", \"task_id\": \"b208f33e-12fa-4fad-b405-bec215f20b62\"}], \"result\": null, \"error\": null}"
+    http_version: 
+  recorded_at: Tue, 03 Feb 2015 20:24:43 GMT
+- request: 
+    method: get
+    uri: https://admin:eYo5Dh2rR6jQayB4vFLEpqUwMcXosuXg@kt1.local/pulp/api/v2/tasks/b208f33e-12fa-4fad-b405-bec215f20b62/
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/json
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Date: 
+      - Tue, 03 Feb 2015 20:24:44 GMT
+      Server: 
+      - Apache/2.2.15 (Red Hat)
+      Vary: 
+      - Accept-Encoding
+      Content-Length: 
+      - "2053"
+      Connection: 
+      - close
+      Content-Type: 
+      - application/json
+    body: 
+      encoding: ASCII-8BIT
+      string: "{\"exception\": null, \"task_type\": \"pulp.server.tasks.repository.sync_with_auto_publish\", \"_href\": \"/pulp/api/v2/tasks/b208f33e-12fa-4fad-b405-bec215f20b62/\", \"task_id\": \"b208f33e-12fa-4fad-b405-bec215f20b62\", \"tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:sync\"], \"finish_time\": \"2015-02-03T20:24:44Z\", \"_ns\": \"task_status\", \"start_time\": \"2015-02-03T20:24:43Z\", \"traceback\": null, \"spawned_tasks\": [], \"progress_report\": {\"yum_importer\": {\"content\": {\"size_total\": 0, \"items_left\": 0, \"items_total\": 0, \"state\": \"FINISHED\", \"size_left\": 0, \"details\": {\"rpm_total\": 0, \"rpm_done\": 0, \"drpm_total\": 0, \"drpm_done\": 0}, \"error_details\": []}, \"comps\": {\"state\": \"FINISHED\"}, \"distribution\": {\"items_total\": 3, \"state\": \"FINISHED\", \"error_details\": [], \"items_left\": 0}, \"errata\": {\"state\": \"FINISHED\"}, \"metadata\": {\"state\": \"FINISHED\"}}}, \"queue\": \"reserved_resource_worker-0@kt1.local.dq\", \"state\": \"finished\", \"worker_name\": \"reserved_resource_worker-0@kt1.local\", \"result\": {\"importer_type_id\": \"yum_importer\", \"importer_id\": \"yum_importer\", \"exception\": null, \"repo_id\": \"integration_test_id\", \"removed_count\": 0, \"started\": \"2015-02-03T20:24:43Z\", \"_ns\": \"repo_sync_results\", \"completed\": \"2015-02-03T20:24:44Z\", \"traceback\": null, \"summary\": {\"content\": {\"state\": \"FINISHED\"}, \"comps\": {\"state\": \"FINISHED\"}, \"distribution\": {\"state\": \"FINISHED\"}, \"errata\": {\"state\": \"FINISHED\"}, \"metadata\": {\"state\": \"FINISHED\"}}, \"added_count\": 0, \"error_message\": null, \"updated_count\": 14, \"details\": {\"content\": {\"size_total\": 0, \"items_left\": 0, \"items_total\": 0, \"state\": \"FINISHED\", \"size_left\": 0, \"details\": {\"rpm_total\": 0, \"rpm_done\": 0, \"drpm_total\": 0, \"drpm_done\": 0}, \"error_details\": []}, \"comps\": {\"state\": \"FINISHED\"}, \"distribution\": {\"items_total\": 3, \"state\": \"FINISHED\", \"error_details\": [], \"items_left\": 0}, \"errata\": {\"state\": \"FINISHED\"}, \"metadata\": {\"state\": \"FINISHED\"}}, \"id\": \"54d12e8cb2ff9804eda03113\", \"result\": \"success\"}, \"error\": null, \"_id\": {\"$oid\": \"54d12e8bdb087ce12b11fd21\"}, \"id\": \"54d12e8bb2ff980faeab9f7c\"}"
+    http_version: 
+  recorded_at: Tue, 03 Feb 2015 20:24:44 GMT
+- request: 
+    method: delete
+    uri: https://admin:eYo5Dh2rR6jQayB4vFLEpqUwMcXosuXg@kt1.local/pulp/api/v2/consumers/integration_test_consumer_support/
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/json
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Date: 
+      - Tue, 03 Feb 2015 20:24:44 GMT
+      Server: 
+      - Apache/2.2.15 (Red Hat)
+      Vary: 
+      - Accept-Encoding
+      Content-Length: 
+      - "4"
+      Connection: 
+      - close
+      Content-Type: 
+      - application/json
+    body: 
+      encoding: ASCII-8BIT
+      string: "null"
+    http_version: 
+  recorded_at: Tue, 03 Feb 2015 20:24:45 GMT
+- request: 
+    method: delete
+    uri: https://admin:eYo5Dh2rR6jQayB4vFLEpqUwMcXosuXg@kt1.local/pulp/api/v2/repositories/integration_test_id/
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/json
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 202
+      message: Accepted
+    headers: 
+      Date: 
+      - Tue, 03 Feb 2015 20:24:45 GMT
+      Server: 
+      - Apache/2.2.15 (Red Hat)
+      Content-Encoding: 
+      - utf-8
+      Content-Length: 
+      - "172"
+      Connection: 
+      - close
+      Content-Type: 
+      - application/json
+    body: 
+      encoding: US-ASCII
+      string: "{\"spawned_tasks\": [{\"_href\": \"/pulp/api/v2/tasks/499a882e-2ef3-4f6c-be80-d8a10fc5741e/\", \"task_id\": \"499a882e-2ef3-4f6c-be80-d8a10fc5741e\"}], \"result\": null, \"error\": null}"
+    http_version: 
+  recorded_at: Tue, 03 Feb 2015 20:24:45 GMT
+- request: 
+    method: get
+    uri: https://admin:eYo5Dh2rR6jQayB4vFLEpqUwMcXosuXg@kt1.local/pulp/api/v2/tasks/499a882e-2ef3-4f6c-be80-d8a10fc5741e/
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Accept: 
+      - application/json
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/json
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Date: 
+      - Tue, 03 Feb 2015 20:24:46 GMT
+      Server: 
+      - Apache/2.2.15 (Red Hat)
+      Vary: 
+      - Accept-Encoding
+      Content-Length: 
+      - "662"
+      Connection: 
+      - close
+      Content-Type: 
+      - application/json
+    body: 
+      encoding: ASCII-8BIT
+      string: "{\"exception\": null, \"task_type\": \"pulp.server.tasks.repository.delete\", \"_href\": \"/pulp/api/v2/tasks/499a882e-2ef3-4f6c-be80-d8a10fc5741e/\", \"task_id\": \"499a882e-2ef3-4f6c-be80-d8a10fc5741e\", \"tags\": [\"pulp:repository:integration_test_id\", \"pulp:action:delete\"], \"finish_time\": \"2015-02-03T20:24:45Z\", \"_ns\": \"task_status\", \"start_time\": \"2015-02-03T20:24:45Z\", \"traceback\": null, \"spawned_tasks\": [], \"progress_report\": {}, \"queue\": \"reserved_resource_worker-0@kt1.local.dq\", \"state\": \"finished\", \"worker_name\": \"reserved_resource_worker-0@kt1.local\", \"result\": null, \"error\": null, \"_id\": {\"$oid\": \"54d12e8ddb087ce12b11fd22\"}, \"id\": \"54d12e8db2ff980faeab9f82\"}"
+    http_version: 
+  recorded_at: Tue, 03 Feb 2015 20:24:46 GMT
 recorded_with: VCR 2.9.3

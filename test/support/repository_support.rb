@@ -41,10 +41,10 @@ class RepositorySupport
     @importer_type     = "#{@repo_type}_importer"
 
     if @repo_type == 'yum'
-      @distributors = [Runcible::Models::YumDistributor.new('/path', true, true, :id => 'puppet_dist')]
+      @distributors = [Runcible::Models::YumDistributor.new('/path', true, true, :id => 'yum_dist')]
       @repo_url     = "file://#{FIXTURE_PATH}/zoo5"
     elsif @repo_type == 'puppet'
-      @distributors = [Runcible::Models::PuppetDistributor.new('/path', true, true, :id => 'yum_dist')]
+      @distributors = [Runcible::Models::PuppetDistributor.new('/path', true, true, :id => 'puppet_dist')]
       @repo_url     = 'http://davidd.fedorapeople.org/repos/random_puppet/'
     end
   end
