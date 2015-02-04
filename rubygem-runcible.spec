@@ -48,7 +48,7 @@ Name:           %{?scl_prefix}rubygem-%{gem_name}
 Summary:        A gem exposing Pulp's juiciest parts
 Group:          Applications/System
 License:        MIT
-Version:        1.3.0
+Version:        1.3.1
 Release:        1%{?dist}
 URL:            https://github.com/Katello/runcible
 # Can be retrieved by:
