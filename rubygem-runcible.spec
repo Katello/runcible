@@ -67,6 +67,7 @@ Requires:       %{?scl_prefix}ruby(abi) = %{rubyabi}
 Requires:       %{?scl_prefix}ruby(rubygems) 
 Requires:       %{?scl_prefix}rubygem(json) 
 Requires:       %{?scl_prefix}rubygem(rest-client) >= 1.6.1
+Requires:       %{?scl_prefix}rubygem(rest-client) < 1.8.0
 Requires:       %{?scl_prefix}rubygem(oauth) 
 Requires:       %{?scl_prefix}rubygem(activesupport) >= 3.0.10
 Requires:       %{?scl_prefix}rubygem(i18n) >= 0.5.0
