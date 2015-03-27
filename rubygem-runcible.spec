@@ -48,7 +48,7 @@ Name:           %{?scl_prefix}rubygem-%{gem_name}
 Summary:        A gem exposing Pulp's juiciest parts
 Group:          Applications/System
 License:        MIT
-Version:        1.3.1
+Version:        1.3.2
 Release:        1%{?dist}
 URL:            https://github.com/Katello/runcible
 # Can be retrieved by:
@@ -123,6 +123,9 @@ mkdir -p %{buildroot}%{gem_docdir}
 %doc %{gem_instdir}/CONTRIBUTING.md
 
 %changelog
+* Fri Mar 27 2015 Justin Sherrill <jsherril@redhat.com> 1.3.2-1
+- locking to rest-client less than 1.8 (jsherril@redhat.com)
+
 * Tue Feb 03 2015 Justin Sherrill <jsherril@redhat.com> 1.3.1-1
 - addresses #9179 - fix tests for Pulp 2.6 (mmccune@redhat.com)
 - Refs #7617 - Fixed a docker distributor issue (paji@redhat.com)
