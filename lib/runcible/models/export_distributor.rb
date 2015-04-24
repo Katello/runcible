@@ -27,7 +27,7 @@ require 'securerandom'
 module Runcible
   module Models
     class ExportDistributor < Distributor
-      #required
+      #required attributes
       attr_accessor 'http', 'https'
 
       # Instantiates a export distributor
