@@ -27,7 +27,7 @@ require 'securerandom'
 module Runcible
   module Models
     class IsoDistributor < Distributor
-      #required
+      #required attributes
       attr_accessor 'serve_http', 'serve_https'
 
       # Instantiates an iso distributor

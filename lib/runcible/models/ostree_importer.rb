@@ -21,31 +21,24 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-require 'active_support/json'
-require 'securerandom'
-
 module Runcible
   module Models
-    class DockerDistributor < Distributor
-      #optional attributes
-      attr_accessor 'docker_publish_directory', 'protected',
-                    'redirect_url',  'repo_registry_id'
+    class OstreeImporter < Importer
+      ID = 'ostree_web_importer'
+      REPO_TYPE = 'OSTREE'
 
-      def initialize(params = {})
-        super(params)
+      attr_accessor 'feed', 'branches'
+
+      def id
+        OstreeImporter::ID
       end
 
-      def self.type_id
-        'docker_distributor_web'
+      def repo_type
+        OstreeImporter::REPO_TYPE
       end
 
       def config
-        to_ret = as_json
-        to_ret.delete('auto_publish')
-        to_ret.delete('id')
-        to_ret.delete("repo_registry_id")
-        to_ret["repo-registry-id"] = repo_registry_id
-        to_ret
+        as_json
       end
     end
   end

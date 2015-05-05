@@ -27,9 +27,9 @@ require 'securerandom'
 module Runcible
   module Models
     class YumDistributor < Distributor
-      #required
+      #required attributes
       attr_accessor 'relative_url', 'http', 'https'
-      #optional
+      #optional attributes
       attr_accessor 'protected', 'auth_cert', 'auth_ca',
                     'https_ca', 'gpgkey', 'generate_metadata',
                     'checksum_type', 'skip', 'https_publish_dir', 'http_publish_dir'
