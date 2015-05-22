@@ -137,7 +137,7 @@ module Runcible
 
     def process_response(response)
       begin
-        body = JSON.parse(response.body)
+        body = response.body == "null" ? nil : JSON.parse(response.body)
         if body.respond_to? :with_indifferent_access
           body = body.with_indifferent_access
         elsif body.is_a? Array
