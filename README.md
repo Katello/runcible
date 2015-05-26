@@ -10,6 +10,8 @@ Current stable Runcible: https://github.com/Katello/runcible/tree/0.3
 
 For in-depth class and method documentation: http://katello.github.com/runcible/
 
+Please file new issues here: [Readmine](http://projects.theforeman.org/projects/runcible/issues/new)
+
 ## Installation
 
 Add this line to your application's Gemfile:
