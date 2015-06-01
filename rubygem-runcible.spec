@@ -123,6 +123,10 @@ mkdir -p %{buildroot}%{gem_docdir}
 %doc %{gem_instdir}/CONTRIBUTING.md
 
 %changelog
+* Mon Jun 01 2015 Eric D. Helms <ericdhelms@gmail.com> 1.3.4-1
+- Version bump to 1.3.4 (ericdhelms@gmail.com)
+- Fixes #10594: Don't try to parse "null" responses. (ericdhelms@gmail.com)
+
 * Fri Mar 27 2015 Justin Sherrill <jsherril@redhat.com> 1.3.3-1
 - bumping version to 1.3.3 (jsherril@redhat.com)
 
