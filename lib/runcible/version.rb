@@ -1,3 +1,3 @@
 module Runcible
-  VERSION = '1.3.3'
+  VERSION = '1.3.5'
 end
