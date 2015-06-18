@@ -123,6 +123,10 @@ mkdir -p %{buildroot}%{gem_docdir}
 %doc %{gem_instdir}/CONTRIBUTING.md
 
 %changelog
+* Thu Jun 18 2015 Eric D. Helms <ericdhelms@gmail.com> 1.3.5-1
+- Version bump to 1.3.5 (ericdhelms@gmail.com)
+- Fixes #10866 - changes 404 exceptions from error to info
+
 * Mon Jun 01 2015 Eric D. Helms <ericdhelms@gmail.com> 1.3.4-1
 - Version bump to 1.3.4 (ericdhelms@gmail.com)
 - Fixes #10594: Don't try to parse "null" responses. (ericdhelms@gmail.com)
