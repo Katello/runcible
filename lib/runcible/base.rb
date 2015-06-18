@@ -1,6 +1,3 @@
-# Copyright (c) 2012 Red Hat
-#
-# MIT License
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -82,6 +79,9 @@ module Runcible
       response = get_response(client, path, *args)
       process_response(response)
 
+    rescue RestClient::ResourceNotFound => e
+      log_info
+      raise e
     rescue => e
       log_exception
       raise e
@@ -210,6 +210,13 @@ module Runcible
       if self.config[:logging][:exception]
         log_message = generate_log_message
         self.config[:logging][:logger].error(log_message)
+      end
+    end
+
+    def log_info
+      if self.config[:logging][:info]
+        log_message = generate_log_message
+        self.config[:logging][:logger].info(log_message)
       end
     end
 
