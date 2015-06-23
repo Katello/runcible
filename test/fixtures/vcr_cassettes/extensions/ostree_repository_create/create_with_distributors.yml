@@ -99,87 +99,6 @@ http_interactions:
     http_version: 
   recorded_at: Fri, 24 Apr 2015 03:31:22 GMT
 - request:
-    method: post
-    uri: https://admin:yjJbppdnk9o53M7DUpabXnse9o6NZveD@katello-wisdom.example.com/pulp/api/v2/repositories/
-    body:
-      encoding: UTF-8
-      string: '{"id":"integration_test_id","distributors":[{"distributor_type_id":"ostree_web_distributor","distributor_config":{"ostree_publish_directory":"/path"},"auto_publish":true,"distributor_id":"123"}]}'
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Type:
-      - application/json
-      Content-Length:
-      - '195'
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 201
-      message: CREATED
-    headers:
-      Date:
-      - Fri, 24 Apr 2015 03:32:46 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Content-Length:
-      - '319'
-      Location:
-      - https://katello-wisdom.example.com/pulp/api/v2/repositories/integration_test_id/
-      Connection:
-      - close
-      Content-Type:
-      - application/json
-    body:
-      encoding: UTF-8
-      string: '{"scratchpad": {}, "display_name": "integration_test_id", "description":
-        null, "last_unit_added": null, "notes": {}, "last_unit_removed": null, "content_unit_counts":
-        {}, "_ns": "repos", "_id": {"$oid": "5539b95ed01ec01aafe6d8ca"}, "id": "integration_test_id",
-        "_href": "/pulp/api/v2/repositories/integration_test_id/"}'
-    http_version: 
-  recorded_at: Fri, 24 Apr 2015 03:32:46 GMT
-- request:
-    method: delete
-    uri: https://admin:yjJbppdnk9o53M7DUpabXnse9o6NZveD@katello-wisdom.example.com/pulp/api/v2/repositories/integration_test_id/
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Type:
-      - application/json
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 202
-      message: ACCEPTED
-    headers:
-      Date:
-      - Fri, 24 Apr 2015 03:32:46 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Content-Encoding:
-      - utf-8
-      Content-Length:
-      - '172'
-      Connection:
-      - close
-      Content-Type:
-      - application/json
-    body:
-      encoding: UTF-8
-      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/8eb89d5c-de21-4e46-9956-0a2e712ce09e/",
-        "task_id": "8eb89d5c-de21-4e46-9956-0a2e712ce09e"}], "result": null, "error":
-        null}'
-    http_version: 
-  recorded_at: Fri, 24 Apr 2015 03:32:46 GMT
-- request:
     method: get
     uri: https://admin:yjJbppdnk9o53M7DUpabXnse9o6NZveD@katello-wisdom.example.com/pulp/api/v2/tasks/8eb89d5c-de21-4e46-9956-0a2e712ce09e/
     body:
@@ -233,4 +152,193 @@ http_interactions:
         "id": "5539b95eae874ef86bf80f50"}'
     http_version: 
   recorded_at: Fri, 24 Apr 2015 03:32:46 GMT
+- request:
+    method: get
+    uri: https://admin:7HLGDTSxNnAEEtqKgjecYCvftjzNmoRE@katello-kant.example.com/pulp/api/v2/tasks/b767561e-4f25-433c-b393-29ea30c8de9f/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 23 Jun 2015 22:37:40 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '1698'
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '{"exception": null, "task_type": "pulp.server.tasks.repository.delete",
+        "_href": "/pulp/api/v2/tasks/b767561e-4f25-433c-b393-29ea30c8de9f/", "task_id":
+        "b767561e-4f25-433c-b393-29ea30c8de9f", "tags": ["pulp:repository:integration_test_id",
+        "pulp:action:delete"], "finish_time": "2015-06-23T22:37:40Z", "_ns": "task_status",
+        "start_time": "2015-06-23T22:37:40Z", "traceback": "Traceback (most recent
+        call last):\n  File \"/usr/lib/python2.7/site-packages/celery/app/trace.py\",
+        line 240, in trace_task\n    R = retval = fun(*args, **kwargs)\n  File \"/usr/lib/python2.7/site-packages/pulp/server/async/tasks.py\",
+        line 394, in __call__\n    return super(Task, self).__call__(*args, **kwargs)\n  File
+        \"/usr/lib/python2.7/site-packages/celery/app/trace.py\", line 437, in __protected_call__\n    return
+        self.run(*args, **kwargs)\n  File \"/usr/lib/python2.7/site-packages/pulp/server/tasks/repository.py\",
+        line 41, in delete\n    manager.delete_repo(repo_id)\n  File \"/usr/lib/python2.7/site-packages/pulp/server/managers/repo/cud.py\",
+        line 261, in delete_repo\n    raise pe\nPulpExecutionException: Pulp exception
+        occurred: PulpExecutionException\n", "spawned_tasks": [], "progress_report":
+        {}, "queue": "reserved_resource_worker-0@katello-kant.example.com.dq", "state":
+        "error", "worker_name": "reserved_resource_worker-0@katello-kant.example.com",
+        "result": null, "error": {"code": "PLP0000", "data": {}, "description": "Pulp
+        exception occurred: PulpExecutionException", "sub_errors": [{"code": "PLP0000",
+        "data": {}, "description": "coercing to Unicode: need string or buffer, NoneType
+        found", "sub_errors": []}]}, "_id": {"$oid": "5589dfb42812e3d33cf0ff8e"},
+        "id": "5589dfb42812e3d33cf0ff8e"}'
+    http_version: 
+  recorded_at: Tue, 23 Jun 2015 22:37:40 GMT
+- request:
+    method: post
+    uri: https://admin:7HLGDTSxNnAEEtqKgjecYCvftjzNmoRE@katello-kant.example.com/pulp/api/v2/repositories/
+    body:
+      encoding: UTF-8
+      string: '{"id":"integration_test_id","distributors":[{"distributor_type_id":"ostree_web_distributor","distributor_config":{"ostree_publish_directory":"/path"},"auto_publish":true,"distributor_id":"123"}]}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '195'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 201
+      message: CREATED
+    headers:
+      Date:
+      - Tue, 23 Jun 2015 22:45:04 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '319'
+      Location:
+      - https://katello-kant.example.com/pulp/api/v2/repositories/integration_test_id/
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '{"scratchpad": {}, "display_name": "integration_test_id", "description":
+        null, "last_unit_added": null, "notes": {}, "last_unit_removed": null, "content_unit_counts":
+        {}, "_ns": "repos", "_id": {"$oid": "5589e170f115fc042e751cc0"}, "id": "integration_test_id",
+        "_href": "/pulp/api/v2/repositories/integration_test_id/"}'
+    http_version: 
+  recorded_at: Tue, 23 Jun 2015 22:45:04 GMT
+- request:
+    method: delete
+    uri: https://admin:7HLGDTSxNnAEEtqKgjecYCvftjzNmoRE@katello-kant.example.com/pulp/api/v2/repositories/integration_test_id/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 202
+      message: ACCEPTED
+    headers:
+      Date:
+      - Tue, 23 Jun 2015 22:45:04 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Encoding:
+      - utf-8
+      Content-Length:
+      - '172'
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/ef211642-b0e8-4ffe-9a18-ec461a4c43d1/",
+        "task_id": "ef211642-b0e8-4ffe-9a18-ec461a4c43d1"}], "result": null, "error":
+        null}'
+    http_version: 
+  recorded_at: Tue, 23 Jun 2015 22:45:04 GMT
+- request:
+    method: get
+    uri: https://admin:7HLGDTSxNnAEEtqKgjecYCvftjzNmoRE@katello-kant.example.com/pulp/api/v2/tasks/ef211642-b0e8-4ffe-9a18-ec461a4c43d1/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 23 Jun 2015 22:45:05 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '1698'
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '{"exception": null, "task_type": "pulp.server.tasks.repository.delete",
+        "_href": "/pulp/api/v2/tasks/ef211642-b0e8-4ffe-9a18-ec461a4c43d1/", "task_id":
+        "ef211642-b0e8-4ffe-9a18-ec461a4c43d1", "tags": ["pulp:repository:integration_test_id",
+        "pulp:action:delete"], "finish_time": "2015-06-23T22:45:04Z", "_ns": "task_status",
+        "start_time": "2015-06-23T22:45:04Z", "traceback": "Traceback (most recent
+        call last):\n  File \"/usr/lib/python2.7/site-packages/celery/app/trace.py\",
+        line 240, in trace_task\n    R = retval = fun(*args, **kwargs)\n  File \"/usr/lib/python2.7/site-packages/pulp/server/async/tasks.py\",
+        line 394, in __call__\n    return super(Task, self).__call__(*args, **kwargs)\n  File
+        \"/usr/lib/python2.7/site-packages/celery/app/trace.py\", line 437, in __protected_call__\n    return
+        self.run(*args, **kwargs)\n  File \"/usr/lib/python2.7/site-packages/pulp/server/tasks/repository.py\",
+        line 41, in delete\n    manager.delete_repo(repo_id)\n  File \"/usr/lib/python2.7/site-packages/pulp/server/managers/repo/cud.py\",
+        line 261, in delete_repo\n    raise pe\nPulpExecutionException: Pulp exception
+        occurred: PulpExecutionException\n", "spawned_tasks": [], "progress_report":
+        {}, "queue": "reserved_resource_worker-0@katello-kant.example.com.dq", "state":
+        "error", "worker_name": "reserved_resource_worker-0@katello-kant.example.com",
+        "result": null, "error": {"code": "PLP0000", "data": {}, "description": "Pulp
+        exception occurred: PulpExecutionException", "sub_errors": [{"code": "PLP0000",
+        "data": {}, "description": "coercing to Unicode: need string or buffer, NoneType
+        found", "sub_errors": []}]}, "_id": {"$oid": "5589e1702812e3d33cf10368"},
+        "id": "5589e1702812e3d33cf10368"}'
+    http_version: 
+  recorded_at: Tue, 23 Jun 2015 22:45:05 GMT
 recorded_with: VCR 2.9.3

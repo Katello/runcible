@@ -1,81 +1,83 @@
---- 
-http_interactions: 
-- request: 
+---
+http_interactions:
+- request:
     method: post
-    uri: https://admin:eYo5Dh2rR6jQayB4vFLEpqUwMcXosuXg@kt1.local/pulp/api/v2/consumers/
-    body: 
-      encoding: US-ASCII
-      string: "{\"id\":\"integration_test_consumer\",\"name\":\"boo\"}"
-    headers: 
-      Accept: 
+    uri: https://admin:7HLGDTSxNnAEEtqKgjecYCvftjzNmoRE@katello-kant.example.com/pulp/api/v2/consumers/
+    body:
+      encoding: UTF-8
+      string: '{"id":"integration_test_consumer","name":"boo"}'
+    headers:
+      Accept:
       - application/json
-      Accept-Encoding: 
+      Accept-Encoding:
       - gzip, deflate
-      Content-Type: 
+      Content-Type:
       - application/json
-      Content-Length: 
-      - "47"
-      User-Agent: 
+      Content-Length:
+      - '47'
+      User-Agent:
       - Ruby
-  response: 
-    status: 
+  response:
+    status:
       code: 201
-      message: Created
-    headers: 
-      Date: 
-      - Tue, 03 Feb 2015 20:24:55 GMT
-      Server: 
-      - Apache/2.2.15 (Red Hat)
-      Location: 
-      - /pulp/api/v2/consumers/integration_test_consumer/
-      Vary: 
-      - Accept-Encoding
-      Content-Length: 
-      - "2236"
-      Connection: 
+      message: CREATED
+    headers:
+      Date:
+      - Tue, 23 Jun 2015 22:45:52 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '2245'
+      Location:
+      - https://katello-kant.example.com/pulp/api/v2/consumers/integration_test_consumer/
+      Connection:
       - close
-      Content-Type: 
+      Content-Type:
       - application/json
-    body: 
-      encoding: ASCII-8BIT
-      string: "{\"consumer\": {\"display_name\": \"integration_test_consumer\", \"description\": null, \"_ns\": \"consumers\", \"notes\": {}, \"rsa_pub\": null, \"capabilities\": {}, \"_id\": {\"$oid\": \"54d12e97b2ff9814a6ccd9c0\"}, \"id\": \"integration_test_consumer\", \"_href\": {\"_href\": \"/pulp/api/v2/consumers/integration_test_consumer/\"}}, \"certificate\": \"-----BEGIN RSA PRIVATE KEY-----\\nMIICXAIBAAKBgQDRaj8KS4UVokkLlYwbxw0GChbhGpEqtfwnUjq2w6IpgFEAUVuz\\nMZ+9wI8gJEUBPogiZKaNYP6bPeyqapCZHmRllQ0cuhNN78ZvTl4idvxLGSYN4Fao\\nX2FWktFKFJorJQkGhKjQcKGeY/n1rmlJWpHIx8bvbsZcUyLbuRLooQA/xQIDAQAB\\nAoGAbprFDPTyJ4j9N4cW5xzsvgHaL65OedaAhWwi4qDVJ0JEhfxyiGRvUFNBxOIj\\nKBMU58VtSkKuduPv+doq4RRyRVgqIY4WvqFg4S1u/vDkL0DA55/hDKFj0ugjV3HM\\nLsp1jCIwXkBMZFfIMGV6vUR4dL4MeuYOynM1mXo7YjSVB4ECQQDps4qg3MUqcLHE\\npbMtiTjX5BCVpLcZMc7I1V6Ok+x3wp4npjfix+/jGE+QEy+pAr6uDlhYjg4ugDqy\\nFSrTrpB1AkEA5WV650nvhyOyKSx5DN6Am97eD4m/6TdphoRrwlkDzRboOYkyeLzg\\noZjE1BppCsjKxgF6CCuNESd7pmFUqbEIEQJBAM9AskhGgXRJzN0gNe7EKu0LDMoo\\n8Vgem8vvrZO0C5mJtshi2Fz+Avfar3SOD05LaN7jSeX+1QTYIzWbIAfqX6ECQGZj\\nuUvrEGK9aBRAqXc5CSaJf4xn66To+szz5jVFDhFInDayKjkB9TGrwo75itEpdniS\\nyClFZx21BdfpsaRcREECQCDn9OUKTZLLXg0KrrP80gnsNGAk5wi5GF3YuhBMKCiF\\nPeqkOp2Wq8wQhNfHusehuCk261yih5ycS5ePJFSdOks=\\n-----END RSA PRIVATE KEY-----\\n-----BEGIN CERTIFICATE-----\\nMIICszCCAZsCAgD4MA0GCSqGSIb3DQEBBQUAMHQxCzAJBgNVBAYTAlVTMRcwFQYD\\nVQQIEw5Ob3J0aCBDYXJvbGluYTEQMA4GA1UEBxMHUmFsZWlnaDEQMA4GA1UEChMH\\nS2F0ZWxsbzEUMBIGA1UECxMLU29tZU9yZ1VuaXQxEjAQBgNVBAMTCWt0MS5sb2Nh\\nbDAeFw0xNTAyMDMyMDI0NTVaFw0yNTAxMzEyMDI0NTVaME4xIjAgBgNVBAMUGWlu\\ndGVncmF0aW9uX3Rlc3RfY29uc3VtZXIxKDAmBgoJkiaJk/IsZAEBExg1NGQxMmU5\\nN2IyZmY5ODE0YTZjY2Q5YzAwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBANFq\\nPwpLhRWiSQuVjBvHDQYKFuEakSq1/CdSOrbDoimAUQBRW7Mxn73AjyAkRQE+iCJk\\npo1g/ps97KpqkJkeZGWVDRy6E03vxm9OXiJ2/EsZJg3gVqhfYVaS0UoUmislCQaE\\nqNBwoZ5j+fWuaUlakcjHxu9uxlxTItu5EuihAD/FAgMBAAEwDQYJKoZIhvcNAQEF\\nBQADggEBAB9QKdjoTySV8AbIh10z9OqPw/EpcZ3CnSNaCWCtoXJnIiw7P79e9Egq\\nam6qhyA+DJvNmt53zVmv6xwVCMRWWCG3gkyOgy8kGFmsVuVHDihEoIb/Rrrwhnhm\\nWz7brkfJVdKbscbJONLe68tS3jb2OmvDKPH/d02C8SR921MAmwVthVE3dvJyltDZ\\nJqUYMDSzUFz2BBRCO2dBJs8g6mkw6ejVw8DNKZkXUPd9W245dsMCqzL69kuT9aU6\\nU4+0jvehJFEcnORVdq10ToNGOnek6Fbi/MceEV41XH8hmi1SEdlMtvQCPMxgPEuE\\n21wcdw6XE3yHJlEnU7gUNYzBNSWbrQI=\\n-----END CERTIFICATE-----\"}"
+    body:
+      encoding: UTF-8
+      string: '{"consumer": {"display_name": "integration_test_consumer", "description":
+        null, "_ns": "consumers", "notes": {}, "rsa_pub": null, "capabilities": {},
+        "_id": {"$oid": "5589e1a0f115fc042e751e32"}, "id": "integration_test_consumer",
+        "_href": "/pulp/api/v2/consumers/integration_test_consumer/"}, "certificate":
+        "-----BEGIN RSA PRIVATE KEY-----\nMIICWwIBAAKBgQDOGBiSvDwV1dXu8ueQb8f3GsKZW80Pn1td3EMSZRmWQIk5YU9W\nDnlOx9m+BwP1r5H+60wFO+1/gecEKjr4aOWJkDMZwvqXHSadxgMbXCHlI5hl92If\njhmXmcVQ220IDM8dMm1YCONQEePMW0ffUBC4Hthir/vyMmi70JMenJcrFwIDAQAB\nAoGAblws3HZ73l1xf9EG+ytAcywbRLAJ8PGupWZLbFBDEVhhox5es4BwqSUPjliH\nYEqx7UXmoW7j0MGpCWvrxBW3w6ndO61XmtUtobPLCQWWLxPNRNZdHQTXhO+eulnV\nU/HaaI3GCYMCT4Wc0QOT23TJWx2XB7l2haBnHF/oFJrecSECQQDygUhuh7ucPpIl\nad2rqraMQWAIffF1N9+FugXW+DR1o7R5DBgiklvNhP1El7Vqvp/cj1PKChfosptz\nMTbsdy8pAkEA2ZAa3uv6LedtHioBaoAqChU8JmeA76Iyz320BxlwseyGndDzgINE\n43rQ5RPu1U9pOR9HeObfnvOsYuTXT9AQPwJAVyzAY/NpLt6TXN20sQxaOQsbQZI8\npX2jXYgkp0VsXkmuC8GcP3lLhRLklK7QqYHDJ99iKIP+WkkydnNfohuqGQJAatne\niJuG7KKbsdPZjC/T9c3GE+qDpa2YnNVU5KO2+Ht9BedIoFZYMAzyqX9nrjXpLNfS\n52skatGsWYmgwZ8jSwJALYKgly3bjlUjaU0GrvvL4sLH1iYX0Pv+HGMqm3epgDFd\nu9RyoF8L0IxSsQ7aMb4Wkb/1Qs0hGH1RIAed+2EPCQ==\n-----END
+        RSA PRIVATE KEY-----\n-----BEGIN CERTIFICATE-----\nMIICwzCCAasCAgDYMA0GCSqGSIb3DQEBBQUAMIGDMQswCQYDVQQGEwJVUzEXMBUG\nA1UECBMOTm9ydGggQ2Fyb2xpbmExEDAOBgNVBAcTB1JhbGVpZ2gxEDAOBgNVBAoT\nB0thdGVsbG8xFDASBgNVBAsTC1NvbWVPcmdVbml0MSEwHwYDVQQDExhrYXRlbGxv\nLWthbnQuZXhhbXBsZS5jb20wHhcNMTUwNjIzMjI0NTUyWhcNMjUwNjIwMjI0NTUy\nWjBOMSIwIAYDVQQDFBlpbnRlZ3JhdGlvbl90ZXN0X2NvbnN1bWVyMSgwJgYKCZIm\niZPyLGQBARMYNTU4OWUxYTBmMTE1ZmMwNDJlNzUxZTMyMIGfMA0GCSqGSIb3DQEB\nAQUAA4GNADCBiQKBgQDOGBiSvDwV1dXu8ueQb8f3GsKZW80Pn1td3EMSZRmWQIk5\nYU9WDnlOx9m+BwP1r5H+60wFO+1/gecEKjr4aOWJkDMZwvqXHSadxgMbXCHlI5hl\n92IfjhmXmcVQ220IDM8dMm1YCONQEePMW0ffUBC4Hthir/vyMmi70JMenJcrFwID\nAQABMA0GCSqGSIb3DQEBBQUAA4IBAQCmm80Jjh5eCARkoW1QXmirak4sXCbH/j7J\nJxNZuZqhakl0mZqAe/WQJeRP5vhSVqmQ/fPUzDQmUd8JV4DAtP0kXwbbgg+MKCxi\nPPbdSVIUS/BPygNuADaTvdQo7HeADmhi7jqzlAy+H73oZu+FQppP9Cct+NbkF1D0\ny0MGkK1WeX2EjS7ETcDmQ+knFwmLLysmVgUYUmb88V9V9U1PjWrbrwL2wfk6veBI\nKmR+Iu39hXUNSZHPqZH3HW3owd31q4rYPs6GPabMcitCQcD+th5ru5Ew/KB5svnC\nQ0bvWgpfNLU6grj3wCF1gRpbPP+PRo6tb8hBEseemdg0WT8XID8/\n-----END
+        CERTIFICATE-----"}'
     http_version: 
-  recorded_at: Tue, 03 Feb 2015 20:24:55 GMT
-- request: 
+  recorded_at: Tue, 23 Jun 2015 22:45:52 GMT
+- request:
     method: delete
-    uri: https://admin:eYo5Dh2rR6jQayB4vFLEpqUwMcXosuXg@kt1.local/pulp/api/v2/consumers/integration_test_consumer/
-    body: 
+    uri: https://admin:7HLGDTSxNnAEEtqKgjecYCvftjzNmoRE@katello-kant.example.com/pulp/api/v2/consumers/integration_test_consumer/
+    body:
       encoding: US-ASCII
-      string: ""
-    headers: 
-      Accept: 
+      string: ''
+    headers:
+      Accept:
       - application/json
-      Accept-Encoding: 
+      Accept-Encoding:
       - gzip, deflate
-      Content-Type: 
+      Content-Type:
       - application/json
-      User-Agent: 
+      User-Agent:
       - Ruby
-  response: 
-    status: 
+  response:
+    status:
       code: 200
       message: OK
-    headers: 
-      Date: 
-      - Tue, 03 Feb 2015 20:24:55 GMT
-      Server: 
-      - Apache/2.2.15 (Red Hat)
-      Vary: 
-      - Accept-Encoding
-      Content-Length: 
-      - "4"
-      Connection: 
+    headers:
+      Date:
+      - Tue, 23 Jun 2015 22:45:52 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '4'
+      Connection:
       - close
-      Content-Type: 
+      Content-Type:
       - application/json
-    body: 
-      encoding: ASCII-8BIT
-      string: "null"
+    body:
+      encoding: UTF-8
+      string: 'null'
     http_version: 
-  recorded_at: Tue, 03 Feb 2015 20:24:55 GMT
+  recorded_at: Tue, 23 Jun 2015 22:45:52 GMT
 recorded_with: VCR 2.9.3

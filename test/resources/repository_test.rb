@@ -186,6 +186,7 @@ module Resources
     def setup
       super
       RepositorySupport.new.create_repo(:importer => false)
+      associate
     end
 
     def teardown
@@ -194,27 +195,30 @@ module Resources
       super
     end
 
-    def test_associate_importer
+    def associate
       response = @resource.associate_importer(RepositorySupport.repo_id, 'yum_importer', {})
       assert_async_response(response)
+    end
 
+    def test_associate_importer
       repo = @resource.retrieve(RepositorySupport.repo_id, :details => true)
       assert_equal 'yum_importer', repo['importers'].first['id']
     end
 
     def test_delete_importer
-      @resource.associate_importer(RepositorySupport.repo_id, 'yum_importer', {})
       response = @resource.delete_importer(RepositorySupport.repo_id, 'yum_importer')
-
       assert_async_response(response)
     end
 
     def test_update_importer
-      @resource.associate_importer(RepositorySupport.repo_id, 'yum_importer', {})
+      feed_url = 'http://katello.org/repo/'
       response = @resource.update_importer(RepositorySupport.repo_id, 'yum_importer',
-                                           :feed => 'http://katello.org/repo/')
+                                           :feed => feed_url)
 
       assert_async_response(response)
+      repo = @resource.retrieve(RepositorySupport.repo_id, :details => true)
+      importer = repo[:importers].find { |imp| imp[:repo_id] == "integration_test_id" }
+      assert_equal feed_url, importer[:config][:feed]
     end
   end
 
