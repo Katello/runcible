@@ -54,6 +54,7 @@ module Resources
     end
 
     def test_add
+      skip 'TODO: should be removed when https://pulp.plan.io/issues/1078 is fixed'
       response = @resource.add(@role_name, @username)
 
       assert_equal 200, response.code
@@ -61,6 +62,7 @@ module Resources
     end
 
     def test_remove
+      skip 'TODO: should be removed when https://pulp.plan.io/issues/1078 is fixed'
       @resource.add(@role_name, @username)
       response = @resource.remove(@role_name, @username)
 
