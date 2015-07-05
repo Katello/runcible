@@ -47,7 +47,6 @@ def configure_vcr(mode = :none)
     c.default_cassette_options = {
       :record => mode,
       :match_requests_on => [:method, :path, :params, :body_json],
-      :serialize_with => :syck,
       :decode_compressed_response => true
     }
 
