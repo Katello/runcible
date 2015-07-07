@@ -1,0 +1,1396 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://admin:HqGPfaSyUkZtxSXTSAddjsLBCDJ4UCrN@katello-runcible.example.com/pulp/api/v2/repositories/integration_test_id/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Date:
+      - Thu, 09 Jul 2015 19:07:50 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Encoding:
+      - utf-8
+      Content-Length:
+      - '427'
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '{"http_request_method": "GET", "exception": null, "error_message":
+        "Missing resource(s): repo=integration_test_id", "_href": "/pulp/api/v2/repositories/integration_test_id/",
+        "http_status": 404, "error": {"code": "PLP0009", "data": {"resources": {"repo":
+        "integration_test_id"}}, "description": "Missing resource(s): repo=integration_test_id",
+        "sub_errors": []}, "traceback": null, "resources": {"repo": "integration_test_id"}}'
+    http_version: 
+  recorded_at: Thu, 09 Jul 2015 19:07:50 GMT
+- request:
+    method: post
+    uri: https://admin:HqGPfaSyUkZtxSXTSAddjsLBCDJ4UCrN@katello-runcible.example.com/pulp/api/v2/repositories/
+    body:
+      encoding: UTF-8
+      string: '{"id":"integration_test_id","importer_type_id":"python_importer","importer_config":{"feed":"https://pypi.python.org","package_names":"django"}}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '143'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Thu, 09 Jul 2015 19:07:50 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Location:
+      - integration_test_id
+      Content-Length:
+      - '319'
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '{"scratchpad": {}, "display_name": "integration_test_id", "description":
+        null, "last_unit_added": null, "notes": {}, "last_unit_removed": null, "content_unit_counts":
+        {}, "_ns": "repos", "_id": {"$oid": "559ec6878097de0f5dcc8710"}, "id": "integration_test_id",
+        "_href": "/pulp/api/v2/repositories/integration_test_id/"}'
+    http_version: 
+  recorded_at: Thu, 09 Jul 2015 19:07:51 GMT
+- request:
+    method: post
+    uri: https://admin:HqGPfaSyUkZtxSXTSAddjsLBCDJ4UCrN@katello-runcible.example.com/pulp/api/v2/repositories/integration_test_id/actions/sync/
+    body:
+      encoding: UTF-8
+      string: '{}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '2'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Date:
+      - Thu, 09 Jul 2015 19:07:51 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Encoding:
+      - utf-8
+      Content-Length:
+      - '172'
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/4993b49a-4601-4bec-b739-1d8b13e9bf7a/",
+        "task_id": "4993b49a-4601-4bec-b739-1d8b13e9bf7a"}], "result": null, "error":
+        null}'
+    http_version: 
+  recorded_at: Thu, 09 Jul 2015 19:07:51 GMT
+- request:
+    method: get
+    uri: https://admin:HqGPfaSyUkZtxSXTSAddjsLBCDJ4UCrN@katello-runcible.example.com/pulp/api/v2/tasks/4993b49a-4601-4bec-b739-1d8b13e9bf7a/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 09 Jul 2015 19:07:51 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '1564'
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '{"exception": null, "task_type": "pulp.server.managers.repo.sync.sync",
+        "_href": "/pulp/api/v2/tasks/4993b49a-4601-4bec-b739-1d8b13e9bf7a/", "task_id":
+        "4993b49a-4601-4bec-b739-1d8b13e9bf7a", "tags": ["pulp:repository:integration_test_id",
+        "pulp:action:sync"], "finish_time": null, "_ns": "task_status", "start_time":
+        "2015-07-09T19:07:51Z", "traceback": null, "spawned_tasks": [], "progress_report":
+        {"python_importer": [{"num_success": 0, "description": "Downloading and processing
+        metadata.", "step_type": "sync_step_metadata", "sub_steps": [{"num_success":
+        1, "description": "Downloading Python metadata.", "step_type": "sync_step_download_metadata",
+        "items_total": 1, "state": "IN_PROGRESS", "error_details": [], "details":
+        "", "num_failures": 0, "step_id": "2981ffae-a91f-4224-b59a-dd07793941f1",
+        "num_processed": 1}], "items_total": 1, "state": "NOT_STARTED", "error_details":
+        [], "details": "", "num_failures": 0, "step_id": "2975872b-d9c2-4684-896b-7b1084a73464",
+        "num_processed": 0}, {"num_success": 0, "description": "Downloading and processing
+        Python packages.", "step_type": "sync_step_download_packages", "items_total":
+        1, "state": "NOT_STARTED", "error_details": [], "details": "", "num_failures":
+        0, "step_id": "daa2184f-2464-47ff-8020-34633f1ad724", "num_processed": 0}]},
+        "queue": "reserved_resource_worker-0@katello-runcible.example.com.dq", "state":
+        "running", "worker_name": "reserved_resource_worker-0@katello-runcible.example.com",
+        "result": null, "error": null, "_id": {"$oid": "559ec687eab2b4ff05203838"},
+        "id": "559ec6878097de0f106cce68"}'
+    http_version: 
+  recorded_at: Thu, 09 Jul 2015 19:07:51 GMT
+- request:
+    method: get
+    uri: https://admin:HqGPfaSyUkZtxSXTSAddjsLBCDJ4UCrN@katello-runcible.example.com/pulp/api/v2/tasks/4993b49a-4601-4bec-b739-1d8b13e9bf7a/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 09 Jul 2015 19:07:52 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '2911'
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '{"exception": null, "task_type": "pulp.server.managers.repo.sync.sync",
+        "_href": "/pulp/api/v2/tasks/4993b49a-4601-4bec-b739-1d8b13e9bf7a/", "task_id":
+        "4993b49a-4601-4bec-b739-1d8b13e9bf7a", "tags": ["pulp:repository:integration_test_id",
+        "pulp:action:sync"], "finish_time": "2015-07-09T19:07:52Z", "_ns": "task_status",
+        "start_time": "2015-07-09T19:07:51Z", "traceback": null, "spawned_tasks":
+        [], "progress_report": {"python_importer": [{"num_success": 1, "description":
+        "Downloading and processing metadata.", "step_type": "sync_step_metadata",
+        "sub_steps": [{"num_success": 1, "description": "Downloading Python metadata.",
+        "step_type": "sync_step_download_metadata", "items_total": 1, "state": "FINISHED",
+        "error_details": [], "details": "", "num_failures": 0, "step_id": "2981ffae-a91f-4224-b59a-dd07793941f1",
+        "num_processed": 1}], "items_total": 1, "state": "FINISHED", "error_details":
+        [], "details": "", "num_failures": 0, "step_id": "2975872b-d9c2-4684-896b-7b1084a73464",
+        "num_processed": 1}, {"num_success": 0, "description": "Downloading and processing
+        Python packages.", "step_type": "sync_step_download_packages", "items_total":
+        0, "state": "FINISHED", "error_details": [], "details": "", "num_failures":
+        0, "step_id": "daa2184f-2464-47ff-8020-34633f1ad724", "num_processed": 0}]},
+        "queue": "reserved_resource_worker-0@katello-runcible.example.com.dq", "state":
+        "finished", "worker_name": "reserved_resource_worker-0@katello-runcible.example.com",
+        "result": {"importer_type_id": "python_importer", "importer_id": "python_importer",
+        "exception": null, "repo_id": "integration_test_id", "removed_count": 0, "started":
+        "2015-07-09T19:07:51Z", "_ns": "repo_sync_results", "completed": "2015-07-09T19:07:52Z",
+        "traceback": null, "summary": {"sync_step_metadata": "FINISHED", "sync_step_download_packages":
+        "FINISHED"}, "added_count": 0, "error_message": null, "updated_count": 0,
+        "details": [{"num_success": 1, "description": "Downloading and processing
+        metadata.", "step_type": "sync_step_metadata", "sub_steps": [{"num_success":
+        1, "description": "Downloading Python metadata.", "step_type": "sync_step_download_metadata",
+        "items_total": 1, "state": "FINISHED", "error_details": [], "details": "",
+        "num_failures": 0, "step_id": "2981ffae-a91f-4224-b59a-dd07793941f1", "num_processed":
+        1}], "items_total": 1, "state": "FINISHED", "error_details": [], "details":
+        "", "num_failures": 0, "step_id": "2975872b-d9c2-4684-896b-7b1084a73464",
+        "num_processed": 1}, {"num_success": 0, "description": "Downloading and processing
+        Python packages.", "step_type": "sync_step_download_packages", "items_total":
+        0, "state": "FINISHED", "error_details": [], "details": "", "num_failures":
+        0, "step_id": "daa2184f-2464-47ff-8020-34633f1ad724", "num_processed": 0}],
+        "id": "559ec6888097de0f352ac457", "result": "success"}, "error": null, "_id":
+        {"$oid": "559ec687eab2b4ff05203838"}, "id": "559ec6878097de0f106cce68"}'
+    http_version: 
+  recorded_at: Thu, 09 Jul 2015 19:07:52 GMT
+- request:
+    method: post
+    uri: https://admin:HqGPfaSyUkZtxSXTSAddjsLBCDJ4UCrN@katello-runcible.example.com/pulp/api/v2/repositories/integration_test_id/search/units/
+    body:
+      encoding: UTF-8
+      string: '{"criteria":{}}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '15'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 09 Jul 2015 19:07:52 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '91098'
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '[{"updated": "2015-07-09T19:07:51Z", "repo_id": "integration_test_id",
+        "created": "2015-07-09T19:07:51Z", "_ns": "repo_content_units", "unit_id":
+        "769e0cba-cf9d-41a4-a1d0-e34a3104fbb7", "metadata": {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.1.3.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "UNKNOWN",
+        "_checksum": "bc6db6686694da4fa9ba85b3515ca969ee670844063e7c6478717e153e90d86d5fbac5471c235e7479be45f2ab0876122911bb8f168f5fe6b9a10e75a99cd9b6",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.1.3.tar.gz",
+        "_last_updated": 1436468237, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.1.3", "_content_type_id": "python_package", "_id": "769e0cba-cf9d-41a4-a1d0-e34a3104fbb7",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac409"}, "id":
+        "559ec6878097de0f352ac409", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "3ba41d5e-88dd-4c9d-bf5b-50b1ee4f9483", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.1.4.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "UNKNOWN",
+        "_checksum": "b3d5406d2ff29fbfa58032d5ed7b7b8b3b30f90f713619414ac7c6d5dc1e678df8384e45e4146779b939be94ea17d8151036e835516ca4764fecb5376b9aab12",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.1.4.tar.gz",
+        "_last_updated": 1436468212, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.1.4", "_content_type_id": "python_package", "_id": "3ba41d5e-88dd-4c9d-bf5b-50b1ee4f9483",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac40b"}, "id":
+        "559ec6878097de0f352ac40b", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "0b5cad8e-604b-4c56-ac7b-750eec8f9b11", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.2.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "UNKNOWN",
+        "_checksum": "92e68e8b7d205cf8610dbf74424a43efa887eeef2d5550db5aa14de85e64a924edf78936a1141812427520561b509be73eb643dcbe70f2f107a40c91d2baa65e",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.2.tar.gz",
+        "_last_updated": 1436468240, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.2", "_content_type_id": "python_package", "_id": "0b5cad8e-604b-4c56-ac7b-750eec8f9b11",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac40c"}, "id":
+        "559ec6878097de0f352ac40c", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "358488cd-5294-4006-a961-1a637522ddee", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.2.1.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "UNKNOWN",
+        "_checksum": "f8344aa1e853d89f47f2269ae047af82531339d6eba56afd25c4c63512f45dc5feeaf3813ea3a6e3418557f56e09bbc78cabc2b30a135b4ec3e4cc23bf0c6574",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.2.1.tar.gz",
+        "_last_updated": 1436468264, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.2.1", "_content_type_id": "python_package", "_id": "358488cd-5294-4006-a961-1a637522ddee",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac430"}, "id":
+        "559ec6878097de0f352ac430", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "d639a365-f503-4da8-8fe4-98f0b3761d35", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.2.2.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "UNKNOWN",
+        "_checksum": "1a534f051a499941964719f37307dfee1daac8e75614d9995302d11eef447a1d11103b5e8cdebf2701ff4766d2c98f3717f142fc148e807e54d16fa21f69b40f",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.2.2.tar.gz",
+        "_last_updated": 1436468264, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.2.2", "_content_type_id": "python_package", "_id": "d639a365-f503-4da8-8fe4-98f0b3761d35",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac441"}, "id":
+        "559ec6878097de0f352ac441", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "f0215231-2718-41b8-8897-f8b7af6f78ba", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.2.3.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "UNKNOWN",
+        "_checksum": "6ab7c220401b59ab3e07655128842dad2253e144e0af4a18684827b1f19d56b34557fbba2129f68bbb11832bac9e83e292438df36078598c37ceb15e4ad52fbf",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.2.3.tar.gz",
+        "_last_updated": 1436468262, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.2.3", "_content_type_id": "python_package", "_id": "f0215231-2718-41b8-8897-f8b7af6f78ba",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac442"}, "id":
+        "559ec6878097de0f352ac442", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "32928804-d8a5-4764-9ec3-511cd9ae56a4", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.2.4.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "UNKNOWN",
+        "_checksum": "d69fb538ae840ded8ad8c1f8ee2daae69a9bb0a13a2c868a708e98b5a5c4fbad1407913927cb4e328506bed1412bd14bd314e1846a84385cb6e07a1c4b666dfd",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.2.4.tar.gz",
+        "_last_updated": 1436468263, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.2.4", "_content_type_id": "python_package", "_id": "32928804-d8a5-4764-9ec3-511cd9ae56a4",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac449"}, "id":
+        "559ec6878097de0f352ac449", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "cca019b4-ccd9-4699-8d85-00c85762ddf0", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.2.5.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "UNKNOWN",
+        "_checksum": "d8930e98ac45766455cf1157419853677415a52e602f17038d8ef9259dbda8ebb9c88af1ab9d41d00e6261c202e2573d68ca4ab8a52915ef11b6202732b61284",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.2.5.tar.gz",
+        "_last_updated": 1436468263, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.2.5", "_content_type_id": "python_package", "_id": "cca019b4-ccd9-4699-8d85-00c85762ddf0",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac440"}, "id":
+        "559ec6878097de0f352ac440", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "f0af1061-ef38-46e4-bdcb-3329811db3f2", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.2.6.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "UNKNOWN",
+        "_checksum": "0f239721c50ff55ee6f2edd8dd3738fb29c49ea9339e2c62a6da06a1d13af69533d0025747219b99ebbd491e7b0b3f451d404968d025811637483572ba18da81",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.2.6.tar.gz",
+        "_last_updated": 1436468260, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.2.6", "_content_type_id": "python_package", "_id": "f0af1061-ef38-46e4-bdcb-3329811db3f2",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac446"}, "id":
+        "559ec6878097de0f352ac446", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "eb794ea0-5a4c-4f06-9f25-c5c2efdec57a", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.2.7.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "UNKNOWN",
+        "_checksum": "160d6085fc5f08455f4511f290294c911fc07e72eda2fe3acf44e05f59756342b2e98a520ef61e88c45e055e907c4eb7b8bac3ec2fd3c316a89636b027ba0248",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.2.7.tar.gz",
+        "_last_updated": 1436468261, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.2.7", "_content_type_id": "python_package", "_id": "eb794ea0-5a4c-4f06-9f25-c5c2efdec57a",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac43e"}, "id":
+        "559ec6878097de0f352ac43e", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "3cab20b3-cc1b-4a75-99e6-63799402b6d8", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.3.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "UNKNOWN",
+        "_checksum": "b70f45a86b3f6823a8dda5a90e97745d640d7a1b20281aac0008a353097cd9318bb18317b246a65e1aa825f9f7c0f0d592db600a6c82388276f3ff526fff8b63",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.3.tar.gz",
+        "_last_updated": 1436468238, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.3", "_content_type_id": "python_package", "_id": "3cab20b3-cc1b-4a75-99e6-63799402b6d8",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac40d"}, "id":
+        "559ec6878097de0f352ac40d", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "94c42a6b-3d0e-400c-9b06-241db7e2066f", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.3.1.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "UNKNOWN",
+        "_checksum": "5a7de5877634136bf6ac8e85b54420bbd08331b22c24798e47e4c805f7f05053dff0da8a7585827945e211bb28a935e14ac9cf9efc4eb38f7d8b59686758bb3a",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.3.1.tar.gz",
+        "_last_updated": 1436468230, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.3.1", "_content_type_id": "python_package", "_id": "94c42a6b-3d0e-400c-9b06-241db7e2066f",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac43f"}, "id":
+        "559ec6878097de0f352ac43f", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "d288a9d7-2d79-485b-816e-545adde3866b", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.3.2.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "UNKNOWN",
+        "_checksum": "8a9d78269f9a0b84d2716f0a29d83866c670c2cec50ac48e6f4455073c4bb44d8f7828c1c3e735683daf7c7f528fd00f65f457c6e34fc538d0f6a4bbb95f88e3",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.3.2.tar.gz",
+        "_last_updated": 1436468228, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.3.2", "_content_type_id": "python_package", "_id": "d288a9d7-2d79-485b-816e-545adde3866b",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac448"}, "id":
+        "559ec6878097de0f352ac448", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "47c2803a-7121-41c6-ac46-2e3859b0b5a7", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.3.3.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "UNKNOWN",
+        "_checksum": "b93bb8e4a521fc216bd1663e28e27aacbfab3e2f2aa7c1ad0bb497a822928ac335279c7e861b37cf53e2558a0762b3d7ff1a7ff21eb2f6bd77f5e1151892c367",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.3.3.tar.gz",
+        "_last_updated": 1436468229, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.3.3", "_content_type_id": "python_package", "_id": "47c2803a-7121-41c6-ac46-2e3859b0b5a7",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac43d"}, "id":
+        "559ec6878097de0f352ac43d", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "26590e14-63af-4374-8488-23fbdd581635", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.3.4.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "UNKNOWN",
+        "_checksum": "4c207e184ec3f01754c9916757b0c621fa76c0e9ca0aa642c37403c23e2481ef4120b763d5f2b3853125ae39bdab5f956f64fce6bb4c0e8db3d48b8891124618",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.3.4.tar.gz",
+        "_last_updated": 1436468233, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.3.4", "_content_type_id": "python_package", "_id": "26590e14-63af-4374-8488-23fbdd581635",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac40f"}, "id":
+        "559ec6878097de0f352ac40f", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "5adbd4ec-a0d4-4b4d-95af-9aab3e6fe845", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.3.5.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "UNKNOWN",
+        "_checksum": "f7a2fba94d7c12e207afd02b9ca2c3f7aa346875925619444efe3212f1f19ce987fc70da53f0c965d9c07257bbc32e11db41e129dd44e73fbf7f943ad9234894",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.3.5.tar.gz",
+        "_last_updated": 1436468234, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.3.5", "_content_type_id": "python_package", "_id": "5adbd4ec-a0d4-4b4d-95af-9aab3e6fe845",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac443"}, "id":
+        "559ec6878097de0f352ac443", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "b2464ddd-e478-4e02-9e1e-2486e1bd90d6", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.3.6.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "UNKNOWN",
+        "_checksum": "d6287609cec92d2c9b42756b463b8a1d88fee0598e20de59a95dc7c751b3e806b91473bfee1b56be94ff3c698de090a3d2f33772626cc8c1f1f612840261d21d",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.3.6.tar.gz",
+        "_last_updated": 1436468233, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.3.6", "_content_type_id": "python_package", "_id": "b2464ddd-e478-4e02-9e1e-2486e1bd90d6",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac444"}, "id":
+        "559ec6878097de0f352ac444", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "8c7fda8d-1773-4275-81c4-eeea0de5c494", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.3.7.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "UNKNOWN",
+        "_checksum": "e704133ac282727393e933cacf17a35373839b00fde5e8716cfb5566ba6c77b9c4c36a03be6f6f1b73b45697cf99c3ac1948ebf3a8ef8d417e5f7b76f890aeb0",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.3.7.tar.gz",
+        "_last_updated": 1436468231, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.3.7", "_content_type_id": "python_package", "_id": "8c7fda8d-1773-4275-81c4-eeea0de5c494",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac426"}, "id":
+        "559ec6878097de0f352ac426", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "1029628e-83ff-4fb4-a82a-4c0e18a32218", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.4.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "UNKNOWN",
+        "_checksum": "963a16ad2ef9cc73115dd149c891d76a52d748232ac04e663228e2fe31c3ee413faf10779e4773ff2bc1d281bd57a17805d88c2f28bfad1a4e54ef2cd79d0dda",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.4.tar.gz",
+        "_last_updated": 1436468210, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.4", "_content_type_id": "python_package", "_id": "1029628e-83ff-4fb4-a82a-4c0e18a32218",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac425"}, "id":
+        "559ec6878097de0f352ac425", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "36d16af3-bf89-47d6-99eb-dd8280d02641", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.4.1.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "UNKNOWN",
+        "_checksum": "1956e84c2c5131b17c76699a733801105c554d447341547c306ecf02ab1ef61371efe8fec0a8f10ddeafc9f13b61680543772678f9f1d594ad320c673669d0b2",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.4.1.tar.gz",
+        "_last_updated": 1436468250, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.4.1", "_content_type_id": "python_package", "_id": "36d16af3-bf89-47d6-99eb-dd8280d02641",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac42e"}, "id":
+        "559ec6878097de0f352ac42e", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "a1bb0cab-d6ac-4b72-9ee8-12f0019a4d29", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.4.10.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "UNKNOWN",
+        "_checksum": "663f2fc484f2db4024e2f21631535ce7efd272fab1c79464b3b6f46da6540c9ac815039f07016864ad7b4a9998b591ca56460efa22b9ca160cb7fa38c53ef9f9",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.4.10.tar.gz",
+        "_last_updated": 1436468204, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.4.10", "_content_type_id": "python_package", "_id": "a1bb0cab-d6ac-4b72-9ee8-12f0019a4d29",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac451"}, "id":
+        "559ec6878097de0f352ac451", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "f4b5bb6b-b5a7-498f-8a82-1331b5d5902f", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.4.11.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "UNKNOWN",
+        "_checksum": "60cc3c769a9b21e93e6c4e79132ab8f4a48df1cb1c55faaa547c5fd28b9785ddca3b5393790bf96a4715d9b708c6da376ef4a28ec14849147d63f0fe40d386cb",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.4.11.tar.gz",
+        "_last_updated": 1436468203, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.4.11", "_content_type_id": "python_package", "_id": "f4b5bb6b-b5a7-498f-8a82-1331b5d5902f",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac413"}, "id":
+        "559ec6878097de0f352ac413", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "f25b1605-e701-4716-a3e2-109176e71038", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.4.12.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "UNKNOWN",
+        "_checksum": "882e832d1f1b5c56195b7ca6a75c4351304f79c9b51dbbce61648325553606c0b64bd3b050cf221a283de9246a8713137a5e290c756b2544450bd3f7c82818d4",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.4.12.tar.gz",
+        "_last_updated": 1436468200, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.4.12", "_content_type_id": "python_package", "_id": "f25b1605-e701-4716-a3e2-109176e71038",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac44f"}, "id":
+        "559ec6878097de0f352ac44f", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "731a5030-b04d-4910-8ae7-6c9725fa401b", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.4.13.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "UNKNOWN",
+        "_checksum": "de9b095e28334d095e03067d931ef1f2bb24332d739b5f10cfc524ca20d15d94fa756fb80394c306ea2351549f6a7669acf491e44f29cfc0b220f620f9a4b080",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.4.13.tar.gz",
+        "_last_updated": 1436468202, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.4.13", "_content_type_id": "python_package", "_id": "731a5030-b04d-4910-8ae7-6c9725fa401b",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac450"}, "id":
+        "559ec6878097de0f352ac450", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "0f21676b-50d9-4413-af74-f5fbc3924026", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.4.14.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "UNKNOWN",
+        "_checksum": "b7e2e57d15bc5eee62aa0425932c99928cceb3f4bfdc28de42a96ee9ba2bdc0c28e7e102846e7ea3735eaaa00944b7aaeb0bd8625216dee2fc406f0be2601892",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.4.14.tar.gz",
+        "_last_updated": 1436468209, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.4.14", "_content_type_id": "python_package", "_id": "0f21676b-50d9-4413-af74-f5fbc3924026",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac455"}, "id":
+        "559ec6878097de0f352ac455", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "ab48df8b-9b93-4cc3-9e5b-946f09f51459", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.4.15.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "UNKNOWN",
+        "_checksum": "6552173269b5c86b3ee20e31d70bd1e0b5c8dc21ee82af0ce3b75f374d2a9adbe3ec28cf39c44156782ae9a0cc64aeac80a938f6d3efbf29d4affe3f0354348c",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.4.15.tar.gz",
+        "_last_updated": 1436468207, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.4.15", "_content_type_id": "python_package", "_id": "ab48df8b-9b93-4cc3-9e5b-946f09f51459",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac456"}, "id":
+        "559ec6878097de0f352ac456", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "946ddcde-8e4b-41a9-bc9f-eeab582d8174", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.4.16.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "UNKNOWN",
+        "_checksum": "4d235742b1c15458dd9693fcd362483cac30d8636d1a31a450c9b6373fee726f3b8d7938e6c33595edd5d8c6b9dd739f04c787b6ba1770efd431adc0e1cdcb76",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.4.16.tar.gz",
+        "_last_updated": 1436468206, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.4.16", "_content_type_id": "python_package", "_id": "946ddcde-8e4b-41a9-bc9f-eeab582d8174",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac453"}, "id":
+        "559ec6878097de0f352ac453", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "ea3f507f-362e-4a7b-a1d9-b7b16b9d3669", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.4.17.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "UNKNOWN",
+        "_checksum": "02be7afb2ab1f5ad91b1a46cc301478053b1222df26cfc4c0af78573e10b6a997dd4a9704078e7501f99aed4468e8583553460069e978ee95368178283044b88",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.4.17.tar.gz",
+        "_last_updated": 1436468208, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.4.17", "_content_type_id": "python_package", "_id": "ea3f507f-362e-4a7b-a1d9-b7b16b9d3669",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac454"}, "id":
+        "559ec6878097de0f352ac454", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "0617c06b-43c7-4ba8-b13b-201a2a8bcc71", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.4.18.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "UNKNOWN",
+        "_checksum": "4a536aa109f89bd7d935a8f773aec1d361d8b8cc85ef54e7cb679e0bb03165a24893c9a68b9dd00e2e9bb449193313921feb4ab8d9162dc02df5541e40114fb9",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.4.18.tar.gz",
+        "_last_updated": 1436468197, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.4.18", "_content_type_id": "python_package", "_id": "0617c06b-43c7-4ba8-b13b-201a2a8bcc71",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac44b"}, "id":
+        "559ec6878097de0f352ac44b", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "2a04c438-2a9f-4819-9e48-2c107551500e", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.4.19.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "UNKNOWN",
+        "_checksum": "811267ec1ad99a8eaf4daa098cd5140970718f5814ed1e7e9ab706ff049c508a788cf186aafe208947e6350e17baef4a205f549bba744ef53c7e365a101a9391",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.4.19.tar.gz",
+        "_last_updated": 1436468198, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.4.19", "_content_type_id": "python_package", "_id": "2a04c438-2a9f-4819-9e48-2c107551500e",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac44c"}, "id":
+        "559ec6878097de0f352ac44c", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "5555ab77-4dac-46c6-ab6f-2f04f3e3d0db", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.4.2.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "UNKNOWN",
+        "_checksum": "5021eec3c7a48537fa15097e471232cf13d2019cfa166ff4ad50388e09ea11d85161e2e4d92927e15b1c11831286d236bd7f9817c0a2557a4bccf7b08f10751e",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.4.2.tar.gz",
+        "_last_updated": 1436468249, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.4.2", "_content_type_id": "python_package", "_id": "5555ab77-4dac-46c6-ab6f-2f04f3e3d0db",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac44d"}, "id":
+        "559ec6878097de0f352ac44d", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "6adc8445-63d6-4497-9e31-529250a60d58", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.4.20.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "UNKNOWN",
+        "_checksum": "b4625547af0a7d53fa00f801239858619015ba990b50cb859168814a2cc385c867ce570192e762ef1399518407958c687e607536259e420b238a5dd587d2d4bd",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.4.20.tar.gz",
+        "_last_updated": 1436468214, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.4.20", "_content_type_id": "python_package", "_id": "6adc8445-63d6-4497-9e31-529250a60d58",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac419"}, "id":
+        "559ec6878097de0f352ac419", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "2407ffaa-1477-42d8-b6f8-ed482a8ed2cc", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.4.21.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "UNKNOWN",
+        "_checksum": "25fca8362fa30822a5993a2f1d00bc7629b97acfac97daa406fc7658019e35f52ecc539cc875a8ece3b1edb140fd5260e8dd3a355c9405b693d191746df516fa",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.4.21.tar.gz",
+        "_last_updated": 1436468215, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.4.21", "_content_type_id": "python_package", "_id": "2407ffaa-1477-42d8-b6f8-ed482a8ed2cc",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac418"}, "id":
+        "559ec6878097de0f352ac418", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "791ea91c-695b-4f68-963a-d301c26fb099", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.4.3.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "UNKNOWN",
+        "_checksum": "88128f92f6b96551fafa6d19113cc3179d42f65de5da5251ef4166f51653f945280c6a9747b1984a696a936150bab8f28480f8d932c28b08ff8e95c8d28d1535",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.4.3.tar.gz",
+        "_last_updated": 1436468251, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.4.3", "_content_type_id": "python_package", "_id": "791ea91c-695b-4f68-963a-d301c26fb099",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac431"}, "id":
+        "559ec6878097de0f352ac431", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "8d30d13f-76db-4e6c-9323-7038822305d1", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.4.4.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "UNKNOWN",
+        "_checksum": "68277152c49ca855c74f1a7644dfa171a50b1fc926e7b2702f5e3d97f0e37e6fb27b61e056805e95fc265bb2237e0d9c62b5fd6ce7cb6b9cac6bf1959e69deea",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.4.4.tar.gz",
+        "_last_updated": 1436468252, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.4.4", "_content_type_id": "python_package", "_id": "8d30d13f-76db-4e6c-9323-7038822305d1",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac416"}, "id":
+        "559ec6878097de0f352ac416", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "90dd7b06-4b36-4fd7-bc56-4653c032ceca", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.4.5.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "UNKNOWN",
+        "_checksum": "7bcd45777be191cf5a45dbd09e1d026a2b5a796227a853d0570be58b3bd1172396b12632762deea267ce34df4ea547630740fdb4b795fad7cc4f53ab309c0d44",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.4.5.tar.gz",
+        "_last_updated": 1436468256, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.4.5", "_content_type_id": "python_package", "_id": "90dd7b06-4b36-4fd7-bc56-4653c032ceca",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac417"}, "id":
+        "559ec6878097de0f352ac417", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "8571d6bf-407c-47fa-9b9d-0a0e63e48a32", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.4.6.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "UNKNOWN",
+        "_checksum": "5b59dd49426021cd01cefac474d719ee234a75da67242f11e8247e8983023bc5a72717dc6daf5c0f21ddeae83e15079e2fe7a4c9755c5bfa953a216c3ddc8c05",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.4.6.tar.gz",
+        "_last_updated": 1436468254, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.4.6", "_content_type_id": "python_package", "_id": "8571d6bf-407c-47fa-9b9d-0a0e63e48a32",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac434"}, "id":
+        "559ec6878097de0f352ac434", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "f970c8e3-d725-447e-8e5c-f309d5c99f39", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.4.7.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "UNKNOWN",
+        "_checksum": "0eb090a143bcfafeda71a1c1fde37cdeaea7bb7b07a567132ff02153d64026ce53333d27df952047687c0d98dd1b5e627a1453a597ceaca18ea87f9e1f7405da",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.4.7.tar.gz",
+        "_last_updated": 1436468255, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.4.7", "_content_type_id": "python_package", "_id": "f970c8e3-d725-447e-8e5c-f309d5c99f39",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac435"}, "id":
+        "559ec6878097de0f352ac435", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "71ae98f9-46c5-4333-a195-02e071ae7b67", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.4.8.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "UNKNOWN",
+        "_checksum": "f2f0ed16308a9c2559be093f213fb6fef6f7afb4ceed54ee176167baa73191272da2a48c342ac4eb7d582dafe8052ef5c9246b62c2298f16c32ac119d16f7c5e",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.4.8.tar.gz",
+        "_last_updated": 1436468257, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.4.8", "_content_type_id": "python_package", "_id": "71ae98f9-46c5-4333-a195-02e071ae7b67",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac408"}, "id":
+        "559ec6878097de0f352ac408", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "fcc224a5-aeda-4dcf-b6f4-1677b33e6691", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.4.9.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "UNKNOWN",
+        "_checksum": "1634f0325319524fdef513f8216a47ffaa425d736f3735b01d1c0ed446f14fb301dc46a090862231d98bfdc161cc0d1b7d5e9088610c2cc6acf56c62156d18d0",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.4.9.tar.gz",
+        "_last_updated": 1436468260, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.4.9", "_content_type_id": "python_package", "_id": "fcc224a5-aeda-4dcf-b6f4-1677b33e6691",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac420"}, "id":
+        "559ec6878097de0f352ac420", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "4a572451-a109-47ed-994e-b7862ac0ebb8", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.5.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "BSD", "_checksum":
+        "be2150b9c654bd4995af9acee70b49cefc18bd70f57dd1761e270202726374f2e4b0b6722bc39e03da110702ad2281bc098dc1ac89fa4c61849d882bf8f18786",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.5.tar.gz",
+        "_last_updated": 1436468236, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.5", "_content_type_id": "python_package", "_id": "4a572451-a109-47ed-994e-b7862ac0ebb8",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac412"}, "id":
+        "559ec6878097de0f352ac412", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "1f3fa5d4-5bcf-4372-9d76-666acbd063c0", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.5.1.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "BSD", "_checksum":
+        "75304cf4a09688af4460dfc1de902cd3455003c76f8673a16a781fc738d2ddfa61ba62768e3be84b017c042696f90e950ec1855df9871be846fcc82df5da2580",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.5.1.tar.gz",
+        "_last_updated": 1436468223, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.5.1", "_content_type_id": "python_package", "_id": "1f3fa5d4-5bcf-4372-9d76-666acbd063c0",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac44e"}, "id":
+        "559ec6878097de0f352ac44e", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "66ddf0b1-5a96-48ab-85c3-89190d310984", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.5.10.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "BSD", "_checksum":
+        "5357116870370f7fd06f77e5bfad98f89c6bb131eb2828ded524422d0690d8842c3106e4e92614c374ab2549d205e77c98e4071894f0625dfe69a382171b1834",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.5.10.tar.gz",
+        "_last_updated": 1436468184, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.5.10", "_content_type_id": "python_package", "_id": "66ddf0b1-5a96-48ab-85c3-89190d310984",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac411"}, "id":
+        "559ec6878097de0f352ac411", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "a019ebda-23b6-4116-83a3-5e8c18803293", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.5.11.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "BSD", "_checksum":
+        "79799dfd9352fd1b55b0207d9aee34545c61db6f846a39a2896efc45177221871e346bfe521ebb16b3ab9fc6ba5e2683c21ec2bb52230e5722221baa9c3e923e",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.5.11.tar.gz",
+        "_last_updated": 1436468186, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.5.11", "_content_type_id": "python_package", "_id": "a019ebda-23b6-4116-83a3-5e8c18803293",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac41a"}, "id":
+        "559ec6878097de0f352ac41a", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "4198f93c-1d8a-44e2-b51e-65c42d12a316", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.5.12.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "BSD", "_checksum":
+        "37736827618737c54e7b63f2376b915d8dc0cdaf1900a2f6c3c9e0edd69e50379f95e3b6a31c930efdca88793b6330e7226175af91951d8637e5db780bc9fd8d",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.5.12.tar.gz",
+        "_last_updated": 1436468183, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.5.12", "_content_type_id": "python_package", "_id": "4198f93c-1d8a-44e2-b51e-65c42d12a316",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac41d"}, "id":
+        "559ec6878097de0f352ac41d", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "335fffa7-5ab6-4cb1-87ff-cd844ea99567", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.5.2.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "BSD", "_checksum":
+        "2ed8e2213c81787a1f648fca26a67cad7da6cc594bbe6b108dc8dd7a49c7b44fa6040b82d90a6b62d962ae99d34b6141d60be2f7fe6f95c7c3fc0d11029ae499",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.5.2.tar.gz",
+        "_last_updated": 1436468226, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.5.2", "_content_type_id": "python_package", "_id": "335fffa7-5ab6-4cb1-87ff-cd844ea99567",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac43c"}, "id":
+        "559ec6878097de0f352ac43c", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "83fa8ae8-c470-44fd-83de-261d24ce22dc", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.5.3.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "BSD", "_checksum":
+        "9e5b6e4a3dabcf5a89a1890d4a226cd9f9803037b4c477725e9aa3b5df1bf473106d2de36a9b1a69d8f4a2eaff4436352d1401958c4082f38ba99a3cc9d41bf0",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.5.3.tar.gz",
+        "_last_updated": 1436468227, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.5.3", "_content_type_id": "python_package", "_id": "83fa8ae8-c470-44fd-83de-261d24ce22dc",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac43b"}, "id":
+        "559ec6878097de0f352ac43b", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "fac404ed-1f04-4f83-b1a8-2af56fdf0994", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.5.4.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "BSD", "_checksum":
+        "daa4b5f8189446feefc168fd618a7cb2bea710b83066e0ec740f7596988107b5da45f2150fc99efd2095356bf87f2c0750d486e8c9b006b6d61468de8fbef748",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.5.4.tar.gz",
+        "_last_updated": 1436468220, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.5.4", "_content_type_id": "python_package", "_id": "fac404ed-1f04-4f83-b1a8-2af56fdf0994",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac437"}, "id":
+        "559ec6878097de0f352ac437", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "6af00593-2579-47f6-9ff6-6d31f3fd5768", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.5.5.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "BSD", "_checksum":
+        "b60562743b3f7c6ebca4dca4fcb1896f2631d65ee7ff6d185a101670b43b404e5a1effe5761071905d935dd76b0cd51454591e5154cf620c868dec01dcf6e033",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.5.5.tar.gz",
+        "_last_updated": 1436468219, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.5.5", "_content_type_id": "python_package", "_id": "6af00593-2579-47f6-9ff6-6d31f3fd5768",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac436"}, "id":
+        "559ec6878097de0f352ac436", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "a490fe51-4d1b-47a3-a8d2-d1546289817f", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.5.6.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "BSD", "_checksum":
+        "df266732742e4ff50d362aec870e9ca08213ede80894ddd297d1fee2141ba44b728e8acb4869cb3b50a06517fb04ae66d30e57deaf7e1426e886a5e094b41741",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.5.6.tar.gz",
+        "_last_updated": 1436468222, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.5.6", "_content_type_id": "python_package", "_id": "a490fe51-4d1b-47a3-a8d2-d1546289817f",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac439"}, "id":
+        "559ec6878097de0f352ac439", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "e0a46c66-2705-49d7-8833-843b7e7319b1", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.5.7.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "BSD", "_checksum":
+        "a7f4bfa7aa8f8e32dd20a7da8ae904061f756126847789c5d318c599158d22bbf23f5e1cbdfc59c60aaef23021335ce0698cbe1e5c6c6bf394fce6e905d53f88",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.5.7.tar.gz",
+        "_last_updated": 1436468221, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.5.7", "_content_type_id": "python_package", "_id": "e0a46c66-2705-49d7-8833-843b7e7319b1",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac438"}, "id":
+        "559ec6878097de0f352ac438", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "ca2268d9-4940-4f3e-b713-b891d381e561", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.5.8.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "BSD", "_checksum":
+        "446e4e9ff59290816247ac750d6b311e520d0491304ff601946c41689bf1589f380c874624bc67a5850baeeca8c0bab494a66e42ad3562785780d424cfdaa2fe",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.5.8.tar.gz",
+        "_last_updated": 1436468218, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.5.8", "_content_type_id": "python_package", "_id": "ca2268d9-4940-4f3e-b713-b891d381e561",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac433"}, "id":
+        "559ec6878097de0f352ac433", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "8bdfa642-9da6-44da-b5d7-4b8528a5d4e2", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.5.9.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "BSD", "_checksum":
+        "0b42f09a6bd28b18eaaf6b1788fcc620ee410442c4f179130babed3fa6763155cc5469e1b38d68a87742a21f34e0ac343167dd7a9de0595c81e81a25296a1087",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.5.9.tar.gz",
+        "_last_updated": 1436468216, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.5.9", "_content_type_id": "python_package", "_id": "8bdfa642-9da6-44da-b5d7-4b8528a5d4e2",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac432"}, "id":
+        "559ec6878097de0f352ac432", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "23244163-6cd8-4234-8c6c-39a8687d5334", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.6.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "BSD", "_checksum":
+        "76f478554c9add13f12fe12fc831563a3525e7313465512ee22409b9f500d16b9d9fbed7e46a056847fa57720bda772fad9ef3b78be002c82552b3ab3809a75f",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.6.tar.gz",
+        "_last_updated": 1436468211, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.6", "_content_type_id": "python_package", "_id": "23244163-6cd8-4234-8c6c-39a8687d5334",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac41b"}, "id":
+        "559ec6878097de0f352ac41b", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "82eebe67-48be-4d72-9e2c-8e379761b174", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.6.1.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "BSD", "_checksum":
+        "49a1b0582b8b55638d47447a688c38e6c9e709b89cdcdd001995e156298f7f5dc26b847f11f9551ad668bf0225ac98f570a027091ed386db0e566f6e5c564bfe",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.6.1.tar.gz",
+        "_last_updated": 1436468187, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.6.1", "_content_type_id": "python_package", "_id": "82eebe67-48be-4d72-9e2c-8e379761b174",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac421"}, "id":
+        "559ec6878097de0f352ac421", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "0e80aa2b-aab8-47ba-bbaa-f5510b9969b9", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.6.10.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "BSD", "_checksum":
+        "4ef44f2f4d0537443125765ab0e13b0d4798f828b09e7f881f2841d8e7078e4a8f0ac4750ebbd4586190feacd13490d4657575411737d2dc1e3c2cf046c2dadf",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.6.10.tar.gz",
+        "_last_updated": 1436468182, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.6.10", "_content_type_id": "python_package", "_id": "0e80aa2b-aab8-47ba-bbaa-f5510b9969b9",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac414"}, "id":
+        "559ec6878097de0f352ac414", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "f9d4a573-582a-4586-b596-4286a43e5bde", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.6.11.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "BSD", "_checksum":
+        "de6024b49e0344bf153f73ec344180fb701e415e4f9c330118821744d0e579436cc265724f7ef7213c9551847022ba9570312633f317b9003db533d06deb9829",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.6.11.tar.gz",
+        "_last_updated": 1436468181, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.6.11", "_content_type_id": "python_package", "_id": "f9d4a573-582a-4586-b596-4286a43e5bde",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac415"}, "id":
+        "559ec6878097de0f352ac415", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "944410ee-48a3-4a3d-97e4-5918730b64c2", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.6.2.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "BSD", "_checksum":
+        "aedcc915e789bfb3858b9b0aecbbd87c9ea6f7b368b812734ed1db8d0e397c70537399486e83db894fb4084b0658b0212b0a9e59b40170ce92bb5676ba5ef52a",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.6.2.tar.gz",
+        "_last_updated": 1436468185, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.6.2", "_content_type_id": "python_package", "_id": "944410ee-48a3-4a3d-97e4-5918730b64c2",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac41e"}, "id":
+        "559ec6878097de0f352ac41e", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "f4ceb973-d0bd-44d5-bf94-fb44f6669624", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.6.3.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "BSD", "_checksum":
+        "3b5167df5aa1d2eacf5ff1d989e6304f8f86f71d69aa9aff93d4f1b3b8459d1bec0691cc49007c4e20e700f86849b95affd2dee212fd46a6a4732c2b540f568c",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.6.3.tar.gz",
+        "_last_updated": 1436468188, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.6.3", "_content_type_id": "python_package", "_id": "f4ceb973-d0bd-44d5-bf94-fb44f6669624",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac41f"}, "id":
+        "559ec6878097de0f352ac41f", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "c8122376-d16d-4059-b4c0-5fccd1362285", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.6.4.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "BSD", "_checksum":
+        "319e0ee8f71073b0132d3e06ffccca8580adeece0183dc064492ccd6d4f2d60e92fe89191b9d35ce44d5c391a02388b464821d2048a7fe87886d7556f0b95aa7",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.6.4.tar.gz",
+        "_last_updated": 1436468190, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.6.4", "_content_type_id": "python_package", "_id": "c8122376-d16d-4059-b4c0-5fccd1362285",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac452"}, "id":
+        "559ec6878097de0f352ac452", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "d8d1e05a-c461-41a2-ad91-dfe1ca6c1800", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.6.5.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "BSD", "_checksum":
+        "60d36b1b23cdda42f33d4c15e41053fe0fc1c6584617bd6ed683dfb0a6d6dfaa849b387ea514129acb2cc40e89fe33818db1e0897df110d1b8f5ed1a3b256905",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.6.5.tar.gz",
+        "_last_updated": 1436468196, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.6.5", "_content_type_id": "python_package", "_id": "d8d1e05a-c461-41a2-ad91-dfe1ca6c1800",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac42f"}, "id":
+        "559ec6878097de0f352ac42f", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "87d59206-005b-4e8d-911d-2846f04a289b", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.6.6.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "BSD", "_checksum":
+        "4d52ed7e31df7d1b449697e5ecd48a94cbb365a1f0abe6b9308ba815b1ef80d2c38d8ba07a57f928617a592afaa44d48374ecf3901b66e68d389fc4ac4f6891d",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.6.6.tar.gz",
+        "_last_updated": 1436468189, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.6.6", "_content_type_id": "python_package", "_id": "87d59206-005b-4e8d-911d-2846f04a289b",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac422"}, "id":
+        "559ec6878097de0f352ac422", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "4d9cb4a6-048b-498f-bb42-99153b42d603", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.6.7.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "BSD", "_checksum":
+        "7806562853c1c2db1decc597ec62f1e91689a6a3668030ed8dc0a757e5bf1603f4be945cef277ce564d26665a39d5c4151060b7889822e66671345d973dd256d",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.6.7.tar.gz",
+        "_last_updated": 1436468191, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.6.7", "_content_type_id": "python_package", "_id": "4d9cb4a6-048b-498f-bb42-99153b42d603",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac423"}, "id":
+        "559ec6878097de0f352ac423", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "8bc84757-f047-4c90-a1fc-a03387343083", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.6.8.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "BSD", "_checksum":
+        "aa09af8cdb8f4a6c49329dad75b2d6a4ef86baddbbf4c89507c6985db00dbfa36713f3ac80ba1d8993e545f7b92fbd72437dfa05c4c25b9cbd913ae078a8db70",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.6.8.tar.gz",
+        "_last_updated": 1436468194, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.6.8", "_content_type_id": "python_package", "_id": "8bc84757-f047-4c90-a1fc-a03387343083",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac428"}, "id":
+        "559ec6878097de0f352ac428", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "d8ac4de6-00b9-4840-a14a-b6e000d0b129", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.6.9.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "BSD", "_checksum":
+        "ee33718260c35a0b7c5ff4df4ea5c4c432409476676161db5030a7741b2a4e79f01a6d4a0b89330e5434b4a3c3412c4b77fc1f56f011b5ea773a5911fee39f20",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.6.9.tar.gz",
+        "_last_updated": 1436468192, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.6.9", "_content_type_id": "python_package", "_id": "d8ac4de6-00b9-4840-a14a-b6e000d0b129",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac429"}, "id":
+        "559ec6878097de0f352ac429", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "63f93ff8-1f95-4445-b71d-532a6af6a5cf", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.7.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "BSD", "_checksum":
+        "9eb96812b913372f2e95e70fb498109d42d74a7df2a8b26083c5b372b421d897ef4119f45bfeb1cf2ef224448e9e0cfb801842441454b9b16c524e94d80d509a",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.7.tar.gz",
+        "_last_updated": 1436468213, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.7", "_content_type_id": "python_package", "_id": "63f93ff8-1f95-4445-b71d-532a6af6a5cf",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac40a"}, "id":
+        "559ec6878097de0f352ac40a", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "d9254c6b-ead3-4010-93a8-96da73dcec0b", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.7.1.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "BSD", "_checksum":
+        "6b4870b87f1e75a41a219f3cb0f8be7d920231f3918692942b5f87245c508357210335381f5f32c8047dc5295ae86a3e31749b8a139e39bbf9083e4baf740156",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.7.1.tar.gz",
+        "_last_updated": 1436468201, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.7.1", "_content_type_id": "python_package", "_id": "d9254c6b-ead3-4010-93a8-96da73dcec0b",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac42c"}, "id":
+        "559ec6878097de0f352ac42c", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "3dd07b07-879c-428c-8e80-1a3104716c5e", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.7.2.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "BSD", "_checksum":
+        "25a786ccdfe8abbb97e2659fc3e00b51ce033722609aa47e6a13d5e7e83376975da43f237b04ca9a5a0633fedfaaf510621e635e2927d188eb4b5a62f61d0ea1",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.7.2.tar.gz",
+        "_last_updated": 1436468199, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.7.2", "_content_type_id": "python_package", "_id": "3dd07b07-879c-428c-8e80-1a3104716c5e",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac42b"}, "id":
+        "559ec6878097de0f352ac42b", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "5fa8d3de-7e5f-464e-8b45-e368aa99846a", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.7.3.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "BSD", "_checksum":
+        "5920566c476af7fdb9e0fe50098181bed406ad8a9cc38016daa6bc762a34a669bfe8df81e506c9f02d60aada2bca60aa67a66600f4856768f79e325a1e408dbb",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.7.3.tar.gz",
+        "_last_updated": 1436468246, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.7.3", "_content_type_id": "python_package", "_id": "5fa8d3de-7e5f-464e-8b45-e368aa99846a",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac42a"}, "id":
+        "559ec6878097de0f352ac42a", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "26d82f94-a2fb-4e84-b40a-e6ba0ee2b662", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.7.4.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "BSD", "_checksum":
+        "ae4ce59987926622ced6a18b4f3d0689ec505eb38ba434dc1812d7261eb6bceaaa9d8ee6b12a871c1fab7c14f7618be283fce83d09856656aea388b634a10f77",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.7.4.tar.gz",
+        "_last_updated": 1436468244, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.7.4", "_content_type_id": "python_package", "_id": "26d82f94-a2fb-4e84-b40a-e6ba0ee2b662",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac447"}, "id":
+        "559ec6878097de0f352ac447", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "f49850d8-a52c-42de-b894-89cacce0fd8c", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.7.5.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "BSD", "_checksum":
+        "b54c8afaf1a07475fc4952c9af94fa77cb9d18fcdbc98c3d61406201fdcff3fc997d831b26914fbd1db05cdeeafeda67de7476c1bf4ec125c6f00aa69a127f77",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.7.5.tar.gz",
+        "_last_updated": 1436468242, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.7.5", "_content_type_id": "python_package", "_id": "f49850d8-a52c-42de-b894-89cacce0fd8c",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac445"}, "id":
+        "559ec6878097de0f352ac445", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "10417763-bd30-45cf-a4bc-05700636572d", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.7.6.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "BSD", "_checksum":
+        "e3f198483ee2d1209abfffe6132ba93d1ef3c7e0b38685af6ed611667241116b2a3e6dc06ec8adfa19bf2dd5fe76d195bef6f914b8db231eaf7b38a6060852a8",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.7.6.tar.gz",
+        "_last_updated": 1436468241, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.7.6", "_content_type_id": "python_package", "_id": "10417763-bd30-45cf-a4bc-05700636572d",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac427"}, "id":
+        "559ec6878097de0f352ac427", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "6e112fee-8980-4120-9700-1ef648bf6542", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.7.7.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "BSD", "_checksum":
+        "e08446e7b6a0c64594dca2411b8b3fe16a8fe9b951bd33ae4c1f5187c83a2ce36bd7e0a07e169c338236d6f258362861e868a62f59d9d86bea679d9d42722ceb",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.7.7.tar.gz",
+        "_last_updated": 1436468243, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.7.7", "_content_type_id": "python_package", "_id": "6e112fee-8980-4120-9700-1ef648bf6542",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac41c"}, "id":
+        "559ec6878097de0f352ac41c", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "b590891a-ceff-4162-b1ff-ef434f28822a", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.7.8.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "BSD", "_checksum":
+        "8eaaf3fc743971341d375566b70ff95eab399388a7ee03057f48e4bfedccd9b32e7a69b0e9ab2197dd47ef76106099a47eb6762bb01e47044543a77b447892b5",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.7.8.tar.gz",
+        "_last_updated": 1436468243, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.7.8", "_content_type_id": "python_package", "_id": "b590891a-ceff-4162-b1ff-ef434f28822a",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac40e"}, "id":
+        "559ec6878097de0f352ac40e", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "6308c87f-dac4-4832-8101-24b39bb4b6fb", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.7.9.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "BSD", "_checksum":
+        "349f6950ec7cb37c8ae44a5fc9b924ef0d02e244c834a65bbdbe84d8a993474c6e94f82ac0df5bd08594c8cc6f72bf9413b7b30091319dbb5c018f211d3e9e67",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.7.9.tar.gz",
+        "_last_updated": 1436468238, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.7.9", "_content_type_id": "python_package", "_id": "6308c87f-dac4-4832-8101-24b39bb4b6fb",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac424"}, "id":
+        "559ec6878097de0f352ac424", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "8df4ac1f-a412-4dbc-99e2-d53676c83f19", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.8.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "BSD", "_checksum":
+        "2e8d5f16caa36f0df752a2ff1b536982bcbeb373a6898d3b7a5d31b7c661324b101051b5eaac59e53055c1dd7f614f99ae966e177afa97aba7028d9ba72c44d4",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.8.tar.gz",
+        "_last_updated": 1436468239, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.8", "_content_type_id": "python_package", "_id": "8df4ac1f-a412-4dbc-99e2-d53676c83f19",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac410"}, "id":
+        "559ec6878097de0f352ac410", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "fc7078ac-b044-4763-b06d-9f207ce1122d", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.8.1.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "BSD", "_checksum":
+        "10b8337802b8a37e334003312b4427574d4b5974637bf645fc1219833894066e8deddd787cf54a265285972107b34d3cb3baf132e24af2b2cc41ebff9ff46edb",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.8.1.tar.gz",
+        "_last_updated": 1436468246, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.8.1", "_content_type_id": "python_package", "_id": "fc7078ac-b044-4763-b06d-9f207ce1122d",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac44a"}, "id":
+        "559ec6878097de0f352ac44a", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "29514067-7d54-4d4d-8a7f-6e014e3e0b45", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.8.2.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "BSD", "_checksum":
+        "845cb2502d023ac512cd29868d5d52957a304867e8e29f9fd83762a247e94ab98f418435baca0766f76bb9eb5966d2c5a5786aaf697a21d029ad77f6dbee8215",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.8.2.tar.gz",
+        "_last_updated": 1436468247, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.8.2", "_content_type_id": "python_package", "_id": "29514067-7d54-4d4d-8a7f-6e014e3e0b45",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac43a"}, "id":
+        "559ec6878097de0f352ac43a", "owner_id": "python_importer"}, {"updated": "2015-07-09T19:07:51Z",
+        "repo_id": "integration_test_id", "created": "2015-07-09T19:07:51Z", "_ns":
+        "repo_content_units", "unit_id": "fb437d36-3c33-4863-ac6d-46eaa99b201f", "metadata":
+        {"_storage_path": "/var/lib/pulp/content/python_package/Django-1.8.3.tar.gz",
+        "_checksum_type": "sha512", "description": "UNKNOWN", "license": "BSD", "_checksum":
+        "17943c4769bb11125ee23cee6e05ce120a769ff46b9b380219bb28a42d4119082c2041fbc826d59707cb9f2cd1dc19c94beb61ac644e8c4fa5ba3bd528efa06e",
+        "home_page": "http://www.djangoproject.com/", "_filename": "Django-1.8.3.tar.gz",
+        "_last_updated": 1436468248, "author": "Django Software Foundation", "summary":
+        "A high-level Python Web framework that encourages rapid development and clean,
+        pragmatic design.", "platform": "UNKNOWN", "author_email": "foundation@djangoproject.com",
+        "version": "1.8.3", "_content_type_id": "python_package", "_id": "fb437d36-3c33-4863-ac6d-46eaa99b201f",
+        "_ns": "units_python_package", "name": "Django"}, "unit_type_id": "python_package",
+        "owner_type": "importer", "_id": {"$oid": "559ec6878097de0f352ac42d"}, "id":
+        "559ec6878097de0f352ac42d", "owner_id": "python_importer"}]'
+    http_version: 
+  recorded_at: Thu, 09 Jul 2015 19:07:52 GMT
+- request:
+    method: delete
+    uri: https://admin:HqGPfaSyUkZtxSXTSAddjsLBCDJ4UCrN@katello-runcible.example.com/pulp/api/v2/repositories/integration_test_id/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Date:
+      - Thu, 09 Jul 2015 19:07:52 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Encoding:
+      - utf-8
+      Content-Length:
+      - '172'
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/544d0a78-3096-4423-897c-2472c18c893f/",
+        "task_id": "544d0a78-3096-4423-897c-2472c18c893f"}], "result": null, "error":
+        null}'
+    http_version: 
+  recorded_at: Thu, 09 Jul 2015 19:07:52 GMT
+- request:
+    method: get
+    uri: https://admin:HqGPfaSyUkZtxSXTSAddjsLBCDJ4UCrN@katello-runcible.example.com/pulp/api/v2/tasks/544d0a78-3096-4423-897c-2472c18c893f/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 09 Jul 2015 19:07:52 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '700'
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '{"exception": null, "task_type": "pulp.server.tasks.repository.delete",
+        "_href": "/pulp/api/v2/tasks/544d0a78-3096-4423-897c-2472c18c893f/", "task_id":
+        "544d0a78-3096-4423-897c-2472c18c893f", "tags": ["pulp:repository:integration_test_id",
+        "pulp:action:delete"], "finish_time": "2015-07-09T19:07:52Z", "_ns": "task_status",
+        "start_time": "2015-07-09T19:07:52Z", "traceback": null, "spawned_tasks":
+        [], "progress_report": {}, "queue": "reserved_resource_worker-0@katello-runcible.example.com.dq",
+        "state": "finished", "worker_name": "reserved_resource_worker-0@katello-runcible.example.com",
+        "result": null, "error": null, "_id": {"$oid": "559ec688eab2b4ff0520383c"},
+        "id": "559ec6888097de0f106cce6f"}'
+    http_version: 
+  recorded_at: Thu, 09 Jul 2015 19:07:52 GMT
+recorded_with: VCR 2.9.3
