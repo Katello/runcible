@@ -3,14 +3,6 @@
 
 NAME="runcible"
 VERSION=`cat ./lib/runcible/version.rb | grep VERSION | awk -F '"' '{print $2}'` 
-RPM_VERSION=`cat *.spec | grep Version: | awk '{print $2}'`
-
-if [ "$VERSION" != "$RPM_VERSION" ] ; then
-  echo "Gem version ($VERSION) and rpm version ($RPM_VERSION) do not match"
-  echo "Have you run tito tag yet?"
-  exit 1
-fi
-
 
 read -p "Would you like to release $NAME-$VERSION (yes/no/skip)? "
 if [ "$REPLY" == "yes" ]; then
