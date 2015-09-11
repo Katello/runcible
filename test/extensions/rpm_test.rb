@@ -58,6 +58,15 @@ module Extensions
       assert_equal 200, response.code
       assert_equal ids.length, response.length
     end
+
+    def test_find_all_by_unit_ids_no_repos
+      pkgs = @@extension.all.sort_by { |p| p['_id'] }
+      ids = pkgs[0..2].map { |p| p['_id'] }
+      response = @@extension.find_all_by_unit_ids(ids, [:name], :include_repos => false)
+
+      assert_equal 200, response.code
+      assert_nil response.first[:repository_memberships]
+    end
   end
 
   class TestRpmCopy < UnitCopyBase
