@@ -229,47 +229,6 @@ http_interactions:
     http_version: 
   recorded_at: Tue, 23 Jun 2015 22:37:13 GMT
 - request:
-    method: post
-    uri: https://admin:7HLGDTSxNnAEEtqKgjecYCvftjzNmoRE@katello-kant.example.com/pulp/api/v2/repositories/integration_test_id_clone/actions/associate/
-    body:
-      encoding: UTF-8
-      string: '{"source_repo_id":"integration_test_id","criteria":{"type_ids":["distribution"],"filters":{}}}'
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Type:
-      - application/json
-      Content-Length:
-      - '94'
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 202
-      message: ACCEPTED
-    headers:
-      Date:
-      - Tue, 23 Jun 2015 22:44:37 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Content-Encoding:
-      - utf-8
-      Content-Length:
-      - '172'
-      Connection:
-      - close
-      Content-Type:
-      - application/json
-    body:
-      encoding: UTF-8
-      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/fc47d86e-5f28-495c-9ae5-c1e54d06259a/",
-        "task_id": "fc47d86e-5f28-495c-9ae5-c1e54d06259a"}], "result": null, "error":
-        null}'
-    http_version: 
-  recorded_at: Tue, 23 Jun 2015 22:44:37 GMT
-- request:
     method: get
     uri: https://admin:7HLGDTSxNnAEEtqKgjecYCvftjzNmoRE@katello-kant.example.com/pulp/api/v2/tasks/fc47d86e-5f28-495c-9ae5-c1e54d06259a/
     body:
@@ -314,4 +273,90 @@ http_interactions:
         {"$oid": "5589e1552812e3d33cf102d7"}, "id": "5589e1552812e3d33cf102d7"}'
     http_version: 
   recorded_at: Tue, 23 Jun 2015 22:44:37 GMT
+- request:
+    method: post
+    uri: https://admin:7HLGDTSxNnAEEtqKgjecYCvftjzNmoRE@katello-kant.example.com/pulp/api/v2/repositories/integration_test_id_clone/actions/associate/
+    body:
+      encoding: UTF-8
+      string: '{"source_repo_id":"integration_test_id","criteria":{"type_ids":["distribution"],"filters":{}}}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '94'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 202
+      message: ACCEPTED
+    headers:
+      Date:
+      - Wed, 16 Sep 2015 18:28:34 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Encoding:
+      - utf-8
+      Content-Length:
+      - '172'
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/9068e67b-5225-4ed6-b351-85e112e87712/",
+        "task_id": "9068e67b-5225-4ed6-b351-85e112e87712"}], "result": null, "error":
+        null}'
+    http_version: 
+  recorded_at: Wed, 16 Sep 2015 18:28:34 GMT
+- request:
+    method: get
+    uri: https://admin:7HLGDTSxNnAEEtqKgjecYCvftjzNmoRE@katello-kant.example.com/pulp/api/v2/tasks/9068e67b-5225-4ed6-b351-85e112e87712/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 16 Sep 2015 18:28:34 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '960'
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '{"exception": null, "task_type": "pulp.server.managers.repo.unit_association.associate_from_repo",
+        "_href": "/pulp/api/v2/tasks/9068e67b-5225-4ed6-b351-85e112e87712/", "task_id":
+        "9068e67b-5225-4ed6-b351-85e112e87712", "tags": ["pulp:repository:integration_test_id_clone",
+        "pulp:repository:integration_test_id", "pulp:action:associate"], "finish_time":
+        "2015-09-16T18:28:34Z", "_ns": "task_status", "start_time": "2015-09-16T18:28:34Z",
+        "traceback": null, "spawned_tasks": [], "progress_report": {}, "queue": "reserved_resource_worker-0@katello-kant.example.com.dq",
+        "state": "finished", "worker_name": "reserved_resource_worker-0@katello-kant.example.com",
+        "result": {"units_successful": [{"unit_key": {"arch": "x86_64", "version":
+        "16", "variant": "TestVariant", "id": "ks-Test Family-TestVariant-16-x86_64",
+        "family": "Test Family"}, "type_id": "distribution"}]}, "error": null, "_id":
+        {"$oid": "55f9b4d2f92c6c36bcd2568f"}, "id": "55f9b4d2f92c6c36bcd2568f"}'
+    http_version: 
+  recorded_at: Wed, 16 Sep 2015 18:28:34 GMT
 recorded_with: VCR 2.9.3
