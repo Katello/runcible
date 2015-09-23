@@ -1,0 +1,172 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://admin:HqGPfaSyUkZtxSXTSAddjsLBCDJ4UCrN@katello-runcible.example.com/pulp/api/v2/repositories/
+    body:
+      encoding: UTF-8
+      string: '{"id":"integration_test_id","importer_type_id":"python_importer","importer_config":{},"notes":{"_repo-type":"python-repo"},"distributors":[{"distributor_type_id":"python_distributor","distributor_config":{},"auto_publish":false,"distributor_id":"123"}]}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '253'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Thu, 09 Jul 2015 19:07:49 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Location:
+      - integration_test_id
+      Content-Length:
+      - '346'
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '{"scratchpad": {}, "display_name": "integration_test_id", "description":
+        null, "last_unit_added": null, "notes": {"_repo-type": "python-repo"}, "last_unit_removed":
+        null, "content_unit_counts": {}, "_ns": "repos", "_id": {"$oid": "559ec6858097de0f5dcc8701"},
+        "id": "integration_test_id", "_href": "/pulp/api/v2/repositories/integration_test_id/"}'
+    http_version: 
+  recorded_at: Thu, 09 Jul 2015 19:07:49 GMT
+- request:
+    method: get
+    uri: https://admin:HqGPfaSyUkZtxSXTSAddjsLBCDJ4UCrN@katello-runcible.example.com/pulp/api/v2/repositories/integration_test_id/?details=true
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 09 Jul 2015 19:07:49 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '858'
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '{"scratchpad": {}, "display_name": "integration_test_id", "description":
+        null, "distributors": [{"repo_id": "integration_test_id", "_ns": "repo_distributors",
+        "last_publish": null, "auto_publish": false, "scheduled_publishes": [], "distributor_type_id":
+        "python_distributor", "_id": {"$oid": "559ec6858097de0f5dcc8703"}, "config":
+        {}, "id": "123"}], "last_unit_added": null, "notes": {"_repo-type": "python-repo"},
+        "last_unit_removed": null, "content_unit_counts": {}, "_ns": "repos", "importers":
+        [{"repo_id": "integration_test_id", "_ns": "repo_importers", "importer_type_id":
+        "python_importer", "last_sync": null, "scheduled_syncs": [], "_id": {"$oid":
+        "559ec6858097de0f5dcc8702"}, "config": {}, "id": "python_importer"}], "_id":
+        {"$oid": "559ec6858097de0f5dcc8701"}, "id": "integration_test_id", "_href":
+        "/pulp/api/v2/repositories/integration_test_id/"}'
+    http_version: 
+  recorded_at: Thu, 09 Jul 2015 19:07:49 GMT
+- request:
+    method: delete
+    uri: https://admin:HqGPfaSyUkZtxSXTSAddjsLBCDJ4UCrN@katello-runcible.example.com/pulp/api/v2/repositories/integration_test_id/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Date:
+      - Thu, 09 Jul 2015 19:07:49 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Encoding:
+      - utf-8
+      Content-Length:
+      - '172'
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/a048bd56-bf21-4a16-8583-e440756e2cbf/",
+        "task_id": "a048bd56-bf21-4a16-8583-e440756e2cbf"}], "result": null, "error":
+        null}'
+    http_version: 
+  recorded_at: Thu, 09 Jul 2015 19:07:49 GMT
+- request:
+    method: get
+    uri: https://admin:HqGPfaSyUkZtxSXTSAddjsLBCDJ4UCrN@katello-runcible.example.com/pulp/api/v2/tasks/a048bd56-bf21-4a16-8583-e440756e2cbf/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 09 Jul 2015 19:07:50 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '700'
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '{"exception": null, "task_type": "pulp.server.tasks.repository.delete",
+        "_href": "/pulp/api/v2/tasks/a048bd56-bf21-4a16-8583-e440756e2cbf/", "task_id":
+        "a048bd56-bf21-4a16-8583-e440756e2cbf", "tags": ["pulp:repository:integration_test_id",
+        "pulp:action:delete"], "finish_time": "2015-07-09T19:07:49Z", "_ns": "task_status",
+        "start_time": "2015-07-09T19:07:49Z", "traceback": null, "spawned_tasks":
+        [], "progress_report": {}, "queue": "reserved_resource_worker-0@katello-runcible.example.com.dq",
+        "state": "finished", "worker_name": "reserved_resource_worker-0@katello-runcible.example.com",
+        "result": null, "error": null, "_id": {"$oid": "559ec685eab2b4ff05203830"},
+        "id": "559ec6858097de0f106cce5a"}'
+    http_version: 
+  recorded_at: Thu, 09 Jul 2015 19:07:50 GMT
+recorded_with: VCR 2.9.3

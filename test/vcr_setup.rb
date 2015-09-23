@@ -17,7 +17,7 @@ def configure_vcr(mode = :none)
     c.hook_into :webmock
 
     if ENV['record'] == 'false' && mode != :none
-      uri = URI.parse(Runcible::Base.config[:url])
+      uri = URI.parse(TestRuncible.server.config[:url])
       c.ignore_hosts uri.host
     end
 

@@ -23,6 +23,9 @@ class RepositorySupport
     elsif @repo_type == 'puppet'
       @distributors = [Runcible::Models::PuppetDistributor.new('/path', true, true, :id => 'puppet_dist')]
       @repo_url     = 'http://davidd.fedorapeople.org/repos/random_puppet/'
+    elsif @repo_type == 'python'
+      @distributors = [Runcible::Models::PythonDistributor.new]
+      @repo_url     = "https://pypi.python.org"
     end
   end
 
@@ -59,16 +62,19 @@ class RepositorySupport
   end
 
   def create_repo(options = {})
+    importer_config = {:id => @importer_type, :feed => @repo_url}
+    importer_config.merge!(options[:importer_config]) if options.key?(:importer_config)
+
     repo = @repo_resource.retrieve(RepositorySupport.repo_id)
     unless repo.nil?
       destroy_repo
     end
 
     if options[:importer]
-      repo = @repo_extension.create_with_importer(RepositorySupport.repo_id, :id => @importer_type, :feed => @repo_url)
+      repo = @repo_extension.create_with_importer(RepositorySupport.repo_id, importer_config)
     elsif options[:importer_and_distributor]
       repo = @repo_extension.create_with_importer_and_distributors(RepositorySupport.repo_id,
-                                 {:id => @importer_type, :feed => @repo_url}, @distributors)
+                                 importer_config, @distributors)
     else
       repo = @repo_resource.create(RepositorySupport.repo_id)
     end
@@ -76,10 +82,10 @@ class RepositorySupport
   rescue RestClient::ResourceNotFound
 
     if options[:importer]
-      repo = @repo_extension.create_with_importer(RepositorySupport.repo_id, :id => @importer_type, :feed => @repo_url)
+      repo = @repo_extension.create_with_importer(RepositorySupport.repo_id, importer_config)
     elsif options[:importer_and_distributor]
       repo = @repo_extension.create_with_importer_and_distributors(RepositorySupport.repo_id,
-                                     {:id => @importer_type, :feed => @repo_url}, @distributors)
+                                     importer_config, @distributors)
     else
       repo = @repo_resource.create(RepositorySupport.repo_id)
     end
