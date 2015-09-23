@@ -4,9 +4,7 @@ module Runcible
       ID = 'python_importer'
       REPO_TYPE = 'python-repo'
 
-      attr_accessor 'feed', 'max_speed', 'max_downloads', 'upstream_name',
-                    'proxy_port', 'proxy_password', 'proxy_username', 'mask_id',
-                    'packages_names'
+      attr_accessor 'packages_names'
 
       def id
         PythonImporter::ID
