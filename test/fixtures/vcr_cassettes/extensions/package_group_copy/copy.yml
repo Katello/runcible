@@ -229,47 +229,6 @@ http_interactions:
     http_version: 
   recorded_at: Tue, 23 Jun 2015 22:37:46 GMT
 - request:
-    method: post
-    uri: https://admin:7HLGDTSxNnAEEtqKgjecYCvftjzNmoRE@katello-kant.example.com/pulp/api/v2/repositories/integration_test_id_clone/actions/associate/
-    body:
-      encoding: UTF-8
-      string: '{"source_repo_id":"integration_test_id","criteria":{"type_ids":["package_group"],"filters":{}}}'
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Type:
-      - application/json
-      Content-Length:
-      - '95'
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 202
-      message: ACCEPTED
-    headers:
-      Date:
-      - Tue, 23 Jun 2015 22:45:11 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Content-Encoding:
-      - utf-8
-      Content-Length:
-      - '172'
-      Connection:
-      - close
-      Content-Type:
-      - application/json
-    body:
-      encoding: UTF-8
-      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/0a80a3e7-c9e0-42bd-9292-b7e09cbc1853/",
-        "task_id": "0a80a3e7-c9e0-42bd-9292-b7e09cbc1853"}], "result": null, "error":
-        null}'
-    http_version: 
-  recorded_at: Tue, 23 Jun 2015 22:45:11 GMT
-- request:
     method: get
     uri: https://admin:7HLGDTSxNnAEEtqKgjecYCvftjzNmoRE@katello-kant.example.com/pulp/api/v2/tasks/0a80a3e7-c9e0-42bd-9292-b7e09cbc1853/
     body:
@@ -316,6 +275,92 @@ http_interactions:
   recorded_at: Tue, 23 Jun 2015 22:45:11 GMT
 - request:
     method: post
+    uri: https://admin:7HLGDTSxNnAEEtqKgjecYCvftjzNmoRE@katello-kant.example.com/pulp/api/v2/repositories/integration_test_id_clone/actions/associate/
+    body:
+      encoding: UTF-8
+      string: '{"source_repo_id":"integration_test_id","criteria":{"type_ids":["package_group"],"filters":{}}}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '95'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 202
+      message: ACCEPTED
+    headers:
+      Date:
+      - Wed, 16 Sep 2015 18:29:06 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Encoding:
+      - utf-8
+      Content-Length:
+      - '172'
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/92310037-dd73-47a8-8b08-ef8ed445be32/",
+        "task_id": "92310037-dd73-47a8-8b08-ef8ed445be32"}], "result": null, "error":
+        null}'
+    http_version: 
+  recorded_at: Wed, 16 Sep 2015 18:29:06 GMT
+- request:
+    method: get
+    uri: https://admin:7HLGDTSxNnAEEtqKgjecYCvftjzNmoRE@katello-kant.example.com/pulp/api/v2/tasks/92310037-dd73-47a8-8b08-ef8ed445be32/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 16 Sep 2015 18:29:07 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '983'
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '{"exception": null, "task_type": "pulp.server.managers.repo.unit_association.associate_from_repo",
+        "_href": "/pulp/api/v2/tasks/92310037-dd73-47a8-8b08-ef8ed445be32/", "task_id":
+        "92310037-dd73-47a8-8b08-ef8ed445be32", "tags": ["pulp:repository:integration_test_id_clone",
+        "pulp:repository:integration_test_id", "pulp:action:associate"], "finish_time":
+        "2015-09-16T18:29:07Z", "_ns": "task_status", "start_time": "2015-09-16T18:29:07Z",
+        "traceback": null, "spawned_tasks": [], "progress_report": {}, "queue": "reserved_resource_worker-0@katello-kant.example.com.dq",
+        "state": "finished", "worker_name": "reserved_resource_worker-0@katello-kant.example.com",
+        "result": {"units_successful": [{"unit_key": {"repo_id": "integration_test_id_clone",
+        "id": "bird"}, "type_id": "package_group"}, {"unit_key": {"repo_id": "integration_test_id_clone",
+        "id": "mammal"}, "type_id": "package_group"}]}, "error": null, "_id": {"$oid":
+        "55f9b4f2f92c6c36bcd256ba"}, "id": "55f9b4f2f92c6c36bcd256ba"}'
+    http_version: 
+  recorded_at: Wed, 16 Sep 2015 18:29:07 GMT
+- request:
+    method: post
     uri: https://admin:7HLGDTSxNnAEEtqKgjecYCvftjzNmoRE@katello-kant.example.com/pulp/api/v2/repositories/integration_test_id_clone/search/units/
     body:
       encoding: UTF-8
@@ -337,7 +382,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 23 Jun 2015 22:45:11 GMT
+      - Wed, 16 Sep 2015 18:29:07 GMT
       Server:
       - Apache/2.4.6 (CentOS)
       Content-Length:
@@ -348,30 +393,30 @@ http_interactions:
       - application/json
     body:
       encoding: UTF-8
-      string: '[{"updated": "2015-06-23T22:45:11Z", "repo_id": "integration_test_id_clone",
-        "created": "2015-06-23T22:45:11Z", "_ns": "repo_content_units", "unit_id":
-        "dd529cc8-af19-4d9c-a6cf-6ddb8a972265", "unit_type_id": "package_group", "_id":
-        {"$oid": "5589e177f115fc0506df71f1"}, "id": "5589e177f115fc0506df71f1", "metadata":
+      string: '[{"updated": "2015-09-16T18:29:07Z", "repo_id": "integration_test_id_clone",
+        "created": "2015-09-16T18:29:07Z", "_ns": "repo_content_units", "unit_id":
+        "6aea376d-dcd0-4e20-9bd9-531d7e50363e", "unit_type_id": "package_group", "_id":
+        {"$oid": "55f9b4f3f115fc1052430858"}, "id": "55f9b4f3f115fc1052430858", "metadata":
         {"_storage_path": null, "mandatory_package_names": ["penguin"], "repo_id":
         "integration_test_id_clone", "description": null, "user_visible": true, "default":
-        true, "_ns": "units_package_group", "_last_updated": 1435099511, "display_order":
+        true, "_ns": "units_package_group", "_last_updated": 1442428147, "display_order":
         1024, "optional_package_names": [], "translated_name": {}, "conditional_package_names":
         [], "translated_description": {}, "pulp_user_metadata": {}, "default_package_names":
-        [], "_content_type_id": "package_group", "langonly": null, "_id": "dd529cc8-af19-4d9c-a6cf-6ddb8a972265",
-        "id": "bird", "name": "bird"}}, {"updated": "2015-06-23T22:45:11Z", "repo_id":
-        "integration_test_id_clone", "created": "2015-06-23T22:45:11Z", "_ns": "repo_content_units",
-        "unit_id": "5b6e2a8d-e2d8-47bf-990a-16e13dbd485b", "unit_type_id": "package_group",
-        "_id": {"$oid": "5589e177f115fc0506df71f2"}, "id": "5589e177f115fc0506df71f2",
+        [], "_content_type_id": "package_group", "langonly": null, "_id": "6aea376d-dcd0-4e20-9bd9-531d7e50363e",
+        "id": "bird", "name": "bird"}}, {"updated": "2015-09-16T18:29:07Z", "repo_id":
+        "integration_test_id_clone", "created": "2015-09-16T18:29:07Z", "_ns": "repo_content_units",
+        "unit_id": "87f2a6da-94e8-4166-84ca-bad1424e7b3a", "unit_type_id": "package_group",
+        "_id": {"$oid": "55f9b4f3f115fc1052430859"}, "id": "55f9b4f3f115fc1052430859",
         "metadata": {"_storage_path": null, "mandatory_package_names": ["elephant,giraffe,cheetah,lion,monkey,penguin,squirrel,walrus",
         "penguin"], "repo_id": "integration_test_id_clone", "description": null, "user_visible":
-        true, "default": true, "_ns": "units_package_group", "_last_updated": 1435099511,
+        true, "default": true, "_ns": "units_package_group", "_last_updated": 1442428147,
         "display_order": 1024, "optional_package_names": [], "translated_name": {},
         "conditional_package_names": [], "translated_description": {}, "pulp_user_metadata":
         {}, "default_package_names": [], "_content_type_id": "package_group", "langonly":
-        null, "_id": "5b6e2a8d-e2d8-47bf-990a-16e13dbd485b", "id": "mammal", "name":
+        null, "_id": "87f2a6da-94e8-4166-84ca-bad1424e7b3a", "id": "mammal", "name":
         "mammal"}}]'
     http_version: 
-  recorded_at: Tue, 23 Jun 2015 22:45:12 GMT
+  recorded_at: Wed, 16 Sep 2015 18:29:07 GMT
 - request:
     method: post
     uri: https://admin:7HLGDTSxNnAEEtqKgjecYCvftjzNmoRE@katello-kant.example.com/pulp/api/v2/repositories/integration_test_id/search/units/
@@ -395,7 +440,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 23 Jun 2015 22:45:12 GMT
+      - Wed, 16 Sep 2015 18:29:07 GMT
       Server:
       - Apache/2.4.6 (CentOS)
       Content-Length:
@@ -406,28 +451,28 @@ http_interactions:
       - application/json
     body:
       encoding: UTF-8
-      string: '[{"updated": "2015-06-23T22:45:10Z", "repo_id": "integration_test_id",
-        "created": "2015-06-23T22:45:10Z", "_ns": "repo_content_units", "unit_id":
-        "c7d2785a-4e88-45a5-a7a8-86c1a22c2a3b", "unit_type_id": "package_group", "_id":
-        {"$oid": "5589e176f115fc0506df71ed"}, "id": "5589e176f115fc0506df71ed", "metadata":
+      string: '[{"updated": "2015-09-16T18:29:06Z", "repo_id": "integration_test_id",
+        "created": "2015-09-16T18:29:06Z", "_ns": "repo_content_units", "unit_id":
+        "d682ec3c-d7dd-4d1d-aa83-9c94345fe59b", "unit_type_id": "package_group", "_id":
+        {"$oid": "55f9b4f2f115fc1052430853"}, "id": "55f9b4f2f115fc1052430853", "metadata":
         {"_storage_path": null, "mandatory_package_names": ["penguin"], "repo_id":
         "integration_test_id", "description": null, "user_visible": true, "default":
-        true, "_ns": "units_package_group", "_last_updated": 1435099510, "display_order":
+        true, "_ns": "units_package_group", "_last_updated": 1442428146, "display_order":
         1024, "optional_package_names": [], "translated_name": {}, "conditional_package_names":
         [], "translated_description": {}, "pulp_user_metadata": {}, "default_package_names":
-        [], "_content_type_id": "package_group", "langonly": null, "_id": "c7d2785a-4e88-45a5-a7a8-86c1a22c2a3b",
-        "id": "bird", "name": "bird"}}, {"updated": "2015-06-23T22:45:10Z", "repo_id":
-        "integration_test_id", "created": "2015-06-23T22:45:10Z", "_ns": "repo_content_units",
-        "unit_id": "29f5b6af-d6fe-4c6b-854c-c03bd2d4130b", "unit_type_id": "package_group",
-        "_id": {"$oid": "5589e176f115fc0506df71ee"}, "id": "5589e176f115fc0506df71ee",
+        [], "_content_type_id": "package_group", "langonly": null, "_id": "d682ec3c-d7dd-4d1d-aa83-9c94345fe59b",
+        "id": "bird", "name": "bird"}}, {"updated": "2015-09-16T18:29:06Z", "repo_id":
+        "integration_test_id", "created": "2015-09-16T18:29:06Z", "_ns": "repo_content_units",
+        "unit_id": "70610146-878f-41f1-acae-4613b8facb07", "unit_type_id": "package_group",
+        "_id": {"$oid": "55f9b4f2f115fc1052430854"}, "id": "55f9b4f2f115fc1052430854",
         "metadata": {"_storage_path": null, "mandatory_package_names": ["elephant,giraffe,cheetah,lion,monkey,penguin,squirrel,walrus",
         "penguin"], "repo_id": "integration_test_id", "description": null, "user_visible":
-        true, "default": true, "_ns": "units_package_group", "_last_updated": 1435099510,
+        true, "default": true, "_ns": "units_package_group", "_last_updated": 1442428146,
         "display_order": 1024, "optional_package_names": [], "translated_name": {},
         "conditional_package_names": [], "translated_description": {}, "pulp_user_metadata":
         {}, "default_package_names": [], "_content_type_id": "package_group", "langonly":
-        null, "_id": "29f5b6af-d6fe-4c6b-854c-c03bd2d4130b", "id": "mammal", "name":
+        null, "_id": "70610146-878f-41f1-acae-4613b8facb07", "id": "mammal", "name":
         "mammal"}}]'
     http_version: 
-  recorded_at: Tue, 23 Jun 2015 22:45:12 GMT
+  recorded_at: Wed, 16 Sep 2015 18:29:07 GMT
 recorded_with: VCR 2.9.3

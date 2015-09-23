@@ -504,135 +504,6 @@ http_interactions:
     http_version: 
   recorded_at: Tue, 23 Jun 2015 22:37:36 GMT
 - request:
-    method: post
-    uri: https://admin:7HLGDTSxNnAEEtqKgjecYCvftjzNmoRE@katello-kant.example.com/pulp/api/v2/repositories/
-    body:
-      encoding: UTF-8
-      string: '{"id":"test_repo_iso_fixture","importer_type_id":"iso_importer","importer_config":{"feed":"file:///var/www/repositories/iso"},"distributors":[{"distributor_type_id":"iso_distributor","distributor_config":{"serve_http":true,"serve_https":true},"auto_publish":false,"distributor_id":"iso_distributor"}]}'
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Type:
-      - application/json
-      Content-Length:
-      - '301'
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 201
-      message: CREATED
-    headers:
-      Date:
-      - Tue, 23 Jun 2015 22:44:59 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Content-Length:
-      - '325'
-      Location:
-      - https://katello-kant.example.com/pulp/api/v2/repositories/test_repo_iso_fixture/
-      Connection:
-      - close
-      Content-Type:
-      - application/json
-    body:
-      encoding: UTF-8
-      string: '{"scratchpad": {}, "display_name": "test_repo_iso_fixture", "description":
-        null, "last_unit_added": null, "notes": {}, "last_unit_removed": null, "content_unit_counts":
-        {}, "_ns": "repos", "_id": {"$oid": "5589e16cf115fc042e751ca2"}, "id": "test_repo_iso_fixture",
-        "_href": "/pulp/api/v2/repositories/test_repo_iso_fixture/"}'
-    http_version: 
-  recorded_at: Tue, 23 Jun 2015 22:45:00 GMT
-- request:
-    method: get
-    uri: https://admin:7HLGDTSxNnAEEtqKgjecYCvftjzNmoRE@katello-kant.example.com/pulp/api/v2/repositories/test_repo_iso_fixture/?details=true
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Type:
-      - application/json
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Tue, 23 Jun 2015 22:45:00 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Content-Length:
-      - '1009'
-      Connection:
-      - close
-      Content-Type:
-      - application/json
-    body:
-      encoding: UTF-8
-      string: '{"scratchpad": {}, "display_name": "test_repo_iso_fixture", "description":
-        null, "distributors": [{"repo_id": "test_repo_iso_fixture", "_ns": "repo_distributors",
-        "last_publish": null, "auto_publish": false, "scheduled_publishes": [], "distributor_type_id":
-        "iso_distributor", "_id": {"$oid": "5589e16cf115fc042e751ca4"}, "config":
-        {"serve_https": true, "serve_http": true}, "id": "iso_distributor"}], "last_unit_added":
-        null, "notes": {}, "last_unit_removed": null, "content_unit_counts": {}, "_ns":
-        "repos", "importers": [{"repo_id": "test_repo_iso_fixture", "_href": "/pulp/api/v2/repositories/test_repo_iso_fixture/importers/iso_importer/",
-        "_ns": "repo_importers", "importer_type_id": "iso_importer", "last_sync":
-        null, "scheduled_syncs": [], "_id": {"$oid": "5589e16cf115fc042e751ca3"},
-        "config": {"feed": "file:///var/www/repositories/iso"}, "id": "iso_importer"}],
-        "_id": {"$oid": "5589e16cf115fc042e751ca2"}, "id": "test_repo_iso_fixture",
-        "_href": "/pulp/api/v2/repositories/test_repo_iso_fixture/"}'
-    http_version: 
-  recorded_at: Tue, 23 Jun 2015 22:45:00 GMT
-- request:
-    method: post
-    uri: https://admin:7HLGDTSxNnAEEtqKgjecYCvftjzNmoRE@katello-kant.example.com/pulp/api/v2/repositories/test_repo_iso_fixture/actions/sync/
-    body:
-      encoding: UTF-8
-      string: '{}'
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Type:
-      - application/json
-      Content-Length:
-      - '2'
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 202
-      message: ACCEPTED
-    headers:
-      Date:
-      - Tue, 23 Jun 2015 22:45:00 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Content-Encoding:
-      - utf-8
-      Content-Length:
-      - '172'
-      Connection:
-      - close
-      Content-Type:
-      - application/json
-    body:
-      encoding: UTF-8
-      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/3c4146ff-ef7b-4060-8095-899b37c07476/",
-        "task_id": "3c4146ff-ef7b-4060-8095-899b37c07476"}], "result": null, "error":
-        null}'
-    http_version: 
-  recorded_at: Tue, 23 Jun 2015 22:45:00 GMT
-- request:
     method: get
     uri: https://admin:7HLGDTSxNnAEEtqKgjecYCvftjzNmoRE@katello-kant.example.com/pulp/api/v2/tasks/3c4146ff-ef7b-4060-8095-899b37c07476/
     body:
@@ -691,90 +562,6 @@ http_interactions:
   recorded_at: Tue, 23 Jun 2015 22:45:00 GMT
 - request:
     method: get
-    uri: https://admin:7HLGDTSxNnAEEtqKgjecYCvftjzNmoRE@katello-kant.example.com/pulp/api/v2/repositories/test_repo_iso_fixture//history/sync/
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Type:
-      - application/json
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Tue, 23 Jun 2015 22:45:00 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Content-Length:
-      - '803'
-      Connection:
-      - close
-      Content-Type:
-      - application/json
-    body:
-      encoding: UTF-8
-      string: '[{"importer_type_id": "iso_importer", "importer_id": "iso_importer",
-        "exception": null, "repo_id": "test_repo_iso_fixture", "removed_count": 0,
-        "started": "2015-06-23T22:45:00Z", "_ns": "repo_sync_results", "completed":
-        "2015-06-23T22:45:00Z", "traceback": null, "summary": {"error_message": null,
-        "traceback": null, "finished_bytes": 14, "num_isos": 1, "state": "complete",
-        "iso_error_messages": [], "state_times": {"not_started": "2015-06-23T22:45:00",
-        "manifest_in_progress": "2015-06-23T22:45:00", "complete": "2015-06-23T22:45:00",
-        "isos_in_progress": "2015-06-23T22:45:00"}, "num_isos_finished": 1, "total_bytes":
-        14}, "added_count": 1, "error_message": null, "updated_count": 0, "details":
-        null, "_id": {"$oid": "5589e16cf115fc0506df71ba"}, "id": "5589e16cf115fc0506df71ba",
-        "result": "success"}]'
-    http_version: 
-  recorded_at: Tue, 23 Jun 2015 22:45:00 GMT
-- request:
-    method: delete
-    uri: https://admin:7HLGDTSxNnAEEtqKgjecYCvftjzNmoRE@katello-kant.example.com/pulp/api/v2/repositories/test_repo_iso_fixture/
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Type:
-      - application/json
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 202
-      message: ACCEPTED
-    headers:
-      Date:
-      - Tue, 23 Jun 2015 22:45:00 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Content-Encoding:
-      - utf-8
-      Content-Length:
-      - '172'
-      Connection:
-      - close
-      Content-Type:
-      - application/json
-    body:
-      encoding: UTF-8
-      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/729db54d-3db2-46c2-ba9b-78c427a2c718/",
-        "task_id": "729db54d-3db2-46c2-ba9b-78c427a2c718"}], "result": null, "error":
-        null}'
-    http_version: 
-  recorded_at: Tue, 23 Jun 2015 22:45:00 GMT
-- request:
-    method: get
     uri: https://admin:7HLGDTSxNnAEEtqKgjecYCvftjzNmoRE@katello-kant.example.com/pulp/api/v2/tasks/729db54d-3db2-46c2-ba9b-78c427a2c718/
     body:
       encoding: US-ASCII
@@ -816,4 +603,317 @@ http_interactions:
         "id": "5589e16c2812e3d33cf10354"}'
     http_version: 
   recorded_at: Tue, 23 Jun 2015 22:45:01 GMT
+- request:
+    method: post
+    uri: https://admin:7HLGDTSxNnAEEtqKgjecYCvftjzNmoRE@katello-kant.example.com/pulp/api/v2/repositories/
+    body:
+      encoding: UTF-8
+      string: '{"id":"test_repo_iso_fixture","importer_type_id":"iso_importer","importer_config":{"feed":"file:///var/www/repositories/iso"},"distributors":[{"distributor_type_id":"iso_distributor","distributor_config":{"serve_http":true,"serve_https":true},"auto_publish":false,"distributor_id":"iso_distributor"}]}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '301'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 201
+      message: CREATED
+    headers:
+      Date:
+      - Wed, 16 Sep 2015 18:28:56 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '325'
+      Location:
+      - https://katello-kant.example.com/pulp/api/v2/repositories/test_repo_iso_fixture/
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '{"scratchpad": {}, "display_name": "test_repo_iso_fixture", "description":
+        null, "last_unit_added": null, "notes": {}, "last_unit_removed": null, "content_unit_counts":
+        {}, "_ns": "repos", "_id": {"$oid": "55f9b4e8f115fc0f3dda10be"}, "id": "test_repo_iso_fixture",
+        "_href": "/pulp/api/v2/repositories/test_repo_iso_fixture/"}'
+    http_version: 
+  recorded_at: Wed, 16 Sep 2015 18:28:56 GMT
+- request:
+    method: get
+    uri: https://admin:7HLGDTSxNnAEEtqKgjecYCvftjzNmoRE@katello-kant.example.com/pulp/api/v2/repositories/test_repo_iso_fixture/?details=true
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 16 Sep 2015 18:28:56 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '1009'
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '{"scratchpad": {}, "display_name": "test_repo_iso_fixture", "description":
+        null, "distributors": [{"repo_id": "test_repo_iso_fixture", "_ns": "repo_distributors",
+        "last_publish": null, "auto_publish": false, "scheduled_publishes": [], "distributor_type_id":
+        "iso_distributor", "_id": {"$oid": "55f9b4e8f115fc0f3dda10c0"}, "config":
+        {"serve_https": true, "serve_http": true}, "id": "iso_distributor"}], "last_unit_added":
+        null, "notes": {}, "last_unit_removed": null, "content_unit_counts": {}, "_ns":
+        "repos", "importers": [{"repo_id": "test_repo_iso_fixture", "_href": "/pulp/api/v2/repositories/test_repo_iso_fixture/importers/iso_importer/",
+        "_ns": "repo_importers", "importer_type_id": "iso_importer", "last_sync":
+        null, "scheduled_syncs": [], "_id": {"$oid": "55f9b4e8f115fc0f3dda10bf"},
+        "config": {"feed": "file:///var/www/repositories/iso"}, "id": "iso_importer"}],
+        "_id": {"$oid": "55f9b4e8f115fc0f3dda10be"}, "id": "test_repo_iso_fixture",
+        "_href": "/pulp/api/v2/repositories/test_repo_iso_fixture/"}'
+    http_version: 
+  recorded_at: Wed, 16 Sep 2015 18:28:56 GMT
+- request:
+    method: post
+    uri: https://admin:7HLGDTSxNnAEEtqKgjecYCvftjzNmoRE@katello-kant.example.com/pulp/api/v2/repositories/test_repo_iso_fixture/actions/sync/
+    body:
+      encoding: UTF-8
+      string: '{}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '2'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 202
+      message: ACCEPTED
+    headers:
+      Date:
+      - Wed, 16 Sep 2015 18:28:56 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Encoding:
+      - utf-8
+      Content-Length:
+      - '172'
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/85724d50-9e29-455d-8f2d-d4f73a641480/",
+        "task_id": "85724d50-9e29-455d-8f2d-d4f73a641480"}], "result": null, "error":
+        null}'
+    http_version: 
+  recorded_at: Wed, 16 Sep 2015 18:28:56 GMT
+- request:
+    method: get
+    uri: https://admin:7HLGDTSxNnAEEtqKgjecYCvftjzNmoRE@katello-kant.example.com/pulp/api/v2/tasks/85724d50-9e29-455d-8f2d-d4f73a641480/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 16 Sep 2015 18:28:56 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '1809'
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '{"exception": null, "task_type": "pulp.server.managers.repo.sync.sync",
+        "_href": "/pulp/api/v2/tasks/85724d50-9e29-455d-8f2d-d4f73a641480/", "task_id":
+        "85724d50-9e29-455d-8f2d-d4f73a641480", "tags": ["pulp:repository:test_repo_iso_fixture",
+        "pulp:action:sync"], "finish_time": "2015-09-16T18:28:56Z", "_ns": "task_status",
+        "start_time": "2015-09-16T18:28:56Z", "traceback": null, "spawned_tasks":
+        [], "progress_report": {"iso_importer": {"error_message": null, "traceback":
+        null, "finished_bytes": 14, "num_isos": 1, "state": "complete", "total_bytes":
+        14, "state_times": {"not_started": "2015-09-16T18:28:56", "manifest_in_progress":
+        "2015-09-16T18:28:56", "complete": "2015-09-16T18:28:56", "isos_in_progress":
+        "2015-09-16T18:28:56"}, "num_isos_finished": 1, "iso_error_messages": []}},
+        "queue": "reserved_resource_worker-0@katello-kant.example.com.dq", "state":
+        "finished", "worker_name": "reserved_resource_worker-0@katello-kant.example.com",
+        "result": {"result": "success", "importer_id": "iso_importer", "exception":
+        null, "repo_id": "test_repo_iso_fixture", "traceback": null, "started": "2015-09-16T18:28:56Z",
+        "_ns": "repo_sync_results", "completed": "2015-09-16T18:28:56Z", "importer_type_id":
+        "iso_importer", "error_message": null, "summary": {"total_bytes": 14, "traceback":
+        null, "error_message": null, "finished_bytes": 14, "num_isos": 1, "state":
+        "complete", "iso_error_messages": [], "num_isos_finished": 1, "state_times":
+        {"not_started": "2015-09-16T18:28:56", "manifest_in_progress": "2015-09-16T18:28:56",
+        "complete": "2015-09-16T18:28:56", "isos_in_progress": "2015-09-16T18:28:56"}},
+        "added_count": 1, "removed_count": 0, "updated_count": 0, "id": "55f9b4e8f115fc105243081d",
+        "details": null}, "error": null, "_id": {"$oid": "55f9b4e8f92c6c36bcd256ad"},
+        "id": "55f9b4e8f92c6c36bcd256ad"}'
+    http_version: 
+  recorded_at: Wed, 16 Sep 2015 18:28:56 GMT
+- request:
+    method: get
+    uri: https://admin:7HLGDTSxNnAEEtqKgjecYCvftjzNmoRE@katello-kant.example.com/pulp/api/v2/repositories/test_repo_iso_fixture//history/sync/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 16 Sep 2015 18:28:56 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '803'
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '[{"importer_type_id": "iso_importer", "importer_id": "iso_importer",
+        "exception": null, "repo_id": "test_repo_iso_fixture", "removed_count": 0,
+        "started": "2015-09-16T18:28:56Z", "_ns": "repo_sync_results", "completed":
+        "2015-09-16T18:28:56Z", "traceback": null, "summary": {"error_message": null,
+        "traceback": null, "finished_bytes": 14, "num_isos": 1, "state": "complete",
+        "iso_error_messages": [], "state_times": {"not_started": "2015-09-16T18:28:56",
+        "manifest_in_progress": "2015-09-16T18:28:56", "complete": "2015-09-16T18:28:56",
+        "isos_in_progress": "2015-09-16T18:28:56"}, "num_isos_finished": 1, "total_bytes":
+        14}, "added_count": 1, "error_message": null, "updated_count": 0, "details":
+        null, "_id": {"$oid": "55f9b4e8f115fc105243081d"}, "id": "55f9b4e8f115fc105243081d",
+        "result": "success"}]'
+    http_version: 
+  recorded_at: Wed, 16 Sep 2015 18:28:56 GMT
+- request:
+    method: delete
+    uri: https://admin:7HLGDTSxNnAEEtqKgjecYCvftjzNmoRE@katello-kant.example.com/pulp/api/v2/repositories/test_repo_iso_fixture/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 202
+      message: ACCEPTED
+    headers:
+      Date:
+      - Wed, 16 Sep 2015 18:28:56 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Encoding:
+      - utf-8
+      Content-Length:
+      - '172'
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/34d384aa-a9b6-405d-a859-263c8f794ca4/",
+        "task_id": "34d384aa-a9b6-405d-a859-263c8f794ca4"}], "result": null, "error":
+        null}'
+    http_version: 
+  recorded_at: Wed, 16 Sep 2015 18:28:56 GMT
+- request:
+    method: get
+    uri: https://admin:7HLGDTSxNnAEEtqKgjecYCvftjzNmoRE@katello-kant.example.com/pulp/api/v2/tasks/34d384aa-a9b6-405d-a859-263c8f794ca4/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 16 Sep 2015 18:28:57 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '694'
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '{"exception": null, "task_type": "pulp.server.tasks.repository.delete",
+        "_href": "/pulp/api/v2/tasks/34d384aa-a9b6-405d-a859-263c8f794ca4/", "task_id":
+        "34d384aa-a9b6-405d-a859-263c8f794ca4", "tags": ["pulp:repository:test_repo_iso_fixture",
+        "pulp:action:delete"], "finish_time": "2015-09-16T18:28:56Z", "_ns": "task_status",
+        "start_time": "2015-09-16T18:28:56Z", "traceback": null, "spawned_tasks":
+        [], "progress_report": {}, "queue": "reserved_resource_worker-0@katello-kant.example.com.dq",
+        "state": "finished", "worker_name": "reserved_resource_worker-0@katello-kant.example.com",
+        "result": null, "error": null, "_id": {"$oid": "55f9b4e8f92c6c36bcd256ae"},
+        "id": "55f9b4e8f92c6c36bcd256ae"}'
+    http_version: 
+  recorded_at: Wed, 16 Sep 2015 18:28:57 GMT
 recorded_with: VCR 2.9.3
