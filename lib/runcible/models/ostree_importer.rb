@@ -4,8 +4,7 @@ module Runcible
       ID = 'ostree_web_importer'
       REPO_TYPE = 'OSTREE'
 
-      attr_accessor 'feed', 'branches', 'ssl_validation', 'ssl_ca_cert', 'ssl_client_cert', 'ssl_client_key',
-                    'proxy_url', 'proxy_port', 'proxy_pass', 'proxy_user'
+      attr_accessor 'branches'
 
       def id
         OstreeImporter::ID

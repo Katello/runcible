@@ -4,7 +4,7 @@ module Runcible
       ID = 'puppet_importer'
       REPO_TYPE = 'puppet-repo'
 
-      attr_accessor 'feed', 'queries', 'remove_missing'
+      attr_accessor 'queries'
 
       def id
         PuppetImporter::ID
