@@ -11,7 +11,7 @@ module Runcible
       #
       # @param  [boolean]         http  serve the contents over http
       # @param  [boolean]         https serve the contents over https
-      # @param  [string]          relative url
+      # @param  [string]          relative_url relative url (aka relative path)
       # @return [Runcible::Extensions::ExportDistributor]
       def initialize(http, https, relative_url = nil)
         @http = http
