@@ -12,7 +12,3 @@ group :test do
   gem 'mocha', "~> 0.14.0"
   gem 'rubocop', "0.24.1"
 end
-
-group :debug do
-  gem 'debugger' if RUBY_VERSION == "1.9.3"
-end
