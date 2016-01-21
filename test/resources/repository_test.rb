@@ -140,7 +140,7 @@ module Resources
     end
 
     def test_associate_distributor
-      distributor_config = {'relative_url' => '/123/456', 'http' => true, 'https' => true}
+      distributor_config = {'relative_url' => '123/456', 'http' => true, 'https' => true}
       response = @resource.associate_distributor(RepositorySupport.repo_id, 'yum_distributor', distributor_config,
                                                  :distributor_id => 'dist_1')
 
@@ -149,7 +149,7 @@ module Resources
     end
 
     def test_delete_distributor
-      distributor_config = {'relative_url' => '/123/456', 'http' => true, 'https' => true}
+      distributor_config = {'relative_url' => '123/456', 'http' => true, 'https' => true}
       @resource.associate_distributor(RepositorySupport.repo_id, 'yum_distributor',
                                       distributor_config, :distributor_id => 'dist_1')
 
@@ -160,12 +160,12 @@ module Resources
     end
 
     def test_update_distributor
-      distributor_config = {'relative_url' => '/123/456', 'http' => true, 'https' => true}
+      distributor_config = {'relative_url' => '123/456', 'http' => true, 'https' => true}
       distributor = @resource.associate_distributor(RepositorySupport.repo_id, 'yum_distributor',
                                       distributor_config, :distributor_id => 'dist_1')
 
       response = @resource.update_distributor(RepositorySupport.repo_id, distributor['id'],
-                                           :relative_url => '/new_path/')
+                                           :relative_url => 'new_path/')
       assert_equal 202, response.code
     end
   end
