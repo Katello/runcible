@@ -43,14 +43,21 @@ module Runcible
       client_options[:verify_ssl] =  clone_config[:verify_ssl] unless clone_config[:verify_ssl].nil?
 
       if clone_config[:oauth]
-        headers = add_oauth_header(method, path, headers) if clone_config[:oauth]
+        headers = add_oauth_header(method, path, headers)
         headers['pulp-user'] = clone_config[:user]
-        client = RestClient::Resource.new(clone_config[:url], client_options)
+      elsif clone_config[:cert_auth]
+        if !clone_config[:cert_auth][:ssl_client_cert] || !clone_config[:cert_auth][:ssl_client_key]
+          fail Runcible::ConfigurationUndefinedError, "Missing SSL certificate or key configuration."
+        end
+        client_options[:ssl_client_cert] = clone_config[:cert_auth][:ssl_client_cert]
+        client_options[:ssl_client_key] = clone_config[:cert_auth][:ssl_client_key]
       else
         client_options[:user] =  clone_config[:user]
         client_options[:password] = config[:http_auth][:password]
-        client = RestClient::Resource.new(clone_config[:url], client_options)
       end
+
+      client_options[:ca_file] = config[:ca_cert_file] unless config[:ca_cert_file].nil?
+      client = RestClient::Resource.new(clone_config[:url], client_options)
 
       args = [method]
       args << generate_payload(options) if [:post, :put].include?(method)
@@ -164,7 +171,6 @@ module Runcible
                           :authorize_path     => '',
                           :access_token_path  => '' }
 
-      default_options[:ca_file] = config[:ca_cert_file] unless config[:ca_cert_file].nil?
       consumer = OAuth::Consumer.new(config[:oauth][:oauth_key], config[:oauth][:oauth_secret], default_options)
 
       method_to_http_request = { :get    => Net::HTTP::Get,
