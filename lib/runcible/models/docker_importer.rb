@@ -4,7 +4,7 @@ module Runcible
       ID = 'docker_importer'
       REPO_TYPE = 'docker-repo'
 
-      attr_accessor 'upstream_name', 'mask_id'
+      attr_accessor 'upstream_name', 'mask_id', 'enable_v1'
 
       def id
         DockerImporter::ID
