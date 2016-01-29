@@ -5,7 +5,7 @@ http_interactions:
     uri: https://admin:admin@box.devel.com/pulp/api/v2/repositories/
     body:
       encoding: US-ASCII
-      string: '{"id":"integration_test_id","importer_type_id":"docker_importer","importer_config":{},"notes":{"_repo-type":"docker-repo"},"distributors":[{"distributor_type_id":"docker_distributor_web","distributor_config":{},"auto_publish":false,"distributor_id":"123"}]}'
+      string: ! '{"id":"integration_test_id","importer_type_id":"docker_importer","importer_config":{},"notes":{"_repo-type":"docker-repo"},"distributors":[{"distributor_type_id":"docker_distributor_web","distributor_config":{},"auto_publish":false,"distributor_id":"123"}]}'
     headers:
       Accept:
       - application/json
@@ -38,10 +38,15 @@ http_interactions:
       - application/json
     body:
       encoding: ASCII-8BIT
-      string: '{"scratchpad": {}, "display_name": "integration_test_id", "description":
-        null, "last_unit_added": null, "notes": {"_repo-type": "docker-repo"}, "last_unit_removed":
-        null, "content_unit_counts": {}, "_ns": "repos", "_id": {"$oid": "543e83a047078708d9ecb430"},
-        "id": "integration_test_id", "_href": "/pulp/api/v2/repositories/integration_test_id/"}'
+      string: !binary |-
+        eyJzY3JhdGNocGFkIjoge30sICJkaXNwbGF5X25hbWUiOiAiaW50ZWdyYXRp
+        b25fdGVzdF9pZCIsICJkZXNjcmlwdGlvbiI6IG51bGwsICJsYXN0X3VuaXRf
+        YWRkZWQiOiBudWxsLCAibm90ZXMiOiB7Il9yZXBvLXR5cGUiOiAiZG9ja2Vy
+        LXJlcG8ifSwgImxhc3RfdW5pdF9yZW1vdmVkIjogbnVsbCwgImNvbnRlbnRf
+        dW5pdF9jb3VudHMiOiB7fSwgIl9ucyI6ICJyZXBvcyIsICJfaWQiOiB7IiRv
+        aWQiOiAiNTQzZTgzYTA0NzA3ODcwOGQ5ZWNiNDMwIn0sICJpZCI6ICJpbnRl
+        Z3JhdGlvbl90ZXN0X2lkIiwgIl9ocmVmIjogIi9wdWxwL2FwaS92Mi9yZXBv
+        c2l0b3JpZXMvaW50ZWdyYXRpb25fdGVzdF9pZC8ifQ==
     http_version: 
   recorded_at: Wed, 15 Oct 2014 14:24:32 GMT
 - request:
@@ -78,14 +83,21 @@ http_interactions:
       - application/json
     body:
       encoding: ASCII-8BIT
-      string: '{"exception": null, "task_type": "pulp.server.tasks.repository.delete",
-        "_href": "/pulp/api/v2/tasks/73586694-4060-49b7-baf4-22d51347d5a7/", "task_id":
-        "73586694-4060-49b7-baf4-22d51347d5a7", "tags": ["pulp:repository:integration_test_id",
-        "pulp:action:delete"], "finish_time": "2014-10-15T14:24:33Z", "_ns": "task_status",
-        "start_time": "2014-10-15T14:24:33Z", "traceback": null, "spawned_tasks":
-        [], "progress_report": {}, "queue": "reserved_resource_worker-1@box.devel.com.dq",
-        "state": "finished", "result": null, "error": null, "_id": {"$oid": "543e83a1505c6f3b4b509b49"},
-        "id": "543e83a147078708d9ecb435"}'
+      string: !binary |-
+        eyJleGNlcHRpb24iOiBudWxsLCAidGFza190eXBlIjogInB1bHAuc2VydmVy
+        LnRhc2tzLnJlcG9zaXRvcnkuZGVsZXRlIiwgIl9ocmVmIjogIi9wdWxwL2Fw
+        aS92Mi90YXNrcy83MzU4NjY5NC00MDYwLTQ5YjctYmFmNC0yMmQ1MTM0N2Q1
+        YTcvIiwgInRhc2tfaWQiOiAiNzM1ODY2OTQtNDA2MC00OWI3LWJhZjQtMjJk
+        NTEzNDdkNWE3IiwgInRhZ3MiOiBbInB1bHA6cmVwb3NpdG9yeTppbnRlZ3Jh
+        dGlvbl90ZXN0X2lkIiwgInB1bHA6YWN0aW9uOmRlbGV0ZSJdLCAiZmluaXNo
+        X3RpbWUiOiAiMjAxNC0xMC0xNVQxNDoyNDozM1oiLCAiX25zIjogInRhc2tf
+        c3RhdHVzIiwgInN0YXJ0X3RpbWUiOiAiMjAxNC0xMC0xNVQxNDoyNDozM1oi
+        LCAidHJhY2ViYWNrIjogbnVsbCwgInNwYXduZWRfdGFza3MiOiBbXSwgInBy
+        b2dyZXNzX3JlcG9ydCI6IHt9LCAicXVldWUiOiAicmVzZXJ2ZWRfcmVzb3Vy
+        Y2Vfd29ya2VyLTFAYm94LmRldmVsLmNvbS5kcSIsICJzdGF0ZSI6ICJmaW5p
+        c2hlZCIsICJyZXN1bHQiOiBudWxsLCAiZXJyb3IiOiBudWxsLCAiX2lkIjog
+        eyIkb2lkIjogIjU0M2U4M2ExNTA1YzZmM2I0YjUwOWI0OSJ9LCAiaWQiOiAi
+        NTQzZTgzYTE0NzA3ODcwOGQ5ZWNiNDM1In0=
     http_version: 
   recorded_at: Wed, 15 Oct 2014 14:24:33 GMT
 - request:
@@ -120,7 +132,7 @@ http_interactions:
       - application/json
     body:
       encoding: UTF-8
-      string: '{"exception": null, "task_type": "pulp.server.tasks.repository.delete",
+      string: ! '{"exception": null, "task_type": "pulp.server.tasks.repository.delete",
         "_href": "/pulp/api/v2/tasks/1e67c676-ff14-443d-9610-b34f2b165808/", "task_id":
         "1e67c676-ff14-443d-9610-b34f2b165808", "tags": ["pulp:repository:integration_test_id",
         "pulp:action:delete"], "finish_time": "2015-01-16T18:49:58Z", "_ns": "task_status",
@@ -162,15 +174,22 @@ http_interactions:
       - application/json
     body:
       encoding: ASCII-8BIT
-      string: '{"exception": null, "task_type": "pulp.server.tasks.repository.delete",
-        "_href": "/pulp/api/v2/tasks/605f7491-426e-4d7e-8913-2cc2ffefb4ad/", "task_id":
-        "605f7491-426e-4d7e-8913-2cc2ffefb4ad", "tags": ["pulp:repository:integration_test_id",
-        "pulp:action:delete"], "finish_time": "2015-02-01T18:27:45Z", "_ns": "task_status",
-        "start_time": "2015-02-01T18:27:45Z", "traceback": null, "spawned_tasks":
-        [], "progress_report": {}, "queue": "reserved_resource_worker-0@kt1.local.dq",
-        "state": "finished", "worker_name": "reserved_resource_worker-0@kt1.local",
-        "result": null, "error": null, "_id": {"$oid": "54ce7021962f40ae3501a279"},
-        "id": "54ce7021b2ff981dcc43fd17"}'
+      string: !binary |-
+        eyJleGNlcHRpb24iOiBudWxsLCAidGFza190eXBlIjogInB1bHAuc2VydmVy
+        LnRhc2tzLnJlcG9zaXRvcnkuZGVsZXRlIiwgIl9ocmVmIjogIi9wdWxwL2Fw
+        aS92Mi90YXNrcy82MDVmNzQ5MS00MjZlLTRkN2UtODkxMy0yY2MyZmZlZmI0
+        YWQvIiwgInRhc2tfaWQiOiAiNjA1Zjc0OTEtNDI2ZS00ZDdlLTg5MTMtMmNj
+        MmZmZWZiNGFkIiwgInRhZ3MiOiBbInB1bHA6cmVwb3NpdG9yeTppbnRlZ3Jh
+        dGlvbl90ZXN0X2lkIiwgInB1bHA6YWN0aW9uOmRlbGV0ZSJdLCAiZmluaXNo
+        X3RpbWUiOiAiMjAxNS0wMi0wMVQxODoyNzo0NVoiLCAiX25zIjogInRhc2tf
+        c3RhdHVzIiwgInN0YXJ0X3RpbWUiOiAiMjAxNS0wMi0wMVQxODoyNzo0NVoi
+        LCAidHJhY2ViYWNrIjogbnVsbCwgInNwYXduZWRfdGFza3MiOiBbXSwgInBy
+        b2dyZXNzX3JlcG9ydCI6IHt9LCAicXVldWUiOiAicmVzZXJ2ZWRfcmVzb3Vy
+        Y2Vfd29ya2VyLTBAa3QxLmxvY2FsLmRxIiwgInN0YXRlIjogImZpbmlzaGVk
+        IiwgIndvcmtlcl9uYW1lIjogInJlc2VydmVkX3Jlc291cmNlX3dvcmtlci0w
+        QGt0MS5sb2NhbCIsICJyZXN1bHQiOiBudWxsLCAiZXJyb3IiOiBudWxsLCAi
+        X2lkIjogeyIkb2lkIjogIjU0Y2U3MDIxOTYyZjQwYWUzNTAxYTI3OSJ9LCAi
+        aWQiOiAiNTRjZTcwMjFiMmZmOTgxZGNjNDNmZDE3In0=
     http_version: 
   recorded_at: Sun, 01 Feb 2015 18:27:46 GMT
 - request:
@@ -205,15 +224,22 @@ http_interactions:
       - application/json
     body:
       encoding: ASCII-8BIT
-      string: '{"exception": null, "task_type": "pulp.server.tasks.repository.delete",
-        "_href": "/pulp/api/v2/tasks/6f9cfc5a-e3d1-4318-a721-8f9a7f6e0969/", "task_id":
-        "6f9cfc5a-e3d1-4318-a721-8f9a7f6e0969", "tags": ["pulp:repository:integration_test_id",
-        "pulp:action:delete"], "finish_time": "2015-02-02T06:38:57Z", "_ns": "task_status",
-        "start_time": "2015-02-02T06:38:57Z", "traceback": null, "spawned_tasks":
-        [], "progress_report": {}, "queue": "reserved_resource_worker-0@kt1.local.dq",
-        "state": "finished", "worker_name": "reserved_resource_worker-0@kt1.local",
-        "result": null, "error": null, "_id": {"$oid": "54cf1b81962f40ae3501a37c"},
-        "id": "54cf1b81b2ff981dcc440317"}'
+      string: !binary |-
+        eyJleGNlcHRpb24iOiBudWxsLCAidGFza190eXBlIjogInB1bHAuc2VydmVy
+        LnRhc2tzLnJlcG9zaXRvcnkuZGVsZXRlIiwgIl9ocmVmIjogIi9wdWxwL2Fw
+        aS92Mi90YXNrcy82ZjljZmM1YS1lM2QxLTQzMTgtYTcyMS04ZjlhN2Y2ZTA5
+        NjkvIiwgInRhc2tfaWQiOiAiNmY5Y2ZjNWEtZTNkMS00MzE4LWE3MjEtOGY5
+        YTdmNmUwOTY5IiwgInRhZ3MiOiBbInB1bHA6cmVwb3NpdG9yeTppbnRlZ3Jh
+        dGlvbl90ZXN0X2lkIiwgInB1bHA6YWN0aW9uOmRlbGV0ZSJdLCAiZmluaXNo
+        X3RpbWUiOiAiMjAxNS0wMi0wMlQwNjozODo1N1oiLCAiX25zIjogInRhc2tf
+        c3RhdHVzIiwgInN0YXJ0X3RpbWUiOiAiMjAxNS0wMi0wMlQwNjozODo1N1oi
+        LCAidHJhY2ViYWNrIjogbnVsbCwgInNwYXduZWRfdGFza3MiOiBbXSwgInBy
+        b2dyZXNzX3JlcG9ydCI6IHt9LCAicXVldWUiOiAicmVzZXJ2ZWRfcmVzb3Vy
+        Y2Vfd29ya2VyLTBAa3QxLmxvY2FsLmRxIiwgInN0YXRlIjogImZpbmlzaGVk
+        IiwgIndvcmtlcl9uYW1lIjogInJlc2VydmVkX3Jlc291cmNlX3dvcmtlci0w
+        QGt0MS5sb2NhbCIsICJyZXN1bHQiOiBudWxsLCAiZXJyb3IiOiBudWxsLCAi
+        X2lkIjogeyIkb2lkIjogIjU0Y2YxYjgxOTYyZjQwYWUzNTAxYTM3YyJ9LCAi
+        aWQiOiAiNTRjZjFiODFiMmZmOTgxZGNjNDQwMzE3In0=
     http_version: 
   recorded_at: Mon, 02 Feb 2015 06:38:57 GMT
 - request:
@@ -250,15 +276,22 @@ http_interactions:
       - application/json
     body:
       encoding: ASCII-8BIT
-      string: '{"exception": null, "task_type": "pulp.server.tasks.repository.delete",
-        "_href": "/pulp/api/v2/tasks/a699a3ab-a529-4765-90f7-53a9f65a43de/", "task_id":
-        "a699a3ab-a529-4765-90f7-53a9f65a43de", "tags": ["pulp:repository:integration_test_id",
-        "pulp:action:delete"], "finish_time": "2015-02-03T20:22:37Z", "_ns": "task_status",
-        "start_time": "2015-02-03T20:22:37Z", "traceback": null, "spawned_tasks":
-        [], "progress_report": {}, "queue": "reserved_resource_worker-0@kt1.local.dq",
-        "state": "finished", "worker_name": "reserved_resource_worker-0@kt1.local",
-        "result": null, "error": null, "_id": {"$oid": "54d12e0ddb087ce12b11fcd7"},
-        "id": "54d12e0db2ff980faeab9dc0"}'
+      string: !binary |-
+        eyJleGNlcHRpb24iOiBudWxsLCAidGFza190eXBlIjogInB1bHAuc2VydmVy
+        LnRhc2tzLnJlcG9zaXRvcnkuZGVsZXRlIiwgIl9ocmVmIjogIi9wdWxwL2Fw
+        aS92Mi90YXNrcy9hNjk5YTNhYi1hNTI5LTQ3NjUtOTBmNy01M2E5ZjY1YTQz
+        ZGUvIiwgInRhc2tfaWQiOiAiYTY5OWEzYWItYTUyOS00NzY1LTkwZjctNTNh
+        OWY2NWE0M2RlIiwgInRhZ3MiOiBbInB1bHA6cmVwb3NpdG9yeTppbnRlZ3Jh
+        dGlvbl90ZXN0X2lkIiwgInB1bHA6YWN0aW9uOmRlbGV0ZSJdLCAiZmluaXNo
+        X3RpbWUiOiAiMjAxNS0wMi0wM1QyMDoyMjozN1oiLCAiX25zIjogInRhc2tf
+        c3RhdHVzIiwgInN0YXJ0X3RpbWUiOiAiMjAxNS0wMi0wM1QyMDoyMjozN1oi
+        LCAidHJhY2ViYWNrIjogbnVsbCwgInNwYXduZWRfdGFza3MiOiBbXSwgInBy
+        b2dyZXNzX3JlcG9ydCI6IHt9LCAicXVldWUiOiAicmVzZXJ2ZWRfcmVzb3Vy
+        Y2Vfd29ya2VyLTBAa3QxLmxvY2FsLmRxIiwgInN0YXRlIjogImZpbmlzaGVk
+        IiwgIndvcmtlcl9uYW1lIjogInJlc2VydmVkX3Jlc291cmNlX3dvcmtlci0w
+        QGt0MS5sb2NhbCIsICJyZXN1bHQiOiBudWxsLCAiZXJyb3IiOiBudWxsLCAi
+        X2lkIjogeyIkb2lkIjogIjU0ZDEyZTBkZGIwODdjZTEyYjExZmNkNyJ9LCAi
+        aWQiOiAiNTRkMTJlMGRiMmZmOTgwZmFlYWI5ZGMwIn0=
     http_version: 
   recorded_at: Tue, 03 Feb 2015 20:22:38 GMT
 - request:
@@ -293,7 +326,7 @@ http_interactions:
       - application/json
     body:
       encoding: UTF-8
-      string: '{"exception": null, "task_type": "pulp.server.tasks.repository.delete",
+      string: ! '{"exception": null, "task_type": "pulp.server.tasks.repository.delete",
         "_href": "/pulp/api/v2/tasks/b45c9369-e35c-4d28-b876-5c06075e462d/", "task_id":
         "b45c9369-e35c-4d28-b876-5c06075e462d", "tags": ["pulp:repository:integration_test_id",
         "pulp:action:delete"], "finish_time": "2015-06-23T22:37:20Z", "_ns": "task_status",
@@ -315,132 +348,6 @@ http_interactions:
         "id": "5589df9f2812e3d33cf0ff21"}'
     http_version: 
   recorded_at: Tue, 23 Jun 2015 22:37:20 GMT
-- request:
-    method: post
-    uri: https://admin:7HLGDTSxNnAEEtqKgjecYCvftjzNmoRE@katello-kant.example.com/pulp/api/v2/repositories/
-    body:
-      encoding: UTF-8
-      string: '{"id":"integration_test_id","importer_type_id":"docker_importer","importer_config":{},"notes":{"_repo-type":"docker-repo"},"distributors":[{"distributor_type_id":"docker_distributor_web","distributor_config":{"repo-registry-id":null},"auto_publish":false,"distributor_id":"123"}]}'
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Type:
-      - application/json
-      Content-Length:
-      - '280'
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 201
-      message: CREATED
-    headers:
-      Date:
-      - Tue, 23 Jun 2015 22:44:46 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Content-Length:
-      - '346'
-      Location:
-      - https://katello-kant.example.com/pulp/api/v2/repositories/integration_test_id/
-      Connection:
-      - close
-      Content-Type:
-      - application/json
-    body:
-      encoding: UTF-8
-      string: '{"scratchpad": {}, "display_name": "integration_test_id", "description":
-        null, "last_unit_added": null, "notes": {"_repo-type": "docker-repo"}, "last_unit_removed":
-        null, "content_unit_counts": {}, "_ns": "repos", "_id": {"$oid": "5589e15ff115fc042e751c50"},
-        "id": "integration_test_id", "_href": "/pulp/api/v2/repositories/integration_test_id/"}'
-    http_version: 
-  recorded_at: Tue, 23 Jun 2015 22:44:47 GMT
-- request:
-    method: get
-    uri: https://admin:7HLGDTSxNnAEEtqKgjecYCvftjzNmoRE@katello-kant.example.com/pulp/api/v2/repositories/integration_test_id/?details=true
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Type:
-      - application/json
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Tue, 23 Jun 2015 22:44:47 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Content-Length:
-      - '947'
-      Connection:
-      - close
-      Content-Type:
-      - application/json
-    body:
-      encoding: UTF-8
-      string: '{"scratchpad": {}, "display_name": "integration_test_id", "description":
-        null, "distributors": [{"repo_id": "integration_test_id", "_ns": "repo_distributors",
-        "last_publish": null, "auto_publish": false, "scheduled_publishes": [], "distributor_type_id":
-        "docker_distributor_web", "_id": {"$oid": "5589e15ff115fc042e751c52"}, "config":
-        {}, "id": "123"}], "last_unit_added": null, "notes": {"_repo-type": "docker-repo"},
-        "last_unit_removed": null, "content_unit_counts": {}, "_ns": "repos", "importers":
-        [{"repo_id": "integration_test_id", "_href": "/pulp/api/v2/repositories/integration_test_id/importers/docker_importer/",
-        "_ns": "repo_importers", "importer_type_id": "docker_importer", "last_sync":
-        null, "scheduled_syncs": [], "_id": {"$oid": "5589e15ff115fc042e751c51"},
-        "config": {}, "id": "docker_importer"}], "_id": {"$oid": "5589e15ff115fc042e751c50"},
-        "id": "integration_test_id", "_href": "/pulp/api/v2/repositories/integration_test_id/"}'
-    http_version: 
-  recorded_at: Tue, 23 Jun 2015 22:44:47 GMT
-- request:
-    method: delete
-    uri: https://admin:7HLGDTSxNnAEEtqKgjecYCvftjzNmoRE@katello-kant.example.com/pulp/api/v2/repositories/integration_test_id/
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Type:
-      - application/json
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 202
-      message: ACCEPTED
-    headers:
-      Date:
-      - Tue, 23 Jun 2015 22:44:47 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Content-Encoding:
-      - utf-8
-      Content-Length:
-      - '172'
-      Connection:
-      - close
-      Content-Type:
-      - application/json
-    body:
-      encoding: UTF-8
-      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/f31a9e91-8703-4ecb-a442-9889ba292554/",
-        "task_id": "f31a9e91-8703-4ecb-a442-9889ba292554"}], "result": null, "error":
-        null}'
-    http_version: 
-  recorded_at: Tue, 23 Jun 2015 22:44:47 GMT
 - request:
     method: get
     uri: https://admin:7HLGDTSxNnAEEtqKgjecYCvftjzNmoRE@katello-kant.example.com/pulp/api/v2/tasks/f31a9e91-8703-4ecb-a442-9889ba292554/
@@ -473,7 +380,7 @@ http_interactions:
       - application/json
     body:
       encoding: UTF-8
-      string: '{"exception": null, "task_type": "pulp.server.tasks.repository.delete",
+      string: ! '{"exception": null, "task_type": "pulp.server.tasks.repository.delete",
         "_href": "/pulp/api/v2/tasks/f31a9e91-8703-4ecb-a442-9889ba292554/", "task_id":
         "f31a9e91-8703-4ecb-a442-9889ba292554", "tags": ["pulp:repository:integration_test_id",
         "pulp:action:delete"], "finish_time": "2015-06-23T22:44:47Z", "_ns": "task_status",
@@ -495,4 +402,303 @@ http_interactions:
         "id": "5589e15f2812e3d33cf1030b"}'
     http_version: 
   recorded_at: Tue, 23 Jun 2015 22:44:47 GMT
-recorded_with: VCR 2.9.3
+- request:
+    method: get
+    uri: https://admin:9km5fr4KB5byeUujz2qinVjT9LExvYSg@katello-wisdom.example.com/pulp/api/v2/tasks/6c5d415a-9bae-4258-b009-9c384deffc31/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 28 Jan 2016 04:39:55 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '696'
+      Connection:
+      - close
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJleGNlcHRpb24iOiBudWxsLCAidGFza190eXBlIjogInB1bHAuc2VydmVy
+        LnRhc2tzLnJlcG9zaXRvcnkuZGVsZXRlIiwgIl9ocmVmIjogIi9wdWxwL2Fw
+        aS92Mi90YXNrcy82YzVkNDE1YS05YmFlLTQyNTgtYjAwOS05YzM4NGRlZmZj
+        MzEvIiwgInRhc2tfaWQiOiAiNmM1ZDQxNWEtOWJhZS00MjU4LWIwMDktOWMz
+        ODRkZWZmYzMxIiwgInRhZ3MiOiBbInB1bHA6cmVwb3NpdG9yeTppbnRlZ3Jh
+        dGlvbl90ZXN0X2lkIiwgInB1bHA6YWN0aW9uOmRlbGV0ZSJdLCAiZmluaXNo
+        X3RpbWUiOiAiMjAxNi0wMS0yOFQwNDozOTo1NFoiLCAiX25zIjogInRhc2tf
+        c3RhdHVzIiwgInN0YXJ0X3RpbWUiOiAiMjAxNi0wMS0yOFQwNDozOTo1NFoi
+        LCAidHJhY2ViYWNrIjogbnVsbCwgInNwYXduZWRfdGFza3MiOiBbXSwgInBy
+        b2dyZXNzX3JlcG9ydCI6IHt9LCAicXVldWUiOiAicmVzZXJ2ZWRfcmVzb3Vy
+        Y2Vfd29ya2VyLTFAa2F0ZWxsby13aXNkb20uZXhhbXBsZS5jb20uZHEiLCAi
+        c3RhdGUiOiAiZmluaXNoZWQiLCAid29ya2VyX25hbWUiOiAicmVzZXJ2ZWRf
+        cmVzb3VyY2Vfd29ya2VyLTFAa2F0ZWxsby13aXNkb20uZXhhbXBsZS5jb20i
+        LCAicmVzdWx0IjogbnVsbCwgImVycm9yIjogbnVsbCwgIl9pZCI6IHsiJG9p
+        ZCI6ICI1NmE5OWI5YTZjNWIxOTFmMGJkMjQyYjkifSwgImlkIjogIjU2YTk5
+        YjlhNmM1YjE5MWYwYmQyNDJiOSJ9
+    http_version: 
+  recorded_at: Thu, 28 Jan 2016 04:39:55 GMT
+- request:
+    method: get
+    uri: https://admin:icizRXdtWXs66PqkAXytGFMconvzbE8w@katello-yoda.example.com/pulp/api/v2/tasks/7d1a8c2b-da44-455a-a7b9-3c512931e827/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 29 Jan 2016 17:06:26 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '692'
+      Connection:
+      - close
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJleGNlcHRpb24iOiBudWxsLCAidGFza190eXBlIjogInB1bHAuc2VydmVy
+        LnRhc2tzLnJlcG9zaXRvcnkuZGVsZXRlIiwgIl9ocmVmIjogIi9wdWxwL2Fw
+        aS92Mi90YXNrcy83ZDFhOGMyYi1kYTQ0LTQ1NWEtYTdiOS0zYzUxMjkzMWU4
+        MjcvIiwgInRhc2tfaWQiOiAiN2QxYThjMmItZGE0NC00NTVhLWE3YjktM2M1
+        MTI5MzFlODI3IiwgInRhZ3MiOiBbInB1bHA6cmVwb3NpdG9yeTppbnRlZ3Jh
+        dGlvbl90ZXN0X2lkIiwgInB1bHA6YWN0aW9uOmRlbGV0ZSJdLCAiZmluaXNo
+        X3RpbWUiOiAiMjAxNi0wMS0yOVQxNzowNjoyNloiLCAiX25zIjogInRhc2tf
+        c3RhdHVzIiwgInN0YXJ0X3RpbWUiOiAiMjAxNi0wMS0yOVQxNzowNjoyNloi
+        LCAidHJhY2ViYWNrIjogbnVsbCwgInNwYXduZWRfdGFza3MiOiBbXSwgInBy
+        b2dyZXNzX3JlcG9ydCI6IHt9LCAicXVldWUiOiAicmVzZXJ2ZWRfcmVzb3Vy
+        Y2Vfd29ya2VyLTFAa2F0ZWxsby15b2RhLmV4YW1wbGUuY29tLmRxIiwgInN0
+        YXRlIjogImZpbmlzaGVkIiwgIndvcmtlcl9uYW1lIjogInJlc2VydmVkX3Jl
+        c291cmNlX3dvcmtlci0xQGthdGVsbG8teW9kYS5leGFtcGxlLmNvbSIsICJy
+        ZXN1bHQiOiBudWxsLCAiZXJyb3IiOiBudWxsLCAiX2lkIjogeyIkb2lkIjog
+        IjU2YWI5YzEyN2UwOTc0MWRkNjQwZDBhYyJ9LCAiaWQiOiAiNTZhYjljMTI3
+        ZTA5NzQxZGQ2NDBkMGFjIn0=
+    http_version: 
+  recorded_at: Fri, 29 Jan 2016 17:06:26 GMT
+- request:
+    method: post
+    uri: https://admin:icizRXdtWXs66PqkAXytGFMconvzbE8w@katello-yoda.example.com/pulp/api/v2/repositories/
+    body:
+      encoding: US-ASCII
+      string: ! '{"id":"integration_test_id","importer_type_id":"docker_importer","importer_config":{},"notes":{"_repo-type":"docker-repo"},"distributors":[{"distributor_type_id":"docker_distributor_web","distributor_config":{"repo-registry-id":null},"auto_publish":false,"distributor_id":"123"}]}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '280'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 201
+      message: CREATED
+    headers:
+      Date:
+      - Fri, 29 Jan 2016 17:23:47 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '346'
+      Location:
+      - https://katello-yoda.example.com/pulp/api/v2/repositories/integration_test_id/
+      Connection:
+      - close
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: US-ASCII
+      string: ! '{"scratchpad": {}, "display_name": "integration_test_id", "description":
+        null, "last_unit_added": null, "notes": {"_repo-type": "docker-repo"}, "last_unit_removed":
+        null, "content_unit_counts": {}, "_ns": "repos", "_id": {"$oid": "56aba023de040332a3e4cc8e"},
+        "id": "integration_test_id", "_href": "/pulp/api/v2/repositories/integration_test_id/"}'
+    http_version: 
+  recorded_at: Fri, 29 Jan 2016 17:23:47 GMT
+- request:
+    method: get
+    uri: https://admin:icizRXdtWXs66PqkAXytGFMconvzbE8w@katello-yoda.example.com/pulp/api/v2/repositories/integration_test_id/?details=true
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 29 Jan 2016 17:23:47 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '1067'
+      Connection:
+      - close
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJzY3JhdGNocGFkIjoge30sICJkaXNwbGF5X25hbWUiOiAiaW50ZWdyYXRp
+        b25fdGVzdF9pZCIsICJkZXNjcmlwdGlvbiI6IG51bGwsICJkaXN0cmlidXRv
+        cnMiOiBbeyJyZXBvX2lkIjogImludGVncmF0aW9uX3Rlc3RfaWQiLCAiX2hy
+        ZWYiOiAiL3B1bHAvYXBpL3YyL3JlcG9zaXRvcmllcy9pbnRlZ3JhdGlvbl90
+        ZXN0X2lkL2Rpc3RyaWJ1dG9ycy8xMjMvIiwgIl9ucyI6ICJyZXBvX2Rpc3Ry
+        aWJ1dG9ycyIsICJsYXN0X3B1Ymxpc2giOiBudWxsLCAiZGlzdHJpYnV0b3Jf
+        dHlwZV9pZCI6ICJkb2NrZXJfZGlzdHJpYnV0b3Jfd2ViIiwgImF1dG9fcHVi
+        bGlzaCI6IGZhbHNlLCAic2NyYXRjaHBhZCI6IHt9LCAiX2lkIjogeyIkb2lk
+        IjogIjU2YWJhMDIzZGUwNDAzMzJhM2U0Y2M5MCJ9LCAiY29uZmlnIjoge30s
+        ICJpZCI6ICIxMjMifV0sICJsYXN0X3VuaXRfYWRkZWQiOiBudWxsLCAibm90
+        ZXMiOiB7Il9yZXBvLXR5cGUiOiAiZG9ja2VyLXJlcG8ifSwgImxhc3RfdW5p
+        dF9yZW1vdmVkIjogbnVsbCwgImNvbnRlbnRfdW5pdF9jb3VudHMiOiB7fSwg
+        Il9ucyI6ICJyZXBvcyIsICJpbXBvcnRlcnMiOiBbeyJzY3JhdGNocGFkIjog
+        bnVsbCwgIl9ocmVmIjogIi9wdWxwL2FwaS92Mi9yZXBvc2l0b3JpZXMvaW50
+        ZWdyYXRpb25fdGVzdF9pZC9pbXBvcnRlcnMvZG9ja2VyX2ltcG9ydGVyLyIs
+        ICJfbnMiOiAicmVwb19pbXBvcnRlcnMiLCAiaW1wb3J0ZXJfdHlwZV9pZCI6
+        ICJkb2NrZXJfaW1wb3J0ZXIiLCAibGFzdF9zeW5jIjogbnVsbCwgInJlcG9f
+        aWQiOiAiaW50ZWdyYXRpb25fdGVzdF9pZCIsICJfaWQiOiB7IiRvaWQiOiAi
+        NTZhYmEwMjNkZTA0MDMzMmEzZTRjYzhmIn0sICJjb25maWciOiB7fSwgImlk
+        IjogImRvY2tlcl9pbXBvcnRlciJ9XSwgImxvY2FsbHlfc3RvcmVkX3VuaXRz
+        IjogMCwgIl9pZCI6IHsiJG9pZCI6ICI1NmFiYTAyM2RlMDQwMzMyYTNlNGNj
+        OGUifSwgInRvdGFsX3JlcG9zaXRvcnlfdW5pdHMiOiAwLCAiaWQiOiAiaW50
+        ZWdyYXRpb25fdGVzdF9pZCIsICJfaHJlZiI6ICIvcHVscC9hcGkvdjIvcmVw
+        b3NpdG9yaWVzL2ludGVncmF0aW9uX3Rlc3RfaWQvIn0=
+    http_version: 
+  recorded_at: Fri, 29 Jan 2016 17:23:47 GMT
+- request:
+    method: delete
+    uri: https://admin:icizRXdtWXs66PqkAXytGFMconvzbE8w@katello-yoda.example.com/pulp/api/v2/repositories/integration_test_id/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 202
+      message: ACCEPTED
+    headers:
+      Date:
+      - Fri, 29 Jan 2016 17:23:47 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '172'
+      Connection:
+      - close
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: US-ASCII
+      string: ! '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/f04c405f-a719-4a55-a6a9-c3e9cdc4275e/",
+        "task_id": "f04c405f-a719-4a55-a6a9-c3e9cdc4275e"}], "result": null, "error":
+        null}'
+    http_version: 
+  recorded_at: Fri, 29 Jan 2016 17:23:47 GMT
+- request:
+    method: get
+    uri: https://admin:icizRXdtWXs66PqkAXytGFMconvzbE8w@katello-yoda.example.com/pulp/api/v2/tasks/f04c405f-a719-4a55-a6a9-c3e9cdc4275e/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 29 Jan 2016 17:23:47 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '692'
+      Connection:
+      - close
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJleGNlcHRpb24iOiBudWxsLCAidGFza190eXBlIjogInB1bHAuc2VydmVy
+        LnRhc2tzLnJlcG9zaXRvcnkuZGVsZXRlIiwgIl9ocmVmIjogIi9wdWxwL2Fw
+        aS92Mi90YXNrcy9mMDRjNDA1Zi1hNzE5LTRhNTUtYTZhOS1jM2U5Y2RjNDI3
+        NWUvIiwgInRhc2tfaWQiOiAiZjA0YzQwNWYtYTcxOS00YTU1LWE2YTktYzNl
+        OWNkYzQyNzVlIiwgInRhZ3MiOiBbInB1bHA6cmVwb3NpdG9yeTppbnRlZ3Jh
+        dGlvbl90ZXN0X2lkIiwgInB1bHA6YWN0aW9uOmRlbGV0ZSJdLCAiZmluaXNo
+        X3RpbWUiOiAiMjAxNi0wMS0yOVQxNzoyMzo0N1oiLCAiX25zIjogInRhc2tf
+        c3RhdHVzIiwgInN0YXJ0X3RpbWUiOiAiMjAxNi0wMS0yOVQxNzoyMzo0N1oi
+        LCAidHJhY2ViYWNrIjogbnVsbCwgInNwYXduZWRfdGFza3MiOiBbXSwgInBy
+        b2dyZXNzX3JlcG9ydCI6IHt9LCAicXVldWUiOiAicmVzZXJ2ZWRfcmVzb3Vy
+        Y2Vfd29ya2VyLTFAa2F0ZWxsby15b2RhLmV4YW1wbGUuY29tLmRxIiwgInN0
+        YXRlIjogImZpbmlzaGVkIiwgIndvcmtlcl9uYW1lIjogInJlc2VydmVkX3Jl
+        c291cmNlX3dvcmtlci0xQGthdGVsbG8teW9kYS5leGFtcGxlLmNvbSIsICJy
+        ZXN1bHQiOiBudWxsLCAiZXJyb3IiOiBudWxsLCAiX2lkIjogeyIkb2lkIjog
+        IjU2YWJhMDIzN2UwOTc0MWRkNjQwZDNiYiJ9LCAiaWQiOiAiNTZhYmEwMjM3
+        ZTA5NzQxZGQ2NDBkM2JiIn0=
+    http_version: 
+  recorded_at: Fri, 29 Jan 2016 17:23:48 GMT
+recorded_with: VCR 3.0.1

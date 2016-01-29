@@ -45,7 +45,7 @@ module Extensions
 
     def test_create_with_distributors
       distributors = [{'type_id' => 'yum_distributor', 'id' => '123', 'auto_publish' => true,
-                       'config' => {'relative_url' => '/path', 'http' => true, 'https' => true}}]
+                       'config' => {'relative_url' => 'path', 'http' => true, 'https' => true}}]
       response = @extension.create_with_distributors(RepositorySupport.repo_id, distributors)
 
       assert_equal 201, response.code
@@ -55,7 +55,7 @@ module Extensions
     def test_create_with_distributor_object
       repo_id = RepositorySupport.repo_id + '_distro'
       response = @extension.create_with_distributors(repo_id, [Runcible::Models::YumDistributor.new(
-          '/path', true, true, :id => '123')])
+          'path', true, true, :id => '123')])
       assert_equal 201, response.code
 
       response = @extension.retrieve(repo_id, :details => true)
@@ -67,7 +67,7 @@ module Extensions
 
     def test_create_with_importer_and_distributors
       distributors = [{'type_id' => 'yum_distributor', 'id' => '123', 'auto_publish' => true,
-                       'config' => {'relative_url' => '/123/456', 'http' => true, 'https' => true}}]
+                       'config' => {'relative_url' => '123/456', 'http' => true, 'https' => true}}]
       response = @extension.create_with_importer_and_distributors(RepositorySupport.repo_id,
                                                                   {:id => 'yum_importer'}, distributors)
       assert_equal 201, response.code
@@ -79,7 +79,7 @@ module Extensions
 
     def test_create_with_importer_and_distributors_objects
       distributors = [Runcible::Models::YumDistributor.new(
-              '/path', true, true, :id => '123')]
+              'path', true, true, :id => '123')]
       importer = Runcible::Models::YumImporter.new
       response = @extension.create_with_importer_and_distributors(RepositorySupport.repo_id, importer, distributors)
       assert_equal 201, response.code

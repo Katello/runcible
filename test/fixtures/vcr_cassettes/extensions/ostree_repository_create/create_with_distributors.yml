@@ -5,7 +5,7 @@ http_interactions:
     uri: https://admin:yjJbppdnk9o53M7DUpabXnse9o6NZveD@katello-wisdom.example.com/pulp/api/v2/repositories/
     body:
       encoding: UTF-8
-      string: '{"id":"integration_test_id","distributors":[{"distributor_type_id":"ostree_distributor_web","distributor_config":{"ostree_publish_directory":"/path"},"auto_publish":true,"distributor_id":"123"}]}'
+      string: ! '{"id":"integration_test_id","distributors":[{"distributor_type_id":"ostree_distributor_web","distributor_config":{"ostree_publish_directory":"/path"},"auto_publish":true,"distributor_id":"123"}]}'
     headers:
       Accept:
       - application/json
@@ -36,7 +36,7 @@ http_interactions:
       - application/json
     body:
       encoding: UTF-8
-      string: '{"http_request_method": "POST", "exception": null, "error_message":
+      string: ! '{"http_request_method": "POST", "exception": null, "error_message":
         "Invalid properties: [''distributor_type_id'']", "property_names": ["distributor_type_id"],
         "_href": "/pulp/api/v2/repositories/", "http_status": 400, "error": {"code":
         "PLP0015", "data": {"property_names": ["distributor_type_id"], "properties":
@@ -76,7 +76,7 @@ http_interactions:
       - application/json
     body:
       encoding: UTF-8
-      string: '{"exception": null, "task_type": "pulp.server.tasks.repository.delete",
+      string: ! '{"exception": null, "task_type": "pulp.server.tasks.repository.delete",
         "_href": "/pulp/api/v2/tasks/35248ca5-7ed9-483d-9386-74b2dafc60a3/", "task_id":
         "35248ca5-7ed9-483d-9386-74b2dafc60a3", "tags": ["pulp:repository:integration_test_id",
         "pulp:action:delete"], "finish_time": "2015-04-24T03:31:22Z", "_ns": "task_status",
@@ -130,7 +130,7 @@ http_interactions:
       - application/json
     body:
       encoding: UTF-8
-      string: '{"exception": null, "task_type": "pulp.server.tasks.repository.delete",
+      string: ! '{"exception": null, "task_type": "pulp.server.tasks.repository.delete",
         "_href": "/pulp/api/v2/tasks/8eb89d5c-de21-4e46-9956-0a2e712ce09e/", "task_id":
         "8eb89d5c-de21-4e46-9956-0a2e712ce09e", "tags": ["pulp:repository:integration_test_id",
         "pulp:action:delete"], "finish_time": "2015-04-24T03:32:46Z", "_ns": "task_status",
@@ -184,7 +184,7 @@ http_interactions:
       - application/json
     body:
       encoding: UTF-8
-      string: '{"exception": null, "task_type": "pulp.server.tasks.repository.delete",
+      string: ! '{"exception": null, "task_type": "pulp.server.tasks.repository.delete",
         "_href": "/pulp/api/v2/tasks/b767561e-4f25-433c-b393-29ea30c8de9f/", "task_id":
         "b767561e-4f25-433c-b393-29ea30c8de9f", "tags": ["pulp:repository:integration_test_id",
         "pulp:action:delete"], "finish_time": "2015-06-23T22:37:40Z", "_ns": "task_status",
@@ -206,87 +206,6 @@ http_interactions:
         "id": "5589dfb42812e3d33cf0ff8e"}'
     http_version: 
   recorded_at: Tue, 23 Jun 2015 22:37:40 GMT
-- request:
-    method: post
-    uri: https://admin:7HLGDTSxNnAEEtqKgjecYCvftjzNmoRE@katello-kant.example.com/pulp/api/v2/repositories/
-    body:
-      encoding: UTF-8
-      string: '{"id":"integration_test_id","distributors":[{"distributor_type_id":"ostree_web_distributor","distributor_config":{"ostree_publish_directory":"/path"},"auto_publish":true,"distributor_id":"123"}]}'
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Type:
-      - application/json
-      Content-Length:
-      - '195'
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 201
-      message: CREATED
-    headers:
-      Date:
-      - Tue, 23 Jun 2015 22:45:04 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Content-Length:
-      - '319'
-      Location:
-      - https://katello-kant.example.com/pulp/api/v2/repositories/integration_test_id/
-      Connection:
-      - close
-      Content-Type:
-      - application/json
-    body:
-      encoding: UTF-8
-      string: '{"scratchpad": {}, "display_name": "integration_test_id", "description":
-        null, "last_unit_added": null, "notes": {}, "last_unit_removed": null, "content_unit_counts":
-        {}, "_ns": "repos", "_id": {"$oid": "5589e170f115fc042e751cc0"}, "id": "integration_test_id",
-        "_href": "/pulp/api/v2/repositories/integration_test_id/"}'
-    http_version: 
-  recorded_at: Tue, 23 Jun 2015 22:45:04 GMT
-- request:
-    method: delete
-    uri: https://admin:7HLGDTSxNnAEEtqKgjecYCvftjzNmoRE@katello-kant.example.com/pulp/api/v2/repositories/integration_test_id/
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Type:
-      - application/json
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 202
-      message: ACCEPTED
-    headers:
-      Date:
-      - Tue, 23 Jun 2015 22:45:04 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Content-Encoding:
-      - utf-8
-      Content-Length:
-      - '172'
-      Connection:
-      - close
-      Content-Type:
-      - application/json
-    body:
-      encoding: UTF-8
-      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/ef211642-b0e8-4ffe-9a18-ec461a4c43d1/",
-        "task_id": "ef211642-b0e8-4ffe-9a18-ec461a4c43d1"}], "result": null, "error":
-        null}'
-    http_version: 
-  recorded_at: Tue, 23 Jun 2015 22:45:04 GMT
 - request:
     method: get
     uri: https://admin:7HLGDTSxNnAEEtqKgjecYCvftjzNmoRE@katello-kant.example.com/pulp/api/v2/tasks/ef211642-b0e8-4ffe-9a18-ec461a4c43d1/
@@ -319,7 +238,7 @@ http_interactions:
       - application/json
     body:
       encoding: UTF-8
-      string: '{"exception": null, "task_type": "pulp.server.tasks.repository.delete",
+      string: ! '{"exception": null, "task_type": "pulp.server.tasks.repository.delete",
         "_href": "/pulp/api/v2/tasks/ef211642-b0e8-4ffe-9a18-ec461a4c43d1/", "task_id":
         "ef211642-b0e8-4ffe-9a18-ec461a4c43d1", "tags": ["pulp:repository:integration_test_id",
         "pulp:action:delete"], "finish_time": "2015-06-23T22:45:04Z", "_ns": "task_status",
@@ -341,4 +260,242 @@ http_interactions:
         "id": "5589e1702812e3d33cf10368"}'
     http_version: 
   recorded_at: Tue, 23 Jun 2015 22:45:05 GMT
-recorded_with: VCR 2.9.3
+- request:
+    method: get
+    uri: https://admin:9km5fr4KB5byeUujz2qinVjT9LExvYSg@katello-wisdom.example.com/pulp/api/v2/tasks/40d3e9af-b1cd-45a9-9279-08a90fefab21/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 28 Jan 2016 04:40:10 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '696'
+      Connection:
+      - close
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJleGNlcHRpb24iOiBudWxsLCAidGFza190eXBlIjogInB1bHAuc2VydmVy
+        LnRhc2tzLnJlcG9zaXRvcnkuZGVsZXRlIiwgIl9ocmVmIjogIi9wdWxwL2Fw
+        aS92Mi90YXNrcy80MGQzZTlhZi1iMWNkLTQ1YTktOTI3OS0wOGE5MGZlZmFi
+        MjEvIiwgInRhc2tfaWQiOiAiNDBkM2U5YWYtYjFjZC00NWE5LTkyNzktMDhh
+        OTBmZWZhYjIxIiwgInRhZ3MiOiBbInB1bHA6cmVwb3NpdG9yeTppbnRlZ3Jh
+        dGlvbl90ZXN0X2lkIiwgInB1bHA6YWN0aW9uOmRlbGV0ZSJdLCAiZmluaXNo
+        X3RpbWUiOiAiMjAxNi0wMS0yOFQwNDo0MDoxMFoiLCAiX25zIjogInRhc2tf
+        c3RhdHVzIiwgInN0YXJ0X3RpbWUiOiAiMjAxNi0wMS0yOFQwNDo0MDoxMFoi
+        LCAidHJhY2ViYWNrIjogbnVsbCwgInNwYXduZWRfdGFza3MiOiBbXSwgInBy
+        b2dyZXNzX3JlcG9ydCI6IHt9LCAicXVldWUiOiAicmVzZXJ2ZWRfcmVzb3Vy
+        Y2Vfd29ya2VyLTFAa2F0ZWxsby13aXNkb20uZXhhbXBsZS5jb20uZHEiLCAi
+        c3RhdGUiOiAiZmluaXNoZWQiLCAid29ya2VyX25hbWUiOiAicmVzZXJ2ZWRf
+        cmVzb3VyY2Vfd29ya2VyLTFAa2F0ZWxsby13aXNkb20uZXhhbXBsZS5jb20i
+        LCAicmVzdWx0IjogbnVsbCwgImVycm9yIjogbnVsbCwgIl9pZCI6IHsiJG9p
+        ZCI6ICI1NmE5OWJhYTZjNWIxOTFmMGJkMjQzMTEifSwgImlkIjogIjU2YTk5
+        YmFhNmM1YjE5MWYwYmQyNDMxMSJ9
+    http_version: 
+  recorded_at: Thu, 28 Jan 2016 04:40:10 GMT
+- request:
+    method: get
+    uri: https://admin:icizRXdtWXs66PqkAXytGFMconvzbE8w@katello-yoda.example.com/pulp/api/v2/tasks/59491a35-c23a-4ecf-add7-239f8dff8460/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 29 Jan 2016 17:06:45 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '692'
+      Connection:
+      - close
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJleGNlcHRpb24iOiBudWxsLCAidGFza190eXBlIjogInB1bHAuc2VydmVy
+        LnRhc2tzLnJlcG9zaXRvcnkuZGVsZXRlIiwgIl9ocmVmIjogIi9wdWxwL2Fw
+        aS92Mi90YXNrcy81OTQ5MWEzNS1jMjNhLTRlY2YtYWRkNy0yMzlmOGRmZjg0
+        NjAvIiwgInRhc2tfaWQiOiAiNTk0OTFhMzUtYzIzYS00ZWNmLWFkZDctMjM5
+        ZjhkZmY4NDYwIiwgInRhZ3MiOiBbInB1bHA6cmVwb3NpdG9yeTppbnRlZ3Jh
+        dGlvbl90ZXN0X2lkIiwgInB1bHA6YWN0aW9uOmRlbGV0ZSJdLCAiZmluaXNo
+        X3RpbWUiOiAiMjAxNi0wMS0yOVQxNzowNjo0NFoiLCAiX25zIjogInRhc2tf
+        c3RhdHVzIiwgInN0YXJ0X3RpbWUiOiAiMjAxNi0wMS0yOVQxNzowNjo0NFoi
+        LCAidHJhY2ViYWNrIjogbnVsbCwgInNwYXduZWRfdGFza3MiOiBbXSwgInBy
+        b2dyZXNzX3JlcG9ydCI6IHt9LCAicXVldWUiOiAicmVzZXJ2ZWRfcmVzb3Vy
+        Y2Vfd29ya2VyLTFAa2F0ZWxsby15b2RhLmV4YW1wbGUuY29tLmRxIiwgInN0
+        YXRlIjogImZpbmlzaGVkIiwgIndvcmtlcl9uYW1lIjogInJlc2VydmVkX3Jl
+        c291cmNlX3dvcmtlci0xQGthdGVsbG8teW9kYS5leGFtcGxlLmNvbSIsICJy
+        ZXN1bHQiOiBudWxsLCAiZXJyb3IiOiBudWxsLCAiX2lkIjogeyIkb2lkIjog
+        IjU2YWI5YzI0N2UwOTc0MWRkNjQwZDEwNyJ9LCAiaWQiOiAiNTZhYjljMjQ3
+        ZTA5NzQxZGQ2NDBkMTA3In0=
+    http_version: 
+  recorded_at: Fri, 29 Jan 2016 17:06:45 GMT
+- request:
+    method: post
+    uri: https://admin:icizRXdtWXs66PqkAXytGFMconvzbE8w@katello-yoda.example.com/pulp/api/v2/repositories/
+    body:
+      encoding: US-ASCII
+      string: ! '{"id":"integration_test_id","distributors":[{"distributor_type_id":"ostree_web_distributor","distributor_config":{"ostree_publish_directory":"/path"},"auto_publish":true,"distributor_id":"123"}]}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '195'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 201
+      message: CREATED
+    headers:
+      Date:
+      - Fri, 29 Jan 2016 17:24:02 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '319'
+      Location:
+      - https://katello-yoda.example.com/pulp/api/v2/repositories/integration_test_id/
+      Connection:
+      - close
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: US-ASCII
+      string: ! '{"scratchpad": {}, "display_name": "integration_test_id", "description":
+        null, "last_unit_added": null, "notes": {}, "last_unit_removed": null, "content_unit_counts":
+        {}, "_ns": "repos", "_id": {"$oid": "56aba032de040332a523c9da"}, "id": "integration_test_id",
+        "_href": "/pulp/api/v2/repositories/integration_test_id/"}'
+    http_version: 
+  recorded_at: Fri, 29 Jan 2016 17:24:02 GMT
+- request:
+    method: delete
+    uri: https://admin:icizRXdtWXs66PqkAXytGFMconvzbE8w@katello-yoda.example.com/pulp/api/v2/repositories/integration_test_id/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 202
+      message: ACCEPTED
+    headers:
+      Date:
+      - Fri, 29 Jan 2016 17:24:02 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '172'
+      Connection:
+      - close
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: US-ASCII
+      string: ! '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/e68c9054-eecb-4d27-b659-d0b339ebfac0/",
+        "task_id": "e68c9054-eecb-4d27-b659-d0b339ebfac0"}], "result": null, "error":
+        null}'
+    http_version: 
+  recorded_at: Fri, 29 Jan 2016 17:24:02 GMT
+- request:
+    method: get
+    uri: https://admin:icizRXdtWXs66PqkAXytGFMconvzbE8w@katello-yoda.example.com/pulp/api/v2/tasks/e68c9054-eecb-4d27-b659-d0b339ebfac0/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 29 Jan 2016 17:24:03 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '692'
+      Connection:
+      - close
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJleGNlcHRpb24iOiBudWxsLCAidGFza190eXBlIjogInB1bHAuc2VydmVy
+        LnRhc2tzLnJlcG9zaXRvcnkuZGVsZXRlIiwgIl9ocmVmIjogIi9wdWxwL2Fw
+        aS92Mi90YXNrcy9lNjhjOTA1NC1lZWNiLTRkMjctYjY1OS1kMGIzMzllYmZh
+        YzAvIiwgInRhc2tfaWQiOiAiZTY4YzkwNTQtZWVjYi00ZDI3LWI2NTktZDBi
+        MzM5ZWJmYWMwIiwgInRhZ3MiOiBbInB1bHA6cmVwb3NpdG9yeTppbnRlZ3Jh
+        dGlvbl90ZXN0X2lkIiwgInB1bHA6YWN0aW9uOmRlbGV0ZSJdLCAiZmluaXNo
+        X3RpbWUiOiAiMjAxNi0wMS0yOVQxNzoyNDowMloiLCAiX25zIjogInRhc2tf
+        c3RhdHVzIiwgInN0YXJ0X3RpbWUiOiAiMjAxNi0wMS0yOVQxNzoyNDowMloi
+        LCAidHJhY2ViYWNrIjogbnVsbCwgInNwYXduZWRfdGFza3MiOiBbXSwgInBy
+        b2dyZXNzX3JlcG9ydCI6IHt9LCAicXVldWUiOiAicmVzZXJ2ZWRfcmVzb3Vy
+        Y2Vfd29ya2VyLTFAa2F0ZWxsby15b2RhLmV4YW1wbGUuY29tLmRxIiwgInN0
+        YXRlIjogImZpbmlzaGVkIiwgIndvcmtlcl9uYW1lIjogInJlc2VydmVkX3Jl
+        c291cmNlX3dvcmtlci0xQGthdGVsbG8teW9kYS5leGFtcGxlLmNvbSIsICJy
+        ZXN1bHQiOiBudWxsLCAiZXJyb3IiOiBudWxsLCAiX2lkIjogeyIkb2lkIjog
+        IjU2YWJhMDMyN2UwOTc0MWRkNjQwZDQxMiJ9LCAiaWQiOiAiNTZhYmEwMzI3
+        ZTA5NzQxZGQ2NDBkNDEyIn0=
+    http_version: 
+  recorded_at: Fri, 29 Jan 2016 17:24:03 GMT
+recorded_with: VCR 3.0.1
