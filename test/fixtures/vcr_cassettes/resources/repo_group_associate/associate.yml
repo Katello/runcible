@@ -396,241 +396,6 @@ http_interactions:
     http_version: 
   recorded_at: Fri, 29 Jan 2016 17:07:54 GMT
 - request:
-    method: post
-    uri: https://admin:icizRXdtWXs66PqkAXytGFMconvzbE8w@katello-yoda.example.com/pulp/api/v2/repo_groups/
-    body:
-      encoding: US-ASCII
-      string: ! '{"id":"integration_test_repository_group","display_name":"foo","description":"Test
-        description."}'
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Type:
-      - application/json
-      Content-Length:
-      - '97'
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 201
-      message: CREATED
-    headers:
-      Date:
-      - Fri, 29 Jan 2016 17:30:29 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Content-Length:
-      - '310'
-      Location:
-      - https://katello-yoda.example.com/pulp/api/v2/repo_groups/integration_test_repository_group/
-      Connection:
-      - close
-      Content-Type:
-      - application/json; charset=utf-8
-    body:
-      encoding: US-ASCII
-      string: ! '{"scratchpad": null, "display_name": "foo", "description": "Test
-        description.", "distributors": [], "_ns": "repo_groups", "notes": {}, "repo_ids":
-        [], "_id": {"$oid": "56aba1b5de040332a523ca49"}, "id": "integration_test_repository_group",
-        "_href": "/pulp/api/v2/repo_groups/integration_test_repository_group/"}'
-    http_version: 
-  recorded_at: Fri, 29 Jan 2016 17:30:29 GMT
-- request:
-    method: get
-    uri: https://admin:icizRXdtWXs66PqkAXytGFMconvzbE8w@katello-yoda.example.com/pulp/api/v2/repositories/integration_test_id/
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Type:
-      - application/json
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 404
-      message: NOT FOUND
-    headers:
-      Date:
-      - Fri, 29 Jan 2016 17:30:29 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Content-Encoding:
-      - utf-8
-      Content-Length:
-      - '452'
-      Connection:
-      - close
-      Content-Type:
-      - application/json; charset=utf-8
-    body:
-      encoding: US-ASCII
-      string: ! '{"http_request_method": "GET", "exception": null, "error_message":
-        "Missing resource(s): repository=integration_test_id", "_href": "/pulp/api/v2/repositories/integration_test_id/?",
-        "http_status": 404, "error": {"code": "PLP0009", "data": {"resources": {"repository":
-        "integration_test_id"}}, "description": "Missing resource(s): repository=integration_test_id",
-        "sub_errors": []}, "traceback": null, "resources": {"repository": "integration_test_id"}}'
-    http_version: 
-  recorded_at: Fri, 29 Jan 2016 17:30:29 GMT
-- request:
-    method: post
-    uri: https://admin:icizRXdtWXs66PqkAXytGFMconvzbE8w@katello-yoda.example.com/pulp/api/v2/repositories/
-    body:
-      encoding: US-ASCII
-      string: ! '{"id":"integration_test_id"}'
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Type:
-      - application/json
-      Content-Length:
-      - '28'
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 201
-      message: CREATED
-    headers:
-      Date:
-      - Fri, 29 Jan 2016 17:30:29 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Content-Length:
-      - '319'
-      Location:
-      - https://katello-yoda.example.com/pulp/api/v2/repositories/integration_test_id/
-      Connection:
-      - close
-      Content-Type:
-      - application/json; charset=utf-8
-    body:
-      encoding: US-ASCII
-      string: ! '{"scratchpad": {}, "display_name": "integration_test_id", "description":
-        null, "last_unit_added": null, "notes": {}, "last_unit_removed": null, "content_unit_counts":
-        {}, "_ns": "repos", "_id": {"$oid": "56aba1b5de040332a523ca4a"}, "id": "integration_test_id",
-        "_href": "/pulp/api/v2/repositories/integration_test_id/"}'
-    http_version: 
-  recorded_at: Fri, 29 Jan 2016 17:30:29 GMT
-- request:
-    method: post
-    uri: https://admin:icizRXdtWXs66PqkAXytGFMconvzbE8w@katello-yoda.example.com/pulp/api/v2/repo_groups/integration_test_repository_group/actions/associate/
-    body:
-      encoding: US-ASCII
-      string: ! '{"criteria":{"filters":{"id":{"$in":["integration_test_id"]}}}}'
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Type:
-      - application/json
-      Content-Length:
-      - '63'
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Fri, 29 Jan 2016 17:30:29 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Content-Length:
-      - '23'
-      Connection:
-      - close
-      Content-Type:
-      - application/json; charset=utf-8
-    body:
-      encoding: US-ASCII
-      string: ! '["integration_test_id"]'
-    http_version: 
-  recorded_at: Fri, 29 Jan 2016 17:30:29 GMT
-- request:
-    method: delete
-    uri: https://admin:icizRXdtWXs66PqkAXytGFMconvzbE8w@katello-yoda.example.com/pulp/api/v2/repo_groups/integration_test_repository_group/
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Type:
-      - application/json
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Fri, 29 Jan 2016 17:30:29 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Content-Length:
-      - '4'
-      Connection:
-      - close
-      Content-Type:
-      - application/json; charset=utf-8
-    body:
-      encoding: US-ASCII
-      string: 'null'
-    http_version: 
-  recorded_at: Fri, 29 Jan 2016 17:30:29 GMT
-- request:
-    method: delete
-    uri: https://admin:icizRXdtWXs66PqkAXytGFMconvzbE8w@katello-yoda.example.com/pulp/api/v2/repositories/integration_test_id/
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Type:
-      - application/json
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 202
-      message: ACCEPTED
-    headers:
-      Date:
-      - Fri, 29 Jan 2016 17:30:29 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Content-Length:
-      - '172'
-      Connection:
-      - close
-      Content-Type:
-      - application/json; charset=utf-8
-    body:
-      encoding: US-ASCII
-      string: ! '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/1b83a1d6-1100-425b-8e4b-98fa61b2ba22/",
-        "task_id": "1b83a1d6-1100-425b-8e4b-98fa61b2ba22"}], "result": null, "error":
-        null}'
-    http_version: 
-  recorded_at: Fri, 29 Jan 2016 17:30:29 GMT
-- request:
     method: get
     uri: https://admin:icizRXdtWXs66PqkAXytGFMconvzbE8w@katello-yoda.example.com/pulp/api/v2/tasks/1b83a1d6-1100-425b-8e4b-98fa61b2ba22/
     body:
@@ -683,4 +448,345 @@ http_interactions:
         ZTA5NzQxZGQ2NDBkNjA3In0=
     http_version: 
   recorded_at: Fri, 29 Jan 2016 17:30:30 GMT
+- request:
+    method: get
+    uri: https://admin:hAauH9UJY8NwtTZvkWeYDWEeR3YpZVH3@katello-centos7-devel.example.com/pulp/api/v2/tasks/f63faa3c-3d1d-4130-a1d6-463a8e928797/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sat, 30 Jan 2016 17:36:19 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '710'
+      Connection:
+      - close
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJleGNlcHRpb24iOiBudWxsLCAidGFza190eXBlIjogInB1bHAuc2VydmVy
+        LnRhc2tzLnJlcG9zaXRvcnkuZGVsZXRlIiwgIl9ocmVmIjogIi9wdWxwL2Fw
+        aS92Mi90YXNrcy9mNjNmYWEzYy0zZDFkLTQxMzAtYTFkNi00NjNhOGU5Mjg3
+        OTcvIiwgInRhc2tfaWQiOiAiZjYzZmFhM2MtM2QxZC00MTMwLWExZDYtNDYz
+        YThlOTI4Nzk3IiwgInRhZ3MiOiBbInB1bHA6cmVwb3NpdG9yeTppbnRlZ3Jh
+        dGlvbl90ZXN0X2lkIiwgInB1bHA6YWN0aW9uOmRlbGV0ZSJdLCAiZmluaXNo
+        X3RpbWUiOiAiMjAxNi0wMS0zMFQxNzozNjoxOVoiLCAiX25zIjogInRhc2tf
+        c3RhdHVzIiwgInN0YXJ0X3RpbWUiOiAiMjAxNi0wMS0zMFQxNzozNjoxOVoi
+        LCAidHJhY2ViYWNrIjogbnVsbCwgInNwYXduZWRfdGFza3MiOiBbXSwgInBy
+        b2dyZXNzX3JlcG9ydCI6IHt9LCAicXVldWUiOiAicmVzZXJ2ZWRfcmVzb3Vy
+        Y2Vfd29ya2VyLTFAa2F0ZWxsby1jZW50b3M3LWRldmVsLmV4YW1wbGUuY29t
+        LmRxIiwgInN0YXRlIjogImZpbmlzaGVkIiwgIndvcmtlcl9uYW1lIjogInJl
+        c2VydmVkX3Jlc291cmNlX3dvcmtlci0xQGthdGVsbG8tY2VudG9zNy1kZXZl
+        bC5leGFtcGxlLmNvbSIsICJyZXN1bHQiOiBudWxsLCAiZXJyb3IiOiBudWxs
+        LCAiX2lkIjogeyIkb2lkIjogIjU2YWNmNDkzNTI3ZDQzY2UzYTZjM2VhOSJ9
+        LCAiaWQiOiAiNTZhY2Y0OTM1MjdkNDNjZTNhNmMzZWE5In0=
+    http_version: 
+  recorded_at: Sat, 30 Jan 2016 17:36:19 GMT
+- request:
+    method: post
+    uri: https://admin:hAauH9UJY8NwtTZvkWeYDWEeR3YpZVH3@katello-centos7-devel.example.com/pulp/api/v2/repo_groups/
+    body:
+      encoding: US-ASCII
+      string: ! '{"id":"integration_test_repository_group","display_name":"foo","description":"Test
+        description."}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '97'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 201
+      message: CREATED
+    headers:
+      Date:
+      - Sat, 30 Jan 2016 17:49:50 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '310'
+      Location:
+      - https://katello-centos7-devel.example.com/pulp/api/v2/repo_groups/integration_test_repository_group/
+      Connection:
+      - close
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: US-ASCII
+      string: ! '{"scratchpad": null, "display_name": "foo", "description": "Test
+        description.", "distributors": [], "_ns": "repo_groups", "notes": {}, "repo_ids":
+        [], "_id": {"$oid": "56acf7bf17f25e2e6d2d23b1"}, "id": "integration_test_repository_group",
+        "_href": "/pulp/api/v2/repo_groups/integration_test_repository_group/"}'
+    http_version: 
+  recorded_at: Sat, 30 Jan 2016 17:49:51 GMT
+- request:
+    method: get
+    uri: https://admin:hAauH9UJY8NwtTZvkWeYDWEeR3YpZVH3@katello-centos7-devel.example.com/pulp/api/v2/repositories/integration_test_id/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 404
+      message: NOT FOUND
+    headers:
+      Date:
+      - Sat, 30 Jan 2016 17:49:51 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Encoding:
+      - utf-8
+      Content-Length:
+      - '452'
+      Connection:
+      - close
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: US-ASCII
+      string: ! '{"http_request_method": "GET", "exception": null, "error_message":
+        "Missing resource(s): repository=integration_test_id", "_href": "/pulp/api/v2/repositories/integration_test_id/?",
+        "http_status": 404, "error": {"code": "PLP0009", "data": {"resources": {"repository":
+        "integration_test_id"}}, "description": "Missing resource(s): repository=integration_test_id",
+        "sub_errors": []}, "traceback": null, "resources": {"repository": "integration_test_id"}}'
+    http_version: 
+  recorded_at: Sat, 30 Jan 2016 17:49:51 GMT
+- request:
+    method: post
+    uri: https://admin:hAauH9UJY8NwtTZvkWeYDWEeR3YpZVH3@katello-centos7-devel.example.com/pulp/api/v2/repositories/
+    body:
+      encoding: US-ASCII
+      string: ! '{"id":"integration_test_id"}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '28'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 201
+      message: CREATED
+    headers:
+      Date:
+      - Sat, 30 Jan 2016 17:49:51 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '319'
+      Location:
+      - https://katello-centos7-devel.example.com/pulp/api/v2/repositories/integration_test_id/
+      Connection:
+      - close
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: US-ASCII
+      string: ! '{"scratchpad": {}, "display_name": "integration_test_id", "description":
+        null, "last_unit_added": null, "notes": {}, "last_unit_removed": null, "content_unit_counts":
+        {}, "_ns": "repos", "_id": {"$oid": "56acf7bf17f25e2e6d2d23b2"}, "id": "integration_test_id",
+        "_href": "/pulp/api/v2/repositories/integration_test_id/"}'
+    http_version: 
+  recorded_at: Sat, 30 Jan 2016 17:49:51 GMT
+- request:
+    method: post
+    uri: https://admin:hAauH9UJY8NwtTZvkWeYDWEeR3YpZVH3@katello-centos7-devel.example.com/pulp/api/v2/repo_groups/integration_test_repository_group/actions/associate/
+    body:
+      encoding: US-ASCII
+      string: ! '{"criteria":{"filters":{"id":{"$in":["integration_test_id"]}}}}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '63'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sat, 30 Jan 2016 17:49:51 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '23'
+      Connection:
+      - close
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: US-ASCII
+      string: ! '["integration_test_id"]'
+    http_version: 
+  recorded_at: Sat, 30 Jan 2016 17:49:51 GMT
+- request:
+    method: delete
+    uri: https://admin:hAauH9UJY8NwtTZvkWeYDWEeR3YpZVH3@katello-centos7-devel.example.com/pulp/api/v2/repo_groups/integration_test_repository_group/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sat, 30 Jan 2016 17:49:51 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '4'
+      Connection:
+      - close
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: US-ASCII
+      string: 'null'
+    http_version: 
+  recorded_at: Sat, 30 Jan 2016 17:49:51 GMT
+- request:
+    method: delete
+    uri: https://admin:hAauH9UJY8NwtTZvkWeYDWEeR3YpZVH3@katello-centos7-devel.example.com/pulp/api/v2/repositories/integration_test_id/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 202
+      message: ACCEPTED
+    headers:
+      Date:
+      - Sat, 30 Jan 2016 17:49:51 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '172'
+      Connection:
+      - close
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: US-ASCII
+      string: ! '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/5f6f2f01-7784-4881-83cd-1ba25be2e7ff/",
+        "task_id": "5f6f2f01-7784-4881-83cd-1ba25be2e7ff"}], "result": null, "error":
+        null}'
+    http_version: 
+  recorded_at: Sat, 30 Jan 2016 17:49:51 GMT
+- request:
+    method: get
+    uri: https://admin:hAauH9UJY8NwtTZvkWeYDWEeR3YpZVH3@katello-centos7-devel.example.com/pulp/api/v2/tasks/5f6f2f01-7784-4881-83cd-1ba25be2e7ff/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sat, 30 Jan 2016 17:49:51 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '710'
+      Connection:
+      - close
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJleGNlcHRpb24iOiBudWxsLCAidGFza190eXBlIjogInB1bHAuc2VydmVy
+        LnRhc2tzLnJlcG9zaXRvcnkuZGVsZXRlIiwgIl9ocmVmIjogIi9wdWxwL2Fw
+        aS92Mi90YXNrcy81ZjZmMmYwMS03Nzg0LTQ4ODEtODNjZC0xYmEyNWJlMmU3
+        ZmYvIiwgInRhc2tfaWQiOiAiNWY2ZjJmMDEtNzc4NC00ODgxLTgzY2QtMWJh
+        MjViZTJlN2ZmIiwgInRhZ3MiOiBbInB1bHA6cmVwb3NpdG9yeTppbnRlZ3Jh
+        dGlvbl90ZXN0X2lkIiwgInB1bHA6YWN0aW9uOmRlbGV0ZSJdLCAiZmluaXNo
+        X3RpbWUiOiAiMjAxNi0wMS0zMFQxNzo0OTo1MVoiLCAiX25zIjogInRhc2tf
+        c3RhdHVzIiwgInN0YXJ0X3RpbWUiOiAiMjAxNi0wMS0zMFQxNzo0OTo1MVoi
+        LCAidHJhY2ViYWNrIjogbnVsbCwgInNwYXduZWRfdGFza3MiOiBbXSwgInBy
+        b2dyZXNzX3JlcG9ydCI6IHt9LCAicXVldWUiOiAicmVzZXJ2ZWRfcmVzb3Vy
+        Y2Vfd29ya2VyLTFAa2F0ZWxsby1jZW50b3M3LWRldmVsLmV4YW1wbGUuY29t
+        LmRxIiwgInN0YXRlIjogImZpbmlzaGVkIiwgIndvcmtlcl9uYW1lIjogInJl
+        c2VydmVkX3Jlc291cmNlX3dvcmtlci0xQGthdGVsbG8tY2VudG9zNy1kZXZl
+        bC5leGFtcGxlLmNvbSIsICJyZXN1bHQiOiBudWxsLCAiZXJyb3IiOiBudWxs
+        LCAiX2lkIjogeyIkb2lkIjogIjU2YWNmN2JmNTI3ZDQzY2UzYTZjM2VhZiJ9
+        LCAiaWQiOiAiNTZhY2Y3YmY1MjdkNDNjZTNhNmMzZWFmIn0=
+    http_version: 
+  recorded_at: Sat, 30 Jan 2016 17:49:51 GMT
 recorded_with: VCR 3.0.1
