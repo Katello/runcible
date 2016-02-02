@@ -153,11 +153,17 @@ module Extensions
       assert_equal 200, response.code
     end
 
-    def test_generate_applicability_by_ids
-      response = @extension.regenerate_applicability_by_ids([@consumer_id])
-
+    def test_generate_applicability_by_ids_with_spawned_tasks
+      response = @extension.regenerate_applicability_by_ids([RepositorySupport.repo_id], false)
+      refute response.key?("group_id")
       tasks = assert_async_response(response)
       assert_equal 'finished', tasks.first['state']
+    end
+
+    def test_generate_applicability_by_ids_with_task_groups
+      response = @extension.regenerate_applicability_by_ids([RepositorySupport.repo_id], true)
+      assert response.key?("group_id")
+      assert_async_response(response)
     end
   end
 

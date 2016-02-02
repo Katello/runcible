@@ -360,9 +360,15 @@ module Runcible
       # Regenerate the applicability for consumers bound to a given set of repositories
       #
       # @param [String, Array]         ids  array of repo ids
+      # @param [boolean]               parallel when true run the regeneration in parallel and return a task group
+      #                                         tracking the summary,
+      #                                         when false run this operation serially and return a list of
+      #                                         spawned tasks that are to be tracked separately.
+      #                                         False is the default option.
       # @return [RestClient::Response]
-      def regenerate_applicability_by_ids(ids)
+      def regenerate_applicability_by_ids(ids, parallel = false)
         criteria  = {
+          'parallel' => parallel,
           'repo_criteria' => { 'filters' => { 'id' => { '$in' => ids } } }
         }
         regenerate_applicability(criteria)

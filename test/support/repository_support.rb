@@ -13,6 +13,7 @@ class RepositorySupport
     @schedule_resource = TestRuncible.server.resources.repository_schedule
     @repo_extension    = TestRuncible.server.extensions.repository
     @task_resource     = TestRuncible.server.resources.task
+    @task_group        = TestRuncible.server.resources.task_group
     @schedule_time     = '2012-09-25T20:44:00Z/P7D'
     @repo_type         = type
     @importer_type     = "#{@repo_type}_importer"
@@ -105,6 +106,13 @@ class RepositorySupport
 
   def wait_on_response(response)
     wait_on_tasks(response['spawned_tasks'].map { |task_ref| {'task_id' => task_ref['task_id']} })
+  end
+
+  def wait_on_task_group(response)
+    until @task_group.completed?(@task_group.summary(response["group_id"]))
+      self.sleep_if_needed
+    end
+    @task_group.summary(response["group_id"])
   end
 
   def wait_on_tasks(tasks)
