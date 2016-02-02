@@ -1,0 +1,87 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://admin:icizRXdtWXs66PqkAXytGFMconvzbE8w@katello-yoda.example.com/pulp/api/v2/repositories/actions/content/regenerate_applicability//
+    body:
+      encoding: UTF-8
+      string: '{"parallel":false,"repo_criteria":{"filters":{"id":{"$in":["integration_test_id"]}}}}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '85'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 202
+      message: ACCEPTED
+    headers:
+      Date:
+      - Tue, 02 Feb 2016 23:12:07 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '172'
+      Connection:
+      - close
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/7ca164be-a899-4401-8f2c-687a5d25bd81/",
+        "task_id": "7ca164be-a899-4401-8f2c-687a5d25bd81"}], "result": null, "error":
+        null}'
+    http_version: 
+  recorded_at: Tue, 02 Feb 2016 23:12:07 GMT
+- request:
+    method: get
+    uri: https://admin:icizRXdtWXs66PqkAXytGFMconvzbE8w@katello-yoda.example.com/pulp/api/v2/tasks/7ca164be-a899-4401-8f2c-687a5d25bd81/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 02 Feb 2016 23:12:08 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '724'
+      Connection:
+      - close
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"exception": null, "task_type": "pulp.server.managers.consumer.applicability.regenerate_applicability_for_repos",
+        "_href": "/pulp/api/v2/tasks/7ca164be-a899-4401-8f2c-687a5d25bd81/", "task_id":
+        "7ca164be-a899-4401-8f2c-687a5d25bd81", "tags": ["pulp:action:content_applicability_regeneration"],
+        "finish_time": "2016-02-02T23:12:07Z", "_ns": "task_status", "start_time":
+        "2016-02-02T23:12:07Z", "traceback": null, "spawned_tasks": [], "progress_report":
+        {}, "queue": "reserved_resource_worker-1@katello-yoda.example.com.dq", "state":
+        "finished", "worker_name": "reserved_resource_worker-1@katello-yoda.example.com",
+        "result": null, "error": null, "_id": {"$oid": "56b137c74e0aa7f8e9289c5a"},
+        "id": "56b137c74e0aa7f8e9289c5a"}'
+    http_version: 
+  recorded_at: Tue, 02 Feb 2016 23:12:08 GMT
+recorded_with: VCR 3.0.1
