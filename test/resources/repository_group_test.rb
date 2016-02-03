@@ -12,8 +12,13 @@ module Resources
       @repo_group_id = 'integration_test_repository_group'
     end
 
-    def create_repo_group
-      @resource.create(@repo_group_id, :display_name => 'foo', :description => 'Test description.')
+    def create_repo_group(options = {})
+      if options[:with_distributor]
+        @resource.create(@repo_group_id, :display_name => 'foo_w_distributor', :description => 'Test description.',
+                                         :distributors => [Runcible::Models::GroupExportDistributor.new(false, false)])
+      else
+        @resource.create(@repo_group_id, :display_name => 'foo', :description => 'Test description.')
+      end
     rescue => e
       puts "could not create repo group with id => #{@repo_group_id}. Exception => #{e}"
     end
@@ -138,6 +143,64 @@ module Resources
 
       assert_equal 200, response.code
       refute_includes response, @repo_id
+    end
+  end
+
+  class TestRepoGroupRetrieveDistributorsAndPublish < MiniTest::Unit::TestCase
+    include TestRepoGroupBase
+
+    def setup
+      super
+      # the runcible repo group distributor uses a random ID when POSTing, we
+      # need to be more lenient on VCR matches for test_publish to work.
+      VCR.eject_cassette
+      VCR.insert_cassette('resources/repo_group_retrieve_distributors_and_publish',
+                          :match_requests_on => [:path, :method])
+
+      create_repo_group(:with_distributor => true)
+      @support.create_repo
+      @repo_id = RepositorySupport.repo_id
+    end
+
+    def teardown
+      destroy_repo_group
+      @support.destroy_repo
+      super
+    end
+
+    def test_retrieve_distributors
+      response = @resource.retrieve_distributors @repo_group_id
+      assert_equal 200, response.code
+      assert_equal response.first['distributor_type_id'], 'group_export_distributor'
+    end
+
+    def test_publish
+      distributors = @resource.retrieve_distributors @repo_group_id
+      response = @resource.publish @repo_group_id, distributors.first["id"]
+      assert_equal 202, response.code
+    end
+  end
+
+  class TestRepoGroupRetrieveDistributorsEmpty < MiniTest::Unit::TestCase
+    include TestRepoGroupBase
+
+    def setup
+      super
+      create_repo_group
+      @support.create_repo
+      @repo_id = RepositorySupport.repo_id
+    end
+
+    def teardown
+      destroy_repo_group
+      @support.destroy_repo
+      super
+    end
+
+    def test_retrieve_distributors_empty
+      response = @resource.retrieve_distributors @repo_group_id
+      assert_equal 200, response.code
+      assert_equal response, []
     end
   end
 end
