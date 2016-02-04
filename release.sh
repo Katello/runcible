@@ -2,7 +2,7 @@
 
 
 NAME="runcible"
-VERSION=`cat ./lib/runcible/version.rb | grep VERSION | awk -F '"' '{print $2}'` 
+VERSION=`cat ./lib/runcible/version.rb | grep VERSION | awk -F "'" '{print $2}'` 
 
 read -p "Would you like to release $NAME-$VERSION (yes/no/skip)? "
 if [ "$REPLY" == "yes" ]; then
