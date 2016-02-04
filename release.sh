@@ -60,6 +60,3 @@ else
   echo "Exiting"
   exit -1
 fi
-
-echo "* To build new rpms in koji, switch back to master and: "
-echo "   tito release koji"
