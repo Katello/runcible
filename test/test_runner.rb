@@ -55,13 +55,28 @@ module MiniTest
 
       def assert_async_response(response)
         support = @support || self.class.support
-        fail '@support or @@supsport not defined' unless support
+        fail '@support or @@support not defined' unless support
 
+        if response.key? "group_id"
+          assert_async_task_groups(response, support)
+        else
+          assert_async_tasks(response, support)
+        end
+      end
+
+      def assert_async_tasks(response, support)
         assert_equal 202, response.code
         tasks = support.wait_on_response(response)
         tasks.each do |task|
           assert task['state'], 'finished'
         end
+      end
+
+      def assert_async_task_groups(response, support)
+        assert_equal 202, response.code
+        summary = support.wait_on_task_group(response)
+        assert_equal summary["total"], summary["finished"]
+        summary
       end
     end
   end

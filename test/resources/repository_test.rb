@@ -115,7 +115,7 @@ module Resources
       refute_empty response
     end
 
-    def test_generate_applicability
+    def test_generate_applicability_with_spawned_tasks
       criteria  = {
         'repo_criteria' => { 'filters' => { 'id' => { '$in' => [RepositorySupport.repo_id] } } }
       }
@@ -123,6 +123,18 @@ module Resources
       assert_equal 202, response.code
       task = RepositorySupport.new.wait_on_response(response)
       assert 'finished', task.first['state']
+    end
+
+    def test_generate_applicability_with_task_group
+      criteria  = {
+        'parallel' => true,
+        'repo_criteria' => { 'filters' => { 'id' => { '$in' => [RepositorySupport.repo_id] } } }
+      }
+      response = @resource.regenerate_applicability(criteria)
+      assert_equal 202, response.code
+      assert response.key?("group_id")
+      summary = RepositorySupport.new.wait_on_task_group(response)
+      assert summary["total"], summary['finished']
     end
   end
 
