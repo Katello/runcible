@@ -6,7 +6,7 @@
 <title>
   Class: Runcible::Models::ExportDistributor
   
-    &mdash; Documentation by YARD 0.8.7.3
+    &mdash; Documentation by YARD 0.8.7.6
   
 </title>
 
@@ -17,7 +17,7 @@
 <script type="text/javascript" charset="utf-8">
   hasFrames = window.top.frames.main ? true : false;
   relpath = '../../';
-  framesUrl = "../../frames.html#!" + escape(window.location.href);
+  framesUrl = "../../frames.html#!Runcible/Models/ExportDistributor.html";
 </script>
 
 
@@ -129,7 +129,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>required.</p>
+<p>required attributes.</p>
 </div></span>
   
 </li>
@@ -156,7 +156,34 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>required.</p>
+<p>required attributes.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#relative_url-instance_method" title="#relative_url (instance method)">- (Object) <strong>relative_url</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>required attributes.</p>
 </div></span>
   
 </li>
@@ -240,7 +267,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Runcible::Extensions::ExportDistributor) <strong>initialize</strong>(http, https) </a>
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Runcible::Extensions::ExportDistributor) <strong>initialize</strong>(http, https, relative_url = nil) </a>
     
 
     
@@ -283,7 +310,7 @@
     <div class="method_details first">
   <h3 class="signature first" id="initialize-instance_method">
   
-    - (<tt>Runcible::Extensions::ExportDistributor</tt>) <strong>initialize</strong>(http, https) 
+    - (<tt>Runcible::Extensions::ExportDistributor</tt>) <strong>initialize</strong>(http, https, relative_url = nil) 
   
 
   
@@ -333,6 +360,24 @@
       
     </li>
   
+    <li>
+      
+        <span class='name'>relative_url</span>
+      
+      
+        <span class='type'>(<tt>string</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>relative url (aka relative path)</p>
+</div>
+      
+    </li>
+  
 </ul>
 
 
@@ -342,19 +387,21 @@
       <pre class="lines">
 
 
-38
-39
-40
-41
-42
-43</pre>
+16
+17
+18
+19
+20
+21
+22</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/runcible/models/export_distributor.rb', line 38</span>
+      <pre class="code"><span class="info file"># File 'lib/runcible/models/export_distributor.rb', line 16</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_http'>http</span><span class='comma'>,</span> <span class='id identifier rubyid_https'>https</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_http'>http</span><span class='comma'>,</span> <span class='id identifier rubyid_https'>https</span><span class='comma'>,</span> <span class='id identifier rubyid_relative_url'>relative_url</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='ivar'>@http</span> <span class='op'>=</span> <span class='id identifier rubyid_http'>http</span>
   <span class='ivar'>@https</span> <span class='op'>=</span> <span class='id identifier rubyid_https'>https</span>
+  <span class='ivar'>@relative_url</span> <span class='op'>=</span> <span class='id identifier rubyid_relative_url'>relative_url</span>
   <span class='comment'># Pulp seems to expect the ID to be export_distributor, not a random
 </span>  <span class='kw'>super</span><span class='lparen'>(</span><span class='lbrace'>{</span><span class='symbol'>:id</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_type_id'>type_id</span><span class='rbrace'>}</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
@@ -382,7 +429,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>required</p>
+<p>required attributes</p>
 
 
   </div>
@@ -396,12 +443,12 @@
       <pre class="lines">
 
 
-31
-32
-33</pre>
+8
+9
+10</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/runcible/models/export_distributor.rb', line 31</span>
+      <pre class="code"><span class="info file"># File 'lib/runcible/models/export_distributor.rb', line 8</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_http'>http</span>
   <span class='ivar'>@http</span>
@@ -425,7 +472,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>required</p>
+<p>required attributes</p>
 
 
   </div>
@@ -439,15 +486,58 @@
       <pre class="lines">
 
 
-31
-32
-33</pre>
+8
+9
+10</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/runcible/models/export_distributor.rb', line 31</span>
+      <pre class="code"><span class="info file"># File 'lib/runcible/models/export_distributor.rb', line 8</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_https'>https</span>
   <span class='ivar'>@https</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="relative_url=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="relative_url-instance_method">
+  
+    - (<tt>Object</tt>) <strong>relative_url</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>required attributes</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+8
+9
+10</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/runcible/models/export_distributor.rb', line 8</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_relative_url'>relative_url</span>
+  <span class='ivar'>@relative_url</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -500,15 +590,15 @@
       <pre class="lines">
 
 
-48
-49
-50</pre>
+27
+28
+29</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/runcible/models/export_distributor.rb', line 48</span>
+      <pre class="code"><span class="info file"># File 'lib/runcible/models/export_distributor.rb', line 27</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_type_id'>type_id</span>
-  <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>export_distributor</span><span class='tstring_end'>'</span></span>
+  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>export_distributor</span><span class='tstring_end'>&#39;</span></span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -560,20 +650,20 @@
       <pre class="lines">
 
 
-55
-56
-57
-58
-59
-60</pre>
+34
+35
+36
+37
+38
+39</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/runcible/models/export_distributor.rb', line 55</span>
+      <pre class="code"><span class="info file"># File 'lib/runcible/models/export_distributor.rb', line 34</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_config'>config</span>
   <span class='id identifier rubyid_to_ret'>to_ret</span> <span class='op'>=</span> <span class='id identifier rubyid_as_json'>as_json</span>
-  <span class='id identifier rubyid_to_ret'>to_ret</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>auto_publish</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_to_ret'>to_ret</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>id</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_to_ret'>to_ret</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>auto_publish</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_to_ret'>to_ret</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>id</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_to_ret'>to_ret</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -586,9 +676,9 @@
 </div>
 
     <div id="footer">
-  Generated on Tue Feb  3 19:07:15 2015 by
+  Generated on Thu Feb  4 11:58:56 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7.3 (ruby-1.9.3).
+  0.8.7.6 (ruby-2.2.1).
 </div>
 
   </body>

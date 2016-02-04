@@ -2,11 +2,11 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>
   File: README
   
-    &mdash; Documentation by YARD 0.8.7.3
+    &mdash; Documentation by YARD 0.8.7.6
   
 </title>
 
@@ -17,7 +17,7 @@
 <script type="text/javascript" charset="utf-8">
   hasFrames = window.top.frames.main ? true : false;
   relpath = '';
-  framesUrl = "frames.html#!" + escape(window.location.href);
+  framesUrl = "frames.html#!file.README.html";
 </script>
 
 
@@ -66,19 +66,21 @@
 
 <p><a href="http://travis-ci.org/Katello/runcible"><img src="https://secure.travis-ci.org/Katello/runcible.png" alt="Build Status" /></a></p>
 
-<p>Exposing Pulp???s juiciest parts. http://www.pulpproject.org/</p>
+<p>Exposing Pulp’s juiciest parts. http://www.pulpproject.org/</p>
 
-<p>Latest Live Tested Version: <strong>pulp-server-2.6.0-0.5.beta.el6.noarch</strong></p>
+<p>Latest Live Tested Version: <strong>pulp-server-2.8.0-0.4.beta.el7.noarch</strong></p>
 
 <p>Current stable Runcible: https://github.com/Katello/runcible/tree/0.3</p>
 
 <p>For in-depth class and method documentation: http://katello.github.com/runcible/</p>
 
+<p>Please file new issues here: <a href="http://projects.theforeman.org/projects/runcible/issues/new">Readmine</a></p>
+
 <h2 id="installation">Installation</h2>
 
-<p>Add this line to your application???s Gemfile:</p>
+<p>Add this line to your application’s Gemfile:</p>
 
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_gem'>gem</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>runcible</span><span class='tstring_end'>'</span></span></code></pre>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_gem'>gem</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>runcible</span><span class='tstring_end'>&#39;</span></span></code></pre>
 
 <p>And then execute:</p>
 
@@ -102,7 +104,7 @@
           <span class='rbrace'>}</span><span class='rparen'>)</span>
 <span class='id identifier rubyid_repo_api'>repo_api</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span></code></pre>
 
-<p>Alternatively, a single ???server??? instance which can easily use all resources and extensions can be instantiated:</p>
+<p>Alternatively, a single ‘server’ instance which can easily use all resources and extensions can be instantiated:</p>
 
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_my_runcible'>my_runcible</span> <span class='op'>=</span> <span class='const'>Runcible</span><span class='op'>::</span><span class='const'>Instance</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='lbrace'>{</span>
             <span class='symbol'>:url</span>      <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
@@ -121,7 +123,7 @@
 
 <p>Authentication Options are either HTTP or Oauth:</p>
 
-<pre class="code ruby"><code class="ruby">:http_auth  =&gt; {:password =&gt; ''}
+<pre class="code ruby"><code class="ruby">:http_auth  =&gt; {:password =&gt; &#39;&#39;}
 
 :oauth      =&gt; {:oauth_secret =&gt; &quot;&quot;,
                 :oauth_key    =&gt; &quot;&quot; }</code></pre>
@@ -154,15 +156,15 @@ Runcible::Resources::Repository.new(config).associate_distributor(&quot;Reposito
 <p>Extensions are constructs around the Pulp API that make retrieving, accessing or creating certain data types easier. For example, providing objects that represent the details of a yum importer or distributor, and providing functions to create a Repository with an importer and distributors in a single call. The same three step process above using extensions is:</p>
 
 <pre class="code ruby"><code class="ruby">my_runcible = Runcible::Instance.new(config)
-my_runcible.extensions.repository.create_with_importer_and_distributor(&quot;Repository_ID&quot;, {:id=&gt;'yum_importer'}, [{'type_id' =&gt; 'yum_distributor', 'id'=&gt;'123', 'auto_publish'=&gt;true, 'config'=&gt;{'relative_url' =&gt; '/', 'http' =&gt; true, 'https' =&gt; true}}])
+my_runcible.extensions.repository.create_with_importer_and_distributor(&quot;Repository_ID&quot;, {:id=&gt;&#39;yum_importer&#39;}, [{&#39;type_id&#39; =&gt; &#39;yum_distributor&#39;, &#39;id&#39;=&gt;&#39;123&#39;, &#39;auto_publish&#39;=&gt;true, &#39;config&#39;=&gt;{&#39;relative_url&#39; =&gt; &#39;/&#39;, &#39;http&#39; =&gt; true, &#39;https&#39; =&gt; true}}])
 
 or
 
-Runcible::Extensions::Repository.new(config).create_with_importer_and_distributors(&quot;Repository_ID&quot;, {:id=&gt;'yum_importer'}, [{'type_id' =&gt; 'yum_distributor', 'id'=&gt;'123', 'auto_publish'=&gt;true, 'config'=&gt;{'relative_url' =&gt; '/', 'http' =&gt; true, 'https' =&gt; true}}])</code></pre>
+Runcible::Extensions::Repository.new(config).create_with_importer_and_distributors(&quot;Repository_ID&quot;, {:id=&gt;&#39;yum_importer&#39;}, [{&#39;type_id&#39; =&gt; &#39;yum_distributor&#39;, &#39;id&#39;=&gt;&#39;123&#39;, &#39;auto_publish&#39;=&gt;true, &#39;config&#39;=&gt;{&#39;relative_url&#39; =&gt; &#39;/&#39;, &#39;http&#39; =&gt; true, &#39;https&#39; =&gt; true}}])</code></pre>
 
 <p>Alternatively, using distributor and importer objects:</p>
 
-<pre class="code ruby"><code class="ruby">distributors = [Runcible::Models::YumDistributor.new('/path', true, true, :id =&gt; '123')]
+<pre class="code ruby"><code class="ruby">distributors = [Runcible::Models::YumDistributor.new(&#39;/path&#39;, true, true, :id =&gt; &#39;123&#39;)]
 importer = Runcible::Models::YumImporter.new()
 
 my_runcible = Runcible::Instance.new(config)
@@ -208,7 +210,7 @@ rake test mode=none test=./test/extensions/respository_test.rb</code></pre>
 git checkout gh-pages
 cp -rf doc/* ./
 git add ./
-git commit -a -m 'Updating docs to version X.X'
+git commit -a -m &#39;Updating docs to version X.X&#39;
 git push &lt;upstream&gt; gh-pages</code></pre>
 
 <h2 id="building_and_releasing">Building and Releasing</h2>
@@ -232,7 +234,7 @@ vim lib/runcible/version.rb</code></pre>
 
 <p>Now update the version to the new version, and commit the changes.</p>
 
-<pre class="code ruby"><code class="ruby">git commit -a -m 'Version bump'</code></pre>
+<pre class="code ruby"><code class="ruby">git commit -a -m &#39;Version bump&#39;</code></pre>
 
 <p>Now build:</p>
 
@@ -246,7 +248,7 @@ vim lib/runcible/version.rb</code></pre>
 
 <h3 id="rpm_release">RPM Release</h3>
 
-<p>If you are wanting to generate a new RPM build, please make sure you have followed the steps above if the build is going to include new code. All builds should first go in gem form to Rubygems. You???ll need to make sure tito is installed:</p>
+<p>If you are wanting to generate a new RPM build, please make sure you have followed the steps above if the build is going to include new code. All builds should first go in gem form to Rubygems. You’ll need to make sure tito is installed:</p>
 
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_yum'>yum</span> <span class='id identifier rubyid_install'>install</span> <span class='id identifier rubyid_tito'>tito</span></code></pre>
 
@@ -271,7 +273,7 @@ vim lib/runcible/version.rb</code></pre>
 
 <li>Create your feature branch (<code>git checkout -b my-new-feature</code>)</li>
 
-<li>Commit your changes (<code>git commit -am 'Added some feature'</code>)</li>
+<li>Commit your changes (<code>git commit -am &#39;Added some feature&#39;</code>)</li>
 
 <li>Ensure all tests are passing</li>
 
@@ -282,9 +284,9 @@ vim lib/runcible/version.rb</code></pre>
 </div></div>
 
     <div id="footer">
-  Generated on Tue Feb  3 19:07:12 2015 by
+  Generated on Thu Feb  4 11:58:55 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7.3 (ruby-1.9.3).
+  0.8.7.6 (ruby-2.2.1).
 </div>
 
   </body>
