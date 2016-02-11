@@ -19,6 +19,7 @@ module Runcible
 
       def config
         to_ret = self.as_json
+        to_ret.delete('absolute_path') if absolute_path.nil?
         to_ret.delete('auto_publish')
         to_ret.delete('id')
         to_ret
