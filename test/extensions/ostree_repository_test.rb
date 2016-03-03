@@ -93,4 +93,33 @@ module Extensions
       assert_equal 'ostree_web_importer', response['importers'].first['importer_type_id']
     end
   end
+
+  class TestOstreeBranchRepositoryUnitList < MiniTest::Unit::TestCase
+    def self.before_suite
+      @@extension = TestRuncible.server.extensions.repository
+      self.support = RepositorySupport.new("ostree")
+      self.support.destroy_repo
+      self.support.create_and_sync_repo(:importer => true)
+    end
+
+    def self.after_suite
+      self.support.destroy_repo
+    end
+
+    def test_ostree_branch_ids
+      response = @@extension.ostree_branch_ids(RepositorySupport.repo_id)
+      refute_empty response
+      assert_kind_of String, response.first
+    end
+
+    def test_ostree_branches
+      response = @@extension.ostree_branches(RepositorySupport.repo_id)
+      refute_empty response
+      assert_kind_of Hash, response.first
+      assert_includes response.first.keys, "branch"
+      assert_includes response.first.keys, "commit"
+      assert_includes response.first.keys, "metadata"
+      assert_includes response.first["metadata"].keys, "version"
+    end
+  end
 end

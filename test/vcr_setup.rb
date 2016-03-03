@@ -10,6 +10,10 @@ def configure_vcr(mode = :none)
     unless system("sudo cp -rf #{File.dirname(__FILE__)}/fixtures/repositories /var/www/")
       fail "Cannot copy repository fixtures to /var/www, ensure sudo access"
     end
+    unless system("sudo tar zxf /var/www/repositories/ostree/*.tgz -C /var/www/repositories/ostree")
+      fail "Could not extract the ostree repo"
+    end
+
   end
 
   VCR.configure do |c|
