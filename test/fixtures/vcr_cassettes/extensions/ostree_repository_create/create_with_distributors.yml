@@ -2,376 +2,10 @@
 http_interactions:
 - request:
     method: post
-    uri: https://admin:yjJbppdnk9o53M7DUpabXnse9o6NZveD@katello-wisdom.example.com/pulp/api/v2/repositories/
+    uri: https://admin:admin@galaxy.example.com/pulp/api/v2/repositories/
     body:
       encoding: UTF-8
-      string: ! '{"id":"integration_test_id","distributors":[{"distributor_type_id":"ostree_distributor_web","distributor_config":{"ostree_publish_directory":"/path"},"auto_publish":true,"distributor_id":"123"}]}'
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Type:
-      - application/json
-      Content-Length:
-      - '195'
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 400
-      message: BAD REQUEST
-    headers:
-      Date:
-      - Fri, 24 Apr 2015 03:28:22 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Content-Encoding:
-      - utf-8
-      Content-Length:
-      - '439'
-      Connection:
-      - close
-      Content-Type:
-      - application/json
-    body:
-      encoding: UTF-8
-      string: ! '{"http_request_method": "POST", "exception": null, "error_message":
-        "Invalid properties: [''distributor_type_id'']", "property_names": ["distributor_type_id"],
-        "_href": "/pulp/api/v2/repositories/", "http_status": 400, "error": {"code":
-        "PLP0015", "data": {"property_names": ["distributor_type_id"], "properties":
-        "[''distributor_type_id'']"}, "description": "Invalid properties: [''distributor_type_id'']",
-        "sub_errors": []}, "traceback": null}'
-    http_version: 
-  recorded_at: Fri, 24 Apr 2015 03:28:23 GMT
-- request:
-    method: get
-    uri: https://admin:yjJbppdnk9o53M7DUpabXnse9o6NZveD@katello-wisdom.example.com/pulp/api/v2/tasks/35248ca5-7ed9-483d-9386-74b2dafc60a3/
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Type:
-      - application/json
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Fri, 24 Apr 2015 03:31:22 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Content-Length:
-      - '1702'
-      Connection:
-      - close
-      Content-Type:
-      - application/json
-    body:
-      encoding: UTF-8
-      string: ! '{"exception": null, "task_type": "pulp.server.tasks.repository.delete",
-        "_href": "/pulp/api/v2/tasks/35248ca5-7ed9-483d-9386-74b2dafc60a3/", "task_id":
-        "35248ca5-7ed9-483d-9386-74b2dafc60a3", "tags": ["pulp:repository:integration_test_id",
-        "pulp:action:delete"], "finish_time": "2015-04-24T03:31:22Z", "_ns": "task_status",
-        "start_time": "2015-04-24T03:31:22Z", "traceback": "Traceback (most recent
-        call last):\n  File \"/usr/lib/python2.7/site-packages/celery/app/trace.py\",
-        line 240, in trace_task\n    R = retval = fun(*args, **kwargs)\n  File \"/usr/lib/python2.7/site-packages/pulp/server/async/tasks.py\",
-        line 394, in __call__\n    return super(Task, self).__call__(*args, **kwargs)\n  File
-        \"/usr/lib/python2.7/site-packages/celery/app/trace.py\", line 437, in __protected_call__\n    return
-        self.run(*args, **kwargs)\n  File \"/usr/lib/python2.7/site-packages/pulp/server/tasks/repository.py\",
-        line 41, in delete\n    manager.delete_repo(repo_id)\n  File \"/usr/lib/python2.7/site-packages/pulp/server/managers/repo/cud.py\",
-        line 261, in delete_repo\n    raise pe\nPulpExecutionException: Pulp exception
-        occurred: PulpExecutionException\n", "spawned_tasks": [], "progress_report":
-        {}, "queue": "reserved_resource_worker-1@katello-wisdom.example.com.dq", "state":
-        "error", "worker_name": "reserved_resource_worker-1@katello-wisdom.example.com",
-        "result": null, "error": {"code": "PLP0000", "data": {}, "description": "Pulp
-        exception occurred: PulpExecutionException", "sub_errors": [{"code": "PLP0000",
-        "data": {}, "description": "coercing to Unicode: need string or buffer, NoneType
-        found", "sub_errors": []}]}, "_id": {"$oid": "5539b90aae874ef86bf80f38"},
-        "id": "5539b90aae874ef86bf80f38"}'
-    http_version: 
-  recorded_at: Fri, 24 Apr 2015 03:31:22 GMT
-- request:
-    method: get
-    uri: https://admin:yjJbppdnk9o53M7DUpabXnse9o6NZveD@katello-wisdom.example.com/pulp/api/v2/tasks/8eb89d5c-de21-4e46-9956-0a2e712ce09e/
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Type:
-      - application/json
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Fri, 24 Apr 2015 03:32:46 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Content-Length:
-      - '1702'
-      Connection:
-      - close
-      Content-Type:
-      - application/json
-    body:
-      encoding: UTF-8
-      string: ! '{"exception": null, "task_type": "pulp.server.tasks.repository.delete",
-        "_href": "/pulp/api/v2/tasks/8eb89d5c-de21-4e46-9956-0a2e712ce09e/", "task_id":
-        "8eb89d5c-de21-4e46-9956-0a2e712ce09e", "tags": ["pulp:repository:integration_test_id",
-        "pulp:action:delete"], "finish_time": "2015-04-24T03:32:46Z", "_ns": "task_status",
-        "start_time": "2015-04-24T03:32:46Z", "traceback": "Traceback (most recent
-        call last):\n  File \"/usr/lib/python2.7/site-packages/celery/app/trace.py\",
-        line 240, in trace_task\n    R = retval = fun(*args, **kwargs)\n  File \"/usr/lib/python2.7/site-packages/pulp/server/async/tasks.py\",
-        line 394, in __call__\n    return super(Task, self).__call__(*args, **kwargs)\n  File
-        \"/usr/lib/python2.7/site-packages/celery/app/trace.py\", line 437, in __protected_call__\n    return
-        self.run(*args, **kwargs)\n  File \"/usr/lib/python2.7/site-packages/pulp/server/tasks/repository.py\",
-        line 41, in delete\n    manager.delete_repo(repo_id)\n  File \"/usr/lib/python2.7/site-packages/pulp/server/managers/repo/cud.py\",
-        line 261, in delete_repo\n    raise pe\nPulpExecutionException: Pulp exception
-        occurred: PulpExecutionException\n", "spawned_tasks": [], "progress_report":
-        {}, "queue": "reserved_resource_worker-1@katello-wisdom.example.com.dq", "state":
-        "error", "worker_name": "reserved_resource_worker-1@katello-wisdom.example.com",
-        "result": null, "error": {"code": "PLP0000", "data": {}, "description": "Pulp
-        exception occurred: PulpExecutionException", "sub_errors": [{"code": "PLP0000",
-        "data": {}, "description": "coercing to Unicode: need string or buffer, NoneType
-        found", "sub_errors": []}]}, "_id": {"$oid": "5539b95eae874ef86bf80f50"},
-        "id": "5539b95eae874ef86bf80f50"}'
-    http_version: 
-  recorded_at: Fri, 24 Apr 2015 03:32:46 GMT
-- request:
-    method: get
-    uri: https://admin:7HLGDTSxNnAEEtqKgjecYCvftjzNmoRE@katello-kant.example.com/pulp/api/v2/tasks/b767561e-4f25-433c-b393-29ea30c8de9f/
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Type:
-      - application/json
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Tue, 23 Jun 2015 22:37:40 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Content-Length:
-      - '1698'
-      Connection:
-      - close
-      Content-Type:
-      - application/json
-    body:
-      encoding: UTF-8
-      string: ! '{"exception": null, "task_type": "pulp.server.tasks.repository.delete",
-        "_href": "/pulp/api/v2/tasks/b767561e-4f25-433c-b393-29ea30c8de9f/", "task_id":
-        "b767561e-4f25-433c-b393-29ea30c8de9f", "tags": ["pulp:repository:integration_test_id",
-        "pulp:action:delete"], "finish_time": "2015-06-23T22:37:40Z", "_ns": "task_status",
-        "start_time": "2015-06-23T22:37:40Z", "traceback": "Traceback (most recent
-        call last):\n  File \"/usr/lib/python2.7/site-packages/celery/app/trace.py\",
-        line 240, in trace_task\n    R = retval = fun(*args, **kwargs)\n  File \"/usr/lib/python2.7/site-packages/pulp/server/async/tasks.py\",
-        line 394, in __call__\n    return super(Task, self).__call__(*args, **kwargs)\n  File
-        \"/usr/lib/python2.7/site-packages/celery/app/trace.py\", line 437, in __protected_call__\n    return
-        self.run(*args, **kwargs)\n  File \"/usr/lib/python2.7/site-packages/pulp/server/tasks/repository.py\",
-        line 41, in delete\n    manager.delete_repo(repo_id)\n  File \"/usr/lib/python2.7/site-packages/pulp/server/managers/repo/cud.py\",
-        line 261, in delete_repo\n    raise pe\nPulpExecutionException: Pulp exception
-        occurred: PulpExecutionException\n", "spawned_tasks": [], "progress_report":
-        {}, "queue": "reserved_resource_worker-0@katello-kant.example.com.dq", "state":
-        "error", "worker_name": "reserved_resource_worker-0@katello-kant.example.com",
-        "result": null, "error": {"code": "PLP0000", "data": {}, "description": "Pulp
-        exception occurred: PulpExecutionException", "sub_errors": [{"code": "PLP0000",
-        "data": {}, "description": "coercing to Unicode: need string or buffer, NoneType
-        found", "sub_errors": []}]}, "_id": {"$oid": "5589dfb42812e3d33cf0ff8e"},
-        "id": "5589dfb42812e3d33cf0ff8e"}'
-    http_version: 
-  recorded_at: Tue, 23 Jun 2015 22:37:40 GMT
-- request:
-    method: get
-    uri: https://admin:7HLGDTSxNnAEEtqKgjecYCvftjzNmoRE@katello-kant.example.com/pulp/api/v2/tasks/ef211642-b0e8-4ffe-9a18-ec461a4c43d1/
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Type:
-      - application/json
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Tue, 23 Jun 2015 22:45:05 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Content-Length:
-      - '1698'
-      Connection:
-      - close
-      Content-Type:
-      - application/json
-    body:
-      encoding: UTF-8
-      string: ! '{"exception": null, "task_type": "pulp.server.tasks.repository.delete",
-        "_href": "/pulp/api/v2/tasks/ef211642-b0e8-4ffe-9a18-ec461a4c43d1/", "task_id":
-        "ef211642-b0e8-4ffe-9a18-ec461a4c43d1", "tags": ["pulp:repository:integration_test_id",
-        "pulp:action:delete"], "finish_time": "2015-06-23T22:45:04Z", "_ns": "task_status",
-        "start_time": "2015-06-23T22:45:04Z", "traceback": "Traceback (most recent
-        call last):\n  File \"/usr/lib/python2.7/site-packages/celery/app/trace.py\",
-        line 240, in trace_task\n    R = retval = fun(*args, **kwargs)\n  File \"/usr/lib/python2.7/site-packages/pulp/server/async/tasks.py\",
-        line 394, in __call__\n    return super(Task, self).__call__(*args, **kwargs)\n  File
-        \"/usr/lib/python2.7/site-packages/celery/app/trace.py\", line 437, in __protected_call__\n    return
-        self.run(*args, **kwargs)\n  File \"/usr/lib/python2.7/site-packages/pulp/server/tasks/repository.py\",
-        line 41, in delete\n    manager.delete_repo(repo_id)\n  File \"/usr/lib/python2.7/site-packages/pulp/server/managers/repo/cud.py\",
-        line 261, in delete_repo\n    raise pe\nPulpExecutionException: Pulp exception
-        occurred: PulpExecutionException\n", "spawned_tasks": [], "progress_report":
-        {}, "queue": "reserved_resource_worker-0@katello-kant.example.com.dq", "state":
-        "error", "worker_name": "reserved_resource_worker-0@katello-kant.example.com",
-        "result": null, "error": {"code": "PLP0000", "data": {}, "description": "Pulp
-        exception occurred: PulpExecutionException", "sub_errors": [{"code": "PLP0000",
-        "data": {}, "description": "coercing to Unicode: need string or buffer, NoneType
-        found", "sub_errors": []}]}, "_id": {"$oid": "5589e1702812e3d33cf10368"},
-        "id": "5589e1702812e3d33cf10368"}'
-    http_version: 
-  recorded_at: Tue, 23 Jun 2015 22:45:05 GMT
-- request:
-    method: get
-    uri: https://admin:9km5fr4KB5byeUujz2qinVjT9LExvYSg@katello-wisdom.example.com/pulp/api/v2/tasks/40d3e9af-b1cd-45a9-9279-08a90fefab21/
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Type:
-      - application/json
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Thu, 28 Jan 2016 04:40:10 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Vary:
-      - Accept-Encoding
-      Content-Length:
-      - '696'
-      Connection:
-      - close
-      Content-Type:
-      - application/json; charset=utf-8
-    body:
-      encoding: ASCII-8BIT
-      string: !binary |-
-        eyJleGNlcHRpb24iOiBudWxsLCAidGFza190eXBlIjogInB1bHAuc2VydmVy
-        LnRhc2tzLnJlcG9zaXRvcnkuZGVsZXRlIiwgIl9ocmVmIjogIi9wdWxwL2Fw
-        aS92Mi90YXNrcy80MGQzZTlhZi1iMWNkLTQ1YTktOTI3OS0wOGE5MGZlZmFi
-        MjEvIiwgInRhc2tfaWQiOiAiNDBkM2U5YWYtYjFjZC00NWE5LTkyNzktMDhh
-        OTBmZWZhYjIxIiwgInRhZ3MiOiBbInB1bHA6cmVwb3NpdG9yeTppbnRlZ3Jh
-        dGlvbl90ZXN0X2lkIiwgInB1bHA6YWN0aW9uOmRlbGV0ZSJdLCAiZmluaXNo
-        X3RpbWUiOiAiMjAxNi0wMS0yOFQwNDo0MDoxMFoiLCAiX25zIjogInRhc2tf
-        c3RhdHVzIiwgInN0YXJ0X3RpbWUiOiAiMjAxNi0wMS0yOFQwNDo0MDoxMFoi
-        LCAidHJhY2ViYWNrIjogbnVsbCwgInNwYXduZWRfdGFza3MiOiBbXSwgInBy
-        b2dyZXNzX3JlcG9ydCI6IHt9LCAicXVldWUiOiAicmVzZXJ2ZWRfcmVzb3Vy
-        Y2Vfd29ya2VyLTFAa2F0ZWxsby13aXNkb20uZXhhbXBsZS5jb20uZHEiLCAi
-        c3RhdGUiOiAiZmluaXNoZWQiLCAid29ya2VyX25hbWUiOiAicmVzZXJ2ZWRf
-        cmVzb3VyY2Vfd29ya2VyLTFAa2F0ZWxsby13aXNkb20uZXhhbXBsZS5jb20i
-        LCAicmVzdWx0IjogbnVsbCwgImVycm9yIjogbnVsbCwgIl9pZCI6IHsiJG9p
-        ZCI6ICI1NmE5OWJhYTZjNWIxOTFmMGJkMjQzMTEifSwgImlkIjogIjU2YTk5
-        YmFhNmM1YjE5MWYwYmQyNDMxMSJ9
-    http_version: 
-  recorded_at: Thu, 28 Jan 2016 04:40:10 GMT
-- request:
-    method: get
-    uri: https://admin:icizRXdtWXs66PqkAXytGFMconvzbE8w@katello-yoda.example.com/pulp/api/v2/tasks/59491a35-c23a-4ecf-add7-239f8dff8460/
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Type:
-      - application/json
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Fri, 29 Jan 2016 17:06:45 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Vary:
-      - Accept-Encoding
-      Content-Length:
-      - '692'
-      Connection:
-      - close
-      Content-Type:
-      - application/json; charset=utf-8
-    body:
-      encoding: ASCII-8BIT
-      string: !binary |-
-        eyJleGNlcHRpb24iOiBudWxsLCAidGFza190eXBlIjogInB1bHAuc2VydmVy
-        LnRhc2tzLnJlcG9zaXRvcnkuZGVsZXRlIiwgIl9ocmVmIjogIi9wdWxwL2Fw
-        aS92Mi90YXNrcy81OTQ5MWEzNS1jMjNhLTRlY2YtYWRkNy0yMzlmOGRmZjg0
-        NjAvIiwgInRhc2tfaWQiOiAiNTk0OTFhMzUtYzIzYS00ZWNmLWFkZDctMjM5
-        ZjhkZmY4NDYwIiwgInRhZ3MiOiBbInB1bHA6cmVwb3NpdG9yeTppbnRlZ3Jh
-        dGlvbl90ZXN0X2lkIiwgInB1bHA6YWN0aW9uOmRlbGV0ZSJdLCAiZmluaXNo
-        X3RpbWUiOiAiMjAxNi0wMS0yOVQxNzowNjo0NFoiLCAiX25zIjogInRhc2tf
-        c3RhdHVzIiwgInN0YXJ0X3RpbWUiOiAiMjAxNi0wMS0yOVQxNzowNjo0NFoi
-        LCAidHJhY2ViYWNrIjogbnVsbCwgInNwYXduZWRfdGFza3MiOiBbXSwgInBy
-        b2dyZXNzX3JlcG9ydCI6IHt9LCAicXVldWUiOiAicmVzZXJ2ZWRfcmVzb3Vy
-        Y2Vfd29ya2VyLTFAa2F0ZWxsby15b2RhLmV4YW1wbGUuY29tLmRxIiwgInN0
-        YXRlIjogImZpbmlzaGVkIiwgIndvcmtlcl9uYW1lIjogInJlc2VydmVkX3Jl
-        c291cmNlX3dvcmtlci0xQGthdGVsbG8teW9kYS5leGFtcGxlLmNvbSIsICJy
-        ZXN1bHQiOiBudWxsLCAiZXJyb3IiOiBudWxsLCAiX2lkIjogeyIkb2lkIjog
-        IjU2YWI5YzI0N2UwOTc0MWRkNjQwZDEwNyJ9LCAiaWQiOiAiNTZhYjljMjQ3
-        ZTA5NzQxZGQ2NDBkMTA3In0=
-    http_version: 
-  recorded_at: Fri, 29 Jan 2016 17:06:45 GMT
-- request:
-    method: post
-    uri: https://admin:icizRXdtWXs66PqkAXytGFMconvzbE8w@katello-yoda.example.com/pulp/api/v2/repositories/
-    body:
-      encoding: US-ASCII
-      string: ! '{"id":"integration_test_id","distributors":[{"distributor_type_id":"ostree_web_distributor","distributor_config":{"ostree_publish_directory":"/path"},"auto_publish":true,"distributor_id":"123"}]}'
+      string: '{"id":"integration_test_id","distributors":[{"distributor_type_id":"ostree_web_distributor","distributor_config":{"ostree_publish_directory":"/path"},"auto_publish":true,"distributor_id":"123"}]}'
     headers:
       Accept:
       - application/json
@@ -389,28 +23,26 @@ http_interactions:
       message: CREATED
     headers:
       Date:
-      - Fri, 29 Jan 2016 17:24:02 GMT
+      - Fri, 04 Mar 2016 04:24:56 GMT
       Server:
       - Apache/2.4.6 (CentOS)
       Content-Length:
       - '319'
       Location:
-      - https://katello-yoda.example.com/pulp/api/v2/repositories/integration_test_id/
-      Connection:
-      - close
+      - https://galaxy.example.com/pulp/api/v2/repositories/integration_test_id/
       Content-Type:
       - application/json; charset=utf-8
     body:
-      encoding: US-ASCII
-      string: ! '{"scratchpad": {}, "display_name": "integration_test_id", "description":
+      encoding: UTF-8
+      string: '{"scratchpad": {}, "display_name": "integration_test_id", "description":
         null, "last_unit_added": null, "notes": {}, "last_unit_removed": null, "content_unit_counts":
-        {}, "_ns": "repos", "_id": {"$oid": "56aba032de040332a523c9da"}, "id": "integration_test_id",
+        {}, "_ns": "repos", "_id": {"$oid": "56d90e18e93417157ba56a5d"}, "id": "integration_test_id",
         "_href": "/pulp/api/v2/repositories/integration_test_id/"}'
     http_version: 
-  recorded_at: Fri, 29 Jan 2016 17:24:02 GMT
+  recorded_at: Fri, 04 Mar 2016 04:24:56 GMT
 - request:
     method: delete
-    uri: https://admin:icizRXdtWXs66PqkAXytGFMconvzbE8w@katello-yoda.example.com/pulp/api/v2/repositories/integration_test_id/
+    uri: https://admin:admin@galaxy.example.com/pulp/api/v2/repositories/integration_test_id/
     body:
       encoding: US-ASCII
       string: ''
@@ -429,25 +61,23 @@ http_interactions:
       message: ACCEPTED
     headers:
       Date:
-      - Fri, 29 Jan 2016 17:24:02 GMT
+      - Fri, 04 Mar 2016 04:24:56 GMT
       Server:
       - Apache/2.4.6 (CentOS)
       Content-Length:
       - '172'
-      Connection:
-      - close
       Content-Type:
       - application/json; charset=utf-8
     body:
-      encoding: US-ASCII
-      string: ! '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/e68c9054-eecb-4d27-b659-d0b339ebfac0/",
-        "task_id": "e68c9054-eecb-4d27-b659-d0b339ebfac0"}], "result": null, "error":
+      encoding: UTF-8
+      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/c13c5916-95f1-4daa-af10-66ee0753e6f1/",
+        "task_id": "c13c5916-95f1-4daa-af10-66ee0753e6f1"}], "result": null, "error":
         null}'
     http_version: 
-  recorded_at: Fri, 29 Jan 2016 17:24:02 GMT
+  recorded_at: Fri, 04 Mar 2016 04:24:56 GMT
 - request:
     method: get
-    uri: https://admin:icizRXdtWXs66PqkAXytGFMconvzbE8w@katello-yoda.example.com/pulp/api/v2/tasks/e68c9054-eecb-4d27-b659-d0b339ebfac0/
+    uri: https://admin:admin@galaxy.example.com/pulp/api/v2/tasks/c13c5916-95f1-4daa-af10-66ee0753e6f1/
     body:
       encoding: US-ASCII
       string: ''
@@ -466,36 +96,26 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 29 Jan 2016 17:24:03 GMT
+      - Fri, 04 Mar 2016 04:24:57 GMT
       Server:
       - Apache/2.4.6 (CentOS)
       Vary:
       - Accept-Encoding
       Content-Length:
-      - '692'
-      Connection:
-      - close
+      - '680'
       Content-Type:
       - application/json; charset=utf-8
     body:
       encoding: ASCII-8BIT
-      string: !binary |-
-        eyJleGNlcHRpb24iOiBudWxsLCAidGFza190eXBlIjogInB1bHAuc2VydmVy
-        LnRhc2tzLnJlcG9zaXRvcnkuZGVsZXRlIiwgIl9ocmVmIjogIi9wdWxwL2Fw
-        aS92Mi90YXNrcy9lNjhjOTA1NC1lZWNiLTRkMjctYjY1OS1kMGIzMzllYmZh
-        YzAvIiwgInRhc2tfaWQiOiAiZTY4YzkwNTQtZWVjYi00ZDI3LWI2NTktZDBi
-        MzM5ZWJmYWMwIiwgInRhZ3MiOiBbInB1bHA6cmVwb3NpdG9yeTppbnRlZ3Jh
-        dGlvbl90ZXN0X2lkIiwgInB1bHA6YWN0aW9uOmRlbGV0ZSJdLCAiZmluaXNo
-        X3RpbWUiOiAiMjAxNi0wMS0yOVQxNzoyNDowMloiLCAiX25zIjogInRhc2tf
-        c3RhdHVzIiwgInN0YXJ0X3RpbWUiOiAiMjAxNi0wMS0yOVQxNzoyNDowMloi
-        LCAidHJhY2ViYWNrIjogbnVsbCwgInNwYXduZWRfdGFza3MiOiBbXSwgInBy
-        b2dyZXNzX3JlcG9ydCI6IHt9LCAicXVldWUiOiAicmVzZXJ2ZWRfcmVzb3Vy
-        Y2Vfd29ya2VyLTFAa2F0ZWxsby15b2RhLmV4YW1wbGUuY29tLmRxIiwgInN0
-        YXRlIjogImZpbmlzaGVkIiwgIndvcmtlcl9uYW1lIjogInJlc2VydmVkX3Jl
-        c291cmNlX3dvcmtlci0xQGthdGVsbG8teW9kYS5leGFtcGxlLmNvbSIsICJy
-        ZXN1bHQiOiBudWxsLCAiZXJyb3IiOiBudWxsLCAiX2lkIjogeyIkb2lkIjog
-        IjU2YWJhMDMyN2UwOTc0MWRkNjQwZDQxMiJ9LCAiaWQiOiAiNTZhYmEwMzI3
-        ZTA5NzQxZGQ2NDBkNDEyIn0=
+      string: '{"exception": null, "task_type": "pulp.server.tasks.repository.delete",
+        "_href": "/pulp/api/v2/tasks/c13c5916-95f1-4daa-af10-66ee0753e6f1/", "task_id":
+        "c13c5916-95f1-4daa-af10-66ee0753e6f1", "tags": ["pulp:repository:integration_test_id",
+        "pulp:action:delete"], "finish_time": "2016-03-04T04:24:57Z", "_ns": "task_status",
+        "start_time": "2016-03-04T04:24:57Z", "traceback": null, "spawned_tasks":
+        [], "progress_report": {}, "queue": "reserved_resource_worker-1@galaxy.example.com.dq",
+        "state": "finished", "worker_name": "reserved_resource_worker-1@galaxy.example.com",
+        "result": null, "error": null, "_id": {"$oid": "56d90e1881f42f1fda53d685"},
+        "id": "56d90e1881f42f1fda53d685"}'
     http_version: 
-  recorded_at: Fri, 29 Jan 2016 17:24:03 GMT
+  recorded_at: Fri, 04 Mar 2016 04:24:57 GMT
 recorded_with: VCR 3.0.1

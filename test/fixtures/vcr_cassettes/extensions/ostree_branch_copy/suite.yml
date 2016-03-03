@@ -1,0 +1,416 @@
+---
+http_interactions:
+- request:
+    method: delete
+    uri: https://admin:admin@galaxy.example.com/pulp/api/v2/repositories/integration_test_id/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 404
+      message: NOT FOUND
+    headers:
+      Date:
+      - Fri, 04 Mar 2016 04:24:37 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Encoding:
+      - utf-8
+      Content-Length:
+      - '454'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"http_request_method": "DELETE", "exception": null, "error_message":
+        "Missing resource(s): repository=integration_test_id", "_href": "/pulp/api/v2/repositories/integration_test_id/",
+        "http_status": 404, "error": {"code": "PLP0009", "data": {"resources": {"repository":
+        "integration_test_id"}}, "description": "Missing resource(s): repository=integration_test_id",
+        "sub_errors": []}, "traceback": null, "resources": {"repository": "integration_test_id"}}'
+    http_version: 
+  recorded_at: Fri, 04 Mar 2016 04:24:37 GMT
+- request:
+    method: get
+    uri: https://admin:admin@galaxy.example.com/pulp/api/v2/repositories/integration_test_id/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 404
+      message: NOT FOUND
+    headers:
+      Date:
+      - Fri, 04 Mar 2016 04:24:37 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Encoding:
+      - utf-8
+      Content-Length:
+      - '452'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"http_request_method": "GET", "exception": null, "error_message":
+        "Missing resource(s): repository=integration_test_id", "_href": "/pulp/api/v2/repositories/integration_test_id/?",
+        "http_status": 404, "error": {"code": "PLP0009", "data": {"resources": {"repository":
+        "integration_test_id"}}, "description": "Missing resource(s): repository=integration_test_id",
+        "sub_errors": []}, "traceback": null, "resources": {"repository": "integration_test_id"}}'
+    http_version: 
+  recorded_at: Fri, 04 Mar 2016 04:24:37 GMT
+- request:
+    method: post
+    uri: https://admin:admin@galaxy.example.com/pulp/api/v2/repositories/
+    body:
+      encoding: UTF-8
+      string: '{"id":"integration_test_id","importer_type_id":"yum_importer","importer_config":{"feed":"file:///var/www/repositories/zoo5"}}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '125'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 201
+      message: CREATED
+    headers:
+      Date:
+      - Fri, 04 Mar 2016 04:24:37 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '319'
+      Location:
+      - https://galaxy.example.com/pulp/api/v2/repositories/integration_test_id/
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"scratchpad": {}, "display_name": "integration_test_id", "description":
+        null, "last_unit_added": null, "notes": {}, "last_unit_removed": null, "content_unit_counts":
+        {}, "_ns": "repos", "_id": {"$oid": "56d90e05e93417157ba56a54"}, "id": "integration_test_id",
+        "_href": "/pulp/api/v2/repositories/integration_test_id/"}'
+    http_version: 
+  recorded_at: Fri, 04 Mar 2016 04:24:37 GMT
+- request:
+    method: post
+    uri: https://admin:admin@galaxy.example.com/pulp/api/v2/repositories/integration_test_id/actions/sync/
+    body:
+      encoding: UTF-8
+      string: "{}"
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '2'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 202
+      message: ACCEPTED
+    headers:
+      Date:
+      - Fri, 04 Mar 2016 04:24:37 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '172'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/d393958d-3e1b-4e68-9058-bf78f368f92d/",
+        "task_id": "d393958d-3e1b-4e68-9058-bf78f368f92d"}], "result": null, "error":
+        null}'
+    http_version: 
+  recorded_at: Fri, 04 Mar 2016 04:24:37 GMT
+- request:
+    method: get
+    uri: https://admin:admin@galaxy.example.com/pulp/api/v2/tasks/d393958d-3e1b-4e68-9058-bf78f368f92d/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 04 Mar 2016 04:24:38 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '2184'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"exception": null, "task_type": "pulp.server.managers.repo.sync.sync",
+        "_href": "/pulp/api/v2/tasks/d393958d-3e1b-4e68-9058-bf78f368f92d/", "task_id":
+        "d393958d-3e1b-4e68-9058-bf78f368f92d", "tags": ["pulp:repository:integration_test_id",
+        "pulp:action:sync"], "finish_time": "2016-03-04T04:24:38Z", "_ns": "task_status",
+        "start_time": "2016-03-04T04:24:37Z", "traceback": null, "spawned_tasks":
+        [], "progress_report": {"yum_importer": {"content": {"items_total": 0, "state":
+        "FINISHED", "error_details": [], "details": {"rpm_total": 0, "rpm_done": 0,
+        "drpm_total": 0, "drpm_done": 0}, "size_total": 0, "size_left": 0, "items_left":
+        0}, "comps": {"state": "FINISHED"}, "purge_duplicates": {"state": "FINISHED"},
+        "distribution": {"items_total": 3, "state": "FINISHED", "error_details": [],
+        "items_left": 0}, "errata": {"state": "FINISHED"}, "metadata": {"state": "FINISHED"}}},
+        "queue": "reserved_resource_worker-1@galaxy.example.com.dq", "state": "finished",
+        "worker_name": "reserved_resource_worker-1@galaxy.example.com", "result":
+        {"result": "success", "importer_id": "yum_importer", "exception": null, "repo_id":
+        "integration_test_id", "traceback": null, "started": "2016-03-04T04:24:37Z",
+        "_ns": "repo_sync_results", "completed": "2016-03-04T04:24:38Z", "importer_type_id":
+        "yum_importer", "error_message": null, "summary": {"content": {"state": "FINISHED"},
+        "comps": {"state": "FINISHED"}, "purge_duplicates": {"state": "FINISHED"},
+        "distribution": {"state": "FINISHED"}, "errata": {"state": "FINISHED"}, "metadata":
+        {"state": "FINISHED"}}, "added_count": 14, "removed_count": 0, "updated_count":
+        0, "id": "56d90e06e93417171891b444", "details": {"content": {"size_total":
+        0, "items_left": 0, "items_total": 0, "state": "FINISHED", "size_left": 0,
+        "details": {"rpm_total": 0, "rpm_done": 0, "drpm_total": 0, "drpm_done": 0},
+        "error_details": []}, "comps": {"state": "FINISHED"}, "purge_duplicates":
+        {"state": "FINISHED"}, "distribution": {"items_total": 3, "state": "FINISHED",
+        "error_details": [], "items_left": 0}, "errata": {"state": "FINISHED"}, "metadata":
+        {"state": "FINISHED"}}}, "error": null, "_id": {"$oid": "56d90e0581f42f1fda53d66d"},
+        "id": "56d90e0581f42f1fda53d66d"}'
+    http_version: 
+  recorded_at: Fri, 04 Mar 2016 04:24:38 GMT
+- request:
+    method: post
+    uri: https://admin:admin@galaxy.example.com/pulp/api/v2/repositories/
+    body:
+      encoding: UTF-8
+      string: '{"id":"integration_test_id_clone","importer_type_id":"yum_importer","importer_config":{}}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '89'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 201
+      message: CREATED
+    headers:
+      Date:
+      - Fri, 04 Mar 2016 04:24:38 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '337'
+      Location:
+      - https://galaxy.example.com/pulp/api/v2/repositories/integration_test_id_clone/
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"scratchpad": {}, "display_name": "integration_test_id_clone", "description":
+        null, "last_unit_added": null, "notes": {}, "last_unit_removed": null, "content_unit_counts":
+        {}, "_ns": "repos", "_id": {"$oid": "56d90e06e934171579c8e329"}, "id": "integration_test_id_clone",
+        "_href": "/pulp/api/v2/repositories/integration_test_id_clone/"}'
+    http_version: 
+  recorded_at: Fri, 04 Mar 2016 04:24:38 GMT
+- request:
+    method: delete
+    uri: https://admin:admin@galaxy.example.com/pulp/api/v2/repositories/integration_test_id_clone/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 202
+      message: ACCEPTED
+    headers:
+      Date:
+      - Fri, 04 Mar 2016 04:24:39 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '172'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/b322021e-6275-42d0-a2b7-d7a70941355e/",
+        "task_id": "b322021e-6275-42d0-a2b7-d7a70941355e"}], "result": null, "error":
+        null}'
+    http_version: 
+  recorded_at: Fri, 04 Mar 2016 04:24:39 GMT
+- request:
+    method: get
+    uri: https://admin:admin@galaxy.example.com/pulp/api/v2/tasks/b322021e-6275-42d0-a2b7-d7a70941355e/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 04 Mar 2016 04:24:39 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '686'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"exception": null, "task_type": "pulp.server.tasks.repository.delete",
+        "_href": "/pulp/api/v2/tasks/b322021e-6275-42d0-a2b7-d7a70941355e/", "task_id":
+        "b322021e-6275-42d0-a2b7-d7a70941355e", "tags": ["pulp:repository:integration_test_id_clone",
+        "pulp:action:delete"], "finish_time": "2016-03-04T04:24:39Z", "_ns": "task_status",
+        "start_time": "2016-03-04T04:24:39Z", "traceback": null, "spawned_tasks":
+        [], "progress_report": {}, "queue": "reserved_resource_worker-1@galaxy.example.com.dq",
+        "state": "finished", "worker_name": "reserved_resource_worker-1@galaxy.example.com",
+        "result": null, "error": null, "_id": {"$oid": "56d90e0781f42f1fda53d67d"},
+        "id": "56d90e0781f42f1fda53d67d"}'
+    http_version: 
+  recorded_at: Fri, 04 Mar 2016 04:24:39 GMT
+- request:
+    method: delete
+    uri: https://admin:admin@galaxy.example.com/pulp/api/v2/repositories/integration_test_id/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 202
+      message: ACCEPTED
+    headers:
+      Date:
+      - Fri, 04 Mar 2016 04:24:39 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '172'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/f24bcd7e-24e5-4edd-a895-63fc399ddac3/",
+        "task_id": "f24bcd7e-24e5-4edd-a895-63fc399ddac3"}], "result": null, "error":
+        null}'
+    http_version: 
+  recorded_at: Fri, 04 Mar 2016 04:24:39 GMT
+- request:
+    method: get
+    uri: https://admin:admin@galaxy.example.com/pulp/api/v2/tasks/f24bcd7e-24e5-4edd-a895-63fc399ddac3/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 04 Mar 2016 04:24:40 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '680'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"exception": null, "task_type": "pulp.server.tasks.repository.delete",
+        "_href": "/pulp/api/v2/tasks/f24bcd7e-24e5-4edd-a895-63fc399ddac3/", "task_id":
+        "f24bcd7e-24e5-4edd-a895-63fc399ddac3", "tags": ["pulp:repository:integration_test_id",
+        "pulp:action:delete"], "finish_time": "2016-03-04T04:24:39Z", "_ns": "task_status",
+        "start_time": "2016-03-04T04:24:39Z", "traceback": null, "spawned_tasks":
+        [], "progress_report": {}, "queue": "reserved_resource_worker-1@galaxy.example.com.dq",
+        "state": "finished", "worker_name": "reserved_resource_worker-1@galaxy.example.com",
+        "result": null, "error": null, "_id": {"$oid": "56d90e0781f42f1fda53d67e"},
+        "id": "56d90e0781f42f1fda53d67e"}'
+    http_version: 
+  recorded_at: Fri, 04 Mar 2016 04:24:40 GMT
+recorded_with: VCR 3.0.1

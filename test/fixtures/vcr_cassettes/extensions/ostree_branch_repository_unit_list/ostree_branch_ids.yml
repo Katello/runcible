@@ -1,0 +1,44 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://admin:admin@galaxy.example.com/pulp/api/v2/repositories/integration_test_id/search/units/
+    body:
+      encoding: UTF-8
+      string: '{"criteria":{"type_ids":["ostree"],"fields":{"unit":[],"association":["unit_id"]}}}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '83'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 04 Mar 2016 04:24:54 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '430'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '[{"metadata": {"_id": "7653cb27-1ef8-4193-8bc3-56fdf648308e", "_content_type_id":
+        "ostree"}, "_id": {"$oid": "56d90e1681f42f1fda53d680"}, "unit_id": "7653cb27-1ef8-4193-8bc3-56fdf648308e",
+        "unit_type_id": "ostree"}, {"metadata": {"_id": "f1e1608a-8c74-48e3-b177-8d4cc22a1641",
+        "_content_type_id": "ostree"}, "_id": {"$oid": "56d90e1681f42f1fda53d681"},
+        "unit_id": "f1e1608a-8c74-48e3-b177-8d4cc22a1641", "unit_type_id": "ostree"}]'
+    http_version: 
+  recorded_at: Fri, 04 Mar 2016 04:24:54 GMT
+recorded_with: VCR 3.0.1

@@ -1,0 +1,394 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://admin:admin@galaxy.example.com/pulp/api/v2/repositories/integration_test_id/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 404
+      message: NOT FOUND
+    headers:
+      Date:
+      - Fri, 04 Mar 2016 04:24:34 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Encoding:
+      - utf-8
+      Content-Length:
+      - '452'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"http_request_method": "GET", "exception": null, "error_message":
+        "Missing resource(s): repository=integration_test_id", "_href": "/pulp/api/v2/repositories/integration_test_id/?",
+        "http_status": 404, "error": {"code": "PLP0009", "data": {"resources": {"repository":
+        "integration_test_id"}}, "description": "Missing resource(s): repository=integration_test_id",
+        "sub_errors": []}, "traceback": null, "resources": {"repository": "integration_test_id"}}'
+    http_version: 
+  recorded_at: Fri, 04 Mar 2016 04:24:34 GMT
+- request:
+    method: post
+    uri: https://admin:admin@galaxy.example.com/pulp/api/v2/repositories/
+    body:
+      encoding: UTF-8
+      string: '{"id":"integration_test_id","importer_type_id":"ostree_web_importer","importer_config":{"feed":"file:///var/www/repositories/ostree/fedora"}}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '141'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 201
+      message: CREATED
+    headers:
+      Date:
+      - Fri, 04 Mar 2016 04:24:34 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '319'
+      Location:
+      - https://galaxy.example.com/pulp/api/v2/repositories/integration_test_id/
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"scratchpad": {}, "display_name": "integration_test_id", "description":
+        null, "last_unit_added": null, "notes": {}, "last_unit_removed": null, "content_unit_counts":
+        {}, "_ns": "repos", "_id": {"$oid": "56d90e02e93417157ae42dc0"}, "id": "integration_test_id",
+        "_href": "/pulp/api/v2/repositories/integration_test_id/"}'
+    http_version: 
+  recorded_at: Fri, 04 Mar 2016 04:24:34 GMT
+- request:
+    method: post
+    uri: https://admin:admin@galaxy.example.com/pulp/api/v2/repositories/integration_test_id/actions/sync/
+    body:
+      encoding: UTF-8
+      string: "{}"
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '2'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 202
+      message: ACCEPTED
+    headers:
+      Date:
+      - Fri, 04 Mar 2016 04:24:34 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '172'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/fa8bc093-1b74-4130-8ced-bfe08987aaf5/",
+        "task_id": "fa8bc093-1b74-4130-8ced-bfe08987aaf5"}], "result": null, "error":
+        null}'
+    http_version: 
+  recorded_at: Fri, 04 Mar 2016 04:24:34 GMT
+- request:
+    method: get
+    uri: https://admin:admin@galaxy.example.com/pulp/api/v2/tasks/fa8bc093-1b74-4130-8ced-bfe08987aaf5/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 04 Mar 2016 04:24:35 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '1954'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"exception": null, "task_type": "pulp.server.managers.repo.sync.sync",
+        "_href": "/pulp/api/v2/tasks/fa8bc093-1b74-4130-8ced-bfe08987aaf5/", "task_id":
+        "fa8bc093-1b74-4130-8ced-bfe08987aaf5", "tags": ["pulp:repository:integration_test_id",
+        "pulp:action:sync"], "finish_time": null, "_ns": "task_status", "start_time":
+        "2016-03-04T04:24:34Z", "traceback": null, "spawned_tasks": [], "progress_report":
+        {"ostree_web_importer": [{"num_success": 1, "description": "Create Local Repository",
+        "step_type": "import_create_repository", "items_total": 1, "state": "FINISHED",
+        "error_details": [], "details": "", "num_failures": 0, "step_id": "aec91b39-0f77-4314-831c-a9786f0d1d07",
+        "num_processed": 1}, {"num_success": 0, "description": "Update Summary", "step_type":
+        "import_summary", "items_total": 1, "state": "IN_PROGRESS", "error_details":
+        [], "details": "", "num_failures": 0, "step_id": "c59bb97f-60b2-4169-ba21-6f7b3733ae11",
+        "num_processed": 0}, {"num_success": 0, "description": "Pull Remote Branches",
+        "step_type": "import_pull", "items_total": 1, "state": "NOT_STARTED", "error_details":
+        [], "details": "", "num_failures": 0, "step_id": "70573d8f-f9c4-4392-b78f-661df4650bc6",
+        "num_processed": 0}, {"num_success": 0, "description": "Add Content Units",
+        "step_type": "import_add_unit", "items_total": 1, "state": "NOT_STARTED",
+        "error_details": [], "details": "", "num_failures": 0, "step_id": "e03b4319-58ba-42ae-8f2e-59ad1ea88dd1",
+        "num_processed": 0}, {"num_success": 0, "description": "Clean", "step_type":
+        "import_clean", "items_total": 1, "state": "NOT_STARTED", "error_details":
+        [], "details": "", "num_failures": 0, "step_id": "225b9a71-dd88-4418-a04d-6057c24aba1b",
+        "num_processed": 0}]}, "queue": "reserved_resource_worker-1@galaxy.example.com.dq",
+        "state": "running", "worker_name": "reserved_resource_worker-1@galaxy.example.com",
+        "result": null, "error": null, "_id": {"$oid": "56d90e0281f42f1fda53d669"},
+        "id": "56d90e0281f42f1fda53d669"}'
+    http_version: 
+  recorded_at: Fri, 04 Mar 2016 04:24:35 GMT
+- request:
+    method: get
+    uri: https://admin:admin@galaxy.example.com/pulp/api/v2/tasks/fa8bc093-1b74-4130-8ced-bfe08987aaf5/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 04 Mar 2016 04:24:35 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '1948'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"exception": null, "task_type": "pulp.server.managers.repo.sync.sync",
+        "_href": "/pulp/api/v2/tasks/fa8bc093-1b74-4130-8ced-bfe08987aaf5/", "task_id":
+        "fa8bc093-1b74-4130-8ced-bfe08987aaf5", "tags": ["pulp:repository:integration_test_id",
+        "pulp:action:sync"], "finish_time": null, "_ns": "task_status", "start_time":
+        "2016-03-04T04:24:34Z", "traceback": null, "spawned_tasks": [], "progress_report":
+        {"ostree_web_importer": [{"num_success": 1, "description": "Create Local Repository",
+        "step_type": "import_create_repository", "items_total": 1, "state": "FINISHED",
+        "error_details": [], "details": "", "num_failures": 0, "step_id": "aec91b39-0f77-4314-831c-a9786f0d1d07",
+        "num_processed": 1}, {"num_success": 1, "description": "Update Summary", "step_type":
+        "import_summary", "items_total": 1, "state": "FINISHED", "error_details":
+        [], "details": "", "num_failures": 0, "step_id": "c59bb97f-60b2-4169-ba21-6f7b3733ae11",
+        "num_processed": 1}, {"num_success": 1, "description": "Pull Remote Branches",
+        "step_type": "import_pull", "items_total": 1, "state": "FINISHED", "error_details":
+        [], "details": "", "num_failures": 0, "step_id": "70573d8f-f9c4-4392-b78f-661df4650bc6",
+        "num_processed": 1}, {"num_success": 0, "description": "Add Content Units",
+        "step_type": "import_add_unit", "items_total": 1, "state": "IN_PROGRESS",
+        "error_details": [], "details": "", "num_failures": 0, "step_id": "e03b4319-58ba-42ae-8f2e-59ad1ea88dd1",
+        "num_processed": 0}, {"num_success": 0, "description": "Clean", "step_type":
+        "import_clean", "items_total": 1, "state": "NOT_STARTED", "error_details":
+        [], "details": "", "num_failures": 0, "step_id": "225b9a71-dd88-4418-a04d-6057c24aba1b",
+        "num_processed": 0}]}, "queue": "reserved_resource_worker-1@galaxy.example.com.dq",
+        "state": "running", "worker_name": "reserved_resource_worker-1@galaxy.example.com",
+        "result": null, "error": null, "_id": {"$oid": "56d90e0281f42f1fda53d669"},
+        "id": "56d90e0281f42f1fda53d669"}'
+    http_version: 
+  recorded_at: Fri, 04 Mar 2016 04:24:35 GMT
+- request:
+    method: get
+    uri: https://admin:admin@galaxy.example.com/pulp/api/v2/tasks/fa8bc093-1b74-4130-8ced-bfe08987aaf5/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 04 Mar 2016 04:24:36 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '3788'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"exception": null, "task_type": "pulp.server.managers.repo.sync.sync",
+        "_href": "/pulp/api/v2/tasks/fa8bc093-1b74-4130-8ced-bfe08987aaf5/", "task_id":
+        "fa8bc093-1b74-4130-8ced-bfe08987aaf5", "tags": ["pulp:repository:integration_test_id",
+        "pulp:action:sync"], "finish_time": "2016-03-04T04:24:35Z", "_ns": "task_status",
+        "start_time": "2016-03-04T04:24:34Z", "traceback": null, "spawned_tasks":
+        [], "progress_report": {"ostree_web_importer": [{"num_success": 1, "description":
+        "Create Local Repository", "step_type": "import_create_repository", "items_total":
+        1, "state": "FINISHED", "error_details": [], "details": "", "num_failures":
+        0, "step_id": "aec91b39-0f77-4314-831c-a9786f0d1d07", "num_processed": 1},
+        {"num_success": 1, "description": "Update Summary", "step_type": "import_summary",
+        "items_total": 1, "state": "FINISHED", "error_details": [], "details": "",
+        "num_failures": 0, "step_id": "c59bb97f-60b2-4169-ba21-6f7b3733ae11", "num_processed":
+        1}, {"num_success": 1, "description": "Pull Remote Branches", "step_type":
+        "import_pull", "items_total": 1, "state": "FINISHED", "error_details": [],
+        "details": "", "num_failures": 0, "step_id": "70573d8f-f9c4-4392-b78f-661df4650bc6",
+        "num_processed": 1}, {"num_success": 1, "description": "Add Content Units",
+        "step_type": "import_add_unit", "items_total": 1, "state": "FINISHED", "error_details":
+        [], "details": "", "num_failures": 0, "step_id": "e03b4319-58ba-42ae-8f2e-59ad1ea88dd1",
+        "num_processed": 1}, {"num_success": 1, "description": "Clean", "step_type":
+        "import_clean", "items_total": 1, "state": "FINISHED", "error_details": [],
+        "details": "", "num_failures": 0, "step_id": "225b9a71-dd88-4418-a04d-6057c24aba1b",
+        "num_processed": 1}]}, "queue": "reserved_resource_worker-1@galaxy.example.com.dq",
+        "state": "finished", "worker_name": "reserved_resource_worker-1@galaxy.example.com",
+        "result": {"result": "success", "importer_id": "ostree_web_importer", "exception":
+        null, "repo_id": "integration_test_id", "traceback": null, "started": "2016-03-04T04:24:34Z",
+        "_ns": "repo_sync_results", "completed": "2016-03-04T04:24:35Z", "importer_type_id":
+        "ostree_web_importer", "error_message": null, "summary": {"import_summary":
+        "FINISHED", "import_create_repository": "FINISHED", "import_pull": "FINISHED",
+        "import_clean": "FINISHED", "import_add_unit": "FINISHED"}, "added_count":
+        2, "removed_count": 0, "updated_count": 0, "id": "56d90e03e93417171891b440",
+        "details": [{"num_success": 1, "description": "Create Local Repository", "step_type":
+        "import_create_repository", "items_total": 1, "state": "FINISHED", "error_details":
+        [], "details": "", "num_failures": 0, "step_id": "aec91b39-0f77-4314-831c-a9786f0d1d07",
+        "num_processed": 1}, {"num_success": 1, "description": "Update Summary", "step_type":
+        "import_summary", "items_total": 1, "state": "FINISHED", "error_details":
+        [], "details": "", "num_failures": 0, "step_id": "c59bb97f-60b2-4169-ba21-6f7b3733ae11",
+        "num_processed": 1}, {"num_success": 1, "description": "Pull Remote Branches",
+        "step_type": "import_pull", "items_total": 1, "state": "FINISHED", "error_details":
+        [], "details": "", "num_failures": 0, "step_id": "70573d8f-f9c4-4392-b78f-661df4650bc6",
+        "num_processed": 1}, {"num_success": 1, "description": "Add Content Units",
+        "step_type": "import_add_unit", "items_total": 1, "state": "FINISHED", "error_details":
+        [], "details": "", "num_failures": 0, "step_id": "e03b4319-58ba-42ae-8f2e-59ad1ea88dd1",
+        "num_processed": 1}, {"num_success": 1, "description": "Clean", "step_type":
+        "import_clean", "items_total": 1, "state": "FINISHED", "error_details": [],
+        "details": "", "num_failures": 0, "step_id": "225b9a71-dd88-4418-a04d-6057c24aba1b",
+        "num_processed": 1}]}, "error": null, "_id": {"$oid": "56d90e0281f42f1fda53d669"},
+        "id": "56d90e0281f42f1fda53d669"}'
+    http_version: 
+  recorded_at: Fri, 04 Mar 2016 04:24:36 GMT
+- request:
+    method: delete
+    uri: https://admin:admin@galaxy.example.com/pulp/api/v2/repositories/integration_test_id/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 202
+      message: ACCEPTED
+    headers:
+      Date:
+      - Fri, 04 Mar 2016 04:24:36 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '172'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/1c7a04e7-dd5e-491f-8a8e-58f8f0216400/",
+        "task_id": "1c7a04e7-dd5e-491f-8a8e-58f8f0216400"}], "result": null, "error":
+        null}'
+    http_version: 
+  recorded_at: Fri, 04 Mar 2016 04:24:36 GMT
+- request:
+    method: get
+    uri: https://admin:admin@galaxy.example.com/pulp/api/v2/tasks/1c7a04e7-dd5e-491f-8a8e-58f8f0216400/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 04 Mar 2016 04:24:37 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '680'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"exception": null, "task_type": "pulp.server.tasks.repository.delete",
+        "_href": "/pulp/api/v2/tasks/1c7a04e7-dd5e-491f-8a8e-58f8f0216400/", "task_id":
+        "1c7a04e7-dd5e-491f-8a8e-58f8f0216400", "tags": ["pulp:repository:integration_test_id",
+        "pulp:action:delete"], "finish_time": "2016-03-04T04:24:36Z", "_ns": "task_status",
+        "start_time": "2016-03-04T04:24:36Z", "traceback": null, "spawned_tasks":
+        [], "progress_report": {}, "queue": "reserved_resource_worker-1@galaxy.example.com.dq",
+        "state": "finished", "worker_name": "reserved_resource_worker-1@galaxy.example.com",
+        "result": null, "error": null, "_id": {"$oid": "56d90e0481f42f1fda53d66c"},
+        "id": "56d90e0481f42f1fda53d66c"}'
+    http_version: 
+  recorded_at: Fri, 04 Mar 2016 04:24:37 GMT
+recorded_with: VCR 3.0.1
