@@ -27,6 +27,12 @@ class RepositorySupport
     elsif @repo_type == 'python'
       @distributors = [Runcible::Models::PythonDistributor.new]
       @repo_url     = "https://pypi.python.org"
+    elsif @repo_type == 'ostree'
+      @distributors  = [Runcible::Models::OstreeDistributor.new(:ostree_publish_directory => '/path',
+                                                                :id => 'ostree_dist',
+                                                                :relative_path => "/relpath")]
+      @repo_url      = "file://#{FIXTURE_PATH}/ostree/fedora"
+      @importer_type = "ostree_web_importer"
     end
   end
 
