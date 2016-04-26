@@ -113,6 +113,39 @@ Alternatively, using distributor and importer objects:
 
 ## Testing
 
+### Dependencies
+
+In order to run and develop the ostree code in runcible locally, you will need
+to install the pulp ostree packages (namely pulp-python-plugins and
+pulp-ostree-plugins).
+
+If you don't have ostree intalled already, you'll need to setup the ostree repo
+as ostree is a dependency for pulp-ostree-plugins. For centos, you'll create
+/etc/yum.repos.d/ostree.repo with this:
+
+```
+[atomic7-testing]
+name=atomic7-testing
+baseurl=http://cbs.centos.org/repos/atomic7-testing/x86_64/os/
+gpgcheck=0
+enabled=1
+```
+
+Now you should be able to install the two pulp plugin packages:
+
+```
+sudo yum install pulp-python-plugins pulp-ostree-plugins
+```
+
+Finally, update your pulp database and restart pulp:
+
+```
+sudo -u apache pulp-manage-db
+for x in httpd pulp_resource_manager pulp_celerybeat pulp_workers; do sudo service $x restart; done
+```
+
+### Running Tests
+
 To run all tests using recorded data, run:
 
     rake test mode=none
@@ -126,6 +159,9 @@ To run a single test using recorded data, run:
     rake test mode=none test=extensions/respository
     or (by filename)
     rake test mode=none test=./test/extensions/respository_test.rb
+
+Note that when you record data, it's a good idea to delete any corresponding
+vcr cassette files as recording data will sometimes only append to these files.
 
 To run tests against your live Pulp without recording a new cassette set record flag to false (does not apply to mode=none):
 
