@@ -10,7 +10,7 @@ module Resources
       @resource = TestRuncible.server.resources.task_group
       @repo_resource = TestRuncible.server.resources.repository
 
-      criteria  = {
+      criteria = {
         'parallel' => true,
         'repo_criteria' => { 'filters' => { 'id' => { '$in' => [RepositorySupport.repo_id] } } }
       }
@@ -48,7 +48,7 @@ module Resources
     def test_summary
       response = @resource.summary(@group_id)
       assert_equal 200, response.code
-      keys =  ["accepted", "finished", "running", "canceled", "waiting", "skipped", "suspended", "error", "total"]
+      keys = ["accepted", "finished", "running", "canceled", "waiting", "skipped", "suspended", "error", "total"]
       assert_equal [], keys - response.keys
       assert keys.all? { |key| response[key].is_a? Numeric }
     end

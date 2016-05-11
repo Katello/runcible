@@ -48,7 +48,7 @@ module Base
     end
 
     def test_exception_logger
-      @my_runcible.config[:logging][:exception]  = true
+      @my_runcible.config[:logging][:exception] = true
       @my_runcible.log_exception
 
       assert_equal @log_message, @logger.message

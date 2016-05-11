@@ -57,7 +57,7 @@ module Resources
     end
   end
 
-  class ConsumerGroupTests  < MiniTest::Unit::TestCase
+  class ConsumerGroupTests < MiniTest::Unit::TestCase
     include TestConsumerGroupBase
 
     def setup
@@ -169,21 +169,21 @@ module Resources
     end
 
     def test_install_units
-      response  = @resource.install_units(@consumer_group_id, ['unit_key' => {:name => 'zsh'}, 'type_id' => 'rpm'])
+      response = @resource.install_units(@consumer_group_id, ['unit_key' => {:name => 'zsh'}, 'type_id' => 'rpm'])
 
       assert_equal 202, response.code
       assert response['spawned_tasks'].first['task_id']
     end
 
     def test_update_units
-      response  = @resource.update_units(@consumer_group_id, ['unit_key' => {:name => 'zsh'}, 'type_id' => 'rpm'])
+      response = @resource.update_units(@consumer_group_id, ['unit_key' => {:name => 'zsh'}, 'type_id' => 'rpm'])
 
       assert_equal 202, response.code
       assert response['spawned_tasks'].first['task_id']
     end
 
     def test_uninstall_units
-      response  = @resource.uninstall_units(@consumer_group_id, ['unit_key' => {:name => 'zsh'}, 'type_id' => 'rpm'])
+      response = @resource.uninstall_units(@consumer_group_id, ['unit_key' => {:name => 'zsh'}, 'type_id' => 'rpm'])
 
       assert_equal 202, response.code
       assert response['spawned_tasks'].first['task_id']

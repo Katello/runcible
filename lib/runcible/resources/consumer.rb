@@ -7,7 +7,7 @@ module Runcible
       # @param  [String]  id  the ID of the consumer
       # @return [String]      the consumer path, may contain the id if passed
       def self.path(id = nil)
-        (id.nil?) ? 'consumers/' : "consumers/#{id}/"
+        id.nil? ? 'consumers/' : "consumers/#{id}/"
       end
 
       # Creates a consumer

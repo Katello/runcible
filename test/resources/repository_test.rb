@@ -116,7 +116,7 @@ module Resources
     end
 
     def test_generate_applicability_with_spawned_tasks
-      criteria  = {
+      criteria = {
         'repo_criteria' => { 'filters' => { 'id' => { '$in' => [RepositorySupport.repo_id] } } }
       }
       response = @resource.regenerate_applicability(criteria)
@@ -126,7 +126,7 @@ module Resources
     end
 
     def test_generate_applicability_with_task_group
-      criteria  = {
+      criteria = {
         'parallel' => true,
         'repo_criteria' => { 'filters' => { 'id' => { '$in' => [RepositorySupport.repo_id] } } }
       }

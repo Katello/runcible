@@ -31,20 +31,18 @@ module Runcible
       # @param  [Hash]                                  optional      container for all optional parameters
       # @return [RestClient::Response]                                the created repository
       def create_with_importer_and_distributors(id, importer, distributors = [], optional = {})
-        if importer.is_a?(Runcible::Models::Importer)
+        if importer && importer.is_a?(Runcible::Models::Importer)
           optional[:importer_type_id] = importer.id
           optional[:importer_config] = importer.config
-        else
+        elsif importer
           optional[:importer_type_id] = importer.delete('id') || importer.delete(:id)
           optional[:importer_config] = importer
-        end if importer
+        end
 
         repo_type = if importer.methods.include?(:repo_type)
                       importer.repo_type
                     elsif importer.is_a?(Hash) && importer.key?(:repo_type)
                       importer[:repo_type]
-                    else
-                      nil
                     end
 
         if optional.key?(:importer_type_id) && repo_type
@@ -326,7 +324,7 @@ module Runcible
       #                   the [{:image_id => <image hash>, :tag =>"value"}]
       # @return [RestClient::Response]
       def update_docker_tags(id, tags)
-        update(id, :scratchpad => {:tags =>  tags})
+        update(id, :scratchpad => {:tags => tags})
       end
 
       # Creates or updates a sync schedule for a repository
@@ -387,7 +385,7 @@ module Runcible
       #                                         False is the default option.
       # @return [RestClient::Response]
       def regenerate_applicability_by_ids(ids, parallel = false)
-        criteria  = {
+        criteria = {
           'parallel' => parallel,
           'repo_criteria' => { 'filters' => { 'id' => { '$in' => ids } } }
         }

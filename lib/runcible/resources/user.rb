@@ -7,7 +7,7 @@ module Runcible
       # @param  [String]  login the user's login
       # @return [String]        the user path, may contain the login if passed
       def self.path(login = nil)
-        (login.nil?) ? 'users/' : "users/#{login}/"
+        login.nil? ? 'users/' : "users/#{login}/"
       end
 
       # Retrieves all users

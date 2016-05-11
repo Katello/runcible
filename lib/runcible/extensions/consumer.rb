@@ -114,12 +114,12 @@ module Runcible
           units.each do |unit|
             content_unit = {}
             content_unit[:type_id] = type_id
-            if unit.is_a?(Hash)
-              #allow user to pass in entire unit
-              content_unit[:unit_key] = unit
-            else
-              content_unit[:unit_key] = { unit_key => unit }
-            end
+            content_unit[:unit_key] = if unit.is_a?(Hash)
+                                        #allow user to pass in entire unit
+                                        unit
+                                      else
+                                        { unit_key => unit }
+                                      end
 
             content.push(content_unit)
           end
@@ -132,7 +132,7 @@ module Runcible
       # @param [String, Array]         ids  array of consumer ids
       # @return [RestClient::Response]
       def regenerate_applicability_by_ids(ids)
-        criteria  = {
+        criteria = {
           'consumer_criteria' => { 'filters' => { 'id' => { '$in' => ids } } }
         }
         regenerate_applicability(criteria)
@@ -149,7 +149,7 @@ module Runcible
       def applicable_errata(ids)
         ids = [ids] if ids.is_a? String
 
-        criteria  = {
+        criteria = {
           'criteria' => { 'filters' => { 'id' => { '$in' => ids } } },
           'content_types' => [Runcible::Extensions::Errata.content_type]
         }

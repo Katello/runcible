@@ -1,8 +1,8 @@
 module Runcible
   module Models
     class DockerImporter < Importer
-      ID = 'docker_importer'
-      REPO_TYPE = 'docker-repo'
+      ID = 'docker_importer'.freeze
+      REPO_TYPE = 'docker-repo'.freeze
 
       attr_accessor 'upstream_name', 'mask_id', 'enable_v1'
 

@@ -55,7 +55,7 @@ module Extensions
     def test_create_with_distributor_object
       repo_id = RepositorySupport.repo_id + '_distro'
       response = @extension.create_with_distributors(repo_id, [Runcible::Models::YumDistributor.new(
-          'path', true, true, :id => '123')])
+        'path', true, true, :id => '123')])
       assert_equal 201, response.code
 
       response = @extension.retrieve(repo_id, :details => true)
@@ -79,7 +79,7 @@ module Extensions
 
     def test_create_with_importer_and_distributors_objects
       distributors = [Runcible::Models::YumDistributor.new(
-              'path', true, true, :id => '123')]
+        'path', true, true, :id => '123')]
       importer = Runcible::Models::YumImporter.new
       response = @extension.create_with_importer_and_distributors(RepositorySupport.repo_id, importer, distributors)
       assert_equal 201, response.code
@@ -112,15 +112,27 @@ module Extensions
     end
 
     def test_create_or_update_schedule
-      response = @extension.create_or_update_schedule(RepositorySupport.repo_id, 'yum_importer', '2012-09-25T20:44:00Z/P7D')
+      response = @extension.create_or_update_schedule(
+        RepositorySupport.repo_id,
+        'yum_importer',
+        '2012-09-25T20:44:00Z/P7D'
+      )
       assert_equal 201, response.code
 
-      response = @extension.create_or_update_schedule(RepositorySupport.repo_id, 'yum_importer', '2011-09-25T20:44:00Z/P7D')
+      response = @extension.create_or_update_schedule(
+        RepositorySupport.repo_id,
+        'yum_importer',
+        '2011-09-25T20:44:00Z/P7D'
+      )
       assert_equal 200, response.code
     end
 
     def test_remove_schedules
-      TestRuncible.server.resources.repository_schedule.create(RepositorySupport.repo_id, 'yum_importer', '2012-10-25T20:44:00Z/P7D')
+      TestRuncible.server.resources.repository_schedule.create(
+        RepositorySupport.repo_id,
+        'yum_importer',
+        '2012-10-25T20:44:00Z/P7D'
+      )
       response = @extension.remove_schedules(RepositorySupport.repo_id, 'yum_importer')
 
       assert_equal 200, response.code
