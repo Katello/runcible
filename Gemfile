@@ -11,4 +11,5 @@ group :test do
   gem 'parseconfig'
   gem 'mocha', "~> 0.14.0"
   gem 'rubocop', "0.24.1"
+  gem 'coveralls'
 end

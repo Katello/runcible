@@ -1,6 +1,7 @@
 # Runcible
 
 [![Build Status](https://secure.travis-ci.org/Katello/runcible.png)](http://travis-ci.org/Katello/runcible)
+[![Coverage Status](https://coveralls.io/repos/github/Katello/runcible/badge.svg?branch=master)](https://coveralls.io/github/Katello/runcible?branch=master)
 
 Exposing Pulp's juiciest parts. http://www.pulpproject.org/
 

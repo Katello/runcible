@@ -1,3 +1,18 @@
+if RUBY_VERSION > "2.2"
+  # Coverage - Keep these two lines at the top of this file
+  require 'simplecov'
+  require 'coveralls'
+
+  SimpleCov.formatters = [SimpleCov::Formatter::HTMLFormatter,
+                          Coveralls::SimpleCov::Formatter]
+  SimpleCov.start do
+    minimum_coverage 90
+    refuse_coverage_drop
+    track_files "lib/**/*.rb"
+    add_filter '/test/'
+  end
+end
+
 require 'rubygems'
 require 'logger'
 require 'minitest/unit'
