@@ -4,7 +4,7 @@ require './lib/runcible/extensions/consumer'
 
 class ConsumerSupport
   def initialize
-    @consumer_resource  = TestRuncible.server.resources.consumer
+    @consumer_resource = TestRuncible.server.resources.consumer
   end
 
   def self.consumer_id

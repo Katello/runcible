@@ -6,7 +6,7 @@ module Runcible
     class DockerDistributor < Distributor
       #optional attributes
       attr_accessor 'docker_publish_directory', 'protected',
-                    'redirect_url',  'repo_registry_id'
+                    'redirect_url', 'repo_registry_id'
 
       def initialize(params = {})
         super(params)

@@ -53,7 +53,7 @@ module Extensions
     def test_create_with_distributor_object
       repo_id = RepositorySupport.repo_id + '_distro'
       response = @extension.create_with_distributors(repo_id, [Runcible::Models::PuppetDistributor.new(
-          '/path', true, true, :id => '123')])
+        '/path', true, true, :id => '123')])
       assert_equal 201, response.code
 
       response = @extension.retrieve(repo_id, :details => true)

@@ -3,14 +3,14 @@ module Runcible
     # @see https://pulp-dev-guide.readthedocs.org/en/latest/events/index.html
     class EventNotifier < Runcible::Base
       class EventTypes
-        REPO_SYNC_COMPLETE    = 'repo.sync.finish'
-        REPO_SYNC_START       = 'repo.sync.start'
-        REPO_PUBLISH_COMPLETE = 'repo.publish.finish'
-        REPO_PUBLISH_START    = 'repo.publish.start'
+        REPO_SYNC_COMPLETE    = 'repo.sync.finish'.freeze
+        REPO_SYNC_START       = 'repo.sync.start'.freeze
+        REPO_PUBLISH_COMPLETE = 'repo.publish.finish'.freeze
+        REPO_PUBLISH_START    = 'repo.publish.start'.freeze
       end
 
       class NotifierTypes
-        REST_API = 'http'
+        REST_API = 'http'.freeze
       end
 
       # Generates the API path for Event Notifiers
@@ -18,7 +18,7 @@ module Runcible
       # @param  [String]  id  the ID of the event notifier
       # @return [String]      the event notifier path, may contain the ID if passed
       def self.path(id = nil)
-        (id.nil?) ? 'events/' : "events/#{id}/"
+        id.nil? ? 'events/' : "events/#{id}/"
       end
 
       # Creates an Event Notification

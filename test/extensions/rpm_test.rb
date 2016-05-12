@@ -82,14 +82,15 @@ module Extensions
     end
 
     def test_copy_with_filters
-      response = self.class.extension_class.copy(RepositorySupport.repo_id,
-                                   self.class.clone_name,
-                                   :filters => {
-                                     :unit => {
-                                       '$and' => [{'name' => {'$regex' => 'p.*'}},
-                                                  {'version' => {'$gt' => '1.0'}}]
-                                     }}
-                                   )
+      response = self.class.extension_class.copy(
+        RepositorySupport.repo_id,
+        self.class.clone_name,
+        :filters => {
+          :unit => {
+            '$and' => [{'name' => {'$regex' => 'p.*'}},
+                       {'version' => {'$gt' => '1.0'}}]
+          }}
+      )
       tasks = assert_async_response(response)
       assert_includes tasks.first['tags'], 'pulp:action:associate'
     end

@@ -7,7 +7,7 @@ module Runcible
       # @param  [String]  id  the id of the task
       # @return [String]      the task path, may contain the id if passed
       def self.path(id = nil)
-        (id.nil?) ? 'task_groups/' : "task_groups/#{id}/"
+        id.nil? ? 'task_groups/' : "task_groups/#{id}/"
       end
 
       def self.summary_path(id)

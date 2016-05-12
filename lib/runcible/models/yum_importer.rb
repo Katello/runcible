@@ -1,11 +1,11 @@
 module Runcible
   module Models
     class YumImporter < Importer
-      ID = 'yum_importer'
-      REPO_TYPE = 'rpm-repo'
-      DOWNLOAD_IMMEDIATE = 'immediate'
-      DOWNLOAD_ON_DEMAND = 'on_demand'
-      DOWNLOAD_BACKGROUND = 'background'
+      ID = 'yum_importer'.freeze
+      REPO_TYPE = 'rpm-repo'.freeze
+      DOWNLOAD_IMMEDIATE = 'immediate'.freeze
+      DOWNLOAD_ON_DEMAND = 'on_demand'.freeze
+      DOWNLOAD_BACKGROUND = 'background'.freeze
       DOWNLOAD_POLICIES = [DOWNLOAD_IMMEDIATE, DOWNLOAD_ON_DEMAND, DOWNLOAD_BACKGROUND].freeze
 
       attr_accessor 'download_policy'

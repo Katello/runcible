@@ -1,8 +1,8 @@
 module Runcible
   module Models
     class OstreeImporter < Importer
-      ID = 'ostree_web_importer'
-      REPO_TYPE = 'OSTREE'
+      ID = 'ostree_web_importer'.freeze
+      REPO_TYPE = 'OSTREE'.freeze
 
       attr_accessor 'branches'
 

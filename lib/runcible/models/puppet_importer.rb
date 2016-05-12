@@ -1,8 +1,8 @@
 module Runcible
   module Models
     class PuppetImporter < Importer
-      ID = 'puppet_importer'
-      REPO_TYPE = 'puppet-repo'
+      ID = 'puppet_importer'.freeze
+      REPO_TYPE = 'puppet-repo'.freeze
 
       attr_accessor 'queries'
 

@@ -7,7 +7,7 @@ module Runcible
       # @param  [String]  id  the id of the task
       # @return [String]      the task path, may contain the id if passed
       def self.path(id = nil)
-        (id.nil?) ? 'tasks/' : "tasks/#{id}/"
+        id.nil? ? 'tasks/' : "tasks/#{id}/"
       end
 
       # Polls for the status of a task

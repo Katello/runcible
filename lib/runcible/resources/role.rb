@@ -7,7 +7,7 @@ module Runcible
       # @param  [String]  id  the ID of the role
       # @return [String]      the role path, may contain the ID if passed
       def self.path(id = nil)
-        (id.nil?) ? 'roles/' : "roles/#{id}/"
+        id.nil? ? 'roles/' : "roles/#{id}/"
       end
 
       # Adds a user to a role

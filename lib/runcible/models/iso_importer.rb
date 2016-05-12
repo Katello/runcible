@@ -1,7 +1,7 @@
 module Runcible
   module Models
     class IsoImporter < Importer
-      ID = 'iso_importer'
+      ID = 'iso_importer'.freeze
 
       # Importer Type id
       #

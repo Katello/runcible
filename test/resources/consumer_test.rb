@@ -129,7 +129,7 @@ module Resources
     end
 
     def test_generate_applicability
-      criteria  = {
+      criteria = {
         'consumer_criteria' => { 'filters' => { 'id' => { '$in' => [@consumer_id] } } }
       }
 
@@ -140,11 +140,11 @@ module Resources
     end
 
     def test_applicability
-      criteria  = {
+      criteria = {
         'criteria' => { 'filters' => { 'id' => { '$in' => [@consumer_id] } } },
         'content_types' => [Runcible::Extensions::Errata.content_type]
       }
-      response  = @resource.applicability(criteria)
+      response = @resource.applicability(criteria)
 
       assert_equal 200, response.code
     end
@@ -241,28 +241,28 @@ module Resources
     end
 
     def test_retrieve_bindings
-      response  = @resource.retrieve_bindings(ConsumerSupport.consumer_id)
+      response = @resource.retrieve_bindings(ConsumerSupport.consumer_id)
 
       assert_equal 200, response.code
       refute_empty response
     end
 
     def test_install_units
-      response  = @resource.install_units(ConsumerSupport.consumer_id,
+      response = @resource.install_units(ConsumerSupport.consumer_id,
                                           [{'unit_key' => {:name => 'zsh'}, :type_id => 'rpm'}])
       assert_equal 202, response.code
       refute_empty response
     end
 
     def test_update_units
-      response  = @resource.update_units(ConsumerSupport.consumer_id,
+      response = @resource.update_units(ConsumerSupport.consumer_id,
                                         [{'unit_key' => {:name => 'zsh'}, :type_id => 'rpm'}])
       assert_equal 202, response.code
       refute_empty response
     end
 
     def test_uninstall_units
-      response  = @resource.uninstall_units(ConsumerSupport.consumer_id,
+      response = @resource.uninstall_units(ConsumerSupport.consumer_id,
                                             [{'unit_key' => {:name => 'zsh'}, :type_id => 'rpm'}])
       assert_equal 202, response.code
       refute_empty response

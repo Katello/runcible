@@ -1,16 +1,5 @@
 module Runcible
   class Instance
-    # rubocop:disable Style/ClassVars
-    def self.resource_classes
-      @@resource_classes ||= gather_classes('resources')
-      @@resource_classes
-    end
-
-    def self.extension_classes
-      @@extension_classes ||= gather_classes('extensions')
-      @@extension_classes
-    end
-
     attr_accessor :resources
     attr_accessor :extensions
 
@@ -50,6 +39,29 @@ module Runcible
 
     attr_reader :config
 
+    class << self
+      # rubocop:disable Style/ClassVars
+      def resource_classes
+        @@resource_classes ||= gather_classes('resources')
+        @@resource_classes
+      end
+
+      def extension_classes
+        @@extension_classes ||= gather_classes('extensions')
+        @@extension_classes
+      end
+
+      private
+
+      def gather_classes(type)
+        const = Runcible
+        const = const.const_get(type.camelize)
+        path = File.dirname(__FILE__) + "/#{type}/*.rb"
+        base_names = Dir.glob(path).map { |f| File.basename(f, '.rb') }
+        base_names.map { |name| const.const_get(name.camelize) }
+      end
+    end
+
     private
 
     def initialize_wrappers
@@ -71,14 +83,6 @@ module Runcible
       #converts a class (Runcible::Resources::ConsumerGroup) to a user friendly name:
       #  (e.g. consumer_group)
       class_object.name.split('::').last.underscore
-    end
-
-    def self.gather_classes(type)
-      const = Runcible
-      const = const.const_get(type.camelize)
-      path = File.dirname(__FILE__) + "/#{type}/*.rb"
-      base_names = Dir.glob(path).map { |f| File.basename(f, '.rb')  }
-      base_names.map { |name| const.const_get(name.camelize) }
     end
   end
 

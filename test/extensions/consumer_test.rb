@@ -107,7 +107,7 @@ module Extensions
     end
 
     def test_applicable_errata
-      response  = @extension.applicable_errata([@consumer_id])
+      response = @extension.applicable_errata([@consumer_id])
 
       assert_equal 200, response.code
     end

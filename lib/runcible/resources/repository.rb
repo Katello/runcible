@@ -9,7 +9,7 @@ module Runcible
       # @param  [String]  id  the id of the repository
       # @return [String]      the repository path, may contain the id if passed
       def self.path(id = nil)
-        (id.nil?) ? 'repositories/' : "repositories/#{id}/"
+        id.nil? ? 'repositories/' : "repositories/#{id}/"
       end
 
       # Creates a repository

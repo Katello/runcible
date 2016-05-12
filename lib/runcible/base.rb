@@ -31,16 +31,16 @@ module Runcible
       #on occation path will already have prefix (sync cancel)
       path = clone_config[:api_path] + path unless path.start_with?(clone_config[:api_path])
 
-      RestClient.log    = []
+      RestClient.log = []
       headers = clone_config[:headers].clone
 
       get_params = options[:params] if options[:params]
       path = combine_get_params(path, get_params) if get_params
 
       client_options = {}
-      client_options[:timeout] =  clone_config[:timeout] if clone_config[:timeout]
-      client_options[:open_timeout] =  clone_config[:open_timeout] if clone_config[:open_timeout]
-      client_options[:verify_ssl] =  clone_config[:verify_ssl] unless clone_config[:verify_ssl].nil?
+      client_options[:timeout] = clone_config[:timeout] if clone_config[:timeout]
+      client_options[:open_timeout] = clone_config[:open_timeout] if clone_config[:open_timeout]
+      client_options[:verify_ssl] = clone_config[:verify_ssl] unless clone_config[:verify_ssl].nil?
 
       if clone_config[:oauth]
         headers = add_oauth_header(method, path, headers)
@@ -52,7 +52,7 @@ module Runcible
         client_options[:ssl_client_cert] = clone_config[:cert_auth][:ssl_client_cert]
         client_options[:ssl_client_key] = clone_config[:cert_auth][:ssl_client_key]
       else
-        client_options[:user] =  clone_config[:user]
+        client_options[:user] = clone_config[:user]
         client_options[:password] = config[:http_auth][:password]
       end
 
@@ -83,7 +83,7 @@ module Runcible
     end
 
     def combine_get_params(path, params)
-      query_string  = params.map do |k, v|
+      query_string = params.map do |k, v|
         if v.is_a? Array
           v.map { |y| "#{k}=#{y}" }.join('&')
         else
@@ -105,11 +105,11 @@ module Runcible
     def format_payload_json(payload_hash)
       if payload_hash
         if payload_hash[:optional]
-          if payload_hash[:required]
-            payload = payload_hash[:required].merge(payload_hash[:optional])
-          else
-            payload = payload_hash[:optional]
-          end
+          payload = if payload_hash[:required]
+                      payload_hash[:required].merge(payload_hash[:optional])
+                    else
+                      payload_hash[:optional]
+                    end
         elsif payload_hash[:delta]
           payload = payload_hash
         else
@@ -128,7 +128,7 @@ module Runcible
         if body.respond_to? :with_indifferent_access
           body = body.with_indifferent_access
         elsif body.is_a? Array
-          body = body.map  do |i|
+          body = body.map do |i|
             i.respond_to?(:with_indifferent_access) ? i.with_indifferent_access : i
           end
         end

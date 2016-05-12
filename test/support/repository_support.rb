@@ -3,7 +3,7 @@ require 'rubygems'
 require './lib/runcible'
 
 class RepositorySupport
-  FIXTURE_PATH = '/var/www/repositories'
+  FIXTURE_PATH = '/var/www/repositories'.freeze
 
   @@repo_id        = 'integration_test_id'
   @@repo_name      = @@repo_id
@@ -128,7 +128,7 @@ class RepositorySupport
   end
 
   def wait_on_task(task)
-    until (['finished', 'error', 'timed_out', 'canceled', 'reset'].include?(task['state']))
+    until ['finished', 'error', 'timed_out', 'canceled', 'reset'].include?(task['state'])
       self.sleep_if_needed
       task = @task_resource.poll(task['task_id'])
     end
