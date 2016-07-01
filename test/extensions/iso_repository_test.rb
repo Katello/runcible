@@ -7,7 +7,7 @@ require './lib/runcible'
 module Extensions
   module TestIsoRepositoryBase
     def setup
-      @support = RepositorySupport.new
+      @support = RepositorySupport.new('iso')
       @extension = TestRuncible.server.extensions.repository
     end
   end
@@ -18,7 +18,7 @@ module Extensions
     def setup
       super
       @repo_url = "file://#{RepositorySupport::FIXTURE_PATH}/iso"
-      @repo_id = 'test_repo_iso_fixture'
+      @repo_id = RepositorySupport.repo_id
     end
 
     def teardown
@@ -36,12 +36,24 @@ module Extensions
       response = @extension.retrieve(@repo_id, :details => true)
       assert_equal @repo_id, response['id']
       assert_equal 'iso_importer', response['importers'].first['importer_type_id']
+    end
 
-      response = @extension.sync(@repo_id)
+    def test_sync
+      @support.create_repo(:importer => true)
+      response = @support.sync_repo
       assert_async_response(response)
+    end
 
-      response = @extension.sync_history(@repo_id)
-      assert_equal 'success', response.first['result']
+    def test_file_ids
+      @support.create_and_sync_repo(:importer => true)
+      response = @extension.file_ids(RepositorySupport.repo_id)
+      refute_empty response
+    end
+
+    def test_files
+      @support.create_and_sync_repo(:importer => true)
+      response = @extension.files(RepositorySupport.repo_id)
+      refute_empty response
     end
   end
 end
