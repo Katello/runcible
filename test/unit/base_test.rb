@@ -3,6 +3,7 @@ require 'minitest/autorun'
 require 'minitest/mock'
 require './lib/runcible/base'
 require './test/support/logger_support'
+require 'mocha'
 
 module Base
   class TestBase < MiniTest::Unit::TestCase
@@ -38,6 +39,23 @@ module Base
       data = @my_runcible.process_response(response)
 
       assert_equal 'Test body', data.body
+    end
+
+    def test_process_response_with_null
+      response = OpenStruct.new(:body => 'null')
+      data = @my_runcible.process_response(response)
+
+      assert_equal '', data.body
+    end
+
+    def test_process_response_wont_parse_boolean
+      # if body is parsed into a boolean, it can't be used as a
+      # RestClient::Response since rest-client attempts to extend and alter the
+      # value (which is frozen)
+      response = OpenStruct.new(:body => 'true')
+      data = @my_runcible.process_response(response)
+
+      assert_equal 'true', data.body
     end
 
     def test_verbose_logger

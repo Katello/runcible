@@ -12,4 +12,5 @@ group :test do
   gem 'mocha', "~> 0.14.0"
   gem 'rubocop', "0.39.0"
   gem 'coveralls'
+  gem 'pry'
 end
