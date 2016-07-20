@@ -327,6 +327,26 @@ module Runcible
         update(id, :scratchpad => {:tags => tags})
       end
 
+      # Retrieves the file IDs for a single repository
+      #
+      # @param  [String]                id the ID of the repository
+      # @return [RestClient::Response]  the set of repository file IDs
+      def file_ids(id)
+        criteria = {:type_ids => [Runcible::Extensions::File.content_type],
+                    :fields => {:unit => [], :association => ['unit_id']}}
+
+        unit_search(id, criteria).map { |i| i['unit_id'] }
+      end
+
+      # Retrieves the files for a single repository
+      #
+      # @param  [String]                id the ID of the repository
+      # @return [RestClient::Response]  the set of repository files
+      def files(id)
+        criteria = {:type_ids => [Runcible::Extensions::File.content_type]}
+        unit_search(id, criteria).map { |i| i['metadata'].with_indifferent_access }
+      end
+
       # Creates or updates a sync schedule for a repository
       #
       # @param  [String]                repo_id   the ID of the repository

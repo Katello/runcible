@@ -34,10 +34,10 @@ module Base
     end
 
     def test_process_response_returns_string
-      response = OpenStruct.new(:body => 'true')
+      response = OpenStruct.new(:body => 'Test body')
       data = @my_runcible.process_response(response)
 
-      assert_equal 'true', data.body
+      assert_equal 'Test body', data.body
     end
 
     def test_verbose_logger

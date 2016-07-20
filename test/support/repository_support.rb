@@ -27,6 +27,9 @@ class RepositorySupport
     elsif @repo_type == 'python'
       @distributors = [Runcible::Models::PythonDistributor.new]
       @repo_url     = "https://pypi.python.org"
+    elsif @repo_type == 'iso'
+      @distributors = [Runcible::Models::IsoDistributor.new(true, true, :id => 'iso_distributor')]
+      @repo_url     = "file://#{RepositorySupport::FIXTURE_PATH}/iso"
     elsif @repo_type == 'ostree'
       @distributors  = [Runcible::Models::OstreeDistributor.new(:ostree_publish_directory => '/path',
                                                                 :id => 'ostree_dist',
