@@ -2,204 +2,6 @@
 http_interactions:
 - request:
     method: get
-    uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/repositories/integration_test_id/
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Type:
-      - application/json
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 404
-      message: NOT FOUND
-    headers:
-      Date:
-      - Fri, 29 Apr 2016 16:27:50 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Content-Encoding:
-      - utf-8
-      Content-Length:
-      - '452'
-      Content-Type:
-      - application/json; charset=utf-8
-    body:
-      encoding: UTF-8
-      string: '{"http_request_method": "GET", "exception": null, "error_message":
-        "Missing resource(s): repository=integration_test_id", "_href": "/pulp/api/v2/repositories/integration_test_id/?",
-        "http_status": 404, "error": {"code": "PLP0009", "data": {"resources": {"repository":
-        "integration_test_id"}}, "description": "Missing resource(s): repository=integration_test_id",
-        "sub_errors": []}, "traceback": null, "resources": {"repository": "integration_test_id"}}'
-    http_version: 
-  recorded_at: Fri, 29 Apr 2016 16:27:50 GMT
-- request:
-    method: post
-    uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/repositories/
-    body:
-      encoding: UTF-8
-      string: '{"id":"integration_test_id","importer_type_id":"yum_importer","importer_config":{"feed":"file:///var/www/repositories/zoo5"}}'
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Type:
-      - application/json
-      Content-Length:
-      - '125'
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 201
-      message: CREATED
-    headers:
-      Date:
-      - Fri, 29 Apr 2016 16:27:50 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Content-Length:
-      - '319'
-      Location:
-      - https://runcible.example.com/pulp/api/v2/repositories/integration_test_id/
-      Content-Type:
-      - application/json; charset=utf-8
-    body:
-      encoding: UTF-8
-      string: '{"scratchpad": {}, "display_name": "integration_test_id", "description":
-        null, "last_unit_added": null, "notes": {}, "last_unit_removed": null, "content_unit_counts":
-        {}, "_ns": "repos", "_id": {"$oid": "57238b86aca4886d952eeb1b"}, "id": "integration_test_id",
-        "_href": "/pulp/api/v2/repositories/integration_test_id/"}'
-    http_version: 
-  recorded_at: Fri, 29 Apr 2016 16:27:50 GMT
-- request:
-    method: post
-    uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/repositories/integration_test_id/importers/yum_importer/schedules/sync/
-    body:
-      encoding: UTF-8
-      string: '{"schedule":"2012-09-25T20:44:00Z/P7D"}'
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Type:
-      - application/json
-      Content-Length:
-      - '39'
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 201
-      message: CREATED
-    headers:
-      Date:
-      - Fri, 29 Apr 2016 16:27:50 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Content-Length:
-      - '679'
-      Location:
-      - https://runcible.example.com/pulp/api/v2/repositories/integration_test_id/importers/yum_importer/schedules/sync/57238b86aca4886d952eeb1d/
-      Content-Type:
-      - application/json; charset=utf-8
-    body:
-      encoding: UTF-8
-      string: '{"next_run": "2016-04-29T16:27:50Z", "remaining_runs": null, "last_updated":
-        1461947270.726765, "first_run": "2012-09-25T20:44:00Z", "total_run_count":
-        0, "schedule": "2012-09-25T20:44:00Z/P7D", "kwargs": {"overrides": {}, "scheduled_call_id":
-        "57238b86aca4886d952eeb1d"}, "args": ["integration_test_id"], "enabled": true,
-        "last_run_at": null, "task": "pulp.server.tasks.repository.sync_with_auto_publish",
-        "failure_threshold": null, "resource": "pulp:importer:integration_test_id:yum_importer",
-        "_id": "57238b86aca4886d952eeb1d", "consecutive_failures": 0, "_href": "/pulp/api/v2/repositories/integration_test_id/importers/yum_importer/schedules/sync/57238b86aca4886d952eeb1d/"}'
-    http_version: 
-  recorded_at: Fri, 29 Apr 2016 16:27:50 GMT
-- request:
-    method: get
-    uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/repositories/integration_test_id/importers/yum_importer/schedules/sync/
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Type:
-      - application/json
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Fri, 29 Apr 2016 16:27:50 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Vary:
-      - Accept-Encoding
-      Content-Length:
-      - '681'
-      Content-Type:
-      - application/json; charset=utf-8
-    body:
-      encoding: ASCII-8BIT
-      string: '[{"next_run": "2016-04-29T16:27:50Z", "remaining_runs": null, "last_updated":
-        1461947270.726765, "first_run": "2012-09-25T20:44:00Z", "total_run_count":
-        0, "schedule": "2012-09-25T20:44:00Z/P7D", "kwargs": {"overrides": {}, "scheduled_call_id":
-        "57238b86aca4886d952eeb1d"}, "args": ["integration_test_id"], "enabled": true,
-        "last_run_at": null, "task": "pulp.server.tasks.repository.sync_with_auto_publish",
-        "failure_threshold": null, "resource": "pulp:importer:integration_test_id:yum_importer",
-        "_id": "57238b86aca4886d952eeb1d", "consecutive_failures": 0, "_href": "/pulp/api/v2/repositories/integration_test_id/importers/yum_importer/schedules/sync/57238b86aca4886d952eeb1d/"}]'
-    http_version: 
-  recorded_at: Fri, 29 Apr 2016 16:27:50 GMT
-- request:
-    method: delete
-    uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/repositories/integration_test_id/
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Type:
-      - application/json
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 202
-      message: ACCEPTED
-    headers:
-      Date:
-      - Fri, 29 Apr 2016 16:27:50 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Content-Length:
-      - '172'
-      Content-Type:
-      - application/json; charset=utf-8
-    body:
-      encoding: UTF-8
-      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/2591b3fe-d579-41ca-a829-cde87d8bc19e/",
-        "task_id": "2591b3fe-d579-41ca-a829-cde87d8bc19e"}], "result": null, "error":
-        null}'
-    http_version: 
-  recorded_at: Fri, 29 Apr 2016 16:27:51 GMT
-- request:
-    method: get
     uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/tasks/2591b3fe-d579-41ca-a829-cde87d8bc19e/
     body:
       encoding: US-ASCII
@@ -241,4 +43,288 @@ http_interactions:
         "id": "57238b87898f5c862fa3eca3"}'
     http_version: 
   recorded_at: Fri, 29 Apr 2016 16:27:51 GMT
-recorded_with: VCR 3.0.1
+- request:
+    method: get
+    uri: https://admin:8hPtEyo9rgBhv2ahMTYH9Xqsp3WX5rcj@runcible.example.com/pulp/api/v2/tasks/fc43a669-6930-4c68-a45c-623fd6a39537/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 26 Jul 2016 19:20:46 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '684'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"exception": null, "task_type": "pulp.server.tasks.repository.delete",
+        "_href": "/pulp/api/v2/tasks/fc43a669-6930-4c68-a45c-623fd6a39537/", "task_id":
+        "fc43a669-6930-4c68-a45c-623fd6a39537", "tags": ["pulp:repository:integration_test_id",
+        "pulp:action:delete"], "finish_time": "2016-07-26T19:20:45Z", "_ns": "task_status",
+        "start_time": "2016-07-26T19:20:45Z", "traceback": null, "spawned_tasks":
+        [], "progress_report": {}, "queue": "reserved_resource_worker-0@runcible.example.com.dq",
+        "state": "finished", "worker_name": "reserved_resource_worker-0@runcible.example.com",
+        "result": null, "error": null, "_id": {"$oid": "5797b80dd5c469f4207bd3c0"},
+        "id": "5797b80dd5c469f4207bd3c0"}'
+    http_version: 
+  recorded_at: Tue, 26 Jul 2016 19:20:46 GMT
+- request:
+    method: get
+    uri: https://admin:8hPtEyo9rgBhv2ahMTYH9Xqsp3WX5rcj@runcible.example.com/pulp/api/v2/repositories/integration_test_id/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 404
+      message: NOT FOUND
+    headers:
+      Date:
+      - Tue, 26 Jul 2016 20:05:28 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Encoding:
+      - utf-8
+      Content-Length:
+      - '452'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"http_request_method": "GET", "exception": null, "error_message":
+        "Missing resource(s): repository=integration_test_id", "_href": "/pulp/api/v2/repositories/integration_test_id/?",
+        "http_status": 404, "error": {"code": "PLP0009", "data": {"resources": {"repository":
+        "integration_test_id"}}, "description": "Missing resource(s): repository=integration_test_id",
+        "sub_errors": []}, "traceback": null, "resources": {"repository": "integration_test_id"}}'
+    http_version: 
+  recorded_at: Tue, 26 Jul 2016 20:05:28 GMT
+- request:
+    method: post
+    uri: https://admin:8hPtEyo9rgBhv2ahMTYH9Xqsp3WX5rcj@runcible.example.com/pulp/api/v2/repositories/
+    body:
+      encoding: UTF-8
+      string: '{"id":"integration_test_id","importer_type_id":"yum_importer","importer_config":{"feed":"file:///var/www/repositories/zoo5"}}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '125'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 201
+      message: CREATED
+    headers:
+      Date:
+      - Tue, 26 Jul 2016 20:05:28 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '319'
+      Location:
+      - https://runcible.example.com/pulp/api/v2/repositories/integration_test_id/
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"scratchpad": {}, "display_name": "integration_test_id", "description":
+        null, "last_unit_added": null, "notes": {}, "last_unit_removed": null, "content_unit_counts":
+        {}, "_ns": "repos", "_id": {"$oid": "5797c288aca4887c74aca433"}, "id": "integration_test_id",
+        "_href": "/pulp/api/v2/repositories/integration_test_id/"}'
+    http_version: 
+  recorded_at: Tue, 26 Jul 2016 20:05:28 GMT
+- request:
+    method: post
+    uri: https://admin:8hPtEyo9rgBhv2ahMTYH9Xqsp3WX5rcj@runcible.example.com/pulp/api/v2/repositories/integration_test_id/importers/yum_importer/schedules/sync/
+    body:
+      encoding: UTF-8
+      string: '{"schedule":"2012-09-25T20:44:00Z/P7D"}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '39'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 201
+      message: CREATED
+    headers:
+      Date:
+      - Tue, 26 Jul 2016 20:05:28 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '679'
+      Location:
+      - https://runcible.example.com/pulp/api/v2/repositories/integration_test_id/importers/yum_importer/schedules/sync/5797c288aca4887c74aca435/
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"next_run": "2016-07-26T20:05:28Z", "remaining_runs": null, "last_updated":
+        1469563528.356234, "first_run": "2012-09-25T20:44:00Z", "total_run_count":
+        0, "schedule": "2012-09-25T20:44:00Z/P7D", "kwargs": {"overrides": {}, "scheduled_call_id":
+        "5797c288aca4887c74aca435"}, "args": ["integration_test_id"], "enabled": true,
+        "last_run_at": null, "task": "pulp.server.tasks.repository.sync_with_auto_publish",
+        "failure_threshold": null, "resource": "pulp:importer:integration_test_id:yum_importer",
+        "_id": "5797c288aca4887c74aca435", "consecutive_failures": 0, "_href": "/pulp/api/v2/repositories/integration_test_id/importers/yum_importer/schedules/sync/5797c288aca4887c74aca435/"}'
+    http_version: 
+  recorded_at: Tue, 26 Jul 2016 20:05:28 GMT
+- request:
+    method: get
+    uri: https://admin:8hPtEyo9rgBhv2ahMTYH9Xqsp3WX5rcj@runcible.example.com/pulp/api/v2/repositories/integration_test_id/importers/yum_importer/schedules/sync/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 26 Jul 2016 20:05:28 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '681'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '[{"next_run": "2016-07-26T20:05:28Z", "remaining_runs": null, "last_updated":
+        1469563528.356234, "first_run": "2012-09-25T20:44:00Z", "total_run_count":
+        0, "schedule": "2012-09-25T20:44:00Z/P7D", "kwargs": {"overrides": {}, "scheduled_call_id":
+        "5797c288aca4887c74aca435"}, "args": ["integration_test_id"], "enabled": true,
+        "last_run_at": null, "task": "pulp.server.tasks.repository.sync_with_auto_publish",
+        "failure_threshold": null, "resource": "pulp:importer:integration_test_id:yum_importer",
+        "_id": "5797c288aca4887c74aca435", "consecutive_failures": 0, "_href": "/pulp/api/v2/repositories/integration_test_id/importers/yum_importer/schedules/sync/5797c288aca4887c74aca435/"}]'
+    http_version: 
+  recorded_at: Tue, 26 Jul 2016 20:05:28 GMT
+- request:
+    method: delete
+    uri: https://admin:8hPtEyo9rgBhv2ahMTYH9Xqsp3WX5rcj@runcible.example.com/pulp/api/v2/repositories/integration_test_id/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 202
+      message: ACCEPTED
+    headers:
+      Date:
+      - Tue, 26 Jul 2016 20:05:28 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '172'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/1ec5fade-3210-4356-8f9c-ca23baf4a731/",
+        "task_id": "1ec5fade-3210-4356-8f9c-ca23baf4a731"}], "result": null, "error":
+        null}'
+    http_version: 
+  recorded_at: Tue, 26 Jul 2016 20:05:28 GMT
+- request:
+    method: get
+    uri: https://admin:8hPtEyo9rgBhv2ahMTYH9Xqsp3WX5rcj@runcible.example.com/pulp/api/v2/tasks/1ec5fade-3210-4356-8f9c-ca23baf4a731/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 26 Jul 2016 20:05:29 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '684'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"exception": null, "task_type": "pulp.server.tasks.repository.delete",
+        "_href": "/pulp/api/v2/tasks/1ec5fade-3210-4356-8f9c-ca23baf4a731/", "task_id":
+        "1ec5fade-3210-4356-8f9c-ca23baf4a731", "tags": ["pulp:repository:integration_test_id",
+        "pulp:action:delete"], "finish_time": "2016-07-26T20:05:28Z", "_ns": "task_status",
+        "start_time": "2016-07-26T20:05:28Z", "traceback": null, "spawned_tasks":
+        [], "progress_report": {}, "queue": "reserved_resource_worker-0@runcible.example.com.dq",
+        "state": "finished", "worker_name": "reserved_resource_worker-0@runcible.example.com",
+        "result": null, "error": null, "_id": {"$oid": "5797c288d5c469f4207bd76d"},
+        "id": "5797c288d5c469f4207bd76d"}'
+    http_version: 
+  recorded_at: Tue, 26 Jul 2016 20:05:29 GMT
+recorded_with: VCR 3.0.3
