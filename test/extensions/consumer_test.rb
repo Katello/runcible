@@ -111,6 +111,12 @@ module Extensions
 
       assert_equal 200, response.code
     end
+
+    def test_applicable_rpms
+      response = @extension.applicable_rpms([@consumer_id])
+
+      assert_equal 200, response.code
+    end
   end
 
   class TestConsumerApplicabilityScenario < MiniTest::Unit::TestCase

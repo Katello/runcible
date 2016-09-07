@@ -141,22 +141,30 @@ module Runcible
       # Retrieve the set of errata that is applicable to a consumer(s)
       #
       # @param  [String, Array]         ids             string containing a single consumer id or an array of ids
-      # @param  [Array]                 repoids         array of repository ids
-      # @param  [Boolean]               consumer_report if true, result will list consumers and their
-      #                                                 applicable errata; otherwise, it will list
-      #                                                 errata and the consumers they are applicable to
       # @return [RestClient::Response]  content applicability hash with details of errata available to consumer(s)
       def applicable_errata(ids)
+        applicable_for_type(ids, Runcible::Extensions::Errata.content_type)
+      end
+
+      # Retrieve the set of rpms that are applicable to a consumer(s)
+      #
+      # @param  [String, Array]         ids             string containing a single consumer id or an array of ids
+      # @return [RestClient::Response]  content applicability hash with details of rpms available to consumer(s)
+      def applicable_rpms(ids)
+        applicable_for_type(ids, Runcible::Extensions::Rpm.content_type)
+      end
+
+      private
+
+      def applicable_for_type(ids, type)
         ids = [ids] if ids.is_a? String
 
         criteria = {
           'criteria' => { 'filters' => { 'id' => { '$in' => ids } } },
-          'content_types' => [Runcible::Extensions::Errata.content_type]
+          'content_types' => [type]
         }
         applicability(criteria)
       end
-
-      private
 
       def repository_extension
         Runcible::Extensions::Repository.new(self.config)
