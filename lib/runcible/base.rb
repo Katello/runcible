@@ -56,7 +56,7 @@ module Runcible
         client_options[:password] = config[:http_auth][:password]
       end
 
-      client_options[:ca_file] = config[:ca_cert_file] unless config[:ca_cert_file].nil?
+      client_options[:ssl_ca_file] = config[:ca_cert_file] unless config[:ca_cert_file].nil?
       client = RestClient::Resource.new(clone_config[:url], client_options)
 
       args = [method]
