@@ -5,7 +5,7 @@
 
 Exposing Pulp's juiciest parts. http://www.pulpproject.org/
 
-Latest Live Tested Version: **pulp-server-2.8.3-0.1.beta.el7.noarch**
+Latest Live Tested Version: **pulp-server-2.9.1-1.el7.noarch**
 
 Current stable Runcible: https://github.com/Katello/runcible/tree/0.3
 

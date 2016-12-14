@@ -1,41 +1,6 @@
 ---
 http_interactions:
 - request:
-    method: post
-    uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/repositories/actions/content/regenerate_applicability//
-    body:
-      encoding: UTF-8
-      string: '{"parallel":true,"repo_criteria":{"filters":{"id":{"$in":["integration_test_id"]}}}}'
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Type:
-      - application/json
-      Content-Length:
-      - '84'
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 202
-      message: ACCEPTED
-    headers:
-      Date:
-      - Fri, 29 Apr 2016 16:28:47 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Content-Length:
-      - '127'
-      Content-Type:
-      - application/json; charset=utf-8
-    body:
-      encoding: UTF-8
-      string: '{"group_id": "0da289ee-171b-46e0-b9cc-2694aede81ba", "_href": "/pulp/api/v2/task_groups/0da289ee-171b-46e0-b9cc-2694aede81ba/"}'
-    http_version: 
-  recorded_at: Fri, 29 Apr 2016 16:28:47 GMT
-- request:
     method: get
     uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/task_groups/0da289ee-171b-46e0-b9cc-2694aede81ba/state_summary/
     body:
@@ -71,4 +36,111 @@ http_interactions:
         0, "skipped": 0, "suspended": 0, "error": 0, "total": 1}'
     http_version: 
   recorded_at: Fri, 29 Apr 2016 16:28:47 GMT
-recorded_with: VCR 3.0.1
+- request:
+    method: get
+    uri: https://admin:8hPtEyo9rgBhv2ahMTYH9Xqsp3WX5rcj@runcible.example.com/pulp/api/v2/task_groups/07090fb9-1a27-4dcd-8933-8ee1f71adaad/state_summary/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 26 Jul 2016 19:21:27 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '127'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"accepted": 0, "finished": 1, "running": 0, "canceled": 0, "waiting":
+        0, "skipped": 0, "suspended": 0, "error": 0, "total": 1}'
+    http_version: 
+  recorded_at: Tue, 26 Jul 2016 19:21:27 GMT
+- request:
+    method: post
+    uri: https://admin:8hPtEyo9rgBhv2ahMTYH9Xqsp3WX5rcj@runcible.example.com/pulp/api/v2/repositories/actions/content/regenerate_applicability//
+    body:
+      encoding: UTF-8
+      string: '{"parallel":true,"repo_criteria":{"filters":{"id":{"$in":["integration_test_id"]}}}}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '84'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 202
+      message: ACCEPTED
+    headers:
+      Date:
+      - Tue, 26 Jul 2016 20:06:12 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '127'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"group_id": "8b64ecdb-560d-4fe0-8dc9-dee8b39d1848", "_href": "/pulp/api/v2/task_groups/8b64ecdb-560d-4fe0-8dc9-dee8b39d1848/"}'
+    http_version: 
+  recorded_at: Tue, 26 Jul 2016 20:06:12 GMT
+- request:
+    method: get
+    uri: https://admin:8hPtEyo9rgBhv2ahMTYH9Xqsp3WX5rcj@runcible.example.com/pulp/api/v2/task_groups/8b64ecdb-560d-4fe0-8dc9-dee8b39d1848/state_summary/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 26 Jul 2016 20:06:12 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '127'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"accepted": 0, "finished": 1, "running": 0, "canceled": 0, "waiting":
+        0, "skipped": 0, "suspended": 0, "error": 0, "total": 1}'
+    http_version: 
+  recorded_at: Tue, 26 Jul 2016 20:06:12 GMT
+recorded_with: VCR 3.0.3
