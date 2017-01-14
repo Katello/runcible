@@ -4,7 +4,7 @@ module Runcible
       ID = 'ostree_web_importer'.freeze
       REPO_TYPE = 'OSTREE'.freeze
 
-      attr_accessor 'branches'
+      attr_accessor 'branches', 'depth'
 
       def id
         OstreeImporter::ID

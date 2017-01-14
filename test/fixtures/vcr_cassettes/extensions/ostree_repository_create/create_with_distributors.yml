@@ -1,81 +1,6 @@
 ---
 http_interactions:
 - request:
-    method: post
-    uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/repositories/
-    body:
-      encoding: UTF-8
-      string: '{"id":"integration_test_id","distributors":[{"distributor_type_id":"ostree_web_distributor","distributor_config":{"ostree_publish_directory":"/path"},"auto_publish":true,"distributor_id":"123"}]}'
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Type:
-      - application/json
-      Content-Length:
-      - '195'
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 201
-      message: CREATED
-    headers:
-      Date:
-      - Fri, 29 Apr 2016 16:21:37 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Content-Length:
-      - '319'
-      Location:
-      - https://runcible.example.com/pulp/api/v2/repositories/integration_test_id/
-      Content-Type:
-      - application/json; charset=utf-8
-    body:
-      encoding: UTF-8
-      string: '{"scratchpad": {}, "display_name": "integration_test_id", "description":
-        null, "last_unit_added": null, "notes": {}, "last_unit_removed": null, "content_unit_counts":
-        {}, "_ns": "repos", "_id": {"$oid": "57238a11aca4886d96d97ebe"}, "id": "integration_test_id",
-        "_href": "/pulp/api/v2/repositories/integration_test_id/"}'
-    http_version: 
-  recorded_at: Fri, 29 Apr 2016 16:21:37 GMT
-- request:
-    method: delete
-    uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/repositories/integration_test_id/
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Type:
-      - application/json
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 202
-      message: ACCEPTED
-    headers:
-      Date:
-      - Fri, 29 Apr 2016 16:21:37 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Content-Length:
-      - '172'
-      Content-Type:
-      - application/json; charset=utf-8
-    body:
-      encoding: UTF-8
-      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/6bf88f13-ec96-4bbd-a9d1-350aaddf7217/",
-        "task_id": "6bf88f13-ec96-4bbd-a9d1-350aaddf7217"}], "result": null, "error":
-        null}'
-    http_version: 
-  recorded_at: Fri, 29 Apr 2016 16:21:38 GMT
-- request:
     method: get
     uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/tasks/6bf88f13-ec96-4bbd-a9d1-350aaddf7217/
     body:
@@ -118,4 +43,263 @@ http_interactions:
         "id": "57238a11898f5c862fa3ea7e"}'
     http_version: 
   recorded_at: Fri, 29 Apr 2016 16:21:38 GMT
-recorded_with: VCR 3.0.1
+- request:
+    method: get
+    uri: https://admin:admin@obelix.example.com/pulp/api/v2/tasks/eb6203dc-34df-4bcf-8f0a-77839e07fa1a/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 01 Feb 2017 12:26:47 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '680'
+      Connection:
+      - close
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"exception": null, "task_type": "pulp.server.tasks.repository.delete",
+        "_href": "/pulp/api/v2/tasks/eb6203dc-34df-4bcf-8f0a-77839e07fa1a/", "task_id":
+        "eb6203dc-34df-4bcf-8f0a-77839e07fa1a", "tags": ["pulp:repository:integration_test_id",
+        "pulp:action:delete"], "finish_time": "2017-02-01T12:26:46Z", "_ns": "task_status",
+        "start_time": "2017-02-01T12:26:46Z", "traceback": null, "spawned_tasks":
+        [], "progress_report": {}, "queue": "reserved_resource_worker-1@obelix.example.com.dq",
+        "state": "finished", "worker_name": "reserved_resource_worker-1@obelix.example.com",
+        "result": null, "error": null, "_id": {"$oid": "5891d4064b92d9e3004e81c2"},
+        "id": "5891d4064b92d9e3004e81c2"}'
+    http_version: 
+  recorded_at: Wed, 01 Feb 2017 12:26:47 GMT
+- request:
+    method: get
+    uri: https://admin:admin@obelix.example.com/pulp/api/v2/tasks/671c592e-935a-412c-9687-54cd93bb1306/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 01 Feb 2017 12:28:32 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '680'
+      Connection:
+      - close
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"exception": null, "task_type": "pulp.server.tasks.repository.delete",
+        "_href": "/pulp/api/v2/tasks/671c592e-935a-412c-9687-54cd93bb1306/", "task_id":
+        "671c592e-935a-412c-9687-54cd93bb1306", "tags": ["pulp:repository:integration_test_id",
+        "pulp:action:delete"], "finish_time": "2017-02-01T12:28:32Z", "_ns": "task_status",
+        "start_time": "2017-02-01T12:28:32Z", "traceback": null, "spawned_tasks":
+        [], "progress_report": {}, "queue": "reserved_resource_worker-1@obelix.example.com.dq",
+        "state": "finished", "worker_name": "reserved_resource_worker-1@obelix.example.com",
+        "result": null, "error": null, "_id": {"$oid": "5891d4704b92d9e3004e81cb"},
+        "id": "5891d4704b92d9e3004e81cb"}'
+    http_version: 
+  recorded_at: Wed, 01 Feb 2017 12:28:32 GMT
+- request:
+    method: get
+    uri: https://admin:admin@obelix.example.com/pulp/api/v2/tasks/e429cc71-2f2c-4423-ae56-39eadd770189/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 01 Feb 2017 12:28:57 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '680'
+      Connection:
+      - close
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"exception": null, "task_type": "pulp.server.tasks.repository.delete",
+        "_href": "/pulp/api/v2/tasks/e429cc71-2f2c-4423-ae56-39eadd770189/", "task_id":
+        "e429cc71-2f2c-4423-ae56-39eadd770189", "tags": ["pulp:repository:integration_test_id",
+        "pulp:action:delete"], "finish_time": "2017-02-01T12:28:57Z", "_ns": "task_status",
+        "start_time": "2017-02-01T12:28:57Z", "traceback": null, "spawned_tasks":
+        [], "progress_report": {}, "queue": "reserved_resource_worker-1@obelix.example.com.dq",
+        "state": "finished", "worker_name": "reserved_resource_worker-1@obelix.example.com",
+        "result": null, "error": null, "_id": {"$oid": "5891d4894b92d9e3004e81d2"},
+        "id": "5891d4894b92d9e3004e81d2"}'
+    http_version: 
+  recorded_at: Wed, 01 Feb 2017 12:28:58 GMT
+- request:
+    method: post
+    uri: https://admin:admin@obelix.example.com/pulp/api/v2/repositories/
+    body:
+      encoding: UTF-8
+      string: '{"id":"integration_test_id","distributors":[{"distributor_type_id":"ostree_web_distributor","distributor_config":{"ostree_publish_directory":"/path"},"auto_publish":true,"distributor_id":"123"}]}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '195'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 201
+      message: CREATED
+    headers:
+      Date:
+      - Wed, 01 Feb 2017 12:30:51 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '319'
+      Location:
+      - https://obelix.example.com/pulp/api/v2/repositories/integration_test_id/
+      Connection:
+      - close
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"scratchpad": {}, "display_name": "integration_test_id", "description":
+        null, "last_unit_added": null, "notes": {}, "last_unit_removed": null, "content_unit_counts":
+        {}, "_ns": "repos", "_id": {"$oid": "5891d4fb70be6f18c78ca851"}, "id": "integration_test_id",
+        "_href": "/pulp/api/v2/repositories/integration_test_id/"}'
+    http_version: 
+  recorded_at: Wed, 01 Feb 2017 12:30:51 GMT
+- request:
+    method: delete
+    uri: https://admin:admin@obelix.example.com/pulp/api/v2/repositories/integration_test_id/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 202
+      message: ACCEPTED
+    headers:
+      Date:
+      - Wed, 01 Feb 2017 12:30:51 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '172'
+      Connection:
+      - close
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/96211d69-88bb-4475-a460-41b482ed1fcb/",
+        "task_id": "96211d69-88bb-4475-a460-41b482ed1fcb"}], "result": null, "error":
+        null}'
+    http_version: 
+  recorded_at: Wed, 01 Feb 2017 12:30:51 GMT
+- request:
+    method: get
+    uri: https://admin:admin@obelix.example.com/pulp/api/v2/tasks/96211d69-88bb-4475-a460-41b482ed1fcb/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 01 Feb 2017 12:30:52 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '680'
+      Connection:
+      - close
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"exception": null, "task_type": "pulp.server.tasks.repository.delete",
+        "_href": "/pulp/api/v2/tasks/96211d69-88bb-4475-a460-41b482ed1fcb/", "task_id":
+        "96211d69-88bb-4475-a460-41b482ed1fcb", "tags": ["pulp:repository:integration_test_id",
+        "pulp:action:delete"], "finish_time": "2017-02-01T12:30:51Z", "_ns": "task_status",
+        "start_time": "2017-02-01T12:30:51Z", "traceback": null, "spawned_tasks":
+        [], "progress_report": {}, "queue": "reserved_resource_worker-1@obelix.example.com.dq",
+        "state": "finished", "worker_name": "reserved_resource_worker-1@obelix.example.com",
+        "result": null, "error": null, "_id": {"$oid": "5891d4fb4b92d9e3004e81dd"},
+        "id": "5891d4fb4b92d9e3004e81dd"}'
+    http_version: 
+  recorded_at: Wed, 01 Feb 2017 12:30:52 GMT
+recorded_with: VCR 3.0.3
