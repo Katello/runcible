@@ -2,7 +2,7 @@ require 'active_support/core_ext/hash'
 
 module Runcible
   module Resources
-    # @see https://pulp-dev-guide.readthedocs.org/en/latest/integration/rest-api/repo/groups/
+    # @see https://docs.pulpproject.org/dev-guide/integration/integration/rest-api/repo/groups/
     class RepositoryGroup < Runcible::Base
       # Generates the API path for Repository Groups
       #

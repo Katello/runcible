@@ -2,7 +2,7 @@ require 'active_support/core_ext/hash'
 
 module Runcible
   module Resources
-    # @see https://pulp-dev-guide.readthedocs.org/en/latest/rest-api/repo/sync.html#scheduling-a-sync
+    # @see https://docs.pulpproject.org/dev-guide/integration/rest-api/repo/sync.html#scheduling-a-sync
     class RepositorySchedule < Runcible::Base
       # Generates the API path for Repository Schedules
       #

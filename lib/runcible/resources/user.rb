@@ -1,6 +1,6 @@
 module Runcible
   module Resources
-    # @see https://pulp-dev-guide.readthedocs.org/en/latest/rest-api/user/index.html
+    # @see https://docs.pulpproject.org/dev-guide/integration/rest-api/user/index.html
     class User < Runcible::Base
       # Generates the API path for Users
       #

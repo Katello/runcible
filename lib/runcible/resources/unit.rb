@@ -1,6 +1,6 @@
 module Runcible
   module Resources
-    # @see https://pulp-dev-guide.readthedocs.org/en/latest/rest-api/content/index.html
+    # @see https://docs.pulpproject.org/dev-guide/integration/rest-api/content/index.html
     class Unit < Runcible::Base
       # Generates the API path for Units
       #
