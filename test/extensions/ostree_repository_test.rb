@@ -85,12 +85,15 @@ module Extensions
     def test_create_with_importer_and_distributors_objects
       distributors = [Runcible::Models::OstreeDistributor.new(:id => '123')]
       importer = Runcible::Models::OstreeImporter.new
+      depth = -1
+      importer.depth = depth
       response = @extension.create_with_importer_and_distributors(RepositorySupport.repo_id, importer, distributors)
       assert_equal 201, response.code
 
       response = @extension.retrieve(RepositorySupport.repo_id, :details => true)
       assert_equal RepositorySupport.repo_id, response['id']
       assert_equal 'ostree_web_importer', response['importers'].first['importer_type_id']
+      assert_equal depth, response['importers'].first['config']['depth']
     end
   end
 
