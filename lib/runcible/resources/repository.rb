@@ -98,6 +98,15 @@ module Runcible
         call(:post, "#{path(id)}actions/sync/", :payload => { :optional => optional })
       end
 
+      # Downloads all units in a repository (useful in the case of on_demand repositories)
+      #
+      # @param  [String]                id        the id of the repository
+      # @param  [Hash]                  optional  container for all optional parameters
+      # @return [RestClient::Response]
+      def download(id, optional = {})
+        call(:post, "#{path(id)}actions/download/", :payload => { :optional => optional })
+      end
+
       # History of all sync actions on a repository
       #
       # @param  [String]                id  the id of the repository
