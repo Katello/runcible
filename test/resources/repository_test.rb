@@ -275,6 +275,13 @@ module Resources
       assert_includes tasks.first['tags'], 'pulp:action:publish'
     end
 
+    def test_download
+      response = @resource.download(RepositorySupport.repo_id)
+
+      tasks = assert_async_response(response)
+      assert_includes tasks.first['tags'], 'pulp:action:download'
+    end
+
     def test_unassociate_units
       response = @resource.unassociate_units(RepositorySupport.repo_id, {})
 
