@@ -4,7 +4,7 @@ require 'securerandom'
 module Runcible
   module Models
     class OstreeDistributor < Distributor
-      attr_accessor 'ostree_publish_directory', 'relative_path'
+      attr_accessor 'ostree_publish_directory', 'relative_path', 'depth'
 
       def initialize(params = {})
         super(params)
