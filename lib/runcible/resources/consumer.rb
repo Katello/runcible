@@ -146,6 +146,16 @@ module Runcible
         call(:post, path('actions/content/regenerate_applicability/'), :payload => { :required => options})
       end
 
+      # (Re)Generate applicability for a single consumer. This does not cause a
+      # pulp lock, see https://pulp.plan.io/issues/1173#note-12
+      #
+      # @param  [String]               id      the ID of the consumer
+      # @param  [Hash]                 options payload representing criteria
+      # @return [RestClient::Response]
+      def regenerate_applicability_by_id(id, options = {})
+        call(:post, path(id) + 'actions/content/regenerate_applicability/', :payload => { :required => options})
+      end
+
       # retrieve the applicability for some set of consumers
       #
       # @param  [Hash]                  options hash representing criteria

@@ -139,6 +139,13 @@ module Resources
       assert 'finished', task.first['state']
     end
 
+    def test_generate_applicability_one_id
+      response = @resource.regenerate_applicability_by_id(@consumer_id)
+      assert_equal 202, response.code
+      task = RepositorySupport.new.wait_on_response(response)
+      assert 'finished', task.first['state']
+    end
+
     def test_applicability
       criteria = {
         'criteria' => { 'filters' => { 'id' => { '$in' => [@consumer_id] } } },
