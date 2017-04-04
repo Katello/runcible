@@ -124,14 +124,20 @@ module Runcible
 
     def process_response(response)
       begin
-        body = response.body == "null" ? nil : JSON.parse(response.body)
-        if body.respond_to? :with_indifferent_access
-          body = body.with_indifferent_access
-        elsif body.is_a? Array
-          body = body.map do |i|
-            i.respond_to?(:with_indifferent_access) ? i.with_indifferent_access : i
-          end
-        end
+        body = JSON.parse(response.body)
+        body = case body
+               when Hash
+                 body.respond_to?(:with_indifferent_access) ? body.with_indifferent_access : body
+               when Array
+                 body.map do |val|
+                   val.respond_to?(:with_indifferent_access) ? val.with_indifferent_access : val
+                 end
+               when NilClass
+                 ''
+               else # boolean, numeric, etc
+                 response.body
+               end
+
         response = rest_client_response(body, response.net_http_res, response.args)
       rescue JSON::ParserError
         log_exception
