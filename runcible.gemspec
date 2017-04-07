@@ -16,7 +16,7 @@ Gem::Specification.new do |gem|
   gem.version       = Runcible::VERSION
 
   gem.add_dependency('json')
-  gem.add_dependency('rest-client', ['>= 1.6.1', '< 2.0.0'])
+  gem.add_dependency('rest-client', ['>= 1.6.1', '< 3.0.0'])
   gem.add_dependency('oauth')
   gem.add_dependency('activesupport', '>= 3.0.10')
   gem.add_dependency('i18n', '>= 0.5.0')
