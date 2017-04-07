@@ -133,9 +133,7 @@ module Extensions
         'yum_importer',
         '2012-10-25T20:44:00Z/P7D'
       )
-      response = @extension.remove_schedules(RepositorySupport.repo_id, 'yum_importer')
-
-      assert_equal 200, response.code
+      @extension.remove_schedules(RepositorySupport.repo_id, 'yum_importer')
     end
 
     def test_retrieve_with_details

@@ -75,8 +75,8 @@ module Runcible
     end
 
     def get_response(client, path, *args)
-      client[path].send(*args) do |response, request, result, &_block|
-        resp = response.return!(request, result)
+      client[path].send(*args) do |response, _request, _result, &_block|
+        resp = response.return!
         log_debug
         return resp
       end
@@ -132,20 +132,12 @@ module Runcible
             i.respond_to?(:with_indifferent_access) ? i.with_indifferent_access : i
           end
         end
-        response = rest_client_response(body, response.net_http_res, response.args)
+        response = Runcible::Response.new(body, response)
       rescue JSON::ParserError
         log_exception
       end
 
       return response
-    end
-
-    def rest_client_response(body, net_http_res, args)
-      if Gem.loaded_specs['rest-client'].version < Gem::Version.create('1.8.0')
-        RestClient::Response.create(body, net_http_res, args)
-      else
-        RestClient::Response.create(body, net_http_res, args, nil)
-      end
     end
 
     def required_params(local_names, binding, keys_to_remove = [])
