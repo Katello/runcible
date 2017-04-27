@@ -26,11 +26,23 @@ module Base
     end
 
     def test_process_response_returns_hash
-      json = { :a => 'test', :b => 'data' }.to_json
+      body = { 'a' => 'test', 'b' => 'data' }
+      json = body.to_json
       response = OpenStruct.new(:body => json)
       data = @my_runcible.process_response(response)
 
       assert_equal 'test', data.body['a']
+      assert_equal body, data.to_hash
+    end
+
+    def test_process_response_returns_nil
+      body = nil
+      json = nil.to_json
+
+      response = OpenStruct.new(:body => json)
+      data = @my_runcible.process_response(response)
+
+      assert_equal body, data.to_hash
     end
 
     def test_process_response_returns_string
