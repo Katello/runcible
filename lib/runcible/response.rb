@@ -23,6 +23,10 @@ module Runcible
       @parsed_body
     end
 
+    def to_hash
+      self.parsed_body.try(:to_hash)
+    end
+
     def method_missing(name, *args, &block)
       if @parsed_body.respond_to?(name)
         @parsed_body.send(name, *args, &block)
