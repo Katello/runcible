@@ -32,6 +32,13 @@ module Runcible
         end
         sum == summary_report["total"]
       end
+
+      # cancel a task group
+      # @param  [String] id  the id of the task
+      # @return [RestClient::Response]
+      def cancel(id)
+        call(:delete, path(id))
+      end
     end
   end
 end
