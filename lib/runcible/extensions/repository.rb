@@ -278,6 +278,26 @@ module Runcible
         unit_search(id, criteria).map { |i| i['metadata'].with_indifferent_access }
       end
 
+      # Retrieves the docker manifest list IDs for a single repository
+      #
+      # @param  [String]                id the ID of the repository
+      # @return [RestClient::Response]  the set of repository docker manifest IDs
+      def docker_manifest_list_ids(id)
+        criteria = {:type_ids => [Runcible::Extensions::DockerManifestList.content_type],
+                    :fields => {:unit => [], :association => ['unit_id']}}
+
+        unit_search(id, criteria).map { |i| i['unit_id'] }
+      end
+
+      # Retrieves the docker manifest lists for a single repository
+      #
+      # @param  [String]                id the ID of the repository
+      # @return [RestClient::Response]  the set of repository docker manifests
+      def docker_manifest_lists(id)
+        criteria = {:type_ids => [Runcible::Extensions::DockerManifestList.content_type]}
+        unit_search(id, criteria).map { |i| i['metadata'].with_indifferent_access }
+      end
+
       # Retrieves the docker tag IDs for a single repository
       #
       # @param  [String]                id the ID of the repository
