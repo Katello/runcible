@@ -43,6 +43,7 @@ module Runcible
       client_options[:verify_ssl] = clone_config[:verify_ssl] unless clone_config[:verify_ssl].nil?
 
       if clone_config[:oauth]
+        self.logger.warn('[DEPRECATION] Pulp oauth is deprecated.  Please use cert_auth instead.')
         headers = add_oauth_header(method, path, headers)
         headers['pulp-user'] = clone_config[:user]
       elsif clone_config[:cert_auth]
