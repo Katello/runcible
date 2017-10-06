@@ -3,10 +3,12 @@ language:
   - ruby
 
 rvm:
-  - "2.0.0"
   - "2.2.0"
+  - "2.3.0"
+
+before_install:
+  - gem install bundler
 
 script:
-  - bundle install --without debug
   - bundle exec rake rubocop
   - bundle exec rake test
