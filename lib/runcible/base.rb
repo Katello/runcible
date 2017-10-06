@@ -26,6 +26,7 @@ module Runcible
       self.class.path(*args)
     end
 
+    # rubocop:disable Metrics/AbcSize:
     def call(method, path, options = {})
       clone_config = self.config.clone
       #on occation path will already have prefix (sync cancel)
