@@ -55,6 +55,8 @@ class RepositorySupport
     @@repo_url
   end
 
+  attr_writer :repo_url
+
   attr_reader :schedule_time
 
   attr_reader :task_resource
