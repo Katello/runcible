@@ -12,6 +12,8 @@ module Extensions
 
     def self.before_suite
       self.support = RepositorySupport.new
+      self.support.repo_url = self.repo_url if respond_to?(:repo_url)
+
       if respond_to?(:extension_class)
         self.support.destroy_repo(clone_name)
         self.support.destroy_repo
@@ -44,6 +46,8 @@ module Extensions
 
     def self.before_suite
       self.support = RepositorySupport.new
+      self.support.repo_url = self.repo_url if respond_to?(:repo_url)
+
       if respond_to?(:extension_class)
         self.support.create_and_sync_repo(:importer => true)
         TestRuncible.server.extensions.repository.create_with_importer(clone_name, :id => 'yum_importer')
