@@ -1,0 +1,178 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://admin:admin@localhost/pulp/api/v2/repositories/
+    body:
+      encoding: UTF-8
+      string: '{"id":"integration_test_id","importer_type_id":"deb_importer","importer_config":{},"notes":{"_repo-type":"deb-repo"},"distributors":[{"distributor_type_id":"deb_distributor","distributor_config":{"relative_url":"/path","http":true,"https":true},"auto_publish":false,"distributor_id":"123"}]}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.2.4p230
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '291'
+      Host:
+      - localhost
+  response:
+    status:
+      code: 201
+      message: CREATED
+    headers:
+      Date:
+      - Fri, 10 Nov 2017 12:53:04 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '343'
+      Location:
+      - https://localhost/pulp/api/v2/repositories/integration_test_id/
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"scratchpad": {}, "display_name": "integration_test_id", "description":
+        null, "last_unit_added": null, "notes": {"_repo-type": "deb-repo"}, "last_unit_removed":
+        null, "content_unit_counts": {}, "_ns": "repos", "_id": {"$oid": "5a05a1303ca9a004163109bb"},
+        "id": "integration_test_id", "_href": "/pulp/api/v2/repositories/integration_test_id/"}'
+    http_version: 
+  recorded_at: Fri, 10 Nov 2017 12:53:04 GMT
+- request:
+    method: get
+    uri: https://admin:admin@localhost/pulp/api/v2/repositories/integration_test_id/?details=true
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.2.4p230
+      Content-Type:
+      - application/json
+      Host:
+      - localhost
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 10 Nov 2017 12:53:04 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '1236'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"scratchpad": {}, "display_name": "integration_test_id", "description":
+        null, "distributors": [{"repo_id": "integration_test_id", "last_updated":
+        "2017-11-10T12:53:04Z", "_href": "/pulp/api/v2/repositories/integration_test_id/distributors/123/",
+        "last_override_config": {}, "last_publish": null, "distributor_type_id": "deb_distributor",
+        "auto_publish": false, "scratchpad": {}, "_ns": "repo_distributors", "_id":
+        {"$oid": "5a05a1303ca9a004163109bd"}, "config": {"http": true, "https": true,
+        "relative_url": "/path"}, "id": "123"}], "last_unit_added": null, "notes":
+        {"_repo-type": "deb-repo"}, "last_unit_removed": null, "content_unit_counts":
+        {}, "_ns": "repos", "importers": [{"repo_id": "integration_test_id", "last_updated":
+        "2017-11-10T12:53:04Z", "_href": "/pulp/api/v2/repositories/integration_test_id/importers/deb_importer/",
+        "_ns": "repo_importers", "importer_type_id": "deb_importer", "last_override_config":
+        {}, "last_sync": null, "scratchpad": null, "_id": {"$oid": "5a05a1303ca9a004163109bc"},
+        "config": {}, "id": "deb_importer"}], "locally_stored_units": 0, "_id": {"$oid":
+        "5a05a1303ca9a004163109bb"}, "total_repository_units": 0, "id": "integration_test_id",
+        "_href": "/pulp/api/v2/repositories/integration_test_id/"}'
+    http_version: 
+  recorded_at: Fri, 10 Nov 2017 12:53:04 GMT
+- request:
+    method: delete
+    uri: https://admin:admin@localhost/pulp/api/v2/repositories/integration_test_id/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.2.4p230
+      Content-Type:
+      - application/json
+      Host:
+      - localhost
+  response:
+    status:
+      code: 202
+      message: ACCEPTED
+    headers:
+      Date:
+      - Fri, 10 Nov 2017 12:53:04 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '172'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/c1166bb0-a5b6-40df-a938-5971b86fc2db/",
+        "task_id": "c1166bb0-a5b6-40df-a938-5971b86fc2db"}], "result": null, "error":
+        null}'
+    http_version: 
+  recorded_at: Fri, 10 Nov 2017 12:53:04 GMT
+- request:
+    method: get
+    uri: https://admin:admin@localhost/pulp/api/v2/tasks/c1166bb0-a5b6-40df-a938-5971b86fc2db/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.2.4p230
+      Content-Type:
+      - application/json
+      Host:
+      - localhost
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 10 Nov 2017 12:53:05 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '708'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"exception": null, "task_type": "pulp.server.tasks.repository.delete",
+        "_href": "/pulp/api/v2/tasks/c1166bb0-a5b6-40df-a938-5971b86fc2db/", "task_id":
+        "c1166bb0-a5b6-40df-a938-5971b86fc2db", "tags": ["pulp:repository:integration_test_id",
+        "pulp:action:delete"], "finish_time": "2017-11-10T12:53:04Z", "_ns": "task_status",
+        "start_time": "2017-11-10T12:53:04Z", "traceback": null, "spawned_tasks":
+        [], "progress_report": {}, "queue": "reserved_resource_worker-0@centos7-devel.anubis.example.com.dq",
+        "state": "finished", "worker_name": "reserved_resource_worker-0@centos7-devel.anubis.example.com",
+        "result": null, "error": null, "_id": {"$oid": "5a05a130d1897cd5b1e4abe2"},
+        "id": "5a05a130d1897cd5b1e4abe2"}'
+    http_version: 
+  recorded_at: Fri, 10 Nov 2017 12:53:05 GMT
+recorded_with: VCR 3.0.3

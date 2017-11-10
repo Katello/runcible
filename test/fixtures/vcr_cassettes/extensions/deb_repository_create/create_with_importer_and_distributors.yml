@@ -1,0 +1,199 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://admin:admin@localhost/pulp/api/v2/repositories/
+    body:
+      encoding: UTF-8
+      string: '{"id":"integration_test_id","importer_type_id":"deb_importer","importer_config":{},"distributors":[{"distributor_type_id":"deb_distributor","distributor_config":{"relative_url":"/","http":true,"https":true},"auto_publish":true,"distributor_id":"234"}]}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.2.4p230
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '252'
+      Host:
+      - localhost
+  response:
+    status:
+      code: 500
+      message: INTERNAL SERVER ERROR
+    headers:
+      Date:
+      - Fri, 10 Nov 2017 13:07:22 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '2560'
+      Connection:
+      - close
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"http_request_method": "POST", "exception": ["IndexError: list index
+        out of range\n"], "error_message": "list index out of range", "_href": "/pulp/api/v2/repositories/",
+        "http_status": 500, "traceback": ["  File \"/usr/lib/python2.7/site-packages/django/core/handlers/base.py\",
+        line 112, in get_response\n    response = wrapped_callback(request, *callback_args,
+        **callback_kwargs)\n", "  File \"/usr/lib/python2.7/site-packages/django/views/generic/base.py\",
+        line 69, in view\n    return self.dispatch(request, *args, **kwargs)\n", "  File
+        \"/usr/lib/python2.7/site-packages/django/views/generic/base.py\", line 87,
+        in dispatch\n    return handler(request, *args, **kwargs)\n", "  File \"/usr/lib/python2.7/site-packages/pulp/server/webservices/views/decorators.py\",
+        line 241, in _auth_decorator\n    return _verify_auth(self, operation, super_user_only,
+        method, *args, **kwargs)\n", "  File \"/usr/lib/python2.7/site-packages/pulp/server/webservices/views/decorators.py\",
+        line 195, in _verify_auth\n    value = method(self, *args, **kwargs)\n", "  File
+        \"/usr/lib/python2.7/site-packages/pulp/server/webservices/views/util.py\",
+        line 130, in wrapper\n    return func(*args, **kwargs)\n", "  File \"/usr/lib/python2.7/site-packages/pulp/server/webservices/views/repositories.py\",
+        line 128, in post\n    distributor_list=repo_data.get(''distributors'')\n",
+        "  File \"/usr/lib/python2.7/site-packages/pulp/server/controllers/repository.py\",
+        line 433, in create_repo\n    dist_controller.add_distributor(repo_id, type_id,
+        plugin_config, auto_publish, dist_id)\n", "  File \"/usr/lib/python2.7/site-packages/pulp/server/controllers/distributor.py\",
+        line 67, in add_distributor\n    result = distributor_instance.validate_config(transfer_repo,
+        call_config, config_conduit)\n", "  File \"/usr/lib/python2.7/site-packages/pulp_deb/plugins/distributors/distributor.py\",
+        line 168, in validate_config\n    return configuration.validate_config(repo,
+        config, config_conduit)\n", "  File \"/usr/lib/python2.7/site-packages/pulp_deb/plugins/distributors/configuration.py\",
+        line 90, in validate_config\n    error_messages)\n", "  File \"/usr/lib/python2.7/site-packages/pulp_deb/plugins/distributors/configuration.py\",
+        line 257, in _check_for_relative_path_conflicts\n    conflicting_distributors
+        = config_conduit.get_repo_distributors_by_relative_url(relative_path, repo.id)  #
+        noqa\n", "  File \"/usr/lib/python2.7/site-packages/pulp/plugins/conduits/repo_config.py\",
+        line 46, in get_repo_distributors_by_relative_url\n    repo_id_url = current_url_pieces[0]\n"]}'
+    http_version: 
+  recorded_at: Fri, 10 Nov 2017 13:07:22 GMT
+- request:
+    method: delete
+    uri: https://admin:admin@localhost/pulp/api/v2/repositories/integration_test_id/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.2.4p230
+      Content-Type:
+      - application/json
+      Host:
+      - localhost
+  response:
+    status:
+      code: 404
+      message: NOT FOUND
+    headers:
+      Date:
+      - Fri, 10 Nov 2017 13:07:22 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '454'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"http_request_method": "DELETE", "exception": null, "error_message":
+        "Missing resource(s): repository=integration_test_id", "_href": "/pulp/api/v2/repositories/integration_test_id/",
+        "http_status": 404, "error": {"code": "PLP0009", "data": {"resources": {"repository":
+        "integration_test_id"}}, "description": "Missing resource(s): repository=integration_test_id",
+        "sub_errors": []}, "traceback": null, "resources": {"repository": "integration_test_id"}}'
+    http_version: 
+  recorded_at: Fri, 10 Nov 2017 13:07:22 GMT
+- request:
+    method: post
+    uri: https://admin:admin@localhost/pulp/api/v2/repositories/
+    body:
+      encoding: UTF-8
+      string: '{"id":"integration_test_id","importer_type_id":"deb_importer","importer_config":{},"distributors":[{"distributor_type_id":"deb_distributor","distributor_config":{"relative_url":"/path","http":true,"https":true},"auto_publish":true,"distributor_id":"234"}]}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.2.4p230
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '256'
+      Host:
+      - localhost
+  response:
+    status:
+      code: 201
+      message: CREATED
+    headers:
+      Date:
+      - Fri, 10 Nov 2017 13:15:12 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '319'
+      Location:
+      - https://localhost/pulp/api/v2/repositories/integration_test_id/
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"scratchpad": {}, "display_name": "integration_test_id", "description":
+        null, "last_unit_added": null, "notes": {}, "last_unit_removed": null, "content_unit_counts":
+        {}, "_ns": "repos", "_id": {"$oid": "5a05a6603ca9a004163109c0"}, "id": "integration_test_id",
+        "_href": "/pulp/api/v2/repositories/integration_test_id/"}'
+    http_version: 
+  recorded_at: Fri, 10 Nov 2017 13:15:12 GMT
+- request:
+    method: get
+    uri: https://admin:admin@localhost/pulp/api/v2/repositories/integration_test_id/?details=true
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.2.4p230
+      Content-Type:
+      - application/json
+      Host:
+      - localhost
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 10 Nov 2017 13:15:12 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '1211'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"scratchpad": {}, "display_name": "integration_test_id", "description":
+        null, "distributors": [{"repo_id": "integration_test_id", "last_updated":
+        "2017-11-10T13:15:12Z", "_href": "/pulp/api/v2/repositories/integration_test_id/distributors/234/",
+        "last_override_config": {}, "last_publish": null, "distributor_type_id": "deb_distributor",
+        "auto_publish": true, "scratchpad": {}, "_ns": "repo_distributors", "_id":
+        {"$oid": "5a05a6603ca9a004163109c2"}, "config": {"http": true, "https": true,
+        "relative_url": "/path"}, "id": "234"}], "last_unit_added": null, "notes":
+        {}, "last_unit_removed": null, "content_unit_counts": {}, "_ns": "repos",
+        "importers": [{"repo_id": "integration_test_id", "last_updated": "2017-11-10T13:15:12Z",
+        "_href": "/pulp/api/v2/repositories/integration_test_id/importers/deb_importer/",
+        "_ns": "repo_importers", "importer_type_id": "deb_importer", "last_override_config":
+        {}, "last_sync": null, "scratchpad": null, "_id": {"$oid": "5a05a6603ca9a004163109c1"},
+        "config": {}, "id": "deb_importer"}], "locally_stored_units": 0, "_id": {"$oid":
+        "5a05a6603ca9a004163109c0"}, "total_repository_units": 0, "id": "integration_test_id",
+        "_href": "/pulp/api/v2/repositories/integration_test_id/"}'
+    http_version: 
+  recorded_at: Fri, 10 Nov 2017 13:15:12 GMT
+recorded_with: VCR 3.0.3

@@ -1,0 +1,213 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://admin:admin@localhost/pulp/api/v2/repositories/
+    body:
+      encoding: UTF-8
+      string: '{"id":"integration_test_id_distro","distributors":[{"distributor_type_id":"deb_distributor","distributor_config":{"relative_url":"/path","http":true,"https":true},"auto_publish":false,"distributor_id":"123"}]}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.2.4p230
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '209'
+      Host:
+      - localhost
+  response:
+    status:
+      code: 201
+      message: CREATED
+    headers:
+      Date:
+      - Fri, 10 Nov 2017 12:53:02 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '340'
+      Location:
+      - https://localhost/pulp/api/v2/repositories/integration_test_id_distro/
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"scratchpad": {}, "display_name": "integration_test_id_distro", "description":
+        null, "last_unit_added": null, "notes": {}, "last_unit_removed": null, "content_unit_counts":
+        {}, "_ns": "repos", "_id": {"$oid": "5a05a12e3ca9a00419d21f0c"}, "id": "integration_test_id_distro",
+        "_href": "/pulp/api/v2/repositories/integration_test_id_distro/"}'
+    http_version: 
+  recorded_at: Fri, 10 Nov 2017 12:53:02 GMT
+- request:
+    method: get
+    uri: https://admin:admin@localhost/pulp/api/v2/repositories/integration_test_id_distro/?details=true
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.2.4p230
+      Content-Type:
+      - application/json
+      Host:
+      - localhost
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 10 Nov 2017 12:53:02 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '882'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"scratchpad": {}, "display_name": "integration_test_id_distro", "description":
+        null, "distributors": [{"repo_id": "integration_test_id_distro", "last_updated":
+        "2017-11-10T12:53:02Z", "_href": "/pulp/api/v2/repositories/integration_test_id_distro/distributors/123/",
+        "last_override_config": {}, "last_publish": null, "distributor_type_id": "deb_distributor",
+        "auto_publish": false, "scratchpad": {}, "_ns": "repo_distributors", "_id":
+        {"$oid": "5a05a12e3ca9a00419d21f0d"}, "config": {"http": true, "https": true,
+        "relative_url": "/path"}, "id": "123"}], "last_unit_added": null, "notes":
+        {}, "last_unit_removed": null, "content_unit_counts": {}, "_ns": "repos",
+        "importers": [], "locally_stored_units": 0, "_id": {"$oid": "5a05a12e3ca9a00419d21f0c"},
+        "total_repository_units": 0, "id": "integration_test_id_distro", "_href":
+        "/pulp/api/v2/repositories/integration_test_id_distro/"}'
+    http_version: 
+  recorded_at: Fri, 10 Nov 2017 12:53:02 GMT
+- request:
+    method: delete
+    uri: https://admin:admin@localhost/pulp/api/v2/repositories/integration_test_id_distro/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.2.4p230
+      Content-Type:
+      - application/json
+      Host:
+      - localhost
+  response:
+    status:
+      code: 202
+      message: ACCEPTED
+    headers:
+      Date:
+      - Fri, 10 Nov 2017 12:53:02 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '172'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/872a0661-1d67-46bb-ad31-b806a969fbb6/",
+        "task_id": "872a0661-1d67-46bb-ad31-b806a969fbb6"}], "result": null, "error":
+        null}'
+    http_version: 
+  recorded_at: Fri, 10 Nov 2017 12:53:02 GMT
+- request:
+    method: get
+    uri: https://admin:admin@localhost/pulp/api/v2/tasks/872a0661-1d67-46bb-ad31-b806a969fbb6/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.2.4p230
+      Content-Type:
+      - application/json
+      Host:
+      - localhost
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 10 Nov 2017 12:53:03 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '715'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"exception": null, "task_type": "pulp.server.tasks.repository.delete",
+        "_href": "/pulp/api/v2/tasks/872a0661-1d67-46bb-ad31-b806a969fbb6/", "task_id":
+        "872a0661-1d67-46bb-ad31-b806a969fbb6", "tags": ["pulp:repository:integration_test_id_distro",
+        "pulp:action:delete"], "finish_time": "2017-11-10T12:53:02Z", "_ns": "task_status",
+        "start_time": "2017-11-10T12:53:02Z", "traceback": null, "spawned_tasks":
+        [], "progress_report": {}, "queue": "reserved_resource_worker-0@centos7-devel.anubis.example.com.dq",
+        "state": "finished", "worker_name": "reserved_resource_worker-0@centos7-devel.anubis.example.com",
+        "result": null, "error": null, "_id": {"$oid": "5a05a12ed1897cd5b1e4abe0"},
+        "id": "5a05a12ed1897cd5b1e4abe0"}'
+    http_version: 
+  recorded_at: Fri, 10 Nov 2017 12:53:03 GMT
+- request:
+    method: delete
+    uri: https://admin:admin@localhost/pulp/api/v2/repositories/integration_test_id/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.2.4p230
+      Content-Type:
+      - application/json
+      Host:
+      - localhost
+  response:
+    status:
+      code: 404
+      message: NOT FOUND
+    headers:
+      Date:
+      - Fri, 10 Nov 2017 12:53:03 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '454'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"http_request_method": "DELETE", "exception": null, "error_message":
+        "Missing resource(s): repository=integration_test_id", "_href": "/pulp/api/v2/repositories/integration_test_id/",
+        "http_status": 404, "error": {"code": "PLP0009", "data": {"resources": {"repository":
+        "integration_test_id"}}, "description": "Missing resource(s): repository=integration_test_id",
+        "sub_errors": []}, "traceback": null, "resources": {"repository": "integration_test_id"}}'
+    http_version: 
+  recorded_at: Fri, 10 Nov 2017 12:53:03 GMT
+recorded_with: VCR 3.0.3
