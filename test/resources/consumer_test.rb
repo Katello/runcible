@@ -106,6 +106,14 @@ module Resources
       assert_equal @consumer_id, response['id']
     end
 
+    def test_retrieve_all
+      response = @resource.retrieve_all
+
+      refute_empty response
+      consumer_ids = response.map { |consumer| consumer['id'] }
+      assert_includes consumer_ids, @consumer_id
+    end
+
     def test_update
       description = 'Test description'
       response = @resource.update(@consumer_id, :description => description)
