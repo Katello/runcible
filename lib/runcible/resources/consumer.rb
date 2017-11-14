@@ -24,8 +24,15 @@ module Runcible
       #
       # @param  [String]                id  the ID of the consumer
       # @return [RestClient::Response]
-      def retrieve(id)
+      def retrieve(id = nil)
         call(:get, path(id))
+      end
+
+      # Retrieves all consumers
+      #
+      # @return [RestClient::Response]
+      def retrieve_all
+        retrieve
       end
 
       # Updates a consumer
