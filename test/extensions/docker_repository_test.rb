@@ -91,5 +91,9 @@ module Extensions
       assert_equal RepositorySupport.repo_id, response['id']
       assert_equal 'docker_importer', response['importers'].first['importer_type_id']
     end
+
+    def test_docker_blob
+      assert_equal 'docker_blob', Runcible::Extensions::DockerBlob.content_type
+    end
   end
 end
