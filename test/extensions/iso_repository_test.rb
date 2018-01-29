@@ -27,7 +27,7 @@ module Extensions
     end
 
     def test_create_with_importer_and_distributors_objects
-      distributors = [Runcible::Models::IsoDistributor.new(true, true, :id => 'iso_distributor')]
+      distributors = [Runcible::Models::IsoDistributor.new('path', true, true, :id => 'iso_distributor')]
       importer = Runcible::Models::IsoImporter.new(:feed => @repo_url)
 
       response = @extension.create_with_importer_and_distributors(@repo_id, importer, distributors)

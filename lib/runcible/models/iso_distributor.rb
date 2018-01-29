@@ -5,14 +5,16 @@ module Runcible
   module Models
     class IsoDistributor < Distributor
       #required attributes
-      attr_accessor 'serve_http', 'serve_https'
+      attr_accessor 'relative_url', 'serve_http', 'serve_https'
 
       # Instantiates an iso distributor
       #
+      # @param  [path]            relative URL
       # @param  [boolean]         http  serve the contents over http
       # @param  [boolean]         https serve the contents over https
       # @return [Runcible::Extensions::IsoDistributor]
-      def initialize(http, https, options = {})
+      def initialize(relative_url, http, https, options = {})
+        @relative_url = relative_url
         @serve_http = http
         @serve_https = https
         super(options)
