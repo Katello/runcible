@@ -8,7 +8,7 @@ module Runcible
       DOWNLOAD_BACKGROUND = 'background'.freeze
       DOWNLOAD_POLICIES = [DOWNLOAD_IMMEDIATE, DOWNLOAD_ON_DEMAND, DOWNLOAD_BACKGROUND].freeze
 
-      attr_accessor 'download_policy'
+      attr_accessor 'download_policy', 'type_skip_list'
 
       def id
         YumImporter::ID
