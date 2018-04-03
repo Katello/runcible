@@ -1,12 +1,12 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html>
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>
   File: README
   
-    &mdash; Documentation by YARD 0.8.7.6
+    &mdash; Documentation by YARD 0.9.12
   
 </title>
 
@@ -15,9 +15,8 @@
   <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
 
 <script type="text/javascript" charset="utf-8">
-  hasFrames = window.top.frames.main ? true : false;
+  pathId = "README";
   relpath = '';
-  framesUrl = "frames.html#!file.README.html";
 </script>
 
 
@@ -28,125 +27,114 @@
 
   </head>
   <body>
-    <div id="header">
-      <div id="menu">
+    <div class="nav_wrap">
+      <iframe id="nav" src="file_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
   
     <a href="_index.html">Index</a> &raquo; 
     <span class="title">File: README</span>
   
-
-  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
 </div>
 
-      <div id="search">
+        <div id="search">
   
     <a class="full_list_link" id="class_list_link"
         href="class_list.html">
-      Class List
-    </a>
-  
-    <a class="full_list_link" id="method_list_link"
-        href="method_list.html">
-      Method List
-    </a>
-  
-    <a class="full_list_link" id="file_list_link"
-        href="file_list.html">
-      File List
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
     </a>
   
 </div>
-      <div class="clear"></div>
-    </div>
+        <div class="clear"></div>
+      </div>
 
-    <iframe id="search_frame"></iframe>
+      <div id="content"><div id='filecontents'>
+<h1 id="runcible">Runcible</h1>
 
-    <div id="content"><div id='filecontents'><h1>Runcible</h1>
+<p><a href="http://travis-ci.org/Katello/runcible"><img src="https://secure.travis-ci.org/Katello/runcible.png" alt="Build Status" /></a> <a href="https://coveralls.io/github/Katello/runcible?branch=master"><img src="https://coveralls.io/repos/github/Katello/runcible/badge.svg?branch=master" alt="Coverage Status" /></a></p>
 
-<p><a href="http://travis-ci.org/Katello/runcible"><img src="https://secure.travis-ci.org/Katello/runcible.png" alt="Build Status"></a>
-<a href="https://coveralls.io/github/Katello/runcible?branch=master"><img src="https://coveralls.io/repos/github/Katello/runcible/badge.svg?branch=master" alt="Coverage Status"></a></p>
+<p>Exposing Pulp’s juiciest parts. http://www.pulpproject.org/</p>
 
-<p>Exposing Pulp&#39;s juiciest parts. <a href="http://www.pulpproject.org/">http://www.pulpproject.org/</a></p>
+<p>Latest Live Tested Version: <strong>pulp-server-2.14.0-1.el7.noarch</strong></p>
 
-<p>Latest Live Tested Version: <strong>pulp-server-2.8.3-0.1.beta.el7.noarch</strong></p>
+<p>Current stable Runcible: https://github.com/Katello/runcible/tree/0.3</p>
 
-<p>Current stable Runcible: <a href="https://github.com/Katello/runcible/tree/0.3">https://github.com/Katello/runcible/tree/0.3</a></p>
-
-<p>For in-depth class and method documentation: <a href="http://katello.github.com/runcible/">http://katello.github.com/runcible/</a></p>
+<p>For in-depth class and method documentation: http://katello.github.com/runcible/</p>
 
 <p>Please file new issues here: <a href="http://projects.theforeman.org/projects/runcible/issues/new">Redmine</a></p>
 
-<h2>Installation</h2>
+<h2 id="installation">Installation</h2>
 
-<p>Add this line to your application&#39;s Gemfile:</p>
+<p>Add this line to your application’s Gemfile:</p>
 
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_gem'>gem</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>runcible</span><span class='tstring_end'>&#39;</span></span>
-</code></pre>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_gem'>gem</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>runcible</span><span class='tstring_end'>&#39;</span></span></code></pre>
 
 <p>And then execute:</p>
 
-<pre class="code ruby"><code class="ruby">$ bundle
-</code></pre>
+<pre class="code ruby"><code class="ruby">$ bundle</code></pre>
 
 <p>Or install it yourself as:</p>
 
-<pre class="code ruby"><code class="ruby">$ gem install runcible
-</code></pre>
+<pre class="code ruby"><code class="ruby">$ gem install runcible</code></pre>
 
-<h2>Usage</h2>
+<h2 id="usage">Usage</h2>
 
-<h3>Set Configuration</h3>
+<h3 id="set_configuration">Set Configuration</h3>
 
 <p>To use a single resource or extension, the configuration can be set:</p>
 
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_repo_api'>repo_api</span> <span class='op'>=</span> <span class='const'>Runcible</span><span class='op'>::</span><span class='const'>Resources</span><span class='op'>::</span><span class='const'>Repository</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='lbrace'>{</span>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_repo_api'>repo_api</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Runcible.html" title="Runcible (module)">Runcible</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Runcible/Resources.html" title="Runcible::Resources (module)">Resources</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Runcible/Resources/Repository.html" title="Runcible::Resources::Repository (class)">Repository</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Runcible/Base.html#initialize-instance_method" title="Runcible::Base#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='lbrace'>{</span>
             <span class='symbol'>:url</span>      <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
             <span class='symbol'>:api_path</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
             <span class='symbol'>:user</span>     <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
             <span class='symbol'>:logger</span>   <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
           <span class='rbrace'>}</span><span class='rparen'>)</span>
-<span class='id identifier rubyid_repo_api'>repo_api</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span>
-</code></pre>
+<span class='id identifier rubyid_repo_api'>repo_api</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span></code></pre>
 
-<p>Alternatively, a single &#39;server&#39; instance which can easily use all 
-  resources and extensions can be instantiated:</p>
+<p>Alternatively, a single ‘server’ instance which can easily use all resources and extensions can be instantiated:</p>
 
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_my_runcible'>my_runcible</span> <span class='op'>=</span> <span class='const'>Runcible</span><span class='op'>::</span><span class='const'>Instance</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='lbrace'>{</span>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_my_runcible'>my_runcible</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Runcible.html" title="Runcible (module)">Runcible</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Runcible/Instance.html" title="Runcible::Instance (class)">Instance</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Runcible/Instance.html#initialize-instance_method" title="Runcible::Instance#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='lbrace'>{</span>
             <span class='symbol'>:url</span>      <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
             <span class='symbol'>:api_path</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
             <span class='symbol'>:user</span>     <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
             <span class='symbol'>:logger</span>   <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
           <span class='rbrace'>}</span><span class='rparen'>)</span>
- <span class='id identifier rubyid_my_runcible'>my_runcible</span><span class='period'>.</span><span class='id identifier rubyid_resources'>resources</span><span class='period'>.</span><span class='id identifier rubyid_repository'>repository</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span>
-</code></pre>
+ <span class='id identifier rubyid_my_runcible'>my_runcible</span><span class='period'>.</span><span class='id identifier rubyid_resources'>resources</span><span class='period'>.</span><span class='id identifier rubyid_repository'>repository</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span></code></pre>
 
 <p>Required Configuration:</p>
 
 <pre class="code ruby"><code class="ruby">:uri      =&gt; The base URI of the Pulp server (default: https://localhost)
 :api_path =&gt; The API path of the Pulp server (default: pulp/api/v2/)
 :user     =&gt; The Pulp username to be used in authentication
-:logger   =&gt; The location to log RestClient calls (e.g. stdout)
-</code></pre>
+:logger   =&gt; The location to log RestClient calls (e.g. stdout)</code></pre>
 
 <p>Authentication Options are either HTTP or Oauth:</p>
 
 <pre class="code ruby"><code class="ruby">:http_auth  =&gt; {:password =&gt; &#39;&#39;}
 
 :oauth      =&gt; {:oauth_secret =&gt; &quot;&quot;,
-                :oauth_key    =&gt; &quot;&quot; }
-</code></pre>
+                :oauth_key    =&gt; &quot;&quot; }</code></pre>
 
 <p>For an example on parsing the Pulp server.conf and using values provided within for the configuration see the <a href="https://github.com/Katello/runcible/blob/master/test/integration/test_runner.rb">test_runner</a></p>
 
-<h3>Make a Request</h3>
+<h3 id="make_a_request">Make a Request</h3>
 
 <p>Runcible provides two representations of Pulp entities to make API calls: <a href="https://github.com/Katello/runcible/tree/master/lib/runcible/resources">resources</a> and <a href="https://github.com/Katello/runcible/tree/master/lib/runcible/extensions">extensions</a></p>
 
 <p>The best examples of how to use either the resources or extensions can be found within the <a href="https://github.com/Katello/runcible/tree/master/test/integration">tests</a></p>
 
-<h4>Resources</h4>
+<h4 id="resources">Resources</h4>
 
-<p>Resources are designed to be one-for-one with the Pulp API calls in terms of required parameters and naming of the calls.  For example, in order to create a repository, associate a Yum importer and a distributor:</p>
+<p>Resources are designed to be one-for-one with the Pulp API calls in terms of required parameters and naming of the calls. For example, in order to create a repository, associate a Yum importer and a distributor:</p>
 
 <pre class="code ruby"><code class="ruby">my_runcible = Runcible::Instance.new(config)
 my_runcible.resources.repository.create(&quot;Repository_ID&quot;)
@@ -157,20 +145,18 @@ or
 
 Runcible::Resources::Repository.new(config).create(&quot;Repository_ID&quot;)
 Runcible::Resources::Repository.new(config).associate_importer(&quot;Repository_ID&quot;, &quot;yum_importer&quot;, {})
-Runcible::Resources::Repository.new(config).associate_distributor(&quot;Repository_ID&quot;, &quot;yum_distributor&quot;, {&quot;relative_url&quot; =&gt; &quot;/&quot;, &quot;http&quot; =&gt; true, &quot;https&quot; =&gt; true})
-</code></pre>
+Runcible::Resources::Repository.new(config).associate_distributor(&quot;Repository_ID&quot;, &quot;yum_distributor&quot;, {&quot;relative_url&quot; =&gt; &quot;/&quot;, &quot;http&quot; =&gt; true, &quot;https&quot; =&gt; true})</code></pre>
 
-<h4>Extensions</h4>
+<h4 id="extensions">Extensions</h4>
 
-<p>Extensions are constructs around the Pulp API that make retrieving, accessing or creating certain data types easier.  For example, providing objects that represent the details of a yum importer or distributor, and providing functions to create a Repository with an importer and distributors in a single call.  The same three step process above using extensions is:</p>
+<p>Extensions are constructs around the Pulp API that make retrieving, accessing or creating certain data types easier. For example, providing objects that represent the details of a yum importer or distributor, and providing functions to create a Repository with an importer and distributors in a single call. The same three step process above using extensions is:</p>
 
 <pre class="code ruby"><code class="ruby">my_runcible = Runcible::Instance.new(config)
 my_runcible.extensions.repository.create_with_importer_and_distributor(&quot;Repository_ID&quot;, {:id=&gt;&#39;yum_importer&#39;}, [{&#39;type_id&#39; =&gt; &#39;yum_distributor&#39;, &#39;id&#39;=&gt;&#39;123&#39;, &#39;auto_publish&#39;=&gt;true, &#39;config&#39;=&gt;{&#39;relative_url&#39; =&gt; &#39;/&#39;, &#39;http&#39; =&gt; true, &#39;https&#39; =&gt; true}}])
 
 or
 
-Runcible::Extensions::Repository.new(config).create_with_importer_and_distributors(&quot;Repository_ID&quot;, {:id=&gt;&#39;yum_importer&#39;}, [{&#39;type_id&#39; =&gt; &#39;yum_distributor&#39;, &#39;id&#39;=&gt;&#39;123&#39;, &#39;auto_publish&#39;=&gt;true, &#39;config&#39;=&gt;{&#39;relative_url&#39; =&gt; &#39;/&#39;, &#39;http&#39; =&gt; true, &#39;https&#39; =&gt; true}}])
-</code></pre>
+Runcible::Extensions::Repository.new(config).create_with_importer_and_distributors(&quot;Repository_ID&quot;, {:id=&gt;&#39;yum_importer&#39;}, [{&#39;type_id&#39; =&gt; &#39;yum_distributor&#39;, &#39;id&#39;=&gt;&#39;123&#39;, &#39;auto_publish&#39;=&gt;true, &#39;config&#39;=&gt;{&#39;relative_url&#39; =&gt; &#39;/&#39;, &#39;http&#39; =&gt; true, &#39;https&#39; =&gt; true}}])</code></pre>
 
 <p>Alternatively, using distributor and importer objects:</p>
 
@@ -182,44 +168,63 @@ my_runcible.extensions.repository.create_with_importer_and_distributors(&quot;Re
 
 or
 
-Runcible::Extensions::Repository.new(config).create_with_importer_and_distributors(&quot;Repository_ID&quot;, importer, distributors)
-</code></pre>
+Runcible::Extensions::Repository.new(config).create_with_importer_and_distributors(&quot;Repository_ID&quot;, importer, distributors)</code></pre>
 
-<h2>Testing</h2>
+<h2 id="testing">Testing</h2>
+
+<h3 id="dependencies">Dependencies</h3>
+
+<p>In order to run and develop the ostree code in runcible locally, you will need to install the pulp ostree packages (namely pulp-python-plugins and pulp-ostree-plugins).</p>
+
+<p>If you don’t have ostree intalled already, you’ll need to setup the ostree repo as ostree is a dependency for pulp-ostree-plugins. For centos, you’ll create /etc/yum.repos.d/ostree.repo with this:</p>
+
+<p>“atomic7-testing] name=atomic7-testing baseurl=http://cbs.centos.org/repos/atomic7-testing/x86_64/os/ gpgcheck=0 enabled=1</p>
+
+<p>“</p>
+
+<p>Now you should be able to install the two pulp plugin packages:</p>
+
+<p>“udo yum install pulp-python-plugins pulp-ostree-plugins</p>
+
+<p>“</p>
+
+<p>Finally, update your pulp database and restart pulp:</p>
+
+<p>“udo -u apache pulp-manage-db for x in httpd pulp_resource_manager pulp_celerybeat pulp_workers; do sudo service $x restart; done</p>
+
+<p>“</p>
+
+<h3 id="running_tests">Running Tests</h3>
 
 <p>To run all tests using recorded data, run:</p>
 
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_rake'>rake</span> <span class='id identifier rubyid_test'>test</span> <span class='id identifier rubyid_mode'>mode</span><span class='op'>=</span><span class='id identifier rubyid_none'>none</span>
-</code></pre>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_rake'>rake</span> <span class='id identifier rubyid_test'>test</span> <span class='id identifier rubyid_mode'>mode</span><span class='op'>=</span><span class='id identifier rubyid_none'>none</span></code></pre>
 
 <p>To run all tests to record data:</p>
 
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_rake'>rake</span> <span class='id identifier rubyid_test'>test</span> <span class='id identifier rubyid_mode'>mode</span><span class='op'>=</span><span class='id identifier rubyid_all'>all</span>
-</code></pre>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_rake'>rake</span> <span class='id identifier rubyid_test'>test</span> <span class='id identifier rubyid_mode'>mode</span><span class='op'>=</span><span class='id identifier rubyid_all'>all</span></code></pre>
 
 <p>To run a single test using recorded data, run:</p>
 
 <pre class="code ruby"><code class="ruby">rake test mode=none test=extensions/respository
 or (by filename)
-rake test mode=none test=./test/extensions/respository_test.rb
-</code></pre>
+rake test mode=none test=./test/extensions/respository_test.rb</code></pre>
+
+<p>Note that when you record data, it’s a good idea to delete any corresponding vcr cassette files as recording data will sometimes only append to these files.</p>
 
 <p>To run tests against your live Pulp without recording a new cassette set record flag to false (does not apply to mode=none):</p>
 
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_record'>record</span><span class='op'>=</span><span class='kw'>false</span>
-</code></pre>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_record'>record</span><span class='op'>=</span><span class='kw'>false</span></code></pre>
 
-<p>To run with  oauth, simply append the following to any commend:</p>
+<p>To run with oauth, simply append the following to any commend:</p>
 
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_auth_type'>auth_type</span><span class='op'>=</span><span class='id identifier rubyid_oauth'>oauth</span>
-</code></pre>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_auth_type'>auth_type</span><span class='op'>=</span><span class='id identifier rubyid_oauth'>oauth</span></code></pre>
 
 <p>To see RestClient logs while testing:</p>
 
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_logging'>logging</span><span class='op'>=</span><span class='kw'>true</span>
-</code></pre>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_logging'>logging</span><span class='op'>=</span><span class='kw'>true</span></code></pre>
 
-<h2>Updating Documentation</h2>
+<h2 id="updating_documentation">Updating Documentation</h2>
 
 <p>The documentation is built with yard and hosted on Github via the gh-pages branch of the repository. To update the documentation on Github:</p>
 
@@ -228,86 +233,84 @@ git checkout gh-pages
 cp -rf doc/* ./
 git add ./
 git commit -a -m &#39;Updating docs to version X.X&#39;
-git push &lt;upstream&gt; gh-pages
-</code></pre>
+git push &lt;upstream&gt; gh-pages</code></pre>
 
-<h2>Building and Releasing</h2>
+<h2 id="building_and_releasing">Building and Releasing</h2>
 
 <p>An official release of Runcible should include the release of a gem on rubygems.org and an update to the documentation branch. At a minimum, the following two actions should be performed for each release:</p>
 
 <ol>
 <li><a href="#gem">Build and Release Gem</a></li>
+
 <li><a href="#updating-documentation">Updating Documentation</a></li>
 </ol>
 
-<h3>Gem</h3>
+<h3 id="gem">Gem</h3>
 
 <p>While anyone can grab the source and build a new version of the gem, only those with Rubygems.org permissions on the project can release an official version.</p>
 
 <p>To build a new version of Runcible, first bump the version depending on the type of release.</p>
 
 <pre class="code ruby"><code class="ruby">cd runcible/
-vim lib/runcible/version.rb
-</code></pre>
+vim lib/runcible/version.rb</code></pre>
 
 <p>Now update the version to the new version, and commit the changes.</p>
 
-<pre class="code ruby"><code class="ruby">git commit -a -m &#39;Version bump&#39;
-</code></pre>
+<pre class="code ruby"><code class="ruby">git commit -a -m &#39;Version bump&#39;</code></pre>
 
 <p>Now build:</p>
 
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_gem'>gem</span> <span class='id identifier rubyid_build'>build</span> <span class='id identifier rubyid_runcible'>runcible</span><span class='period'>.</span><span class='id identifier rubyid_gemspec'>gemspec</span>
-</code></pre>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_gem'>gem</span> <span class='id identifier rubyid_build'>build</span> <span class='id identifier rubyid_runcible'>runcible</span><span class='period'>.</span><span class='id identifier rubyid_gemspec'>gemspec</span></code></pre>
 
-<h4>Official Release</h4>
+<h4 id="official_release">Official Release</h4>
 
 <p>For an official release, again assuming you have the right permssions:</p>
 
-<pre class="code ruby"><code class="ruby">gem push runcible-&lt;version&gt;.gem
-</code></pre>
+<pre class="code ruby"><code class="ruby">gem push runcible-&lt;version&gt;.gem</code></pre>
 
-<h3>RPM Release</h3>
+<h3 id="rpm_release">RPM Release</h3>
 
-<p>If you are wanting to generate a new RPM build, please make sure you have followed the steps above if the build is going to include new code.  All builds should first go in gem form to Rubygems.  You&#39;ll need to make sure tito is installed:</p>
+<p>If you are wanting to generate a new RPM build, please make sure you have followed the steps above if the build is going to include new code. All builds should first go in gem form to Rubygems. You’ll need to make sure tito is installed:</p>
 
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_yum'>yum</span> <span class='id identifier rubyid_install'>install</span> <span class='id identifier rubyid_tito'>tito</span>
-</code></pre>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_yum'>yum</span> <span class='id identifier rubyid_install'>install</span> <span class='id identifier rubyid_tito'>tito</span></code></pre>
 
 <p>Now tag, making sure the tag version matches the gem version:</p>
 
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_tito'>tito</span> <span class='id identifier rubyid_tag'>tag</span>
-</code></pre>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_tito'>tito</span> <span class='id identifier rubyid_tag'>tag</span></code></pre>
 
 <p>Assuming you have the right dependencies available, you can do a local test build with tito (although we recommend using mock):</p>
 
-<pre class="code ruby"><code class="ruby">tito build --test --rpm
-</code></pre>
+<pre class="code ruby"><code class="ruby">tito build --test --rpm</code></pre>
 
 <p>With mock:</p>
 
-<pre class="code ruby"><code class="ruby">tito build --test --rpm --builder=mock --builder-arg mock=&lt;name_of_mock_config&gt;
-</code></pre>
+<pre class="code ruby"><code class="ruby">tito build --test --rpm --builder=mock --builder-arg mock=&lt;name_of_mock_config&gt;</code></pre>
 
 <p>From here there are a variety of options to build and release an RPM pakaged version of Runcible (e.g. you can build an SRPM to feed to Koji, or use mock locally)</p>
 
-<h2>Contributing</h2>
+<h2 id="contributing">Contributing</h2>
 
 <ol>
 <li>Fork it</li>
+
 <li>Create your feature branch (<code>git checkout -b my-new-feature</code>)</li>
+
 <li>Commit your changes (<code>git commit -am &#39;Added some feature&#39;</code>)</li>
+
 <li>Ensure all tests are passing</li>
+
 <li>Push to the branch (<code>git push origin my-new-feature</code>)</li>
+
 <li>Create new Pull Request</li>
 </ol>
 </div></div>
 
-    <div id="footer">
-  Generated on Tue Jul 26 10:28:34 2016 by
+      <div id="footer">
+  Generated on Tue Apr  3 08:39:41 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7.6 (ruby-2.2.1).
+  0.9.12 (ruby-2.4.3).
 </div>
 
+    </div>
   </body>
 </html>
