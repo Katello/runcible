@@ -18,7 +18,6 @@ module Base
       )
 
       @log_message = 'Fake log message.'
-      RestClient.log = [@log_message]
     end
 
     def test_config
@@ -54,6 +53,7 @@ module Base
 
     def test_verbose_logger
       @my_runcible.config[:logging][:debug] = true
+      @my_runcible.logs << @log_message
       @my_runcible.log_debug
 
       assert_equal @log_message, @logger.message
@@ -61,6 +61,7 @@ module Base
 
     def test_exception_logger
       @my_runcible.config[:logging][:exception] = true
+      @my_runcible.logs << @log_message
       @my_runcible.log_exception
 
       assert_equal @log_message, @logger.message

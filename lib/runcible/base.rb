@@ -5,9 +5,12 @@ require 'thread'
 
 module Runcible
   class Base
+    attr_accessor :logs
+
     def initialize(config = {})
       @mutex = Mutex.new
       @config = config
+      @logs = []
     end
 
     def lazy_config=(a_block)
@@ -28,11 +31,11 @@ module Runcible
 
     # rubocop:disable Metrics/AbcSize:
     def call(method, path, options = {})
+      self.logs = []
       clone_config = self.config.clone
       #on occation path will already have prefix (sync cancel)
       path = clone_config[:api_path] + path unless path.start_with?(clone_config[:api_path])
 
-      RestClient.log = []
       headers = clone_config[:headers].clone
 
       get_params = options[:params] if options[:params]
@@ -65,21 +68,29 @@ module Runcible
       args << generate_payload(options) if [:post, :put].include?(method)
       args << headers
 
+      self.logs << ([method.upcase, URI.join(client.url, path)] + args[1..-1]).join(': ')
       response = get_response(client, path, *args)
-      process_response(response)
-
+      processed = process_response(response)
+      self.logs << "Response: #{response.code}: #{response.body}"
+      log_info
+      processed
     rescue RestClient::ResourceNotFound => e
+      self.logs << exception_to_log(e)
       log_info
       raise e
     rescue => e
+      self.logs << exception_to_log(e)
       log_exception
       raise e
+    end
+
+    def exception_to_log(exception, body = exception.try(:response).try(:body))
+      "#{exception.message}: #{body}"
     end
 
     def get_response(client, path, *args)
       client[path].send(*args) do |response, _request, _result, &_block|
         resp = response.return!
-        log_debug
         return resp
       end
     end
@@ -135,8 +146,8 @@ module Runcible
           end
         end
         response = Runcible::Response.new(body, response)
-      rescue JSON::ParserError
-        log_exception
+      rescue JSON::ParserError => e
+        self.logs << "Unable to parse JSON: #{e.message}"
       end
 
       return response
@@ -188,28 +199,15 @@ module Runcible
     end
 
     def log_debug
-      if self.config[:logging][:debug]
-        log_message = generate_log_message
-        self.config[:logging][:logger].debug(log_message)
-      end
+      self.config[:logging][:logger].debug(self.logs.join("\n")) if self.config[:logging][:debug]
     end
 
     def log_exception
-      if self.config[:logging][:exception]
-        log_message = generate_log_message
-        self.config[:logging][:logger].error(log_message)
-      end
+      self.config[:logging][:logger].error(self.logs.join("\n")) if self.config[:logging][:exception]
     end
 
     def log_info
-      if self.config[:logging][:info]
-        log_message = generate_log_message
-        self.config[:logging][:logger].info(log_message)
-      end
-    end
-
-    def generate_log_message
-      RestClient.log.join('\n')
+      self.config[:logging][:logger].info(self.logs.join("\n")) if self.config[:logging][:info]
     end
 
     def logger
