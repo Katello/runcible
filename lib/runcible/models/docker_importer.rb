@@ -4,7 +4,7 @@ module Runcible
       ID = 'docker_importer'.freeze
       REPO_TYPE = 'docker-repo'.freeze
 
-      attr_accessor 'upstream_name', 'mask_id', 'enable_v1'
+      attr_accessor 'upstream_name', 'mask_id', 'enable_v1', 'tags'
 
       def id
         DockerImporter::ID
