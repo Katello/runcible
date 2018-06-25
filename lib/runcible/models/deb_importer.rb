@@ -8,7 +8,8 @@ module Runcible
       DOWNLOAD_BACKGROUND = 'background'.freeze
       DOWNLOAD_POLICIES = [DOWNLOAD_IMMEDIATE, DOWNLOAD_ON_DEMAND, DOWNLOAD_BACKGROUND].freeze
 
-      attr_accessor 'download_policy', 'releases', 'components', 'architectures'
+      attr_accessor 'download_policy', 'releases', 'components', 'architectures', 'allowed_keys',
+                    'require_signature', 'gpg_keys'
 
       def id
         DebImporter::ID
