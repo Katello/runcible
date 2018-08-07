@@ -30,6 +30,7 @@ module Runcible
     end
 
     # rubocop:disable Metrics/AbcSize:
+    # rubocop:disable PerceivedComplexity
     def call(method, path, options = {})
       self.logs = []
       clone_config = self.config.clone
@@ -67,8 +68,9 @@ module Runcible
       args = [method]
       args << generate_payload(options) if [:post, :put].include?(method)
       args << headers
+      starting_arg = options[:no_log_payload] == true ? 2 : 1
+      self.logs << ([method.upcase, URI.join(client.url, path)] + args[starting_arg..-1]).join(': ')
 
-      self.logs << ([method.upcase, URI.join(client.url, path)] + args[1..-1]).join(': ')
       response = get_response(client, path, *args)
       processed = process_response(response)
       self.logs << "Response: #{response.code}: #{response.body}"

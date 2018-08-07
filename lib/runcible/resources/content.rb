@@ -27,7 +27,7 @@ module Runcible
       # @param  [File]    content    content of the file being uploaded to the server
       # @return  [RestClient::Response] none
       def upload_bits(upload_id, offset, content)
-        call(:put, upload_path("#{upload_id}/#{offset}/"), :payload => content)
+        call(:put, upload_path("#{upload_id}/#{offset}/"), :payload => content, :no_log_payload => true)
       end
 
       # Import into a repository
