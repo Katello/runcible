@@ -2,92 +2,6 @@
 http_interactions:
 - request:
     method: get
-    uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/repositories/integration_test_id/?details=true
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Type:
-      - application/json
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Fri, 29 Apr 2016 16:26:14 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Vary:
-      - Accept-Encoding
-      Content-Length:
-      - '1310'
-      Content-Type:
-      - application/json; charset=utf-8
-    body:
-      encoding: ASCII-8BIT
-      string: '{"scratchpad": {"checksum_type": "sha256"}, "display_name": "integration_test_id",
-        "description": null, "distributors": [{"repo_id": "integration_test_id", "_href":
-        "/pulp/api/v2/repositories/integration_test_id/distributors/yum_dist/", "_ns":
-        "repo_distributors", "last_publish": null, "distributor_type_id": "yum_distributor",
-        "auto_publish": false, "scratchpad": {}, "_id": {"$oid": "57238b25aca4886d979905ce"},
-        "config": {"http": true, "https": true, "relative_url": "path"}, "id": "yum_dist"}],
-        "last_unit_added": null, "notes": {}, "last_unit_removed": null, "content_unit_counts":
-        {"package_group": 2, "distribution": 1, "package_category": 1, "rpm": 8, "erratum":
-        2}, "_ns": "repos", "importers": [{"scratchpad": {"repomd_revision": 1321893800,
-        "previous_skip_list": []}, "_href": "/pulp/api/v2/repositories/integration_test_id/importers/yum_importer/",
-        "_ns": "repo_importers", "importer_type_id": "yum_importer", "last_sync":
-        "2016-04-29T16:26:14Z", "repo_id": "integration_test_id", "_id": {"$oid":
-        "57238b25aca4886d979905cd"}, "config": {"feed": "file:///var/www/repositories/zoo5"},
-        "id": "yum_importer"}], "locally_stored_units": 14, "_id": {"$oid": "57238b25aca4886d979905cc"},
-        "total_repository_units": 14, "id": "integration_test_id", "_href": "/pulp/api/v2/repositories/integration_test_id/"}'
-    http_version: 
-  recorded_at: Fri, 29 Apr 2016 16:26:14 GMT
-- request:
-    method: post
-    uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/repositories/integration_test_id/actions/publish/
-    body:
-      encoding: UTF-8
-      string: '{"id":"yum_dist"}'
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Type:
-      - application/json
-      Content-Length:
-      - '17'
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 202
-      message: ACCEPTED
-    headers:
-      Date:
-      - Fri, 29 Apr 2016 16:26:14 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Content-Length:
-      - '172'
-      Content-Type:
-      - application/json; charset=utf-8
-    body:
-      encoding: UTF-8
-      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/7ba6b278-11c9-494c-81b1-20136ebe4f51/",
-        "task_id": "7ba6b278-11c9-494c-81b1-20136ebe4f51"}], "result": null, "error":
-        null}'
-    http_version: 
-  recorded_at: Fri, 29 Apr 2016 16:26:15 GMT
-- request:
-    method: get
     uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/tasks/7ba6b278-11c9-494c-81b1-20136ebe4f51/
     body:
       encoding: US-ASCII
@@ -210,4 +124,400 @@ http_interactions:
         "id": "57238b27898f5c862fa3eb6a"}'
     http_version: 
   recorded_at: Fri, 29 Apr 2016 16:26:15 GMT
-recorded_with: VCR 3.0.1
+- request:
+    method: get
+    uri: https://devel.example.com/pulp/api/v2/tasks/ac55664e-96dd-4680-9551-2bdaef61ff7d/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
+      Content-Type:
+      - application/json
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 15 Aug 2018 15:40:25 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Etag:
+      - '"f08a1338e111f5a747aa24139a6094b5-gzip"'
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '9053'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"exception": null, "task_type": "pulp.server.managers.repo.publish.publish",
+        "_href": "/pulp/api/v2/tasks/ac55664e-96dd-4680-9551-2bdaef61ff7d/", "task_id":
+        "ac55664e-96dd-4680-9551-2bdaef61ff7d", "tags": ["pulp:repository:integration_test_id",
+        "pulp:action:publish"], "finish_time": "2018-08-15T15:40:25Z", "_ns": "task_status",
+        "start_time": "2018-08-15T15:40:25Z", "traceback": null, "spawned_tasks":
+        [], "progress_report": {"yum_dist": [{"num_success": 1, "description": "Initializing
+        repo metadata", "step_type": "initialize_repo_metadata", "items_total": 1,
+        "state": "FINISHED", "error_details": [], "details": "", "num_failures": 0,
+        "step_id": "3d6dd5bf-ab71-4fd0-8e4b-82e01ce9c8f4", "num_processed": 1}, {"num_success":
+        1, "description": "Publishing Distribution files", "step_type": "distribution",
+        "items_total": 1, "state": "FINISHED", "error_details": [], "details": "",
+        "num_failures": 0, "step_id": "609a4d9c-98ca-4750-9034-4dda6b0e97a8", "num_processed":
+        1}, {"num_success": 8, "description": "Publishing RPMs", "step_type": "rpms",
+        "items_total": 8, "state": "FINISHED", "error_details": [], "details": "",
+        "num_failures": 0, "step_id": "77705df4-5991-489b-a40f-13d7bb84daec", "num_processed":
+        8}, {"num_success": 0, "description": "Publishing Delta RPMs", "step_type":
+        "drpms", "items_total": 1, "state": "SKIPPED", "error_details": [], "details":
+        "", "num_failures": 0, "step_id": "2eba9489-d070-4759-94e7-52dbceae2cc6",
+        "num_processed": 0}, {"num_success": 2, "description": "Publishing Errata",
+        "step_type": "errata", "items_total": 2, "state": "FINISHED", "error_details":
+        [], "details": "", "num_failures": 0, "step_id": "5ce74f6f-1742-4995-b0c5-971b9d60d5df",
+        "num_processed": 2}, {"num_success": 0, "description": "Publishing Modules",
+        "step_type": "modules", "items_total": 0, "state": "FINISHED", "error_details":
+        [], "details": "", "num_failures": 0, "step_id": "a513a97b-f67e-4922-b1f2-bf7ec91689eb",
+        "num_processed": 0}, {"num_success": 3, "description": "Publishing Comps file",
+        "step_type": "comps", "items_total": 3, "state": "FINISHED", "error_details":
+        [], "details": "", "num_failures": 0, "step_id": "3a2e3be2-39f7-420d-922e-617d014d0367",
+        "num_processed": 3}, {"num_success": 0, "description": "Publishing Metadata.",
+        "step_type": "metadata", "items_total": 0, "state": "FINISHED", "error_details":
+        [], "details": "", "num_failures": 0, "step_id": "0227b0ee-71ca-40df-89ba-3d157891796b",
+        "num_processed": 0}, {"num_success": 1, "description": "Closing repo metadata",
+        "step_type": "close_repo_metadata", "items_total": 1, "state": "FINISHED",
+        "error_details": [], "details": "", "num_failures": 0, "step_id": "f7ad42cd-dffa-4160-ae5c-81ada2850610",
+        "num_processed": 1}, {"num_success": 0, "description": "Generating sqlite
+        files", "step_type": "generate sqlite", "items_total": 1, "state": "SKIPPED",
+        "error_details": [], "details": "", "num_failures": 0, "step_id": "7b79791a-9826-457d-9e43-2ade40325f39",
+        "num_processed": 0}, {"num_success": 1, "description": "Removing old repodata",
+        "step_type": "remove_old_repodata", "items_total": 0, "state": "FINISHED",
+        "error_details": [], "details": "", "num_failures": 0, "step_id": "c517000d-4cfb-4866-8b7a-f8e0867f1969",
+        "num_processed": 1}, {"num_success": 0, "description": "Generating HTML files",
+        "step_type": "repoview", "items_total": 1, "state": "SKIPPED", "error_details":
+        [], "details": "", "num_failures": 0, "step_id": "c1b25337-01fe-493d-814b-4a69a3335f6b",
+        "num_processed": 0}, {"num_success": 1, "description": "Publishing files to
+        web", "step_type": "publish_directory", "items_total": 1, "state": "FINISHED",
+        "error_details": [], "details": "", "num_failures": 0, "step_id": "e64f4383-2e7e-4407-8143-54ca79343566",
+        "num_processed": 1}, {"num_success": 1, "description": "Writing Listings File",
+        "step_type": "initialize_repo_metadata", "items_total": 1, "state": "FINISHED",
+        "error_details": [], "details": "", "num_failures": 0, "step_id": "093a978b-c2ae-4241-9842-1624b67d0221",
+        "num_processed": 1}, {"num_success": 1, "description": "Writing Listings File",
+        "step_type": "initialize_repo_metadata", "items_total": 1, "state": "FINISHED",
+        "error_details": [], "details": "", "num_failures": 0, "step_id": "2dbe2cb8-9323-432f-bc2c-2d66010fa007",
+        "num_processed": 1}]}, "queue": "reserved_resource_worker-1@devel.example.com.dq2",
+        "state": "finished", "worker_name": "reserved_resource_worker-1@devel.example.com",
+        "result": {"result": "success", "exception": null, "repo_id": "integration_test_id",
+        "started": "2018-08-15T15:40:25Z", "_ns": "repo_publish_results", "completed":
+        "2018-08-15T15:40:25Z", "traceback": null, "distributor_type_id": "yum_distributor",
+        "summary": {"generate sqlite": "SKIPPED", "rpms": "FINISHED", "initialize_repo_metadata":
+        "FINISHED", "remove_old_repodata": "FINISHED", "modules": "FINISHED", "close_repo_metadata":
+        "FINISHED", "drpms": "SKIPPED", "comps": "FINISHED", "distribution": "FINISHED",
+        "repoview": "SKIPPED", "publish_directory": "FINISHED", "errata": "FINISHED",
+        "metadata": "FINISHED"}, "error_message": null, "distributor_id": "yum_dist",
+        "id": "5b74496969f4e512cd684a38", "details": [{"num_success": 1, "description":
+        "Initializing repo metadata", "step_type": "initialize_repo_metadata", "items_total":
+        1, "state": "FINISHED", "error_details": [], "details": "", "num_failures":
+        0, "step_id": "3d6dd5bf-ab71-4fd0-8e4b-82e01ce9c8f4", "num_processed": 1},
+        {"num_success": 1, "description": "Publishing Distribution files", "step_type":
+        "distribution", "items_total": 1, "state": "FINISHED", "error_details": [],
+        "details": "", "num_failures": 0, "step_id": "609a4d9c-98ca-4750-9034-4dda6b0e97a8",
+        "num_processed": 1}, {"num_success": 8, "description": "Publishing RPMs",
+        "step_type": "rpms", "items_total": 8, "state": "FINISHED", "error_details":
+        [], "details": "", "num_failures": 0, "step_id": "77705df4-5991-489b-a40f-13d7bb84daec",
+        "num_processed": 8}, {"num_success": 0, "description": "Publishing Delta RPMs",
+        "step_type": "drpms", "items_total": 1, "state": "SKIPPED", "error_details":
+        [], "details": "", "num_failures": 0, "step_id": "2eba9489-d070-4759-94e7-52dbceae2cc6",
+        "num_processed": 0}, {"num_success": 2, "description": "Publishing Errata",
+        "step_type": "errata", "items_total": 2, "state": "FINISHED", "error_details":
+        [], "details": "", "num_failures": 0, "step_id": "5ce74f6f-1742-4995-b0c5-971b9d60d5df",
+        "num_processed": 2}, {"num_success": 0, "description": "Publishing Modules",
+        "step_type": "modules", "items_total": 0, "state": "FINISHED", "error_details":
+        [], "details": "", "num_failures": 0, "step_id": "a513a97b-f67e-4922-b1f2-bf7ec91689eb",
+        "num_processed": 0}, {"num_success": 3, "description": "Publishing Comps file",
+        "step_type": "comps", "items_total": 3, "state": "FINISHED", "error_details":
+        [], "details": "", "num_failures": 0, "step_id": "3a2e3be2-39f7-420d-922e-617d014d0367",
+        "num_processed": 3}, {"num_success": 0, "description": "Publishing Metadata.",
+        "step_type": "metadata", "items_total": 0, "state": "FINISHED", "error_details":
+        [], "details": "", "num_failures": 0, "step_id": "0227b0ee-71ca-40df-89ba-3d157891796b",
+        "num_processed": 0}, {"num_success": 1, "description": "Closing repo metadata",
+        "step_type": "close_repo_metadata", "items_total": 1, "state": "FINISHED",
+        "error_details": [], "details": "", "num_failures": 0, "step_id": "f7ad42cd-dffa-4160-ae5c-81ada2850610",
+        "num_processed": 1}, {"num_success": 0, "description": "Generating sqlite
+        files", "step_type": "generate sqlite", "items_total": 1, "state": "SKIPPED",
+        "error_details": [], "details": "", "num_failures": 0, "step_id": "7b79791a-9826-457d-9e43-2ade40325f39",
+        "num_processed": 0}, {"num_success": 1, "description": "Removing old repodata",
+        "step_type": "remove_old_repodata", "items_total": 0, "state": "FINISHED",
+        "error_details": [], "details": "", "num_failures": 0, "step_id": "c517000d-4cfb-4866-8b7a-f8e0867f1969",
+        "num_processed": 1}, {"num_success": 0, "description": "Generating HTML files",
+        "step_type": "repoview", "items_total": 1, "state": "SKIPPED", "error_details":
+        [], "details": "", "num_failures": 0, "step_id": "c1b25337-01fe-493d-814b-4a69a3335f6b",
+        "num_processed": 0}, {"num_success": 1, "description": "Publishing files to
+        web", "step_type": "publish_directory", "items_total": 1, "state": "FINISHED",
+        "error_details": [], "details": "", "num_failures": 0, "step_id": "e64f4383-2e7e-4407-8143-54ca79343566",
+        "num_processed": 1}, {"num_success": 1, "description": "Writing Listings File",
+        "step_type": "initialize_repo_metadata", "items_total": 1, "state": "FINISHED",
+        "error_details": [], "details": "", "num_failures": 0, "step_id": "093a978b-c2ae-4241-9842-1624b67d0221",
+        "num_processed": 1}, {"num_success": 1, "description": "Writing Listings File",
+        "step_type": "initialize_repo_metadata", "items_total": 1, "state": "FINISHED",
+        "error_details": [], "details": "", "num_failures": 0, "step_id": "2dbe2cb8-9323-432f-bc2c-2d66010fa007",
+        "num_processed": 1}]}, "error": null, "_id": {"$oid": "5b74496969b4753f995cdbce"},
+        "id": "5b74496969b4753f995cdbce"}'
+    http_version: 
+  recorded_at: Wed, 15 Aug 2018 15:40:26 GMT
+- request:
+    method: get
+    uri: https://devel.example.com/pulp/api/v2/repositories/integration_test_id/?details=true
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
+      Content-Type:
+      - application/json
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 15 Aug 2018 15:49:06 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Etag:
+      - '"2e55c384b6b89cd1a9130763f7862fff-gzip"'
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '1438'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"scratchpad": {"checksum_type": "sha256"}, "display_name": "integration_test_id",
+        "description": null, "distributors": [{"repo_id": "integration_test_id", "last_updated":
+        "2018-08-15T15:49:04Z", "_href": "/pulp/api/v2/repositories/integration_test_id/distributors/yum_dist/",
+        "last_override_config": {}, "last_publish": null, "distributor_type_id": "yum_distributor",
+        "auto_publish": false, "scratchpad": {}, "_ns": "repo_distributors", "_id":
+        {"$oid": "5b744b7069f4e52413f14b07"}, "config": {"http": true, "https": true,
+        "relative_url": "path"}, "id": "yum_dist"}], "last_unit_added": "2018-08-15T15:49:04Z",
+        "notes": {}, "last_unit_removed": null, "content_unit_counts": {"package_group":
+        2, "distribution": 1, "package_category": 1, "rpm": 8, "erratum": 2}, "_ns":
+        "repos", "importers": [{"repo_id": "integration_test_id", "last_updated":
+        "2018-08-15T15:49:04Z", "_href": "/pulp/api/v2/repositories/integration_test_id/importers/yum_importer/",
+        "_ns": "repo_importers", "importer_type_id": "yum_importer", "last_override_config":
+        {}, "last_sync": "2018-08-15T15:49:04Z", "scratchpad": {"repomd_revision":
+        1321893800}, "_id": {"$oid": "5b744b7069f4e52413f14b06"}, "config": {"feed":
+        "file:///var/www/repositories/zoo5"}, "id": "yum_importer"}], "locally_stored_units":
+        14, "_id": {"$oid": "5b744b7069f4e52413f14b05"}, "total_repository_units":
+        14, "id": "integration_test_id", "_href": "/pulp/api/v2/repositories/integration_test_id/"}'
+    http_version: 
+  recorded_at: Wed, 15 Aug 2018 15:49:06 GMT
+- request:
+    method: post
+    uri: https://devel.example.com/pulp/api/v2/repositories/integration_test_id/actions/publish/
+    body:
+      encoding: UTF-8
+      string: '{"id":"yum_dist"}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '17'
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Date:
+      - Wed, 15 Aug 2018 15:49:06 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '172'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/777a6e31-dedf-423a-8bdd-3c42cbbffca4/",
+        "task_id": "777a6e31-dedf-423a-8bdd-3c42cbbffca4"}], "result": null, "error":
+        null}'
+    http_version: 
+  recorded_at: Wed, 15 Aug 2018 15:49:06 GMT
+- request:
+    method: get
+    uri: https://devel.example.com/pulp/api/v2/tasks/777a6e31-dedf-423a-8bdd-3c42cbbffca4/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
+      Content-Type:
+      - application/json
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 15 Aug 2018 15:49:06 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Etag:
+      - '"88434ae6c7b38168fe81c5cc4fc7cc32-gzip"'
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '9053'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"exception": null, "task_type": "pulp.server.managers.repo.publish.publish",
+        "_href": "/pulp/api/v2/tasks/777a6e31-dedf-423a-8bdd-3c42cbbffca4/", "task_id":
+        "777a6e31-dedf-423a-8bdd-3c42cbbffca4", "tags": ["pulp:repository:integration_test_id",
+        "pulp:action:publish"], "finish_time": "2018-08-15T15:49:06Z", "_ns": "task_status",
+        "start_time": "2018-08-15T15:49:06Z", "traceback": null, "spawned_tasks":
+        [], "progress_report": {"yum_dist": [{"num_success": 1, "description": "Initializing
+        repo metadata", "step_type": "initialize_repo_metadata", "items_total": 1,
+        "state": "FINISHED", "error_details": [], "details": "", "num_failures": 0,
+        "step_id": "2359e7b1-5113-47fe-8d75-06c5d152f235", "num_processed": 1}, {"num_success":
+        1, "description": "Publishing Distribution files", "step_type": "distribution",
+        "items_total": 1, "state": "FINISHED", "error_details": [], "details": "",
+        "num_failures": 0, "step_id": "6ede1973-1a40-427e-8263-9f96423bdb35", "num_processed":
+        1}, {"num_success": 8, "description": "Publishing RPMs", "step_type": "rpms",
+        "items_total": 8, "state": "FINISHED", "error_details": [], "details": "",
+        "num_failures": 0, "step_id": "d0454553-ac85-4453-95d5-ba816282f034", "num_processed":
+        8}, {"num_success": 0, "description": "Publishing Delta RPMs", "step_type":
+        "drpms", "items_total": 1, "state": "SKIPPED", "error_details": [], "details":
+        "", "num_failures": 0, "step_id": "20c30b98-3290-447c-a48c-88bc5b0ee247",
+        "num_processed": 0}, {"num_success": 2, "description": "Publishing Errata",
+        "step_type": "errata", "items_total": 2, "state": "FINISHED", "error_details":
+        [], "details": "", "num_failures": 0, "step_id": "0fb6e586-f613-45ab-abfd-0e047f5c1c5f",
+        "num_processed": 2}, {"num_success": 0, "description": "Publishing Modules",
+        "step_type": "modules", "items_total": 0, "state": "FINISHED", "error_details":
+        [], "details": "", "num_failures": 0, "step_id": "38d79cfd-3aeb-433b-b0dd-393dc2c283cd",
+        "num_processed": 0}, {"num_success": 3, "description": "Publishing Comps file",
+        "step_type": "comps", "items_total": 3, "state": "FINISHED", "error_details":
+        [], "details": "", "num_failures": 0, "step_id": "e025ce8a-46e8-4260-9688-c23e60b08ccd",
+        "num_processed": 3}, {"num_success": 0, "description": "Publishing Metadata.",
+        "step_type": "metadata", "items_total": 0, "state": "FINISHED", "error_details":
+        [], "details": "", "num_failures": 0, "step_id": "19a45461-79eb-4dc0-b309-bc84625a3d8e",
+        "num_processed": 0}, {"num_success": 1, "description": "Closing repo metadata",
+        "step_type": "close_repo_metadata", "items_total": 1, "state": "FINISHED",
+        "error_details": [], "details": "", "num_failures": 0, "step_id": "f63c8b74-c0c5-4c8a-9c22-a290319d3670",
+        "num_processed": 1}, {"num_success": 0, "description": "Generating sqlite
+        files", "step_type": "generate sqlite", "items_total": 1, "state": "SKIPPED",
+        "error_details": [], "details": "", "num_failures": 0, "step_id": "963c99f8-fffc-4fde-9a76-91104045de07",
+        "num_processed": 0}, {"num_success": 1, "description": "Removing old repodata",
+        "step_type": "remove_old_repodata", "items_total": 0, "state": "FINISHED",
+        "error_details": [], "details": "", "num_failures": 0, "step_id": "bd9c2096-ad40-4ccc-8520-53930796f46e",
+        "num_processed": 1}, {"num_success": 0, "description": "Generating HTML files",
+        "step_type": "repoview", "items_total": 1, "state": "SKIPPED", "error_details":
+        [], "details": "", "num_failures": 0, "step_id": "42071038-620c-48e4-8a57-6e1008dc2e3c",
+        "num_processed": 0}, {"num_success": 1, "description": "Publishing files to
+        web", "step_type": "publish_directory", "items_total": 1, "state": "FINISHED",
+        "error_details": [], "details": "", "num_failures": 0, "step_id": "a5c78a80-1bb2-4e4f-ad97-10257c9d59af",
+        "num_processed": 1}, {"num_success": 1, "description": "Writing Listings File",
+        "step_type": "initialize_repo_metadata", "items_total": 1, "state": "FINISHED",
+        "error_details": [], "details": "", "num_failures": 0, "step_id": "106c4f09-ab30-4604-b714-248d65a57cf3",
+        "num_processed": 1}, {"num_success": 1, "description": "Writing Listings File",
+        "step_type": "initialize_repo_metadata", "items_total": 1, "state": "FINISHED",
+        "error_details": [], "details": "", "num_failures": 0, "step_id": "301599be-58bb-497a-94c0-4b74f9ed69ca",
+        "num_processed": 1}]}, "queue": "reserved_resource_worker-1@devel.example.com.dq2",
+        "state": "finished", "worker_name": "reserved_resource_worker-1@devel.example.com",
+        "result": {"result": "success", "exception": null, "repo_id": "integration_test_id",
+        "started": "2018-08-15T15:49:06Z", "_ns": "repo_publish_results", "completed":
+        "2018-08-15T15:49:06Z", "traceback": null, "distributor_type_id": "yum_distributor",
+        "summary": {"generate sqlite": "SKIPPED", "rpms": "FINISHED", "initialize_repo_metadata":
+        "FINISHED", "remove_old_repodata": "FINISHED", "modules": "FINISHED", "close_repo_metadata":
+        "FINISHED", "drpms": "SKIPPED", "comps": "FINISHED", "distribution": "FINISHED",
+        "repoview": "SKIPPED", "publish_directory": "FINISHED", "errata": "FINISHED",
+        "metadata": "FINISHED"}, "error_message": null, "distributor_id": "yum_dist",
+        "id": "5b744b7269f4e5246970c3fc", "details": [{"num_success": 1, "description":
+        "Initializing repo metadata", "step_type": "initialize_repo_metadata", "items_total":
+        1, "state": "FINISHED", "error_details": [], "details": "", "num_failures":
+        0, "step_id": "2359e7b1-5113-47fe-8d75-06c5d152f235", "num_processed": 1},
+        {"num_success": 1, "description": "Publishing Distribution files", "step_type":
+        "distribution", "items_total": 1, "state": "FINISHED", "error_details": [],
+        "details": "", "num_failures": 0, "step_id": "6ede1973-1a40-427e-8263-9f96423bdb35",
+        "num_processed": 1}, {"num_success": 8, "description": "Publishing RPMs",
+        "step_type": "rpms", "items_total": 8, "state": "FINISHED", "error_details":
+        [], "details": "", "num_failures": 0, "step_id": "d0454553-ac85-4453-95d5-ba816282f034",
+        "num_processed": 8}, {"num_success": 0, "description": "Publishing Delta RPMs",
+        "step_type": "drpms", "items_total": 1, "state": "SKIPPED", "error_details":
+        [], "details": "", "num_failures": 0, "step_id": "20c30b98-3290-447c-a48c-88bc5b0ee247",
+        "num_processed": 0}, {"num_success": 2, "description": "Publishing Errata",
+        "step_type": "errata", "items_total": 2, "state": "FINISHED", "error_details":
+        [], "details": "", "num_failures": 0, "step_id": "0fb6e586-f613-45ab-abfd-0e047f5c1c5f",
+        "num_processed": 2}, {"num_success": 0, "description": "Publishing Modules",
+        "step_type": "modules", "items_total": 0, "state": "FINISHED", "error_details":
+        [], "details": "", "num_failures": 0, "step_id": "38d79cfd-3aeb-433b-b0dd-393dc2c283cd",
+        "num_processed": 0}, {"num_success": 3, "description": "Publishing Comps file",
+        "step_type": "comps", "items_total": 3, "state": "FINISHED", "error_details":
+        [], "details": "", "num_failures": 0, "step_id": "e025ce8a-46e8-4260-9688-c23e60b08ccd",
+        "num_processed": 3}, {"num_success": 0, "description": "Publishing Metadata.",
+        "step_type": "metadata", "items_total": 0, "state": "FINISHED", "error_details":
+        [], "details": "", "num_failures": 0, "step_id": "19a45461-79eb-4dc0-b309-bc84625a3d8e",
+        "num_processed": 0}, {"num_success": 1, "description": "Closing repo metadata",
+        "step_type": "close_repo_metadata", "items_total": 1, "state": "FINISHED",
+        "error_details": [], "details": "", "num_failures": 0, "step_id": "f63c8b74-c0c5-4c8a-9c22-a290319d3670",
+        "num_processed": 1}, {"num_success": 0, "description": "Generating sqlite
+        files", "step_type": "generate sqlite", "items_total": 1, "state": "SKIPPED",
+        "error_details": [], "details": "", "num_failures": 0, "step_id": "963c99f8-fffc-4fde-9a76-91104045de07",
+        "num_processed": 0}, {"num_success": 1, "description": "Removing old repodata",
+        "step_type": "remove_old_repodata", "items_total": 0, "state": "FINISHED",
+        "error_details": [], "details": "", "num_failures": 0, "step_id": "bd9c2096-ad40-4ccc-8520-53930796f46e",
+        "num_processed": 1}, {"num_success": 0, "description": "Generating HTML files",
+        "step_type": "repoview", "items_total": 1, "state": "SKIPPED", "error_details":
+        [], "details": "", "num_failures": 0, "step_id": "42071038-620c-48e4-8a57-6e1008dc2e3c",
+        "num_processed": 0}, {"num_success": 1, "description": "Publishing files to
+        web", "step_type": "publish_directory", "items_total": 1, "state": "FINISHED",
+        "error_details": [], "details": "", "num_failures": 0, "step_id": "a5c78a80-1bb2-4e4f-ad97-10257c9d59af",
+        "num_processed": 1}, {"num_success": 1, "description": "Writing Listings File",
+        "step_type": "initialize_repo_metadata", "items_total": 1, "state": "FINISHED",
+        "error_details": [], "details": "", "num_failures": 0, "step_id": "106c4f09-ab30-4604-b714-248d65a57cf3",
+        "num_processed": 1}, {"num_success": 1, "description": "Writing Listings File",
+        "step_type": "initialize_repo_metadata", "items_total": 1, "state": "FINISHED",
+        "error_details": [], "details": "", "num_failures": 0, "step_id": "301599be-58bb-497a-94c0-4b74f9ed69ca",
+        "num_processed": 1}]}, "error": null, "_id": {"$oid": "5b744b7269b4753f995d8377"},
+        "id": "5b744b7269b4753f995d8377"}'
+    http_version: 
+  recorded_at: Wed, 15 Aug 2018 15:49:06 GMT
+recorded_with: VCR 4.0.0

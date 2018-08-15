@@ -1,124 +1,6 @@
 ---
 http_interactions:
 - request:
-    method: post
-    uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/repositories/
-    body:
-      encoding: UTF-8
-      string: '{"id":"integration_test_id","importer_type_id":"python_importer","importer_config":{"feed":"https://pypi.python.org/pypi","packages_names":["django"]},"notes":{"_repo-type":"python-repo"}}'
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Type:
-      - application/json
-      Content-Length:
-      - '188'
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 201
-      message: CREATED
-    headers:
-      Date:
-      - Fri, 29 Apr 2016 16:22:17 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Content-Length:
-      - '346'
-      Location:
-      - https://runcible.example.com/pulp/api/v2/repositories/integration_test_id/
-      Content-Type:
-      - application/json; charset=utf-8
-    body:
-      encoding: UTF-8
-      string: '{"scratchpad": {}, "display_name": "integration_test_id", "description":
-        null, "last_unit_added": null, "notes": {"_repo-type": "python-repo"}, "last_unit_removed":
-        null, "content_unit_counts": {}, "_ns": "repos", "_id": {"$oid": "57238a39aca4886d979905c1"},
-        "id": "integration_test_id", "_href": "/pulp/api/v2/repositories/integration_test_id/"}'
-    http_version: 
-  recorded_at: Fri, 29 Apr 2016 16:22:17 GMT
-- request:
-    method: get
-    uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/repositories/integration_test_id/?details=true
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Type:
-      - application/json
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Fri, 29 Apr 2016 16:22:17 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Vary:
-      - Accept-Encoding
-      Content-Length:
-      - '813'
-      Content-Type:
-      - application/json; charset=utf-8
-    body:
-      encoding: ASCII-8BIT
-      string: '{"scratchpad": {}, "display_name": "integration_test_id", "description":
-        null, "distributors": [], "last_unit_added": null, "notes": {"_repo-type":
-        "python-repo"}, "last_unit_removed": null, "content_unit_counts": {}, "_ns":
-        "repos", "importers": [{"scratchpad": null, "_href": "/pulp/api/v2/repositories/integration_test_id/importers/python_importer/",
-        "_ns": "repo_importers", "importer_type_id": "python_importer", "last_sync":
-        null, "repo_id": "integration_test_id", "_id": {"$oid": "57238a39aca4886d979905c2"},
-        "config": {"feed": "https://pypi.python.org/pypi", "packages_names": ["django"]},
-        "id": "python_importer"}], "locally_stored_units": 0, "_id": {"$oid": "57238a39aca4886d979905c1"},
-        "total_repository_units": 0, "id": "integration_test_id", "_href": "/pulp/api/v2/repositories/integration_test_id/"}'
-    http_version: 
-  recorded_at: Fri, 29 Apr 2016 16:22:17 GMT
-- request:
-    method: delete
-    uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/repositories/integration_test_id/
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Type:
-      - application/json
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 202
-      message: ACCEPTED
-    headers:
-      Date:
-      - Fri, 29 Apr 2016 16:22:17 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Content-Length:
-      - '172'
-      Content-Type:
-      - application/json; charset=utf-8
-    body:
-      encoding: UTF-8
-      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/32ac264b-881b-4d12-8374-501863edf441/",
-        "task_id": "32ac264b-881b-4d12-8374-501863edf441"}], "result": null, "error":
-        null}'
-    http_version: 
-  recorded_at: Fri, 29 Apr 2016 16:22:17 GMT
-- request:
     method: get
     uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/tasks/32ac264b-881b-4d12-8374-501863edf441/
     body:
@@ -161,4 +43,186 @@ http_interactions:
         "id": "57238a39898f5c862fa3eaee"}'
     http_version: 
   recorded_at: Fri, 29 Apr 2016 16:22:18 GMT
-recorded_with: VCR 3.0.1
+- request:
+    method: post
+    uri: https://devel.example.com/pulp/api/v2/repositories/
+    body:
+      encoding: UTF-8
+      string: '{"id":"integration_test_id","importer_type_id":"python_importer","importer_config":{"feed":"https://pypi.python.org/pypi","packages_names":["django"]},"notes":{"_repo-type":"python-repo"}}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '188'
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 201
+      message: CREATED
+    headers:
+      Date:
+      - Wed, 15 Aug 2018 15:47:30 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '346'
+      Location:
+      - "/pulp/api/v2/repositories/integration_test_id/"
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"scratchpad": {}, "display_name": "integration_test_id", "description":
+        null, "last_unit_added": null, "notes": {"_repo-type": "python-repo"}, "last_unit_removed":
+        null, "content_unit_counts": {}, "_ns": "repos", "_id": {"$oid": "5b744b1269f4e52415bb1c27"},
+        "id": "integration_test_id", "_href": "/pulp/api/v2/repositories/integration_test_id/"}'
+    http_version: 
+  recorded_at: Wed, 15 Aug 2018 15:47:30 GMT
+- request:
+    method: get
+    uri: https://devel.example.com/pulp/api/v2/repositories/integration_test_id/?details=true
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
+      Content-Type:
+      - application/json
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 15 Aug 2018 15:47:30 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Etag:
+      - '"c8b4a76d76997b5505d7ce4464216eb8-gzip"'
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '881'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"scratchpad": {}, "display_name": "integration_test_id", "description":
+        null, "distributors": [], "last_unit_added": null, "notes": {"_repo-type":
+        "python-repo"}, "last_unit_removed": null, "content_unit_counts": {}, "_ns":
+        "repos", "importers": [{"repo_id": "integration_test_id", "last_updated":
+        "2018-08-15T15:47:30Z", "_href": "/pulp/api/v2/repositories/integration_test_id/importers/python_importer/",
+        "_ns": "repo_importers", "importer_type_id": "python_importer", "last_override_config":
+        {}, "last_sync": null, "scratchpad": null, "_id": {"$oid": "5b744b1269f4e52415bb1c28"},
+        "config": {"feed": "https://pypi.python.org/pypi", "packages_names": ["django"]},
+        "id": "python_importer"}], "locally_stored_units": 0, "_id": {"$oid": "5b744b1269f4e52415bb1c27"},
+        "total_repository_units": 0, "id": "integration_test_id", "_href": "/pulp/api/v2/repositories/integration_test_id/"}'
+    http_version: 
+  recorded_at: Wed, 15 Aug 2018 15:47:30 GMT
+- request:
+    method: delete
+    uri: https://devel.example.com/pulp/api/v2/repositories/integration_test_id/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
+      Content-Type:
+      - application/json
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Date:
+      - Wed, 15 Aug 2018 15:47:30 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '172'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/2392dd89-95c5-4e72-8282-63d23862ae24/",
+        "task_id": "2392dd89-95c5-4e72-8282-63d23862ae24"}], "result": null, "error":
+        null}'
+    http_version: 
+  recorded_at: Wed, 15 Aug 2018 15:47:31 GMT
+- request:
+    method: get
+    uri: https://devel.example.com/pulp/api/v2/tasks/2392dd89-95c5-4e72-8282-63d23862ae24/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
+      Content-Type:
+      - application/json
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 15 Aug 2018 15:47:31 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Etag:
+      - '"3f1c027a1b7d005153c5924a0e6ef415-gzip"'
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '679'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"exception": null, "task_type": "pulp.server.tasks.repository.delete",
+        "_href": "/pulp/api/v2/tasks/2392dd89-95c5-4e72-8282-63d23862ae24/", "task_id":
+        "2392dd89-95c5-4e72-8282-63d23862ae24", "tags": ["pulp:repository:integration_test_id",
+        "pulp:action:delete"], "finish_time": "2018-08-15T15:47:31Z", "_ns": "task_status",
+        "start_time": "2018-08-15T15:47:31Z", "traceback": null, "spawned_tasks":
+        [], "progress_report": {}, "queue": "reserved_resource_worker-1@devel.example.com.dq2",
+        "state": "finished", "worker_name": "reserved_resource_worker-1@devel.example.com",
+        "result": null, "error": null, "_id": {"$oid": "5b744b1369b4753f995d7059"},
+        "id": "5b744b1369b4753f995d7059"}'
+    http_version: 
+  recorded_at: Wed, 15 Aug 2018 15:47:31 GMT
+recorded_with: VCR 4.0.0

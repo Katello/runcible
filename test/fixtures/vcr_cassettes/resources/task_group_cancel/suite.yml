@@ -2,132 +2,6 @@
 http_interactions:
 - request:
     method: get
-    uri: https://admin:admin@dev.example.com/pulp/api/v2/repositories/integration_test_id/
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      User-Agent:
-      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.2.4p230
-      Content-Type:
-      - application/json
-      Host:
-      - dev.example.com
-  response:
-    status:
-      code: 404
-      message: NOT FOUND
-    headers:
-      Date:
-      - Tue, 25 Jul 2017 20:48:33 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Content-Length:
-      - '452'
-      Connection:
-      - close
-      Content-Type:
-      - application/json; charset=utf-8
-    body:
-      encoding: UTF-8
-      string: '{"http_request_method": "GET", "exception": null, "error_message":
-        "Missing resource(s): repository=integration_test_id", "_href": "/pulp/api/v2/repositories/integration_test_id/?",
-        "http_status": 404, "error": {"code": "PLP0009", "data": {"resources": {"repository":
-        "integration_test_id"}}, "description": "Missing resource(s): repository=integration_test_id",
-        "sub_errors": []}, "traceback": null, "resources": {"repository": "integration_test_id"}}'
-    http_version: 
-  recorded_at: Tue, 25 Jul 2017 20:48:33 GMT
-- request:
-    method: post
-    uri: https://admin:admin@dev.example.com/pulp/api/v2/repositories/
-    body:
-      encoding: UTF-8
-      string: '{"id":"integration_test_id","importer_type_id":"yum_importer","importer_config":{"feed":"file:///var/www/repositories/zoo5"},"distributors":[{"distributor_type_id":"yum_distributor","distributor_config":{"relative_url":"path","http":true,"https":true},"auto_publish":false,"distributor_id":"yum_dist"}]}'
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      User-Agent:
-      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.2.4p230
-      Content-Type:
-      - application/json
-      Content-Length:
-      - '303'
-      Host:
-      - dev.example.com
-  response:
-    status:
-      code: 201
-      message: CREATED
-    headers:
-      Date:
-      - Tue, 25 Jul 2017 20:48:33 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Content-Length:
-      - '319'
-      Location:
-      - https://dev.example.com/pulp/api/v2/repositories/integration_test_id/
-      Connection:
-      - close
-      Content-Type:
-      - application/json; charset=utf-8
-    body:
-      encoding: UTF-8
-      string: '{"scratchpad": {}, "display_name": "integration_test_id", "description":
-        null, "last_unit_added": null, "notes": {}, "last_unit_removed": null, "content_unit_counts":
-        {}, "_ns": "repos", "_id": {"$oid": "5977aea1418a8a2e75865f59"}, "id": "integration_test_id",
-        "_href": "/pulp/api/v2/repositories/integration_test_id/"}'
-    http_version: 
-  recorded_at: Tue, 25 Jul 2017 20:48:33 GMT
-- request:
-    method: post
-    uri: https://admin:admin@dev.example.com/pulp/api/v2/repositories/integration_test_id/actions/sync/
-    body:
-      encoding: UTF-8
-      string: "{}"
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      User-Agent:
-      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.2.4p230
-      Content-Type:
-      - application/json
-      Content-Length:
-      - '2'
-      Host:
-      - dev.example.com
-  response:
-    status:
-      code: 202
-      message: ACCEPTED
-    headers:
-      Date:
-      - Tue, 25 Jul 2017 20:48:33 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Content-Length:
-      - '172'
-      Connection:
-      - close
-      Content-Type:
-      - application/json; charset=utf-8
-    body:
-      encoding: UTF-8
-      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/01771685-cc46-42a8-b2c1-b0b4c94ba352/",
-        "task_id": "01771685-cc46-42a8-b2c1-b0b4c94ba352"}], "result": null, "error":
-        null}'
-    http_version: 
-  recorded_at: Tue, 25 Jul 2017 20:48:33 GMT
-- request:
-    method: get
     uri: https://admin:admin@dev.example.com/pulp/api/v2/tasks/01771685-cc46-42a8-b2c1-b0b4c94ba352/
     body:
       encoding: US-ASCII
@@ -192,45 +66,6 @@ http_interactions:
     http_version: 
   recorded_at: Tue, 25 Jul 2017 20:48:34 GMT
 - request:
-    method: delete
-    uri: https://admin:admin@dev.example.com/pulp/api/v2/repositories/integration_test_id/
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      User-Agent:
-      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.2.4p230
-      Content-Type:
-      - application/json
-      Host:
-      - dev.example.com
-  response:
-    status:
-      code: 202
-      message: ACCEPTED
-    headers:
-      Date:
-      - Tue, 25 Jul 2017 20:48:36 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Content-Length:
-      - '172'
-      Connection:
-      - close
-      Content-Type:
-      - application/json; charset=utf-8
-    body:
-      encoding: UTF-8
-      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/dcb58186-e3ac-404f-92a3-7445cfcfbada/",
-        "task_id": "dcb58186-e3ac-404f-92a3-7445cfcfbada"}], "result": null, "error":
-        null}'
-    http_version: 
-  recorded_at: Tue, 25 Jul 2017 20:48:36 GMT
-- request:
     method: get
     uri: https://admin:admin@dev.example.com/pulp/api/v2/tasks/dcb58186-e3ac-404f-92a3-7445cfcfbada/
     body:
@@ -277,4 +112,625 @@ http_interactions:
         "id": "5977aea43d2bebc584da13ef"}'
     http_version: 
   recorded_at: Tue, 25 Jul 2017 20:48:36 GMT
-recorded_with: VCR 3.0.3
+- request:
+    method: get
+    uri: https://devel.example.com/pulp/api/v2/tasks/17ee7d18-3b5c-4f2e-9517-28aba8c57ae3/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
+      Content-Type:
+      - application/json
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 15 Aug 2018 15:42:27 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Etag:
+      - '"69fbc9a8b810098739e81c6776596a5b-gzip"'
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '1146'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"exception": null, "task_type": "pulp.server.managers.repo.sync.sync",
+        "_href": "/pulp/api/v2/tasks/17ee7d18-3b5c-4f2e-9517-28aba8c57ae3/", "task_id":
+        "17ee7d18-3b5c-4f2e-9517-28aba8c57ae3", "tags": ["pulp:repository:integration_test_id",
+        "pulp:action:sync"], "finish_time": null, "_ns": "task_status", "start_time":
+        "2018-08-15T15:42:26Z", "traceback": null, "spawned_tasks": [], "progress_report":
+        {"yum_importer": {"content": {"items_total": 0, "state": "FINISHED", "error_details":
+        [], "details": {"rpm_total": 0, "rpm_done": 0, "drpm_total": 0, "drpm_done":
+        0}, "size_total": 0, "size_left": 0, "items_left": 0}, "comps": {"state":
+        "FINISHED"}, "purge_duplicates": {"state": "FINISHED"}, "distribution": {"items_total":
+        3, "state": "FINISHED", "error_details": [], "items_left": 0}, "modules":
+        {"state": "FINISHED"}, "errata": {"state": "FINISHED"}, "metadata": {"state":
+        "FINISHED"}}}, "queue": "reserved_resource_worker-1@devel.example.com.dq2",
+        "state": "running", "worker_name": "reserved_resource_worker-1@devel.example.com",
+        "result": null, "error": null, "_id": {"$oid": "5b7449e269b4753f995d3363"},
+        "id": "5b7449e269b4753f995d3363"}'
+    http_version: 
+  recorded_at: Wed, 15 Aug 2018 15:42:27 GMT
+- request:
+    method: get
+    uri: https://devel.example.com/pulp/api/v2/tasks/17ee7d18-3b5c-4f2e-9517-28aba8c57ae3/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
+      Content-Type:
+      - application/json
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 15 Aug 2018 15:42:27 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Etag:
+      - '"69fbc9a8b810098739e81c6776596a5b-gzip"'
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '1146'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"exception": null, "task_type": "pulp.server.managers.repo.sync.sync",
+        "_href": "/pulp/api/v2/tasks/17ee7d18-3b5c-4f2e-9517-28aba8c57ae3/", "task_id":
+        "17ee7d18-3b5c-4f2e-9517-28aba8c57ae3", "tags": ["pulp:repository:integration_test_id",
+        "pulp:action:sync"], "finish_time": null, "_ns": "task_status", "start_time":
+        "2018-08-15T15:42:26Z", "traceback": null, "spawned_tasks": [], "progress_report":
+        {"yum_importer": {"content": {"items_total": 0, "state": "FINISHED", "error_details":
+        [], "details": {"rpm_total": 0, "rpm_done": 0, "drpm_total": 0, "drpm_done":
+        0}, "size_total": 0, "size_left": 0, "items_left": 0}, "comps": {"state":
+        "FINISHED"}, "purge_duplicates": {"state": "FINISHED"}, "distribution": {"items_total":
+        3, "state": "FINISHED", "error_details": [], "items_left": 0}, "modules":
+        {"state": "FINISHED"}, "errata": {"state": "FINISHED"}, "metadata": {"state":
+        "FINISHED"}}}, "queue": "reserved_resource_worker-1@devel.example.com.dq2",
+        "state": "running", "worker_name": "reserved_resource_worker-1@devel.example.com",
+        "result": null, "error": null, "_id": {"$oid": "5b7449e269b4753f995d3363"},
+        "id": "5b7449e269b4753f995d3363"}'
+    http_version: 
+  recorded_at: Wed, 15 Aug 2018 15:42:27 GMT
+- request:
+    method: get
+    uri: https://devel.example.com/pulp/api/v2/tasks/17ee7d18-3b5c-4f2e-9517-28aba8c57ae3/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
+      Content-Type:
+      - application/json
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 15 Aug 2018 15:42:28 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Etag:
+      - '"a536b7c5be3806d97ce43c011c2d8acd-gzip"'
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '2285'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"exception": null, "task_type": "pulp.server.managers.repo.sync.sync",
+        "_href": "/pulp/api/v2/tasks/17ee7d18-3b5c-4f2e-9517-28aba8c57ae3/", "task_id":
+        "17ee7d18-3b5c-4f2e-9517-28aba8c57ae3", "tags": ["pulp:repository:integration_test_id",
+        "pulp:action:sync"], "finish_time": "2018-08-15T15:42:27Z", "_ns": "task_status",
+        "start_time": "2018-08-15T15:42:26Z", "traceback": null, "spawned_tasks":
+        [], "progress_report": {"yum_importer": {"content": {"items_total": 0, "state":
+        "FINISHED", "error_details": [], "details": {"rpm_total": 0, "rpm_done": 0,
+        "drpm_total": 0, "drpm_done": 0}, "size_total": 0, "size_left": 0, "items_left":
+        0}, "comps": {"state": "FINISHED"}, "purge_duplicates": {"state": "FINISHED"},
+        "distribution": {"items_total": 3, "state": "FINISHED", "error_details": [],
+        "items_left": 0}, "modules": {"state": "FINISHED"}, "errata": {"state": "FINISHED"},
+        "metadata": {"state": "FINISHED"}}}, "queue": "reserved_resource_worker-1@devel.example.com.dq2",
+        "state": "finished", "worker_name": "reserved_resource_worker-1@devel.example.com",
+        "result": {"result": "success", "importer_id": "yum_importer", "exception":
+        null, "repo_id": "integration_test_id", "traceback": null, "started": "2018-08-15T15:42:26Z",
+        "_ns": "repo_sync_results", "completed": "2018-08-15T15:42:27Z", "importer_type_id":
+        "yum_importer", "error_message": null, "summary": {"modules": {"state": "FINISHED"},
+        "content": {"state": "FINISHED"}, "comps": {"state": "FINISHED"}, "purge_duplicates":
+        {"state": "FINISHED"}, "distribution": {"state": "FINISHED"}, "errata": {"state":
+        "FINISHED"}, "metadata": {"state": "FINISHED"}}, "added_count": 14, "removed_count":
+        0, "updated_count": 0, "id": "5b7449e369f4e512cd684b9f", "details": {"modules":
+        {"state": "FINISHED"}, "content": {"size_total": 0, "items_left": 0, "items_total":
+        0, "state": "FINISHED", "size_left": 0, "details": {"rpm_total": 0, "rpm_done":
+        0, "drpm_total": 0, "drpm_done": 0}, "error_details": []}, "comps": {"state":
+        "FINISHED"}, "purge_duplicates": {"state": "FINISHED"}, "distribution": {"items_total":
+        3, "state": "FINISHED", "error_details": [], "items_left": 0}, "errata": {"state":
+        "FINISHED"}, "metadata": {"state": "FINISHED"}}}, "error": null, "_id": {"$oid":
+        "5b7449e269b4753f995d3363"}, "id": "5b7449e269b4753f995d3363"}'
+    http_version: 
+  recorded_at: Wed, 15 Aug 2018 15:42:28 GMT
+- request:
+    method: get
+    uri: https://devel.example.com/pulp/api/v2/tasks/17adef1e-ac34-4e7f-97f0-43e32859d305/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
+      Content-Type:
+      - application/json
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 15 Aug 2018 15:42:30 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Etag:
+      - '"0e0b2ac55a30836963887d57081caecf-gzip"'
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '679'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"exception": null, "task_type": "pulp.server.tasks.repository.delete",
+        "_href": "/pulp/api/v2/tasks/17adef1e-ac34-4e7f-97f0-43e32859d305/", "task_id":
+        "17adef1e-ac34-4e7f-97f0-43e32859d305", "tags": ["pulp:repository:integration_test_id",
+        "pulp:action:delete"], "finish_time": "2018-08-15T15:42:30Z", "_ns": "task_status",
+        "start_time": "2018-08-15T15:42:30Z", "traceback": null, "spawned_tasks":
+        [], "progress_report": {}, "queue": "reserved_resource_worker-1@devel.example.com.dq2",
+        "state": "finished", "worker_name": "reserved_resource_worker-1@devel.example.com",
+        "result": null, "error": null, "_id": {"$oid": "5b7449e669b4753f995d35d4"},
+        "id": "5b7449e669b4753f995d35d4"}'
+    http_version: 
+  recorded_at: Wed, 15 Aug 2018 15:42:30 GMT
+- request:
+    method: get
+    uri: https://devel.example.com/pulp/api/v2/repositories/integration_test_id/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
+      Content-Type:
+      - application/json
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Date:
+      - Wed, 15 Aug 2018 15:51:14 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '452'
+      Etag:
+      - '"7069a6b1115393c7d259d12015ef56e1"'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"http_request_method": "GET", "exception": null, "error_message":
+        "Missing resource(s): repository=integration_test_id", "_href": "/pulp/api/v2/repositories/integration_test_id/?",
+        "http_status": 404, "error": {"code": "PLP0009", "data": {"resources": {"repository":
+        "integration_test_id"}}, "description": "Missing resource(s): repository=integration_test_id",
+        "sub_errors": []}, "traceback": null, "resources": {"repository": "integration_test_id"}}'
+    http_version: 
+  recorded_at: Wed, 15 Aug 2018 15:51:14 GMT
+- request:
+    method: post
+    uri: https://devel.example.com/pulp/api/v2/repositories/
+    body:
+      encoding: UTF-8
+      string: '{"id":"integration_test_id","importer_type_id":"yum_importer","importer_config":{"feed":"file:///var/www/repositories/zoo5"},"distributors":[{"distributor_type_id":"yum_distributor","distributor_config":{"relative_url":"path","http":true,"https":true},"auto_publish":false,"distributor_id":"yum_dist"}]}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '303'
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 201
+      message: CREATED
+    headers:
+      Date:
+      - Wed, 15 Aug 2018 15:51:14 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '319'
+      Location:
+      - "/pulp/api/v2/repositories/integration_test_id/"
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"scratchpad": {}, "display_name": "integration_test_id", "description":
+        null, "last_unit_added": null, "notes": {}, "last_unit_removed": null, "content_unit_counts":
+        {}, "_ns": "repos", "_id": {"$oid": "5b744bf269f4e52413f14b92"}, "id": "integration_test_id",
+        "_href": "/pulp/api/v2/repositories/integration_test_id/"}'
+    http_version: 
+  recorded_at: Wed, 15 Aug 2018 15:51:14 GMT
+- request:
+    method: post
+    uri: https://devel.example.com/pulp/api/v2/repositories/integration_test_id/actions/sync/
+    body:
+      encoding: UTF-8
+      string: "{}"
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '2'
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Date:
+      - Wed, 15 Aug 2018 15:51:14 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '172'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/35ccf877-2074-43b3-9df2-b6150557d991/",
+        "task_id": "35ccf877-2074-43b3-9df2-b6150557d991"}], "result": null, "error":
+        null}'
+    http_version: 
+  recorded_at: Wed, 15 Aug 2018 15:51:14 GMT
+- request:
+    method: get
+    uri: https://devel.example.com/pulp/api/v2/tasks/35ccf877-2074-43b3-9df2-b6150557d991/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
+      Content-Type:
+      - application/json
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 15 Aug 2018 15:51:15 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Etag:
+      - '"6d1220ca9cc56bd42b89178ac99137d5-gzip"'
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '1146'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"exception": null, "task_type": "pulp.server.managers.repo.sync.sync",
+        "_href": "/pulp/api/v2/tasks/35ccf877-2074-43b3-9df2-b6150557d991/", "task_id":
+        "35ccf877-2074-43b3-9df2-b6150557d991", "tags": ["pulp:repository:integration_test_id",
+        "pulp:action:sync"], "finish_time": null, "_ns": "task_status", "start_time":
+        "2018-08-15T15:51:14Z", "traceback": null, "spawned_tasks": [], "progress_report":
+        {"yum_importer": {"content": {"items_total": 0, "state": "FINISHED", "error_details":
+        [], "details": {"rpm_total": 0, "rpm_done": 0, "drpm_total": 0, "drpm_done":
+        0}, "size_total": 0, "size_left": 0, "items_left": 0}, "comps": {"state":
+        "FINISHED"}, "purge_duplicates": {"state": "FINISHED"}, "distribution": {"items_total":
+        3, "state": "FINISHED", "error_details": [], "items_left": 0}, "modules":
+        {"state": "FINISHED"}, "errata": {"state": "FINISHED"}, "metadata": {"state":
+        "FINISHED"}}}, "queue": "reserved_resource_worker-1@devel.example.com.dq2",
+        "state": "running", "worker_name": "reserved_resource_worker-1@devel.example.com",
+        "result": null, "error": null, "_id": {"$oid": "5b744bf269b4753f995de069"},
+        "id": "5b744bf269b4753f995de069"}'
+    http_version: 
+  recorded_at: Wed, 15 Aug 2018 15:51:15 GMT
+- request:
+    method: get
+    uri: https://devel.example.com/pulp/api/v2/tasks/35ccf877-2074-43b3-9df2-b6150557d991/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
+      Content-Type:
+      - application/json
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 15 Aug 2018 15:51:15 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Etag:
+      - '"6d1220ca9cc56bd42b89178ac99137d5-gzip"'
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '1146'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"exception": null, "task_type": "pulp.server.managers.repo.sync.sync",
+        "_href": "/pulp/api/v2/tasks/35ccf877-2074-43b3-9df2-b6150557d991/", "task_id":
+        "35ccf877-2074-43b3-9df2-b6150557d991", "tags": ["pulp:repository:integration_test_id",
+        "pulp:action:sync"], "finish_time": null, "_ns": "task_status", "start_time":
+        "2018-08-15T15:51:14Z", "traceback": null, "spawned_tasks": [], "progress_report":
+        {"yum_importer": {"content": {"items_total": 0, "state": "FINISHED", "error_details":
+        [], "details": {"rpm_total": 0, "rpm_done": 0, "drpm_total": 0, "drpm_done":
+        0}, "size_total": 0, "size_left": 0, "items_left": 0}, "comps": {"state":
+        "FINISHED"}, "purge_duplicates": {"state": "FINISHED"}, "distribution": {"items_total":
+        3, "state": "FINISHED", "error_details": [], "items_left": 0}, "modules":
+        {"state": "FINISHED"}, "errata": {"state": "FINISHED"}, "metadata": {"state":
+        "FINISHED"}}}, "queue": "reserved_resource_worker-1@devel.example.com.dq2",
+        "state": "running", "worker_name": "reserved_resource_worker-1@devel.example.com",
+        "result": null, "error": null, "_id": {"$oid": "5b744bf269b4753f995de069"},
+        "id": "5b744bf269b4753f995de069"}'
+    http_version: 
+  recorded_at: Wed, 15 Aug 2018 15:51:15 GMT
+- request:
+    method: get
+    uri: https://devel.example.com/pulp/api/v2/tasks/35ccf877-2074-43b3-9df2-b6150557d991/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
+      Content-Type:
+      - application/json
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 15 Aug 2018 15:51:16 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Etag:
+      - '"df76bd45d1e0a8ea74a2f1d08d0625c7-gzip"'
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '2285'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"exception": null, "task_type": "pulp.server.managers.repo.sync.sync",
+        "_href": "/pulp/api/v2/tasks/35ccf877-2074-43b3-9df2-b6150557d991/", "task_id":
+        "35ccf877-2074-43b3-9df2-b6150557d991", "tags": ["pulp:repository:integration_test_id",
+        "pulp:action:sync"], "finish_time": "2018-08-15T15:51:16Z", "_ns": "task_status",
+        "start_time": "2018-08-15T15:51:14Z", "traceback": null, "spawned_tasks":
+        [], "progress_report": {"yum_importer": {"content": {"items_total": 0, "state":
+        "FINISHED", "error_details": [], "details": {"rpm_total": 0, "rpm_done": 0,
+        "drpm_total": 0, "drpm_done": 0}, "size_total": 0, "size_left": 0, "items_left":
+        0}, "comps": {"state": "FINISHED"}, "purge_duplicates": {"state": "FINISHED"},
+        "distribution": {"items_total": 3, "state": "FINISHED", "error_details": [],
+        "items_left": 0}, "modules": {"state": "FINISHED"}, "errata": {"state": "FINISHED"},
+        "metadata": {"state": "FINISHED"}}}, "queue": "reserved_resource_worker-1@devel.example.com.dq2",
+        "state": "finished", "worker_name": "reserved_resource_worker-1@devel.example.com",
+        "result": {"result": "success", "importer_id": "yum_importer", "exception":
+        null, "repo_id": "integration_test_id", "traceback": null, "started": "2018-08-15T15:51:14Z",
+        "_ns": "repo_sync_results", "completed": "2018-08-15T15:51:14Z", "importer_type_id":
+        "yum_importer", "error_message": null, "summary": {"modules": {"state": "FINISHED"},
+        "content": {"state": "FINISHED"}, "comps": {"state": "FINISHED"}, "purge_duplicates":
+        {"state": "FINISHED"}, "distribution": {"state": "FINISHED"}, "errata": {"state":
+        "FINISHED"}, "metadata": {"state": "FINISHED"}}, "added_count": 14, "removed_count":
+        0, "updated_count": 0, "id": "5b744bf269f4e5246970c563", "details": {"modules":
+        {"state": "FINISHED"}, "content": {"size_total": 0, "items_left": 0, "items_total":
+        0, "state": "FINISHED", "size_left": 0, "details": {"rpm_total": 0, "rpm_done":
+        0, "drpm_total": 0, "drpm_done": 0}, "error_details": []}, "comps": {"state":
+        "FINISHED"}, "purge_duplicates": {"state": "FINISHED"}, "distribution": {"items_total":
+        3, "state": "FINISHED", "error_details": [], "items_left": 0}, "errata": {"state":
+        "FINISHED"}, "metadata": {"state": "FINISHED"}}}, "error": null, "_id": {"$oid":
+        "5b744bf269b4753f995de069"}, "id": "5b744bf269b4753f995de069"}'
+    http_version: 
+  recorded_at: Wed, 15 Aug 2018 15:51:16 GMT
+- request:
+    method: delete
+    uri: https://devel.example.com/pulp/api/v2/repositories/integration_test_id/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
+      Content-Type:
+      - application/json
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Date:
+      - Wed, 15 Aug 2018 15:51:18 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '172'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/5c845f49-77ea-4507-a3ef-3e791623055a/",
+        "task_id": "5c845f49-77ea-4507-a3ef-3e791623055a"}], "result": null, "error":
+        null}'
+    http_version: 
+  recorded_at: Wed, 15 Aug 2018 15:51:18 GMT
+- request:
+    method: get
+    uri: https://devel.example.com/pulp/api/v2/tasks/5c845f49-77ea-4507-a3ef-3e791623055a/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
+      Content-Type:
+      - application/json
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 15 Aug 2018 15:51:18 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Etag:
+      - '"e1da73b21dbc66dbda63bd15b1bf5784-gzip"'
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '679'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"exception": null, "task_type": "pulp.server.tasks.repository.delete",
+        "_href": "/pulp/api/v2/tasks/5c845f49-77ea-4507-a3ef-3e791623055a/", "task_id":
+        "5c845f49-77ea-4507-a3ef-3e791623055a", "tags": ["pulp:repository:integration_test_id",
+        "pulp:action:delete"], "finish_time": "2018-08-15T15:51:18Z", "_ns": "task_status",
+        "start_time": "2018-08-15T15:51:18Z", "traceback": null, "spawned_tasks":
+        [], "progress_report": {}, "queue": "reserved_resource_worker-1@devel.example.com.dq2",
+        "state": "finished", "worker_name": "reserved_resource_worker-1@devel.example.com",
+        "result": null, "error": null, "_id": {"$oid": "5b744bf669b4753f995de2e2"},
+        "id": "5b744bf669b4753f995de2e2"}'
+    http_version: 
+  recorded_at: Wed, 15 Aug 2018 15:51:18 GMT
+recorded_with: VCR 4.0.0

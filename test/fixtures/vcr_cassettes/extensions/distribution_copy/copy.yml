@@ -1,43 +1,6 @@
 ---
 http_interactions:
 - request:
-    method: post
-    uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/repositories/integration_test_id_clone/actions/associate/
-    body:
-      encoding: UTF-8
-      string: '{"source_repo_id":"integration_test_id","criteria":{"type_ids":["distribution"],"filters":{}}}'
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Type:
-      - application/json
-      Content-Length:
-      - '94'
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 202
-      message: ACCEPTED
-    headers:
-      Date:
-      - Fri, 29 Apr 2016 16:20:44 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Content-Length:
-      - '172'
-      Content-Type:
-      - application/json; charset=utf-8
-    body:
-      encoding: UTF-8
-      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/2786ebae-d4fe-489c-bd71-189604e78ef1/",
-        "task_id": "2786ebae-d4fe-489c-bd71-189604e78ef1"}], "result": null, "error":
-        null}'
-    http_version: 
-  recorded_at: Fri, 29 Apr 2016 16:20:45 GMT
-- request:
     method: get
     uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/tasks/2786ebae-d4fe-489c-bd71-189604e78ef1/
     body:
@@ -82,4 +45,147 @@ http_interactions:
         "572389dd898f5c862fa3e9f0"}, "id": "572389dd898f5c862fa3e9f0"}'
     http_version: 
   recorded_at: Fri, 29 Apr 2016 16:20:45 GMT
-recorded_with: VCR 3.0.1
+- request:
+    method: get
+    uri: https://devel.example.com/pulp/api/v2/tasks/2cf487a5-8d6a-48ac-a7c4-530167bd6dd1/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
+      Content-Type:
+      - application/json
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 15 Aug 2018 15:39:08 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Etag:
+      - '"0db6b7e6f3920abc18a99184d11c7dd3-gzip"'
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '984'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"exception": null, "task_type": "pulp.server.managers.repo.unit_association.associate_from_repo",
+        "_href": "/pulp/api/v2/tasks/2cf487a5-8d6a-48ac-a7c4-530167bd6dd1/", "task_id":
+        "2cf487a5-8d6a-48ac-a7c4-530167bd6dd1", "tags": ["pulp:repository:integration_test_id_clone",
+        "pulp:repository:integration_test_id", "pulp:action:associate"], "finish_time":
+        "2018-08-15T15:39:08Z", "_ns": "task_status", "start_time": "2018-08-15T15:39:08Z",
+        "traceback": null, "spawned_tasks": [], "progress_report": {}, "queue": "reserved_resource_worker-1@devel.example.com.dq2",
+        "state": "finished", "worker_name": "reserved_resource_worker-1@devel.example.com",
+        "result": {"units_successful": [{"unit_key": {"variant": "TestVariant", "version":
+        "16", "arch": "x86_64", "id": "ks-Test Family-TestVariant-16-x86_64", "family":
+        "Test Family"}, "type_id": "distribution"}], "units_failed_signature_filter":
+        []}, "error": null, "_id": {"$oid": "5b74491c69b4753f995cb739"}, "id": "5b74491c69b4753f995cb739"}'
+    http_version: 
+  recorded_at: Wed, 15 Aug 2018 15:39:08 GMT
+- request:
+    method: post
+    uri: https://devel.example.com/pulp/api/v2/repositories/integration_test_id_clone/actions/associate/
+    body:
+      encoding: UTF-8
+      string: '{"source_repo_id":"integration_test_id","criteria":{"type_ids":["distribution"],"filters":{}}}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '94'
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Date:
+      - Wed, 15 Aug 2018 15:46:23 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '172'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/49582a1c-a8c9-492d-a571-5eea6a1bf042/",
+        "task_id": "49582a1c-a8c9-492d-a571-5eea6a1bf042"}], "result": null, "error":
+        null}'
+    http_version: 
+  recorded_at: Wed, 15 Aug 2018 15:46:23 GMT
+- request:
+    method: get
+    uri: https://devel.example.com/pulp/api/v2/tasks/49582a1c-a8c9-492d-a571-5eea6a1bf042/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
+      Content-Type:
+      - application/json
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 15 Aug 2018 15:46:23 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Etag:
+      - '"97dc5a0491bb4b7ab6fb316f82e81c28-gzip"'
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '984'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"exception": null, "task_type": "pulp.server.managers.repo.unit_association.associate_from_repo",
+        "_href": "/pulp/api/v2/tasks/49582a1c-a8c9-492d-a571-5eea6a1bf042/", "task_id":
+        "49582a1c-a8c9-492d-a571-5eea6a1bf042", "tags": ["pulp:repository:integration_test_id_clone",
+        "pulp:repository:integration_test_id", "pulp:action:associate"], "finish_time":
+        "2018-08-15T15:46:23Z", "_ns": "task_status", "start_time": "2018-08-15T15:46:23Z",
+        "traceback": null, "spawned_tasks": [], "progress_report": {}, "queue": "reserved_resource_worker-1@devel.example.com.dq2",
+        "state": "finished", "worker_name": "reserved_resource_worker-1@devel.example.com",
+        "result": {"units_successful": [{"unit_key": {"variant": "TestVariant", "version":
+        "16", "arch": "x86_64", "id": "ks-Test Family-TestVariant-16-x86_64", "family":
+        "Test Family"}, "type_id": "distribution"}], "units_failed_signature_filter":
+        []}, "error": null, "_id": {"$oid": "5b744acf69b4753f995d4f66"}, "id": "5b744acf69b4753f995d4f66"}'
+    http_version: 
+  recorded_at: Wed, 15 Aug 2018 15:46:23 GMT
+recorded_with: VCR 4.0.0

@@ -1,43 +1,6 @@
 ---
 http_interactions:
 - request:
-    method: post
-    uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/repositories/integration_test_id_clone/actions/associate/
-    body:
-      encoding: UTF-8
-      string: '{"source_repo_id":"integration_test_id"}'
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Type:
-      - application/json
-      Content-Length:
-      - '40'
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 202
-      message: ACCEPTED
-    headers:
-      Date:
-      - Fri, 29 Apr 2016 16:21:11 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Content-Length:
-      - '172'
-      Content-Type:
-      - application/json; charset=utf-8
-    body:
-      encoding: UTF-8
-      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/e367fe3b-f575-468c-87da-a940a7810d2e/",
-        "task_id": "e367fe3b-f575-468c-87da-a940a7810d2e"}], "result": null, "error":
-        null}'
-    http_version: 
-  recorded_at: Fri, 29 Apr 2016 16:21:12 GMT
-- request:
     method: get
     uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/tasks/e367fe3b-f575-468c-87da-a940a7810d2e/
     body:
@@ -108,64 +71,6 @@ http_interactions:
         "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
         "sha256"}, "type_id": "rpm"}]}, "error": null, "_id": {"$oid": "572389f8898f5c862fa3ea41"},
         "id": "572389f8898f5c862fa3ea41"}'
-    http_version: 
-  recorded_at: Fri, 29 Apr 2016 16:21:12 GMT
-- request:
-    method: post
-    uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/repositories/integration_test_id/search/units/
-    body:
-      encoding: UTF-8
-      string: '{"criteria":{"type_ids":["erratum"]}}'
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Type:
-      - application/json
-      Content-Length:
-      - '37'
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Fri, 29 Apr 2016 16:21:12 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Vary:
-      - Accept-Encoding
-      Content-Length:
-      - '1775'
-      Content-Type:
-      - application/json; charset=utf-8
-    body:
-      encoding: ASCII-8BIT
-      string: '[{"metadata": {"issued": "2010-01-01 01:01:01", "references": [], "pulp_user_metadata":
-        {}, "_content_type_id": "erratum", "id": "RHEA-2010:0002", "from": "lzap+pub@redhat.com",
-        "severity": "", "title": "One package errata", "_ns": "units_erratum", "version":
-        "1", "reboot_suggested": false, "type": "security", "pkglist": [{"packages":
-        [{"src": "http://www.fedoraproject.org", "name": "elephant", "sum": null,
-        "filename": "elephant-0.3-0.8.noarch.rpm", "epoch": "0", "version": "0.3",
-        "release": "0.8", "arch": "noarch"}], "name": "1", "short": ""}], "status":
-        "stable", "updated": "", "description": "One package errata", "_last_updated":
-        1461946871, "pushcount": "", "rights": "", "solution": "", "summary": "",
-        "release": "1", "_id": "02cc6560-a996-4f39-b359-16502fc1e0dd"}, "updated":
-        "2016-04-29T16:21:11Z", "repo_id": "integration_test_id", "created": "2016-04-29T16:21:11Z",
-        "unit_type_id": "erratum", "unit_id": "02cc6560-a996-4f39-b359-16502fc1e0dd",
-        "_id": {"$oid": "572389f7898f5c862fa3ea3d"}}, {"metadata": {"issued": "2010-01-01
-        01:01:01", "references": [], "pulp_user_metadata": {}, "_content_type_id":
-        "erratum", "id": "RHEA-2010:0001", "from": "lzap+pub@redhat.com", "severity":
-        "", "title": "Empty errata", "_ns": "units_erratum", "version": "1", "reboot_suggested":
-        false, "type": "security", "pkglist": [], "status": "stable", "updated": "",
-        "description": "Empty errata", "_last_updated": 1461946871, "pushcount": "",
-        "rights": "", "solution": "", "summary": "", "release": "1", "_id": "4d519f3e-e40d-4c84-aa9f-74ae1fc1fd30"},
-        "updated": "2016-04-29T16:21:11Z", "repo_id": "integration_test_id", "created":
-        "2016-04-29T16:21:11Z", "unit_type_id": "erratum", "unit_id": "4d519f3e-e40d-4c84-aa9f-74ae1fc1fd30",
-        "_id": {"$oid": "572389f7898f5c862fa3ea3c"}}]'
     http_version: 
   recorded_at: Fri, 29 Apr 2016 16:21:12 GMT
 - request:
@@ -250,8 +155,308 @@ http_interactions:
     http_version: 
   recorded_at: Fri, 29 Apr 2016 16:21:13 GMT
 - request:
+    method: get
+    uri: https://devel.example.com/pulp/api/v2/tasks/40c544eb-d5b7-4e08-bcde-60870ef7c1de/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
+      Content-Type:
+      - application/json
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 15 Aug 2018 15:39:29 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Etag:
+      - '"6a90bce71f08f4885dbe2e3ae1267fe1-gzip"'
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '3665'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"exception": null, "task_type": "pulp.server.managers.repo.unit_association.associate_from_repo",
+        "_href": "/pulp/api/v2/tasks/40c544eb-d5b7-4e08-bcde-60870ef7c1de/", "task_id":
+        "40c544eb-d5b7-4e08-bcde-60870ef7c1de", "tags": ["pulp:repository:integration_test_id_clone",
+        "pulp:repository:integration_test_id", "pulp:action:associate"], "finish_time":
+        "2018-08-15T15:39:29Z", "_ns": "task_status", "start_time": "2018-08-15T15:39:29Z",
+        "traceback": null, "spawned_tasks": [], "progress_report": {}, "queue": "reserved_resource_worker-1@devel.example.com.dq2",
+        "state": "finished", "worker_name": "reserved_resource_worker-1@devel.example.com",
+        "result": {"units_successful": [{"unit_key": {"id": "RHEA-2010:0002"}, "type_id":
+        "erratum"}, {"unit_key": {"variant": "TestVariant", "version": "16", "arch":
+        "x86_64", "id": "ks-Test Family-TestVariant-16-x86_64", "family": "Test Family"},
+        "type_id": "distribution"}, {"unit_key": {"repo_id": "integration_test_id_clone",
+        "id": "bird"}, "type_id": "package_group"}, {"signing_key": null, "unit_key":
+        {"name": "elephant", "checksum": "3e1c70cd1b421328acaf6397cb3d16145306bb95f65d1b095fc31372a0a701f3",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"signing_key": null, "unit_key": {"name": "lion",
+        "checksum": "12400dc95c23a4c160725a908716cd3fcdd7a8981585437ab64cd62efa3e4ae4",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"signing_key": null, "unit_key": {"name": "monkey",
+        "checksum": "0e8fa50d0128fbabc7ccc5632e3fa25d39b0280169f6166cb8e2c84de8501db1",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"unit_key": {"id": "RHEA-2010:0001"}, "type_id":
+        "erratum"}, {"unit_key": {"repo_id": "integration_test_id_clone", "id": "mammal"},
+        "type_id": "package_group"}, {"signing_key": null, "unit_key": {"name": "cheetah",
+        "checksum": "422d0baa0cd9d7713ae796e886a23e17f578f924f74880debdbb7d65fb368dae",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"signing_key": null, "unit_key": {"name": "penguin",
+        "checksum": "3fcb2c927de9e13bf68469032a28b139d3e5ad2e58564fc210fd6e48635be694",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"unit_key": {"repo_id": "integration_test_id_clone",
+        "id": "all"}, "type_id": "package_category"}, {"signing_key": null, "unit_key":
+        {"name": "walrus", "checksum": "6e8d6dc057e3e2c9819f0dc7e6c7b7f86bf2e8571bba414adec7fb621a461dfd",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"signing_key": null, "unit_key": {"name": "giraffe",
+        "checksum": "f25d67d1d9da04f12e57ca323247b43891ac46533e355b82de6d1922009f9f14",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"signing_key": null, "unit_key": {"name": "squirrel",
+        "checksum": "251768bdd15f13d78487c27638aa6aecd01551e253756093cde1c0ae878a17d2",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}], "units_failed_signature_filter": [{"unit_key":
+        {"repo_id": "integration_test_id", "id": "all"}, "type_id": "package_category"},
+        {"unit_key": {"repo_id": "integration_test_id", "id": "bird"}, "type_id":
+        "package_group"}, {"unit_key": {"repo_id": "integration_test_id", "id": "mammal"},
+        "type_id": "package_group"}]}, "error": null, "_id": {"$oid": "5b74493069b4753f995cc13d"},
+        "id": "5b74493069b4753f995cc13d"}'
+    http_version: 
+  recorded_at: Wed, 15 Aug 2018 15:39:29 GMT
+- request:
     method: post
-    uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/repositories/integration_test_id_clone/search/units/
+    uri: https://devel.example.com/pulp/api/v2/repositories/integration_test_id_clone/actions/unassociate/
+    body:
+      encoding: UTF-8
+      string: '{"criteria":{"type_ids":["erratum"],"filters":{"association":{"unit_id":{"$in":["b8c0c15b-3759-40f8-8592-24ab6fd27e99"]}}}}}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '124'
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Date:
+      - Wed, 15 Aug 2018 15:39:29 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '172'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/cbe83eb0-00a9-4ef5-882f-aab0baf558fd/",
+        "task_id": "cbe83eb0-00a9-4ef5-882f-aab0baf558fd"}], "result": null, "error":
+        null}'
+    http_version: 
+  recorded_at: Wed, 15 Aug 2018 15:39:29 GMT
+- request:
+    method: get
+    uri: https://devel.example.com/pulp/api/v2/tasks/cbe83eb0-00a9-4ef5-882f-aab0baf558fd/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
+      Content-Type:
+      - application/json
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 15 Aug 2018 15:39:30 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Etag:
+      - '"300f61ba7277e3c892325e9f5b98fd53-gzip"'
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '801'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"exception": null, "task_type": "pulp.server.managers.repo.unit_association.unassociate_by_criteria",
+        "_href": "/pulp/api/v2/tasks/cbe83eb0-00a9-4ef5-882f-aab0baf558fd/", "task_id":
+        "cbe83eb0-00a9-4ef5-882f-aab0baf558fd", "tags": ["pulp:repository:integration_test_id_clone",
+        "pulp:action:unassociate"], "finish_time": "2018-08-15T15:39:29Z", "_ns":
+        "task_status", "start_time": "2018-08-15T15:39:29Z", "traceback": null, "spawned_tasks":
+        [], "progress_report": {}, "queue": "reserved_resource_worker-1@devel.example.com.dq2",
+        "state": "finished", "worker_name": "reserved_resource_worker-1@devel.example.com",
+        "result": {"units_successful": [{"unit_key": {"id": "RHEA-2010:0002"}, "type_id":
+        "erratum"}]}, "error": null, "_id": {"$oid": "5b74493169b4753f995cc1bb"},
+        "id": "5b74493169b4753f995cc1bb"}'
+    http_version: 
+  recorded_at: Wed, 15 Aug 2018 15:39:30 GMT
+- request:
+    method: post
+    uri: https://devel.example.com/pulp/api/v2/repositories/integration_test_id_clone/actions/associate/
+    body:
+      encoding: UTF-8
+      string: '{"source_repo_id":"integration_test_id"}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '40'
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Date:
+      - Wed, 15 Aug 2018 15:46:42 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '172'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/58ee0cc6-f222-48e1-a2dd-b1739df1dfb6/",
+        "task_id": "58ee0cc6-f222-48e1-a2dd-b1739df1dfb6"}], "result": null, "error":
+        null}'
+    http_version: 
+  recorded_at: Wed, 15 Aug 2018 15:46:42 GMT
+- request:
+    method: get
+    uri: https://devel.example.com/pulp/api/v2/tasks/58ee0cc6-f222-48e1-a2dd-b1739df1dfb6/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
+      Content-Type:
+      - application/json
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 15 Aug 2018 15:46:43 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Etag:
+      - '"3088b46bf6578a75e8ce336e84a288a6-gzip"'
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '3665'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"exception": null, "task_type": "pulp.server.managers.repo.unit_association.associate_from_repo",
+        "_href": "/pulp/api/v2/tasks/58ee0cc6-f222-48e1-a2dd-b1739df1dfb6/", "task_id":
+        "58ee0cc6-f222-48e1-a2dd-b1739df1dfb6", "tags": ["pulp:repository:integration_test_id_clone",
+        "pulp:repository:integration_test_id", "pulp:action:associate"], "finish_time":
+        "2018-08-15T15:46:42Z", "_ns": "task_status", "start_time": "2018-08-15T15:46:42Z",
+        "traceback": null, "spawned_tasks": [], "progress_report": {}, "queue": "reserved_resource_worker-1@devel.example.com.dq2",
+        "state": "finished", "worker_name": "reserved_resource_worker-1@devel.example.com",
+        "result": {"units_successful": [{"unit_key": {"id": "RHEA-2010:0002"}, "type_id":
+        "erratum"}, {"unit_key": {"variant": "TestVariant", "version": "16", "arch":
+        "x86_64", "id": "ks-Test Family-TestVariant-16-x86_64", "family": "Test Family"},
+        "type_id": "distribution"}, {"unit_key": {"repo_id": "integration_test_id_clone",
+        "id": "bird"}, "type_id": "package_group"}, {"signing_key": null, "unit_key":
+        {"name": "elephant", "checksum": "3e1c70cd1b421328acaf6397cb3d16145306bb95f65d1b095fc31372a0a701f3",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"signing_key": null, "unit_key": {"name": "lion",
+        "checksum": "12400dc95c23a4c160725a908716cd3fcdd7a8981585437ab64cd62efa3e4ae4",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"signing_key": null, "unit_key": {"name": "monkey",
+        "checksum": "0e8fa50d0128fbabc7ccc5632e3fa25d39b0280169f6166cb8e2c84de8501db1",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"unit_key": {"id": "RHEA-2010:0001"}, "type_id":
+        "erratum"}, {"unit_key": {"repo_id": "integration_test_id_clone", "id": "mammal"},
+        "type_id": "package_group"}, {"signing_key": null, "unit_key": {"name": "cheetah",
+        "checksum": "422d0baa0cd9d7713ae796e886a23e17f578f924f74880debdbb7d65fb368dae",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"signing_key": null, "unit_key": {"name": "penguin",
+        "checksum": "3fcb2c927de9e13bf68469032a28b139d3e5ad2e58564fc210fd6e48635be694",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"unit_key": {"repo_id": "integration_test_id_clone",
+        "id": "all"}, "type_id": "package_category"}, {"signing_key": null, "unit_key":
+        {"name": "walrus", "checksum": "6e8d6dc057e3e2c9819f0dc7e6c7b7f86bf2e8571bba414adec7fb621a461dfd",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"signing_key": null, "unit_key": {"name": "giraffe",
+        "checksum": "f25d67d1d9da04f12e57ca323247b43891ac46533e355b82de6d1922009f9f14",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"signing_key": null, "unit_key": {"name": "squirrel",
+        "checksum": "251768bdd15f13d78487c27638aa6aecd01551e253756093cde1c0ae878a17d2",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}], "units_failed_signature_filter": [{"unit_key":
+        {"repo_id": "integration_test_id", "id": "all"}, "type_id": "package_category"},
+        {"unit_key": {"repo_id": "integration_test_id", "id": "bird"}, "type_id":
+        "package_group"}, {"unit_key": {"repo_id": "integration_test_id", "id": "mammal"},
+        "type_id": "package_group"}]}, "error": null, "_id": {"$oid": "5b744ae269b4753f995d5951"},
+        "id": "5b744ae269b4753f995d5951"}'
+    http_version: 
+  recorded_at: Wed, 15 Aug 2018 15:46:43 GMT
+- request:
+    method: post
+    uri: https://devel.example.com/pulp/api/v2/repositories/integration_test_id/search/units/
     body:
       encoding: UTF-8
       string: '{"criteria":{"type_ids":["erratum"]}}'
@@ -260,39 +465,202 @@ http_interactions:
       - application/json
       Accept-Encoding:
       - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
       Content-Type:
       - application/json
       Content-Length:
       - '37'
-      User-Agent:
-      - Ruby
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Fri, 29 Apr 2016 16:21:13 GMT
+      - Wed, 15 Aug 2018 15:46:43 GMT
       Server:
       - Apache/2.4.6 (CentOS)
       Vary:
       - Accept-Encoding
       Content-Length:
-      - '775'
+      - '1898'
       Content-Type:
       - application/json; charset=utf-8
     body:
       encoding: ASCII-8BIT
-      string: '[{"metadata": {"issued": "2010-01-01 01:01:01", "references": [], "pulp_user_metadata":
-        {}, "_content_type_id": "erratum", "id": "RHEA-2010:0001", "from": "lzap+pub@redhat.com",
-        "severity": "", "title": "Empty errata", "_ns": "units_erratum", "version":
-        "1", "reboot_suggested": false, "type": "security", "pkglist": [], "status":
-        "stable", "updated": "", "description": "Empty errata", "_last_updated": 1461946871,
-        "pushcount": "", "rights": "", "solution": "", "summary": "", "release": "1",
-        "_id": "4d519f3e-e40d-4c84-aa9f-74ae1fc1fd30"}, "updated": "2016-04-29T16:21:12Z",
-        "repo_id": "integration_test_id_clone", "created": "2016-04-29T16:21:12Z",
-        "unit_type_id": "erratum", "unit_id": "4d519f3e-e40d-4c84-aa9f-74ae1fc1fd30",
-        "_id": {"$oid": "572389f8898f5c862fa3ea47"}}]'
+      string: '[{"metadata": {"issued": "2010-01-01 01:01:01", "relogin_suggested":
+        false, "references": [], "pulp_user_metadata": {}, "_content_type_id": "erratum",
+        "id": "RHEA-2010:0001", "from": "lzap+pub@redhat.com", "severity": "", "title":
+        "Empty errata", "_ns": "units_erratum", "version": "1", "reboot_suggested":
+        false, "type": "security", "pkglist": [], "status": "stable", "updated": "",
+        "description": "Empty errata", "_last_updated": 1534348001, "restart_suggested":
+        false, "pushcount": "", "rights": "", "solution": "", "summary": "", "release":
+        "1", "_id": "2b5ae8b6-edf0-4d50-bcca-5ea5adc7ffb7"}, "updated": "2018-08-15T15:46:41Z",
+        "repo_id": "integration_test_id", "created": "2018-08-15T15:46:41Z", "unit_type_id":
+        "erratum", "unit_id": "2b5ae8b6-edf0-4d50-bcca-5ea5adc7ffb7", "_id": {"$oid":
+        "5b744ae169b4753f995d58ca"}}, {"metadata": {"issued": "2010-01-01 01:01:01",
+        "relogin_suggested": false, "references": [], "pulp_user_metadata": {}, "_content_type_id":
+        "erratum", "id": "RHEA-2010:0002", "from": "lzap+pub@redhat.com", "severity":
+        "", "title": "One package errata", "_ns": "units_erratum", "version": "1",
+        "reboot_suggested": false, "type": "security", "pkglist": [{"packages": [{"src":
+        "http://www.fedoraproject.org", "name": "elephant", "sum": null, "filename":
+        "elephant-0.3-0.8.noarch.rpm", "epoch": "0", "version": "0.3", "release":
+        "0.8", "arch": "noarch"}], "name": "collection-0", "short": ""}], "status":
+        "stable", "updated": "", "description": "One package errata", "_last_updated":
+        1534348001, "restart_suggested": false, "pushcount": "", "rights": "", "solution":
+        "", "summary": "", "release": "1", "_id": "efaf92f1-02d5-4701-9756-a7b6eb8db7cf"},
+        "updated": "2018-08-15T15:46:41Z", "repo_id": "integration_test_id", "created":
+        "2018-08-15T15:46:41Z", "unit_type_id": "erratum", "unit_id": "efaf92f1-02d5-4701-9756-a7b6eb8db7cf",
+        "_id": {"$oid": "5b744ae169b4753f995d58e4"}}]'
     http_version: 
-  recorded_at: Fri, 29 Apr 2016 16:21:13 GMT
-recorded_with: VCR 3.0.1
+  recorded_at: Wed, 15 Aug 2018 15:46:43 GMT
+- request:
+    method: post
+    uri: https://devel.example.com/pulp/api/v2/repositories/integration_test_id_clone/actions/unassociate/
+    body:
+      encoding: UTF-8
+      string: '{"criteria":{"type_ids":["erratum"],"filters":{"association":{"unit_id":{"$in":["2b5ae8b6-edf0-4d50-bcca-5ea5adc7ffb7"]}}}}}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '124'
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Date:
+      - Wed, 15 Aug 2018 15:46:43 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '172'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/3f3c476f-b4b5-4231-998a-8243aa77b44b/",
+        "task_id": "3f3c476f-b4b5-4231-998a-8243aa77b44b"}], "result": null, "error":
+        null}'
+    http_version: 
+  recorded_at: Wed, 15 Aug 2018 15:46:43 GMT
+- request:
+    method: get
+    uri: https://devel.example.com/pulp/api/v2/tasks/3f3c476f-b4b5-4231-998a-8243aa77b44b/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
+      Content-Type:
+      - application/json
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 15 Aug 2018 15:46:43 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Etag:
+      - '"f9ebee5a3a2b2ab30e6bb21b5c750050-gzip"'
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '801'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"exception": null, "task_type": "pulp.server.managers.repo.unit_association.unassociate_by_criteria",
+        "_href": "/pulp/api/v2/tasks/3f3c476f-b4b5-4231-998a-8243aa77b44b/", "task_id":
+        "3f3c476f-b4b5-4231-998a-8243aa77b44b", "tags": ["pulp:repository:integration_test_id_clone",
+        "pulp:action:unassociate"], "finish_time": "2018-08-15T15:46:43Z", "_ns":
+        "task_status", "start_time": "2018-08-15T15:46:43Z", "traceback": null, "spawned_tasks":
+        [], "progress_report": {}, "queue": "reserved_resource_worker-1@devel.example.com.dq2",
+        "state": "finished", "worker_name": "reserved_resource_worker-1@devel.example.com",
+        "result": {"units_successful": [{"unit_key": {"id": "RHEA-2010:0001"}, "type_id":
+        "erratum"}]}, "error": null, "_id": {"$oid": "5b744ae369b4753f995d59e8"},
+        "id": "5b744ae369b4753f995d59e8"}'
+    http_version: 
+  recorded_at: Wed, 15 Aug 2018 15:46:43 GMT
+- request:
+    method: post
+    uri: https://devel.example.com/pulp/api/v2/repositories/integration_test_id_clone/search/units/
+    body:
+      encoding: UTF-8
+      string: '{"criteria":{"type_ids":["erratum"]}}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '37'
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 15 Aug 2018 15:46:43 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '1079'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '[{"metadata": {"issued": "2010-01-01 01:01:01", "relogin_suggested":
+        false, "references": [], "pulp_user_metadata": {}, "_content_type_id": "erratum",
+        "id": "RHEA-2010:0002", "from": "lzap+pub@redhat.com", "severity": "", "title":
+        "One package errata", "_ns": "units_erratum", "version": "1", "reboot_suggested":
+        false, "type": "security", "pkglist": [{"packages": [{"src": "http://www.fedoraproject.org",
+        "name": "elephant", "sum": null, "filename": "elephant-0.3-0.8.noarch.rpm",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch"}], "name":
+        "collection-0", "short": ""}], "status": "stable", "updated": "", "description":
+        "One package errata", "_last_updated": 1534348001, "restart_suggested": false,
+        "pushcount": "", "rights": "", "solution": "", "summary": "", "release": "1",
+        "_id": "efaf92f1-02d5-4701-9756-a7b6eb8db7cf"}, "updated": "2018-08-15T15:46:42Z",
+        "repo_id": "integration_test_id_clone", "created": "2018-08-15T15:46:42Z",
+        "unit_type_id": "erratum", "unit_id": "efaf92f1-02d5-4701-9756-a7b6eb8db7cf",
+        "_id": {"$oid": "5b744ae269b4753f995d5983"}}]'
+    http_version: 
+  recorded_at: Wed, 15 Aug 2018 15:46:43 GMT
+recorded_with: VCR 4.0.0

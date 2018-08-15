@@ -1,43 +1,6 @@
 ---
 http_interactions:
 - request:
-    method: post
-    uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/repositories/actions/content/regenerate_applicability//
-    body:
-      encoding: UTF-8
-      string: '{"parallel":false,"repo_criteria":{"filters":{"id":{"$in":["integration_test_id"]}}}}'
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Type:
-      - application/json
-      Content-Length:
-      - '85'
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 202
-      message: ACCEPTED
-    headers:
-      Date:
-      - Fri, 29 Apr 2016 16:26:17 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Content-Length:
-      - '172'
-      Content-Type:
-      - application/json; charset=utf-8
-    body:
-      encoding: UTF-8
-      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/0b396e67-9606-4688-8090-ca235850a9fa/",
-        "task_id": "0b396e67-9606-4688-8090-ca235850a9fa"}], "result": null, "error":
-        null}'
-    http_version: 
-  recorded_at: Fri, 29 Apr 2016 16:26:17 GMT
-- request:
     method: get
     uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/tasks/0b396e67-9606-4688-8090-ca235850a9fa/
     body:
@@ -80,4 +43,143 @@ http_interactions:
         "id": "57238b29898f5c862fa3eb6c"}'
     http_version: 
   recorded_at: Fri, 29 Apr 2016 16:26:18 GMT
-recorded_with: VCR 3.0.1
+- request:
+    method: get
+    uri: https://devel.example.com/pulp/api/v2/tasks/fc471c7b-0e29-4339-952c-56f07cbb206f/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
+      Content-Type:
+      - application/json
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 15 Aug 2018 15:40:27 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Etag:
+      - '"4e575cf1a6b556c680fd5cef19a21bf7-gzip"'
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '711'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"exception": null, "task_type": "pulp.server.managers.consumer.applicability.regenerate_applicability_for_repos",
+        "_href": "/pulp/api/v2/tasks/fc471c7b-0e29-4339-952c-56f07cbb206f/", "task_id":
+        "fc471c7b-0e29-4339-952c-56f07cbb206f", "tags": ["pulp:action:content_applicability_regeneration"],
+        "finish_time": "2018-08-15T15:40:26Z", "_ns": "task_status", "start_time":
+        "2018-08-15T15:40:26Z", "traceback": null, "spawned_tasks": [], "progress_report":
+        {}, "queue": "reserved_resource_worker-1@devel.example.com.dq2", "state":
+        "finished", "worker_name": "reserved_resource_worker-1@devel.example.com",
+        "result": null, "error": null, "_id": {"$oid": "5b74496a69b4753f995cdcec"},
+        "id": "5b74496a69b4753f995cdcec"}'
+    http_version: 
+  recorded_at: Wed, 15 Aug 2018 15:40:27 GMT
+- request:
+    method: post
+    uri: https://devel.example.com/pulp/api/v2/repositories/actions/content/regenerate_applicability//
+    body:
+      encoding: UTF-8
+      string: '{"parallel":false,"repo_criteria":{"filters":{"id":{"$in":["integration_test_id"]}}}}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '85'
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Date:
+      - Wed, 15 Aug 2018 15:49:07 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '172'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/caa89231-b6e8-4718-8713-d0b9fdafc63e/",
+        "task_id": "caa89231-b6e8-4718-8713-d0b9fdafc63e"}], "result": null, "error":
+        null}'
+    http_version: 
+  recorded_at: Wed, 15 Aug 2018 15:49:07 GMT
+- request:
+    method: get
+    uri: https://devel.example.com/pulp/api/v2/tasks/caa89231-b6e8-4718-8713-d0b9fdafc63e/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
+      Content-Type:
+      - application/json
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 15 Aug 2018 15:49:07 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Etag:
+      - '"3bf87cb98ae9db782790ab966e9c0676-gzip"'
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '711'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"exception": null, "task_type": "pulp.server.managers.consumer.applicability.regenerate_applicability_for_repos",
+        "_href": "/pulp/api/v2/tasks/caa89231-b6e8-4718-8713-d0b9fdafc63e/", "task_id":
+        "caa89231-b6e8-4718-8713-d0b9fdafc63e", "tags": ["pulp:action:content_applicability_regeneration"],
+        "finish_time": "2018-08-15T15:49:07Z", "_ns": "task_status", "start_time":
+        "2018-08-15T15:49:07Z", "traceback": null, "spawned_tasks": [], "progress_report":
+        {}, "queue": "reserved_resource_worker-1@devel.example.com.dq2", "state":
+        "finished", "worker_name": "reserved_resource_worker-1@devel.example.com",
+        "result": null, "error": null, "_id": {"$oid": "5b744b7369b4753f995d845d"},
+        "id": "5b744b7369b4753f995d845d"}'
+    http_version: 
+  recorded_at: Wed, 15 Aug 2018 15:49:07 GMT
+recorded_with: VCR 4.0.0

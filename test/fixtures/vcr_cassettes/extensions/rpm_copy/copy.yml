@@ -1,43 +1,6 @@
 ---
 http_interactions:
 - request:
-    method: post
-    uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/repositories/integration_test_id_clone/actions/associate/
-    body:
-      encoding: UTF-8
-      string: '{"source_repo_id":"integration_test_id","criteria":{"type_ids":["rpm"],"filters":{}}}'
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Type:
-      - application/json
-      Content-Length:
-      - '85'
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 202
-      message: ACCEPTED
-    headers:
-      Date:
-      - Fri, 29 Apr 2016 16:26:32 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Content-Length:
-      - '172'
-      Content-Type:
-      - application/json; charset=utf-8
-    body:
-      encoding: UTF-8
-      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/d7f66530-fa91-4765-a41a-ec9f27664a19/",
-        "task_id": "d7f66530-fa91-4765-a41a-ec9f27664a19"}], "result": null, "error":
-        null}'
-    http_version: 
-  recorded_at: Fri, 29 Apr 2016 16:26:32 GMT
-- request:
     method: get
     uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/tasks/d7f66530-fa91-4765-a41a-ec9f27664a19/
     body:
@@ -104,4 +67,191 @@ http_interactions:
         "id": "57238b38898f5c862fa3eb9d"}'
     http_version: 
   recorded_at: Fri, 29 Apr 2016 16:26:32 GMT
-recorded_with: VCR 3.0.1
+- request:
+    method: get
+    uri: https://devel.example.com/pulp/api/v2/tasks/2e5523a0-d33b-4d06-b76b-811e3697c7f0/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
+      Content-Type:
+      - application/json
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 15 Aug 2018 15:40:35 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Etag:
+      - '"9776434e295062d2be0b0f26744e7a1e-gzip"'
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '2790'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"exception": null, "task_type": "pulp.server.managers.repo.unit_association.associate_from_repo",
+        "_href": "/pulp/api/v2/tasks/2e5523a0-d33b-4d06-b76b-811e3697c7f0/", "task_id":
+        "2e5523a0-d33b-4d06-b76b-811e3697c7f0", "tags": ["pulp:repository:integration_test_id_clone",
+        "pulp:repository:integration_test_id", "pulp:action:associate"], "finish_time":
+        "2018-08-15T15:40:35Z", "_ns": "task_status", "start_time": "2018-08-15T15:40:35Z",
+        "traceback": null, "spawned_tasks": [], "progress_report": {}, "queue": "reserved_resource_worker-1@devel.example.com.dq2",
+        "state": "finished", "worker_name": "reserved_resource_worker-1@devel.example.com",
+        "result": {"units_successful": [{"signing_key": null, "unit_key": {"name":
+        "lion", "checksum": "12400dc95c23a4c160725a908716cd3fcdd7a8981585437ab64cd62efa3e4ae4",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"signing_key": null, "unit_key": {"name": "cheetah",
+        "checksum": "422d0baa0cd9d7713ae796e886a23e17f578f924f74880debdbb7d65fb368dae",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"signing_key": null, "unit_key": {"name": "elephant",
+        "checksum": "3e1c70cd1b421328acaf6397cb3d16145306bb95f65d1b095fc31372a0a701f3",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"signing_key": null, "unit_key": {"name": "monkey",
+        "checksum": "0e8fa50d0128fbabc7ccc5632e3fa25d39b0280169f6166cb8e2c84de8501db1",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"signing_key": null, "unit_key": {"name": "penguin",
+        "checksum": "3fcb2c927de9e13bf68469032a28b139d3e5ad2e58564fc210fd6e48635be694",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"signing_key": null, "unit_key": {"name": "walrus",
+        "checksum": "6e8d6dc057e3e2c9819f0dc7e6c7b7f86bf2e8571bba414adec7fb621a461dfd",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"signing_key": null, "unit_key": {"name": "giraffe",
+        "checksum": "f25d67d1d9da04f12e57ca323247b43891ac46533e355b82de6d1922009f9f14",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"signing_key": null, "unit_key": {"name": "squirrel",
+        "checksum": "251768bdd15f13d78487c27638aa6aecd01551e253756093cde1c0ae878a17d2",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}], "units_failed_signature_filter": []}, "error":
+        null, "_id": {"$oid": "5b74497369b4753f995ce274"}, "id": "5b74497369b4753f995ce274"}'
+    http_version: 
+  recorded_at: Wed, 15 Aug 2018 15:40:35 GMT
+- request:
+    method: post
+    uri: https://devel.example.com/pulp/api/v2/repositories/integration_test_id_clone/actions/associate/
+    body:
+      encoding: UTF-8
+      string: '{"source_repo_id":"integration_test_id","criteria":{"type_ids":["rpm"],"filters":{}}}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '85'
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Date:
+      - Wed, 15 Aug 2018 15:49:16 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '172'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/ad5cd214-1ed2-430d-bf61-464ba8d52f89/",
+        "task_id": "ad5cd214-1ed2-430d-bf61-464ba8d52f89"}], "result": null, "error":
+        null}'
+    http_version: 
+  recorded_at: Wed, 15 Aug 2018 15:49:16 GMT
+- request:
+    method: get
+    uri: https://devel.example.com/pulp/api/v2/tasks/ad5cd214-1ed2-430d-bf61-464ba8d52f89/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
+      Content-Type:
+      - application/json
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 15 Aug 2018 15:49:17 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Etag:
+      - '"7ad826f00f62b43f97e10973829465a6-gzip"'
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '2790'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"exception": null, "task_type": "pulp.server.managers.repo.unit_association.associate_from_repo",
+        "_href": "/pulp/api/v2/tasks/ad5cd214-1ed2-430d-bf61-464ba8d52f89/", "task_id":
+        "ad5cd214-1ed2-430d-bf61-464ba8d52f89", "tags": ["pulp:repository:integration_test_id_clone",
+        "pulp:repository:integration_test_id", "pulp:action:associate"], "finish_time":
+        "2018-08-15T15:49:16Z", "_ns": "task_status", "start_time": "2018-08-15T15:49:16Z",
+        "traceback": null, "spawned_tasks": [], "progress_report": {}, "queue": "reserved_resource_worker-1@devel.example.com.dq2",
+        "state": "finished", "worker_name": "reserved_resource_worker-1@devel.example.com",
+        "result": {"units_successful": [{"signing_key": null, "unit_key": {"name":
+        "lion", "checksum": "12400dc95c23a4c160725a908716cd3fcdd7a8981585437ab64cd62efa3e4ae4",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"signing_key": null, "unit_key": {"name": "cheetah",
+        "checksum": "422d0baa0cd9d7713ae796e886a23e17f578f924f74880debdbb7d65fb368dae",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"signing_key": null, "unit_key": {"name": "elephant",
+        "checksum": "3e1c70cd1b421328acaf6397cb3d16145306bb95f65d1b095fc31372a0a701f3",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"signing_key": null, "unit_key": {"name": "monkey",
+        "checksum": "0e8fa50d0128fbabc7ccc5632e3fa25d39b0280169f6166cb8e2c84de8501db1",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"signing_key": null, "unit_key": {"name": "penguin",
+        "checksum": "3fcb2c927de9e13bf68469032a28b139d3e5ad2e58564fc210fd6e48635be694",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"signing_key": null, "unit_key": {"name": "walrus",
+        "checksum": "6e8d6dc057e3e2c9819f0dc7e6c7b7f86bf2e8571bba414adec7fb621a461dfd",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"signing_key": null, "unit_key": {"name": "giraffe",
+        "checksum": "f25d67d1d9da04f12e57ca323247b43891ac46533e355b82de6d1922009f9f14",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"signing_key": null, "unit_key": {"name": "squirrel",
+        "checksum": "251768bdd15f13d78487c27638aa6aecd01551e253756093cde1c0ae878a17d2",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}], "units_failed_signature_filter": []}, "error":
+        null, "_id": {"$oid": "5b744b7c69b4753f995d89ed"}, "id": "5b744b7c69b4753f995d89ed"}'
+    http_version: 
+  recorded_at: Wed, 15 Aug 2018 15:49:17 GMT
+recorded_with: VCR 4.0.0

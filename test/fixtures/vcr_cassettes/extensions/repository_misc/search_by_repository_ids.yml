@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/repositories/search/
+    uri: https://devel.example.com/pulp/api/v2/repositories/search/
     body:
       encoding: UTF-8
       string: '{"criteria":{"filters":{"id":{"$in":["integration_test_id"]}}}}'
@@ -11,34 +11,39 @@ http_interactions:
       - application/json
       Accept-Encoding:
       - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
       Content-Type:
       - application/json
       Content-Length:
       - '63'
-      User-Agent:
-      - Ruby
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Fri, 29 Apr 2016 16:26:18 GMT
+      - Wed, 15 Aug 2018 15:49:06 GMT
       Server:
       - Apache/2.4.6 (CentOS)
       Vary:
       - Accept-Encoding
       Content-Length:
-      - '430'
+      - '448'
       Content-Type:
       - application/json; charset=utf-8
     body:
       encoding: ASCII-8BIT
       string: '[{"scratchpad": {"checksum_type": "sha256"}, "display_name": "integration_test_id",
-        "description": null, "last_unit_added": null, "notes": {}, "last_unit_removed":
-        null, "content_unit_counts": {"package_group": 2, "distribution": 1, "package_category":
-        1, "rpm": 8, "erratum": 2}, "_ns": "repos", "_id": {"$oid": "57238b25aca4886d979905cc"},
-        "id": "integration_test_id", "_href": "/pulp/api/v2/repositories/integration_test_id/"}]'
+        "description": null, "last_unit_added": "2018-08-15T15:49:04Z", "notes": {},
+        "last_unit_removed": null, "content_unit_counts": {"package_group": 2, "distribution":
+        1, "package_category": 1, "rpm": 8, "erratum": 2}, "_ns": "repos", "_id":
+        {"$oid": "5b744b7069f4e52413f14b05"}, "id": "integration_test_id", "_href":
+        "/pulp/api/v2/repositories/integration_test_id/"}]'
     http_version: 
-  recorded_at: Fri, 29 Apr 2016 16:26:18 GMT
-recorded_with: VCR 3.0.1
+  recorded_at: Wed, 15 Aug 2018 15:49:06 GMT
+recorded_with: VCR 4.0.0

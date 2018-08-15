@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: https://admin:admin@obelix.example.com/pulp/api/v2/repositories/integration_test_id/search/units/
+    uri: https://devel.example.com/pulp/api/v2/repositories/integration_test_id/search/units/
     body:
       encoding: UTF-8
       string: '{"criteria":{"type_ids":["ostree"],"fields":{"unit":[],"association":["unit_id"]}}}'
@@ -11,36 +11,38 @@ http_interactions:
       - application/json
       Accept-Encoding:
       - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
       Content-Type:
       - application/json
       Content-Length:
       - '83'
-      User-Agent:
-      - Ruby
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Thu, 23 Mar 2017 05:16:57 GMT
+      - Wed, 15 Aug 2018 15:47:03 GMT
       Server:
       - Apache/2.4.6 (CentOS)
       Vary:
       - Accept-Encoding
       Content-Length:
       - '430'
-      Connection:
-      - close
       Content-Type:
       - application/json; charset=utf-8
     body:
       encoding: ASCII-8BIT
-      string: '[{"metadata": {"_id": "16cc5bbf-699c-4c42-add5-422e885b6425", "_content_type_id":
-        "ostree"}, "_id": {"$oid": "58d35a4917f568015721d3d0"}, "unit_id": "16cc5bbf-699c-4c42-add5-422e885b6425",
-        "unit_type_id": "ostree"}, {"metadata": {"_id": "d3e3386e-5bac-4a96-864b-92d03253cfec",
-        "_content_type_id": "ostree"}, "_id": {"$oid": "58d35a4917f568015721d3d1"},
-        "unit_id": "d3e3386e-5bac-4a96-864b-92d03253cfec", "unit_type_id": "ostree"}]'
+      string: '[{"metadata": {"_id": "8afdd882-55d1-4bed-8fde-c276ab945636", "_content_type_id":
+        "ostree"}, "_id": {"$oid": "5b744af669b4753f995d619d"}, "unit_id": "8afdd882-55d1-4bed-8fde-c276ab945636",
+        "unit_type_id": "ostree"}, {"metadata": {"_id": "c7abb252-5334-457a-98dc-106f255d5f7b",
+        "_content_type_id": "ostree"}, "_id": {"$oid": "5b744af669b4753f995d61a2"},
+        "unit_id": "c7abb252-5334-457a-98dc-106f255d5f7b", "unit_type_id": "ostree"}]'
     http_version: 
-  recorded_at: Thu, 23 Mar 2017 05:16:57 GMT
-recorded_with: VCR 3.0.3
+  recorded_at: Wed, 15 Aug 2018 15:47:03 GMT
+recorded_with: VCR 4.0.0
