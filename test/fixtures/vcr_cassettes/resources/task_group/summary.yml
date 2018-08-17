@@ -1,45 +1,6 @@
 ---
 http_interactions:
 - request:
-    method: post
-    uri: https://admin:admin@dev.example.com/pulp/api/v2/repositories/actions/content/regenerate_applicability//
-    body:
-      encoding: UTF-8
-      string: '{"parallel":true,"repo_criteria":{"filters":{"id":{"$in":["integration_test_id"]}}}}'
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      User-Agent:
-      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.2.4p230
-      Content-Type:
-      - application/json
-      Content-Length:
-      - '84'
-      Host:
-      - dev.example.com
-  response:
-    status:
-      code: 202
-      message: ACCEPTED
-    headers:
-      Date:
-      - Tue, 25 Jul 2017 20:48:32 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Content-Length:
-      - '127'
-      Connection:
-      - close
-      Content-Type:
-      - application/json; charset=utf-8
-    body:
-      encoding: UTF-8
-      string: '{"group_id": "001122c9-6a07-43a5-9ca0-3b7b8e50c95d", "_href": "/pulp/api/v2/task_groups/001122c9-6a07-43a5-9ca0-3b7b8e50c95d/"}'
-    http_version: 
-  recorded_at: Tue, 25 Jul 2017 20:48:32 GMT
-- request:
     method: get
     uri: https://admin:admin@dev.example.com/pulp/api/v2/task_groups/001122c9-6a07-43a5-9ca0-3b7b8e50c95d/state_summary/
     body:
@@ -79,4 +40,127 @@ http_interactions:
         0, "skipped": 0, "suspended": 0, "error": 0, "total": 1}'
     http_version: 
   recorded_at: Tue, 25 Jul 2017 20:48:32 GMT
-recorded_with: VCR 3.0.3
+- request:
+    method: get
+    uri: https://devel.example.com/pulp/api/v2/task_groups/3f0f0410-47b3-4562-9175-684ce9028097/state_summary/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
+      Content-Type:
+      - application/json
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 15 Aug 2018 15:42:25 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Etag:
+      - '"f36810e7e1fe166dc90d2e606a17ac7d-gzip"'
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '127'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"accepted": 0, "finished": 1, "running": 0, "canceled": 0, "waiting":
+        0, "skipped": 0, "suspended": 0, "error": 0, "total": 1}'
+    http_version: 
+  recorded_at: Wed, 15 Aug 2018 15:42:25 GMT
+- request:
+    method: post
+    uri: https://devel.example.com/pulp/api/v2/repositories/actions/content/regenerate_applicability//
+    body:
+      encoding: UTF-8
+      string: '{"parallel":true,"repo_criteria":{"filters":{"id":{"$in":["integration_test_id"]}}}}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '84'
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Date:
+      - Wed, 15 Aug 2018 15:51:13 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '127'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"group_id": "05358f1c-98d9-4b51-819b-82536cbe9125", "_href": "/pulp/api/v2/task_groups/05358f1c-98d9-4b51-819b-82536cbe9125/"}'
+    http_version: 
+  recorded_at: Wed, 15 Aug 2018 15:51:13 GMT
+- request:
+    method: get
+    uri: https://devel.example.com/pulp/api/v2/task_groups/05358f1c-98d9-4b51-819b-82536cbe9125/state_summary/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
+      Content-Type:
+      - application/json
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 15 Aug 2018 15:51:13 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Etag:
+      - '"f36810e7e1fe166dc90d2e606a17ac7d-gzip"'
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '127'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"accepted": 0, "finished": 1, "running": 0, "canceled": 0, "waiting":
+        0, "skipped": 0, "suspended": 0, "error": 0, "total": 1}'
+    http_version: 
+  recorded_at: Wed, 15 Aug 2018 15:51:13 GMT
+recorded_with: VCR 4.0.0

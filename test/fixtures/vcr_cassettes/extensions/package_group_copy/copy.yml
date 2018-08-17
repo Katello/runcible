@@ -1,43 +1,6 @@
 ---
 http_interactions:
 - request:
-    method: post
-    uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/repositories/integration_test_id_clone/actions/associate/
-    body:
-      encoding: UTF-8
-      string: '{"source_repo_id":"integration_test_id","criteria":{"type_ids":["package_group"],"filters":{}}}'
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Type:
-      - application/json
-      Content-Length:
-      - '95'
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 202
-      message: ACCEPTED
-    headers:
-      Date:
-      - Fri, 29 Apr 2016 16:21:52 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Content-Length:
-      - '172'
-      Content-Type:
-      - application/json; charset=utf-8
-    body:
-      encoding: UTF-8
-      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/b3e4134a-ba33-4f70-b078-7ae2a406f9bd/",
-        "task_id": "b3e4134a-ba33-4f70-b078-7ae2a406f9bd"}], "result": null, "error":
-        null}'
-    http_version: 
-  recorded_at: Fri, 29 Apr 2016 16:21:52 GMT
-- request:
     method: get
     uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/tasks/b3e4134a-ba33-4f70-b078-7ae2a406f9bd/
     body:
@@ -83,8 +46,157 @@ http_interactions:
     http_version: 
   recorded_at: Fri, 29 Apr 2016 16:21:53 GMT
 - request:
+    method: get
+    uri: https://devel.example.com/pulp/api/v2/tasks/15d6b480-2186-4ce3-afe4-d6cc0ef75f08/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
+      Content-Type:
+      - application/json
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 15 Aug 2018 15:40:04 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Etag:
+      - '"82ad9e0cf692f52ad716feec235ab562-gzip"'
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '1191'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"exception": null, "task_type": "pulp.server.managers.repo.unit_association.associate_from_repo",
+        "_href": "/pulp/api/v2/tasks/15d6b480-2186-4ce3-afe4-d6cc0ef75f08/", "task_id":
+        "15d6b480-2186-4ce3-afe4-d6cc0ef75f08", "tags": ["pulp:repository:integration_test_id_clone",
+        "pulp:repository:integration_test_id", "pulp:action:associate"], "finish_time":
+        "2018-08-15T15:40:03Z", "_ns": "task_status", "start_time": "2018-08-15T15:40:03Z",
+        "traceback": null, "spawned_tasks": [], "progress_report": {}, "queue": "reserved_resource_worker-1@devel.example.com.dq2",
+        "state": "finished", "worker_name": "reserved_resource_worker-1@devel.example.com",
+        "result": {"units_successful": [{"unit_key": {"repo_id": "integration_test_id_clone",
+        "id": "mammal"}, "type_id": "package_group"}, {"unit_key": {"repo_id": "integration_test_id_clone",
+        "id": "bird"}, "type_id": "package_group"}], "units_failed_signature_filter":
+        [{"unit_key": {"repo_id": "integration_test_id", "id": "bird"}, "type_id":
+        "package_group"}, {"unit_key": {"repo_id": "integration_test_id", "id": "mammal"},
+        "type_id": "package_group"}]}, "error": null, "_id": {"$oid": "5b74495369b4753f995cd0bb"},
+        "id": "5b74495369b4753f995cd0bb"}'
+    http_version: 
+  recorded_at: Wed, 15 Aug 2018 15:40:04 GMT
+- request:
     method: post
-    uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/repositories/integration_test_id_clone/search/units/
+    uri: https://devel.example.com/pulp/api/v2/repositories/integration_test_id_clone/actions/associate/
+    body:
+      encoding: UTF-8
+      string: '{"source_repo_id":"integration_test_id","criteria":{"type_ids":["package_group"],"filters":{}}}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '95'
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Date:
+      - Wed, 15 Aug 2018 15:47:16 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '172'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/d56dd15e-fbf7-47b5-a918-13f4999dda61/",
+        "task_id": "d56dd15e-fbf7-47b5-a918-13f4999dda61"}], "result": null, "error":
+        null}'
+    http_version: 
+  recorded_at: Wed, 15 Aug 2018 15:47:16 GMT
+- request:
+    method: get
+    uri: https://devel.example.com/pulp/api/v2/tasks/d56dd15e-fbf7-47b5-a918-13f4999dda61/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
+      Content-Type:
+      - application/json
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 15 Aug 2018 15:47:17 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Etag:
+      - '"fa24fc038ecdd923f7279bd3c189e209-gzip"'
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '1191'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"exception": null, "task_type": "pulp.server.managers.repo.unit_association.associate_from_repo",
+        "_href": "/pulp/api/v2/tasks/d56dd15e-fbf7-47b5-a918-13f4999dda61/", "task_id":
+        "d56dd15e-fbf7-47b5-a918-13f4999dda61", "tags": ["pulp:repository:integration_test_id_clone",
+        "pulp:repository:integration_test_id", "pulp:action:associate"], "finish_time":
+        "2018-08-15T15:47:16Z", "_ns": "task_status", "start_time": "2018-08-15T15:47:16Z",
+        "traceback": null, "spawned_tasks": [], "progress_report": {}, "queue": "reserved_resource_worker-1@devel.example.com.dq2",
+        "state": "finished", "worker_name": "reserved_resource_worker-1@devel.example.com",
+        "result": {"units_successful": [{"unit_key": {"repo_id": "integration_test_id_clone",
+        "id": "mammal"}, "type_id": "package_group"}, {"unit_key": {"repo_id": "integration_test_id_clone",
+        "id": "bird"}, "type_id": "package_group"}], "units_failed_signature_filter":
+        [{"unit_key": {"repo_id": "integration_test_id", "id": "bird"}, "type_id":
+        "package_group"}, {"unit_key": {"repo_id": "integration_test_id", "id": "mammal"},
+        "type_id": "package_group"}]}, "error": null, "_id": {"$oid": "5b744b0469b4753f995d68e4"},
+        "id": "5b744b0469b4753f995d68e4"}'
+    http_version: 
+  recorded_at: Wed, 15 Aug 2018 15:47:17 GMT
+- request:
+    method: post
+    uri: https://devel.example.com/pulp/api/v2/repositories/integration_test_id_clone/search/units/
     body:
       encoding: UTF-8
       string: '{"criteria":{"type_ids":["package_group"]}}'
@@ -93,19 +205,23 @@ http_interactions:
       - application/json
       Accept-Encoding:
       - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
       Content-Type:
       - application/json
       Content-Length:
       - '43'
-      User-Agent:
-      - Ruby
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Fri, 29 Apr 2016 16:21:53 GMT
+      - Wed, 15 Aug 2018 15:47:17 GMT
       Server:
       - Apache/2.4.6 (CentOS)
       Vary:
@@ -118,28 +234,28 @@ http_interactions:
       encoding: ASCII-8BIT
       string: '[{"metadata": {"mandatory_package_names": ["penguin"], "repo_id": "integration_test_id_clone",
         "name": "bird", "user_visible": true, "default": true, "_ns": "units_package_group",
-        "_last_updated": 1461946912, "optional_package_names": [], "translated_name":
+        "_last_updated": 1534348036, "optional_package_names": [], "translated_name":
         {}, "translated_description": {}, "pulp_user_metadata": {}, "default_package_names":
-        [], "_content_type_id": "package_group", "id": "bird", "_id": "9af6c48b-f376-497d-b316-1a9aedb2380f",
-        "display_order": 1024, "conditional_package_names": []}, "updated": "2016-04-29T16:21:52Z",
-        "repo_id": "integration_test_id_clone", "created": "2016-04-29T16:21:52Z",
-        "unit_type_id": "package_group", "unit_id": "9af6c48b-f376-497d-b316-1a9aedb2380f",
-        "_id": {"$oid": "57238a20898f5c862fa3eab3"}}, {"metadata": {"mandatory_package_names":
+        [], "_content_type_id": "package_group", "id": "bird", "_id": "20470900-4853-41e3-a15b-7999c0f46bfa",
+        "display_order": 1024, "conditional_package_names": []}, "updated": "2018-08-15T15:47:16Z",
+        "repo_id": "integration_test_id_clone", "created": "2018-08-15T15:47:16Z",
+        "unit_type_id": "package_group", "unit_id": "20470900-4853-41e3-a15b-7999c0f46bfa",
+        "_id": {"$oid": "5b744b0469b4753f995d690b"}}, {"metadata": {"mandatory_package_names":
         ["elephant,giraffe,cheetah,lion,monkey,penguin,squirrel,walrus", "penguin"],
         "repo_id": "integration_test_id_clone", "name": "mammal", "user_visible":
-        true, "default": true, "_ns": "units_package_group", "_last_updated": 1461946912,
+        true, "default": true, "_ns": "units_package_group", "_last_updated": 1534348036,
         "optional_package_names": [], "translated_name": {}, "translated_description":
         {}, "pulp_user_metadata": {}, "default_package_names": [], "_content_type_id":
-        "package_group", "id": "mammal", "_id": "ab1da921-5dfe-4444-a27d-fd5820c0b568",
-        "display_order": 1024, "conditional_package_names": []}, "updated": "2016-04-29T16:21:52Z",
-        "repo_id": "integration_test_id_clone", "created": "2016-04-29T16:21:52Z",
-        "unit_type_id": "package_group", "unit_id": "ab1da921-5dfe-4444-a27d-fd5820c0b568",
-        "_id": {"$oid": "57238a20898f5c862fa3eab2"}}]'
+        "package_group", "id": "mammal", "_id": "be51f7b3-f922-4147-87f4-48c9d7fe5e73",
+        "display_order": 1024, "conditional_package_names": []}, "updated": "2018-08-15T15:47:16Z",
+        "repo_id": "integration_test_id_clone", "created": "2018-08-15T15:47:16Z",
+        "unit_type_id": "package_group", "unit_id": "be51f7b3-f922-4147-87f4-48c9d7fe5e73",
+        "_id": {"$oid": "5b744b0469b4753f995d6921"}}]'
     http_version: 
-  recorded_at: Fri, 29 Apr 2016 16:21:53 GMT
+  recorded_at: Wed, 15 Aug 2018 15:47:17 GMT
 - request:
     method: post
-    uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/repositories/integration_test_id/search/units/
+    uri: https://devel.example.com/pulp/api/v2/repositories/integration_test_id/search/units/
     body:
       encoding: UTF-8
       string: '{"criteria":{"type_ids":["package_group"]}}'
@@ -148,19 +264,23 @@ http_interactions:
       - application/json
       Accept-Encoding:
       - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
       Content-Type:
       - application/json
       Content-Length:
       - '43'
-      User-Agent:
-      - Ruby
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Fri, 29 Apr 2016 16:21:53 GMT
+      - Wed, 15 Aug 2018 15:47:17 GMT
       Server:
       - Apache/2.4.6 (CentOS)
       Vary:
@@ -171,25 +291,25 @@ http_interactions:
       - application/json; charset=utf-8
     body:
       encoding: ASCII-8BIT
-      string: '[{"metadata": {"mandatory_package_names": ["elephant,giraffe,cheetah,lion,monkey,penguin,squirrel,walrus",
-        "penguin"], "repo_id": "integration_test_id", "name": "mammal", "user_visible":
-        true, "default": true, "_ns": "units_package_group", "_last_updated": 1461862874,
+      string: '[{"metadata": {"mandatory_package_names": ["penguin"], "repo_id": "integration_test_id",
+        "name": "bird", "user_visible": true, "default": true, "_ns": "units_package_group",
+        "_last_updated": 1534347680, "optional_package_names": [], "translated_name":
+        {}, "translated_description": {}, "pulp_user_metadata": {}, "default_package_names":
+        [], "_content_type_id": "package_group", "id": "bird", "_id": "67554b29-4087-49aa-9467-408321ec2efe",
+        "display_order": 1024, "conditional_package_names": []}, "updated": "2018-08-15T15:47:15Z",
+        "repo_id": "integration_test_id", "created": "2018-08-15T15:47:15Z", "unit_type_id":
+        "package_group", "unit_id": "67554b29-4087-49aa-9467-408321ec2efe", "_id":
+        {"$oid": "5b744b0369b4753f995d6875"}}, {"metadata": {"mandatory_package_names":
+        ["elephant,giraffe,cheetah,lion,monkey,penguin,squirrel,walrus", "penguin"],
+        "repo_id": "integration_test_id", "name": "mammal", "user_visible": true,
+        "default": true, "_ns": "units_package_group", "_last_updated": 1534347680,
         "optional_package_names": [], "translated_name": {}, "translated_description":
         {}, "pulp_user_metadata": {}, "default_package_names": [], "_content_type_id":
-        "package_group", "id": "mammal", "_id": "02df6ed7-7b7d-4795-8582-ca768f4942cf",
-        "display_order": 1024, "conditional_package_names": []}, "updated": "2016-04-29T16:21:51Z",
-        "repo_id": "integration_test_id", "created": "2016-04-29T16:21:51Z", "unit_type_id":
-        "package_group", "unit_id": "02df6ed7-7b7d-4795-8582-ca768f4942cf", "_id":
-        {"$oid": "57238a1f898f5c862fa3eaaf"}}, {"metadata": {"mandatory_package_names":
-        ["penguin"], "repo_id": "integration_test_id", "name": "bird", "user_visible":
-        true, "default": true, "_ns": "units_package_group", "_last_updated": 1461862874,
-        "optional_package_names": [], "translated_name": {}, "translated_description":
-        {}, "pulp_user_metadata": {}, "default_package_names": [], "_content_type_id":
-        "package_group", "id": "bird", "_id": "9c8ab986-1d0c-4272-bf7f-785a33ba9656",
-        "display_order": 1024, "conditional_package_names": []}, "updated": "2016-04-29T16:21:51Z",
-        "repo_id": "integration_test_id", "created": "2016-04-29T16:21:51Z", "unit_type_id":
-        "package_group", "unit_id": "9c8ab986-1d0c-4272-bf7f-785a33ba9656", "_id":
-        {"$oid": "57238a1f898f5c862fa3eaae"}}]'
+        "package_group", "id": "mammal", "_id": "deac8c94-fdf2-4440-b7a4-7b772028ddf2",
+        "display_order": 1024, "conditional_package_names": []}, "updated": "2018-08-15T15:47:15Z",
+        "repo_id": "integration_test_id", "created": "2018-08-15T15:47:15Z", "unit_type_id":
+        "package_group", "unit_id": "deac8c94-fdf2-4440-b7a4-7b772028ddf2", "_id":
+        {"$oid": "5b744b0369b4753f995d6881"}}]'
     http_version: 
-  recorded_at: Fri, 29 Apr 2016 16:21:53 GMT
-recorded_with: VCR 3.0.1
+  recorded_at: Wed, 15 Aug 2018 15:47:17 GMT
+recorded_with: VCR 4.0.0

@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/consumer_groups/
+    uri: https://devel.example.com/pulp/api/v2/consumer_groups/
     body:
       encoding: UTF-8
       string: '{"id":"integration_test_consumer_group","display_name":"foo","description":"Test
@@ -12,38 +12,42 @@ http_interactions:
       - application/json
       Accept-Encoding:
       - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
       Content-Type:
       - application/json
       Content-Length:
       - '113'
-      User-Agent:
-      - Ruby
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
   response:
     status:
       code: 201
       message: CREATED
     headers:
       Date:
-      - Fri, 29 Apr 2016 16:27:03 GMT
+      - Wed, 15 Aug 2018 15:49:52 GMT
       Server:
       - Apache/2.4.6 (CentOS)
       Content-Length:
       - '298'
       Location:
-      - https://runcible.example.com/pulp/api/v2/consumer_groups/integration_test_consumer_group/
+      - "/pulp/api/v2/consumer_groups/integration_test_consumer_group/"
       Content-Type:
       - application/json; charset=utf-8
     body:
       encoding: UTF-8
       string: '{"scratchpad": null, "display_name": "foo", "description": "Test description.",
         "_ns": "consumer_groups", "notes": {}, "consumer_ids": [], "_id": {"$oid":
-        "57238b57aca4886d952eeae0"}, "id": "integration_test_consumer_group", "_href":
+        "5b744ba069f4e52413f14b40"}, "id": "integration_test_consumer_group", "_href":
         "/pulp/api/v2/consumer_groups/integration_test_consumer_group/"}'
     http_version: 
-  recorded_at: Fri, 29 Apr 2016 16:27:03 GMT
+  recorded_at: Wed, 15 Aug 2018 15:49:52 GMT
 - request:
     method: delete
-    uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/consumers/integration_test_consumer_support/
+    uri: https://devel.example.com/pulp/api/v2/consumers/integration_test_consumer_support/
     body:
       encoding: US-ASCII
       string: ''
@@ -52,21 +56,23 @@ http_interactions:
       - application/json
       Accept-Encoding:
       - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
       Content-Type:
       - application/json
-      User-Agent:
-      - Ruby
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
   response:
     status:
       code: 404
-      message: NOT FOUND
+      message: Not Found
     headers:
       Date:
-      - Fri, 29 Apr 2016 16:27:04 GMT
+      - Wed, 15 Aug 2018 15:49:52 GMT
       Server:
       - Apache/2.4.6 (CentOS)
-      Content-Encoding:
-      - utf-8
       Content-Length:
       - '513'
       Content-Type:
@@ -80,10 +86,10 @@ http_interactions:
         "description": "Missing resource(s): consumer=integration_test_consumer_support",
         "sub_errors": []}, "traceback": null, "resources": {"consumer": "integration_test_consumer_support"}}'
     http_version: 
-  recorded_at: Fri, 29 Apr 2016 16:27:04 GMT
+  recorded_at: Wed, 15 Aug 2018 15:49:52 GMT
 - request:
     method: post
-    uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/consumers/
+    uri: https://devel.example.com/pulp/api/v2/consumers/
     body:
       encoding: UTF-8
       string: '{"id":"integration_test_consumer_support"}'
@@ -92,41 +98,45 @@ http_interactions:
       - application/json
       Accept-Encoding:
       - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
       Content-Type:
       - application/json
       Content-Length:
       - '42'
-      User-Agent:
-      - Ruby
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
   response:
     status:
       code: 201
       message: CREATED
     headers:
       Date:
-      - Fri, 29 Apr 2016 16:27:04 GMT
+      - Wed, 15 Aug 2018 15:49:52 GMT
       Server:
       - Apache/2.4.6 (CentOS)
       Content-Length:
-      - '2513'
+      - '2529'
       Location:
-      - https://runcible.example.com/pulp/api/v2/consumers/integration_test_consumer_support/
+      - "/pulp/api/v2/consumers/integration_test_consumer_support/"
       Content-Type:
       - application/json; charset=utf-8
     body:
       encoding: UTF-8
       string: '{"consumer": {"display_name": "integration_test_consumer_support",
         "description": null, "_ns": "consumers", "notes": {}, "rsa_pub": null, "capabilities":
-        {}, "_id": {"$oid": "57238b58aca4886d952eeae1"}, "id": "integration_test_consumer_support",
+        {}, "_id": {"$oid": "5b744ba069f4e52415bb1c77"}, "id": "integration_test_consumer_support",
         "_href": "/pulp/api/v2/consumers/integration_test_consumer_support/"}, "certificate":
-        "-----BEGIN RSA PRIVATE KEY-----\nMIICXQIBAAKBgQDkfdwj1xSvs7GMILIzmjkN+jWD2iZaYGulr5C+DvRuNWFM7os0\nSVvlpGm1cNI67cY2y+qS8CCSiW//wCDkp43PiJmMNHTKLxkENkv+fXHD8sWRowT4\n0kuXFgfnP47W5tkZRCQDoLH0ly5Lo/+FIaKRtQC1+r17nJdUTnuVaUjU7QIDAQAB\nAoGBALgniEmKi62gkjRyFa3pWpqdUoxWQhsNIzWCbpH/05kPhMBQcflONra68EfA\nCnBcOyjm6MRMrLPt+UqTOu+O64cWHMbh9BV02RgZhPj9q9GWEJYMH7RKrXe/T1YI\ne00WX52vIQhcpAbQEnGaOYuDhqRU2Op3570tEyTi/fauvEmxAkEA/rF+yeIf+2+k\nQf5taBMKvwXtJ/K5PehJZLZXQTntWmKZWnEmZ7qUDUy1NkMIprJ7R5J1paWQNjJl\nCix31lj1dwJBAOWp88sakVf60DWceja/82k00IYOFAaa7mdc+YP+7NYW+0uWfBF0\nXXmcGRJaHDh4W0994VWHVD0eYJcsRQqscbsCQQDlD0MlVB5JZu3GgIlrCX0nsa/J\nts2M9OVVE3zD59Ik8PpU0eCld7MBhxSO2ZjlOy4Of5UZRh6973LZxIZ+m4EfAkAq\n7LXlOyT5Naaero1lGEFNY5Kpy43Qojp21TjJg+cOKKN1QD4WIRKrfRJujKsDnvMq\nC1QHYVDMT5YsCxkoYoyrAkA0L4qzORoO6D25RCDioYgyhmmpY3IqN5xJqr7SvBX7\ncA06lVHtLBSGBXgK7XHEVodJlj4IfjgTpgp6kvrPGgYD\n-----END
-        RSA PRIVATE KEY-----\n-----BEGIN CERTIFICATE-----\nMIIDdDCCAVwCAUQwDQYJKoZIhvcNAQEFBQAwLjEdMBsGA1UEAwwUcnVuY2libGUu\nZXhhbXBsZS5jb20xDTALBgNVBAoMBFBVTFAwHhcNMTYwNDI5MTYyNzA0WhcNMjYw\nNDI3MTYyNzA0WjBWMSowKAYDVQQDFCFpbnRlZ3JhdGlvbl90ZXN0X2NvbnN1bWVy\nX3N1cHBvcnQxKDAmBgoJkiaJk/IsZAEBExg1NzIzOGI1OGFjYTQ4ODZkOTUyZWVh\nZTEwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAOR93CPXFK+zsYwgsjOaOQ36\nNYPaJlpga6WvkL4O9G41YUzuizRJW+WkabVw0jrtxjbL6pLwIJKJb//AIOSnjc+I\nmYw0dMovGQQ2S/59ccPyxZGjBPjSS5cWB+c/jtbm2RlEJAOgsfSXLkuj/4UhopG1\nALX6vXucl1ROe5VpSNTtAgMBAAEwDQYJKoZIhvcNAQEFBQADggIBAAopNKHLJ3tU\nqRsThTngDjAWuQdMT/R7hfWCeiJNEzRsmTikk+Cv7PLgWbOg8FJkP0w9ic0teM8c\nOGzzw6vdX/8SukcdzvRmjYdlmwNs+LVs16gCBiIs+yk96Wn16YI8pNmJcWoI8H3c\nRtgKJfnawbsXlyr9QA3Sn4Gi29PTAeOEX2aDBt0ZflnN3+yD+MCqJs1Cdw4UcXRJ\niN9hrfEQRTsB4hcCnBCeG7RmwXDKu4M9Jn6La0h3tD1YmNii/SEFh8/x7lJgWaBC\nqVoxknIwxmoHz11MsBngNMU1BCZ4tRVTNhOTH4ZvX4xYPhRfJB4iFe4TXmMVSM27\n4qTiNsBQ+o/SrSKeYsnRcJ85NNFEskjz+hSm2kq64RP4drcLCPfquf54RewhBAYR\n6pZkBxcMOkXLVhoOexOtiEL4Sn5HLSlBnd3mBEJQGI6A44/knetFZCRXFqaIZv3w\n2moMQ7T1QIUiPS9zYc4mKww4nCulo/yY5eW0c2FF1SGzNz1xXKut8/oKxK83UDZ3\ntkq8DMjWclkyPia7sPOvToyLSZgaqCxEx3dDubcE5fo6P4BKvpH8Ny1iEx2hSElF\nbWdvtkFo8+aB2KlNk1ZgxfHyclIpYdyU6drkz1Irqds8bvQOF03D4mAhLVOhNh+T\n+qWQpAuIRBoV6Hi6FrdEoQB586TzB4BG\n-----END
+        "-----BEGIN RSA PRIVATE KEY-----\nMIICXQIBAAKBgQDQPsot+o76b0ppDP5sSV+/kiDgIBvqirKslughyv7uuB8gbMTT\n5qoI1xR8+Kx/Svb7NEz1xTrTxBPKajbkD+seFpmcYCFbonVJdfYi0aywrGyay3zs\nToA5w3mTRcOk0/UbB00nFdNoD2qAjd1DCVprWh+X6UPexNYBTyi74SxMCQIDAQAB\nAoGBALS6WaMPufiUj4KeOUxnXYaX3ppEo5Wo66oniaySTS+GcdUlMKkqndTwPKK8\n+o+60qBu4n/FvOk+WWKpTZweSJCSgW5tv1TdiUCPR+1Iap/mJ+aO/i1kIc7fO4K2\nGmgDM7JdZW+05I0s6zCt9VWRF5v6+lkVQ7zGf6Mj2Dv5yhnRAkEA6n11JlmHxuu3\n/sfYYaZDcdmp/KI0yTjW6MyBlAgL8gZNaFGLmFpN/FowevaJMS13cD1zJYJvYE5e\n/kdrQCTLTQJBAONZBjS8cSJwrp2hUsIfZ805ezLsynopHy6wWuUR65NaKoUgNovK\nFRzAqnvKh5pfVNx5PWsGXeobXG17X7vsDa0CQFWYlFH6bpDTbOfJJZiHq6j8jouU\n3nXxlKmINWjHAy1G1azVz4I+vKb4eSf5pJzZ/vZuyACSO3vJP+3MPj887yUCQFds\nFz/WKqb0r6C7tSgijXbUILS/a0i4YV5BwGIPlwfNh0Yz0eXFKoMo7yW1BpntCKPT\nFzP9ecWZCdyrsW+A4O0CQQDXcVnwWLX/uMalUC2i5Ps0WuS88WVqHO5N5T+/1LUy\n0Rxl/pIUd8hr/LVQ7kgPh2jxZUwZPX5bJh4QV32HHgeQ\n-----END
+        RSA PRIVATE KEY-----\n-----BEGIN CERTIFICATE-----\nMIIDgDCCAWgCEHXE3bEE8EecrsLiDHIRsJIwDQYJKoZIhvcNAQEFBQAwKzEaMBgG\nA1UEAwwRZGV2ZWwuZXhhbXBsZS5jb20xDTALBgNVBAoMBFBVTFAwHhcNMTgwODE1\nMTU0OTUyWhcNMjgwODEyMTU0OTUyWjBWMSowKAYDVQQDDCFpbnRlZ3JhdGlvbl90\nZXN0X2NvbnN1bWVyX3N1cHBvcnQxKDAmBgoJkiaJk/IsZAEBDBg1Yjc0NGJhMDY5\nZjRlNTI0MTViYjFjNzcwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBANA+yi36\njvpvSmkM/mxJX7+SIOAgG+qKsqyW6CHK/u64HyBsxNPmqgjXFHz4rH9K9vs0TPXF\nOtPEE8pqNuQP6x4WmZxgIVuidUl19iLRrLCsbJrLfOxOgDnDeZNFw6TT9RsHTScV\n02gPaoCN3UMJWmtaH5fpQ97E1gFPKLvhLEwJAgMBAAEwDQYJKoZIhvcNAQEFBQAD\nggIBALdVEFP7PDEmCkl2/FmzJFIa9DRqGq46ZLbbDcPxfQM6InfkcgwJyYQ6Afoj\n+s1dENMZph1Ea7BKPmyfnDNZHQWziIh7OyH2vENTQy+UXZNbQceCRgMYoCIBga1b\nMVpQ1HREc0tf1P7kJMLNLFYH2j/ZSHQWEYcjPFDPcZmsPUZxDRUqIXQYsEUlzcnC\nuFf3ommCXvCMvH0YwHtsJbd2a0JrdYiRSZNpCODNGAxmN5VN9unHpciFBoccdSYZ\n75wnbPFzjH7PoJoGn1GmFBfMIPxNSXzOoPT1pBdxeQoVAd5ibl7FNonspLN5JzjD\nMAq47fXgNydci4SoiHIM+yJD0hDWQYPb3736oc3ascPyH2lbuID4hWlWa785LUXI\nqugpfzsSnSaQrPA4RNt3pD8oKw/Dt/Q3/8igw5zlKCLFU9kelUHSfgtAEgQqMGq5\nDpE3xXBAFkqJvhbqJIIrm9FEaD9fT+NCAHDmxlvezEJZXiCgvhQVOYZ4IhcOpwmn\nyiSfw1Mw6GDg20M7eSD/rOkSxRAbJ6/aNpAktP1zrqJJXL7xWEzssy7kj7x0cd1B\nqsUMX2jH1JUOsSKDTGlrRpVXqmmpxYdQQ9UdkrgcY/lMzQghYiW2PcaXi2QJebbY\nivk8Lr3Je0Mw4wxe9WQj22ykYl0T14Ut3/HlS3DnOnRMUpZX\n-----END
         CERTIFICATE-----"}'
     http_version: 
-  recorded_at: Fri, 29 Apr 2016 16:27:04 GMT
+  recorded_at: Wed, 15 Aug 2018 15:49:52 GMT
 - request:
     method: get
-    uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/repositories/integration_test_id/?details=true
+    uri: https://devel.example.com/pulp/api/v2/repositories/integration_test_id/?details=true
     body:
       encoding: US-ASCII
       string: ''
@@ -135,47 +145,55 @@ http_interactions:
       - application/json
       Accept-Encoding:
       - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
       Content-Type:
       - application/json
-      User-Agent:
-      - Ruby
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Fri, 29 Apr 2016 16:27:04 GMT
+      - Wed, 15 Aug 2018 15:49:52 GMT
       Server:
       - Apache/2.4.6 (CentOS)
+      Etag:
+      - '"0f3662e72fe4433cc39a0a09f440585b-gzip"'
       Vary:
       - Accept-Encoding
       Content-Length:
-      - '1310'
+      - '1438'
       Content-Type:
       - application/json; charset=utf-8
     body:
       encoding: ASCII-8BIT
       string: '{"scratchpad": {"checksum_type": "sha256"}, "display_name": "integration_test_id",
-        "description": null, "distributors": [{"repo_id": "integration_test_id", "_href":
-        "/pulp/api/v2/repositories/integration_test_id/distributors/yum_dist/", "_ns":
-        "repo_distributors", "last_publish": null, "distributor_type_id": "yum_distributor",
-        "auto_publish": false, "scratchpad": {}, "_id": {"$oid": "57238b53aca4886d952eeadf"},
-        "config": {"http": true, "https": true, "relative_url": "path"}, "id": "yum_dist"}],
-        "last_unit_added": null, "notes": {}, "last_unit_removed": null, "content_unit_counts":
-        {"package_group": 2, "distribution": 1, "package_category": 1, "rpm": 8, "erratum":
-        2}, "_ns": "repos", "importers": [{"scratchpad": {"repomd_revision": 1321893800,
-        "previous_skip_list": []}, "_href": "/pulp/api/v2/repositories/integration_test_id/importers/yum_importer/",
-        "_ns": "repo_importers", "importer_type_id": "yum_importer", "last_sync":
-        "2016-04-29T16:26:59Z", "repo_id": "integration_test_id", "_id": {"$oid":
-        "57238b53aca4886d952eeade"}, "config": {"feed": "file:///var/www/repositories/zoo5"},
-        "id": "yum_importer"}], "locally_stored_units": 14, "_id": {"$oid": "57238b53aca4886d952eeadd"},
-        "total_repository_units": 14, "id": "integration_test_id", "_href": "/pulp/api/v2/repositories/integration_test_id/"}'
+        "description": null, "distributors": [{"repo_id": "integration_test_id", "last_updated":
+        "2018-08-15T15:49:49Z", "_href": "/pulp/api/v2/repositories/integration_test_id/distributors/yum_dist/",
+        "last_override_config": {}, "last_publish": null, "distributor_type_id": "yum_distributor",
+        "auto_publish": false, "scratchpad": {}, "_ns": "repo_distributors", "_id":
+        {"$oid": "5b744b9d69f4e52413f14b3a"}, "config": {"http": true, "https": true,
+        "relative_url": "path"}, "id": "yum_dist"}], "last_unit_added": "2018-08-15T15:49:49Z",
+        "notes": {}, "last_unit_removed": null, "content_unit_counts": {"package_group":
+        2, "distribution": 1, "package_category": 1, "rpm": 8, "erratum": 2}, "_ns":
+        "repos", "importers": [{"repo_id": "integration_test_id", "last_updated":
+        "2018-08-15T15:49:49Z", "_href": "/pulp/api/v2/repositories/integration_test_id/importers/yum_importer/",
+        "_ns": "repo_importers", "importer_type_id": "yum_importer", "last_override_config":
+        {}, "last_sync": "2018-08-15T15:49:49Z", "scratchpad": {"repomd_revision":
+        1321893800}, "_id": {"$oid": "5b744b9d69f4e52413f14b39"}, "config": {"feed":
+        "file:///var/www/repositories/zoo5"}, "id": "yum_importer"}], "locally_stored_units":
+        14, "_id": {"$oid": "5b744b9d69f4e52413f14b38"}, "total_repository_units":
+        14, "id": "integration_test_id", "_href": "/pulp/api/v2/repositories/integration_test_id/"}'
     http_version: 
-  recorded_at: Fri, 29 Apr 2016 16:27:04 GMT
+  recorded_at: Wed, 15 Aug 2018 15:49:52 GMT
 - request:
     method: post
-    uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/consumers/integration_test_consumer_support/bindings//
+    uri: https://devel.example.com/pulp/api/v2/consumers/integration_test_consumer_support/bindings//
     body:
       encoding: UTF-8
       string: '{"repo_id":"integration_test_id","distributor_id":"yum_dist"}'
@@ -184,19 +202,23 @@ http_interactions:
       - application/json
       Accept-Encoding:
       - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
       Content-Type:
       - application/json
       Content-Length:
       - '61'
-      User-Agent:
-      - Ruby
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
   response:
     status:
       code: 202
-      message: ACCEPTED
+      message: Accepted
     headers:
       Date:
-      - Fri, 29 Apr 2016 16:27:04 GMT
+      - Wed, 15 Aug 2018 15:49:52 GMT
       Server:
       - Apache/2.4.6 (CentOS)
       Content-Length:
@@ -205,17 +227,17 @@ http_interactions:
       - application/json; charset=utf-8
     body:
       encoding: UTF-8
-      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/a54b5f69-44d7-431b-8617-b63f21018861/",
-        "task_id": "a54b5f69-44d7-431b-8617-b63f21018861"}], "result": {"notify_agent":
+      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/4db78c1c-6c22-4219-9e3e-5175c1c0f0bb/",
+        "task_id": "4db78c1c-6c22-4219-9e3e-5175c1c0f0bb"}], "result": {"notify_agent":
         true, "repo_id": "integration_test_id", "deleted": false, "_ns": "consumer_bindings",
         "distributor_id": "yum_dist", "consumer_id": "integration_test_consumer_support",
-        "consumer_actions": [], "binding_config": {}, "_id": {"$oid": "57238b58aca4886d952eeae3"},
-        "id": "57238b58aca4886d952eeae3"}, "error": null}'
+        "consumer_actions": [], "binding_config": {}, "_id": {"$oid": "5b744ba069f4e52413f14b41"},
+        "id": "5b744ba069f4e52413f14b41"}, "error": null}'
     http_version: 
-  recorded_at: Fri, 29 Apr 2016 16:27:04 GMT
+  recorded_at: Wed, 15 Aug 2018 15:49:52 GMT
 - request:
     method: post
-    uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/consumer_groups/integration_test_consumer_group/actions/associate/
+    uri: https://devel.example.com/pulp/api/v2/consumer_groups/integration_test_consumer_group/actions/associate/
     body:
       encoding: UTF-8
       string: '{"criteria":{"filters":{"id":{"$in":["integration_test_consumer_support"]}}}}'
@@ -224,19 +246,23 @@ http_interactions:
       - application/json
       Accept-Encoding:
       - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
       Content-Type:
       - application/json
       Content-Length:
       - '77'
-      User-Agent:
-      - Ruby
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Fri, 29 Apr 2016 16:27:04 GMT
+      - Wed, 15 Aug 2018 15:49:52 GMT
       Server:
       - Apache/2.4.6 (CentOS)
       Content-Length:
@@ -247,10 +273,10 @@ http_interactions:
       encoding: UTF-8
       string: '["integration_test_consumer_support"]'
     http_version: 
-  recorded_at: Fri, 29 Apr 2016 16:27:04 GMT
+  recorded_at: Wed, 15 Aug 2018 15:49:52 GMT
 - request:
     method: post
-    uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/consumer_groups/integration_test_consumer_group/actions/content/update/
+    uri: https://devel.example.com/pulp/api/v2/consumer_groups/integration_test_consumer_group/actions/content/update/
     body:
       encoding: UTF-8
       string: '{"units":[{"unit_key":{"name":"zsh"},"type_id":"rpm"}],"options":{}}'
@@ -259,19 +285,23 @@ http_interactions:
       - application/json
       Accept-Encoding:
       - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
       Content-Type:
       - application/json
       Content-Length:
       - '68'
-      User-Agent:
-      - Ruby
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
   response:
     status:
       code: 202
-      message: ACCEPTED
+      message: Accepted
     headers:
       Date:
-      - Fri, 29 Apr 2016 16:27:05 GMT
+      - Wed, 15 Aug 2018 15:49:52 GMT
       Server:
       - Apache/2.4.6 (CentOS)
       Content-Length:
@@ -280,14 +310,14 @@ http_interactions:
       - application/json; charset=utf-8
     body:
       encoding: UTF-8
-      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/57dafa5b-faaf-45d5-8ba5-f8923511e1b8/",
-        "task_id": "57dafa5b-faaf-45d5-8ba5-f8923511e1b8"}], "result": {}, "error":
+      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/9663b27d-1c51-4966-9be0-bed65922ea58/",
+        "task_id": "9663b27d-1c51-4966-9be0-bed65922ea58"}], "result": {}, "error":
         null}'
     http_version: 
-  recorded_at: Fri, 29 Apr 2016 16:27:05 GMT
+  recorded_at: Wed, 15 Aug 2018 15:49:52 GMT
 - request:
     method: delete
-    uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/consumers/integration_test_consumer_support/
+    uri: https://devel.example.com/pulp/api/v2/consumers/integration_test_consumer_support/
     body:
       encoding: US-ASCII
       string: ''
@@ -296,17 +326,21 @@ http_interactions:
       - application/json
       Accept-Encoding:
       - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
       Content-Type:
       - application/json
-      User-Agent:
-      - Ruby
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Fri, 29 Apr 2016 16:27:05 GMT
+      - Wed, 15 Aug 2018 15:49:53 GMT
       Server:
       - Apache/2.4.6 (CentOS)
       Content-Length:
@@ -317,10 +351,10 @@ http_interactions:
       encoding: UTF-8
       string: 'null'
     http_version: 
-  recorded_at: Fri, 29 Apr 2016 16:27:05 GMT
+  recorded_at: Wed, 15 Aug 2018 15:49:53 GMT
 - request:
     method: delete
-    uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/consumer_groups/integration_test_consumer_group/
+    uri: https://devel.example.com/pulp/api/v2/consumer_groups/integration_test_consumer_group/
     body:
       encoding: US-ASCII
       string: ''
@@ -329,17 +363,21 @@ http_interactions:
       - application/json
       Accept-Encoding:
       - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
       Content-Type:
       - application/json
-      User-Agent:
-      - Ruby
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Fri, 29 Apr 2016 16:27:05 GMT
+      - Wed, 15 Aug 2018 15:49:53 GMT
       Server:
       - Apache/2.4.6 (CentOS)
       Content-Length:
@@ -350,5 +388,5 @@ http_interactions:
       encoding: UTF-8
       string: 'null'
     http_version: 
-  recorded_at: Fri, 29 Apr 2016 16:27:05 GMT
-recorded_with: VCR 3.0.1
+  recorded_at: Wed, 15 Aug 2018 15:49:53 GMT
+recorded_with: VCR 4.0.0

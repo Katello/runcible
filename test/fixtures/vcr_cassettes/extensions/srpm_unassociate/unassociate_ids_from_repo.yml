@@ -1,47 +1,6 @@
 ---
 http_interactions:
 - request:
-    method: post
-    uri: https://admin:admin@dev.example.com/pulp/api/v2/repositories/integration_test_id_clone/actions/associate/
-    body:
-      encoding: UTF-8
-      string: '{"source_repo_id":"integration_test_id"}'
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      User-Agent:
-      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.2.5p319
-      Content-Type:
-      - application/json
-      Content-Length:
-      - '40'
-      Host:
-      - dev.example.com
-  response:
-    status:
-      code: 202
-      message: ACCEPTED
-    headers:
-      Date:
-      - Fri, 13 Oct 2017 17:57:40 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Content-Length:
-      - '172'
-      Connection:
-      - close
-      Content-Type:
-      - application/json; charset=utf-8
-    body:
-      encoding: UTF-8
-      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/f00aa02e-f806-4bfe-a4c9-1a077d08d36d/",
-        "task_id": "f00aa02e-f806-4bfe-a4c9-1a077d08d36d"}], "result": null, "error":
-        null}'
-    http_version: 
-  recorded_at: Fri, 13 Oct 2017 17:57:40 GMT
-- request:
     method: get
     uri: https://admin:admin@dev.example.com/pulp/api/v2/tasks/f00aa02e-f806-4bfe-a4c9-1a077d08d36d/
     body:
@@ -98,8 +57,165 @@ http_interactions:
     http_version: 
   recorded_at: Fri, 13 Oct 2017 17:57:41 GMT
 - request:
+    method: get
+    uri: https://devel.example.com/pulp/api/v2/tasks/e702454a-9e22-4f64-8e85-fcc51b6feab8/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
+      Content-Type:
+      - application/json
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 15 Aug 2018 15:40:54 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Etag:
+      - '"8f39626df47bf40e12e0df473909c297-gzip"'
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '1571'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"exception": null, "task_type": "pulp.server.managers.repo.unit_association.associate_from_repo",
+        "_href": "/pulp/api/v2/tasks/e702454a-9e22-4f64-8e85-fcc51b6feab8/", "task_id":
+        "e702454a-9e22-4f64-8e85-fcc51b6feab8", "tags": ["pulp:repository:integration_test_id_clone",
+        "pulp:repository:integration_test_id", "pulp:action:associate"], "finish_time":
+        "2018-08-15T15:40:53Z", "_ns": "task_status", "start_time": "2018-08-15T15:40:53Z",
+        "traceback": null, "spawned_tasks": [], "progress_report": {}, "queue": "reserved_resource_worker-1@devel.example.com.dq2",
+        "state": "finished", "worker_name": "reserved_resource_worker-1@devel.example.com",
+        "result": {"units_successful": [{"signing_key": "269d9d98", "unit_key": {"name":
+        "test-srpm01", "checksum": "08355cbfa76f18ddcca126e9792206f63fc9c5d7790929144052eff88a900f83",
+        "epoch": "0", "version": "1.0", "release": "1", "arch": "src", "checksumtype":
+        "sha256"}, "type_id": "srpm"}, {"signing_key": "269d9d98", "unit_key": {"name":
+        "test-srpm02", "checksum": "5cdf597d90b6ac1b492285678b8c49a39db83deeaba3edecb437ef63bc99c41d",
+        "epoch": "0", "version": "1.0", "release": "1", "arch": "src", "checksumtype":
+        "sha256"}, "type_id": "srpm"}, {"signing_key": "269d9d98", "unit_key": {"name":
+        "test-srpm03", "checksum": "fd8a650afb9bd0529f38c89bedadd9ed06fcd708851e0d368129ecc6e0db0e13",
+        "epoch": "0", "version": "1.0", "release": "1", "arch": "src", "checksumtype":
+        "sha256"}, "type_id": "srpm"}], "units_failed_signature_filter": []}, "error":
+        null, "_id": {"$oid": "5b74498569b4753f995ceb0c"}, "id": "5b74498569b4753f995ceb0c"}'
+    http_version: 
+  recorded_at: Wed, 15 Aug 2018 15:40:54 GMT
+- request:
     method: post
-    uri: https://admin:admin@dev.example.com/pulp/api/v2/repositories/integration_test_id/search/units/
+    uri: https://devel.example.com/pulp/api/v2/repositories/integration_test_id_clone/actions/associate/
+    body:
+      encoding: UTF-8
+      string: '{"source_repo_id":"integration_test_id"}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '40'
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Date:
+      - Wed, 15 Aug 2018 15:49:34 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '172'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/82b63e37-deb1-4ffc-8c0c-a2d9c74a3e4f/",
+        "task_id": "82b63e37-deb1-4ffc-8c0c-a2d9c74a3e4f"}], "result": null, "error":
+        null}'
+    http_version: 
+  recorded_at: Wed, 15 Aug 2018 15:49:34 GMT
+- request:
+    method: get
+    uri: https://devel.example.com/pulp/api/v2/tasks/82b63e37-deb1-4ffc-8c0c-a2d9c74a3e4f/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
+      Content-Type:
+      - application/json
+      Host:
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 15 Aug 2018 15:49:35 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Etag:
+      - '"6d7cc64d759c3b81293d01886a6a9ba2-gzip"'
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '1571'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"exception": null, "task_type": "pulp.server.managers.repo.unit_association.associate_from_repo",
+        "_href": "/pulp/api/v2/tasks/82b63e37-deb1-4ffc-8c0c-a2d9c74a3e4f/", "task_id":
+        "82b63e37-deb1-4ffc-8c0c-a2d9c74a3e4f", "tags": ["pulp:repository:integration_test_id_clone",
+        "pulp:repository:integration_test_id", "pulp:action:associate"], "finish_time":
+        "2018-08-15T15:49:34Z", "_ns": "task_status", "start_time": "2018-08-15T15:49:34Z",
+        "traceback": null, "spawned_tasks": [], "progress_report": {}, "queue": "reserved_resource_worker-1@devel.example.com.dq2",
+        "state": "finished", "worker_name": "reserved_resource_worker-1@devel.example.com",
+        "result": {"units_successful": [{"signing_key": "269d9d98", "unit_key": {"name":
+        "test-srpm01", "checksum": "08355cbfa76f18ddcca126e9792206f63fc9c5d7790929144052eff88a900f83",
+        "epoch": "0", "version": "1.0", "release": "1", "arch": "src", "checksumtype":
+        "sha256"}, "type_id": "srpm"}, {"signing_key": "269d9d98", "unit_key": {"name":
+        "test-srpm02", "checksum": "5cdf597d90b6ac1b492285678b8c49a39db83deeaba3edecb437ef63bc99c41d",
+        "epoch": "0", "version": "1.0", "release": "1", "arch": "src", "checksumtype":
+        "sha256"}, "type_id": "srpm"}, {"signing_key": "269d9d98", "unit_key": {"name":
+        "test-srpm03", "checksum": "fd8a650afb9bd0529f38c89bedadd9ed06fcd708851e0d368129ecc6e0db0e13",
+        "epoch": "0", "version": "1.0", "release": "1", "arch": "src", "checksumtype":
+        "sha256"}, "type_id": "srpm"}], "units_failed_signature_filter": []}, "error":
+        null, "_id": {"$oid": "5b744b8e69b4753f995d9220"}, "id": "5b744b8e69b4753f995d9220"}'
+    http_version: 
+  recorded_at: Wed, 15 Aug 2018 15:49:35 GMT
+- request:
+    method: post
+    uri: https://devel.example.com/pulp/api/v2/repositories/integration_test_id/search/units/
     body:
       encoding: UTF-8
       string: '{"criteria":{"type_ids":["srpm"]}}'
@@ -109,40 +225,66 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.2.5p319
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.4p296
       Content-Type:
       - application/json
       Content-Length:
       - '34'
       Host:
-      - dev.example.com
+      - devel.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Fri, 13 Oct 2017 17:57:41 GMT
+      - Wed, 15 Aug 2018 15:49:35 GMT
       Server:
       - Apache/2.4.6 (CentOS)
       Vary:
       - Accept-Encoding
       Content-Length:
-      - '7473'
-      Connection:
-      - close
+      - '7380'
       Content-Type:
       - application/json; charset=utf-8
     body:
       encoding: ASCII-8BIT
-      string: '[{"metadata": {"build_time": 1331302115, "buildhost": "localhost",
-        "pulp_user_metadata": {}, "_content_type_id": "srpm", "checksums": {"sha256":
-        "08355cbfa76f18ddcca126e9792206f63fc9c5d7790929144052eff88a900f83"}, "size":
-        2207, "license": "GPLv2", "group": "System Environment/Base", "_ns": "units_srpm",
-        "filename": "test-srpm01-1.0-1.src.rpm", "epoch": "0", "version": "1.0", "version_sort_index":
+      string: '[{"metadata": {"build_time": 1331302125, "buildhost": "localhost",
+        "pulp_user_metadata": {}, "_content_type_id": "srpm", "checksums": {}, "size":
+        2206, "license": "GPLv2", "group": "System Environment/Base", "_ns": "units_srpm",
+        "filename": "test-srpm02-1.0-1.src.rpm", "epoch": "0", "version": "1.0", "version_sort_index":
         "01-1.01-0", "provides": [], "files": {"dir": [], "file": ["test-srpm.spec"]},
-        "repodata": {"filelists": "<package arch=\"src\" name=\"test-srpm01\" pkgid=\"{{
-        pkgid }}\">\n  <version epoch=\"0\" rel=\"1\" ver=\"1.0\" />\n  <file>test-srpm.spec</file>\n</package>\n",
+        "recommends": [], "repodata": {"filelists": "<package arch=\"src\" name=\"test-srpm02\"
+        pkgid=\"{{ pkgid }}\">\n  <version epoch=\"0\" rel=\"1\" ver=\"1.0\" />\n  <file>test-srpm.spec</file>\n</package>\n",
+        "other": "<package arch=\"src\" name=\"test-srpm02\" pkgid=\"{{ pkgid }}\">\n  <version
+        epoch=\"0\" rel=\"1\" ver=\"1.0\" />\n</package>\n", "primary": "<package
+        type=\"rpm\">\n  <name>test-srpm02</name>\n  <arch>src</arch>\n  <version
+        epoch=\"0\" rel=\"1\" ver=\"1.0\" />\n  <checksum pkgid=\"YES\" type=\"{{
+        checksumtype }}\">{{ checksum }}</checksum>\n  <summary>Dummy Package to provide
+        tomcat5</summary>\n  <description>\nThis is a test rpm</description>\n  <packager
+        />\n  <url />\n  <time build=\"1331302125\" file=\"1507863156\" />\n  <size
+        archive=\"444\" installed=\"192\" package=\"2206\" />\n  <location href=\"Packages/t/test-srpm02-1.0-1.src.rpm\"/>\n  <format>\n    <rpm:license>GPLv2</rpm:license>\n    <rpm:vendor
+        />\n    <rpm:group>System Environment/Base</rpm:group>\n    <rpm:buildhost>localhost</rpm:buildhost>\n    <rpm:sourcerpm
+        />\n    <rpm:header-range end=\"1956\" start=\"880\" />\n  </format>\n</package>\n"},
+        "description": "\nThis is a test rpm", "_last_updated": 1534348166, "time":
+        1507863156, "downloaded": true, "header_range": {"start": 880, "end": 1956},
+        "arch": "src", "name": "test-srpm02", "_storage_path": "/var/lib/pulp/content/units/srpm/ba/ef95d261b87a940619fa49233632167a35d180f0b6de2c21cab57882fc0bad/test-srpm02-1.0-1.src.rpm",
+        "checksumtype": "sha256", "release_sort_index": "01-1", "changelog": [], "checksum":
+        "5cdf597d90b6ac1b492285678b8c49a39db83deeaba3edecb437ef63bc99c41d", "signing_key":
+        "269d9d98", "summary": "Dummy Package to provide tomcat5", "relativepath":
+        "test-srpm02-1.0-1.src.rpm", "release": "1", "_id": "7672b5c1-ac0a-45c8-ae32-5404025f0cfd",
+        "requires": []}, "updated": "2018-08-15T15:49:33Z", "repo_id": "integration_test_id",
+        "created": "2018-08-15T15:49:33Z", "unit_type_id": "srpm", "unit_id": "7672b5c1-ac0a-45c8-ae32-5404025f0cfd",
+        "_id": {"$oid": "5b744b8d69b4753f995d91ac"}}, {"metadata": {"build_time":
+        1331302115, "buildhost": "localhost", "pulp_user_metadata": {}, "_content_type_id":
+        "srpm", "checksums": {}, "size": 2207, "license": "GPLv2", "group": "System
+        Environment/Base", "_ns": "units_srpm", "filename": "test-srpm01-1.0-1.src.rpm",
+        "epoch": "0", "version": "1.0", "version_sort_index": "01-1.01-0", "provides":
+        [], "files": {"dir": [], "file": ["test-srpm.spec"]}, "recommends": [], "repodata":
+        {"filelists": "<package arch=\"src\" name=\"test-srpm01\" pkgid=\"{{ pkgid
+        }}\">\n  <version epoch=\"0\" rel=\"1\" ver=\"1.0\" />\n  <file>test-srpm.spec</file>\n</package>\n",
         "other": "<package arch=\"src\" name=\"test-srpm01\" pkgid=\"{{ pkgid }}\">\n  <version
         epoch=\"0\" rel=\"1\" ver=\"1.0\" />\n</package>\n", "primary": "<package
         type=\"rpm\">\n  <name>test-srpm01</name>\n  <arch>src</arch>\n  <version
@@ -153,26 +295,26 @@ http_interactions:
         archive=\"444\" installed=\"192\" package=\"2207\" />\n  <location href=\"Packages/t/test-srpm01-1.0-1.src.rpm\"/>\n  <format>\n    <rpm:license>GPLv2</rpm:license>\n    <rpm:vendor
         />\n    <rpm:group>System Environment/Base</rpm:group>\n    <rpm:buildhost>localhost</rpm:buildhost>\n    <rpm:sourcerpm
         />\n    <rpm:header-range end=\"1956\" start=\"880\" />\n  </format>\n</package>\n"},
-        "description": "\nThis is a test rpm", "_last_updated": 1507917105, "time":
+        "description": "\nThis is a test rpm", "_last_updated": 1534348166, "time":
         1507863156, "downloaded": true, "header_range": {"start": 880, "end": 1956},
         "arch": "src", "name": "test-srpm01", "_storage_path": "/var/lib/pulp/content/units/srpm/a7/b0d254b37d9bb586fefa51d6894df8b9f83326128241f8f6549affb19af36d/test-srpm01-1.0-1.src.rpm",
         "checksumtype": "sha256", "release_sort_index": "01-1", "changelog": [], "checksum":
-        "08355cbfa76f18ddcca126e9792206f63fc9c5d7790929144052eff88a900f83", "summary":
-        "Dummy Package to provide tomcat5", "relativepath": "test-srpm01-1.0-1.src.rpm",
-        "release": "1", "_id": "08f7a663-abb3-49d6-8a25-b9ec09483587", "requires":
-        []}, "updated": "2017-10-13T17:57:37Z", "repo_id": "integration_test_id",
-        "created": "2017-10-13T17:57:37Z", "unit_type_id": "srpm", "unit_id": "08f7a663-abb3-49d6-8a25-b9ec09483587",
-        "_id": {"$oid": "59e0fe9182d20616074f2853"}}, {"metadata": {"build_time":
+        "08355cbfa76f18ddcca126e9792206f63fc9c5d7790929144052eff88a900f83", "signing_key":
+        "269d9d98", "summary": "Dummy Package to provide tomcat5", "relativepath":
+        "test-srpm01-1.0-1.src.rpm", "release": "1", "_id": "8d94c8f9-5d76-483c-8c2f-41721bd392a5",
+        "requires": []}, "updated": "2018-08-15T15:49:33Z", "repo_id": "integration_test_id",
+        "created": "2018-08-15T15:49:33Z", "unit_type_id": "srpm", "unit_id": "8d94c8f9-5d76-483c-8c2f-41721bd392a5",
+        "_id": {"$oid": "5b744b8d69b4753f995d91a3"}}, {"metadata": {"build_time":
         1331302138, "buildhost": "localhost", "pulp_user_metadata": {}, "_content_type_id":
-        "srpm", "checksums": {"sha256": "fd8a650afb9bd0529f38c89bedadd9ed06fcd708851e0d368129ecc6e0db0e13"},
-        "size": 2208, "license": "GPLv2", "group": "System Environment/Base", "_ns":
-        "units_srpm", "filename": "test-srpm03-1.0-1.src.rpm", "epoch": "0", "version":
-        "1.0", "version_sort_index": "01-1.01-0", "provides": [], "files": {"dir":
-        [], "file": ["test-srpm.spec"]}, "repodata": {"filelists": "<package arch=\"src\"
-        name=\"test-srpm03\" pkgid=\"{{ pkgid }}\">\n  <version epoch=\"0\" rel=\"1\"
-        ver=\"1.0\" />\n  <file>test-srpm.spec</file>\n</package>\n", "other": "<package
-        arch=\"src\" name=\"test-srpm03\" pkgid=\"{{ pkgid }}\">\n  <version epoch=\"0\"
-        rel=\"1\" ver=\"1.0\" />\n</package>\n", "primary": "<package type=\"rpm\">\n  <name>test-srpm03</name>\n  <arch>src</arch>\n  <version
+        "srpm", "checksums": {}, "size": 2208, "license": "GPLv2", "group": "System
+        Environment/Base", "_ns": "units_srpm", "filename": "test-srpm03-1.0-1.src.rpm",
+        "epoch": "0", "version": "1.0", "version_sort_index": "01-1.01-0", "provides":
+        [], "files": {"dir": [], "file": ["test-srpm.spec"]}, "recommends": [], "repodata":
+        {"filelists": "<package arch=\"src\" name=\"test-srpm03\" pkgid=\"{{ pkgid
+        }}\">\n  <version epoch=\"0\" rel=\"1\" ver=\"1.0\" />\n  <file>test-srpm.spec</file>\n</package>\n",
+        "other": "<package arch=\"src\" name=\"test-srpm03\" pkgid=\"{{ pkgid }}\">\n  <version
+        epoch=\"0\" rel=\"1\" ver=\"1.0\" />\n</package>\n", "primary": "<package
+        type=\"rpm\">\n  <name>test-srpm03</name>\n  <arch>src</arch>\n  <version
         epoch=\"0\" rel=\"1\" ver=\"1.0\" />\n  <checksum pkgid=\"YES\" type=\"{{
         checksumtype }}\">{{ checksum }}</checksum>\n  <summary>Dummy Package to provide
         tomcat5</summary>\n  <description>\nThis is a test rpm</description>\n  <packager
@@ -180,43 +322,16 @@ http_interactions:
         archive=\"444\" installed=\"192\" package=\"2208\" />\n  <location href=\"Packages/t/test-srpm03-1.0-1.src.rpm\"/>\n  <format>\n    <rpm:license>GPLv2</rpm:license>\n    <rpm:vendor
         />\n    <rpm:group>System Environment/Base</rpm:group>\n    <rpm:buildhost>localhost</rpm:buildhost>\n    <rpm:sourcerpm
         />\n    <rpm:header-range end=\"1956\" start=\"880\" />\n  </format>\n</package>\n"},
-        "description": "\nThis is a test rpm", "_last_updated": 1507917105, "time":
+        "description": "\nThis is a test rpm", "_last_updated": 1534348166, "time":
         1507863156, "downloaded": true, "header_range": {"start": 880, "end": 1956},
         "arch": "src", "name": "test-srpm03", "_storage_path": "/var/lib/pulp/content/units/srpm/56/6ddd9056f1c092c4cb85b8fbaa2ec47286d8c35e05e5c2dcc7b70e301a3c73/test-srpm03-1.0-1.src.rpm",
         "checksumtype": "sha256", "release_sort_index": "01-1", "changelog": [], "checksum":
-        "fd8a650afb9bd0529f38c89bedadd9ed06fcd708851e0d368129ecc6e0db0e13", "summary":
-        "Dummy Package to provide tomcat5", "relativepath": "test-srpm03-1.0-1.src.rpm",
-        "release": "1", "_id": "2f91b5a1-4d64-4dcf-9f40-d197881a6b5f", "requires":
-        []}, "updated": "2017-10-13T17:57:37Z", "repo_id": "integration_test_id",
-        "created": "2017-10-13T17:57:37Z", "unit_type_id": "srpm", "unit_id": "2f91b5a1-4d64-4dcf-9f40-d197881a6b5f",
-        "_id": {"$oid": "59e0fe9182d20616074f2855"}}, {"metadata": {"build_time":
-        1331302125, "buildhost": "localhost", "pulp_user_metadata": {}, "_content_type_id":
-        "srpm", "checksums": {"sha256": "5cdf597d90b6ac1b492285678b8c49a39db83deeaba3edecb437ef63bc99c41d"},
-        "size": 2206, "license": "GPLv2", "group": "System Environment/Base", "_ns":
-        "units_srpm", "filename": "test-srpm02-1.0-1.src.rpm", "epoch": "0", "version":
-        "1.0", "version_sort_index": "01-1.01-0", "provides": [], "files": {"dir":
-        [], "file": ["test-srpm.spec"]}, "repodata": {"filelists": "<package arch=\"src\"
-        name=\"test-srpm02\" pkgid=\"{{ pkgid }}\">\n  <version epoch=\"0\" rel=\"1\"
-        ver=\"1.0\" />\n  <file>test-srpm.spec</file>\n</package>\n", "other": "<package
-        arch=\"src\" name=\"test-srpm02\" pkgid=\"{{ pkgid }}\">\n  <version epoch=\"0\"
-        rel=\"1\" ver=\"1.0\" />\n</package>\n", "primary": "<package type=\"rpm\">\n  <name>test-srpm02</name>\n  <arch>src</arch>\n  <version
-        epoch=\"0\" rel=\"1\" ver=\"1.0\" />\n  <checksum pkgid=\"YES\" type=\"{{
-        checksumtype }}\">{{ checksum }}</checksum>\n  <summary>Dummy Package to provide
-        tomcat5</summary>\n  <description>\nThis is a test rpm</description>\n  <packager
-        />\n  <url />\n  <time build=\"1331302125\" file=\"1507863156\" />\n  <size
-        archive=\"444\" installed=\"192\" package=\"2206\" />\n  <location href=\"Packages/t/test-srpm02-1.0-1.src.rpm\"/>\n  <format>\n    <rpm:license>GPLv2</rpm:license>\n    <rpm:vendor
-        />\n    <rpm:group>System Environment/Base</rpm:group>\n    <rpm:buildhost>localhost</rpm:buildhost>\n    <rpm:sourcerpm
-        />\n    <rpm:header-range end=\"1956\" start=\"880\" />\n  </format>\n</package>\n"},
-        "description": "\nThis is a test rpm", "_last_updated": 1507917105, "time":
-        1507863156, "downloaded": true, "header_range": {"start": 880, "end": 1956},
-        "arch": "src", "name": "test-srpm02", "_storage_path": "/var/lib/pulp/content/units/srpm/ba/ef95d261b87a940619fa49233632167a35d180f0b6de2c21cab57882fc0bad/test-srpm02-1.0-1.src.rpm",
-        "checksumtype": "sha256", "release_sort_index": "01-1", "changelog": [], "checksum":
-        "5cdf597d90b6ac1b492285678b8c49a39db83deeaba3edecb437ef63bc99c41d", "summary":
-        "Dummy Package to provide tomcat5", "relativepath": "test-srpm02-1.0-1.src.rpm",
-        "release": "1", "_id": "f04388f5-057c-4b67-991f-786434607a80", "requires":
-        []}, "updated": "2017-10-13T17:57:37Z", "repo_id": "integration_test_id",
-        "created": "2017-10-13T17:57:37Z", "unit_type_id": "srpm", "unit_id": "f04388f5-057c-4b67-991f-786434607a80",
-        "_id": {"$oid": "59e0fe9182d20616074f2854"}}]'
+        "fd8a650afb9bd0529f38c89bedadd9ed06fcd708851e0d368129ecc6e0db0e13", "signing_key":
+        "269d9d98", "summary": "Dummy Package to provide tomcat5", "relativepath":
+        "test-srpm03-1.0-1.src.rpm", "release": "1", "_id": "f555ca48-80e8-4247-99ba-3ca90008aeea",
+        "requires": []}, "updated": "2018-08-15T15:49:33Z", "repo_id": "integration_test_id",
+        "created": "2018-08-15T15:49:33Z", "unit_type_id": "srpm", "unit_id": "f555ca48-80e8-4247-99ba-3ca90008aeea",
+        "_id": {"$oid": "5b744b8d69b4753f995d91b5"}}]'
     http_version: 
-  recorded_at: Fri, 13 Oct 2017 17:57:41 GMT
-recorded_with: VCR 3.0.3
+  recorded_at: Wed, 15 Aug 2018 15:49:35 GMT
+recorded_with: VCR 4.0.0
