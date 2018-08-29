@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/consumer_groups/
+    uri: https://alpha.partello.example.com/pulp/api/v2/consumer_groups/
     body:
       encoding: UTF-8
       string: '{"id":"integration_test_consumer_group","display_name":"foo","description":"Test
@@ -12,38 +12,42 @@ http_interactions:
       - application/json
       Accept-Encoding:
       - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.1p111
       Content-Type:
       - application/json
       Content-Length:
       - '113'
-      User-Agent:
-      - Ruby
+      Host:
+      - alpha.partello.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
   response:
     status:
       code: 201
       message: CREATED
     headers:
       Date:
-      - Fri, 29 Apr 2016 16:27:06 GMT
+      - Thu, 30 Aug 2018 03:26:54 GMT
       Server:
       - Apache/2.4.6 (CentOS)
       Content-Length:
       - '298'
       Location:
-      - https://runcible.example.com/pulp/api/v2/consumer_groups/integration_test_consumer_group/
+      - "/pulp/api/v2/consumer_groups/integration_test_consumer_group/"
       Content-Type:
       - application/json; charset=utf-8
     body:
       encoding: UTF-8
       string: '{"scratchpad": null, "display_name": "foo", "description": "Test description.",
         "_ns": "consumer_groups", "notes": {}, "consumer_ids": [], "_id": {"$oid":
-        "57238b5aaca4886d952eeaeb"}, "id": "integration_test_consumer_group", "_href":
+        "5b8763fed6cc06041e66e7c1"}, "id": "integration_test_consumer_group", "_href":
         "/pulp/api/v2/consumer_groups/integration_test_consumer_group/"}'
     http_version: 
-  recorded_at: Fri, 29 Apr 2016 16:27:06 GMT
+  recorded_at: Thu, 30 Aug 2018 03:26:54 GMT
 - request:
     method: delete
-    uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/consumers/integration_test_consumer_support/
+    uri: https://alpha.partello.example.com/pulp/api/v2/consumers/integration_test_consumer_support/
     body:
       encoding: US-ASCII
       string: ''
@@ -52,21 +56,23 @@ http_interactions:
       - application/json
       Accept-Encoding:
       - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.1p111
       Content-Type:
       - application/json
-      User-Agent:
-      - Ruby
+      Host:
+      - alpha.partello.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
   response:
     status:
       code: 404
-      message: NOT FOUND
+      message: Not Found
     headers:
       Date:
-      - Fri, 29 Apr 2016 16:27:06 GMT
+      - Thu, 30 Aug 2018 03:26:54 GMT
       Server:
       - Apache/2.4.6 (CentOS)
-      Content-Encoding:
-      - utf-8
       Content-Length:
       - '513'
       Content-Type:
@@ -80,10 +86,10 @@ http_interactions:
         "description": "Missing resource(s): consumer=integration_test_consumer_support",
         "sub_errors": []}, "traceback": null, "resources": {"consumer": "integration_test_consumer_support"}}'
     http_version: 
-  recorded_at: Fri, 29 Apr 2016 16:27:06 GMT
+  recorded_at: Thu, 30 Aug 2018 03:26:54 GMT
 - request:
     method: post
-    uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/consumers/
+    uri: https://alpha.partello.example.com/pulp/api/v2/consumers/
     body:
       encoding: UTF-8
       string: '{"id":"integration_test_consumer_support"}'
@@ -92,41 +98,45 @@ http_interactions:
       - application/json
       Accept-Encoding:
       - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.1p111
       Content-Type:
       - application/json
       Content-Length:
       - '42'
-      User-Agent:
-      - Ruby
+      Host:
+      - alpha.partello.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
   response:
     status:
       code: 201
       message: CREATED
     headers:
       Date:
-      - Fri, 29 Apr 2016 16:27:06 GMT
+      - Thu, 30 Aug 2018 03:26:54 GMT
       Server:
       - Apache/2.4.6 (CentOS)
       Content-Length:
-      - '2513'
+      - '2545'
       Location:
-      - https://runcible.example.com/pulp/api/v2/consumers/integration_test_consumer_support/
+      - "/pulp/api/v2/consumers/integration_test_consumer_support/"
       Content-Type:
       - application/json; charset=utf-8
     body:
       encoding: UTF-8
       string: '{"consumer": {"display_name": "integration_test_consumer_support",
         "description": null, "_ns": "consumers", "notes": {}, "rsa_pub": null, "capabilities":
-        {}, "_id": {"$oid": "57238b5baca4886d952eeaec"}, "id": "integration_test_consumer_support",
+        {}, "_id": {"$oid": "5b8763fed6cc06041e66e7c2"}, "id": "integration_test_consumer_support",
         "_href": "/pulp/api/v2/consumers/integration_test_consumer_support/"}, "certificate":
-        "-----BEGIN RSA PRIVATE KEY-----\nMIICXAIBAAKBgQChGTRKWFyfMFTXfhagjXEz5yJJi3vLwzf50lDJjuVgnTSlqyYa\nz01VMSN6huezFeKAPiJZMYbE5ZDy/6PKJJ/5jjmJVV3YaKkIJAaD9kvIkk3M/PvB\n2WqRcq8rzmv/3pKLTj7AUh9ytoglVEltK90INHXTcFRJxpDbaFFybdUUdwIDAQAB\nAoGAIUNvBJrSJRx5qDUkvun1od3runvOh/g7Kp4+iB+1RQmwwTRhnc+IDDslNDt+\nw/+U0R4DQZ90UFuGXmZij26YiT7c2myt09h9WxX4Vv+0fvU7yz5OKUs8Jct75zpU\n/nVRC4F5oiwt69UXqBssYROU5Ekypb1ywglgJcMdY/grIiECQQDUmMrfBWscApB/\nqYfnp53YjoLRsEMe8yZtXUbJQWB3JJuIsNmKuMSoVWmo9GqY8ELGTX2OD9KMNhzw\nV/Oj0RUdAkEAwfzjg0fYQaevpwXKpGgbta889l+OSl5Gelpk8Kexv6xGcdbH3sg4\ntMNSDXhYKQWYI30vNqIBtMBQE5K/1oS/owJAXC0PMNlJknBuNFvN6BvdrWpEwCPb\nRk0IaTybF2F4MNA3e3GqMKJh6dZ2pGGs4jixywcIHBMyJ8bCj1ai9XEO5QJBAJJX\nVMsUx++/sKMvm0+ruju1lyfFrnIr7L8gskVaPJ18OShn/x/xq9WyA5Rl1RwdPEiJ\nh7SPQvo4mjAp5M7QFkECQEYU+eOBEaSApHS8Dd9e1hB4Qie05WnZmRhhKsM6DoTi\nEOIdwaaX4n1We3S99mroNeqYQwn5rD8GidM+FepYJ5U=\n-----END
-        RSA PRIVATE KEY-----\n-----BEGIN CERTIFICATE-----\nMIIDdDCCAVwCAUUwDQYJKoZIhvcNAQEFBQAwLjEdMBsGA1UEAwwUcnVuY2libGUu\nZXhhbXBsZS5jb20xDTALBgNVBAoMBFBVTFAwHhcNMTYwNDI5MTYyNzA3WhcNMjYw\nNDI3MTYyNzA3WjBWMSowKAYDVQQDFCFpbnRlZ3JhdGlvbl90ZXN0X2NvbnN1bWVy\nX3N1cHBvcnQxKDAmBgoJkiaJk/IsZAEBExg1NzIzOGI1YmFjYTQ4ODZkOTUyZWVh\nZWMwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAKEZNEpYXJ8wVNd+FqCNcTPn\nIkmLe8vDN/nSUMmO5WCdNKWrJhrPTVUxI3qG57MV4oA+IlkxhsTlkPL/o8okn/mO\nOYlVXdhoqQgkBoP2S8iSTcz8+8HZapFyryvOa//ekotOPsBSH3K2iCVUSW0r3Qg0\nddNwVEnGkNtoUXJt1RR3AgMBAAEwDQYJKoZIhvcNAQEFBQADggIBALykrPHTk2ZA\nQ9Cbd0HDxB++TVFa9LQB5ArNz5gd6+CDLN4TW0+8gCzPEqYSnB6zh+PFvuqtks6O\nj28YUXfk8OaRBh3dOPeka/5h9Rhy0ANlDLjy9WRRPL5j2fLwH55v6t3LBEqnsDqA\ncyMWsHJghtUuyZZnhDBZBK3XwMBm3z4w2AYVsdpqwlZwZKiR+XX0CtNhC0UjRc2x\nohZHIsrcQA9KzXviv7W7pNJ7sFXvSfZ+odqnQSsKj0bAQeP9rdPsS2NWKNcLlXQj\nn1DdOOCPTsXNhz8995oi8nV4LDby6Yi/9yMpnKink2xfpjej/ddbYhXO+jD+KiTw\n4ArsEAKtLpUPhnLNskwZA4uckLSA2xaW2PdT8KIAiY/AlqGj22XGT2JDGFXOgW6J\nzCHMFUPZ/eppSl0miF0xW+/uv+tf82BUWLNmuMSnHRtY8B40HMwQHxCuzZjA5P1t\nzbzpdwZt+aOHoaoKXnlydKEXYmxdGhUw8fEf7Hwbs4hYzVVpfdy0rMqv10ZRWzuU\npMSbnU5IBnpOPT66mjl9aKUApsFYBauSVjfEjSkQ/zQ0h2tArVjfHcpztwZJ4lNg\nbL4hVnLXNJe662HxoCdXowu2uE0pIcqk6KkUn3o7i4be1Q9V6hm42WvO6AfKw7cf\nznAspRu+0r2QTogg4KMxqo0fT7myX4rM\n-----END
+        "-----BEGIN RSA PRIVATE KEY-----\nMIICXAIBAAKBgQDCesQ96j8Gkl+tdM91L74bHcqt0ix/V3fhBw69Qg06rDZwGJ71\nyFJ7s4RzU8gwLP6LCthQUm8ZPp7FYSBlSwcthzRp/NNVfThwCwCSsJha7lxl+nty\nBsANNA3j3oWEdAwjeQoWJlaWcpN1NFMXs9Xf9Sl7TbDog8ru8+mmv/PMfwIDAQAB\nAoGBAJLbg+9BQWCkDc39JF/YspTldVS3HlT25xatbqrqAvVocB9L6FWvdOHmmMFB\n5izC/WBfyyM0bKLCj8B67Kyw8HRW5JXomVCYtcwikXDiskvb4fLkb+TAn6FWvq0S\nijAfFcmBi4czgeqYxi1vGD7anCT9zDPy/ntSBjsc5FsFzLJZAkEA35kmQtdDQDnb\n/BZrks2dUr8JexzXP+tV72XWBMSUzgjlotQrGjQQ7bwyjo5Mcf0h9zR1DvxAPKVM\nHu+uAqcPPQJBAN6pZdnX2uDL4UBFa6amSNr3wM7KKGmKnWGX6Rik3rISMsvQH2Q2\nb8IdWLAN1co4DJLGOg4r79Thdk715/0pBmsCQFXzIOoApTFDDHTSiXdc4mS0Woig\nhX1kkRv9IU+j4S9x7BOzSv4/lWJNPYHe4TPQAgZse7LO9EJbp+8cYt9SKGECQDcn\nqw0dRSCuICv1hkcPpbhn6qDOvtf1+Co2oQzzuh5OF7sY4M3IFkL1VgS2SKEA5Uxu\nQe9EvvHyr4W7sC2rveUCQCv/9P4aep4THyANFYX8qYf2AooBfkRqPIusJIMxhLds\nVeWJsdkfmTDSLQ4xLtyjn8IcnQlm77NvYPtAAcf4SCw=\n-----END
+        RSA PRIVATE KEY-----\n-----BEGIN CERTIFICATE-----\nMIIDijCCAXICEQDH8UjYmQZPeLrqeMiwquwcMA0GCSqGSIb3DQEBBQUAMDQxIzAh\nBgNVBAMMGmFscGhhLnBhcnRlbGxvLmV4YW1wbGUuY29tMQ0wCwYDVQQKDARQVUxQ\nMB4XDTE4MDgzMDAzMjY1NFoXDTI4MDgyNzAzMjY1NFowVjEqMCgGA1UEAwwhaW50\nZWdyYXRpb25fdGVzdF9jb25zdW1lcl9zdXBwb3J0MSgwJgYKCZImiZPyLGQBAQwY\nNWI4NzYzZmVkNmNjMDYwNDFlNjZlN2MyMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCB\niQKBgQDCesQ96j8Gkl+tdM91L74bHcqt0ix/V3fhBw69Qg06rDZwGJ71yFJ7s4Rz\nU8gwLP6LCthQUm8ZPp7FYSBlSwcthzRp/NNVfThwCwCSsJha7lxl+ntyBsANNA3j\n3oWEdAwjeQoWJlaWcpN1NFMXs9Xf9Sl7TbDog8ru8+mmv/PMfwIDAQABMA0GCSqG\nSIb3DQEBBQUAA4ICAQA87X3FQVnsiAESMUxwXae/qjx7geqOA8AMoGMV620EYEO7\n8IIIFqo3qxyu7KKs8oDd7AIVzJhJlYgXwMLl/p4p2+wLb0IMJWCWk7FIV4guuSDK\nj/ZckeDbx3QoH2PVSjKwqd377C4bzZlawdFjJC7b6kikxISHH71eeokR8rnYXmP0\nlb3twWEb9AH3W22Hyls1eCTwIIqEhqV80mX1JZqCIazegZgwQj/pNxbuKcOPkJVY\nss5MBAXq+MziVZjrCoQlZ2mQ3/VIWo/u3nmJrTXUa3ky1GwPUFMploGSD3DgbEAf\nMuJmgOiM5Ffg8OpLfUi6sQ17pvUONLNT1VFg8x53Cdea8qJW5UFTIYz0hdh287XA\nnLX43SArbI2VbcK8NEgko6xYdZ0a7JqAs9AvxUatd9IchrQ3PTBvJF6hHkZHG34s\n+nia5hLPx+d3UrPCDn59vKbHF1KYrejByn17pI1uY4l7LgbF4lUHerR+wFtXGx03\nf7boFSPltL9ef+ArsrORg/MVQc5i2vDOnB+GjWXq7yxGMpKu/T2Ke+u/ByA3Xqm6\nFvilY4rfBflsq86PlV6Cfdb8QXlAMz6IqgHm69mGR7OxiLQVqVjbz5WUo3haHyu4\n0mRcnGdfofiLQjgrHB0mdaK2bQuqBrBWCOm++be4AZdd/bwyC90KSfGLhFAXrg==\n-----END
         CERTIFICATE-----"}'
     http_version: 
-  recorded_at: Fri, 29 Apr 2016 16:27:07 GMT
+  recorded_at: Thu, 30 Aug 2018 03:26:54 GMT
 - request:
     method: post
-    uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/consumer_groups/integration_test_consumer_group/actions/associate/
+    uri: https://alpha.partello.example.com/pulp/api/v2/consumer_groups/integration_test_consumer_group/actions/associate/
     body:
       encoding: UTF-8
       string: '{"criteria":{"filters":{"id":{"$in":["integration_test_consumer_support"]}}}}'
@@ -135,19 +145,23 @@ http_interactions:
       - application/json
       Accept-Encoding:
       - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.1p111
       Content-Type:
       - application/json
       Content-Length:
       - '77'
-      User-Agent:
-      - Ruby
+      Host:
+      - alpha.partello.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Fri, 29 Apr 2016 16:27:07 GMT
+      - Thu, 30 Aug 2018 03:26:54 GMT
       Server:
       - Apache/2.4.6 (CentOS)
       Content-Length:
@@ -158,10 +172,10 @@ http_interactions:
       encoding: UTF-8
       string: '["integration_test_consumer_support"]'
     http_version: 
-  recorded_at: Fri, 29 Apr 2016 16:27:07 GMT
+  recorded_at: Thu, 30 Aug 2018 03:26:54 GMT
 - request:
     method: get
-    uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/consumer_groups/integration_test_consumer_group/
+    uri: https://alpha.partello.example.com/pulp/api/v2/consumer_groups/integration_test_consumer_group/
     body:
       encoding: US-ASCII
       string: ''
@@ -170,19 +184,25 @@ http_interactions:
       - application/json
       Accept-Encoding:
       - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.1p111
       Content-Type:
       - application/json
-      User-Agent:
-      - Ruby
+      Host:
+      - alpha.partello.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Fri, 29 Apr 2016 16:27:07 GMT
+      - Thu, 30 Aug 2018 03:26:54 GMT
       Server:
       - Apache/2.4.6 (CentOS)
+      Etag:
+      - '"be5a746ceff79e0d2bd496a8dc1c51f4-gzip"'
       Vary:
       - Accept-Encoding
       Content-Length:
@@ -193,13 +213,13 @@ http_interactions:
       encoding: ASCII-8BIT
       string: '{"scratchpad": null, "display_name": "foo", "description": "Test description.",
         "_ns": "consumer_groups", "notes": {}, "consumer_ids": ["integration_test_consumer_support"],
-        "_id": {"$oid": "57238b5aaca4886d952eeaeb"}, "id": "integration_test_consumer_group",
+        "_id": {"$oid": "5b8763fed6cc06041e66e7c1"}, "id": "integration_test_consumer_group",
         "_href": "/pulp/api/v2/consumer_groups/integration_test_consumer_group/"}'
     http_version: 
-  recorded_at: Fri, 29 Apr 2016 16:27:07 GMT
+  recorded_at: Thu, 30 Aug 2018 03:26:54 GMT
 - request:
     method: post
-    uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/consumer_groups/integration_test_consumer_group/actions/unassociate/
+    uri: https://alpha.partello.example.com/pulp/api/v2/consumer_groups/integration_test_consumer_group/actions/unassociate/
     body:
       encoding: UTF-8
       string: '{"criteria":{"filters":{"id":{"$in":["integration_test_consumer_support"]}}}}'
@@ -208,19 +228,23 @@ http_interactions:
       - application/json
       Accept-Encoding:
       - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.1p111
       Content-Type:
       - application/json
       Content-Length:
       - '77'
-      User-Agent:
-      - Ruby
+      Host:
+      - alpha.partello.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Fri, 29 Apr 2016 16:27:07 GMT
+      - Thu, 30 Aug 2018 03:26:54 GMT
       Server:
       - Apache/2.4.6 (CentOS)
       Content-Length:
@@ -231,10 +255,10 @@ http_interactions:
       encoding: UTF-8
       string: "[]"
     http_version: 
-  recorded_at: Fri, 29 Apr 2016 16:27:07 GMT
+  recorded_at: Thu, 30 Aug 2018 03:26:54 GMT
 - request:
     method: get
-    uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/consumer_groups/integration_test_consumer_group/
+    uri: https://alpha.partello.example.com/pulp/api/v2/consumer_groups/integration_test_consumer_group/
     body:
       encoding: US-ASCII
       string: ''
@@ -243,19 +267,25 @@ http_interactions:
       - application/json
       Accept-Encoding:
       - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.1p111
       Content-Type:
       - application/json
-      User-Agent:
-      - Ruby
+      Host:
+      - alpha.partello.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Fri, 29 Apr 2016 16:27:07 GMT
+      - Thu, 30 Aug 2018 03:26:54 GMT
       Server:
       - Apache/2.4.6 (CentOS)
+      Etag:
+      - '"c00635a12958b6a07b4da7c33d47a24a-gzip"'
       Vary:
       - Accept-Encoding
       Content-Length:
@@ -266,13 +296,13 @@ http_interactions:
       encoding: ASCII-8BIT
       string: '{"scratchpad": null, "display_name": "foo", "description": "Test description.",
         "_ns": "consumer_groups", "notes": {}, "consumer_ids": [], "_id": {"$oid":
-        "57238b5aaca4886d952eeaeb"}, "id": "integration_test_consumer_group", "_href":
+        "5b8763fed6cc06041e66e7c1"}, "id": "integration_test_consumer_group", "_href":
         "/pulp/api/v2/consumer_groups/integration_test_consumer_group/"}'
     http_version: 
-  recorded_at: Fri, 29 Apr 2016 16:27:07 GMT
+  recorded_at: Thu, 30 Aug 2018 03:26:54 GMT
 - request:
     method: delete
-    uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/consumers/integration_test_consumer_support/
+    uri: https://alpha.partello.example.com/pulp/api/v2/consumers/integration_test_consumer_support/
     body:
       encoding: US-ASCII
       string: ''
@@ -281,17 +311,21 @@ http_interactions:
       - application/json
       Accept-Encoding:
       - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.1p111
       Content-Type:
       - application/json
-      User-Agent:
-      - Ruby
+      Host:
+      - alpha.partello.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Fri, 29 Apr 2016 16:27:07 GMT
+      - Thu, 30 Aug 2018 03:26:54 GMT
       Server:
       - Apache/2.4.6 (CentOS)
       Content-Length:
@@ -302,10 +336,10 @@ http_interactions:
       encoding: UTF-8
       string: 'null'
     http_version: 
-  recorded_at: Fri, 29 Apr 2016 16:27:08 GMT
+  recorded_at: Thu, 30 Aug 2018 03:26:54 GMT
 - request:
     method: delete
-    uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/consumer_groups/integration_test_consumer_group/
+    uri: https://alpha.partello.example.com/pulp/api/v2/consumer_groups/integration_test_consumer_group/
     body:
       encoding: US-ASCII
       string: ''
@@ -314,17 +348,21 @@ http_interactions:
       - application/json
       Accept-Encoding:
       - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.1p111
       Content-Type:
       - application/json
-      User-Agent:
-      - Ruby
+      Host:
+      - alpha.partello.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Fri, 29 Apr 2016 16:27:08 GMT
+      - Thu, 30 Aug 2018 03:26:54 GMT
       Server:
       - Apache/2.4.6 (CentOS)
       Content-Length:
@@ -335,5 +373,5 @@ http_interactions:
       encoding: UTF-8
       string: 'null'
     http_version: 
-  recorded_at: Fri, 29 Apr 2016 16:27:08 GMT
-recorded_with: VCR 3.0.1
+  recorded_at: Thu, 30 Aug 2018 03:26:54 GMT
+recorded_with: VCR 4.0.0

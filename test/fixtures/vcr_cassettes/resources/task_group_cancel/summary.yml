@@ -1,45 +1,6 @@
 ---
 http_interactions:
 - request:
-    method: post
-    uri: https://admin:admin@dev.example.com/pulp/api/v2/repositories/actions/content/regenerate_applicability//
-    body:
-      encoding: UTF-8
-      string: '{"parallel":true,"repo_criteria":{"filters":{"id":{"$in":["integration_test_id"]}}}}'
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      User-Agent:
-      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.2.4p230
-      Content-Type:
-      - application/json
-      Content-Length:
-      - '84'
-      Host:
-      - dev.example.com
-  response:
-    status:
-      code: 202
-      message: ACCEPTED
-    headers:
-      Date:
-      - Tue, 25 Jul 2017 20:48:34 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Content-Length:
-      - '127'
-      Connection:
-      - close
-      Content-Type:
-      - application/json; charset=utf-8
-    body:
-      encoding: UTF-8
-      string: '{"group_id": "a5e76e9b-ff2b-4ed1-bf82-a68f80a4613c", "_href": "/pulp/api/v2/task_groups/a5e76e9b-ff2b-4ed1-bf82-a68f80a4613c/"}'
-    http_version: 
-  recorded_at: Tue, 25 Jul 2017 20:48:34 GMT
-- request:
     method: get
     uri: https://admin:admin@dev.example.com/pulp/api/v2/task_groups/a5e76e9b-ff2b-4ed1-bf82-a68f80a4613c/state_summary/
     body:
@@ -80,8 +41,8 @@ http_interactions:
     http_version: 
   recorded_at: Tue, 25 Jul 2017 20:48:34 GMT
 - request:
-    method: delete
-    uri: https://admin:admin@dev.example.com/pulp/api/v2/consumers/integration_test_consumer_support/
+    method: get
+    uri: https://alpha.partello.example.com/pulp/api/v2/task_groups/0e8c17d6-28cd-4830-963e-0325f1ce0581/state_summary/
     body:
       encoding: US-ASCII
       string: ''
@@ -91,24 +52,147 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.2.4p230
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.1p111
       Content-Type:
       - application/json
       Host:
-      - dev.example.com
+      - alpha.partello.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 30 Aug 2018 02:39:55 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Etag:
+      - '"f36810e7e1fe166dc90d2e606a17ac7d-gzip"'
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '127'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"accepted": 0, "finished": 1, "running": 0, "canceled": 0, "waiting":
+        0, "skipped": 0, "suspended": 0, "error": 0, "total": 1}'
+    http_version: 
+  recorded_at: Thu, 30 Aug 2018 02:39:55 GMT
+- request:
+    method: post
+    uri: https://alpha.partello.example.com/pulp/api/v2/repositories/actions/content/regenerate_applicability//
+    body:
+      encoding: UTF-8
+      string: '{"parallel":true,"repo_criteria":{"filters":{"id":{"$in":["integration_test_id"]}}}}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.1p111
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '84'
+      Host:
+      - alpha.partello.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Date:
+      - Thu, 30 Aug 2018 03:27:55 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '127'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"group_id": "941348d1-e137-4a5c-9722-eaf7f10925ac", "_href": "/pulp/api/v2/task_groups/941348d1-e137-4a5c-9722-eaf7f10925ac/"}'
+    http_version: 
+  recorded_at: Thu, 30 Aug 2018 03:27:55 GMT
+- request:
+    method: get
+    uri: https://alpha.partello.example.com/pulp/api/v2/task_groups/941348d1-e137-4a5c-9722-eaf7f10925ac/state_summary/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.1p111
+      Content-Type:
+      - application/json
+      Host:
+      - alpha.partello.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 30 Aug 2018 03:27:55 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Etag:
+      - '"f36810e7e1fe166dc90d2e606a17ac7d-gzip"'
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '127'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"accepted": 0, "finished": 1, "running": 0, "canceled": 0, "waiting":
+        0, "skipped": 0, "suspended": 0, "error": 0, "total": 1}'
+    http_version: 
+  recorded_at: Thu, 30 Aug 2018 03:27:55 GMT
+- request:
+    method: delete
+    uri: https://alpha.partello.example.com/pulp/api/v2/consumers/integration_test_consumer_support/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.1p111
+      Content-Type:
+      - application/json
+      Host:
+      - alpha.partello.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
   response:
     status:
       code: 404
-      message: NOT FOUND
+      message: Not Found
     headers:
       Date:
-      - Tue, 25 Jul 2017 20:48:34 GMT
+      - Thu, 30 Aug 2018 03:27:55 GMT
       Server:
       - Apache/2.4.6 (CentOS)
       Content-Length:
       - '513'
-      Connection:
-      - close
       Content-Type:
       - application/json; charset=utf-8
     body:
@@ -120,5 +204,5 @@ http_interactions:
         "description": "Missing resource(s): consumer=integration_test_consumer_support",
         "sub_errors": []}, "traceback": null, "resources": {"consumer": "integration_test_consumer_support"}}'
     http_version: 
-  recorded_at: Tue, 25 Jul 2017 20:48:34 GMT
-recorded_with: VCR 3.0.3
+  recorded_at: Thu, 30 Aug 2018 03:27:55 GMT
+recorded_with: VCR 4.0.0

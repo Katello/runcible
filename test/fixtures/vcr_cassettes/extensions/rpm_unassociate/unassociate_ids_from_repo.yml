@@ -1,43 +1,6 @@
 ---
 http_interactions:
 - request:
-    method: post
-    uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/repositories/integration_test_id_clone/actions/associate/
-    body:
-      encoding: UTF-8
-      string: '{"source_repo_id":"integration_test_id"}'
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Type:
-      - application/json
-      Content-Length:
-      - '40'
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 202
-      message: ACCEPTED
-    headers:
-      Date:
-      - Fri, 29 Apr 2016 16:26:37 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Content-Length:
-      - '172'
-      Content-Type:
-      - application/json; charset=utf-8
-    body:
-      encoding: UTF-8
-      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/9d9e742d-cfe6-48ab-a68a-3b76f870d93b/",
-        "task_id": "9d9e742d-cfe6-48ab-a68a-3b76f870d93b"}], "result": null, "error":
-        null}'
-    http_version: 
-  recorded_at: Fri, 29 Apr 2016 16:26:37 GMT
-- request:
     method: get
     uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/tasks/9d9e742d-cfe6-48ab-a68a-3b76f870d93b/
     body:
@@ -111,8 +74,287 @@ http_interactions:
     http_version: 
   recorded_at: Fri, 29 Apr 2016 16:26:37 GMT
 - request:
+    method: get
+    uri: https://alpha.partello.example.com/pulp/api/v2/tasks/3a9c4e25-3ce2-4002-bb85-d39248ab2c03/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.1p111
+      Content-Type:
+      - application/json
+      Host:
+      - alpha.partello.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 30 Aug 2018 02:38:28 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Etag:
+      - '"603aa6bd513f6b4e826f31ff50b71a12-gzip"'
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '6327'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"exception": null, "task_type": "pulp.server.managers.repo.unit_association.associate_from_repo",
+        "_href": "/pulp/api/v2/tasks/3a9c4e25-3ce2-4002-bb85-d39248ab2c03/", "task_id":
+        "3a9c4e25-3ce2-4002-bb85-d39248ab2c03", "tags": ["pulp:repository:integration_test_id_clone",
+        "pulp:repository:integration_test_id", "pulp:action:associate"], "finish_time":
+        "2018-08-30T02:38:28Z", "_ns": "task_status", "start_time": "2018-08-30T02:38:28Z",
+        "traceback": null, "spawned_tasks": [], "progress_report": {}, "queue": "reserved_resource_worker-0@alpha.partello.example.com.dq2",
+        "state": "finished", "worker_name": "reserved_resource_worker-0@alpha.partello.example.com",
+        "result": {"units_successful": [{"unit_key": {"id": "RHEA-2010:0002"}, "type_id":
+        "erratum"}, {"unit_key": {"variant": "TestVariant", "version": "16", "arch":
+        "x86_64", "id": "ks-Test Family-TestVariant-16-x86_64", "family": "Test Family"},
+        "type_id": "distribution"}, {"signing_key": null, "unit_key": {"name": "squirrel",
+        "checksum": "251768bdd15f13d78487c27638aa6aecd01551e253756093cde1c0ae878a17d2",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"unit_key": {"id": "RHEA-2012:0059"}, "type_id":
+        "erratum"}, {"unit_key": {"context": "deadbeef", "version": 20180730233102,
+        "arch": "noarch", "name": "duck", "stream": "0"}, "type_id": "modulemd"},
+        {"unit_key": {"repo_id": "integration_test_id_clone", "data_type": "comps"},
+        "type_id": "yum_repo_metadata_file"}, {"unit_key": {"repo_id": "integration_test_id_clone",
+        "name": "kangaroo"}, "type_id": "modulemd_defaults"}, {"signing_key": null,
+        "unit_key": {"name": "cheetah", "checksum": "422d0baa0cd9d7713ae796e886a23e17f578f924f74880debdbb7d65fb368dae",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"signing_key": null, "unit_key": {"name": "penguin",
+        "checksum": "3fcb2c927de9e13bf68469032a28b139d3e5ad2e58564fc210fd6e48635be694",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"signing_key": null, "unit_key": {"name": "kangaroo",
+        "checksum": "833af594bc0ba31256045ed1fb17d3df2d8341a89b0c5a9bf610dd6103ce4cc8",
+        "epoch": "0", "version": "0.2", "release": "1", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"unit_key": {"context": "deadbeef", "version":
+        20180730223407, "arch": "noarch", "name": "kangaroo", "stream": "0"}, "type_id":
+        "modulemd"}, {"signing_key": null, "unit_key": {"name": "walrus", "checksum":
+        "6e8d6dc057e3e2c9819f0dc7e6c7b7f86bf2e8571bba414adec7fb621a461dfd", "epoch":
+        "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"signing_key": null, "unit_key": {"name": "duck",
+        "checksum": "96f37877518a1fe6ea2e17f4ce1fc81b40908043bcbed76744b3d7d38a774bc7",
+        "epoch": "0", "version": "0.6", "release": "1", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"signing_key": null, "unit_key": {"name": "duck",
+        "checksum": "5bd363b860ad6783217cbca3bbc3ef260f98d140ffb121bf4c208e3f66c24712",
+        "epoch": "0", "version": "0.7", "release": "1", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"signing_key": null, "unit_key": {"name": "elephant",
+        "checksum": "3e1c70cd1b421328acaf6397cb3d16145306bb95f65d1b095fc31372a0a701f3",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"unit_key": {"context": "deadbeef", "version":
+        20180704244205, "arch": "noarch", "name": "duck", "stream": "0"}, "type_id":
+        "modulemd"}, {"unit_key": {"context": "c0ffee42", "version": 20180707144203,
+        "arch": "x86_64", "name": "walrus", "stream": "0.71"}, "type_id": "modulemd"},
+        {"unit_key": {"repo_id": "integration_test_id_clone", "name": "walrus"}, "type_id":
+        "modulemd_defaults"}, {"signing_key": null, "unit_key": {"name": "walrus",
+        "checksum": "516a22ccc0cbe3ecb2cbee1c626a39b91767dbf0f815afda7b733aa56523142c",
+        "epoch": "0", "version": "0.71", "release": "1", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"unit_key": {"id": "RHEA-2010:0001"}, "type_id":
+        "erratum"}, {"signing_key": null, "unit_key": {"name": "kangaroo", "checksum":
+        "865a4c89485bdd9723a3c407280c141e9202f024e7db38cba3d097c3f256b2fd", "epoch":
+        "0", "version": "0.3", "release": "1", "arch": "noarch", "checksumtype": "sha256"},
+        "type_id": "rpm"}, {"unit_key": {"context": "deadbeef", "version": 20180704111719,
+        "arch": "noarch", "name": "kangaroo", "stream": "0"}, "type_id": "modulemd"},
+        {"signing_key": null, "unit_key": {"name": "lion", "checksum": "12400dc95c23a4c160725a908716cd3fcdd7a8981585437ab64cd62efa3e4ae4",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"signing_key": null, "unit_key": {"name": "monkey",
+        "checksum": "0e8fa50d0128fbabc7ccc5632e3fa25d39b0280169f6166cb8e2c84de8501db1",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"signing_key": null, "unit_key": {"name": "walrus",
+        "checksum": "74533fbd4f9ada9e02a6361cbbf014b8ff88dff8d69785ec48b77e01898e7c31",
+        "epoch": "0", "version": "5.21", "release": "1", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"unit_key": {"context": "deadbeef", "version":
+        20180704144203, "arch": "x86_64", "name": "walrus", "stream": "5.21"}, "type_id":
+        "modulemd"}, {"signing_key": null, "unit_key": {"name": "giraffe", "checksum":
+        "f25d67d1d9da04f12e57ca323247b43891ac46533e355b82de6d1922009f9f14", "epoch":
+        "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"unit_key": {"repo_id": "integration_test_id_clone",
+        "name": "duck"}, "type_id": "modulemd_defaults"}], "units_failed_signature_filter":
+        [{"unit_key": {"repo_id": "integration_test_id", "data_type": "comps"}, "type_id":
+        "yum_repo_metadata_file"}, {"unit_key": {"repo_id": "integration_test_id",
+        "name": "duck"}, "type_id": "modulemd_defaults"}, {"unit_key": {"repo_id":
+        "integration_test_id", "name": "kangaroo"}, "type_id": "modulemd_defaults"},
+        {"unit_key": {"repo_id": "integration_test_id", "name": "walrus"}, "type_id":
+        "modulemd_defaults"}]}, "error": null, "_id": {"$oid": "5b8758a404b1e079c02f511a"},
+        "id": "5b8758a404b1e079c02f511a"}'
+    http_version: 
+  recorded_at: Thu, 30 Aug 2018 02:38:28 GMT
+- request:
     method: post
-    uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/repositories/integration_test_id/search/units/
+    uri: https://alpha.partello.example.com/pulp/api/v2/repositories/integration_test_id_clone/actions/associate/
+    body:
+      encoding: UTF-8
+      string: '{"source_repo_id":"integration_test_id"}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.1p111
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '40'
+      Host:
+      - alpha.partello.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Date:
+      - Thu, 30 Aug 2018 03:26:30 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '172'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/9f4da164-8899-451b-aae2-58a2eee08eee/",
+        "task_id": "9f4da164-8899-451b-aae2-58a2eee08eee"}], "result": null, "error":
+        null}'
+    http_version: 
+  recorded_at: Thu, 30 Aug 2018 03:26:30 GMT
+- request:
+    method: get
+    uri: https://alpha.partello.example.com/pulp/api/v2/tasks/9f4da164-8899-451b-aae2-58a2eee08eee/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.1p111
+      Content-Type:
+      - application/json
+      Host:
+      - alpha.partello.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 30 Aug 2018 03:26:31 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Etag:
+      - '"40ce074a4217d92158e008b9f28a03af-gzip"'
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '6681'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"exception": null, "task_type": "pulp.server.managers.repo.unit_association.associate_from_repo",
+        "_href": "/pulp/api/v2/tasks/9f4da164-8899-451b-aae2-58a2eee08eee/", "task_id":
+        "9f4da164-8899-451b-aae2-58a2eee08eee", "tags": ["pulp:repository:integration_test_id_clone",
+        "pulp:repository:integration_test_id", "pulp:action:associate"], "finish_time":
+        "2018-08-30T03:26:30Z", "_ns": "task_status", "start_time": "2018-08-30T03:26:30Z",
+        "traceback": null, "spawned_tasks": [], "progress_report": {}, "queue": "reserved_resource_worker-0@alpha.partello.example.com.dq2",
+        "state": "finished", "worker_name": "reserved_resource_worker-0@alpha.partello.example.com",
+        "result": {"units_successful": [{"unit_key": {"id": "RHEA-2010:0002"}, "type_id":
+        "erratum"}, {"unit_key": {"variant": "TestVariant", "version": "16", "arch":
+        "x86_64", "id": "ks-Test Family-TestVariant-16-x86_64", "family": "Test Family"},
+        "type_id": "distribution"}, {"signing_key": null, "unit_key": {"name": "squirrel",
+        "checksum": "251768bdd15f13d78487c27638aa6aecd01551e253756093cde1c0ae878a17d2",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"unit_key": {"id": "RHEA-2012:0059"}, "type_id":
+        "erratum"}, {"unit_key": {"context": "deadbeef", "version": 20180730233102,
+        "arch": "noarch", "name": "duck", "stream": "0"}, "type_id": "modulemd"},
+        {"signing_key": null, "unit_key": {"name": "monkey", "checksum": "0e8fa50d0128fbabc7ccc5632e3fa25d39b0280169f6166cb8e2c84de8501db1",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"unit_key": {"repo_id": "integration_test_id_clone",
+        "name": "kangaroo"}, "type_id": "modulemd_defaults"}, {"unit_key": {"context":
+        "deadbeef", "version": 20180730223407, "arch": "noarch", "name": "kangaroo",
+        "stream": "0"}, "type_id": "modulemd"}, {"signing_key": null, "unit_key":
+        {"name": "cheetah", "checksum": "422d0baa0cd9d7713ae796e886a23e17f578f924f74880debdbb7d65fb368dae",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"signing_key": null, "unit_key": {"name": "penguin",
+        "checksum": "3fcb2c927de9e13bf68469032a28b139d3e5ad2e58564fc210fd6e48635be694",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"unit_key": {"repo_id": "integration_test_id_clone",
+        "id": "all"}, "type_id": "package_category"}, {"signing_key": null, "unit_key":
+        {"name": "walrus", "checksum": "6e8d6dc057e3e2c9819f0dc7e6c7b7f86bf2e8571bba414adec7fb621a461dfd",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"signing_key": null, "unit_key": {"name": "duck",
+        "checksum": "96f37877518a1fe6ea2e17f4ce1fc81b40908043bcbed76744b3d7d38a774bc7",
+        "epoch": "0", "version": "0.6", "release": "1", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"signing_key": null, "unit_key": {"name": "duck",
+        "checksum": "5bd363b860ad6783217cbca3bbc3ef260f98d140ffb121bf4c208e3f66c24712",
+        "epoch": "0", "version": "0.7", "release": "1", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"signing_key": null, "unit_key": {"name": "elephant",
+        "checksum": "3e1c70cd1b421328acaf6397cb3d16145306bb95f65d1b095fc31372a0a701f3",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"unit_key": {"context": "deadbeef", "version":
+        20180704244205, "arch": "noarch", "name": "duck", "stream": "0"}, "type_id":
+        "modulemd"}, {"unit_key": {"repo_id": "integration_test_id_clone", "id": "bird"},
+        "type_id": "package_group"}, {"unit_key": {"context": "c0ffee42", "version":
+        20180707144203, "arch": "x86_64", "name": "walrus", "stream": "0.71"}, "type_id":
+        "modulemd"}, {"unit_key": {"repo_id": "integration_test_id_clone", "name":
+        "walrus"}, "type_id": "modulemd_defaults"}, {"signing_key": null, "unit_key":
+        {"name": "walrus", "checksum": "516a22ccc0cbe3ecb2cbee1c626a39b91767dbf0f815afda7b733aa56523142c",
+        "epoch": "0", "version": "0.71", "release": "1", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"unit_key": {"id": "RHEA-2010:0001"}, "type_id":
+        "erratum"}, {"signing_key": null, "unit_key": {"name": "kangaroo", "checksum":
+        "865a4c89485bdd9723a3c407280c141e9202f024e7db38cba3d097c3f256b2fd", "epoch":
+        "0", "version": "0.3", "release": "1", "arch": "noarch", "checksumtype": "sha256"},
+        "type_id": "rpm"}, {"unit_key": {"repo_id": "integration_test_id_clone", "id":
+        "mammal"}, "type_id": "package_group"}, {"unit_key": {"context": "deadbeef",
+        "version": 20180704111719, "arch": "noarch", "name": "kangaroo", "stream":
+        "0"}, "type_id": "modulemd"}, {"signing_key": null, "unit_key": {"name": "lion",
+        "checksum": "12400dc95c23a4c160725a908716cd3fcdd7a8981585437ab64cd62efa3e4ae4",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"signing_key": null, "unit_key": {"name": "kangaroo",
+        "checksum": "833af594bc0ba31256045ed1fb17d3df2d8341a89b0c5a9bf610dd6103ce4cc8",
+        "epoch": "0", "version": "0.2", "release": "1", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"signing_key": null, "unit_key": {"name": "walrus",
+        "checksum": "74533fbd4f9ada9e02a6361cbbf014b8ff88dff8d69785ec48b77e01898e7c31",
+        "epoch": "0", "version": "5.21", "release": "1", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"unit_key": {"context": "deadbeef", "version":
+        20180704144203, "arch": "x86_64", "name": "walrus", "stream": "5.21"}, "type_id":
+        "modulemd"}, {"signing_key": null, "unit_key": {"name": "giraffe", "checksum":
+        "f25d67d1d9da04f12e57ca323247b43891ac46533e355b82de6d1922009f9f14", "epoch":
+        "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"unit_key": {"repo_id": "integration_test_id_clone",
+        "name": "duck"}, "type_id": "modulemd_defaults"}], "units_failed_signature_filter":
+        [{"unit_key": {"repo_id": "integration_test_id", "id": "bird"}, "type_id":
+        "package_group"}, {"unit_key": {"repo_id": "integration_test_id", "name":
+        "duck"}, "type_id": "modulemd_defaults"}, {"unit_key": {"repo_id": "integration_test_id",
+        "name": "walrus"}, "type_id": "modulemd_defaults"}, {"unit_key": {"repo_id":
+        "integration_test_id", "name": "kangaroo"}, "type_id": "modulemd_defaults"},
+        {"unit_key": {"repo_id": "integration_test_id", "id": "all"}, "type_id": "package_category"},
+        {"unit_key": {"repo_id": "integration_test_id", "id": "mammal"}, "type_id":
+        "package_group"}]}, "error": null, "_id": {"$oid": "5b8763e604b1e079c02f5a0e"},
+        "id": "5b8763e604b1e079c02f5a0e"}'
+    http_version: 
+  recorded_at: Thu, 30 Aug 2018 03:26:31 GMT
+- request:
+    method: post
+    uri: https://alpha.partello.example.com/pulp/api/v2/repositories/integration_test_id/search/units/
     body:
       encoding: UTF-8
       string: '{"criteria":{"type_ids":["rpm"]}}'
@@ -121,285 +363,489 @@ http_interactions:
       - application/json
       Accept-Encoding:
       - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.1p111
       Content-Type:
       - application/json
       Content-Length:
       - '33'
-      User-Agent:
-      - Ruby
+      Host:
+      - alpha.partello.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Fri, 29 Apr 2016 16:26:38 GMT
+      - Thu, 30 Aug 2018 03:26:31 GMT
       Server:
       - Apache/2.4.6 (CentOS)
       Vary:
       - Accept-Encoding
       Content-Length:
-      - '24930'
+      - '42189'
       Content-Type:
       - application/json; charset=utf-8
     body:
       encoding: ASCII-8BIT
-      string: '[{"metadata": {"build_time": 1308257472, "buildhost": "dhcp-26-118.brq.redhat.com",
-        "pulp_user_metadata": {}, "_content_type_id": "rpm", "size": 2232, "license":
-        "GPLv2", "group": "Internet/Applications", "_ns": "units_rpm", "filename":
-        "cheetah-0.3-0.8.noarch.rpm", "epoch": "0", "version": "0.3", "version_sort_index":
-        "01-0.01-3", "provides": [{"release": "0.8", "epoch": "0", "version": "0.3",
-        "flags": "EQ", "name": "cheetah"}], "files": {"dir": [], "file": ["//cheetah.txt"]},
-        "repodata": {"filelists": "<package arch=\"noarch\" name=\"cheetah\" pkgid=\"422d0baa0cd9d7713ae796e886a23e17f578f924f74880debdbb7d65fb368dae\">\n    <version
-        epoch=\"0\" rel=\"0.8\" ver=\"0.3\" />\n\n    <file>//cheetah.txt</file>\n</package>\n\n",
-        "other": "<package arch=\"noarch\" name=\"cheetah\" pkgid=\"422d0baa0cd9d7713ae796e886a23e17f578f924f74880debdbb7d65fb368dae\">\n    <version
-        epoch=\"0\" rel=\"0.8\" ver=\"0.3\" />\n\n</package>\n\n", "primary": "<package
-        type=\"rpm\">\n  <name>cheetah</name>\n  <arch>noarch</arch>\n  <version epoch=\"0\"
-        rel=\"0.8\" ver=\"0.3\" />\n  <checksum pkgid=\"YES\" type=\"sha256\">422d0baa0cd9d7713ae796e886a23e17f578f924f74880debdbb7d65fb368dae</checksum>\n  <summary>A
-        dummy package of cheetah</summary>\n  <description>A dummy package of cheetah</description>\n  <packager
-        />\n  <url>http://tstrachota.fedorapeople.org</url>\n  <time build=\"1308257472\"
-        file=\"1321891028\" />\n  <size archive=\"292\" installed=\"42\" package=\"2232\"
-        />\n<location href=\"cheetah-0.3-0.8.noarch.rpm\"/>\n  <format>\n    <rpm:license>GPLv2</rpm:license>\n    <rpm:vendor
-        />\n    <rpm:group>Internet/Applications</rpm:group>\n    <rpm:buildhost>dhcp-26-118.brq.redhat.com</rpm:buildhost>\n    <rpm:sourcerpm>cheetah-0.3-0.8.src.rpm</rpm:sourcerpm>\n    <rpm:header-range
-        end=\"2016\" start=\"280\" />\n    <rpm:provides>\n      <rpm:entry epoch=\"0\"
-        flags=\"EQ\" name=\"cheetah\" rel=\"0.8\" ver=\"0.3\" />\n    </rpm:provides>\n    <rpm:requires>\n      <rpm:entry
-        name=\"/bin/sh\" pre=\"1\" />\n    </rpm:requires>\n  </format>\n</package>\n"},
-        "description": "A dummy package of cheetah", "_last_updated": 1461862874,
-        "time": 1321891028, "downloaded": true, "header_range": {"start": 280, "end":
-        2016}, "arch": "noarch", "name": "cheetah", "_storage_path": "/var/lib/pulp/content/units/rpm/23/484b63d28afad70475a287d01996eb07f6ef26db4eff8d0e3fc9d7ba614102/cheetah-0.3-0.8.noarch.rpm",
-        "sourcerpm": "cheetah-0.3-0.8.src.rpm", "checksumtype": "sha256", "release_sort_index":
-        "01-0.01-8", "changelog": [], "url": "http://tstrachota.fedorapeople.org",
-        "checksum": "422d0baa0cd9d7713ae796e886a23e17f578f924f74880debdbb7d65fb368dae",
-        "summary": "A dummy package of cheetah", "relativepath": "cheetah-0.3-0.8.noarch.rpm",
-        "release": "0.8", "_id": "1d57f6fa-fe44-41cc-813f-ad4b61339258", "requires":
-        [{"release": null, "epoch": null, "version": null, "flags": null, "name":
-        "/bin/sh"}]}, "updated": "2016-04-29T16:26:36Z", "repo_id": "integration_test_id",
-        "created": "2016-04-29T16:26:36Z", "unit_type_id": "rpm", "unit_id": "1d57f6fa-fe44-41cc-813f-ad4b61339258",
-        "_id": {"$oid": "57238b3c898f5c862fa3ebaf"}}, {"metadata": {"build_time":
-        1308257502, "buildhost": "dhcp-26-118.brq.redhat.com", "pulp_user_metadata":
-        {}, "_content_type_id": "rpm", "size": 2248, "license": "GPLv2", "group":
-        "Internet/Applications", "_ns": "units_rpm", "filename": "squirrel-0.3-0.8.noarch.rpm",
-        "epoch": "0", "version": "0.3", "version_sort_index": "01-0.01-3", "provides":
-        [{"release": "0.8", "epoch": "0", "version": "0.3", "flags": "EQ", "name":
-        "squirrel"}], "files": {"dir": [], "file": ["//squirrel.txt"]}, "repodata":
-        {"filelists": "<package arch=\"noarch\" name=\"squirrel\" pkgid=\"251768bdd15f13d78487c27638aa6aecd01551e253756093cde1c0ae878a17d2\">\n    <version
-        epoch=\"0\" rel=\"0.8\" ver=\"0.3\" />\n\n    <file>//squirrel.txt</file>\n</package>\n\n",
-        "other": "<package arch=\"noarch\" name=\"squirrel\" pkgid=\"251768bdd15f13d78487c27638aa6aecd01551e253756093cde1c0ae878a17d2\">\n    <version
-        epoch=\"0\" rel=\"0.8\" ver=\"0.3\" />\n\n</package>\n\n", "primary": "<package
-        type=\"rpm\">\n  <name>squirrel</name>\n  <arch>noarch</arch>\n  <version
-        epoch=\"0\" rel=\"0.8\" ver=\"0.3\" />\n  <checksum pkgid=\"YES\" type=\"sha256\">251768bdd15f13d78487c27638aa6aecd01551e253756093cde1c0ae878a17d2</checksum>\n  <summary>A
-        dummy package of squirrel</summary>\n  <description>A dummy package of squirrel</description>\n  <packager
-        />\n  <url>http://tstrachota.fedorapeople.org</url>\n  <time build=\"1308257502\"
-        file=\"1321891029\" />\n  <size archive=\"296\" installed=\"42\" package=\"2248\"
-        />\n<location href=\"squirrel-0.3-0.8.noarch.rpm\"/>\n  <format>\n    <rpm:license>GPLv2</rpm:license>\n    <rpm:vendor
-        />\n    <rpm:group>Internet/Applications</rpm:group>\n    <rpm:buildhost>dhcp-26-118.brq.redhat.com</rpm:buildhost>\n    <rpm:sourcerpm>squirrel-0.3-0.8.src.rpm</rpm:sourcerpm>\n    <rpm:header-range
-        end=\"2028\" start=\"280\" />\n    <rpm:provides>\n      <rpm:entry epoch=\"0\"
-        flags=\"EQ\" name=\"squirrel\" rel=\"0.8\" ver=\"0.3\" />\n    </rpm:provides>\n    <rpm:requires>\n      <rpm:entry
-        name=\"/bin/sh\" pre=\"1\" />\n    </rpm:requires>\n  </format>\n</package>\n"},
-        "description": "A dummy package of squirrel", "_last_updated": 1461862874,
-        "time": 1321891029, "downloaded": true, "header_range": {"start": 280, "end":
-        2028}, "arch": "noarch", "name": "squirrel", "_storage_path": "/var/lib/pulp/content/units/rpm/6a/593bbe5e1505a2e79def861473183a1cfd1e0c46bd4a58044539cd869e001d/squirrel-0.3-0.8.noarch.rpm",
-        "sourcerpm": "squirrel-0.3-0.8.src.rpm", "checksumtype": "sha256", "release_sort_index":
-        "01-0.01-8", "changelog": [], "url": "http://tstrachota.fedorapeople.org",
-        "checksum": "251768bdd15f13d78487c27638aa6aecd01551e253756093cde1c0ae878a17d2",
-        "summary": "A dummy package of squirrel", "relativepath": "squirrel-0.3-0.8.noarch.rpm",
-        "release": "0.8", "_id": "60354850-15ea-46b7-9197-e17f7b360b4c", "requires":
-        [{"release": null, "epoch": null, "version": null, "flags": null, "name":
-        "/bin/sh"}]}, "updated": "2016-04-29T16:26:36Z", "repo_id": "integration_test_id",
-        "created": "2016-04-29T16:26:36Z", "unit_type_id": "rpm", "unit_id": "60354850-15ea-46b7-9197-e17f7b360b4c",
-        "_id": {"$oid": "57238b3c898f5c862fa3ebb1"}}, {"metadata": {"build_time":
-        1308257449, "buildhost": "dhcp-26-118.brq.redhat.com", "pulp_user_metadata":
-        {}, "_content_type_id": "rpm", "size": 2236, "license": "GPLv2", "group":
-        "Internet/Applications", "_ns": "units_rpm", "filename": "walrus-0.3-0.8.noarch.rpm",
-        "epoch": "0", "version": "0.3", "version_sort_index": "01-0.01-3", "provides":
-        [{"release": "0.8", "epoch": "0", "version": "0.3", "flags": "EQ", "name":
-        "walrus"}], "files": {"dir": [], "file": ["//walrus.txt"]}, "repodata": {"filelists":
-        "<package arch=\"noarch\" name=\"walrus\" pkgid=\"6e8d6dc057e3e2c9819f0dc7e6c7b7f86bf2e8571bba414adec7fb621a461dfd\">\n    <version
-        epoch=\"0\" rel=\"0.8\" ver=\"0.3\" />\n\n    <file>//walrus.txt</file>\n</package>\n\n",
-        "other": "<package arch=\"noarch\" name=\"walrus\" pkgid=\"6e8d6dc057e3e2c9819f0dc7e6c7b7f86bf2e8571bba414adec7fb621a461dfd\">\n    <version
-        epoch=\"0\" rel=\"0.8\" ver=\"0.3\" />\n\n</package>\n\n", "primary": "<package
-        type=\"rpm\">\n  <name>walrus</name>\n  <arch>noarch</arch>\n  <version epoch=\"0\"
-        rel=\"0.8\" ver=\"0.3\" />\n  <checksum pkgid=\"YES\" type=\"sha256\">6e8d6dc057e3e2c9819f0dc7e6c7b7f86bf2e8571bba414adec7fb621a461dfd</checksum>\n  <summary>A
-        dummy package of walrus</summary>\n  <description>A dummy package of walrus</description>\n  <packager
-        />\n  <url>http://tstrachota.fedorapeople.org</url>\n  <time build=\"1308257449\"
-        file=\"1321891030\" />\n  <size archive=\"292\" installed=\"42\" package=\"2236\"
-        />\n<location href=\"walrus-0.3-0.8.noarch.rpm\"/>\n  <format>\n    <rpm:license>GPLv2</rpm:license>\n    <rpm:vendor
-        />\n    <rpm:group>Internet/Applications</rpm:group>\n    <rpm:buildhost>dhcp-26-118.brq.redhat.com</rpm:buildhost>\n    <rpm:sourcerpm>walrus-0.3-0.8.src.rpm</rpm:sourcerpm>\n    <rpm:header-range
-        end=\"2016\" start=\"280\" />\n    <rpm:provides>\n      <rpm:entry epoch=\"0\"
-        flags=\"EQ\" name=\"walrus\" rel=\"0.8\" ver=\"0.3\" />\n    </rpm:provides>\n    <rpm:requires>\n      <rpm:entry
-        name=\"/bin/sh\" pre=\"1\" />\n    </rpm:requires>\n  </format>\n</package>\n"},
-        "description": "A dummy package of walrus", "_last_updated": 1461862874, "time":
-        1321891030, "downloaded": true, "header_range": {"start": 280, "end": 2016},
-        "arch": "noarch", "name": "walrus", "_storage_path": "/var/lib/pulp/content/units/rpm/09/b6531fb3d6fd0af4eec078d3f3b8ba1c7e4dc7c2f3bdf6cdd5f5792e9a1a4a/walrus-0.3-0.8.noarch.rpm",
-        "sourcerpm": "walrus-0.3-0.8.src.rpm", "checksumtype": "sha256", "release_sort_index":
-        "01-0.01-8", "changelog": [], "url": "http://tstrachota.fedorapeople.org",
-        "checksum": "6e8d6dc057e3e2c9819f0dc7e6c7b7f86bf2e8571bba414adec7fb621a461dfd",
-        "summary": "A dummy package of walrus", "relativepath": "walrus-0.3-0.8.noarch.rpm",
-        "release": "0.8", "_id": "729489c8-ef1d-4925-8e94-440bccba74b1", "requires":
-        [{"release": null, "epoch": null, "version": null, "flags": null, "name":
-        "/bin/sh"}]}, "updated": "2016-04-29T16:26:36Z", "repo_id": "integration_test_id",
-        "created": "2016-04-29T16:26:36Z", "unit_type_id": "rpm", "unit_id": "729489c8-ef1d-4925-8e94-440bccba74b1",
-        "_id": {"$oid": "57238b3c898f5c862fa3ebb0"}}, {"metadata": {"build_time":
-        1308257466, "buildhost": "dhcp-26-118.brq.redhat.com", "pulp_user_metadata":
-        {}, "_content_type_id": "rpm", "size": 2244, "license": "GPLv2", "group":
-        "Internet/Applications", "_ns": "units_rpm", "filename": "elephant-0.3-0.8.noarch.rpm",
-        "epoch": "0", "version": "0.3", "version_sort_index": "01-0.01-3", "provides":
-        [{"release": "0.8", "epoch": "0", "version": "0.3", "flags": "EQ", "name":
-        "elephant"}], "files": {"dir": [], "file": ["//elephant.txt"]}, "repodata":
-        {"filelists": "<package arch=\"noarch\" name=\"elephant\" pkgid=\"3e1c70cd1b421328acaf6397cb3d16145306bb95f65d1b095fc31372a0a701f3\">\n    <version
-        epoch=\"0\" rel=\"0.8\" ver=\"0.3\" />\n\n    <file>//elephant.txt</file>\n</package>\n\n",
-        "other": "<package arch=\"noarch\" name=\"elephant\" pkgid=\"3e1c70cd1b421328acaf6397cb3d16145306bb95f65d1b095fc31372a0a701f3\">\n    <version
-        epoch=\"0\" rel=\"0.8\" ver=\"0.3\" />\n\n</package>\n\n", "primary": "<package
+      string: '[{"metadata": {"build_time": 1308257466, "buildhost": "dhcp-26-118.brq.redhat.com",
+        "pulp_user_metadata": {}, "_content_type_id": "rpm", "checksums": {"sha256":
+        "3e1c70cd1b421328acaf6397cb3d16145306bb95f65d1b095fc31372a0a701f3"}, "size":
+        2244, "license": "GPLv2", "group": "Internet/Applications", "_ns": "units_rpm",
+        "filename": "elephant-0.3-0.8.noarch.rpm", "epoch": "0", "version": "0.3",
+        "version_sort_index": "01-0.01-3", "provides": [{"release": "0.8", "epoch":
+        "0", "version": "0.3", "flags": "EQ", "name": "elephant"}], "files": {"dir":
+        [], "file": ["/elephant.txt"]}, "recommends": [], "repodata": {"filelists":
+        "<package arch=\"noarch\" name=\"elephant\" pkgid=\"{{ pkgid }}\">\n  <version
+        epoch=\"0\" rel=\"0.8\" ver=\"0.3\" />\n  <file>/elephant.txt</file>\n</package>\n",
+        "other": "<package arch=\"noarch\" name=\"elephant\" pkgid=\"{{ pkgid }}\">\n  <version
+        epoch=\"0\" rel=\"0.8\" ver=\"0.3\" />\n</package>\n", "primary": "<package
         type=\"rpm\">\n  <name>elephant</name>\n  <arch>noarch</arch>\n  <version
-        epoch=\"0\" rel=\"0.8\" ver=\"0.3\" />\n  <checksum pkgid=\"YES\" type=\"sha256\">3e1c70cd1b421328acaf6397cb3d16145306bb95f65d1b095fc31372a0a701f3</checksum>\n  <summary>A
-        dummy package of elephant</summary>\n  <description>A dummy package of elephant</description>\n  <packager
+        epoch=\"0\" rel=\"0.8\" ver=\"0.3\" />\n  <checksum pkgid=\"YES\" type=\"{{
+        checksumtype }}\">{{ checksum }}</checksum>\n  <summary>A dummy package of
+        elephant</summary>\n  <description>A dummy package of elephant</description>\n  <packager
         />\n  <url>http://tstrachota.fedorapeople.org</url>\n  <time build=\"1308257466\"
-        file=\"1321891027\" />\n  <size archive=\"296\" installed=\"42\" package=\"2244\"
-        />\n<location href=\"elephant-0.3-0.8.noarch.rpm\"/>\n  <format>\n    <rpm:license>GPLv2</rpm:license>\n    <rpm:vendor
+        file=\"1516826700\" />\n  <size archive=\"296\" installed=\"42\" package=\"2244\"
+        />\n  <location href=\"Packages/e/elephant-0.3-0.8.noarch.rpm\"/>\n  <format>\n    <rpm:license>GPLv2</rpm:license>\n    <rpm:vendor
         />\n    <rpm:group>Internet/Applications</rpm:group>\n    <rpm:buildhost>dhcp-26-118.brq.redhat.com</rpm:buildhost>\n    <rpm:sourcerpm>elephant-0.3-0.8.src.rpm</rpm:sourcerpm>\n    <rpm:header-range
         end=\"2028\" start=\"280\" />\n    <rpm:provides>\n      <rpm:entry epoch=\"0\"
         flags=\"EQ\" name=\"elephant\" rel=\"0.8\" ver=\"0.3\" />\n    </rpm:provides>\n    <rpm:requires>\n      <rpm:entry
         name=\"/bin/sh\" pre=\"1\" />\n    </rpm:requires>\n  </format>\n</package>\n"},
-        "description": "A dummy package of elephant", "_last_updated": 1461862874,
-        "time": 1321891027, "downloaded": true, "header_range": {"start": 280, "end":
+        "description": "A dummy package of elephant", "_last_updated": 1535596746,
+        "time": 1516826700, "downloaded": true, "header_range": {"start": 280, "end":
         2028}, "arch": "noarch", "name": "elephant", "_storage_path": "/var/lib/pulp/content/units/rpm/fb/40e7f7cb401c3903a132900d6234108f7f458313648a22ef2da313c68ac6d2/elephant-0.3-0.8.noarch.rpm",
         "sourcerpm": "elephant-0.3-0.8.src.rpm", "checksumtype": "sha256", "release_sort_index":
         "01-0.01-8", "changelog": [], "url": "http://tstrachota.fedorapeople.org",
         "checksum": "3e1c70cd1b421328acaf6397cb3d16145306bb95f65d1b095fc31372a0a701f3",
         "summary": "A dummy package of elephant", "relativepath": "elephant-0.3-0.8.noarch.rpm",
-        "release": "0.8", "_id": "9177891f-db26-40f6-9708-dbcda181a4e8", "requires":
+        "release": "0.8", "_id": "0bc53dc3-2cec-4ff9-a22f-6ccc552b0488", "requires":
         [{"release": null, "epoch": null, "version": null, "flags": null, "name":
-        "/bin/sh"}]}, "updated": "2016-04-29T16:26:36Z", "repo_id": "integration_test_id",
-        "created": "2016-04-29T16:26:36Z", "unit_type_id": "rpm", "unit_id": "9177891f-db26-40f6-9708-dbcda181a4e8",
-        "_id": {"$oid": "57238b3c898f5c862fa3ebab"}}, {"metadata": {"build_time":
-        1308257414, "buildhost": "dhcp-26-118.brq.redhat.com", "pulp_user_metadata":
-        {}, "_content_type_id": "rpm", "size": 2236, "license": "GPLv2", "group":
-        "Internet/Applications", "_ns": "units_rpm", "filename": "giraffe-0.3-0.8.noarch.rpm",
-        "epoch": "0", "version": "0.3", "version_sort_index": "01-0.01-3", "provides":
-        [{"release": "0.8", "epoch": "0", "version": "0.3", "flags": "EQ", "name":
-        "giraffe"}], "files": {"dir": [], "file": ["//giraffe.txt"]}, "repodata":
-        {"filelists": "<package arch=\"noarch\" name=\"giraffe\" pkgid=\"f25d67d1d9da04f12e57ca323247b43891ac46533e355b82de6d1922009f9f14\">\n    <version
-        epoch=\"0\" rel=\"0.8\" ver=\"0.3\" />\n\n    <file>//giraffe.txt</file>\n</package>\n\n",
-        "other": "<package arch=\"noarch\" name=\"giraffe\" pkgid=\"f25d67d1d9da04f12e57ca323247b43891ac46533e355b82de6d1922009f9f14\">\n    <version
-        epoch=\"0\" rel=\"0.8\" ver=\"0.3\" />\n\n</package>\n\n", "primary": "<package
-        type=\"rpm\">\n  <name>giraffe</name>\n  <arch>noarch</arch>\n  <version epoch=\"0\"
-        rel=\"0.8\" ver=\"0.3\" />\n  <checksum pkgid=\"YES\" type=\"sha256\">f25d67d1d9da04f12e57ca323247b43891ac46533e355b82de6d1922009f9f14</checksum>\n  <summary>A
-        dummy package of giraffe</summary>\n  <description>A dummy package of giraffe</description>\n  <packager
-        />\n  <url>http://tstrachota.fedorapeople.org</url>\n  <time build=\"1308257414\"
-        file=\"1321891027\" />\n  <size archive=\"292\" installed=\"42\" package=\"2236\"
-        />\n<location href=\"giraffe-0.3-0.8.noarch.rpm\"/>\n  <format>\n    <rpm:license>GPLv2</rpm:license>\n    <rpm:vendor
-        />\n    <rpm:group>Internet/Applications</rpm:group>\n    <rpm:buildhost>dhcp-26-118.brq.redhat.com</rpm:buildhost>\n    <rpm:sourcerpm>giraffe-0.3-0.8.src.rpm</rpm:sourcerpm>\n    <rpm:header-range
-        end=\"2016\" start=\"280\" />\n    <rpm:provides>\n      <rpm:entry epoch=\"0\"
-        flags=\"EQ\" name=\"giraffe\" rel=\"0.8\" ver=\"0.3\" />\n    </rpm:provides>\n    <rpm:requires>\n      <rpm:entry
-        name=\"/bin/sh\" pre=\"1\" />\n    </rpm:requires>\n  </format>\n</package>\n"},
-        "description": "A dummy package of giraffe", "_last_updated": 1461862874,
-        "time": 1321891027, "downloaded": true, "header_range": {"start": 280, "end":
-        2016}, "arch": "noarch", "name": "giraffe", "_storage_path": "/var/lib/pulp/content/units/rpm/22/d6427db77dbc9099fad66379c80871514cd99fb014e27a2d339be17821ccfd/giraffe-0.3-0.8.noarch.rpm",
-        "sourcerpm": "giraffe-0.3-0.8.src.rpm", "checksumtype": "sha256", "release_sort_index":
-        "01-0.01-8", "changelog": [], "url": "http://tstrachota.fedorapeople.org",
-        "checksum": "f25d67d1d9da04f12e57ca323247b43891ac46533e355b82de6d1922009f9f14",
-        "summary": "A dummy package of giraffe", "relativepath": "giraffe-0.3-0.8.noarch.rpm",
-        "release": "0.8", "_id": "9ee0a1d0-ea97-4b6f-94cc-7009a6d666b6", "requires":
-        [{"release": null, "epoch": null, "version": null, "flags": null, "name":
-        "/bin/sh"}]}, "updated": "2016-04-29T16:26:36Z", "repo_id": "integration_test_id",
-        "created": "2016-04-29T16:26:36Z", "unit_type_id": "rpm", "unit_id": "9ee0a1d0-ea97-4b6f-94cc-7009a6d666b6",
-        "_id": {"$oid": "57238b3c898f5c862fa3ebaa"}}, {"metadata": {"build_time":
+        "/bin/sh"}]}, "updated": "2018-08-30T03:26:28Z", "repo_id": "integration_test_id",
+        "created": "2018-08-30T03:26:28Z", "unit_type_id": "rpm", "unit_id": "0bc53dc3-2cec-4ff9-a22f-6ccc552b0488",
+        "_id": {"$oid": "5b8763e404b1e079c02f59d2"}}, {"metadata": {"build_time":
+        1331831369, "buildhost": "smqe-ws15", "pulp_user_metadata": {}, "_content_type_id":
+        "rpm", "checksums": {"sha256": "516a22ccc0cbe3ecb2cbee1c626a39b91767dbf0f815afda7b733aa56523142c"},
+        "size": 1868, "license": "GPLv2", "group": "Internet/Applications", "_ns":
+        "units_rpm", "filename": "walrus-0.71-1.noarch.rpm", "epoch": "0", "version":
+        "0.71", "version_sort_index": "01-0.02-71", "provides": [{"release": "1",
+        "epoch": "0", "version": "0.71", "flags": "EQ", "name": "walrus"}], "files":
+        {"dir": [], "file": ["/tmp/walrus.txt"]}, "recommends": [], "repodata": {"filelists":
+        "<package arch=\"noarch\" name=\"walrus\" pkgid=\"{{ pkgid }}\">\n  <version
+        epoch=\"0\" rel=\"1\" ver=\"0.71\" />\n  <file>/tmp/walrus.txt</file>\n</package>\n",
+        "other": "<package arch=\"noarch\" name=\"walrus\" pkgid=\"{{ pkgid }}\">\n  <version
+        epoch=\"0\" rel=\"1\" ver=\"0.71\" />\n</package>\n", "primary": "<package
+        type=\"rpm\">\n  <name>walrus</name>\n  <arch>noarch</arch>\n  <version epoch=\"0\"
+        rel=\"1\" ver=\"0.71\" />\n  <checksum pkgid=\"YES\" type=\"{{ checksumtype
+        }}\">{{ checksum }}</checksum>\n  <summary>A dummy package of walrus</summary>\n  <description>A
+        dummy package of walrus</description>\n  <packager />\n  <url>http://tstrachota.fedorapeople.org</url>\n  <time
+        build=\"1331831369\" file=\"1535515375\" />\n  <size archive=\"336\" installed=\"84\"
+        package=\"1868\" />\n  <location href=\"Packages/w/walrus-0.71-1.noarch.rpm\"/>\n  <format>\n    <rpm:license>GPLv2</rpm:license>\n    <rpm:vendor
+        />\n    <rpm:group>Internet/Applications</rpm:group>\n    <rpm:buildhost>smqe-ws15</rpm:buildhost>\n    <rpm:sourcerpm>walrus-0.71-1.src.rpm</rpm:sourcerpm>\n    <rpm:header-range
+        end=\"1713\" start=\"280\" />\n    <rpm:provides>\n      <rpm:entry epoch=\"0\"
+        flags=\"EQ\" name=\"walrus\" rel=\"1\" ver=\"0.71\" />\n    </rpm:provides>\n    <rpm:requires>\n      <rpm:entry
+        name=\"whale\" />\n    </rpm:requires>\n  </format>\n</package>\n"}, "description":
+        "A dummy package of walrus", "_last_updated": 1535596239, "time": 1535515375,
+        "downloaded": true, "header_range": {"start": 280, "end": 1713}, "arch": "noarch",
+        "name": "walrus", "_storage_path": "/var/lib/pulp/content/units/rpm/46/fce6c540359854b5820d444a47d1b7a9471a0e2d71730049584d5697595bb5/walrus-0.71-1.noarch.rpm",
+        "sourcerpm": "walrus-0.71-1.src.rpm", "checksumtype": "sha256", "release_sort_index":
+        "01-1", "changelog": [], "url": "http://tstrachota.fedorapeople.org", "checksum":
+        "516a22ccc0cbe3ecb2cbee1c626a39b91767dbf0f815afda7b733aa56523142c", "summary":
+        "A dummy package of walrus", "relativepath": "walrus-0.71-1.noarch.rpm", "release":
+        "1", "_id": "126de69f-0f7a-4c92-bb18-811ac3a1fc80", "requires": [{"release":
+        null, "epoch": null, "version": null, "flags": null, "name": "whale"}]}, "updated":
+        "2018-08-30T03:26:28Z", "repo_id": "integration_test_id", "created": "2018-08-30T03:26:28Z",
+        "unit_type_id": "rpm", "unit_id": "126de69f-0f7a-4c92-bb18-811ac3a1fc80",
+        "_id": {"$oid": "5b8763e404b1e079c02f59d0"}}, {"metadata": {"build_time":
         1308257460, "buildhost": "dhcp-26-118.brq.redhat.com", "pulp_user_metadata":
-        {}, "_content_type_id": "rpm", "size": 2232, "license": "GPLv2", "group":
-        "Internet/Applications", "_ns": "units_rpm", "filename": "penguin-0.3-0.8.noarch.rpm",
-        "epoch": "0", "version": "0.3", "version_sort_index": "01-0.01-3", "provides":
-        [{"release": "0.8", "epoch": "0", "version": "0.3", "flags": "EQ", "name":
-        "penguin"}], "files": {"dir": [], "file": ["//penguin.txt"]}, "repodata":
-        {"filelists": "<package arch=\"noarch\" name=\"penguin\" pkgid=\"3fcb2c927de9e13bf68469032a28b139d3e5ad2e58564fc210fd6e48635be694\">\n    <version
-        epoch=\"0\" rel=\"0.8\" ver=\"0.3\" />\n\n    <file>//penguin.txt</file>\n</package>\n\n",
-        "other": "<package arch=\"noarch\" name=\"penguin\" pkgid=\"3fcb2c927de9e13bf68469032a28b139d3e5ad2e58564fc210fd6e48635be694\">\n    <version
-        epoch=\"0\" rel=\"0.8\" ver=\"0.3\" />\n\n</package>\n\n", "primary": "<package
+        {}, "_content_type_id": "rpm", "checksums": {"sha256": "3fcb2c927de9e13bf68469032a28b139d3e5ad2e58564fc210fd6e48635be694"},
+        "size": 2232, "license": "GPLv2", "group": "Internet/Applications", "_ns":
+        "units_rpm", "filename": "penguin-0.3-0.8.noarch.rpm", "epoch": "0", "version":
+        "0.3", "version_sort_index": "01-0.01-3", "provides": [{"release": "0.8",
+        "epoch": "0", "version": "0.3", "flags": "EQ", "name": "penguin"}], "files":
+        {"dir": [], "file": ["/penguin.txt"]}, "recommends": [], "repodata": {"filelists":
+        "<package arch=\"noarch\" name=\"penguin\" pkgid=\"{{ pkgid }}\">\n  <version
+        epoch=\"0\" rel=\"0.8\" ver=\"0.3\" />\n  <file>/penguin.txt</file>\n</package>\n",
+        "other": "<package arch=\"noarch\" name=\"penguin\" pkgid=\"{{ pkgid }}\">\n  <version
+        epoch=\"0\" rel=\"0.8\" ver=\"0.3\" />\n</package>\n", "primary": "<package
         type=\"rpm\">\n  <name>penguin</name>\n  <arch>noarch</arch>\n  <version epoch=\"0\"
-        rel=\"0.8\" ver=\"0.3\" />\n  <checksum pkgid=\"YES\" type=\"sha256\">3fcb2c927de9e13bf68469032a28b139d3e5ad2e58564fc210fd6e48635be694</checksum>\n  <summary>A
-        dummy package of penguin</summary>\n  <description>A dummy package of penguin</description>\n  <packager
-        />\n  <url>http://tstrachota.fedorapeople.org</url>\n  <time build=\"1308257460\"
-        file=\"1321891029\" />\n  <size archive=\"292\" installed=\"42\" package=\"2232\"
-        />\n<location href=\"penguin-0.3-0.8.noarch.rpm\"/>\n  <format>\n    <rpm:license>GPLv2</rpm:license>\n    <rpm:vendor
+        rel=\"0.8\" ver=\"0.3\" />\n  <checksum pkgid=\"YES\" type=\"{{ checksumtype
+        }}\">{{ checksum }}</checksum>\n  <summary>A dummy package of penguin</summary>\n  <description>A
+        dummy package of penguin</description>\n  <packager />\n  <url>http://tstrachota.fedorapeople.org</url>\n  <time
+        build=\"1308257460\" file=\"1516826700\" />\n  <size archive=\"292\" installed=\"42\"
+        package=\"2232\" />\n  <location href=\"Packages/p/penguin-0.3-0.8.noarch.rpm\"/>\n  <format>\n    <rpm:license>GPLv2</rpm:license>\n    <rpm:vendor
         />\n    <rpm:group>Internet/Applications</rpm:group>\n    <rpm:buildhost>dhcp-26-118.brq.redhat.com</rpm:buildhost>\n    <rpm:sourcerpm>penguin-0.3-0.8.src.rpm</rpm:sourcerpm>\n    <rpm:header-range
         end=\"2016\" start=\"280\" />\n    <rpm:provides>\n      <rpm:entry epoch=\"0\"
         flags=\"EQ\" name=\"penguin\" rel=\"0.8\" ver=\"0.3\" />\n    </rpm:provides>\n    <rpm:requires>\n      <rpm:entry
         name=\"/bin/sh\" pre=\"1\" />\n    </rpm:requires>\n  </format>\n</package>\n"},
-        "description": "A dummy package of penguin", "_last_updated": 1461862874,
-        "time": 1321891029, "downloaded": true, "header_range": {"start": 280, "end":
+        "description": "A dummy package of penguin", "_last_updated": 1535596746,
+        "time": 1516826700, "downloaded": true, "header_range": {"start": 280, "end":
         2016}, "arch": "noarch", "name": "penguin", "_storage_path": "/var/lib/pulp/content/units/rpm/fa/426e1f5bfaa77a3556f3d1fddf57e8d182fcc99b59249f8e10bc5c2f3846fe/penguin-0.3-0.8.noarch.rpm",
         "sourcerpm": "penguin-0.3-0.8.src.rpm", "checksumtype": "sha256", "release_sort_index":
         "01-0.01-8", "changelog": [], "url": "http://tstrachota.fedorapeople.org",
         "checksum": "3fcb2c927de9e13bf68469032a28b139d3e5ad2e58564fc210fd6e48635be694",
         "summary": "A dummy package of penguin", "relativepath": "penguin-0.3-0.8.noarch.rpm",
-        "release": "0.8", "_id": "a5830e1f-5a01-494b-8b3d-db54c71c0fe6", "requires":
+        "release": "0.8", "_id": "17d6964f-0c79-41a2-b835-278a0a86cd8e", "requires":
         [{"release": null, "epoch": null, "version": null, "flags": null, "name":
-        "/bin/sh"}]}, "updated": "2016-04-29T16:26:36Z", "repo_id": "integration_test_id",
-        "created": "2016-04-29T16:26:36Z", "unit_type_id": "rpm", "unit_id": "a5830e1f-5a01-494b-8b3d-db54c71c0fe6",
-        "_id": {"$oid": "57238b3c898f5c862fa3ebae"}}, {"metadata": {"build_time":
+        "/bin/sh"}]}, "updated": "2018-08-30T03:26:28Z", "repo_id": "integration_test_id",
+        "created": "2018-08-30T03:26:28Z", "unit_type_id": "rpm", "unit_id": "17d6964f-0c79-41a2-b835-278a0a86cd8e",
+        "_id": {"$oid": "5b8763e404b1e079c02f59d8"}}, {"metadata": {"build_time":
+        1331831376, "buildhost": "smqe-ws15", "pulp_user_metadata": {}, "_content_type_id":
+        "rpm", "checksums": {"sha256": "833af594bc0ba31256045ed1fb17d3df2d8341a89b0c5a9bf610dd6103ce4cc8"},
+        "size": 1875, "license": "GPLv2", "group": "Internet/Applications", "_ns":
+        "units_rpm", "filename": "kangaroo-0.2-1.noarch.rpm", "epoch": "0", "version":
+        "0.2", "version_sort_index": "01-0.01-2", "provides": [{"release": "1", "epoch":
+        "0", "version": "0.2", "flags": "EQ", "name": "kangaroo"}], "files": {"dir":
+        [], "file": ["/tmp/kangaroo.txt"]}, "recommends": [], "repodata": {"filelists":
+        "<package arch=\"noarch\" name=\"kangaroo\" pkgid=\"{{ pkgid }}\">\n  <version
+        epoch=\"0\" rel=\"1\" ver=\"0.2\" />\n  <file>/tmp/kangaroo.txt</file>\n</package>\n",
+        "other": "<package arch=\"noarch\" name=\"kangaroo\" pkgid=\"{{ pkgid }}\">\n  <version
+        epoch=\"0\" rel=\"1\" ver=\"0.2\" />\n</package>\n", "primary": "<package
+        type=\"rpm\">\n  <name>kangaroo</name>\n  <arch>noarch</arch>\n  <version
+        epoch=\"0\" rel=\"1\" ver=\"0.2\" />\n  <checksum pkgid=\"YES\" type=\"{{
+        checksumtype }}\">{{ checksum }}</checksum>\n  <summary>A dummy package of
+        kangaroo</summary>\n  <description>A dummy package of kangaroo</description>\n  <packager
+        />\n  <url>http://tstrachota.fedorapeople.org</url>\n  <time build=\"1331831376\"
+        file=\"1535515375\" />\n  <size archive=\"300\" installed=\"42\" package=\"1875\"
+        />\n  <location href=\"Packages/k/kangaroo-0.2-1.noarch.rpm\"/>\n  <format>\n    <rpm:license>GPLv2</rpm:license>\n    <rpm:vendor
+        />\n    <rpm:group>Internet/Applications</rpm:group>\n    <rpm:buildhost>smqe-ws15</rpm:buildhost>\n    <rpm:sourcerpm>kangaroo-0.2-1.src.rpm</rpm:sourcerpm>\n    <rpm:header-range
+        end=\"1721\" start=\"280\" />\n    <rpm:provides>\n      <rpm:entry epoch=\"0\"
+        flags=\"EQ\" name=\"kangaroo\" rel=\"1\" ver=\"0.2\" />\n    </rpm:provides>\n  </format>\n</package>\n"},
+        "description": "A dummy package of kangaroo", "_last_updated": 1535596239,
+        "time": 1535515375, "downloaded": true, "header_range": {"start": 280, "end":
+        1721}, "arch": "noarch", "name": "kangaroo", "_storage_path": "/var/lib/pulp/content/units/rpm/90/437928ae0994f045e4fc101687a054ef30feea8c62a9a1fe2e021b9fd212bc/kangaroo-0.2-1.noarch.rpm",
+        "sourcerpm": "kangaroo-0.2-1.src.rpm", "checksumtype": "sha256", "release_sort_index":
+        "01-1", "changelog": [], "url": "http://tstrachota.fedorapeople.org", "checksum":
+        "833af594bc0ba31256045ed1fb17d3df2d8341a89b0c5a9bf610dd6103ce4cc8", "summary":
+        "A dummy package of kangaroo", "relativepath": "kangaroo-0.2-1.noarch.rpm",
+        "release": "1", "_id": "1c54640d-2982-4e3e-983f-ea8e54557905", "requires":
+        []}, "updated": "2018-08-30T03:26:28Z", "repo_id": "integration_test_id",
+        "created": "2018-08-30T03:26:28Z", "unit_type_id": "rpm", "unit_id": "1c54640d-2982-4e3e-983f-ea8e54557905",
+        "_id": {"$oid": "5b8763e404b1e079c02f59d7"}}, {"metadata": {"build_time":
+        1308257502, "buildhost": "dhcp-26-118.brq.redhat.com", "pulp_user_metadata":
+        {}, "_content_type_id": "rpm", "checksums": {"sha256": "251768bdd15f13d78487c27638aa6aecd01551e253756093cde1c0ae878a17d2"},
+        "size": 2248, "license": "GPLv2", "group": "Internet/Applications", "_ns":
+        "units_rpm", "filename": "squirrel-0.3-0.8.noarch.rpm", "epoch": "0", "version":
+        "0.3", "version_sort_index": "01-0.01-3", "provides": [{"release": "0.8",
+        "epoch": "0", "version": "0.3", "flags": "EQ", "name": "squirrel"}], "files":
+        {"dir": [], "file": ["/squirrel.txt"]}, "recommends": [], "repodata": {"filelists":
+        "<package arch=\"noarch\" name=\"squirrel\" pkgid=\"{{ pkgid }}\">\n  <version
+        epoch=\"0\" rel=\"0.8\" ver=\"0.3\" />\n  <file>/squirrel.txt</file>\n</package>\n",
+        "other": "<package arch=\"noarch\" name=\"squirrel\" pkgid=\"{{ pkgid }}\">\n  <version
+        epoch=\"0\" rel=\"0.8\" ver=\"0.3\" />\n</package>\n", "primary": "<package
+        type=\"rpm\">\n  <name>squirrel</name>\n  <arch>noarch</arch>\n  <version
+        epoch=\"0\" rel=\"0.8\" ver=\"0.3\" />\n  <checksum pkgid=\"YES\" type=\"{{
+        checksumtype }}\">{{ checksum }}</checksum>\n  <summary>A dummy package of
+        squirrel</summary>\n  <description>A dummy package of squirrel</description>\n  <packager
+        />\n  <url>http://tstrachota.fedorapeople.org</url>\n  <time build=\"1308257502\"
+        file=\"1516826700\" />\n  <size archive=\"296\" installed=\"42\" package=\"2248\"
+        />\n  <location href=\"Packages/s/squirrel-0.3-0.8.noarch.rpm\"/>\n  <format>\n    <rpm:license>GPLv2</rpm:license>\n    <rpm:vendor
+        />\n    <rpm:group>Internet/Applications</rpm:group>\n    <rpm:buildhost>dhcp-26-118.brq.redhat.com</rpm:buildhost>\n    <rpm:sourcerpm>squirrel-0.3-0.8.src.rpm</rpm:sourcerpm>\n    <rpm:header-range
+        end=\"2028\" start=\"280\" />\n    <rpm:provides>\n      <rpm:entry epoch=\"0\"
+        flags=\"EQ\" name=\"squirrel\" rel=\"0.8\" ver=\"0.3\" />\n    </rpm:provides>\n    <rpm:requires>\n      <rpm:entry
+        name=\"/bin/sh\" pre=\"1\" />\n    </rpm:requires>\n  </format>\n</package>\n"},
+        "description": "A dummy package of squirrel", "_last_updated": 1535596746,
+        "time": 1516826700, "downloaded": true, "header_range": {"start": 280, "end":
+        2028}, "arch": "noarch", "name": "squirrel", "_storage_path": "/var/lib/pulp/content/units/rpm/6a/593bbe5e1505a2e79def861473183a1cfd1e0c46bd4a58044539cd869e001d/squirrel-0.3-0.8.noarch.rpm",
+        "sourcerpm": "squirrel-0.3-0.8.src.rpm", "checksumtype": "sha256", "release_sort_index":
+        "01-0.01-8", "changelog": [], "url": "http://tstrachota.fedorapeople.org",
+        "checksum": "251768bdd15f13d78487c27638aa6aecd01551e253756093cde1c0ae878a17d2",
+        "summary": "A dummy package of squirrel", "relativepath": "squirrel-0.3-0.8.noarch.rpm",
+        "release": "0.8", "_id": "2a6f1b9b-8442-412a-9a8a-2e541485152e", "requires":
+        [{"release": null, "epoch": null, "version": null, "flags": null, "name":
+        "/bin/sh"}]}, "updated": "2018-08-30T03:26:28Z", "repo_id": "integration_test_id",
+        "created": "2018-08-30T03:26:28Z", "unit_type_id": "rpm", "unit_id": "2a6f1b9b-8442-412a-9a8a-2e541485152e",
+        "_id": {"$oid": "5b8763e404b1e079c02f59db"}}, {"metadata": {"build_time":
+        1533066116, "buildhost": "localhost.localdomain", "pulp_user_metadata": {},
+        "_content_type_id": "rpm", "checksums": {"sha256": "865a4c89485bdd9723a3c407280c141e9202f024e7db38cba3d097c3f256b2fd"},
+        "size": 6560, "license": "Public Domain", "group": "Unspecified", "_ns": "units_rpm",
+        "filename": "kangaroo-0.3-1.noarch.rpm", "epoch": "0", "version": "0.3", "version_sort_index":
+        "01-0.01-3", "provides": [{"release": "1", "epoch": "0", "version": "0.3",
+        "flags": "EQ", "name": "kangaroo"}], "files": {"dir": [], "file": ["/usr/bin/kangaroo.txt"]},
+        "recommends": [], "repodata": {"filelists": "<package arch=\"noarch\" name=\"kangaroo\"
+        pkgid=\"{{ pkgid }}\">\n  <version epoch=\"0\" rel=\"1\" ver=\"0.3\" />\n  <file>/usr/bin/kangaroo.txt</file>\n</package>\n",
+        "other": "<package arch=\"noarch\" name=\"kangaroo\" pkgid=\"{{ pkgid }}\">\n  <version
+        epoch=\"0\" rel=\"1\" ver=\"0.3\" />\n</package>\n", "primary": "<package
+        type=\"rpm\">\n  <name>kangaroo</name>\n  <arch>noarch</arch>\n  <version
+        epoch=\"0\" rel=\"1\" ver=\"0.3\" />\n  <checksum pkgid=\"YES\" type=\"{{
+        checksumtype }}\">{{ checksum }}</checksum>\n  <summary>hop like a kangaroo
+        in Australia</summary>\n  <description>A modular RPM fixture for testing Pulp.</description>\n  <packager
+        />\n  <url />\n  <time build=\"1533066116\" file=\"1535515375\" />\n  <size
+        archive=\"260\" installed=\"0\" package=\"6560\" />\n  <location href=\"Packages/k/kangaroo-0.3-1.noarch.rpm\"/>\n  <format>\n    <rpm:license>Public
+        Domain</rpm:license>\n    <rpm:vendor />\n    <rpm:group>Unspecified</rpm:group>\n    <rpm:buildhost>localhost.localdomain</rpm:buildhost>\n    <rpm:sourcerpm>kangaroo-0.3-1.src.rpm</rpm:sourcerpm>\n    <rpm:header-range
+        end=\"6388\" start=\"4504\" />\n    <rpm:provides>\n      <rpm:entry epoch=\"0\"
+        flags=\"EQ\" name=\"kangaroo\" rel=\"1\" ver=\"0.3\" />\n    </rpm:provides>\n  <file>/usr/bin/kangaroo.txt</file>\n  </format>\n</package>\n"},
+        "description": "A modular RPM fixture for testing Pulp.", "_last_updated":
+        1535596239, "time": 1535515375, "downloaded": true, "header_range": {"start":
+        4504, "end": 6388}, "arch": "noarch", "name": "kangaroo", "_storage_path":
+        "/var/lib/pulp/content/units/rpm/2f/d1b2330b99993982e63d5dd28d5c60ff16932b0e9a6fa5184d46ed2b554296/kangaroo-0.3-1.noarch.rpm",
+        "sourcerpm": "kangaroo-0.3-1.src.rpm", "checksumtype": "sha256", "release_sort_index":
+        "01-1", "changelog": [], "checksum": "865a4c89485bdd9723a3c407280c141e9202f024e7db38cba3d097c3f256b2fd",
+        "summary": "hop like a kangaroo in Australia", "relativepath": "kangaroo-0.3-1.noarch.rpm",
+        "release": "1", "_id": "5134065e-0d45-4f28-a648-228427dfd255", "requires":
+        []}, "updated": "2018-08-30T03:26:28Z", "repo_id": "integration_test_id",
+        "created": "2018-08-30T03:26:28Z", "unit_type_id": "rpm", "unit_id": "5134065e-0d45-4f28-a648-228427dfd255",
+        "_id": {"$oid": "5b8763e404b1e079c02f59d4"}}, {"metadata": {"build_time":
+        1308257414, "buildhost": "dhcp-26-118.brq.redhat.com", "pulp_user_metadata":
+        {}, "_content_type_id": "rpm", "checksums": {"sha256": "f25d67d1d9da04f12e57ca323247b43891ac46533e355b82de6d1922009f9f14"},
+        "size": 2236, "license": "GPLv2", "group": "Internet/Applications", "_ns":
+        "units_rpm", "filename": "giraffe-0.3-0.8.noarch.rpm", "epoch": "0", "version":
+        "0.3", "version_sort_index": "01-0.01-3", "provides": [{"release": "0.8",
+        "epoch": "0", "version": "0.3", "flags": "EQ", "name": "giraffe"}], "files":
+        {"dir": [], "file": ["/giraffe.txt"]}, "recommends": [], "repodata": {"filelists":
+        "<package arch=\"noarch\" name=\"giraffe\" pkgid=\"{{ pkgid }}\">\n  <version
+        epoch=\"0\" rel=\"0.8\" ver=\"0.3\" />\n  <file>/giraffe.txt</file>\n</package>\n",
+        "other": "<package arch=\"noarch\" name=\"giraffe\" pkgid=\"{{ pkgid }}\">\n  <version
+        epoch=\"0\" rel=\"0.8\" ver=\"0.3\" />\n</package>\n", "primary": "<package
+        type=\"rpm\">\n  <name>giraffe</name>\n  <arch>noarch</arch>\n  <version epoch=\"0\"
+        rel=\"0.8\" ver=\"0.3\" />\n  <checksum pkgid=\"YES\" type=\"{{ checksumtype
+        }}\">{{ checksum }}</checksum>\n  <summary>A dummy package of giraffe</summary>\n  <description>A
+        dummy package of giraffe</description>\n  <packager />\n  <url>http://tstrachota.fedorapeople.org</url>\n  <time
+        build=\"1308257414\" file=\"1516826700\" />\n  <size archive=\"292\" installed=\"42\"
+        package=\"2236\" />\n  <location href=\"Packages/g/giraffe-0.3-0.8.noarch.rpm\"/>\n  <format>\n    <rpm:license>GPLv2</rpm:license>\n    <rpm:vendor
+        />\n    <rpm:group>Internet/Applications</rpm:group>\n    <rpm:buildhost>dhcp-26-118.brq.redhat.com</rpm:buildhost>\n    <rpm:sourcerpm>giraffe-0.3-0.8.src.rpm</rpm:sourcerpm>\n    <rpm:header-range
+        end=\"2016\" start=\"280\" />\n    <rpm:provides>\n      <rpm:entry epoch=\"0\"
+        flags=\"EQ\" name=\"giraffe\" rel=\"0.8\" ver=\"0.3\" />\n    </rpm:provides>\n    <rpm:requires>\n      <rpm:entry
+        name=\"/bin/sh\" pre=\"1\" />\n    </rpm:requires>\n  </format>\n</package>\n"},
+        "description": "A dummy package of giraffe", "_last_updated": 1535596746,
+        "time": 1516826700, "downloaded": true, "header_range": {"start": 280, "end":
+        2016}, "arch": "noarch", "name": "giraffe", "_storage_path": "/var/lib/pulp/content/units/rpm/22/d6427db77dbc9099fad66379c80871514cd99fb014e27a2d339be17821ccfd/giraffe-0.3-0.8.noarch.rpm",
+        "sourcerpm": "giraffe-0.3-0.8.src.rpm", "checksumtype": "sha256", "release_sort_index":
+        "01-0.01-8", "changelog": [], "url": "http://tstrachota.fedorapeople.org",
+        "checksum": "f25d67d1d9da04f12e57ca323247b43891ac46533e355b82de6d1922009f9f14",
+        "summary": "A dummy package of giraffe", "relativepath": "giraffe-0.3-0.8.noarch.rpm",
+        "release": "0.8", "_id": "5645845a-2ded-4a74-a6c3-dc9e2485cf7e", "requires":
+        [{"release": null, "epoch": null, "version": null, "flags": null, "name":
+        "/bin/sh"}]}, "updated": "2018-08-30T03:26:28Z", "repo_id": "integration_test_id",
+        "created": "2018-08-30T03:26:28Z", "unit_type_id": "rpm", "unit_id": "5645845a-2ded-4a74-a6c3-dc9e2485cf7e",
+        "_id": {"$oid": "5b8763e404b1e079c02f59d1"}}, {"metadata": {"build_time":
         1308257260, "buildhost": "dhcp-26-118.brq.redhat.com", "pulp_user_metadata":
-        {}, "_content_type_id": "rpm", "size": 2232, "license": "GPLv2", "group":
-        "Internet/Applications", "_ns": "units_rpm", "filename": "monkey-0.3-0.8.noarch.rpm",
-        "epoch": "0", "version": "0.3", "version_sort_index": "01-0.01-3", "provides":
-        [{"release": "0.8", "epoch": "0", "version": "0.3", "flags": "EQ", "name":
-        "monkey"}], "files": {"dir": [], "file": ["//monkey.txt"]}, "repodata": {"filelists":
-        "<package arch=\"noarch\" name=\"monkey\" pkgid=\"0e8fa50d0128fbabc7ccc5632e3fa25d39b0280169f6166cb8e2c84de8501db1\">\n    <version
-        epoch=\"0\" rel=\"0.8\" ver=\"0.3\" />\n\n    <file>//monkey.txt</file>\n</package>\n\n",
-        "other": "<package arch=\"noarch\" name=\"monkey\" pkgid=\"0e8fa50d0128fbabc7ccc5632e3fa25d39b0280169f6166cb8e2c84de8501db1\">\n    <version
-        epoch=\"0\" rel=\"0.8\" ver=\"0.3\" />\n\n</package>\n\n", "primary": "<package
+        {}, "_content_type_id": "rpm", "checksums": {"sha256": "0e8fa50d0128fbabc7ccc5632e3fa25d39b0280169f6166cb8e2c84de8501db1"},
+        "size": 2232, "license": "GPLv2", "group": "Internet/Applications", "_ns":
+        "units_rpm", "filename": "monkey-0.3-0.8.noarch.rpm", "epoch": "0", "version":
+        "0.3", "version_sort_index": "01-0.01-3", "provides": [{"release": "0.8",
+        "epoch": "0", "version": "0.3", "flags": "EQ", "name": "monkey"}], "files":
+        {"dir": [], "file": ["/monkey.txt"]}, "recommends": [], "repodata": {"filelists":
+        "<package arch=\"noarch\" name=\"monkey\" pkgid=\"{{ pkgid }}\">\n  <version
+        epoch=\"0\" rel=\"0.8\" ver=\"0.3\" />\n  <file>/monkey.txt</file>\n</package>\n",
+        "other": "<package arch=\"noarch\" name=\"monkey\" pkgid=\"{{ pkgid }}\">\n  <version
+        epoch=\"0\" rel=\"0.8\" ver=\"0.3\" />\n</package>\n", "primary": "<package
         type=\"rpm\">\n  <name>monkey</name>\n  <arch>noarch</arch>\n  <version epoch=\"0\"
-        rel=\"0.8\" ver=\"0.3\" />\n  <checksum pkgid=\"YES\" type=\"sha256\">0e8fa50d0128fbabc7ccc5632e3fa25d39b0280169f6166cb8e2c84de8501db1</checksum>\n  <summary>A
-        dummy package of monkey</summary>\n  <description>A dummy package of monkey</description>\n  <packager
-        />\n  <url>http://tstrachota.fedorapeople.org</url>\n  <time build=\"1308257260\"
-        file=\"1321891029\" />\n  <size archive=\"292\" installed=\"42\" package=\"2232\"
-        />\n<location href=\"monkey-0.3-0.8.noarch.rpm\"/>\n  <format>\n    <rpm:license>GPLv2</rpm:license>\n    <rpm:vendor
+        rel=\"0.8\" ver=\"0.3\" />\n  <checksum pkgid=\"YES\" type=\"{{ checksumtype
+        }}\">{{ checksum }}</checksum>\n  <summary>A dummy package of monkey</summary>\n  <description>A
+        dummy package of monkey</description>\n  <packager />\n  <url>http://tstrachota.fedorapeople.org</url>\n  <time
+        build=\"1308257260\" file=\"1516826700\" />\n  <size archive=\"292\" installed=\"42\"
+        package=\"2232\" />\n  <location href=\"Packages/m/monkey-0.3-0.8.noarch.rpm\"/>\n  <format>\n    <rpm:license>GPLv2</rpm:license>\n    <rpm:vendor
         />\n    <rpm:group>Internet/Applications</rpm:group>\n    <rpm:buildhost>dhcp-26-118.brq.redhat.com</rpm:buildhost>\n    <rpm:sourcerpm>monkey-0.3-0.8.src.rpm</rpm:sourcerpm>\n    <rpm:header-range
         end=\"2016\" start=\"280\" />\n    <rpm:provides>\n      <rpm:entry epoch=\"0\"
         flags=\"EQ\" name=\"monkey\" rel=\"0.8\" ver=\"0.3\" />\n    </rpm:provides>\n    <rpm:requires>\n      <rpm:entry
         name=\"/bin/sh\" pre=\"1\" />\n    </rpm:requires>\n  </format>\n</package>\n"},
-        "description": "A dummy package of monkey", "_last_updated": 1461862874, "time":
-        1321891029, "downloaded": true, "header_range": {"start": 280, "end": 2016},
+        "description": "A dummy package of monkey", "_last_updated": 1535596746, "time":
+        1516826700, "downloaded": true, "header_range": {"start": 280, "end": 2016},
         "arch": "noarch", "name": "monkey", "_storage_path": "/var/lib/pulp/content/units/rpm/0a/5665b30e45aac9965694b41cb70a603004ab0a19be67dbc480f51607526a60/monkey-0.3-0.8.noarch.rpm",
         "sourcerpm": "monkey-0.3-0.8.src.rpm", "checksumtype": "sha256", "release_sort_index":
         "01-0.01-8", "changelog": [], "url": "http://tstrachota.fedorapeople.org",
         "checksum": "0e8fa50d0128fbabc7ccc5632e3fa25d39b0280169f6166cb8e2c84de8501db1",
         "summary": "A dummy package of monkey", "relativepath": "monkey-0.3-0.8.noarch.rpm",
-        "release": "0.8", "_id": "ae294f97-eeb6-4e4c-b6cf-456fddb8cc29", "requires":
+        "release": "0.8", "_id": "56b8fd15-0826-4095-89ab-8c379fa69fb1", "requires":
         [{"release": null, "epoch": null, "version": null, "flags": null, "name":
-        "/bin/sh"}]}, "updated": "2016-04-29T16:26:36Z", "repo_id": "integration_test_id",
-        "created": "2016-04-29T16:26:36Z", "unit_type_id": "rpm", "unit_id": "ae294f97-eeb6-4e4c-b6cf-456fddb8cc29",
-        "_id": {"$oid": "57238b3c898f5c862fa3ebad"}}, {"metadata": {"build_time":
+        "/bin/sh"}]}, "updated": "2018-08-30T03:26:28Z", "repo_id": "integration_test_id",
+        "created": "2018-08-30T03:26:28Z", "unit_type_id": "rpm", "unit_id": "56b8fd15-0826-4095-89ab-8c379fa69fb1",
+        "_id": {"$oid": "5b8763e404b1e079c02f59d6"}}, {"metadata": {"build_time":
+        1331831368, "buildhost": "smqe-ws15", "pulp_user_metadata": {}, "_content_type_id":
+        "rpm", "checksums": {"sha256": "74533fbd4f9ada9e02a6361cbbf014b8ff88dff8d69785ec48b77e01898e7c31"},
+        "size": 1853, "license": "GPLv2", "group": "Internet/Applications", "_ns":
+        "units_rpm", "filename": "walrus-5.21-1.noarch.rpm", "epoch": "0", "version":
+        "5.21", "version_sort_index": "01-5.02-21", "provides": [{"release": "1",
+        "epoch": "0", "version": "5.21", "flags": "EQ", "name": "walrus"}], "files":
+        {"dir": [], "file": ["/tmp/walrus.txt"]}, "recommends": [], "repodata": {"filelists":
+        "<package arch=\"noarch\" name=\"walrus\" pkgid=\"{{ pkgid }}\">\n  <version
+        epoch=\"0\" rel=\"1\" ver=\"5.21\" />\n  <file>/tmp/walrus.txt</file>\n</package>\n",
+        "other": "<package arch=\"noarch\" name=\"walrus\" pkgid=\"{{ pkgid }}\">\n  <version
+        epoch=\"0\" rel=\"1\" ver=\"5.21\" />\n</package>\n", "primary": "<package
+        type=\"rpm\">\n  <name>walrus</name>\n  <arch>noarch</arch>\n  <version epoch=\"0\"
+        rel=\"1\" ver=\"5.21\" />\n  <checksum pkgid=\"YES\" type=\"{{ checksumtype
+        }}\">{{ checksum }}</checksum>\n  <summary>A dummy package of walrus</summary>\n  <description>A
+        dummy package of walrus</description>\n  <packager />\n  <url>http://tstrachota.fedorapeople.org</url>\n  <time
+        build=\"1331831368\" file=\"1535515375\" />\n  <size archive=\"296\" installed=\"42\"
+        package=\"1853\" />\n  <location href=\"Packages/w/walrus-5.21-1.noarch.rpm\"/>\n  <format>\n    <rpm:license>GPLv2</rpm:license>\n    <rpm:vendor
+        />\n    <rpm:group>Internet/Applications</rpm:group>\n    <rpm:buildhost>smqe-ws15</rpm:buildhost>\n    <rpm:sourcerpm>walrus-5.21-1.src.rpm</rpm:sourcerpm>\n    <rpm:header-range
+        end=\"1701\" start=\"280\" />\n    <rpm:provides>\n      <rpm:entry epoch=\"0\"
+        flags=\"EQ\" name=\"walrus\" rel=\"1\" ver=\"5.21\" />\n    </rpm:provides>\n  </format>\n</package>\n"},
+        "description": "A dummy package of walrus", "_last_updated": 1535596239, "time":
+        1535515375, "downloaded": true, "header_range": {"start": 280, "end": 1701},
+        "arch": "noarch", "name": "walrus", "_storage_path": "/var/lib/pulp/content/units/rpm/c4/11e1d147b6567e57d0e658fd4f55f74eebc68d500eba1b4bd24d0353057780/walrus-5.21-1.noarch.rpm",
+        "sourcerpm": "walrus-5.21-1.src.rpm", "checksumtype": "sha256", "release_sort_index":
+        "01-1", "changelog": [], "url": "http://tstrachota.fedorapeople.org", "checksum":
+        "74533fbd4f9ada9e02a6361cbbf014b8ff88dff8d69785ec48b77e01898e7c31", "summary":
+        "A dummy package of walrus", "relativepath": "walrus-5.21-1.noarch.rpm", "release":
+        "1", "_id": "6ce65cdd-3d76-4869-98e0-3a686b1fea1d", "requires": []}, "updated":
+        "2018-08-30T03:26:28Z", "repo_id": "integration_test_id", "created": "2018-08-30T03:26:28Z",
+        "unit_type_id": "rpm", "unit_id": "6ce65cdd-3d76-4869-98e0-3a686b1fea1d",
+        "_id": {"$oid": "5b8763e404b1e079c02f59dc"}}, {"metadata": {"build_time":
+        1331831373, "buildhost": "smqe-ws15", "pulp_user_metadata": {}, "_content_type_id":
+        "rpm", "checksums": {"sha256": "96f37877518a1fe6ea2e17f4ce1fc81b40908043bcbed76744b3d7d38a774bc7"},
+        "size": 1871, "license": "GPLv2", "group": "Internet/Applications", "_ns":
+        "units_rpm", "filename": "duck-0.6-1.noarch.rpm", "epoch": "0", "version":
+        "0.6", "version_sort_index": "01-0.01-6", "provides": [{"release": "1", "epoch":
+        "0", "version": "0.6", "flags": "EQ", "name": "duck"}], "files": {"dir": [],
+        "file": ["/tmp/duck.txt"]}, "recommends": [], "repodata": {"filelists": "<package
+        arch=\"noarch\" name=\"duck\" pkgid=\"{{ pkgid }}\">\n  <version epoch=\"0\"
+        rel=\"1\" ver=\"0.6\" />\n  <file>/tmp/duck.txt</file>\n</package>\n", "other":
+        "<package arch=\"noarch\" name=\"duck\" pkgid=\"{{ pkgid }}\">\n  <version
+        epoch=\"0\" rel=\"1\" ver=\"0.6\" />\n</package>\n", "primary": "<package
+        type=\"rpm\">\n  <name>duck</name>\n  <arch>noarch</arch>\n  <version epoch=\"0\"
+        rel=\"1\" ver=\"0.6\" />\n  <checksum pkgid=\"YES\" type=\"{{ checksumtype
+        }}\">{{ checksum }}</checksum>\n  <summary>A dummy package of duck</summary>\n  <description>A
+        dummy package of duck</description>\n  <packager />\n  <url>http://tstrachota.fedorapeople.org</url>\n  <time
+        build=\"1331831373\" file=\"1535515375\" />\n  <size archive=\"296\" installed=\"42\"
+        package=\"1871\" />\n  <location href=\"Packages/d/duck-0.6-1.noarch.rpm\"/>\n  <format>\n    <rpm:license>GPLv2</rpm:license>\n    <rpm:vendor
+        />\n    <rpm:group>Internet/Applications</rpm:group>\n    <rpm:buildhost>smqe-ws15</rpm:buildhost>\n    <rpm:sourcerpm>duck-0.6-1.src.rpm</rpm:sourcerpm>\n    <rpm:header-range
+        end=\"1721\" start=\"280\" />\n    <rpm:provides>\n      <rpm:entry epoch=\"0\"
+        flags=\"EQ\" name=\"duck\" rel=\"1\" ver=\"0.6\" />\n    </rpm:provides>\n    <rpm:requires>\n      <rpm:entry
+        name=\"cockateel\" />\n      <rpm:entry name=\"lion\" />\n    </rpm:requires>\n  </format>\n</package>\n"},
+        "description": "A dummy package of duck", "_last_updated": 1535596239, "time":
+        1535515375, "downloaded": true, "header_range": {"start": 280, "end": 1721},
+        "arch": "noarch", "name": "duck", "_storage_path": "/var/lib/pulp/content/units/rpm/7e/9414f1ed6776df9e89bb322002169d89aa678c7a5d947ff762056954a2c6a7/duck-0.6-1.noarch.rpm",
+        "sourcerpm": "duck-0.6-1.src.rpm", "checksumtype": "sha256", "release_sort_index":
+        "01-1", "changelog": [], "url": "http://tstrachota.fedorapeople.org", "checksum":
+        "96f37877518a1fe6ea2e17f4ce1fc81b40908043bcbed76744b3d7d38a774bc7", "summary":
+        "A dummy package of duck", "relativepath": "duck-0.6-1.noarch.rpm", "release":
+        "1", "_id": "7de096b2-282f-4f17-b6e8-4031f0ecde8a", "requires": [{"release":
+        null, "epoch": null, "version": null, "flags": null, "name": "cockateel"},
+        {"release": null, "epoch": null, "version": null, "flags": null, "name": "lion"}]},
+        "updated": "2018-08-30T03:26:28Z", "repo_id": "integration_test_id", "created":
+        "2018-08-30T03:26:28Z", "unit_type_id": "rpm", "unit_id": "7de096b2-282f-4f17-b6e8-4031f0ecde8a",
+        "_id": {"$oid": "5b8763e404b1e079c02f59d5"}}, {"metadata": {"build_time":
+        1308257449, "buildhost": "dhcp-26-118.brq.redhat.com", "pulp_user_metadata":
+        {}, "_content_type_id": "rpm", "checksums": {"sha256": "6e8d6dc057e3e2c9819f0dc7e6c7b7f86bf2e8571bba414adec7fb621a461dfd"},
+        "size": 2236, "license": "GPLv2", "group": "Internet/Applications", "_ns":
+        "units_rpm", "filename": "walrus-0.3-0.8.noarch.rpm", "epoch": "0", "version":
+        "0.3", "version_sort_index": "01-0.01-3", "provides": [{"release": "0.8",
+        "epoch": "0", "version": "0.3", "flags": "EQ", "name": "walrus"}], "files":
+        {"dir": [], "file": ["/walrus.txt"]}, "recommends": [], "repodata": {"filelists":
+        "<package arch=\"noarch\" name=\"walrus\" pkgid=\"{{ pkgid }}\">\n  <version
+        epoch=\"0\" rel=\"0.8\" ver=\"0.3\" />\n  <file>/walrus.txt</file>\n</package>\n",
+        "other": "<package arch=\"noarch\" name=\"walrus\" pkgid=\"{{ pkgid }}\">\n  <version
+        epoch=\"0\" rel=\"0.8\" ver=\"0.3\" />\n</package>\n", "primary": "<package
+        type=\"rpm\">\n  <name>walrus</name>\n  <arch>noarch</arch>\n  <version epoch=\"0\"
+        rel=\"0.8\" ver=\"0.3\" />\n  <checksum pkgid=\"YES\" type=\"{{ checksumtype
+        }}\">{{ checksum }}</checksum>\n  <summary>A dummy package of walrus</summary>\n  <description>A
+        dummy package of walrus</description>\n  <packager />\n  <url>http://tstrachota.fedorapeople.org</url>\n  <time
+        build=\"1308257449\" file=\"1516826700\" />\n  <size archive=\"292\" installed=\"42\"
+        package=\"2236\" />\n  <location href=\"Packages/w/walrus-0.3-0.8.noarch.rpm\"/>\n  <format>\n    <rpm:license>GPLv2</rpm:license>\n    <rpm:vendor
+        />\n    <rpm:group>Internet/Applications</rpm:group>\n    <rpm:buildhost>dhcp-26-118.brq.redhat.com</rpm:buildhost>\n    <rpm:sourcerpm>walrus-0.3-0.8.src.rpm</rpm:sourcerpm>\n    <rpm:header-range
+        end=\"2016\" start=\"280\" />\n    <rpm:provides>\n      <rpm:entry epoch=\"0\"
+        flags=\"EQ\" name=\"walrus\" rel=\"0.8\" ver=\"0.3\" />\n    </rpm:provides>\n    <rpm:requires>\n      <rpm:entry
+        name=\"/bin/sh\" pre=\"1\" />\n    </rpm:requires>\n  </format>\n</package>\n"},
+        "description": "A dummy package of walrus", "_last_updated": 1535596747, "time":
+        1516826700, "downloaded": true, "header_range": {"start": 280, "end": 2016},
+        "arch": "noarch", "name": "walrus", "_storage_path": "/var/lib/pulp/content/units/rpm/09/b6531fb3d6fd0af4eec078d3f3b8ba1c7e4dc7c2f3bdf6cdd5f5792e9a1a4a/walrus-0.3-0.8.noarch.rpm",
+        "sourcerpm": "walrus-0.3-0.8.src.rpm", "checksumtype": "sha256", "release_sort_index":
+        "01-0.01-8", "changelog": [], "url": "http://tstrachota.fedorapeople.org",
+        "checksum": "6e8d6dc057e3e2c9819f0dc7e6c7b7f86bf2e8571bba414adec7fb621a461dfd",
+        "summary": "A dummy package of walrus", "relativepath": "walrus-0.3-0.8.noarch.rpm",
+        "release": "0.8", "_id": "7f8f69f4-26de-450b-912f-5439c515c1be", "requires":
+        [{"release": null, "epoch": null, "version": null, "flags": null, "name":
+        "/bin/sh"}]}, "updated": "2018-08-30T03:26:28Z", "repo_id": "integration_test_id",
+        "created": "2018-08-30T03:26:28Z", "unit_type_id": "rpm", "unit_id": "7f8f69f4-26de-450b-912f-5439c515c1be",
+        "_id": {"$oid": "5b8763e404b1e079c02f59da"}}, {"metadata": {"build_time":
+        1308257472, "buildhost": "dhcp-26-118.brq.redhat.com", "pulp_user_metadata":
+        {}, "_content_type_id": "rpm", "checksums": {"sha256": "422d0baa0cd9d7713ae796e886a23e17f578f924f74880debdbb7d65fb368dae"},
+        "size": 2232, "license": "GPLv2", "group": "Internet/Applications", "_ns":
+        "units_rpm", "filename": "cheetah-0.3-0.8.noarch.rpm", "epoch": "0", "version":
+        "0.3", "version_sort_index": "01-0.01-3", "provides": [{"release": "0.8",
+        "epoch": "0", "version": "0.3", "flags": "EQ", "name": "cheetah"}], "files":
+        {"dir": [], "file": ["/cheetah.txt"]}, "recommends": [], "repodata": {"filelists":
+        "<package arch=\"noarch\" name=\"cheetah\" pkgid=\"{{ pkgid }}\">\n  <version
+        epoch=\"0\" rel=\"0.8\" ver=\"0.3\" />\n  <file>/cheetah.txt</file>\n</package>\n",
+        "other": "<package arch=\"noarch\" name=\"cheetah\" pkgid=\"{{ pkgid }}\">\n  <version
+        epoch=\"0\" rel=\"0.8\" ver=\"0.3\" />\n</package>\n", "primary": "<package
+        type=\"rpm\">\n  <name>cheetah</name>\n  <arch>noarch</arch>\n  <version epoch=\"0\"
+        rel=\"0.8\" ver=\"0.3\" />\n  <checksum pkgid=\"YES\" type=\"{{ checksumtype
+        }}\">{{ checksum }}</checksum>\n  <summary>A dummy package of cheetah</summary>\n  <description>A
+        dummy package of cheetah</description>\n  <packager />\n  <url>http://tstrachota.fedorapeople.org</url>\n  <time
+        build=\"1308257472\" file=\"1516826700\" />\n  <size archive=\"292\" installed=\"42\"
+        package=\"2232\" />\n  <location href=\"Packages/c/cheetah-0.3-0.8.noarch.rpm\"/>\n  <format>\n    <rpm:license>GPLv2</rpm:license>\n    <rpm:vendor
+        />\n    <rpm:group>Internet/Applications</rpm:group>\n    <rpm:buildhost>dhcp-26-118.brq.redhat.com</rpm:buildhost>\n    <rpm:sourcerpm>cheetah-0.3-0.8.src.rpm</rpm:sourcerpm>\n    <rpm:header-range
+        end=\"2016\" start=\"280\" />\n    <rpm:provides>\n      <rpm:entry epoch=\"0\"
+        flags=\"EQ\" name=\"cheetah\" rel=\"0.8\" ver=\"0.3\" />\n    </rpm:provides>\n    <rpm:requires>\n      <rpm:entry
+        name=\"/bin/sh\" pre=\"1\" />\n    </rpm:requires>\n  </format>\n</package>\n"},
+        "description": "A dummy package of cheetah", "_last_updated": 1535596747,
+        "time": 1516826700, "downloaded": true, "header_range": {"start": 280, "end":
+        2016}, "arch": "noarch", "name": "cheetah", "_storage_path": "/var/lib/pulp/content/units/rpm/23/484b63d28afad70475a287d01996eb07f6ef26db4eff8d0e3fc9d7ba614102/cheetah-0.3-0.8.noarch.rpm",
+        "sourcerpm": "cheetah-0.3-0.8.src.rpm", "checksumtype": "sha256", "release_sort_index":
+        "01-0.01-8", "changelog": [], "url": "http://tstrachota.fedorapeople.org",
+        "checksum": "422d0baa0cd9d7713ae796e886a23e17f578f924f74880debdbb7d65fb368dae",
+        "summary": "A dummy package of cheetah", "relativepath": "cheetah-0.3-0.8.noarch.rpm",
+        "release": "0.8", "_id": "975910b9-301b-414e-98f9-0aa47853d8b7", "requires":
+        [{"release": null, "epoch": null, "version": null, "flags": null, "name":
+        "/bin/sh"}]}, "updated": "2018-08-30T03:26:28Z", "repo_id": "integration_test_id",
+        "created": "2018-08-30T03:26:28Z", "unit_type_id": "rpm", "unit_id": "975910b9-301b-414e-98f9-0aa47853d8b7",
+        "_id": {"$oid": "5b8763e404b1e079c02f59d9"}}, {"metadata": {"build_time":
         1308257455, "buildhost": "dhcp-26-118.brq.redhat.com", "pulp_user_metadata":
-        {}, "_content_type_id": "rpm", "size": 2212, "license": "GPLv2", "group":
-        "Internet/Applications", "_ns": "units_rpm", "filename": "lion-0.3-0.8.noarch.rpm",
-        "epoch": "0", "version": "0.3", "version_sort_index": "01-0.01-3", "provides":
-        [{"release": "0.8", "epoch": "0", "version": "0.3", "flags": "EQ", "name":
-        "lion"}], "files": {"dir": [], "file": ["//lion.txt"]}, "repodata": {"filelists":
-        "<package arch=\"noarch\" name=\"lion\" pkgid=\"12400dc95c23a4c160725a908716cd3fcdd7a8981585437ab64cd62efa3e4ae4\">\n    <version
-        epoch=\"0\" rel=\"0.8\" ver=\"0.3\" />\n\n    <file>//lion.txt</file>\n</package>\n\n",
-        "other": "<package arch=\"noarch\" name=\"lion\" pkgid=\"12400dc95c23a4c160725a908716cd3fcdd7a8981585437ab64cd62efa3e4ae4\">\n    <version
-        epoch=\"0\" rel=\"0.8\" ver=\"0.3\" />\n\n</package>\n\n", "primary": "<package
+        {}, "_content_type_id": "rpm", "checksums": {"sha256": "12400dc95c23a4c160725a908716cd3fcdd7a8981585437ab64cd62efa3e4ae4"},
+        "size": 2212, "license": "GPLv2", "group": "Internet/Applications", "_ns":
+        "units_rpm", "filename": "lion-0.3-0.8.noarch.rpm", "epoch": "0", "version":
+        "0.3", "version_sort_index": "01-0.01-3", "provides": [{"release": "0.8",
+        "epoch": "0", "version": "0.3", "flags": "EQ", "name": "lion"}], "files":
+        {"dir": [], "file": ["/lion.txt"]}, "recommends": [], "repodata": {"filelists":
+        "<package arch=\"noarch\" name=\"lion\" pkgid=\"{{ pkgid }}\">\n  <version
+        epoch=\"0\" rel=\"0.8\" ver=\"0.3\" />\n  <file>/lion.txt</file>\n</package>\n",
+        "other": "<package arch=\"noarch\" name=\"lion\" pkgid=\"{{ pkgid }}\">\n  <version
+        epoch=\"0\" rel=\"0.8\" ver=\"0.3\" />\n</package>\n", "primary": "<package
         type=\"rpm\">\n  <name>lion</name>\n  <arch>noarch</arch>\n  <version epoch=\"0\"
-        rel=\"0.8\" ver=\"0.3\" />\n  <checksum pkgid=\"YES\" type=\"sha256\">12400dc95c23a4c160725a908716cd3fcdd7a8981585437ab64cd62efa3e4ae4</checksum>\n  <summary>A
-        dummy package of lion</summary>\n  <description>A dummy package of lion</description>\n  <packager
-        />\n  <url>http://tstrachota.fedorapeople.org</url>\n  <time build=\"1308257455\"
-        file=\"1321891028\" />\n  <size archive=\"292\" installed=\"42\" package=\"2212\"
-        />\n<location href=\"lion-0.3-0.8.noarch.rpm\"/>\n  <format>\n    <rpm:license>GPLv2</rpm:license>\n    <rpm:vendor
+        rel=\"0.8\" ver=\"0.3\" />\n  <checksum pkgid=\"YES\" type=\"{{ checksumtype
+        }}\">{{ checksum }}</checksum>\n  <summary>A dummy package of lion</summary>\n  <description>A
+        dummy package of lion</description>\n  <packager />\n  <url>http://tstrachota.fedorapeople.org</url>\n  <time
+        build=\"1308257455\" file=\"1516826700\" />\n  <size archive=\"292\" installed=\"42\"
+        package=\"2212\" />\n  <location href=\"Packages/l/lion-0.3-0.8.noarch.rpm\"/>\n  <format>\n    <rpm:license>GPLv2</rpm:license>\n    <rpm:vendor
         />\n    <rpm:group>Internet/Applications</rpm:group>\n    <rpm:buildhost>dhcp-26-118.brq.redhat.com</rpm:buildhost>\n    <rpm:sourcerpm>lion-0.3-0.8.src.rpm</rpm:sourcerpm>\n    <rpm:header-range
         end=\"2000\" start=\"280\" />\n    <rpm:provides>\n      <rpm:entry epoch=\"0\"
         flags=\"EQ\" name=\"lion\" rel=\"0.8\" ver=\"0.3\" />\n    </rpm:provides>\n    <rpm:requires>\n      <rpm:entry
         name=\"/bin/sh\" pre=\"1\" />\n    </rpm:requires>\n  </format>\n</package>\n"},
-        "description": "A dummy package of lion", "_last_updated": 1461862874, "time":
-        1321891028, "downloaded": true, "header_range": {"start": 280, "end": 2000},
+        "description": "A dummy package of lion", "_last_updated": 1535596747, "time":
+        1516826700, "downloaded": true, "header_range": {"start": 280, "end": 2000},
         "arch": "noarch", "name": "lion", "_storage_path": "/var/lib/pulp/content/units/rpm/5c/d07a96c3e8e3e6ed7e9864a9798547a497ae37330189d4b15fd5a5904e06aa/lion-0.3-0.8.noarch.rpm",
         "sourcerpm": "lion-0.3-0.8.src.rpm", "checksumtype": "sha256", "release_sort_index":
         "01-0.01-8", "changelog": [], "url": "http://tstrachota.fedorapeople.org",
         "checksum": "12400dc95c23a4c160725a908716cd3fcdd7a8981585437ab64cd62efa3e4ae4",
         "summary": "A dummy package of lion", "relativepath": "lion-0.3-0.8.noarch.rpm",
-        "release": "0.8", "_id": "d29764b2-8369-48a1-99db-ba28682a4944", "requires":
+        "release": "0.8", "_id": "d1991204-f8ae-4bdb-8a79-7003e89d5217", "requires":
         [{"release": null, "epoch": null, "version": null, "flags": null, "name":
-        "/bin/sh"}]}, "updated": "2016-04-29T16:26:36Z", "repo_id": "integration_test_id",
-        "created": "2016-04-29T16:26:36Z", "unit_type_id": "rpm", "unit_id": "d29764b2-8369-48a1-99db-ba28682a4944",
-        "_id": {"$oid": "57238b3c898f5c862fa3ebac"}}]'
+        "/bin/sh"}]}, "updated": "2018-08-30T03:26:28Z", "repo_id": "integration_test_id",
+        "created": "2018-08-30T03:26:28Z", "unit_type_id": "rpm", "unit_id": "d1991204-f8ae-4bdb-8a79-7003e89d5217",
+        "_id": {"$oid": "5b8763e404b1e079c02f59d3"}}, {"metadata": {"build_time":
+        1533066017, "buildhost": "localhost.localdomain", "pulp_user_metadata": {},
+        "_content_type_id": "rpm", "checksums": {"sha256": "5bd363b860ad6783217cbca3bbc3ef260f98d140ffb121bf4c208e3f66c24712"},
+        "size": 6540, "license": "Public Domain", "group": "Unspecified", "_ns": "units_rpm",
+        "filename": "duck-0.7-1.noarch.rpm", "epoch": "0", "version": "0.7", "version_sort_index":
+        "01-0.01-7", "provides": [{"release": "1", "epoch": "0", "version": "0.7",
+        "flags": "EQ", "name": "duck"}], "files": {"dir": [], "file": ["/usr/bin/duck.txt"]},
+        "recommends": [], "repodata": {"filelists": "<package arch=\"noarch\" name=\"duck\"
+        pkgid=\"{{ pkgid }}\">\n  <version epoch=\"0\" rel=\"1\" ver=\"0.7\" />\n  <file>/usr/bin/duck.txt</file>\n</package>\n",
+        "other": "<package arch=\"noarch\" name=\"duck\" pkgid=\"{{ pkgid }}\">\n  <version
+        epoch=\"0\" rel=\"1\" ver=\"0.7\" />\n</package>\n", "primary": "<package
+        type=\"rpm\">\n  <name>duck</name>\n  <arch>noarch</arch>\n  <version epoch=\"0\"
+        rel=\"1\" ver=\"0.7\" />\n  <checksum pkgid=\"YES\" type=\"{{ checksumtype
+        }}\">{{ checksum }}</checksum>\n  <summary>Quack like a duck at the park.</summary>\n  <description>A
+        fixture RPM for testing Pulp.</description>\n  <packager />\n  <url />\n  <time
+        build=\"1533066017\" file=\"1535515375\" />\n  <size archive=\"264\" installed=\"5\"
+        package=\"6540\" />\n  <location href=\"Packages/d/duck-0.7-1.noarch.rpm\"/>\n  <format>\n    <rpm:license>Public
+        Domain</rpm:license>\n    <rpm:vendor />\n    <rpm:group>Unspecified</rpm:group>\n    <rpm:buildhost>localhost.localdomain</rpm:buildhost>\n    <rpm:sourcerpm>duck-0.7-1.src.rpm</rpm:sourcerpm>\n    <rpm:header-range
+        end=\"6364\" start=\"4504\" />\n    <rpm:provides>\n      <rpm:entry epoch=\"0\"
+        flags=\"EQ\" name=\"duck\" rel=\"1\" ver=\"0.7\" />\n    </rpm:provides>\n  <file>/usr/bin/duck.txt</file>\n  </format>\n</package>\n"},
+        "description": "A fixture RPM for testing Pulp.", "_last_updated": 1535596239,
+        "time": 1535515375, "downloaded": true, "header_range": {"start": 4504, "end":
+        6364}, "arch": "noarch", "name": "duck", "_storage_path": "/var/lib/pulp/content/units/rpm/49/11c232d9b720c5495a7226145676acd437993268e83120f6f68746a9dcdcaf/duck-0.7-1.noarch.rpm",
+        "sourcerpm": "duck-0.7-1.src.rpm", "checksumtype": "sha256", "release_sort_index":
+        "01-1", "changelog": [], "checksum": "5bd363b860ad6783217cbca3bbc3ef260f98d140ffb121bf4c208e3f66c24712",
+        "summary": "Quack like a duck at the park.", "relativepath": "duck-0.7-1.noarch.rpm",
+        "release": "1", "_id": "df073065-14b3-47f6-aab7-57098ff6e671", "requires":
+        []}, "updated": "2018-08-30T03:26:28Z", "repo_id": "integration_test_id",
+        "created": "2018-08-30T03:26:28Z", "unit_type_id": "rpm", "unit_id": "df073065-14b3-47f6-aab7-57098ff6e671",
+        "_id": {"$oid": "5b8763e404b1e079c02f59dd"}}]'
     http_version: 
-  recorded_at: Fri, 29 Apr 2016 16:26:38 GMT
-recorded_with: VCR 3.0.1
+  recorded_at: Thu, 30 Aug 2018 03:26:31 GMT
+recorded_with: VCR 4.0.0
