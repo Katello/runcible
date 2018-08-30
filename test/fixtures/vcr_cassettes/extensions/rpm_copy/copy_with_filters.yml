@@ -1,43 +1,6 @@
 ---
 http_interactions:
 - request:
-    method: post
-    uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/repositories/integration_test_id_clone/actions/associate/
-    body:
-      encoding: UTF-8
-      string: '{"source_repo_id":"integration_test_id","criteria":{"type_ids":["rpm"],"filters":{"unit":{"$and":[{"name":{"$regex":"p.*"}},{"version":{"$gt":"1.0"}}]}}}}'
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Type:
-      - application/json
-      Content-Length:
-      - '154'
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 202
-      message: ACCEPTED
-    headers:
-      Date:
-      - Fri, 29 Apr 2016 16:26:32 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Content-Length:
-      - '172'
-      Content-Type:
-      - application/json; charset=utf-8
-    body:
-      encoding: UTF-8
-      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/5b199117-bde4-4206-b0fe-283c72f479b1/",
-        "task_id": "5b199117-bde4-4206-b0fe-283c72f479b1"}], "result": null, "error":
-        null}'
-    http_version: 
-  recorded_at: Fri, 29 Apr 2016 16:26:33 GMT
-- request:
     method: get
     uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/tasks/5b199117-bde4-4206-b0fe-283c72f479b1/
     body:
@@ -80,4 +43,143 @@ http_interactions:
         "id": "57238b39898f5c862fa3eba6"}'
     http_version: 
   recorded_at: Fri, 29 Apr 2016 16:26:33 GMT
-recorded_with: VCR 3.0.1
+- request:
+    method: get
+    uri: https://alpha.partello.example.com/pulp/api/v2/tasks/33fd06f6-d90a-4fa8-957e-d0e1c5a3e254/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.1p111
+      Content-Type:
+      - application/json
+      Host:
+      - alpha.partello.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 30 Aug 2018 02:38:25 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Etag:
+      - '"f14d21f40dab4356baf9152dd4ff5aa9-gzip"'
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '829'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"exception": null, "task_type": "pulp.server.managers.repo.unit_association.associate_from_repo",
+        "_href": "/pulp/api/v2/tasks/33fd06f6-d90a-4fa8-957e-d0e1c5a3e254/", "task_id":
+        "33fd06f6-d90a-4fa8-957e-d0e1c5a3e254", "tags": ["pulp:repository:integration_test_id_clone",
+        "pulp:repository:integration_test_id", "pulp:action:associate"], "finish_time":
+        "2018-08-30T02:38:25Z", "_ns": "task_status", "start_time": "2018-08-30T02:38:25Z",
+        "traceback": null, "spawned_tasks": [], "progress_report": {}, "queue": "reserved_resource_worker-0@alpha.partello.example.com.dq2",
+        "state": "finished", "worker_name": "reserved_resource_worker-0@alpha.partello.example.com",
+        "result": {"units_successful": [], "units_failed_signature_filter": []}, "error":
+        null, "_id": {"$oid": "5b8758a104b1e079c02f50fa"}, "id": "5b8758a104b1e079c02f50fa"}'
+    http_version: 
+  recorded_at: Thu, 30 Aug 2018 02:38:25 GMT
+- request:
+    method: post
+    uri: https://alpha.partello.example.com/pulp/api/v2/repositories/integration_test_id_clone/actions/associate/
+    body:
+      encoding: UTF-8
+      string: '{"source_repo_id":"integration_test_id","criteria":{"type_ids":["rpm"],"filters":{"unit":{"$and":[{"name":{"$regex":"p.*"}},{"version":{"$gt":"1.0"}}]}}}}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.1p111
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '154'
+      Host:
+      - alpha.partello.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Date:
+      - Thu, 30 Aug 2018 03:26:26 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '172'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/be308c4a-206c-4bec-bb53-f4f886f74450/",
+        "task_id": "be308c4a-206c-4bec-bb53-f4f886f74450"}], "result": null, "error":
+        null}'
+    http_version: 
+  recorded_at: Thu, 30 Aug 2018 03:26:26 GMT
+- request:
+    method: get
+    uri: https://alpha.partello.example.com/pulp/api/v2/tasks/be308c4a-206c-4bec-bb53-f4f886f74450/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.1p111
+      Content-Type:
+      - application/json
+      Host:
+      - alpha.partello.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 30 Aug 2018 03:26:27 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Etag:
+      - '"47e93f7eddddeaa5fd036cdfc513cee8-gzip"'
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '829'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"exception": null, "task_type": "pulp.server.managers.repo.unit_association.associate_from_repo",
+        "_href": "/pulp/api/v2/tasks/be308c4a-206c-4bec-bb53-f4f886f74450/", "task_id":
+        "be308c4a-206c-4bec-bb53-f4f886f74450", "tags": ["pulp:repository:integration_test_id_clone",
+        "pulp:repository:integration_test_id", "pulp:action:associate"], "finish_time":
+        "2018-08-30T03:26:26Z", "_ns": "task_status", "start_time": "2018-08-30T03:26:26Z",
+        "traceback": null, "spawned_tasks": [], "progress_report": {}, "queue": "reserved_resource_worker-0@alpha.partello.example.com.dq2",
+        "state": "finished", "worker_name": "reserved_resource_worker-0@alpha.partello.example.com",
+        "result": {"units_successful": [], "units_failed_signature_filter": []}, "error":
+        null, "_id": {"$oid": "5b8763e204b1e079c02f59cc"}, "id": "5b8763e204b1e079c02f59cc"}'
+    http_version: 
+  recorded_at: Thu, 30 Aug 2018 03:26:27 GMT
+recorded_with: VCR 4.0.0

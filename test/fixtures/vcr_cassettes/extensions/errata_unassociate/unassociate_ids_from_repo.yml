@@ -1,43 +1,6 @@
 ---
 http_interactions:
 - request:
-    method: post
-    uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/repositories/integration_test_id_clone/actions/associate/
-    body:
-      encoding: UTF-8
-      string: '{"source_repo_id":"integration_test_id"}'
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Type:
-      - application/json
-      Content-Length:
-      - '40'
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 202
-      message: ACCEPTED
-    headers:
-      Date:
-      - Fri, 29 Apr 2016 16:21:16 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Content-Length:
-      - '172'
-      Content-Type:
-      - application/json; charset=utf-8
-    body:
-      encoding: UTF-8
-      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/3f3a50ae-e018-4eec-9372-93c08134c121/",
-        "task_id": "3f3a50ae-e018-4eec-9372-93c08134c121"}], "result": null, "error":
-        null}'
-    http_version: 
-  recorded_at: Fri, 29 Apr 2016 16:21:16 GMT
-- request:
     method: get
     uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/tasks/3f3a50ae-e018-4eec-9372-93c08134c121/
     body:
@@ -110,64 +73,6 @@ http_interactions:
         "id": "572389fc898f5c862fa3ea57"}'
     http_version: 
   recorded_at: Fri, 29 Apr 2016 16:21:16 GMT
-- request:
-    method: post
-    uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/repositories/integration_test_id/search/units/
-    body:
-      encoding: UTF-8
-      string: '{"criteria":{"type_ids":["erratum"]}}'
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Type:
-      - application/json
-      Content-Length:
-      - '37'
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Fri, 29 Apr 2016 16:21:16 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Vary:
-      - Accept-Encoding
-      Content-Length:
-      - '1775'
-      Content-Type:
-      - application/json; charset=utf-8
-    body:
-      encoding: ASCII-8BIT
-      string: '[{"metadata": {"issued": "2010-01-01 01:01:01", "references": [], "pulp_user_metadata":
-        {}, "_content_type_id": "erratum", "id": "RHEA-2010:0002", "from": "lzap+pub@redhat.com",
-        "severity": "", "title": "One package errata", "_ns": "units_erratum", "version":
-        "1", "reboot_suggested": false, "type": "security", "pkglist": [{"packages":
-        [{"src": "http://www.fedoraproject.org", "name": "elephant", "sum": null,
-        "filename": "elephant-0.3-0.8.noarch.rpm", "epoch": "0", "version": "0.3",
-        "release": "0.8", "arch": "noarch"}], "name": "1", "short": ""}], "status":
-        "stable", "updated": "", "description": "One package errata", "_last_updated":
-        1461946871, "pushcount": "", "rights": "", "solution": "", "summary": "",
-        "release": "1", "_id": "02cc6560-a996-4f39-b359-16502fc1e0dd"}, "updated":
-        "2016-04-29T16:21:11Z", "repo_id": "integration_test_id", "created": "2016-04-29T16:21:11Z",
-        "unit_type_id": "erratum", "unit_id": "02cc6560-a996-4f39-b359-16502fc1e0dd",
-        "_id": {"$oid": "572389f7898f5c862fa3ea3d"}}, {"metadata": {"issued": "2010-01-01
-        01:01:01", "references": [], "pulp_user_metadata": {}, "_content_type_id":
-        "erratum", "id": "RHEA-2010:0001", "from": "lzap+pub@redhat.com", "severity":
-        "", "title": "Empty errata", "_ns": "units_erratum", "version": "1", "reboot_suggested":
-        false, "type": "security", "pkglist": [], "status": "stable", "updated": "",
-        "description": "Empty errata", "_last_updated": 1461946871, "pushcount": "",
-        "rights": "", "solution": "", "summary": "", "release": "1", "_id": "4d519f3e-e40d-4c84-aa9f-74ae1fc1fd30"},
-        "updated": "2016-04-29T16:21:11Z", "repo_id": "integration_test_id", "created":
-        "2016-04-29T16:21:11Z", "unit_type_id": "erratum", "unit_id": "4d519f3e-e40d-4c84-aa9f-74ae1fc1fd30",
-        "_id": {"$oid": "572389f7898f5c862fa3ea3c"}}]'
-    http_version: 
-  recorded_at: Fri, 29 Apr 2016 16:21:17 GMT
 - request:
     method: post
     uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/repositories/integration_test_id_clone/actions/unassociate/
@@ -250,8 +155,504 @@ http_interactions:
     http_version: 
   recorded_at: Fri, 29 Apr 2016 16:21:17 GMT
 - request:
+    method: get
+    uri: https://alpha.partello.example.com/pulp/api/v2/tasks/0e4bfa17-80ff-4c70-b1bb-cb2a78eea09b/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.1p111
+      Content-Type:
+      - application/json
+      Host:
+      - alpha.partello.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 30 Aug 2018 02:31:21 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Etag:
+      - '"3ed8d1125ed4f8b25a6c049823c0e6ae-gzip"'
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '6327'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"exception": null, "task_type": "pulp.server.managers.repo.unit_association.associate_from_repo",
+        "_href": "/pulp/api/v2/tasks/0e4bfa17-80ff-4c70-b1bb-cb2a78eea09b/", "task_id":
+        "0e4bfa17-80ff-4c70-b1bb-cb2a78eea09b", "tags": ["pulp:repository:integration_test_id_clone",
+        "pulp:repository:integration_test_id", "pulp:action:associate"], "finish_time":
+        "2018-08-30T02:31:21Z", "_ns": "task_status", "start_time": "2018-08-30T02:31:21Z",
+        "traceback": null, "spawned_tasks": [], "progress_report": {}, "queue": "reserved_resource_worker-0@alpha.partello.example.com.dq2",
+        "state": "finished", "worker_name": "reserved_resource_worker-0@alpha.partello.example.com",
+        "result": {"units_successful": [{"unit_key": {"id": "RHEA-2010:0002"}, "type_id":
+        "erratum"}, {"unit_key": {"variant": "TestVariant", "version": "16", "arch":
+        "x86_64", "id": "ks-Test Family-TestVariant-16-x86_64", "family": "Test Family"},
+        "type_id": "distribution"}, {"signing_key": null, "unit_key": {"name": "squirrel",
+        "checksum": "251768bdd15f13d78487c27638aa6aecd01551e253756093cde1c0ae878a17d2",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"unit_key": {"id": "RHEA-2012:0059"}, "type_id":
+        "erratum"}, {"unit_key": {"context": "deadbeef", "version": 20180730233102,
+        "arch": "noarch", "name": "duck", "stream": "0"}, "type_id": "modulemd"},
+        {"unit_key": {"repo_id": "integration_test_id_clone", "data_type": "comps"},
+        "type_id": "yum_repo_metadata_file"}, {"unit_key": {"repo_id": "integration_test_id_clone",
+        "name": "kangaroo"}, "type_id": "modulemd_defaults"}, {"signing_key": null,
+        "unit_key": {"name": "cheetah", "checksum": "422d0baa0cd9d7713ae796e886a23e17f578f924f74880debdbb7d65fb368dae",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"signing_key": null, "unit_key": {"name": "penguin",
+        "checksum": "3fcb2c927de9e13bf68469032a28b139d3e5ad2e58564fc210fd6e48635be694",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"signing_key": null, "unit_key": {"name": "kangaroo",
+        "checksum": "833af594bc0ba31256045ed1fb17d3df2d8341a89b0c5a9bf610dd6103ce4cc8",
+        "epoch": "0", "version": "0.2", "release": "1", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"unit_key": {"context": "deadbeef", "version":
+        20180730223407, "arch": "noarch", "name": "kangaroo", "stream": "0"}, "type_id":
+        "modulemd"}, {"signing_key": null, "unit_key": {"name": "walrus", "checksum":
+        "6e8d6dc057e3e2c9819f0dc7e6c7b7f86bf2e8571bba414adec7fb621a461dfd", "epoch":
+        "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"signing_key": null, "unit_key": {"name": "duck",
+        "checksum": "96f37877518a1fe6ea2e17f4ce1fc81b40908043bcbed76744b3d7d38a774bc7",
+        "epoch": "0", "version": "0.6", "release": "1", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"signing_key": null, "unit_key": {"name": "duck",
+        "checksum": "5bd363b860ad6783217cbca3bbc3ef260f98d140ffb121bf4c208e3f66c24712",
+        "epoch": "0", "version": "0.7", "release": "1", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"signing_key": null, "unit_key": {"name": "elephant",
+        "checksum": "3e1c70cd1b421328acaf6397cb3d16145306bb95f65d1b095fc31372a0a701f3",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"unit_key": {"context": "deadbeef", "version":
+        20180704244205, "arch": "noarch", "name": "duck", "stream": "0"}, "type_id":
+        "modulemd"}, {"unit_key": {"context": "c0ffee42", "version": 20180707144203,
+        "arch": "x86_64", "name": "walrus", "stream": "0.71"}, "type_id": "modulemd"},
+        {"unit_key": {"repo_id": "integration_test_id_clone", "name": "walrus"}, "type_id":
+        "modulemd_defaults"}, {"signing_key": null, "unit_key": {"name": "walrus",
+        "checksum": "516a22ccc0cbe3ecb2cbee1c626a39b91767dbf0f815afda7b733aa56523142c",
+        "epoch": "0", "version": "0.71", "release": "1", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"unit_key": {"id": "RHEA-2010:0001"}, "type_id":
+        "erratum"}, {"signing_key": null, "unit_key": {"name": "kangaroo", "checksum":
+        "865a4c89485bdd9723a3c407280c141e9202f024e7db38cba3d097c3f256b2fd", "epoch":
+        "0", "version": "0.3", "release": "1", "arch": "noarch", "checksumtype": "sha256"},
+        "type_id": "rpm"}, {"unit_key": {"context": "deadbeef", "version": 20180704111719,
+        "arch": "noarch", "name": "kangaroo", "stream": "0"}, "type_id": "modulemd"},
+        {"signing_key": null, "unit_key": {"name": "lion", "checksum": "12400dc95c23a4c160725a908716cd3fcdd7a8981585437ab64cd62efa3e4ae4",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"signing_key": null, "unit_key": {"name": "monkey",
+        "checksum": "0e8fa50d0128fbabc7ccc5632e3fa25d39b0280169f6166cb8e2c84de8501db1",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"signing_key": null, "unit_key": {"name": "walrus",
+        "checksum": "74533fbd4f9ada9e02a6361cbbf014b8ff88dff8d69785ec48b77e01898e7c31",
+        "epoch": "0", "version": "5.21", "release": "1", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"unit_key": {"context": "deadbeef", "version":
+        20180704144203, "arch": "x86_64", "name": "walrus", "stream": "5.21"}, "type_id":
+        "modulemd"}, {"signing_key": null, "unit_key": {"name": "giraffe", "checksum":
+        "f25d67d1d9da04f12e57ca323247b43891ac46533e355b82de6d1922009f9f14", "epoch":
+        "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"unit_key": {"repo_id": "integration_test_id_clone",
+        "name": "duck"}, "type_id": "modulemd_defaults"}], "units_failed_signature_filter":
+        [{"unit_key": {"repo_id": "integration_test_id", "data_type": "comps"}, "type_id":
+        "yum_repo_metadata_file"}, {"unit_key": {"repo_id": "integration_test_id",
+        "name": "duck"}, "type_id": "modulemd_defaults"}, {"unit_key": {"repo_id":
+        "integration_test_id", "name": "kangaroo"}, "type_id": "modulemd_defaults"},
+        {"unit_key": {"repo_id": "integration_test_id", "name": "walrus"}, "type_id":
+        "modulemd_defaults"}]}, "error": null, "_id": {"$oid": "5b8756f904b1e079c02f4c73"},
+        "id": "5b8756f904b1e079c02f4c73"}'
+    http_version: 
+  recorded_at: Thu, 30 Aug 2018 02:31:21 GMT
+- request:
+    method: get
+    uri: https://alpha.partello.example.com/pulp/api/v2/tasks/55ba59b3-e98e-48f9-9766-af20f0f703b3/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.1p111
+      Content-Type:
+      - application/json
+      Host:
+      - alpha.partello.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 30 Aug 2018 02:31:22 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Etag:
+      - '"668cd64865990cf1ddbb9be192838dd2-gzip"'
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '819'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"exception": null, "task_type": "pulp.server.managers.repo.unit_association.unassociate_by_criteria",
+        "_href": "/pulp/api/v2/tasks/55ba59b3-e98e-48f9-9766-af20f0f703b3/", "task_id":
+        "55ba59b3-e98e-48f9-9766-af20f0f703b3", "tags": ["pulp:repository:integration_test_id_clone",
+        "pulp:action:unassociate"], "finish_time": "2018-08-30T02:31:21Z", "_ns":
+        "task_status", "start_time": "2018-08-30T02:31:21Z", "traceback": null, "spawned_tasks":
+        [], "progress_report": {}, "queue": "reserved_resource_worker-0@alpha.partello.example.com.dq2",
+        "state": "finished", "worker_name": "reserved_resource_worker-0@alpha.partello.example.com",
+        "result": {"units_successful": [{"unit_key": {"id": "RHEA-2010:0001"}, "type_id":
+        "erratum"}]}, "error": null, "_id": {"$oid": "5b8756f904b1e079c02f4c90"},
+        "id": "5b8756f904b1e079c02f4c90"}'
+    http_version: 
+  recorded_at: Thu, 30 Aug 2018 02:31:22 GMT
+- request:
+    method: get
+    uri: https://alpha.partello.example.com/pulp/api/v2/tasks/cc387948-d1db-4d2c-8b22-46fdd5e8c30d/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.1p111
+      Content-Type:
+      - application/json
+      Host:
+      - alpha.partello.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 30 Aug 2018 02:33:38 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Etag:
+      - '"4309f2df502683ac2ded96ab93827862-gzip"'
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '6327'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"exception": null, "task_type": "pulp.server.managers.repo.unit_association.associate_from_repo",
+        "_href": "/pulp/api/v2/tasks/cc387948-d1db-4d2c-8b22-46fdd5e8c30d/", "task_id":
+        "cc387948-d1db-4d2c-8b22-46fdd5e8c30d", "tags": ["pulp:repository:integration_test_id_clone",
+        "pulp:repository:integration_test_id", "pulp:action:associate"], "finish_time":
+        "2018-08-30T02:33:37Z", "_ns": "task_status", "start_time": "2018-08-30T02:33:37Z",
+        "traceback": null, "spawned_tasks": [], "progress_report": {}, "queue": "reserved_resource_worker-0@alpha.partello.example.com.dq2",
+        "state": "finished", "worker_name": "reserved_resource_worker-0@alpha.partello.example.com",
+        "result": {"units_successful": [{"unit_key": {"id": "RHEA-2010:0002"}, "type_id":
+        "erratum"}, {"unit_key": {"variant": "TestVariant", "version": "16", "arch":
+        "x86_64", "id": "ks-Test Family-TestVariant-16-x86_64", "family": "Test Family"},
+        "type_id": "distribution"}, {"signing_key": null, "unit_key": {"name": "squirrel",
+        "checksum": "251768bdd15f13d78487c27638aa6aecd01551e253756093cde1c0ae878a17d2",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"unit_key": {"id": "RHEA-2012:0059"}, "type_id":
+        "erratum"}, {"unit_key": {"context": "deadbeef", "version": 20180730233102,
+        "arch": "noarch", "name": "duck", "stream": "0"}, "type_id": "modulemd"},
+        {"unit_key": {"repo_id": "integration_test_id_clone", "data_type": "comps"},
+        "type_id": "yum_repo_metadata_file"}, {"unit_key": {"repo_id": "integration_test_id_clone",
+        "name": "kangaroo"}, "type_id": "modulemd_defaults"}, {"signing_key": null,
+        "unit_key": {"name": "cheetah", "checksum": "422d0baa0cd9d7713ae796e886a23e17f578f924f74880debdbb7d65fb368dae",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"signing_key": null, "unit_key": {"name": "penguin",
+        "checksum": "3fcb2c927de9e13bf68469032a28b139d3e5ad2e58564fc210fd6e48635be694",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"signing_key": null, "unit_key": {"name": "kangaroo",
+        "checksum": "833af594bc0ba31256045ed1fb17d3df2d8341a89b0c5a9bf610dd6103ce4cc8",
+        "epoch": "0", "version": "0.2", "release": "1", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"unit_key": {"context": "deadbeef", "version":
+        20180730223407, "arch": "noarch", "name": "kangaroo", "stream": "0"}, "type_id":
+        "modulemd"}, {"signing_key": null, "unit_key": {"name": "walrus", "checksum":
+        "6e8d6dc057e3e2c9819f0dc7e6c7b7f86bf2e8571bba414adec7fb621a461dfd", "epoch":
+        "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"signing_key": null, "unit_key": {"name": "duck",
+        "checksum": "96f37877518a1fe6ea2e17f4ce1fc81b40908043bcbed76744b3d7d38a774bc7",
+        "epoch": "0", "version": "0.6", "release": "1", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"signing_key": null, "unit_key": {"name": "duck",
+        "checksum": "5bd363b860ad6783217cbca3bbc3ef260f98d140ffb121bf4c208e3f66c24712",
+        "epoch": "0", "version": "0.7", "release": "1", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"signing_key": null, "unit_key": {"name": "elephant",
+        "checksum": "3e1c70cd1b421328acaf6397cb3d16145306bb95f65d1b095fc31372a0a701f3",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"unit_key": {"context": "deadbeef", "version":
+        20180704244205, "arch": "noarch", "name": "duck", "stream": "0"}, "type_id":
+        "modulemd"}, {"unit_key": {"context": "c0ffee42", "version": 20180707144203,
+        "arch": "x86_64", "name": "walrus", "stream": "0.71"}, "type_id": "modulemd"},
+        {"unit_key": {"repo_id": "integration_test_id_clone", "name": "walrus"}, "type_id":
+        "modulemd_defaults"}, {"signing_key": null, "unit_key": {"name": "walrus",
+        "checksum": "516a22ccc0cbe3ecb2cbee1c626a39b91767dbf0f815afda7b733aa56523142c",
+        "epoch": "0", "version": "0.71", "release": "1", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"unit_key": {"id": "RHEA-2010:0001"}, "type_id":
+        "erratum"}, {"signing_key": null, "unit_key": {"name": "kangaroo", "checksum":
+        "865a4c89485bdd9723a3c407280c141e9202f024e7db38cba3d097c3f256b2fd", "epoch":
+        "0", "version": "0.3", "release": "1", "arch": "noarch", "checksumtype": "sha256"},
+        "type_id": "rpm"}, {"unit_key": {"context": "deadbeef", "version": 20180704111719,
+        "arch": "noarch", "name": "kangaroo", "stream": "0"}, "type_id": "modulemd"},
+        {"signing_key": null, "unit_key": {"name": "lion", "checksum": "12400dc95c23a4c160725a908716cd3fcdd7a8981585437ab64cd62efa3e4ae4",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"signing_key": null, "unit_key": {"name": "monkey",
+        "checksum": "0e8fa50d0128fbabc7ccc5632e3fa25d39b0280169f6166cb8e2c84de8501db1",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"signing_key": null, "unit_key": {"name": "walrus",
+        "checksum": "74533fbd4f9ada9e02a6361cbbf014b8ff88dff8d69785ec48b77e01898e7c31",
+        "epoch": "0", "version": "5.21", "release": "1", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"unit_key": {"context": "deadbeef", "version":
+        20180704144203, "arch": "x86_64", "name": "walrus", "stream": "5.21"}, "type_id":
+        "modulemd"}, {"signing_key": null, "unit_key": {"name": "giraffe", "checksum":
+        "f25d67d1d9da04f12e57ca323247b43891ac46533e355b82de6d1922009f9f14", "epoch":
+        "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"unit_key": {"repo_id": "integration_test_id_clone",
+        "name": "duck"}, "type_id": "modulemd_defaults"}], "units_failed_signature_filter":
+        [{"unit_key": {"repo_id": "integration_test_id", "data_type": "comps"}, "type_id":
+        "yum_repo_metadata_file"}, {"unit_key": {"repo_id": "integration_test_id",
+        "name": "duck"}, "type_id": "modulemd_defaults"}, {"unit_key": {"repo_id":
+        "integration_test_id", "name": "kangaroo"}, "type_id": "modulemd_defaults"},
+        {"unit_key": {"repo_id": "integration_test_id", "name": "walrus"}, "type_id":
+        "modulemd_defaults"}]}, "error": null, "_id": {"$oid": "5b87578104b1e079c02f4e23"},
+        "id": "5b87578104b1e079c02f4e23"}'
+    http_version: 
+  recorded_at: Thu, 30 Aug 2018 02:33:38 GMT
+- request:
+    method: get
+    uri: https://alpha.partello.example.com/pulp/api/v2/tasks/20a329ca-15ab-4f0c-b89d-65ce4424b75f/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.1p111
+      Content-Type:
+      - application/json
+      Host:
+      - alpha.partello.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 30 Aug 2018 02:33:38 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Etag:
+      - '"48eeef3a12ad1b018dbbccc89ffe7f87-gzip"'
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '819'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"exception": null, "task_type": "pulp.server.managers.repo.unit_association.unassociate_by_criteria",
+        "_href": "/pulp/api/v2/tasks/20a329ca-15ab-4f0c-b89d-65ce4424b75f/", "task_id":
+        "20a329ca-15ab-4f0c-b89d-65ce4424b75f", "tags": ["pulp:repository:integration_test_id_clone",
+        "pulp:action:unassociate"], "finish_time": "2018-08-30T02:33:38Z", "_ns":
+        "task_status", "start_time": "2018-08-30T02:33:38Z", "traceback": null, "spawned_tasks":
+        [], "progress_report": {}, "queue": "reserved_resource_worker-0@alpha.partello.example.com.dq2",
+        "state": "finished", "worker_name": "reserved_resource_worker-0@alpha.partello.example.com",
+        "result": {"units_successful": [{"unit_key": {"id": "RHEA-2010:0001"}, "type_id":
+        "erratum"}]}, "error": null, "_id": {"$oid": "5b87578204b1e079c02f4e29"},
+        "id": "5b87578204b1e079c02f4e29"}'
+    http_version: 
+  recorded_at: Thu, 30 Aug 2018 02:33:39 GMT
+- request:
     method: post
-    uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/repositories/integration_test_id_clone/search/units/
+    uri: https://alpha.partello.example.com/pulp/api/v2/repositories/integration_test_id_clone/actions/associate/
+    body:
+      encoding: UTF-8
+      string: '{"source_repo_id":"integration_test_id"}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.1p111
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '40'
+      Host:
+      - alpha.partello.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Date:
+      - Thu, 30 Aug 2018 03:21:34 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '172'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/9bf22898-8061-435e-911f-82b4d774e7c0/",
+        "task_id": "9bf22898-8061-435e-911f-82b4d774e7c0"}], "result": null, "error":
+        null}'
+    http_version: 
+  recorded_at: Thu, 30 Aug 2018 03:21:34 GMT
+- request:
+    method: get
+    uri: https://alpha.partello.example.com/pulp/api/v2/tasks/9bf22898-8061-435e-911f-82b4d774e7c0/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.1p111
+      Content-Type:
+      - application/json
+      Host:
+      - alpha.partello.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 30 Aug 2018 03:21:34 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Etag:
+      - '"f171900d0805ac4f6baf0f864af9f8e4-gzip"'
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '6681'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"exception": null, "task_type": "pulp.server.managers.repo.unit_association.associate_from_repo",
+        "_href": "/pulp/api/v2/tasks/9bf22898-8061-435e-911f-82b4d774e7c0/", "task_id":
+        "9bf22898-8061-435e-911f-82b4d774e7c0", "tags": ["pulp:repository:integration_test_id_clone",
+        "pulp:repository:integration_test_id", "pulp:action:associate"], "finish_time":
+        "2018-08-30T03:21:34Z", "_ns": "task_status", "start_time": "2018-08-30T03:21:34Z",
+        "traceback": null, "spawned_tasks": [], "progress_report": {}, "queue": "reserved_resource_worker-0@alpha.partello.example.com.dq2",
+        "state": "finished", "worker_name": "reserved_resource_worker-0@alpha.partello.example.com",
+        "result": {"units_successful": [{"unit_key": {"id": "RHEA-2010:0002"}, "type_id":
+        "erratum"}, {"unit_key": {"variant": "TestVariant", "version": "16", "arch":
+        "x86_64", "id": "ks-Test Family-TestVariant-16-x86_64", "family": "Test Family"},
+        "type_id": "distribution"}, {"signing_key": null, "unit_key": {"name": "squirrel",
+        "checksum": "251768bdd15f13d78487c27638aa6aecd01551e253756093cde1c0ae878a17d2",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"unit_key": {"id": "RHEA-2012:0059"}, "type_id":
+        "erratum"}, {"unit_key": {"context": "deadbeef", "version": 20180730233102,
+        "arch": "noarch", "name": "duck", "stream": "0"}, "type_id": "modulemd"},
+        {"signing_key": null, "unit_key": {"name": "monkey", "checksum": "0e8fa50d0128fbabc7ccc5632e3fa25d39b0280169f6166cb8e2c84de8501db1",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"unit_key": {"repo_id": "integration_test_id_clone",
+        "name": "kangaroo"}, "type_id": "modulemd_defaults"}, {"unit_key": {"context":
+        "deadbeef", "version": 20180730223407, "arch": "noarch", "name": "kangaroo",
+        "stream": "0"}, "type_id": "modulemd"}, {"signing_key": null, "unit_key":
+        {"name": "cheetah", "checksum": "422d0baa0cd9d7713ae796e886a23e17f578f924f74880debdbb7d65fb368dae",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"signing_key": null, "unit_key": {"name": "penguin",
+        "checksum": "3fcb2c927de9e13bf68469032a28b139d3e5ad2e58564fc210fd6e48635be694",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"unit_key": {"repo_id": "integration_test_id_clone",
+        "id": "all"}, "type_id": "package_category"}, {"signing_key": null, "unit_key":
+        {"name": "walrus", "checksum": "6e8d6dc057e3e2c9819f0dc7e6c7b7f86bf2e8571bba414adec7fb621a461dfd",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"signing_key": null, "unit_key": {"name": "duck",
+        "checksum": "96f37877518a1fe6ea2e17f4ce1fc81b40908043bcbed76744b3d7d38a774bc7",
+        "epoch": "0", "version": "0.6", "release": "1", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"signing_key": null, "unit_key": {"name": "duck",
+        "checksum": "5bd363b860ad6783217cbca3bbc3ef260f98d140ffb121bf4c208e3f66c24712",
+        "epoch": "0", "version": "0.7", "release": "1", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"signing_key": null, "unit_key": {"name": "elephant",
+        "checksum": "3e1c70cd1b421328acaf6397cb3d16145306bb95f65d1b095fc31372a0a701f3",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"unit_key": {"context": "deadbeef", "version":
+        20180704244205, "arch": "noarch", "name": "duck", "stream": "0"}, "type_id":
+        "modulemd"}, {"unit_key": {"repo_id": "integration_test_id_clone", "id": "bird"},
+        "type_id": "package_group"}, {"unit_key": {"context": "c0ffee42", "version":
+        20180707144203, "arch": "x86_64", "name": "walrus", "stream": "0.71"}, "type_id":
+        "modulemd"}, {"unit_key": {"repo_id": "integration_test_id_clone", "name":
+        "walrus"}, "type_id": "modulemd_defaults"}, {"signing_key": null, "unit_key":
+        {"name": "walrus", "checksum": "516a22ccc0cbe3ecb2cbee1c626a39b91767dbf0f815afda7b733aa56523142c",
+        "epoch": "0", "version": "0.71", "release": "1", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"unit_key": {"id": "RHEA-2010:0001"}, "type_id":
+        "erratum"}, {"signing_key": null, "unit_key": {"name": "kangaroo", "checksum":
+        "865a4c89485bdd9723a3c407280c141e9202f024e7db38cba3d097c3f256b2fd", "epoch":
+        "0", "version": "0.3", "release": "1", "arch": "noarch", "checksumtype": "sha256"},
+        "type_id": "rpm"}, {"unit_key": {"repo_id": "integration_test_id_clone", "id":
+        "mammal"}, "type_id": "package_group"}, {"unit_key": {"context": "deadbeef",
+        "version": 20180704111719, "arch": "noarch", "name": "kangaroo", "stream":
+        "0"}, "type_id": "modulemd"}, {"signing_key": null, "unit_key": {"name": "lion",
+        "checksum": "12400dc95c23a4c160725a908716cd3fcdd7a8981585437ab64cd62efa3e4ae4",
+        "epoch": "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"signing_key": null, "unit_key": {"name": "kangaroo",
+        "checksum": "833af594bc0ba31256045ed1fb17d3df2d8341a89b0c5a9bf610dd6103ce4cc8",
+        "epoch": "0", "version": "0.2", "release": "1", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"signing_key": null, "unit_key": {"name": "walrus",
+        "checksum": "74533fbd4f9ada9e02a6361cbbf014b8ff88dff8d69785ec48b77e01898e7c31",
+        "epoch": "0", "version": "5.21", "release": "1", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"unit_key": {"context": "deadbeef", "version":
+        20180704144203, "arch": "x86_64", "name": "walrus", "stream": "5.21"}, "type_id":
+        "modulemd"}, {"signing_key": null, "unit_key": {"name": "giraffe", "checksum":
+        "f25d67d1d9da04f12e57ca323247b43891ac46533e355b82de6d1922009f9f14", "epoch":
+        "0", "version": "0.3", "release": "0.8", "arch": "noarch", "checksumtype":
+        "sha256"}, "type_id": "rpm"}, {"unit_key": {"repo_id": "integration_test_id_clone",
+        "name": "duck"}, "type_id": "modulemd_defaults"}], "units_failed_signature_filter":
+        [{"unit_key": {"repo_id": "integration_test_id", "id": "bird"}, "type_id":
+        "package_group"}, {"unit_key": {"repo_id": "integration_test_id", "name":
+        "duck"}, "type_id": "modulemd_defaults"}, {"unit_key": {"repo_id": "integration_test_id",
+        "name": "walrus"}, "type_id": "modulemd_defaults"}, {"unit_key": {"repo_id":
+        "integration_test_id", "name": "kangaroo"}, "type_id": "modulemd_defaults"},
+        {"unit_key": {"repo_id": "integration_test_id", "id": "all"}, "type_id": "package_category"},
+        {"unit_key": {"repo_id": "integration_test_id", "id": "mammal"}, "type_id":
+        "package_group"}]}, "error": null, "_id": {"$oid": "5b8762be04b1e079c02f56c9"},
+        "id": "5b8762be04b1e079c02f56c9"}'
+    http_version: 
+  recorded_at: Thu, 30 Aug 2018 03:21:34 GMT
+- request:
+    method: post
+    uri: https://alpha.partello.example.com/pulp/api/v2/repositories/integration_test_id/search/units/
     body:
       encoding: UTF-8
       string: '{"criteria":{"type_ids":["erratum"]}}'
@@ -260,39 +661,234 @@ http_interactions:
       - application/json
       Accept-Encoding:
       - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.1p111
       Content-Type:
       - application/json
       Content-Length:
       - '37'
-      User-Agent:
-      - Ruby
+      Host:
+      - alpha.partello.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Fri, 29 Apr 2016 16:21:18 GMT
+      - Thu, 30 Aug 2018 03:21:34 GMT
       Server:
       - Apache/2.4.6 (CentOS)
       Vary:
       - Accept-Encoding
       Content-Length:
-      - '775'
+      - '3236'
       Content-Type:
       - application/json; charset=utf-8
     body:
       encoding: ASCII-8BIT
-      string: '[{"metadata": {"issued": "2010-01-01 01:01:01", "references": [], "pulp_user_metadata":
-        {}, "_content_type_id": "erratum", "id": "RHEA-2010:0001", "from": "lzap+pub@redhat.com",
-        "severity": "", "title": "Empty errata", "_ns": "units_erratum", "version":
-        "1", "reboot_suggested": false, "type": "security", "pkglist": [], "status":
-        "stable", "updated": "", "description": "Empty errata", "_last_updated": 1461946871,
-        "pushcount": "", "rights": "", "solution": "", "summary": "", "release": "1",
-        "_id": "4d519f3e-e40d-4c84-aa9f-74ae1fc1fd30"}, "updated": "2016-04-29T16:21:16Z",
-        "repo_id": "integration_test_id_clone", "created": "2016-04-29T16:21:12Z",
-        "unit_type_id": "erratum", "unit_id": "4d519f3e-e40d-4c84-aa9f-74ae1fc1fd30",
-        "_id": {"$oid": "572389f8898f5c862fa3ea47"}}]'
+      string: '[{"metadata": {"issued": "2010-01-01 01:01:01", "relogin_suggested":
+        false, "references": [], "pulp_user_metadata": {}, "_content_type_id": "erratum",
+        "id": "RHEA-2010:0001", "from": "lzap+pub@redhat.com", "severity": "", "title":
+        "Empty errata", "_ns": "units_erratum", "version": "1", "reboot_suggested":
+        false, "type": "security", "pkglist": [], "status": "stable", "updated": "",
+        "description": "Empty errata", "_last_updated": 1535599293, "restart_suggested":
+        false, "pushcount": "", "rights": "", "solution": "", "summary": "", "release":
+        "1", "_id": "6d5eef73-77bc-49f2-9551-c43665d85ea4"}, "updated": "2018-08-30T03:21:33Z",
+        "repo_id": "integration_test_id", "created": "2018-08-30T03:21:33Z", "unit_type_id":
+        "erratum", "unit_id": "6d5eef73-77bc-49f2-9551-c43665d85ea4", "_id": {"$oid":
+        "5b8762bd04b1e079c02f56c3"}}, {"metadata": {"issued": "2018-01-27 16:08:09",
+        "relogin_suggested": false, "references": [], "pulp_user_metadata": {}, "_content_type_id":
+        "erratum", "id": "RHEA-2012:0059", "from": "errata@redhat.com", "severity":
+        "", "title": "Duck_Kangaroo_Erratum", "_ns": "units_erratum", "version": "1",
+        "reboot_suggested": false, "type": "enhancement", "pkglist": [{"packages":
+        [{"src": "http://www.fedoraproject.org", "name": "kangaroo", "sum": null,
+        "filename": "kangaroo-0.3-1.noarch.rpm", "epoch": null, "version": "0.3",
+        "release": "1", "arch": "noarch"}], "name": "collection-0", "short": ""},
+        {"packages": [{"src": "http://www.fedoraproject.org", "name": "duck", "sum":
+        null, "filename": "duck-0.7-1.noarch.rpm", "epoch": null, "version": "0.7",
+        "release": "1", "arch": "noarch"}], "name": "collection-1", "short": ""}],
+        "status": "stable", "updated": "2018-07-20 06:00:01 UTC", "description": "Duck_Kangaro_Erratum
+        description", "_last_updated": 1535599293, "restart_suggested": false, "pushcount":
+        "", "rights": "", "solution": "", "summary": "", "release": "1", "_id": "a0417791-ad8d-45ae-a9cf-3d4b32950178"},
+        "updated": "2018-08-30T03:21:33Z", "repo_id": "integration_test_id", "created":
+        "2018-08-30T03:21:33Z", "unit_type_id": "erratum", "unit_id": "a0417791-ad8d-45ae-a9cf-3d4b32950178",
+        "_id": {"$oid": "5b8762bd04b1e079c02f56c5"}}, {"metadata": {"issued": "2010-01-01
+        01:01:01", "relogin_suggested": false, "references": [], "pulp_user_metadata":
+        {}, "_content_type_id": "erratum", "id": "RHEA-2010:0002", "from": "lzap+pub@redhat.com",
+        "severity": "", "title": "One package errata", "_ns": "units_erratum", "version":
+        "1", "reboot_suggested": false, "type": "security", "pkglist": [{"packages":
+        [{"src": "http://www.fedoraproject.org", "name": "elephant", "sum": null,
+        "filename": "elephant-0.3-0.8.noarch.rpm", "epoch": "0", "version": "0.3",
+        "release": "0.8", "arch": "noarch"}], "name": "collection-0", "short": ""}],
+        "status": "stable", "updated": "", "description": "One package errata", "_last_updated":
+        1535599293, "restart_suggested": false, "pushcount": "", "rights": "", "solution":
+        "", "summary": "", "release": "1", "_id": "b9f25e8d-c728-4f36-949a-3b1bf3f68691"},
+        "updated": "2018-08-30T03:21:33Z", "repo_id": "integration_test_id", "created":
+        "2018-08-30T03:21:33Z", "unit_type_id": "erratum", "unit_id": "b9f25e8d-c728-4f36-949a-3b1bf3f68691",
+        "_id": {"$oid": "5b8762bd04b1e079c02f56c4"}}]'
     http_version: 
-  recorded_at: Fri, 29 Apr 2016 16:21:18 GMT
-recorded_with: VCR 3.0.1
+  recorded_at: Thu, 30 Aug 2018 03:21:34 GMT
+- request:
+    method: post
+    uri: https://alpha.partello.example.com/pulp/api/v2/repositories/integration_test_id_clone/actions/unassociate/
+    body:
+      encoding: UTF-8
+      string: '{"criteria":{"type_ids":["erratum"],"filters":{"unit":{"id":{"$in":["RHEA-2010:0001"]}}}}}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.1p111
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '90'
+      Host:
+      - alpha.partello.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Date:
+      - Thu, 30 Aug 2018 03:21:34 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '172'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/b5e82273-5552-4cd0-af44-d63733d6922b/",
+        "task_id": "b5e82273-5552-4cd0-af44-d63733d6922b"}], "result": null, "error":
+        null}'
+    http_version: 
+  recorded_at: Thu, 30 Aug 2018 03:21:34 GMT
+- request:
+    method: get
+    uri: https://alpha.partello.example.com/pulp/api/v2/tasks/b5e82273-5552-4cd0-af44-d63733d6922b/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.1p111
+      Content-Type:
+      - application/json
+      Host:
+      - alpha.partello.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 30 Aug 2018 03:21:35 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Etag:
+      - '"0c86f617e10bc0a456aff7ac3e3b8305-gzip"'
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '819'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"exception": null, "task_type": "pulp.server.managers.repo.unit_association.unassociate_by_criteria",
+        "_href": "/pulp/api/v2/tasks/b5e82273-5552-4cd0-af44-d63733d6922b/", "task_id":
+        "b5e82273-5552-4cd0-af44-d63733d6922b", "tags": ["pulp:repository:integration_test_id_clone",
+        "pulp:action:unassociate"], "finish_time": "2018-08-30T03:21:34Z", "_ns":
+        "task_status", "start_time": "2018-08-30T03:21:34Z", "traceback": null, "spawned_tasks":
+        [], "progress_report": {}, "queue": "reserved_resource_worker-0@alpha.partello.example.com.dq2",
+        "state": "finished", "worker_name": "reserved_resource_worker-0@alpha.partello.example.com",
+        "result": {"units_successful": [{"unit_key": {"id": "RHEA-2010:0001"}, "type_id":
+        "erratum"}]}, "error": null, "_id": {"$oid": "5b8762be04b1e079c02f56e8"},
+        "id": "5b8762be04b1e079c02f56e8"}'
+    http_version: 
+  recorded_at: Thu, 30 Aug 2018 03:21:35 GMT
+- request:
+    method: post
+    uri: https://alpha.partello.example.com/pulp/api/v2/repositories/integration_test_id_clone/search/units/
+    body:
+      encoding: UTF-8
+      string: '{"criteria":{"type_ids":["erratum"]}}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.1p111
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '37'
+      Host:
+      - alpha.partello.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 30 Aug 2018 03:21:35 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '2423'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '[{"metadata": {"issued": "2018-01-27 16:08:09", "relogin_suggested":
+        false, "references": [], "pulp_user_metadata": {}, "_content_type_id": "erratum",
+        "id": "RHEA-2012:0059", "from": "errata@redhat.com", "severity": "", "title":
+        "Duck_Kangaroo_Erratum", "_ns": "units_erratum", "version": "1", "reboot_suggested":
+        false, "type": "enhancement", "pkglist": [{"packages": [{"src": "http://www.fedoraproject.org",
+        "name": "kangaroo", "sum": null, "filename": "kangaroo-0.3-1.noarch.rpm",
+        "epoch": null, "version": "0.3", "release": "1", "arch": "noarch"}], "name":
+        "collection-0", "short": ""}, {"packages": [{"src": "http://www.fedoraproject.org",
+        "name": "duck", "sum": null, "filename": "duck-0.7-1.noarch.rpm", "epoch":
+        null, "version": "0.7", "release": "1", "arch": "noarch"}], "name": "collection-1",
+        "short": ""}], "status": "stable", "updated": "2018-07-20 06:00:01 UTC", "description":
+        "Duck_Kangaro_Erratum description", "_last_updated": 1535599293, "restart_suggested":
+        false, "pushcount": "", "rights": "", "solution": "", "summary": "", "release":
+        "1", "_id": "a0417791-ad8d-45ae-a9cf-3d4b32950178"}, "updated": "2018-08-30T03:21:34Z",
+        "repo_id": "integration_test_id_clone", "created": "2018-08-30T03:21:34Z",
+        "unit_type_id": "erratum", "unit_id": "a0417791-ad8d-45ae-a9cf-3d4b32950178",
+        "_id": {"$oid": "5b8762be04b1e079c02f56d6"}}, {"metadata": {"issued": "2010-01-01
+        01:01:01", "relogin_suggested": false, "references": [], "pulp_user_metadata":
+        {}, "_content_type_id": "erratum", "id": "RHEA-2010:0002", "from": "lzap+pub@redhat.com",
+        "severity": "", "title": "One package errata", "_ns": "units_erratum", "version":
+        "1", "reboot_suggested": false, "type": "security", "pkglist": [{"packages":
+        [{"src": "http://www.fedoraproject.org", "name": "elephant", "sum": null,
+        "filename": "elephant-0.3-0.8.noarch.rpm", "epoch": "0", "version": "0.3",
+        "release": "0.8", "arch": "noarch"}], "name": "collection-0", "short": ""}],
+        "status": "stable", "updated": "", "description": "One package errata", "_last_updated":
+        1535599293, "restart_suggested": false, "pushcount": "", "rights": "", "solution":
+        "", "summary": "", "release": "1", "_id": "b9f25e8d-c728-4f36-949a-3b1bf3f68691"},
+        "updated": "2018-08-30T03:21:34Z", "repo_id": "integration_test_id_clone",
+        "created": "2018-08-30T03:21:34Z", "unit_type_id": "erratum", "unit_id": "b9f25e8d-c728-4f36-949a-3b1bf3f68691",
+        "_id": {"$oid": "5b8762be04b1e079c02f56d5"}}]'
+    http_version: 
+  recorded_at: Thu, 30 Aug 2018 03:21:35 GMT
+recorded_with: VCR 4.0.0

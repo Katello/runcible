@@ -1,46 +1,6 @@
 ---
 http_interactions:
 - request:
-    method: post
-    uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/events/
-    body:
-      encoding: UTF-8
-      string: '{"notifier_type_id":"http","notifier_config":{"url":"http://foo.com/foo/"},"event_types":["repo.publish.finish"]}'
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Type:
-      - application/json
-      Content-Length:
-      - '113'
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 201
-      message: CREATED
-    headers:
-      Date:
-      - Fri, 29 Apr 2016 16:27:13 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Content-Length:
-      - '282'
-      Location:
-      - https://runcible.example.com/pulp/api/v2/events/57238b61aca4886d9799060e/
-      Content-Type:
-      - application/json; charset=utf-8
-    body:
-      encoding: UTF-8
-      string: '{"_href": "/pulp/api/v2/events/57238b61aca4886d9799060e/", "notifier_config":
-        {"url": "http://foo.com/foo/"}, "_ns": "event_listeners", "event_types": ["repo.publish.finish"],
-        "_id": {"$oid": "57238b61aca4886d9799060e"}, "id": "57238b61aca4886d9799060e",
-        "notifier_type_id": "http"}'
-    http_version: 
-  recorded_at: Fri, 29 Apr 2016 16:27:13 GMT
-- request:
     method: delete
     uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/events/57238b61aca4886d9799060e/
     body:
@@ -73,4 +33,122 @@ http_interactions:
       string: 'null'
     http_version: 
   recorded_at: Fri, 29 Apr 2016 16:27:13 GMT
-recorded_with: VCR 3.0.1
+- request:
+    method: delete
+    uri: https://alpha.partello.example.com/pulp/api/v2/events/5b8758c0d6cc06041e66e64a/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.1p111
+      Content-Type:
+      - application/json
+      Host:
+      - alpha.partello.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 30 Aug 2018 02:38:56 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '4'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: 'null'
+    http_version: 
+  recorded_at: Thu, 30 Aug 2018 02:38:56 GMT
+- request:
+    method: post
+    uri: https://alpha.partello.example.com/pulp/api/v2/events/
+    body:
+      encoding: UTF-8
+      string: '{"notifier_type_id":"http","notifier_config":{"url":"http://foo.com/foo/"},"event_types":["repo.publish.finish"]}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.1p111
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '113'
+      Host:
+      - alpha.partello.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 201
+      message: CREATED
+    headers:
+      Date:
+      - Thu, 30 Aug 2018 03:26:57 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '282'
+      Location:
+      - "/pulp/api/v2/events/5b876401d6cc06041d38e618/"
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"_href": "/pulp/api/v2/events/5b876401d6cc06041d38e618/", "notifier_config":
+        {"url": "http://foo.com/foo/"}, "_ns": "event_listeners", "event_types": ["repo.publish.finish"],
+        "_id": {"$oid": "5b876401d6cc06041d38e618"}, "id": "5b876401d6cc06041d38e618",
+        "notifier_type_id": "http"}'
+    http_version: 
+  recorded_at: Thu, 30 Aug 2018 03:26:57 GMT
+- request:
+    method: delete
+    uri: https://alpha.partello.example.com/pulp/api/v2/events/5b876401d6cc06041d38e618/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.1p111
+      Content-Type:
+      - application/json
+      Host:
+      - alpha.partello.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 30 Aug 2018 03:26:57 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '4'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: 'null'
+    http_version: 
+  recorded_at: Thu, 30 Aug 2018 03:26:57 GMT
+recorded_with: VCR 4.0.0

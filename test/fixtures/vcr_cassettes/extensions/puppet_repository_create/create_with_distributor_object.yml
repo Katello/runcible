@@ -1,125 +1,6 @@
 ---
 http_interactions:
 - request:
-    method: post
-    uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/repositories/
-    body:
-      encoding: UTF-8
-      string: '{"id":"integration_test_id_distro","distributors":[{"distributor_type_id":"puppet_distributor","distributor_config":{"absolute_path":"/path","serve_http":true,"serve_https":true},"auto_publish":false,"distributor_id":"123"}]}'
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Type:
-      - application/json
-      Content-Length:
-      - '225'
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 201
-      message: CREATED
-    headers:
-      Date:
-      - Fri, 29 Apr 2016 16:22:09 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Content-Length:
-      - '340'
-      Location:
-      - https://runcible.example.com/pulp/api/v2/repositories/integration_test_id_distro/
-      Content-Type:
-      - application/json; charset=utf-8
-    body:
-      encoding: UTF-8
-      string: '{"scratchpad": {}, "display_name": "integration_test_id_distro", "description":
-        null, "last_unit_added": null, "notes": {}, "last_unit_removed": null, "content_unit_counts":
-        {}, "_ns": "repos", "_id": {"$oid": "57238a32aca4886d96d97ec8"}, "id": "integration_test_id_distro",
-        "_href": "/pulp/api/v2/repositories/integration_test_id_distro/"}'
-    http_version: 
-  recorded_at: Fri, 29 Apr 2016 16:22:10 GMT
-- request:
-    method: get
-    uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/repositories/integration_test_id_distro/?details=true
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Type:
-      - application/json
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Fri, 29 Apr 2016 16:22:10 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Vary:
-      - Accept-Encoding
-      Content-Length:
-      - '830'
-      Content-Type:
-      - application/json; charset=utf-8
-    body:
-      encoding: ASCII-8BIT
-      string: '{"scratchpad": {}, "display_name": "integration_test_id_distro", "description":
-        null, "distributors": [{"repo_id": "integration_test_id_distro", "_href":
-        "/pulp/api/v2/repositories/integration_test_id_distro/distributors/123/",
-        "_ns": "repo_distributors", "last_publish": null, "distributor_type_id": "puppet_distributor",
-        "auto_publish": false, "scratchpad": {}, "_id": {"$oid": "57238a32aca4886d96d97ec9"},
-        "config": {"absolute_path": "/path", "serve_https": true, "serve_http": true},
-        "id": "123"}], "last_unit_added": null, "notes": {}, "last_unit_removed":
-        null, "content_unit_counts": {}, "_ns": "repos", "importers": [], "locally_stored_units":
-        0, "_id": {"$oid": "57238a32aca4886d96d97ec8"}, "total_repository_units":
-        0, "id": "integration_test_id_distro", "_href": "/pulp/api/v2/repositories/integration_test_id_distro/"}'
-    http_version: 
-  recorded_at: Fri, 29 Apr 2016 16:22:10 GMT
-- request:
-    method: delete
-    uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/repositories/integration_test_id_distro/
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Type:
-      - application/json
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 202
-      message: ACCEPTED
-    headers:
-      Date:
-      - Fri, 29 Apr 2016 16:22:10 GMT
-      Server:
-      - Apache/2.4.6 (CentOS)
-      Content-Length:
-      - '172'
-      Content-Type:
-      - application/json; charset=utf-8
-    body:
-      encoding: UTF-8
-      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/ca681049-0f8a-4d73-8c81-aa2c986d46a4/",
-        "task_id": "ca681049-0f8a-4d73-8c81-aa2c986d46a4"}], "result": null, "error":
-        null}'
-    http_version: 
-  recorded_at: Fri, 29 Apr 2016 16:22:10 GMT
-- request:
     method: get
     uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/tasks/ca681049-0f8a-4d73-8c81-aa2c986d46a4/
     body:
@@ -163,8 +44,8 @@ http_interactions:
     http_version: 
   recorded_at: Fri, 29 Apr 2016 16:22:11 GMT
 - request:
-    method: delete
-    uri: https://admin:HeQSzZgm6ZEKG8aHrJEGW7aGD85Wrj57@runcible.example.com/pulp/api/v2/repositories/integration_test_id/
+    method: get
+    uri: https://alpha.partello.example.com/pulp/api/v2/tasks/5f8d7b5d-b9fe-4d1c-a2f8-6600ee23da8f/
     body:
       encoding: US-ASCII
       string: ''
@@ -173,21 +54,255 @@ http_interactions:
       - application/json
       Accept-Encoding:
       - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.1p111
       Content-Type:
       - application/json
+      Host:
+      - alpha.partello.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 30 Aug 2018 02:34:17 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Etag:
+      - '"bfb27e56172b930079696c9dac97b88b-gzip"'
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '704'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"exception": null, "task_type": "pulp.server.tasks.repository.delete",
+        "_href": "/pulp/api/v2/tasks/5f8d7b5d-b9fe-4d1c-a2f8-6600ee23da8f/", "task_id":
+        "5f8d7b5d-b9fe-4d1c-a2f8-6600ee23da8f", "tags": ["pulp:repository:integration_test_id_distro",
+        "pulp:action:delete"], "finish_time": "2018-08-30T02:34:17Z", "_ns": "task_status",
+        "start_time": "2018-08-30T02:34:17Z", "traceback": null, "spawned_tasks":
+        [], "progress_report": {}, "queue": "reserved_resource_worker-0@alpha.partello.example.com.dq2",
+        "state": "finished", "worker_name": "reserved_resource_worker-0@alpha.partello.example.com",
+        "result": null, "error": null, "_id": {"$oid": "5b8757a904b1e079c02f4f53"},
+        "id": "5b8757a904b1e079c02f4f53"}'
+    http_version: 
+  recorded_at: Thu, 30 Aug 2018 02:34:17 GMT
+- request:
+    method: post
+    uri: https://alpha.partello.example.com/pulp/api/v2/repositories/
+    body:
+      encoding: UTF-8
+      string: '{"id":"integration_test_id_distro","distributors":[{"distributor_type_id":"puppet_distributor","distributor_config":{"absolute_path":"/path","serve_http":true,"serve_https":true},"auto_publish":false,"distributor_id":"123"}]}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
       User-Agent:
-      - Ruby
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.1p111
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '225'
+      Host:
+      - alpha.partello.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 201
+      message: CREATED
+    headers:
+      Date:
+      - Thu, 30 Aug 2018 03:22:10 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '340'
+      Location:
+      - "/pulp/api/v2/repositories/integration_test_id_distro/"
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"scratchpad": {}, "display_name": "integration_test_id_distro", "description":
+        null, "last_unit_added": null, "notes": {}, "last_unit_removed": null, "content_unit_counts":
+        {}, "_ns": "repos", "_id": {"$oid": "5b8762e2d6cc060423aae35b"}, "id": "integration_test_id_distro",
+        "_href": "/pulp/api/v2/repositories/integration_test_id_distro/"}'
+    http_version: 
+  recorded_at: Thu, 30 Aug 2018 03:22:10 GMT
+- request:
+    method: get
+    uri: https://alpha.partello.example.com/pulp/api/v2/repositories/integration_test_id_distro/?details=true
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.1p111
+      Content-Type:
+      - application/json
+      Host:
+      - alpha.partello.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 30 Aug 2018 03:22:10 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Etag:
+      - '"6f034dda23c4ff91f533003e83df16d6-gzip"'
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '898'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"scratchpad": {}, "display_name": "integration_test_id_distro", "description":
+        null, "distributors": [{"repo_id": "integration_test_id_distro", "last_updated":
+        "2018-08-30T03:22:10Z", "_href": "/pulp/api/v2/repositories/integration_test_id_distro/distributors/123/",
+        "last_override_config": {}, "last_publish": null, "distributor_type_id": "puppet_distributor",
+        "auto_publish": false, "scratchpad": {}, "_ns": "repo_distributors", "_id":
+        {"$oid": "5b8762e2d6cc060423aae35c"}, "config": {"absolute_path": "/path",
+        "serve_https": true, "serve_http": true}, "id": "123"}], "last_unit_added":
+        null, "notes": {}, "last_unit_removed": null, "content_unit_counts": {}, "_ns":
+        "repos", "importers": [], "locally_stored_units": 0, "_id": {"$oid": "5b8762e2d6cc060423aae35b"},
+        "total_repository_units": 0, "id": "integration_test_id_distro", "_href":
+        "/pulp/api/v2/repositories/integration_test_id_distro/"}'
+    http_version: 
+  recorded_at: Thu, 30 Aug 2018 03:22:10 GMT
+- request:
+    method: delete
+    uri: https://alpha.partello.example.com/pulp/api/v2/repositories/integration_test_id_distro/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.1p111
+      Content-Type:
+      - application/json
+      Host:
+      - alpha.partello.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Date:
+      - Thu, 30 Aug 2018 03:22:10 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Content-Length:
+      - '172'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"spawned_tasks": [{"_href": "/pulp/api/v2/tasks/d3560e22-1075-49bd-99ea-356653866a22/",
+        "task_id": "d3560e22-1075-49bd-99ea-356653866a22"}], "result": null, "error":
+        null}'
+    http_version: 
+  recorded_at: Thu, 30 Aug 2018 03:22:10 GMT
+- request:
+    method: get
+    uri: https://alpha.partello.example.com/pulp/api/v2/tasks/d3560e22-1075-49bd-99ea-356653866a22/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.1p111
+      Content-Type:
+      - application/json
+      Host:
+      - alpha.partello.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 30 Aug 2018 03:22:10 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Etag:
+      - '"1315fe433c42db6a0f1d23a766c748f3-gzip"'
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '704'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: ASCII-8BIT
+      string: '{"exception": null, "task_type": "pulp.server.tasks.repository.delete",
+        "_href": "/pulp/api/v2/tasks/d3560e22-1075-49bd-99ea-356653866a22/", "task_id":
+        "d3560e22-1075-49bd-99ea-356653866a22", "tags": ["pulp:repository:integration_test_id_distro",
+        "pulp:action:delete"], "finish_time": "2018-08-30T03:22:10Z", "_ns": "task_status",
+        "start_time": "2018-08-30T03:22:10Z", "traceback": null, "spawned_tasks":
+        [], "progress_report": {}, "queue": "reserved_resource_worker-0@alpha.partello.example.com.dq2",
+        "state": "finished", "worker_name": "reserved_resource_worker-0@alpha.partello.example.com",
+        "result": null, "error": null, "_id": {"$oid": "5b8762e204b1e079c02f581c"},
+        "id": "5b8762e204b1e079c02f581c"}'
+    http_version: 
+  recorded_at: Thu, 30 Aug 2018 03:22:10 GMT
+- request:
+    method: delete
+    uri: https://alpha.partello.example.com/pulp/api/v2/repositories/integration_test_id/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.1p111
+      Content-Type:
+      - application/json
+      Host:
+      - alpha.partello.example.com
+      Authorization:
+      - Basic YWRtaW46YWRtaW4=
   response:
     status:
       code: 404
-      message: NOT FOUND
+      message: Not Found
     headers:
       Date:
-      - Fri, 29 Apr 2016 16:22:11 GMT
+      - Thu, 30 Aug 2018 03:22:10 GMT
       Server:
       - Apache/2.4.6 (CentOS)
-      Content-Encoding:
-      - utf-8
       Content-Length:
       - '454'
       Content-Type:
@@ -200,5 +315,5 @@ http_interactions:
         "integration_test_id"}}, "description": "Missing resource(s): repository=integration_test_id",
         "sub_errors": []}, "traceback": null, "resources": {"repository": "integration_test_id"}}'
     http_version: 
-  recorded_at: Fri, 29 Apr 2016 16:22:11 GMT
-recorded_with: VCR 3.0.1
+  recorded_at: Thu, 30 Aug 2018 03:22:10 GMT
+recorded_with: VCR 4.0.0
