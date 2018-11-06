@@ -117,6 +117,12 @@ module Extensions
 
       assert_equal 200, response.code
     end
+
+    def test_applicable_module_streams
+      response = @extension.applicable_module_streams([@consumer_id])
+
+      assert_equal 200, response.code
+    end
   end
 
   class TestConsumerApplicabilityScenario < MiniTest::Unit::TestCase
@@ -146,6 +152,48 @@ module Extensions
       RepositorySupport.new.wait_on_response(task)
       applicability = @extension.applicable_errata([@consumer_id])
 
+      refute_empty applicability
+      assert applicability[0]['consumers'].include?(@consumer_id)
+      refute_empty applicability[0]['applicability']['erratum']
+    end
+
+    def test_non_modular_applicability
+      # given kangaroo rpm is part of kangaroo module
+      # and that kangaroo module is not enabled
+      # make sure no rpms are determined as applicable
+
+      @extension.upload_profile(@consumer_id, 'rpm', [{'name' => 'kangaroo', 'version' => '0.2', 'release' => '1',
+                                                       'epoch' => 0, 'arch' => 'noarch', 'vendor' => 'Fedora'}])
+      task = @extension.regenerate_applicability_by_ids([@consumer_id])
+      RepositorySupport.new.wait_on_response(task)
+      assert_empty @extension.applicable_rpms([@consumer_id])[0]["applicability"]["rpm"]
+      assert_empty @extension.applicable_module_streams([@consumer_id])[0]["applicability"]["modulemd"]
+      assert_empty @extension.applicable_errata([@consumer_id])[0]["applicability"]["erratum"]
+    end
+
+    def test_modular_applicability
+      # given kangaroo rpm is part of kangaroo module
+      # and that kangaroo module is enabled
+      # make sure rpms are determined as applicable
+      # now enable the kangaroo module on the consumer and retry
+      @extension.upload_profile(@consumer_id, 'modulemd', [{'name' => 'kangaroo', 'stream' => '0',
+                                                            'version' => '20180730223407',
+                                                            'context' => "deadbeef", 'arch' => 'noarch'}])
+
+      @extension.upload_profile(@consumer_id, 'rpm', [{'name' => 'kangaroo', 'version' => '0.2', 'release' => '1',
+                                                       'epoch' => 0, 'arch' => 'noarch', 'vendor' => 'Fedora'}])
+
+      task = @extension.regenerate_applicability_by_ids([@consumer_id])
+      RepositorySupport.new.wait_on_response(task)
+      applicable_rpms = @extension.applicable_rpms([@consumer_id])
+      applicable_module_streams = @extension.applicable_module_streams([@consumer_id])
+      refute_empty applicable_rpms[0]["applicability"]["rpm"]
+      refute_empty applicable_module_streams[0]["applicability"]["modulemd"]
+
+      # # note: kangaroo 0.3 rpm is part of kangaroo:0 stream,
+      # # and Duck_Kangaro_Erratum
+      # # so we would expect to see an errata also
+      applicability = @extension.applicable_errata([@consumer_id])
       refute_empty applicability
       assert applicability[0]['consumers'].include?(@consumer_id)
       refute_empty applicability[0]['applicability']['erratum']

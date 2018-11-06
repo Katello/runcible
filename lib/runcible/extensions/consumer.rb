@@ -154,6 +154,14 @@ module Runcible
         applicable_for_type(ids, Runcible::Extensions::Rpm.content_type)
       end
 
+      # Retrieve the set of modules that are applicable to a consumer(s)
+      #
+      # @param  [String, Array]         ids             string containing a single consumer id or an array of ids
+      # @return [RestClient::Response]  content applicability hash with details of modules available to consumer(s)
+      def applicable_module_streams(ids)
+        applicable_for_type(ids, Runcible::Extensions::Module.content_type)
+      end
+
       private
 
       def applicable_for_type(ids, type)
