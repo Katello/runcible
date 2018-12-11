@@ -4,7 +4,7 @@ require 'securerandom'
 module Runcible
   module Models
     class PuppetInstallDistributor < Distributor
-      attr_accessor 'install_path'
+      attr_accessor 'install_path', 'subdir'
 
       def initialize(install_path, params = {})
         @install_path = install_path
