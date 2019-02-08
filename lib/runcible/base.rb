@@ -74,7 +74,7 @@ module Runcible
       response = get_response(client, path, *args)
       processed = process_response(response)
       self.logs << "Response: #{response.code}: #{response.body}"
-      log_info
+      log_debug
       processed
     rescue RestClient::ResourceNotFound => e
       self.logs << exception_to_log(e)
