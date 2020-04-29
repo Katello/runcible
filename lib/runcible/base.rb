@@ -200,16 +200,24 @@ module Runcible
       return headers
     end
 
+    def log_message
+      filter_sensitive_data(self.logs.join("\n"))
+    end
+
+    def filter_sensitive_data(payload)
+      payload.gsub(/-----BEGIN RSA PRIVATE KEY-----[\s\S]*-----END RSA PRIVATE KEY-----/, '[private key filtered]')
+    end
+
     def log_debug
-      self.config[:logging][:logger].debug(self.logs.join("\n")) if self.config[:logging][:debug]
+      logger.debug(log_message) if self.config[:logging][:debug]
     end
 
     def log_exception
-      self.config[:logging][:logger].error(self.logs.join("\n")) if self.config[:logging][:exception]
+      logger.error(log_message) if self.config[:logging][:exception]
     end
 
     def log_info
-      self.config[:logging][:logger].info(self.logs.join("\n")) if self.config[:logging][:info]
+      logger.info(log_message) if self.config[:logging][:info]
     end
 
     def logger
