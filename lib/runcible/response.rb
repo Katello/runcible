@@ -7,8 +7,8 @@ module Runcible
       @parsed_body = parsed_body
     end
 
-    def respond_to?(name)
-      @parsed_body.respond_to?(name) || @rest_client_response.respond_to?(name)
+    def respond_to?(name, include_all=false)
+      @parsed_body.respond_to?(name, include_all) || @rest_client_response.respond_to?(name, include_all)
     end
 
     def ==(other)
